@@ -1,0 +1,141 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Taxes</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Taxes</h2>
+<p>Use the <strong>Taxes </strong>section  of the application<strong> </strong>to define all of  your taxation rules. Clicking the<b> Taxes</b> menu option from the <b>Catalog Designer</b> menu brings up the Taxes Search page.</p>
+
+<h3>Taxes Search</h3>
+<p>The Taxes Search pages displays all Tax codes and allows for a detailed search on Tax Code or Label criteria.</p>
+
+<p><img src="TaxesSearch.png" alt="Taxes Search" /></p>
+<p>The Taxes page contains the following fields: </p>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th width="104" class='confluenceTh'>Action</th>
+<th width="740" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Search</strong></td>
+<td class='confluenceTd'>Returns results on the search criteria.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Add</strong></td>
+<td class='confluenceTd'>Opens up the new object dialog.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Delete</strong></td>
+  <td class='confluenceTd'>Deletes the selected row. Only rows that are not active or archived can be deleted.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Detail</strong></td>
+<td class='confluenceTd'>Displays the details of the selected Tax Code.</td>
+</tr>
+<tr>
+  <td height="27" class='confluenceTd'><strong>Change History</strong></td>
+  <td class='confluenceTd'>Performs a search displaying the objects containing the selected Tax Code within the Catalog.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Details</h3>
+<p>The Tax Detail page appears by Clicking the Add button on the Taxes Search page and it displays the details of the Tax Code.  The Tax Code defines the percentage of Tax to be applied, and the start and end dates for which this tax is applied. When a Tax record is created a version is also created for the Tax. The following figure shows the Tax Detail as well as the Version detail.</p>
+
+<img src="TaxDetail.png" alt="Tax Details" border="1" />
+
+<p>The Tax Detail page contains the following fields:</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Rule</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Code</strong></td>
+<td class='confluenceTd'>Mandatory</td>
+<td class='confluenceTd'>A Tax Code (for example, VAT)</td>
+</tr>
+
+<tr>
+  <td class='confluenceTd'><strong>Status</strong></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>The status of the object (Definition or Active)</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Name</strong></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>Enter a name for this tax.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Start Date</strong></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>The date that this Tax becomes effective.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>End Date</strong></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>The date when this Tax is no longer effective. This field  can be modified regardless of the status of the object.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Percentage</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The tax percentage. For example, a value of 8.0 in this field is equivalent 8% or 0.08.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Included In Price</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This field is checked by default, meaning that the tax is included in the price. Otherwise, to exclude the tax from the price, deselect this field.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Label</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Label for this Tax, which is used in the application user interface.This field is a translational string that supports language translations (refer to Velocity Studio's Translation Element for more details).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Description</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Enter a description about this tax in field.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Project</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This field contains the project to which this object is associated. The default value is the open Project. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Owner</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This field denotes the position of the user who created the project and only users with the same position or higher can access the project data.  This value cannot be changed. Refer to <A href="../Configuration/Catalog_Domains.html">Domains</A> for more information. </td>
+</tr>
+</tbody>
+</table>
+
+<h3>Versions / Copy</h3>
+<p>By performing a <strong>Copy</strong> of a Tax Code, the system creates a version of that Tax Code.  This version is a clone of the copied instance and maintains the associations to all other objects.   When a new version is created, the Start Date field is required but the End Date field can remain empty.  A blank End Date means that the life span of the version is unlimited into the future.
+
+  It is possible to have various version of the Tax Code that are Active at the same time and have overlapping Start and End Dates.  The system will select the version whose start date most closely matches the application request date.  The system will sort the versions by Start Date in descending order and will use the first version that is alive (for example, the version is within the start date and end date window).
+  </p>
+<p>For example, if there were two versions: </p>
+<ol type="A">
+<li> Start Date = December 23, 2010   and End Date = <i>blank </i></li>
+<li> Start Date = December 30, 2010   and End Date = <i> blank</i></li>
+<li> Start Date = January 16, 2011 and End Date = February 1, 2011</li>
+</ol>
+If the application request time, was December 24, then Version A would be selected.  However, if the application request time were December 31, 2010, then Version B would be selected.  An application request date of January 30, 2011 would select Version C but  a request date of February 2, 2011 would select Version B.
+</td>
+</tr>
+</table>
+</body>
+</html>

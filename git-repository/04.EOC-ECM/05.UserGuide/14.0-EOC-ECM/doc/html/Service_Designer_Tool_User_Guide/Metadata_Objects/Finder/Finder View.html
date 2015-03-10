@@ -1,0 +1,185 @@
+<html>
+<head>
+<title>Finder View</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Finder View</h2>
+<p>Finder views are defined on the <b>Views</b> tab. A view specifies one distinctive way to represent a Finder in the User Interface. Each view is defined by the Finder Result Form specified in the view.</p>
+<p>At runtime, the Finder views has the  following behaviour:</p>
+<ul>
+<li>Upon initial display, the default view is displayed in the User Interface.</li>
+<li>Views are selected (or evaluated, when the view is a single form), based on the privileges of the view form.</li>
+<li>The Finder displays an error for a message Security violation. Views are not permitted if no Result Form is available, or if the Finder has a search Document. In this case, the <b>Show Search Form</b> property is checked for the view and no search form is available.</li>
+<li>The view menu of the Finder lists all views available for the user. The user can change the view by selecting a different view from the menu. If there is only one view it is not listed.<br>
+  <br>
+</li>
+</ul>
+<img src="finderView.png" border="1" alt="Finder V- iew tab" />
+<h3><a name="configuration"></a>Configuration</h3>
+<p>The <b>Search Form</b> and <b>Result Form</b> displays forms that appears in the Input and Output Document's User Interface, respectively. Overridden or extended Forms must be available or you cannot select a Form from either of these lists.</p>
+<p>The following checkboxes appear on the View tab:</p>
+<table class='confluenceTable' border cellpadding="1"><tbody>
+    <tr>
+      <th width="148" class='confluenceTh'>Field</th>
+      <th width="1380" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Allow custom views</b></td>
+      <td class='confluenceTd'><p>This checkbox defines whether runtime custom views are allowed to be defined for this Finder. The runtime custom views are created by the user and stored in the database. They store information about the form that is used, the fields that are displayed and the content of the search criteria Document. </p>
+        <p><strong>Note:</strong> At runtime, all Custom View Names should be unique for all views for a given user.</p>
+        <p>Users can share runtime custom views in the database if a view is defined as a shared view. This means that one user can create a view that can be used by other users (by default, the runtime views are private; they can be seen and used only by the user who created them). </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Share Views</b></td>
+      <td class='confluenceTd'>This checkbox defines whether the custom views can be shared. When checked, this  option  may create a serious security issue if the Finder has search criteria that are automatically populated with user-specific data such as user ID, and user profile data. These Finder views should not be shared  and the <b>Share Views </b>property should be unchecked.</td>
+    </tr>
+    <tr>
+      <td height="48" class='confluenceTd'><strong>Allow saving search criteria</strong></td>
+      <td class='confluenceTd'><p>This field is set to true by default for backward compatibility. When selected, this setting allows you to save your search criteria, particularly if your finder either uses predefined search criteria or criteria set by a script from creating favorites or custom views with a saved search. </p></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3>Create a Finder View</h3>
+<p>To create a Finder view, follow these steps:</p>
+<ol>
+  <li>From the Finder View tab, click the <strong>Add</strong> button. The <b>New Finder View</b> wizard opens.</li>
+  <li>Type the <b>Name</b> of the Finder View.</li>
+  <li>Configure the properties of the new View.</li>
+  <li>Click <b>Finish</b>. The new View is then added to the Views list.</li>
+</ol>
+<p>To update a view, highlight the view item in the list, then double-click  it or click the <strong>Properties</strong> button. The Finder View Properties dialog  opens. Continue by changing the view properties.</p>
+<p>To delete a view, highlight the desired view item in the list, and click the <strong>Remove</strong> button.</p>
+<p><img src="finderViewProperties.png" border="0" alt="Finder View properties" /></p>
+<p>The View Properties dialog contains the following fields:</p>
+<table class='confluenceTable' border cellpadding="1"><tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory.The name of the view.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Mandatory.The label of the view to display at runtime.</td>
+</tr>
+<tr>
+  <td height="115" class='confluenceTd'><strong>Search UI</strong></td>
+  <td class='confluenceTd'><p>This field allows you to specify the user interface from which to get the search. This field lists all top-level user interfaces, the finder user interface, and the input document user interface.</p>
+    <p>      If this field is null,  the forms that exist under the finder's input document populate the <strong>Search form</strong> field. Otherwise, the forms that exist under the selected UI populate the <strong>Search form</strong> field.</p>
+    <p><strong>Note:</strong> Any non-null selection in the <strong>Search UI</strong> field  nullifies the value in the <strong>Search event</strong> field. </p>
+    <p> To select a local form, do the following: </p>
+    <ol>
+      <li>Find and select the finder's user interface in the <strong>Search UI</strong> field. </li>
+      <li>The <strong>Search form</strong> displays the finder's local forms, except for these  forms: 
+        <ul>
+          <li>Default</li>
+          <li>ReferenceForm</li>
+          <li>Result</li>
+          <li>Search</li>
+          
+        </ul>
+        <p><strong>Note:</strong> The base finder's Search form is used in navigation trees and it displays the search form of the current finder view. This form cannot be used as a search form to avoid infinite recursion.            </p>
+        </li>
+    </ol>
+    <p>To select a top-level UI form, select the top-level UI from the <strong>Search UI</strong> field first, and then select the <strong>Search form</strong> from the list.<BR>
+      <BR>
+      <strong>Notes:</strong></p>
+    <ul>
+      <li> Helpful finder user interface variables include the following:
+        <ul>
+          <li>        this.search<br>
+            This variable keeps the search UI instance. It can be equal to <em>this</em> if the local form is used.</li>
+          <li>            this.searchForm<br>
+            This variable is the  string name of the current search form</li>
+          <li>this.searchDoc<br>
+            This variable is the current search document or data structure. Use the variable to build finder's local forms.<BR>
+          </li>
+        </ul>
+      </li>
+      <li> In the case of a top-level form when the search UI is created, the input document or data structure of the finder is passed as a model to the top-level UI. To build a search form, override the <em>model</em> variable and set the type to the input object.</li>
+      <li>In case of local form of the finder, by default, all search fields are disabled for script and SQL finders. By default, the editablePerm method of the script or SQL finder returns FALSE (that is, not-editable). To fix this case, you can either set the <strong>Editable</strong> property to <strong>TRUE</strong> on the field level or override the finder's editablePerm method and return TRUE.<BR>
+      </li>
+    </ul></td>
+</tr>
+<tr>
+<td height="115" class='confluenceTd'><b>Search form</b></td>
+<td class='confluenceTd'><p>Optional. The Form that appears in the search input section of the Finder Form. Choose one of the User Interfaces available in <b>Select Input</b> Document in General tab (or choose <i>&lt;NONE&gt;</i>).<br/><br/>
+  <b>Notes</b>: </p>
+  <ul>
+    <li>Make sure that you have overridden your local Forms in your input Document. Otherwise, only the generic base Forms inherited from the base Document of your input Document are available here (that is, <i>com.conceptwave.system.DocumentUserInterface.Forms.Default</i>).</li>
+    <li>See the <strong>Note</strong> section that follows regarding precedence if both the form and event are specified.</li>
+  </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Search event</strong></td>
+  <td class='confluenceTd'><p>This field allows you to select the search event for your finder.  Any non-null selection in the <strong>Search UI</strong> field  nullifies the value in the <strong>Search event</strong> field. </p>
+    <p>See the <strong>Note</strong> section that follows regarding precedence if both the form and event are specified.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Result UI</strong></td>
+  <td class='confluenceTd'><p>This field allows you to specify the user interface from which to get the result.</p>
+    <p>If this field is null, the finder's own forms populate the <strong>Result form</strong> field. Otherwise, the forms that exist under the selected UI populate the <strong>Result form</strong> field.</p>
+    <p><strong>Note:</strong>       Any non-null selection in the <strong>Result UI</strong> field nullifies the value in the <strong>Result event</strong> field. </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Result form</b></td>
+<td class='confluenceTd'><p>Mandatory. The Form that appears in the search result section of the Finder Form. Choose from one of the User Interfaces available in this Finder. The default is its <b>Result</b> Form (<i>&lt;This Finder&gt;.UserInterface.Forms.Result</i>), which has a Table that displays all the returned results after the Finder has completed its search.<br/><br/>
+  <b>Notes</b>: </p>
+  <ul>
+    <li>You can change this field to show results in your own Form, but your Form must be located within this Finder's User Interface (that is, the Form should not be located in output Document).</li>
+    <li>See the <strong>Note</strong> section that follows regarding precedence if both the form and event are specified.</li>
+  </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Result event</strong></td>
+  <td class='confluenceTd'><p>This field allows you to select the result event for your finder. Any non-null selection in the <strong>Result UI</strong> field nullifies the value in the <strong>Result event</strong> field.</p>
+    <p>See the <strong>Note</strong> section that follows regarding precedence if both the form and event are specified.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Auto Search</b></td>
+<td class='confluenceTd'>If checked, the search operation is performed before the view is shown for the first time. The value is displayed in the <b>Auto Search</b> column in the <b>View</b> list on the <b>Views</b> tab.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Show search form</b></td>
+<td class='confluenceTd'>If checked, the search form will be initially displayed when the view is shown for the first time. The value is displayed in the <b>Show Search</b> column in the <b>View</b> list on the <b>Views</b> tab.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Initialization</b></td>
+  <td class='confluenceTd'>JavaScript script that is performed before the view is shown for first time.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Sort</b></td>
+<td class='confluenceTd'>List that defines how the result records are sorted.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+<p><strong>Note:</strong> The <strong>Search form</strong> and <strong>Result form</strong> properties always takes precedence if both the form and event are specified. When  only event is specified, the following actions can occur:</p>
+<ul>
+  <li>The event handler can return  the full name of the user interface to use and, in the user interface, have an  initialization script for the resultForm variable.</li>
+  <li>The event handler can return  the full name of the user interface to use and the name of the form. The following is an   example:<br>
+    <br>
+    <div class="preformatted">
+<div class="preformattedContent">
+<pre>
+return &quot;cwa_admin.eventLogResult/ResultEditable&quot; </pre></div>
+</div><br>
+ Where
+  <tt>ResultEditable</tt> is the name of the form to use under  eventLogResult.  </li>
+</ul>
+<ol>
+</ol>
+</body>
+</html>

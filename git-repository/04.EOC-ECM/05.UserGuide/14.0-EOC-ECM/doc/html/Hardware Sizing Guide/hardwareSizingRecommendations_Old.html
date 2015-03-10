@@ -1,0 +1,45 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Hardware Sizing Recommendations</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Hardware Sizing  Recommendations</h2>
+<p>Several  methodologies can be used to size a system. Ericsson uses a semi-empirical  approach using the data from performance test results, analytical calculations  based on input parameters requested from the operator (such as,  number of services created or modified, working hours per day, concurrent  customer care users,and so on.), and the processing capabilities of the hardware  platform. 
+  Due to the  flexible nature of the solution, all parameters influencing the performance cannot  be considered. Therefore, Ericsson uses the experience from other similar solution  systems in production to come to an appropriate sizing. So, the sizing is also  based on an average product usage. 
+  There  might always be additional parameters which can influence the performance in an  unforeseen way. Therefore the sizing might be revised during the implementation  stage and also when  the influence of design changes becomes measurable.You must  check if the assumptions made by Ericsson are correct  and if there are additional conditions and unusual practices which might  influence the performance of the overall system.</p>
+<p>Ericsson   provides some hardware recommendation guidelines   required to meet the proposed  solution. The factors affecting the proposed hardware configuration include:</p>
+<ul>
+  <li>   Real-time demand for order creation  (number of orders).</li>
+  <li>    Number of simultaneous users.</li>
+  <li> Database access requirements.</li>
+  <li>    Number of processes and associated  activities.</li>
+  <li>    High-availability requirements.<br> </li></ul>
+    <p>Specifically,  the following metrics are collected to prepare  the hardware sizing  recommendation:</p>
+ <ul>
+  <li> Concurrent users</li>
+  <li>    Orders per month</li>
+  <li>    Business days per week</li>
+  <li>    Hours per work day</li>
+  <li>    Transactions per order</li>
+  <li>    Number of busy hours per day</li>
+  <li> Expected order life cycle duration  (by type of order)</li>
+  <li>    Transactions per hour within a busy  hour</li>
+  <li>
+    Transactions per second within a  busy hour</p>
+  </li>
+</ul>
+<p> There are different hardware requirements for a system depending on whether the  system is in a development environment, testing environment, or production  environment. A development environment has lower hardware  requirements than the testing or production environments. </p>
+<p>These recommendations provide certain guidelines about the required hardware, such as the number  of servers required, the memory required, and so on, it does not recommend a  specific hardware. The decisions about the specific hardware to be used  has to be made by you, based upon many additional factors, such as the  availability of existing servers, pricing, and standard operating platforms. Based on a few particular metrics, the hardware sizing guidelines are provided for the following  types of solutions, for  three kinds of environments.</p>
+<ul>
+  <li><a href="lowVolumeSolution.html">Low Volume  Solution</a></li>
+  <li><a href="mediumVolumeSolution.html">Medium Volume  Solution</a></li>
+  <li><a href="highVolumeSolution.html">High Volume  Solution</a></li>
+</ul>
+
+</body>
+</html>

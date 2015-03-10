@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Dynamic Document with a Dynamic Form Layout</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Dynamic Document with a Dynamic Form Layout</h2>
+
+<p><a href="../Metadata_Objects/Document/Dynamic Document.html"></a> A completely dynamic form is the simplest method to display a dynamic document and its dynamic leaves. The product automatically gathers all dynamic leaves found in the NVP table and displays them based on the data type assigned.
+<p>To create a <a href="../Metadata_Objects/Document/Dynamic Document.html">dynamic document</a> with a dynamic layout, complete these steps:
+<ol>
+  <li>Create a static document and define it as dynamic in the general folder.<br>
+    <br>
+
+<img src="exampleDynamicDocNotes_step1.png" alt="Dynamic Doc" border="1" />
+        
+    <br>
+    <br>
+    </li>
+  
+  <li><a name="Step2"></a>Define your dynamic table (<em>Dynamic table name</em> (for example, dynTable as shown in the previous screenshot)) in your database with the following format:<br>
+    <br>
+  <table class='confluenceTable'>
+    <tbody>
+      <tr>
+        <th class='confluenceTh'>Column Name</th>
+        <th class='confluenceTh'>Type</th>
+        <th class='confluenceTh'>Description</th>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><b>DOC_ID</b></td>
+        <td class='confluenceTd'><i>VARCHAR2(36)</i></td>
+        <td class='confluenceTd'>Contains the GUID or ID of the document.</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>PARENT_ID</strong></td>
+        <td class='confluenceTd'><em>VARCHAR2(16)</em></td>
+        <td class='confluenceTd'><p>This column stores the  basket item ID and is used for the catalog basket item only. However, this column is mandatory, even for a general dynamic document, due to an update database statement that includes this column.</p></td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><b>DOCUMENT_TYPE</b></td>
+        <td class='confluenceTd'><i>VARCHAR2(38)</i></td>
+        <td class='confluenceTd'>GUID of the document type.</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><b>LEAF_NAME</b></td>
+        <td class='confluenceTd'><i>VARCHAR2(64)</i></td>
+        <td class='confluenceTd'>The dynamic Document variable name.</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><b>ARRAY_INDEX</b></td>
+        <td class='confluenceTd'><i>NUMBER(4)</i></td>
+        <td class='confluenceTd'>The array size. 0 for single values. 1 to 9999 for arrays.</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><b>DATA_TYPE</b></td>
+        <td class='confluenceTd'><i>NUMBER(2)</i></td>
+        <td class='confluenceTd'>Data type of the dynamic Document variable.
+          <ul>
+            <li>0 - Decimal</li>
+            <li>1 - Integer</li>
+            <li>3 - String</li>
+            <li>4 - Boolean</li>
+            <li> 5 - Date_Time</li>
+            <li>6 - Date</li>
+            <li>9 - Code Table</li>
+            </ul></td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><b>VALUE</b></td>
+        <td class='confluenceTd'><i>NVARCHAR2(256)</i></td>
+        <td class='confluenceTd'>The value stored as string. Details are defined in below section.</td>
+        </tr>
+      </tbody>
+  </table>
+  <br>
+    </li>
+  <li>Perform any necessary database mappings.
+    <br>
+    <br>
+    <li><a name="Step4"></a>To display the dynamic document, create a top-level User Interface.<br>
+      <br>    
+    <li>In the <strong>Variables</strong> tab, add a variable of type DynamicDoc as created in step 1. <br>
+      <br>
+    <li>Click the <strong>Methods</strong> tab and override the onInit() method.<br>
+      <br>
+    <li>The syntax for the <a href="../../JavaScripting in Order Care/com/conceptwave/scripting/DynamicDocument.html">DynamicDocument</a> constructor is as follows: <br>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>new DynamicDocument(docFullName, nvpTableName, docId, optionalThrowException, runLoadScript)</pre>
+</div>
+</div>
+
+</span><br>
+<strong>Note:</strong> The nvpTableName parameter is optional. If you want to use a different database table from that set in the document object in the metadata, you can pass it in the constructor. Otherwise, a null value is suitable.<br>
+<br>
+Initialize the document variable as follows:<br>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>var docVar = new DynamicDocument(&quot;DynamicDoc:dynamicDoc&quot;, testTable, &quot;5&quot;, false, false);
+</pre>
+</div>
+</div>
+      <br>    
+    <li>  The syntax for the createLeaf constructor is as follows:
+      <br>
+
+      <div class="preformatted">
+<div class="preformattedContent">
+<pre>createLeaf(leafName, leafLabel, type, arraySize, length, precision, codeTable, triggerMethod);</pre>
+</div>
+</div>
+      <p>The last parameter, trigger method,  is optional.</p>
+      <p>The type parameter of createLeaf is used to specify either an integer leaf data type or a metadata data type name. When specifying an integer for the type parameter, the following integer data types are supported: </p>
+      <ul>
+        <li>Decimal = 0 </li>
+        <li> Integer = 1 </li>
+        <li> String = 3 </li>
+        <li> Boolean = 4</li>
+        <li>Date_Time = 5</li>
+        <li> Date = 6</li>
+        <li>Void = 7</li>
+        <li>Timestamp = 8</li>
+        <li>Code Table = 9<br>
+        </li>
+      </ul>
+      <br>
+      Create the following document leaves:
+        <br>
+        <span class="referenceTd">
+      <div class="preformatted">
+        <div class="preformattedContent">
+          <pre>            docVar.createLeaf("testDecLeafName","testDecLeaf",0,0,4,0,null);
+            docVar.createLeaf("testIntLeafName","testIntLeaf",1,0,4,0,null);
+            docVar.createLeaf("testStringLeafName","testStringLeaf",3,0,4,0,null);
+            docVar.createLeaf("testBooleanLeafName","testBooleanLeaf",4,0,4,0,null);
+            docVar.createLeaf("testDateLeafName","testDateLeaf",6,0,4,0,null);</pre>
+        </div>
+      </div>    
+    <p>The following is an example of how a metadata data type name can be passed for the type parameter:</p>
+    <p><code>dyn.createLeaf(&quot;strLeaf&quot;,&quot;strLeaf&quot;,&quot;ns.stringDataType&quot;);  // overrides the data type label<br>
+      dyn.createLeaf(&quot;strLeaf&quot;, null,  &quot;ns.stringDataType&quot;); // gets label from the data type.</code></p>
+This will  throw an exception if the data type is not specified or the string type is not  found or not a data type. <br>
+<br>
+For more information on creating and using a dynamic variable (or dynamic leaf), see <a href="Dynamic Variable.html" title="Dynamic Variable">Dynamic Variable</a>.<br>
+<br>
+<li>Override the user interface's default form in <a href="#Step4">step 4</a>.<br>
+  <br>
+<li>      Add a <strong>Vertical stack layout</strong> element. Right-click the element and click <strong>Add</strong>.<br>
+      <br>
+    <li>      Select <strong>Structures</strong> &gt; <strong>Dynamic Document</strong>, and then click the <strong>Finish</strong> button.<br>
+      <br>
+    <li>      Set the dynamic document element's <strong>Variable</strong> property to the variable you added in step 5.<br>
+      <br>
+    <li>Add a menu element in your application menu to display this user interface.<br>
+      <br>
+    <li>      Save your metadata, and click <strong>Runtime &gt; Run</strong> from the menu bar. 
+      </ol>       
+    
+    <p>The following is an example of an onInit script that calls the DynamicDocument object and the createLeaf method:
+    <table class='confluenceTable' border cellpadding=1>
+        <tbody>
+          <tr>
+            <th class='confluenceTh'>onInit Script</th>
+            <th class='confluenceTh'>Runtime</th>
+          </tr>
+          <tr>
+            <td height="290" class='referenceTd'><pre>this.doc=new Document(&quot;DynamicDoc:dynDoc&quot;);
+var dyn=new DynamicDocument(&quot;DynamicDoc:dynDoc&quot;,testTable,this.doc.cwDocId,false,false);<br>dyn.createLeaf(&quot;decLeaf&quot;,&quot;decLeaf&quot;,0,0,8,2,null); // Decimal leaf<br>dyn.createLeaf(&quot;intLeaf&quot;,&quot;intLeaf&quot;,1,0,8,0,null); // Integer leaf<br>dyn.createLeaf(&quot;strLeaf&quot;,&quot;strLeaf&quot;,3,0,10,0,null); // String leaf<br>dyn.createLeaf(&quot;booLeaf&quot;,&quot;booLeaf&quot;,4,0,1,0,null); // Boolean leaf<br>dyn.createLeaf(&quot;datLeaf&quot;,&quot;datLeaf&quot;,6,0,10,0,null); // Data leaf<br>dyn.save();<br>this.dynDoc=dyn;<br>this.dynDoc.save();<br>this.dynDoc.decLeaf=100.2;<br>this.dynDoc.intLeaf=12345678;<br>this.dynDoc.strLeaf=&quot;Dynamic &quot;;<br>this.dynDoc.booLeaf=true;<br>this.dynDoc.datLeaf=Calendar.parseDate(&quot;2010-06-06&quot;,&quot;yyyy-MM-dd&quot;);<br>this.dynDoc.save();</pre>
+            </p></td>
+            <td class='referenceTd' valign="top"><img src="exampleDynamicDocRuntime.png" alt="Dynamic Doc Run Time" />
+          </tr>
+        </tbody>
+      </table>      
+
+      <h3>Save a User Entry with a Dynamic Document</h3>
+<p>This section continues with the example used in the previous section. To save a user entry with a dynamic document, do the following:</p>
+<ol>
+  <li>Navigate to the user interface created in <a href="#Step4">step 4</a>.<br>
+    <br>
+  </li>
+  <li>In the <strong>Methods</strong> tab, create a new user action called <strong>save</strong>. In this script, only the following line of code is required:<br>
+
+  <div class="preformatted">
+  <div class="preformattedContent">
+    <pre>this.docVar.save();
+</pre>
+  </div>
+</div>
+  <br>
+  </li>
+  <li>Navigate to the default form and add a new menu element. Set its <strong>Click method</strong> property to the <strong>save</strong> method from step 2.<br>
+    <br>
+    <strong>Note:</strong> Set the label or icon of this menu to see it during runtime.<br>
+    <br>
+  </li>
+  <li>Save your metadata, and click <strong>Runtime &gt; Run</strong> from the menu bar. <br>
+    <br>
+  </li>
+  <li>In runtime, edit the values of the fields and then click the <strong>Save</strong> button. The database contains the new data created in <a href="#Step2">step 2</a> of the previous section.</li>
+</ol>
+<p></p></td>
+</tr>
+</table>
+</body>
+</html>

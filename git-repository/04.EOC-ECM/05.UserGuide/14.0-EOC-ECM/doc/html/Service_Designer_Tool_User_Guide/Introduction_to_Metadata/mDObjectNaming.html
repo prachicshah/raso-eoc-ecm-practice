@@ -1,0 +1,182 @@
+<html>
+<head>
+<title>Metadata Objects Naming Conventions</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+	  <td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+			 
+<h2>Metadata Objects Naming Conventions</h2>
+<p align="left">Naming conventions make application components more understandable, which reduces maintenance effort. The following table describes the naming suffix used for metadata objects:</p>
+	   <table class=" confluenceTable" border="1" cellspacing="0" cellpadding="0">
+      <tbody>
+<tr>
+<th height="24" colspan="2" valign="top" class="confluenceTh"><p align="left"><strong>Metadata Object</strong></th>
+<th valign="top" class= "confluenceTh"><p align="left"><strong>Suffix</strong></th>
+</tr>    
+	    <tr>
+	      <td width="147" rowspan="4" valign="top"><p>Data Dictionary</p></td>
+	      <td width="147" valign="top"><p>Data/Element Type</p></td>
+	      <td width="252" valign="top"><p>None</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Document</p></td>
+	      <td width="252" valign="top"><p>Doc</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Data Structure</p></td>
+	      <td width="252" valign="top"><p>DS</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Conversion Map</p></td>
+	      <td width="252" valign="top"><p>CM</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" rowspan="4" valign="top"><p>External Services</p></td>
+	      <td width="147" valign="top"><p>Service Provider</p></td>
+	      <td width="252" valign="top"><p>SP</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Inteface</p></td>
+	      <td width="252" valign="top"><p>Int</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Binding</p></td>
+	      <td width="252" valign="top"><p>Bind</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Service</p></td>
+	      <td width="252" valign="top"><p>Serv</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" rowspan="7" valign="top"><p>Business Processes</p></td>
+	      <td width="147" valign="top"><p>Exception</p></td>
+	      <td width="252" valign="top"><p>Proc</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Signal</p></td>
+	      <td width="252" valign="top"><p>Sig</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Participant</p></td>
+	      <td width="252" valign="top"><p>Part</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Alert</p></td>
+	      <td width="252" valign="top"><p>Alert</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Process</p></td>
+	      <td width="252" valign="top"><p>Proc</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Script</p></td>
+	      <td width="252" valign="top"><p>None (name should start with lowercase and match script function    name)</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Rule</p></td>
+	      <td width="252" valign="top"><p>Rule</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" rowspan="3" valign="top"><p>Orders and Finders</p></td>
+	      <td width="147" valign="top"><p>Life Cycle</p></td>
+	      <td width="252" valign="top"><p>LC</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Order</p></td>
+	      <td width="252" valign="top"><p>Order</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Finder</p></td>
+	      <td width="252" valign="top"><p>Fnd</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" rowspan="4" valign="top"><p>User Interface</p></td>
+	      <td width="147" valign="top"><p>Menu</p></td>
+	      <td width="252" valign="top"><p>Menu</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Navigation Tree</p></td>
+	      <td width="252" valign="top"><p>NT</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Dashboard</p></td>
+	      <td width="252" valign="top"><p>DB</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Decision Tree</p></td>
+	      <td width="252" valign="top"><p>DT</p></td>
+        </tr>
+	    <tr>
+	      <td width="147" valign="top"><p>Security</p></td>
+	      <td width="147" valign="top"><p>Permissions</p></td>
+	      <td width="252" valign="top"><p>Perm</p></td>
+        </tr>
+        </tbody>
+      </table><br>
+<h2>Namespaces</h2>
+<p>All application namespaces can have a prefix such as <strong>http://www.company.com/app</strong>. For example:</p>
+  <ul>
+    <li><strong>Common</strong>:  Common and reusable components.</li>
+  </ul>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.mycompany.com/myapp/<strong>common</strong></p>
+  <ul>
+    <li><strong>Order</strong>:  Order and related documents, mapping, finders, and UI elements.</li>
+  </ul>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.mycompany.com/myapp/<strong>order</strong></p>
+<ul>
+    <li><strong>Processes</strong>:  Workflows and related elements including participant interfaces, participants,  processes, and javascripts.</li>
+  </ul>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.mycompany.com/myapp/<strong>process</strong></p>
+  
+  
+  <h2>CW Artifact Names</h2><br>
+<p>When producing metadata deliverables, apply naming conventions as  follows:</p>
+ <table class="confluenceTable" border="1" cellspacing="0" cellpadding="0">
+ <tbody>
+    <tr>
+       <th height="24" valign="top" class="confluenceTh"><p align="left"><strong>Filename</strong></th>
+       <th height="24" valign="top" class="confluenceTh"><p align="left"><strong>Example</strong></th>
+    </tr> 
+    <tr>
+      <td width="289" valign="top">Metadata filename</td>
+      <td width="283" valign="top">COMPANY_PROJECT.xml </td>
+    </tr>
+    <tr>
+      <td width="289" valign="top">Configuration metadata filename </td>
+      <td width="283" valign="top">COMPANY_PROJECT_config.xml</td>
+    </tr>
+    <tr>
+      <td width="289" valign="top">User profile administrator    metadata filename </td>
+      <td width="283" valign="top">COMPANY_PROJECT _upadmin.xml </td>
+    </tr>
+    <tr>
+      <td width="289" valign="top">Upgrade SQL script file </td>
+      <td width="283" valign="top">COMPANY_PROJECT _UpgradeSQL.sql </td>
+    </tr>
+    <tr>
+      <td width="289" valign="top">Active metadata named </td>
+      <td width="283" valign="top">PROJECT  M.m.b </td>
+    </tr>
+    <tr>
+      <td colspan="2" valign="top">Where<br>
+        &nbsp;&nbsp;&nbsp;M &nbsp;:&nbsp; Major release number<br>
+        &nbsp;&nbsp; m&nbsp;:&nbsp; Minor release number<br>
+        &nbsp;&nbsp; b&nbsp;&nbsp;:&nbsp; Build release number ( use    SVN rn )</td>
+    </tr>
+    <tr>
+      <td colspan="2" valign="top"><p>Alternative :  PROJECT    M.m YYYY-MM-DD</p></td>
+    </tr>
+  </tbody>
+  </table>
+    
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<html>
+<head>
+<title>Worklist Manager</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+ 
+<h2>Worklist Manager</h2>
+<p>The <strong>Worklist Manager</strong> report displays a list of pending worklist items that can require user action. By default, the  top pane of the Worklist provides end users with options to filter a returned list of user tasks. </p>
+<p>To access this report, complete the steps:</p>
+<ol>
+  <li>From the menu bar, click <strong>Worklist</strong> &gt; <strong>Worklist Manager</strong>. <br>
+  </li>
+  <li>The Worklist Manager screen appears. Click the <strong>Search</strong> button to view a list of worklist users.<br>
+    <br>
+    <img src="worklist_manager_interface.png" border="0" alt="Worklist Manager" /><br>
+    You can also specify your search criteria in the fields provided and then click the <strong>Search</strong> button to view your results.<br>
+    <br>
+    The Worklist Manager search results contain the following fields:<br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th class='confluenceTh'> Field </th>
+          <th class='confluenceTh'> Description </th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Due</b></td>
+          <td class='confluenceTd'> Date and time when the worklist item is due. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Participant</b></td>
+          <td class='confluenceTd'> Participant assigned to the worklist item. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>User </strong></td>
+          <td class='confluenceTd'> ID of the user assigned to the worklist item. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Task </strong></td>
+          <td class='confluenceTd'> Description of the worklist item. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Details </strong></td>
+          <td class='confluenceTd'> Order details for the worklist item. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Created </strong></td>
+          <td class='confluenceTd'> Date and time when the worklist item was created. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Assigned </strong></td>
+          <td class='confluenceTd'> Date and time when the worklist item was assigned. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Started </strong></td>
+          <td class='confluenceTd'> Date and time when the worklist item was started. </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <strong>Note</strong>: The first column (that is, before Due) represents the priority of the task.<br>
+  </li>
+</ol>
+<p>For more information about user tasks, see <a href="worklistUsers.html">User Worklist</a>. The Worklist Manager can be configured to display in the Administration application  or in an application provided that you have the correct permissions.</p>
+
+<h3><a name="task"></a>Task Menu</h3>
+<p>The Task dialog displays the order item associated with the selected task. To access the Task dialog, do the following:</p>
+<ol>
+  <li>From the Worklist Manager results, select the task that you want and then click the <strong>Task</strong> button. <br>
+  </li>
+  <li>The Task dialog appears, which displays both the order and order item associated with the selected task.
+    <br>
+    <br>
+    <img src="worklist_manager_taskdialog.png" alt="Task dialog" border="0" />
+  </li>
+</ol>
+<h3>Order</h3>
+<p><span class="confluenceTd">The Order dialog   displays the order associated   with the selected task.</span> To access the Order dialog, complete these steps:</p>
+<ol>
+  <li>From the Worklist Manager results, select the task that you want and then click the <strong>Order</strong> button. <br>
+  </li>
+  <li>The Order dialog appears, which displays order details that are associated with the selected task.<br>
+    <br>
+  <img src="worklist_manager_order.png" width="751" height="502" alt="Order dialog">  <br>
+  <br>
+  </li>
+  <li>You can make any pertainent changes to your order. When you have finished making your changes, click the Save button.</li>
+  <li>Clicking the <strong>Order</strong> button allows you to perform the following actions:
+    <ul>
+      <li>Select the <strong>Validate</strong> option to determine whether your order is valid. A dialog appears, confirming whether your order is valid. Click the <strong>OK</strong> button to return to the Order dialog.</li>
+      <li>Select the <strong>Save All</strong> option to save all changes that you have made.</li>
+      <li>Select the <strong>Tasks</strong> option to open the Task dialog, which allows you to search and select tasks for the selected order.</li>
+      <li>Select the <strong>Task History</strong> option to open the Worklist History dialog and view a log of changes that have been made to the selected order.</li>
+    </ul>
+  </li>
+</ol>
+<h3><a name="assign"></a>Assign</h3>
+<p><span class="confluenceTd">The Assign dialog   displays a list of users that can be associated with the selected task.</span> To access the Assign dialog, complete these steps:</p>
+<ol>
+  <li>From the Worklist Manager results, select the task that you want and then click the <strong>Assign</strong> button. <br>
+  </li>
+  <li>The Assign dialog appears, which displays a list of user IDs that you can assign the task to. Select the <strong>User ID</strong> to assign your task to and click the <strong>Select</strong> button.<br>
+    <br>
+  </li>
+  <table class='confluenceTable'>
+    <tbody>
+      <tr>
+        <td class='confluenceTd'><img src="worklist_manager_assigndialog.png" align="absmiddle" border="0" alt="" /></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>You can also specify your search criteria in the fields provided and then click the <strong>Search</strong> button to view your results.</p>
+  <p>The Assign search results contain the following fields:  </p>
+  <table class='confluenceTable'>
+    <tbody>
+      <tr>
+        <th class='confluenceTh'> Field </th>
+        <th class='confluenceTh'> Description </th>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><b>Av</b></td>
+        <td class='confluenceTd'> Indicates whether the selected worklist user is   available. </td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><b>User ID</b></td>
+        <td class='confluenceTd'> Denotes the ID of the selected worklist user. </td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><b>Tasks</b></td>
+        <td class='confluenceTd'> Displays the number of tasks that the worklist user has. </td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><b>Overdue</b></td>
+        <td class='confluenceTd'> Shows the number of overdue tasks that the worklist user has. </td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><b>Alerts</b></td>
+        <td class='confluenceTd'> Displays the number of alerts that the worklist user has. </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <li>The Worklist Manager appears, which shows your task assigned to the User ID that you have specified.  </li>
+</ol>
+<p><strong>Note:</strong> Selecting multiple work items  belonging to different participants and then clicking the <strong>Assign</strong> button is not supported.&nbsp;</p>
+<h3><a name="modify"></a>Modify</h3>
+ 
+<p>The Modify Task dialog allows you to change the due date and priority of the selected task. To access the Modify Task dialog, complete these steps:</p>
+<ol>
+  <li>From the Worklist Manager results, select the task that you want to change and then click the <strong>Modify</strong> button. <br>
+  </li>
+  <li>The Modify Task dialog appears, which allows you to change the <strong>Due</strong> date and <strong>Priority</strong> fields. Make any pertinent changes and then click the <strong>Apply Changes</strong> button.<br>
+    <br>
+<img src="worklist_manager_modifydialog.png" alt="Modify Task dialog" border="0" />
+  <br>
+  <br>
+  The following table describes the fields that are available from the Modify Task dialog:<br>
+  <br>
+  <table class='confluenceTable'>
+    <tbody>
+      <tr>
+        <th class='confluenceTh'> Field </th>
+        <th class='confluenceTh'> Description </th>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><b>Due</b></td>
+        <td class='confluenceTd'> Indicate the date and time that the task is due. </td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><b>Priority</b></td>
+        <td class='confluenceTd'> Click the drop-down menu and select from one of the  priority settings. </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  </li>
+  <li>The Worklist Manager reappears. You can verify that your changes have been made by locating your task from the Worklist Manager and reviewing the task's details.</li>
+</ol>
+<h3><a name="history"></a>History</h3>
+ 
+<p>The Task History dialog displays a log of changes that have been made to the selected task. To access the History dialog, complete these steps:</p>
+<ol>
+  <li>From the Worklist Manager results, select the task that you want and then click the <strong>History</strong> button. <br>
+  </li>
+  <li>The History  Task dialog appears, which allows you to review all changes made to the task. <br>
+    <br>
+    <img src="worklist_manager_historydialog.png" alt="History dialog" border="0" /> <br>
+    <br>
+    The dialog contains the following fields:<br>
+    <br>
+<table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th class='confluenceTh'> Field </th>
+          <th class='confluenceTh'> Description </th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Changed by</b></td>
+          <td class='confluenceTd'> Name of the user who made changes to the task. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Changed on</b></td>
+          <td class='confluenceTd'> Date and time when the change was made. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>User ID</b></td>
+          <td class='confluenceTd'> New task user ID value. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Due</b></td>
+          <td class='confluenceTd'> The task's due date. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Priority</b></td>
+          <td class='confluenceTd'> The task's priority. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Operation</b></td>
+          <td class='confluenceTd'> Brief description of the change. </td>
+        </tr>
+      </tbody>
+    </table>
+<br>
+  </li>
+  <li>Click the <strong>Search</strong> button to refresh the task history. Otherwise, click the <strong>Close</strong> button in the top right corner to close the dialog and return to the Worklist Manager.</li>
+</ol>
+</body>
+</html>

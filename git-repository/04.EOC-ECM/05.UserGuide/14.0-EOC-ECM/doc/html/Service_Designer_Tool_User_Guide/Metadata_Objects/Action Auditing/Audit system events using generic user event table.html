@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Audit system events using a generic user event table</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Audit System Events Using a Generic User Event Table</h3>
+<p><SPAN id="internal-source-marker_0.8691697275769837">A table is available, which allows you to audit system events, such as user login, logout, timeout, login failure, password change, and so on.</SPAN></p>
+<p><SPAN>Tlhe templateInit script method is available in the </SPAN>cwf_oe namespace. The system uses this script method to register all system events. The AVM automatically calls it during system startup.</p>
+<p>The   loggingUserAction script method, also in cwf_oe namespace, populates the<SPAN id="internal-source-marker_0.23923216888163778"> cwf.actionAuditDoc</SPAN>  from user action and persists it to the database. The loggingUserAction method takes following parameters:</p>
+<ul>
+  <li> USERID</li>
+  <li> ACTIONNAME</li>
+  <li>TIME</li>
+  <li>NODE_ID</li>
+</ul>
+<p>The following constants for pre-defined system events are accessible from the JavaScript API:</p>
+<ul>
+  <li>CW_LOGIN</li>
+  <li>CW_LOGOUT</li>
+  <li>CW_TIMEOUT</li>
+  <li>CW_LOGIN_FAILED</li>
+  <li>CW_PASSWORD_CHANGE</li>
+  <li>CW_WORKLIST</li>
+  <li>CW_MILESTONE</li>
+  <li>CW_SYS_STARTUP</li>
+  <li>CW_SYS_STOP</li>
+  <li>CW_CONFIG_RELOAD </li>
+</ul>
+<p>The following is an example of how to use both the templateInit and loggingUserAction scripts:  </p>
+<div class="code">
+  <div class="codeContent">
+    <pre>
+function cwf_oe:templateInit(){
+    subscribeForEvent(‘cwf_oe: loggingUserAction’, ‘USER_LOGIN’,’CW’);
+    subscribeForEvent(‘cwf_oe: loggingUserAction’, ‘USER_LOGOUT’,‘CW’);
+    subscribeForEvent(‘cwf_oe: loggingUserAction’, ‘USER_TIMEOUT,‘CW’);
+    ...
+}</pre>
+  </div>
+</div>
+<p> In your <SPAN id="internal-source-marker_0.">metadata, use subscribeForEvent() to register event and publishEvent() to trigger event. </SPAN>You also need to open the Configuration application an ensure that your <a href="../../../Configuration_Tool_User_Guide/Event Handler.html">events</a> are turned on.</p>
+<p>See the following related links for more information:</p>
+<ul>
+  <li><a href="Action auditing.html">Action auditing</a></li>
+  <li><a href="../Script/Event Handlers.html">Event handlers</a></li>
+</ul></td>
+</tr>
+</table>
+</body>
+</html>

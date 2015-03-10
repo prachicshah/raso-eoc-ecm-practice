@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Change Type</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Contexts Details</h2>
+<p>When the user clicks the <strong>Add</strong> or <strong>Detail</strong> buttons from the   Context search page, the Context Detail page is displayed.</p>
+
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<td class='confluenceTd'><img src="Context_detail.png" alt="Contexts Type" /></td>
+</tr>
+</tbody>
+</table>
+
+<h3>Adding Contexts</h3>
+<p>Click the <strong>Add</strong> button to add a new context.</p>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Rules</th>
+</tr>
+<tr>
+<td class='confluenceTd'>Code</td>
+<td class='confluenceTd'>This is the code used to identify this Context.  This code is not restricted to alphanumeric characters, it can also contain a combination of spaces, hyphens, etc.</td>
+<td class='confluenceTd'>Mandatory, Unique</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Status</td>
+<td class='confluenceTd'>A list of available <a href="../Configuration/States.html">Status</a> for this Context (for example, Definition and Active).</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Label</td>
+<td class='confluenceTd'>The visual Label used  for this Context, which is used in the application user interface. This field is a translational string that supports language translations (refer to Velocity Studio's Translation Element for more details).</td>
+<td class='confluenceTd'>Mandatory</td>
+  </tr>
+
+<tr>
+<td class='confluenceTd'>Description</td>
+<td class='confluenceTd'>A description of this Context.</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>Project</td>
+  <td class='confluenceTd'>Each object is assigned to a Project. This defaults to the active or opened project when the Context is first created.</td>
+  <td class='confluenceTd'>Mandatory</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h3>Defining Attributes</h3>
+<p>The attributes tab allows you to define the Attribute information for the Context.</p>
+
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<td class='confluenceTd'><img src="context_attributes.png" alt="Contexts Type" /></td>
+</tr>
+</tbody>
+</table>
+<br>
+
+
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th width="70" class='confluenceTh'>Field</th>
+<th width="722" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'>Code</td>
+  <td class='confluenceTd'>The Code ID for this Context Attribute. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'>Attribute Code</td>
+  <td class='confluenceTd'>Search for the attribute type code  that you want to  associate with this Context. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'>Name</td>
+  <td class='confluenceTd'>The name of the attribute  for internal use when designing your catalog model. This field is not supported by language translation. This name becomes the context variable name.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>Label</td>
+  <td class='confluenceTd'>The visual Label used  for this Attribute, which is used in the application user interface. </td>
+</tr>
+<tr>
+<td class='confluenceTd'>Project</td>
+<td class='confluenceTd'>Search for the name of the project that holds the Attribute object.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+<p>You  can use theCatalog.setCatalogContext(CwfScriptContextObject theContext) to  set the current Context. For the contextAttribute, you can set value to theContext.attribute. The following is an example of their usage:</p>
+<div class="code">
+        <div class="codeContent">
+          <p>for  (var i=0; i&lt;contextDS.attributes.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  var nvp = contextDS.attributes[i];<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  var val = getValue(nvp);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  eval(&quot;theContext.&quot; + <a href="http://nvp.name/" target="_blank">nvp.name</a> + &quot;=val&quot;);<br>
+}</p>
+          <p>function  getValue(val) {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  try {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (val.type == &quot;D&quot;) {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  var date = Calendar.parseDate(val.value, &quot;yyyy-MM-dd&quot;);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  return date;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  } else if (val.type == &quot;B&quot;)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  return val.value;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  else if (val.type == &quot;N&quot;)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  return parseFloat(val.value);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  else<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  return val.value;<br>
+  &nbsp;&nbsp;&nbsp;  } catch (e) {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Global.throwException(&quot;Incorrect format of value. Date accepts format  yyyy-MM-dd&quot;);<br>
+  &nbsp;&nbsp;&nbsp;  }<br>
+            }</p>
+        </div>
+      </div>
+<p>&nbsp;</p>
+</body>
+</html>

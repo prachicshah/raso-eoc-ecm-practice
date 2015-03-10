@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Logical Connection</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Logical Connection</h2>
+
+<p>Clicking   <b>Databases</b> &gt; <b>Logical Connection</b> displays the logical connections to the database, which are responsible for enabling the AVM to send database commands to the database, to carry out different functionalities.</p>
+<p><img src="logicalConnection.png" alt="Databases - Logical Connection tab" border="1"></p>
+<p>Your logical connections must be defined to run your metadata. However, you must have properly defined in the <b>Physical Connection</b> tab before you manage your logical connections.</p>
+<p>By default, the Logical Connection tab contains three logical connections in the table:
+<ul>
+  <li>ARCHIVE, which is the connection that is used by the AVM to archive database records</li>
+  <li>ORDER, which is  the main logical connection for the AVM</li>
+  <li>PE_ORDER, which is  the connection that is used by process engines</li>
+</ul>
+<p><b>Notes</b>:</p>
+<ul>
+  <li>Logical connections are only editable at the cluster level. They are read-only at the node level. </li>
+  <li>Do not remove the three default logical connections.</li>
+  <li>When setting up the application under normal circumstances as described in the <a href="../../../../Installer_User_Guide/database initialization.html">Installation Guide</a>, you have one physical database connection. All you need to do is to associate all three logical connections to that physical connection. However, in advanced application development and optimization, you can have the flexibility of multiple physical connections to separate database operations based on functionality.</li>
+</ul>
+<p>You can perform the following tasks from the Logical Connection page:</p>
+<ul>
+  <li><a href="#addLogicalConnection">Add</a> a logical connection</li>
+  <li><a href="#editLogicalConnection">Edit</a> a logical connection</li>
+  <li><a href="#deleteLogicalConnection">Delete</a> a logical connection</li>
+</ul>
+<p><strong>Note</strong>: It is recommended to restart JBoss if you make changes to configuration variables. </p>
+<h3><a name="addLogicalConnection"></a>Add a Logical Connection</h3>
+<p>To add a logical connection, complete these steps:</p>
+<ol>
+  <li>From the Logical Connection page, click the <strong>Add</strong> button.<br>
+    <br>
+    <img src="logicalConnectionAddButton.png" alt="Databases - Logical Connection tab - Click the Add button to add a logical connection" border="1"><br>
+    <br>
+  </li>
+  <li>A blank row appears in the table. Click the   <strong>Name</strong> field and enter the logical connection's name.</li>
+  <li>Click the <strong>Physical Connection</strong> field's drop-down menu and select the physical connection that you want to associate to your logical connection from the list.<br>
+    <br>
+    <img src="logicalConnectionAssociatePhysicalConnection.png" alt="Databases - Logical Connection tab - Associate a physical connection" border="1"><br>
+    <br>
+  </li>
+  <li>When you have finished adding your logical connection, click the <strong>Save</strong> button to save your configuration.</li>
+</ol>
+<h3><a name="editLogicalConnection"></a>Edit a Logical Connection</h3>
+<p>To edit a logical connection, click the field that you want and make your changes. When you have completed them, click the <strong>Save</strong> button to save your configuration.</p>
+<h3><a name="deleteLogicalConnection"></a>Delete a Logical Connection</h3>
+<p>To delete a logical connection, follow these steps:</p>
+<ol>
+  <li>From the Logical Connections page, select the checkbox next to the logical connection that you want to delete, and then click the <strong>Delete</strong> button.<br>
+    <br>
+    <img src="logicalConnectionDeleteButton.png" alt="Databases - Logical Connection tab - Delete a logical connection" border="1"><br>
+    <br>
+  </li>
+  <li>A confirmation dialog appears. Click the <strong>Yes</strong> button to confirm the logical connection's deletion.</li>
+  <li>The selected logical connection no longer appears on the page. Click the <strong>Save</strong> button to save your configuration.<br>
+  </li>
+</ol>
+<p><br>
+</p>
+</body>
+</html>

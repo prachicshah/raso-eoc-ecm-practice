@@ -1,0 +1,110 @@
+/*******************************************************************************
+ * Copyright (c) 2006 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
+ 
+ BODY {
+	/*font-family: Verdana, arial, sans-serif;*/
+	font-size: 11px;
+	line-height: 16px;
+	/*color: #000000;*/
+	font-weight: normal;
+	background-color: #F5F5F5;
+	font-family: arial, sans-serif; font-size: 9pt;
+	margin: 20px;
+}
+
+#root {
+	margin-top:0px;
+	margin-left:0px;
+}
+
+DIV.root {
+    font-weight:bold;
+}
+
+DIV.visible, DIV.unopened { 
+	border-width:0; 
+	margin-left:1.5em; 
+	font-weight:normal;
+}
+
+DIV.group { 
+	border-width:0; 
+	margin-left:0; 
+}
+  
+DIV.hidden {
+	display:none; 
+}
+
+DIV.visible, DIV.root {  
+    margin-top:1px; 
+}
+
+SPAN.item{
+    white-space: nowrap;
+}
+
+IMG {
+	border:0px;
+	margin:0px;
+	padding:0px;
+	margin-right:4px;
+}
+
+IMG.expander, IMG.h {
+    margin-top:4px;
+    margin-bottom:2px;
+}
+
+A {
+	text-decoration:none; 
+	color:WindowText;
+	padding-right:2px;
+	/* this works in ie5.5, but not in ie5.0  */
+	white-space: nowrap;
+	font-size: 8pt;
+}
+
+A:hover{
+	text-decoration:underline; 
+}
+
+A.active{ 
+	color:HighlightText;
+	background:Highlight;
+	width:100%;
+}
+
+A.active:hover{
+	text-decoration:underline; 
+}
+
+A.nolink {
+	text-decoration:none; 
+}
+
+A.nolink:link, A.nolink:visited {
+	color:WindowText;
+}
+
+A.nolink:hover {
+	text-decoration:none; 
+}
+
+.h {
+	visibility:hidden;
+}
+
+
+
+a:link {text-decoration:none;}
+a:visited {text-decoration:none; }
+a:hover {text-decoration:underline; cursor: hand;}

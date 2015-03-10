@@ -1,0 +1,169 @@
+﻿<html>
+<head>
+<title>Stale Jeopardy Report</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<h2>Stale Jeopardy Report</h2>
+<p>The <b>Stale Jeopardy </b>report displays a list of all <span class="confluenceTd">  stale-dated processes and processes that will be stale-dated within 30 days. You can configure the number of days in your search by using the <strong>Days to Stale</strong> field.</span></p>
+<p>To access the State Jeopardy report, complete these steps:</p>
+<ol>
+  <li>From the menu bar, click <strong>Processes</strong> &gt; <strong>Stale Jeopardy Report</strong> to launch the Stale Jeopardy Processes screen.<br>
+    <br>
+    <img src="staleJeopardyReport.png" alt="Stale Jeopardy Report" border="1"><br>
+    <br>
+  </li>
+  <li>You can specify the following search criteria fields:<br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="174" class='confluenceTh'>Field</th>
+          <th width="1331" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Stale Status</strong></td>
+          <td class='confluenceTd'>The status of the process. Click the drop-down menu and select the process that you want from the list.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Process Type</b></td>
+          <td class='confluenceTd'>Metadata process label. Click the drop-down menu and select the process type that you want from the list.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Priority</strong></td>
+          <td class='confluenceTd'>Click the drop-down menu and select the process priority from the list.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Order Type</strong></td>
+          <td class='confluenceTd'>Click the drop-down menu and select the type of order that you want to search for from the list.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Start Time - From</strong></td>
+          <td class='confluenceTd'>Date when the process started.    Click the <strong>Calendar</strong> icon to view the calendar and select a date. You can also specify the time by using the <strong>Hour</strong>, <strong>Minute</strong>, and <strong>Second</strong> drop-down fields.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Start  Time - To</strong></td>
+          <td class='confluenceTd'>Date when the process ended.  Click the <strong>Calendar</strong> icon to view the calendar and select a date. You can also specify the time by using the <strong>Hour</strong>, <strong>Minute</strong>, and <strong>Second</strong> drop-down fields.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Days to Stale</strong></td>
+          <td class='confluenceTd'>This field defaults to 30 days. Click the drop-down menu and select a different stale-dated period.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Metadata Version</b></td>
+          <td class='confluenceTd'>The metadata version number.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Process Engine ID</b></td>
+          <td class='confluenceTd'>ID of the Process Engine running the stale process.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Order ID</b></td>
+          <td class='confluenceTd'>ID of the Order instance that the process belongs to.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Changed Status Time - From</strong></td>
+          <td class='confluenceTd'>Start date when  the status of the process changed. Click the <strong>Calendar</strong> icon to view the calendar and select a date. You can also specify the time by using the <strong>Hour</strong>, <strong>Minute</strong>, and <strong>Second</strong> drop-down fields.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Changed Status Time - To</strong></td>
+          <td class='confluenceTd'> End date when the status of the process changed. Click the <strong>Calendar</strong> icon to view the calendar and select a date. You can also specify the time by using the <strong>Hour</strong>, <strong>Minute</strong>, and <strong>Second</strong> drop-down fields.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>Click the  <strong>Search</strong> button to view a list of stale-dated processes.</li>
+</ol>
+<h3>Action Menu</h3>
+<p>The <strong>Action</strong> menu allows you to perform a number of process functions. Select a state process from the search results, click the <strong>Action</strong> button, and then select  one of the following options:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="161" class='confluenceTh'>Option</th>
+      <th width="348" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Suspend</b></td>
+      <td class='confluenceTd'>Suspends the selected process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Resume</b></td>
+      <td class='confluenceTd'>Attempts to resume the selected process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Terminate</b></td>
+      <td class='confluenceTd'>Terminates the selected process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Cancel</b></td>
+      <td class='confluenceTd'>Cancels the selected process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Resume Stale</strong></td>
+      <td class='confluenceTd'>Resumes the selected stale-dated process.</td>
+    </tr>
+  </tbody>
+</table>
+<h3>Details Button </h3>
+<p>The <strong>Details</strong> menu allows you to view information about a specific process. Select a stale process from the search results, click the <strong>Details</strong> button, and then select one of the following options:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Option</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Event Log</b></td>
+      <td class='confluenceTd'>Activates an <b>Event Log</b> dialog (refer to section Event Log), which displays a list of messages associated with the selected process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Milestones</b></td>
+      <td class='confluenceTd'>Activates a <b>Milestones</b> dialog (refer to section Milestones), which displays a list of milestones associated with the selected process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Document</b></td>
+      <td class='confluenceTd'>Activates a <b>Process Document</b> dialog displaying the Document associated with the selected process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Order</b></td>
+      <td class='confluenceTd'>Activates a dialog displaying the Order associated with the selected process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Worklist</b></td>
+      <td class='confluenceTd'>Activates a <b>Worklist Manager</b> dialog (refer to section Worklist Manager), which displays a list of worklist items associated with the selected process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Child Processes</b></td>
+      <td class='confluenceTd'>Activates a <b>Process Manager</b> dialog, which displays a list of processes spawned by the selected process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Activities</b></td>
+      <td class='confluenceTd'>Activates an <b>Activity Finder</b> dialog, which displays a list of activities associated with the selected process.</td>
+    </tr>
+  </tbody>
+</table>
+<h3>History Menu</h3>
+<p>The <strong>History</strong> menu allows you to view a list of completed activities or worklist items associated with a specific process. Select a stale process from the search results, click the <strong>History</strong> button, and then select one of the following options:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="127" class='confluenceTh'>Option</th>
+      <th width="693" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Activities Archive</b></td>
+      <td class='confluenceTd'>Activates an <b>Activity Archive</b> dialog, which displays a list of completed activities associated with the selected process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Worklist Archive</b></td>
+      <td class='confluenceTd'>Activates a <b>Worklist History</b> dialog, which displays a list of completed worklist items associated with the selected process.</td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp; </p>
+</body>
+</html>

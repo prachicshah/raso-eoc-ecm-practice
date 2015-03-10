@@ -1,0 +1,96 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Client and Server Applications</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Catalog Client and Server Application</h2>
+<p>There are two types of Catalog applications: 
+
+<ul>
+	<li>Catalog Server applications
+    <li>Catalog Client applications 
+</ul>
+
+
+<h3>Catalog Client Applications</h3>
+<p>Catalog Client applications are Order Entry (OE) and Order Management (OM) applications that use the Catalog definitions and rules.The OE and OM applications needs  only Catalog client product. The Catalog client maintains its own cache of  Catalog definitions and uses a Catalog server as data source. This way the OE/OM  client application may continue to work with limited functionality even if  the Catalog server is not available. The Catalog client applications can be implemented on the product platform as well as any other platform.</p>
+
+<h3>Catalog Server Applications</h3>
+<p>Server applications are applications that include the Catalog server product and customization metadata (Catalog server application  metadata). The customization metadata may add new API and product lifecycle  workflow. It contains rules that cannot be expressed in Catalog Rule language,  such as rules that need access to data base or external systems (through external  interfaces). Catalog server applications contain the logic to synchronize the  catalog with external catalog products and data sources as well to <em>push</em> the  Catalog content to other systems.</p>
+<p>The Catalog server should be a dedicated  application, for example, the Catalog server metadata should contain only the metadata  that customizes the Catalog server product. While in principle it is possible  to run OE/OM applications on the Catalog server,  we strongly discourage this practice.</p>
+<p>The Catalog Server application provides Web  services that can be used by third party order entry applications. Third-party Catalog clients communicate with the Catalog through SOAP interface. This way, the clients have the advantage of  being faster – first,  because of the Catalog definition cache they maintain  and second,  because of the simpler and faster protocol they use.</p>
+<p> The table below shows the major differences between different Catalog configurations:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+<tr>
+<th class='confluenceTh'>Configuration Properties</th>
+<th class='confluenceTh'>Catalog Client Application</th>
+<th class='confluenceTh'>Catalog Server Application</th>
+<th class='confluenceTh'>Third-Party Catalog Client Application</th>
+</tr>
+<tr>
+<td class='confluenceTd'>Needs Catalog Server Application</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>Can maintain Catalog definitions</td>
+  <td class='confluenceTd'>Yes, through Catalog server maintenance API</td>
+  <td class='confluenceTd'>Through GUI interface and Catalog server maintenance API</td>
+  <td class='confluenceTd'>Yes, through Catalog server maintenance API</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>Required memory for cached Catalog data for typical medium size installation (around 50,000 items)</td>
+  <td class='confluenceTd'>Around 500MB</td>
+  <td class='confluenceTd'>Around 1 GB</td>
+  <td class='confluenceTd'>Yes, through Catalog server maintenance API</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>Catalog Client Performance</td>
+  <td class='confluenceTd'>High</td>
+  <td class='confluenceTd'>N/A</td>
+  <td class='confluenceTd'>Lower</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>Availability</td>
+  <td class='confluenceTd'>May not work if the Catalog server is down</td>
+  <td class='confluenceTd'>Needs shutdown for Catalog application metadata updates</td>
+  <td class='confluenceTd'>Cannot work if the Catalog Server is down</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>Used Databases</td>
+  <td class='confluenceTd'>ORDER</td>
+  <td class='confluenceTd'>CATALOG</td>
+  <td class='confluenceTd'>N/A</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>Client-server protocol</td>
+  <td class='confluenceTd'>Simple socket based protocol</td>
+  <td class='confluenceTd'>N/A</td>
+  <td class='confluenceTd'>SOAP</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Catalog Architecture</h3>
+<p>The architecture  allows for maximum scalability of the Catalog applications: One Catalog server  can serve many client applications as well as many catalog servers may work  with the same catalog database as long as only one is used for definition  maintenance as shown below:</p>
+
+<p><img src="Client_Server.png" alt="Catalog Architecture" /> </p>
+</td>    
+</tr>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Layout Spacer</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Layout Spacer</h2>
+
+<p>Layout Spacer inserts empty space to Horizontal and Vertical Layouts. Properties <b>Height</b> and <b>Width</b> determine the size of the empty space.</p>
+
+<img src="exampleLayoutSpacer.png" alt="Layout Spacer element" border="1">
+
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='referenceTh'>references Variable</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method</th>
+<td class='referenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>Allowable Child Elements</th>
+<td class='referenceTd'><i>None</i></td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th width="60" class='referenceTh'>Property</th>
+<th width="142" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+<th width="1411" class='referenceTh'>Comment</th>
+</tr>
+<tr>
+<th class='referenceTh'>Name</th>
+<td class='referenceTd'>Mandatory</td>
+<td class='referenceTd'>Name of the Layout Spacer</td>
+</tr>
+<tr>
+<th class='referenceTh'>Height</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Height used or consumed by the Layout Spacer. The value is defined as the number of pixels (integer) or as a percentage of page height or of the parent element.  For example, 50% of the page height or 200 pixels. </td>
+</tr>
+<tr>
+<th class='referenceTh'>Width</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Width used or consumed by the Layout Spacer. The value is defined as the number of pixels (integer) or as a percentage of page width or of the parent element. For example, 30% of the page width or 150 pixels.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Choose from styles within the selected stylesheet (located in the Velocity Studio toolbar), which defines the styling of the Layout Spacer such as positioning and color. Default is NONE.</td>
+</tr>
+<tr>
+<th class='referenceTh'>On Enter</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>The system calls any script defined in this property. This method is invoked when the Layout Spacer is focused on the Web page and the user presses the ENTER key.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Visible</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Defines the user permissions assigned to this layout. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and visiblePerm can be assigned as well as Object Permissions. Defaults to NONE, which means no permissions are assigned.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Notes:</h3>
+<ul>
+  <li>A layout spacer that is last child is now the parent's layout RightMargin (if parent is vertical layout, layoutBottomMargin if horizontal layout) </li>
+  <li>A layout spacer with a previous element above it is turned into the previous element's (if layout or form frame) layoutRightMargin (horizontal layout) or layoutBottomMargin (vertical layout or form frame)</li>
+</ul>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

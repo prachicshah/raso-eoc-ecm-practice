@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>Configure Resource Locks</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Configure Resource Locks </h2>
+    <p>The following are the steps to configure the  resource locks:</p>
+    <ol>
+      <li> Follow the  directions from the <a href="../../../html/Installer_User_Guide/standard install.html"> Velocity Studio&rsquo;s Installer User Guide</a> to install Velocity Studio</a>, initialize the database, and configure the System Configuration application.</li>
+      <li><a href="../../../html/Service_Designer_Tool_User_Guide/Service Designer Menu Actions/New Project.html">Create a project</a> in Velocity Studio and set the <a href="../../../html/Service_Designer_Tool_User_Guide/Metadata_Objects/Metadata Root/Metadata Root General Properties.html#Internal Name"> internal name </a>of the project.</li>
+      <li><a href="../../../html/Installer_User_Guide/Modules_Installation.html">Add the following library files</a> for Resource Locks menu  in Velocity Studio:</li>
+      <ul>
+        <li>cwa_rslock.jar</li>
+        <li>cwl_rslock.jar</li>
+        <li>rslock.jar</li>
+      </ul>
+      <li>Run the <strong>models.sql</strong> and <strong>privileges.sql</strong> files found in  the <em>&lt;EOC-ECM_installation_folder&gt;\</em>modules\rslock\DDL. These files are required to create indexes,  tables, and provide the <strong>rslock</strong> administration privilege.</li>
+      <li>Update the <a href="../../../html/Configuration_Tool_User_Guide/Configure/System/Databases/logicalConnection.html"> logical connection</a> in the System  Configuration application.</li>
+      <li><a href="../../../html/Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Upgrading System.html">Upgrade the database</a> and run the associated SQL  file.</li>
+      <li><a href="../../../html/User Profile Manager User Guide/Manage/privileges.html">Assign the privileges</a> required  for resource locks menu in the User Profile Management application.</li>
+      <li>Logout and log back in to the System  Administration application.</li>
+      <li>The resource locks menu appears on the main page as follows: </li>
+      <p><img src="resourcesLocks.png" border="1" alt="Resource Locks Menu" /></p>
+  </ol>
+</ul></td>
+</tr>
+</table>
+</body>
+</html>

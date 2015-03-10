@@ -1,0 +1,146 @@
+<html>
+<head>
+<title>Event Log</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<h2>Event Log</h2>
+<p>The Event Log report  displays a list of messages logged by the  application. </p>
+<p>To access the event log, complete these steps:</p>
+<ol>
+  <li>From the menu bar, click <strong>View</strong> &gt; <strong>Event Log</strong> to launch the Event Log page.<br>
+    <br>
+    <img src="eventLog.png" border="1" alt="Event Log" />
+    <br>
+    <br>
+  </li>
+  <li>On the Event Log page, specify your search criteria. The following fields are available:<br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="169" class='confluenceTh'>Field</th>
+          <th width="1369" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Event ID</b></td>
+          <td class='confluenceTd'>This field contains the numeric event message's identifier.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Event Severity</b></td>
+          <td class='confluenceTd'>This field denotes the event's level of importance. Click the field's drop-down menu and select from one of the following event severity options:
+          <ul>
+          <li><strong>Debug</strong></li>
+          <li><strong>Information</strong></li>
+          <li><strong>Warning</strong></li>
+          <li><strong>Error</strong></li>
+          <li><strong>Fatal Error</strong></li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Event Module</b></td>
+          <td class='confluenceTd'>This field indicates the message's source. Click the field's drop-down menu and select the event module that you want.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Event Time</strong></td>
+          <td class='confluenceTd'><p>This field allows you to specify the time and date when the event message was logged. There are two fields that you can specify:</p>
+          <ul>
+          <li><strong>From</strong> field<br>
+          Click
+            the <strong>Calendar</strong> icon and select the date from which you want to search for events. You can also specify the time by using the <strong>Hour</strong>, <strong>Minute</strong>, and <strong>Second</strong> drop-down fields.<br>
+          </li>
+          <li><strong>To</strong> field<br>
+            Click the <strong>Calendar</strong> icon and select the date to which you want to search for events. You can also specify the time by using the <strong>Hour</strong>, <strong>Minute</strong>, and <strong>Second</strong> drop-down fields.<br>
+          </li>
+          </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>AVM ID</strong></td>
+          <td class='confluenceTd'>This field denotes the AVM ID, which is a combination of your host ID and the Velocity Studio build version that you are using. Click this field's drop-down menu and select the identifier from the list.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Node</strong></td>
+          <td class='confluenceTd'>This field represents the node set in the configuration application. Click the field's drop-down menu and select the node identifier from the list.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>User ID</b></td>
+          <td class='confluenceTd'><p>This field contains the ID of the user who received the message. You can click the following buttons:</p>
+            <ul>
+              <li><strong>Finder</strong> button, to look up a user ID in a finder</li>
+              <li><strong>Details</strong> button, to view details of the event in a dialog</li>
+              <li><strong>Clear</strong> button, to clear any text that appears in this field</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Transaction ID</strong></td>
+          <td class='confluenceTd'>This field contains the ID that is attached to a grouping for the same request type or a process activity for a process engine.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Object ID</b></td>
+          <td class='confluenceTd'>This field denotes the object code that identifies the message type.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>When you have finished entering your search criteria, click the <strong>Search</strong> button to view your search results. <br>
+    <br>
+    <img src="eventLogResults.png" alt="Event Log - search results" border="1"><br>
+    <br>
+  The Event Log search results contain the following fields:<br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="194" class='confluenceTh'>Field</th>
+          <th width="1344" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Event ID</b></td>
+          <td class='confluenceTd'>This field contains the numeric event message's identifier.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>AVM ID</strong></td>
+          <td class='confluenceTd'>This field denotes the AVM ID, which is a combination of your host ID and the Velocity Studio build version that you are using. Click this field's drop-down menu and select the identifier from the list.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Node</strong></td>
+          <td class='confluenceTd'>This field represents the node set in the configuration application. Click the field's drop-down menu and select the node identifier from the list.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Timestamp</b></td>
+          <td class='confluenceTd'>This field contains the time and date when the message was logged.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Event Severity</b></td>
+          <td class='confluenceTd'>This field denotes the event's level of importance. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Event Code</b></td>
+          <td class='confluenceTd'>This field reprsents the internal code identifying the message type.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>User ID</b></td>
+          <td class='confluenceTd'><p>This field denotes the ID of the user who received the message. </p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Event </strong><b>Description</b></td>
+          <td class='confluenceTd'>This field contains a description of the message.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>To view and event's specific details, double-click the <strong>Event ID</strong> that you want to view from the search results. The  Event Log Details page launches, which includes details of the message's stack trace and more.<br>
+    <br>
+    <img src="eventLogDetails.png" alt="Event Log Details" border="1"><br>
+    </td>
+</tr>
+</table>
+</li>
+</ol>
+</body>
+</html>

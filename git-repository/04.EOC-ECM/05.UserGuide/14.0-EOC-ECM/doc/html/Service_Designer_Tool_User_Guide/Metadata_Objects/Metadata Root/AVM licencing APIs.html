@@ -1,0 +1,89 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Licencing Scriptable APIs</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h3>Licencing Scriptable APIs</h3>
+
+<p>The License scriptable class includes the following methods to support AVM licencing with Sentinel RMS:</p>
+<table width="760" border cellpadding="1" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Method</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Boolean isFeatureActive(String  feature);<br></td>
+      <td class='confluenceTd'>This method returns true if the feature is currently  activated.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>String[] getActiveFeatures(); </td>
+      <td class='confluenceTd'><p>This method returns all features currently activated.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>String[] getAllFeatures(); <br></td>
+      <td class='confluenceTd'>This method returns a list of all features defined in the  system.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Date getStartDate(String  feature); <br>
+        <br></td>
+      <td class='confluenceTd'>This method returns the start date of the  feature, including the grace period.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Date  getExpirationDate(String feature); </td>
+      <td class='confluenceTd'>This method returns the expiration date of the  feature, including the grace period.</td>
+    </tr>
+  </tbody>
+</table>
+<p>The following table describes capacity and usage methods:</p>
+<table width="760" border cellpadding="1" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="403" class='confluenceTh'>Method</th>
+      <th width="341" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Integer getCapacity(String  feature);<br>        <br></td>
+      <td class='confluenceTd'>This method returns the capacity value for the given feature  or null if the feature does not have a capacity.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Boolean requestUsage(String  feature, String userID, Integer capacity); <br></td>
+      <td class='confluenceTd'><p>You can use this method to support floating capacity  licences. It requests feature usage for the  userID (can be null, meaning that the capacity is requested for each AVM instance) and with  a specified capacity (1, if not specified). 
+</p>
+        <p>If this method calls requestUsage() multiple times, the counter gets summarized. 
+          This method returns true if the requested usage is granted.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Boolean releaseUsage(String  feature, String userID, Integer capacity); <br>        <br></td>
+      <td class='confluenceTd'><p>This method releases the feature capacity. The userID can be  null, meaning that the AVM instance is considered the user. Otherwise, the capacity value is equal to 1 if not  specified.</p>
+        <p>The 
+          releaseUsage() method can be called if its capacity is less than requestUsage(). Then, it is  allowed to call releaseUsage()  later to release the rest of the capacity. This method returns true if it is unable to release the capacity.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p>void reportUsage(String  feature, String userID, Integer capacity);</p>
+        <p><br>
+        </p>
+        <br>
+        <br></td>
+      <td class='confluenceTd'><p>This method reports feature usage (that is, the current capacity).<strong></strong></p>
+        <p><strong>Note:</strong> This method is expected to be implemented for the Cloud API to report the feature's current usage.</p>
+        <p>Using this method is the equivalent to calling the following sequence:</p>
+        <p>requestUsage(feature, userID, capacity);<br>
+releaseUsage(feature, userID, capacity);</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>For more information about these methods, consult the <a href="../../../JavaScripting in Order Care/index.html">JavaScripting documentation</a>.</p></td>
+</tr>
+</table>
+</body>
+</html>

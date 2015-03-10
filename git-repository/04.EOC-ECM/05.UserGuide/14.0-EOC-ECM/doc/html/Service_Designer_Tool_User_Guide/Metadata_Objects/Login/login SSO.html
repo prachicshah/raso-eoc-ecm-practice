@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Login Script for Single Sign-On</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name=""></a>Login Script for Single Sign-On</h2>
+<p>The single sign-on JavaScript plugin is available in Velocity Studio. The plugin is called when a user accesses the application for the first time without having an established session context. The login script returns the user ID of the application user. The login page is bypassed when the returned value matches a user ID recorded in the user profile. Otherwise, the login page appears.</p>
+<p>This plugin has full access to HTTP header information. It also has access to all declared third-party interfaces.</p>
+<h3>cwf_up.preLogin Script</h3>
+<p>The cwf_up.preLogin global script accepts the following parameters, where each parameter is an array of Strings:</p>
+<ul>
+  <li>headerNames and headerValues, which are the name-value pairs for request headers</li>
+  <li>paramNames and paramValues, which are the name-value pairs for request headers</li>
+  </ul>
+<!--
+<p>If this script returns null (that is, the implementation in the system metadata returns null), the normal login procedure takes place.</p> 
+-->
+<p>It is recommended that you return a non-null value using this script and that you capture all exceptions. If the script returns null or if an exception occurs, you may experience a redundant call to this script. This script returns the SECURITY_PRE_LOGIN event type.</p>
+<p>When you override this script and it returns a non-null value, the value is considered to be a username. If the username is valid, the user is automatically logged in and either one of the following actions occur:</p>
+<ul>
+  <li>The Select Application page displays.</li>
+  <li>If the user has permission to access only one application or the application name passes through parameters, the application appears. </li>
+  </ul>
+<p><strong>Note:</strong> To track the URL that performed a specific request, do the following:</p>
+<ol>
+  <li>Open your  metadata and override the  cwf_up.preLogin global script. </li>
+  <li>During   runtime, instead of going to <em>http://localhost:8080/cwf</em>, try a different URL, such as <em>http://localhost:8080/cwf/preTest</em>. </li>
+  <li>In this script, the <strong>requestedPath</strong> parameter  contains <strong>/preTest</strong>. </li>
+</ol>
+<h3>Pass Parameters between Applications</h3>
+<p>To pass parameters between applications, see the following example for assistance:</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>Global.setSessionParameter("customerName", customerName);<BR>....<BR>var customerName = Global.getSessionParameter("customerName"); </pre>
+</div>
+</div>
+
+<p><strong>Note:</strong> The setSessionParameter and getSessionParameter methods cannot be used in neither user, nor global processes. See the JavaScript documentation for details.</p>
+<p>&nbsp;</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

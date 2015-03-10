@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>Sub-Process and Sub-Flow</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Sub-Process and Sub-Flow</h2>
+
+<p>Because business processes in telecom are often complex and multi-facet, it is often impossible to represent and manage an end-to-end business process with a single <a href="process diagram.html">Process Diagram</a> in a Process metadata. Instead, with a divide-and-conquer approach, <a href="process activities.html">process activities</a> of a complex business process are often organized into sub-processes or sub-flows, each to encapsulate a particular business process flow, and then invoked using <a href="process activities types.html#Subprocess">sub-process activity</a> or <a href="process activities types.html#Subflow">sub-flow activity</a> respectively by its main process diagram.</p>
+
+<p>This article illustrates the differences between sub-processes and sub-flows.</p>
+
+<h3>Sub-Process</h3>
+
+<p>There are two types of sub-processes:
+<ul>
+<li><i>Asynchronous sub-process</i> - sub-process and main process run simultaneously in Process Engine. This is the default type.</li>
+<li><i>Synchronous sub-process</i> - main process waits for the sub-process to complete before continuing to next activity.</li>
+</ul>
+<p>This is configured with the boolean <b>Synchronization</b> flag in the <a href="process activity properties.html">sub-process activity</a>.</p>
+</p>
+<p>The CWPRODUCTPROPERTIES table contains the CW_NO_SUB_OF_GLOBAL data value. When you set this value to 1, it indicates that the sub-process is not allowed for the global process. </p>
+<h4>Runtime</h4>
+
+<p>In both asynchronous and synchronous sub-processes, the Process Engine starts a sub-process asynchronously by the sub-process (Spawn) activity. The sub-process is started as independent process, running in parallel with its main process in the same Process Engine (even if in clustered-PE environment).</p>
+
+<p>For asynchronous sub-process, the sub-process activity completes immediately. The main process may use a <a href="process activities types.html#Join">Wait Activity</a> to wait for completion of sub-processes of given type(s) or all sub-processes. It cannot, however, wait for completion of a specific sub-process instance.</p>
+
+<p>For synchronous sub-process, the sub-process activity does not complete until the sub-process completes. The main process effectively waits for the sub-process' completion before it runs the next activity.</p>
+
+<h4><i>Before</i> and <i>After</i> Scripts</h4>
+
+<p>For synchronous sub-process activity, the <i>before</i> script can initialize the sub-process document that is accessible as <i>this.activityData</i> member.  Upon completion of the sub-process, the activity runs the <i>after</i> script.</p>
+
+<p>For asynchronous sub-process activity, the <i>after</i> script is not allowed.</p>
+
+<h4>Impact of main process status change</h4>
+
+<p>The following is the impact to sub-processes when the main process' <a href="process status.html">status</a> is changed to:
+<ul>
+<li><i>Terminate</i> - all synchronous sub-processes as well as any other sub-processes are terminated.</li>
+<li><i>Suspend</i> as a result of manual command or migration action - all synchronous sub-processes are also suspended.</li>
+<li><i>Error</i> as a result of error in a parallel branch - all synchronous sub-processes are suspended.</li>
+<li>Suspended main process is <i>resumed</i> - all suspended synchronous sub-processes are resumed, too.</li>
+<li>Main process in error is <i>resumed</i> - all suspended synchronous sub-processes are resumed too.</li>
+</ul>
+<p>Suspending (as result of exception) Spawn activity that waits for synchronous sub-process does not changes the status of the sub-process.</p>
+
+<h4>Impact of synchronous sub-process status change</h4>
+
+<p>The following is the impact to the main process when synchronous sub-process' <a href="process status.html">status</a> is changed to:
+<ul>
+<li>(Manually) <i>terminated</i> - main process throws the termination exception.</li>
+<li><i>Suspended</i> as a result of manual command or migration action - the main process will wait until it is resumed and complete.</li>
+<li><i>Error</i> - the main process will wait until it is resumed and complete.</li>
+<li>Suspended synchronous sub-process is <i>resumed</i>, and then completes - main process is notified.</li>
+</ul>
+
+<h4>Exceptions</h4>
+
+<p>Asynchronous sub-processes handled their own exceptions, and if there is no suitable exception handlers, the sub-process goes in error.</p>
+
+<p>For synchronous sub-processes, if an uncaught exception happens, the synchronous sub-process is terminated, and the corresponding exception type is stored in the column USER_DATA in the completion participant message. If the main process wants to compensate synchronous sub-process’ actions, it should define compensate activity for the main Spawn activity. The main process cannot trigger execution of compensate activities within the sub-process.</p>
+
+<h4>Parameterization</h4>
+
+<p>Both asynchronous and synchronous sub-processes may have process document. The rules are:</p>
+<ul>
+<li>The synchronous sub-process can receive parameters only through its process document</li>
+<li>The synchronous sub-process can change the values of its own process. The process document is returned back to the main process through the corresponding participant message. This is the only way to send data from the sub-flow process to the main process.</li>
+<li>The synchronous sub-process can access the main process document data, but cannot change it. Keep in mind that the content of the main document may change at any moment during the synchronous sub-process process life time, if the main process has parallel branches.</li>
+</ul>
+
+
+<h3>Sub-Flow</h3>
+
+<p>Sub-flows should be considered a presentation feature only -- presenting big process diagrams as a set of smaller diagrams. They should be used to increase the readability, not reusability. </p>
+
+<h4>Runtime</h4>
+
+<p>The Process Engine expands activities of sub-flows in-line into the main process (as macros).  Their activities become part of the main activities and they run synchronously within the process. (Since Release 5.0) Sub-flows are local components of the process diagram.</p>
+
+<h4>Exceptions</h4>
+
+<p>Sub-flows are part of the main process. The main process exception handlers process any exception in a sub-flow.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

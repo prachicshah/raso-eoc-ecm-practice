@@ -1,0 +1,164 @@
+<html>
+<head>
+<title>Scripting Interface</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Scripting Interface</h3>
+<p>Many metadata objects have the ability to contain <b>Methods</b>, which are scripting capabilities that you can insert to fulfill certain logic on the metadata object. The following is a description of user interface functionality in Velocity Studio when working with Methods in metadata objects.</p>
+
+<p>The Methods management screen is composed of the <b>Method list pane</b> at the left which lists all existing scripts under the metadata object, and <b>Details pane</b> at the right which displays the details of a script when selected at the Method list pane.</p>
+
+<p>Right-click the root node in the Method list pane, which denotes the metadata object, to create a new Method, or to override an existing Method of its base metadata object. A pop-up menu appears that allows you to add or override base Methods.</p>
+
+<img src="ScriptRootMenu.png" align="absmiddle" border="1" alt="Right-click menu to add or override method" />
+<p>For scripts that are already overridden, they appear in the Method list pane and are no longer available at the right-click context pop-up menu.</p>
+<p>To show all base methods, click the <strong>Show base methods</strong> (<img src="../Service_Designer_Tool_User_Guide/Velocity_Studio/methodsTabShowBaseMethods.png" alt="Show base methods button">) button. Click the button again to hide all base methods.  Base methods appear in blue. Any method highlighted in blue font indicates that you can override it. Methods in black font cannot be overridden.</p>
+
+<p>Right-click any existing method in the Method list. The following right-click menu appears.</p>
+
+<img src="ScriptMethodContext.png" align="absmiddle" border="1" alt="Methods tab - right-click menu to rename or delete a script" />s
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Command</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>Rename</td>
+<td class='confluenceTd'>Rename this Method to another name. This does not change other scripts that invokes this script by the old name; you must update those scripts yourself.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Delete</td>
+<td class='confluenceTd'>Deletes this Method from metadata object.</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>The details shown in the <b>Details pane</b> depend on the type of Method (for example,  Permission Method, Validation Method). Shown below is a general Script type.</p>
+
+<img src="ScriptProperties.png" align="absmiddle" border="1" alt="General script type" />
+
+<p>Notice that, in the <b>Script</b> field, Velocity Studio automatically generates the function statement, as well as the opening and the closing brackets of the function block. The name of the function is the <b>Name</b> of the script, and the function parameters, if any, are added corresponding to <b>Parameters</b> of the script. You only need to insert segments of JavaScript code within the function.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory. Unique name for the Script.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Descriptive text for documentation purposes.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Parameters</b></td>
+<td class='confluenceTd'>Table to define script parameters. Click the <strong>Add</strong> or <strong>Remove</strong> button to add or remove parameters, respectively. The order of the parameters shown in this table is the order of parameters upon script invocation. Click the <strong>Edit</strong> button with a selected parameter to edit a parameter.<br>
+  <br/>
+
+
+<img src="ScriptParameterProperties.png" align="absmiddle" border="0" alt="Parameter Property dialog" /><br>
+<br>
+	<table class='confluenceTable'>
+	  <tbody>
+	<tr>
+	<th class='confluenceTh'>Field</th>
+	<th class='confluenceTh'>Description</th>
+	</tr>
+	<tr>
+	  <td class='confluenceTd'><b>Name</b></td>
+	  <td class='confluenceTd'>Mandatory. Name of script parameter.</td>
+	  </tr>
+	<tr>
+	  <td class='confluenceTd'><strong>Description</strong></td>
+	  <td class='confluenceTd'>Description of the metadata object for documentation.</td>
+	  </tr>
+	<tr>
+	  <td class='confluenceTd'><b>Type</b></td>
+	  <td class='confluenceTd'>Data Type of the parameter.</td>
+	  </tr>
+	<tr>
+	<td class='confluenceTd'><b>Mandatory</b></td>
+	<td class='confluenceTd'>If checked, the parameter is mandatory and the expression editor will not allow the parameter value to be null.</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'><b>Array</b></td>
+	<td class='confluenceTd'>If checked, the parameter is an array of the specified Data Type.</td>
+	</tr>
+	</tbody>
+	</table>
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Script</b></td>
+<td class='confluenceTd'>Mandatory. Field containing the JavaScript script to be executed.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Return Type</b></td>
+<td class='confluenceTd'>The Object type to be returned by the script. Choose <i>com.conceptwave.system.Void</i> if no value shall be returned.</td>
+</tr>
+</tbody>
+</table>
+
+<p>If the script is to return value, the following rules apply:
+<ul>
+<li>The script can be single expression without 'return' keyword and without semicolon.</li>
+<li>The script can be single return statement with or without semicolon.</li>
+<li>The script can consist of many statements with at least one return statement.</li>
+</ul>
+<b>Note: JavaScript interpreter does not allow the return keyword and the return expression to be on different lines!</b></p>
+<p>For example, a date data type validation script that does not allow January 1st of any year to be specified in the date field can be written in the following three ways:</p>
+
+<div class="code"><div class="codeContent">
+<pre>
+// Single expression
+//
+itemData.getMonth() == 0 &amp;&amp; itemData.getDate() == 1
+</pre>
+</div>
+</div>
+
+<div class="code"><div class="codeContent">
+<pre>
+// Single return statement
+//
+return (itemData.getMonth() == 0 &amp;&amp; itemData.getDate() == 1);
+</pre>
+</div>
+</div>
+
+<div class="code"><div class="codeContent">
+<pre>
+// Multi-statement code segment
+//
+if (itemData.getMonth() != 0 || itemData.getDate() != 1)
+    return false;
+return true;
+</pre>
+</div>
+</div>
+
+<p>In the <b>Script</b> text input area, you may right-click to pop up a context menu:</p>
+
+<img src="ScriptContextMenu.png" align="absmiddle" border="1" alt="Script field - right-click menu" />
+<br>
+<p>Select the <b>Editor</b><strong> Mode</strong> command from the pop-up menu to open the <a href="new JavaScript Editor.html">JavaScript Editor</a> for the script. You can also double-click the <strong>Script</strong> field to launch the JavaScript Editor.</p>
+<p><strong>Note:</strong> The other items in the pop-up menu are used for editing script contents directly in the field, rather than using the JavaScript Editor.</p>
+<p>&nbsp;</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

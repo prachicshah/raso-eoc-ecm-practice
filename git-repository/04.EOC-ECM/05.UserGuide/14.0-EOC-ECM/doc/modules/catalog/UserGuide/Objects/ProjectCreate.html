@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Create a Project</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Create a Project</h2>
+<p>To create a new project, complete these steps:</p>
+<ol>
+  <li>From the menu bar, click <strong>No Current Project</strong> &gt; <strong>Manage</strong> to launch the Project Search Results page.</li>
+  <li>Click <strong>New</strong> to  launch the Project page.<br>
+    <br>
+    <img src="ProjectDetails.png" alt="Project Details">
+    <br>
+    <br>
+  </li>
+  <li>Enter your project information in the fields provided. The following fields are available:<br>
+    <br>
+    <table class='confluenceTable' border cellpadding="1">
+      <tbody>
+        <tr>
+          <th width="103" class='confluenceTh'>Field</th>
+          <th width="1224" class='confluenceTh'>Description</th>
+          <th width="114" class='confluenceTh'>Rules</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Code</strong></td>
+          <td class='confluenceTd'>The code used to identify this Project. This code is used through the Catalog to associated Catalog changes to a project.</td>
+          <td class='confluenceTd'>Mandatory, Unique</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Status</strong></td>
+          <td class='confluenceTd'>A list of available <a href="States.html">Status</a> (for example, Definition, Ready, Review, Approved and Active). The default status is Definition. Changing the status to Active results in all Catalog changes under this project to be committed.</td>
+          <td class='confluenceTd'>Mandatory</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Name</strong></td>
+          <td class='confluenceTd'>A unique name for  this Project. This field is for internal use when designing your catalog model. This field is not supported by language translation.</td>
+          <td class='confluenceTd'>Mandatory</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Effective Date</strong></td>
+          <td class='confluenceTd'>The Project changes are effective on this date/time once the project is committed (that is, status is Active).  The start dates of the revisions must be after this effective date.</td>
+          <td class='confluenceTd'>Mandatory</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Parent Project</strong></td>
+          <td class='confluenceTd'>This field is automatically populated with the Parent Project object.  If a parent project does not exist, then this field remains blank. All the child projects must be active before the parent project can be active. </td>
+          <td class='confluenceTd'>Mandatory</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Label</strong></td>
+          <td class='confluenceTd'>The visual Label used for this Context, which is used in the application user interface. This field is a translational string that supports language translations (refer to Velocity Studio's Translation Element for more details).</td>
+          <td class='confluenceTd'>Optional</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Description</strong></td>
+          <td class='confluenceTd'>A description of this Project. </td>
+          <td class='confluenceTd'>Optional</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Owner</strong></td>
+          <td class='confluenceTd'>This is the position of the user who created the project and only users with the same position or higher can access the project data.  This value cannot be changed. Refer to <a href="../Configuration/Catalog_Domains.html">Domains</a> for more information. </td>
+          <td class='confluenceTd'>Mandatory</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Error Correction</strong></td>
+          <td class='confluenceTd'>This option allows you to determine whether errors appear in your project. By default, this option is not selected.</td>
+          <td class='confluenceTd'>Optional</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>Click <strong>Save</strong>. A confirmation message appears, indicating that your project has been created. Click <strong>Project</strong> to return to the Project appears in the left pane.</li>
+  <li>Click the <strong>Refresh</strong> button to verify that your new project appears in the complete list of projects available.<br>
+    <br>
+    <img src="ProjectDetailsRefresh.png" alt="Create a project - refresh list">    <br>
+  </li>
+  </ol>
+<p><strong>Note:</strong> The Domains tab appears after you have created and opened your project. Domains allow you to grant additional access to your project data. <span class="confluenceTd">Refer to <a href="../Configuration/Catalog_Domains.html">Domains</a> for more information. </span></p>
+<p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Hyperlink</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Hyperlink</h2>
+
+<p>This element creates hyperlink text. The example shows the Hyperlink element's preview pane and properties for a Web page hyperlink. </p>
+
+<img src="exampleHyperlink.png" align="absmiddle" border="1" alt="Hyperlink element" />
+
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='referenceTh'>references Variable</th>
+<td class='referenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method</th>
+<td class='referenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>Allowable Child Elements</th>
+<td class='referenceTd'><i>None</i></td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th width="104" class='referenceTh'>Property</th>
+<th width="140" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+<th width="1369" class='referenceTh'>Comment</th>
+</tr>
+<tr>
+  <th class='referenceTh'>Name</th>
+  <td class='referenceTd'>Mandatory</td>
+  <td class='referenceTd'>Mandatory. Name of the Hyperlink.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label</th>
+  <td class='referenceTd'>Mandatory</td>
+  <td class='referenceTd'>Visible label of the Hyperlink. If empty, the label assumes the URL of the Hyperlink. Default is empty.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Can Sort</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property is used when parented by a Table Element and refers to a Finder table column during runtime.  This will allow the user to sort the search results data by ascending or descending order at runtime. Setting this property to <em>False </em>will disable the sorting functionality. By default this functionality is set to <em>True.</em></td>
+</tr>
+<tr>
+<th class='referenceTh'>*Cell Alignment</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Controls the horizontal and vertical positioning of the Hyperlink element in the page or parent element. Default is undefined, which behaves as if it is top-left.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Cell Column Span</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Only applicable when in a Grid Layout. Specifies the number of columns that the Hyperlink shall occupy in the Grid Layout, to the right of current cell. Default is empty, which occupy one column.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Cell Row Span</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>This property provides more flexibility when building a grid-based user interface, instead of using a combination of horizontal and vertical layouts. This property appears when form elements appear under a Grid Layout element and the form element has a parent element. This property specifies the number of rows that the element occupies in the grid layout.</p>
+    <p>By default, this field is set to 1. All nine positions are made available for the <strong>Cell Alignment</strong> property if the form element is under a Grid Layout element and has a row span greater than 1, so that the form element can be aligned in nine different positions. With rowspan as 1, only the three centre positions are available.</p>
+    <p>To use this property, see the <a href="Element - Button.html#cellRowSpanExample">example</a> for details.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Dynamic Label</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines a label value that is set dynamically at runtime.  Set property to a <em>String</em> variable or a script that returns a <em>String</em>. The static Label property is considered as default until the action returns a value.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Dynamic Label Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>The value of this property is a method with a Return type <em>String</em>. In conjunction with the Variable property, this method will dynamically change the style of the label at runtime based on the instructions returned by the method.  The label style returned by the method must exist within the current css file that is being used by the application.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Dynamic Tooltip</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Defines a dynamic tooltip text that is displayed in a hover box when the cursor hovers the element.  Set property to a <em>String</em> variable or a script with a Return type <em>String</em>. The static Tooltip property is considered as default until the action returns a value.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Dynamic Tooltip Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>This property dynamically changes the style of the Dynamic Tooltip.  Set property to a script with a Return type <em>String</em> that is a cascading style sheet (css) name found in the stylesheet used by the application.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Editable</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>This property determines whether the Hyperlink is enable or disabled at runtime. The values for this property are either <em>True</em> (enabled), <em>False</em> (disabled) or a <em>Permissions</em> method (for example, depending on the user's permissions, this field will be enabled or disabled).</p>
+    <p><strong>Note:</strong> If a field contains  an editable permission that is either coming from the form field itself, or inherited  from the variable or data type, it takes precedence. Otherwise, the user  interface's editablePerm permission takes over. If this method is not  overwritten, the model's editablePerm permission is used. User interfaces  displayed under another user interface with editablePerm are also be inherited  if the embedded user interfaces do not have their own editablePerm permission. </p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Error Icon Gap</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Select this property's checkbox to make a gap for the validation icon. By default, this property is false. </p>
+    <p><strong>Note:</strong> This property is available only for left (or default) error orientation. The gap is calculated according to the /cwfv/error.png icon size. When the image is substituted with a smaller one, the gap is also smaller. </p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Error Icon Orientation</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property allows you to configure how an icon are displayed. This property takes the values left (default) and right.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Height</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Height to be taken up by the Hyperlink as defined as an integer value in pixels.  If this element is nested under a Table element, the width and height properties can be set using either the percentage (%) or pixel (px) measurement. If this element is not nested under a Table element, the width and height properties are only available using the pixel setting.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Include in Tab Order</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>This property allows you to optionally suppress tabbing to any or all form elements. The <strong>Include in Tab Order</strong> property overrides the <a href="../../Configuration_Tool_User_Guide/Configure/System/UI/UItabbing.html">suppress tabbing</a> configuration setting and can take the following values:</p>
+    <ul>
+      <li>When set to <strong>&lt;Default&gt;</strong>, the element is included in tab order according to global rules and its focusable state.</li>
+      <li>If the property is set to <strong>Exclude</strong>, the element is excluded from tabbing even if the element is focusable.</li>
+      <li>If the property is set to <strong>Include</strong>, the element is included <em>only if it is focusable</em>, even if all items of that type are excluded through the Suppress Tabbing variable.</li>
+    </ul>
+    <p><strong>Note:</strong> For menu items and images, the <strong>Can Focus</strong> property affects including the element in the tab order. To ensure that an element is in the tabbing order, select this property.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label Align</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Click the <strong>Value</strong> field and select from one of the following alignment options for your label:</p>
+    <ul>
+      <li><strong>Left</strong></li>
+      <li><strong>Centre</strong></li>
+      <li><strong>Right</strong></li>
+      </ul></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label Orientation</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Specifies where the label of the Hyperlink appears in relation to the Hyperlink area; can be <i>left</i>, <i>right</i> or <i>top</i> of the Hyperlink area. The default orientation is <i>right</i>.  However, in a Grid Layout , the default label orientation is defined by the Grid Layout element.  But if a value of this Label Orientation property is specified, than it overrides the Label Orientation property provided by the Grid Layout. </td>
+</tr>
+<tr>
+  <th class='referenceTh'>On Enter</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>The system calls any script defined in this property. This method is invoked when the Hyperlink is focused on the Web page and the user presses the ENTER key.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Remove Label Line</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Select this property's checkbox when the element is in a grid layout and its column span is equal to the grid layout's   number of columns. In other words, if the   field is the only field in that row, this empty line is removed above the element. </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show Label</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property determines whether the label is displayed on the Hyperlink. Choose from <em>True</em> or <em>False</em>. Default is <em>True</em> which means that the label is displayed.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Start Row</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Applicable only when the parent element is a Grid Layout. If true, the Hyperlink appears in a new row of the grid. If false, it is simply placed in the next available cell. Default is <i>False, </i>which means that the Hyperlink element does not appear on a new row.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Choose from styles within the selected stylesheet (located in the Velocity Studio toolbar), which defines the styling of the Hyperlink such as positioning and color. Default is none.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the tooltip text, which is displayed in a hover box when the cursor hovers over the Hyperlink. Default is empty, which means no tooltip for the Hyperlink.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the tooltip style of the text displayed in the hover box when the cursor hovers over the hyperlink. The default is empty. Click the <strong>Value</strong> field to select a tooltip style from the list.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip Width (px)</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Allows you to change the width of the tooltip popup window statically. Enter the width in pixels. The default value for this property is 0.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>URL</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Specify the URL of the hyperlink.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Variable</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Choose from the list of elementary Variables available in the User Interface to bind to this Hyperlink. Default is not assigned. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Visible</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Defines the user permissions assigned to this layout. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and visiblePerm can be assigned as well as Object Permissions. Defaults to NONE, which means no permissions assigned.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Width</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Width to be taken up by the Hyperlink; can be in integer which is in pixels, or in percentage (for example, "30%") of page width or parent Element. If this field is empty, the Width of the field should be taken up by that defined in the Column Width property of the Grid Layout.  If this element is nested under a Table element, the width and height properties can be set using either the percentage (%) or pixel (px) measurement. If this element is not nested under a Table element, the width and height properties are only available using the pixel setting.</td>
+</tr>
+</tbody>
+</table>
+<h3>Notes</h3>
+<ul>
+<li>If this element is nested under a Table element, the width and height properties can be set using either the percentage (%)  or pixel (px) measurement. If this element is not nested under a Table element, the width and height properties are only available using the pixel setting. </li> 
+
+<li>If this element is the first element that appears in the Element Tree pane, you can set the cell alignment. If this element has a parent layout, for example vlayout or hlayout with the width/height set, this element uses these values as a base to set its alignment. If the parent layout does not contain a width/height, then this element does not have a base to which it can set its alignment. If the element has a parent that contains width/height settings, but this form is displayed under another layout with different widths, your form alignment is restricted to the parent's width/height settings.</li></ul>
+</td>
+</tr>
+</table>
+</body>
+</html>

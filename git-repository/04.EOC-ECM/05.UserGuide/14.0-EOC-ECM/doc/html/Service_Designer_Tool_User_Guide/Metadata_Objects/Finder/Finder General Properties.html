@@ -1,0 +1,408 @@
+﻿
+
+
+<html>
+<head>
+<title>Finder General Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Finder General Properties</h2>
+<p>The general Finder properties are defined on the <b>General</b> tab. </p>
+<p><img src="Finder_General.png" alt="Finder - General tab" border="1" /></p>
+<p>The following table describes  the common fields for the <STRONG>General</STRONG> tab of   the Finder: </p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="97" class='confluenceTh'>Field</th>
+<th width="806" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory. Unique name of the Finder within the namespace (used in scripts; must conform to JavaScript naming conventions).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Deprecated</b></td>
+  <td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+  <td height="43" class='confluenceTd'><b>Virtual</b></td>
+  <td class='confluenceTd'>If checked, it provides the ability to create methods in template metadata that does not have implementation, but can be used in template script and be bound to UI elements. The implementation is done in user metadata (see <a href="../Virtual Field/Virtual Field.html">Virtual Field</a> for more information).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Final</strong></td>
+  <td class='confluenceTd'>Metadata elements can be marked as final, which includes any Boolean final property that is available on any metadata element. Additionally, any metadata element that has the <strong>Final</strong> property set to true can neither be extended, nor overridden.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Label</b></td>
+  <td class='confluenceTd'>Mandatory. Display label to identify the Finder.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the Finder for documentation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Overrides</b></td>
+<td class='confluenceTd'><p>Specifies an overridden Finder. For example, a Document Finder can override another Document Finder from a library when the output Document of the overriding Finder is the same or the output document from the base Finder is overridden.</p>
+  <p><strong>Note:</strong> When specifying a finder to override, an  input document must be inherited from the overridden finder.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Volatility (min)</b></td>
+<td class='confluenceTd'>When this Finder is used for a code table, specifies the update period in minutes. Setting the volatility to zero forces the system to read from the database each time that a search is performed.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a name="InputDoc"><b>Select Input </b></a></td>
+<td class='confluenceTd'>This field is optional for all Finder types except Order Finders. It is mandatory for Order Finders. 
+  <p>It is required when the Finder needs search criteria for the select operation. For Document and Rule Finders, the <b>Select</b> <b>input</b> Document field is used as a search criteria and must be mapped to the database. This field is the <b>Input document</b> when it becomes read-only based on Finder type. When used in the UI, the Finder search criteria are entered using the form specified in the <b>Search Form</b> field of the Finder's <a href="Finder View.html">View tab</a>.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b><a name="OutputDoc">Select Output </a></b></td>
+<td class='confluenceTd'><p>Mandatory. Finders must always define a <b>Select</b> <b>output</b> Document. The result of the Finder select operation is a list of runtime <b>Select</b> <b>output</b> Document instances that contain the data matching the search criteria. For Document and Rule Finders, the <b>Select</b> <b>output</b> Document must be mapped to the database. This field is <b>Output document</b> when it becomes read-only based on Finder type.</p>
+  <p>When used in the User Interface, the Finder results are displayed using the form specified in the <b>Result</b> <b>Form</b> field of the Finder's <a href="Finder View.html">Views tab</a>.</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3>General Properties for Finder Types</h3>
+The fields displayed below the <b>Select</b> <b>output</b> field are dependent upon the type of Finder with which you are working. The following sections describes the additional property fields in the <b>General</b> tab for each Finder type.<br><br>
+<h3><a name="documentFinder">Document Finder</a></h3>
+A Document Finder is used for finding Documents mapped to the database. The Finder returns the <strong>Select output</strong> Document containing the Documents corresponding to the search criteria, if any.<br>
+<strong>Note:</strong> The General tab of the Document Finder does not have any additional fields.<br><br>
+<p><img src="finderGeneralDocV.png" alt="Document Finder - General Tab"  border="1" /></p>
+<h3><a name="orderFinder">Order Finder</a></h3>
+An Order Finder must have a <b>Select</b> <b>input</b> Document defined and at runtime it must not be empty. This restricts the number of Orders found, because the select operation for Order Finders requires many resources and can affect the system performance negatively.<br><br>
+
+<p><img src="finderGeneralOrderV.png" alt="Order Finder - General Tab"  border="1" /></p>
+<p>The following table describes the additional fields for this Finder: </p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>All documents must exist</b></td>
+<td class='confluenceTd'><p>If checked, all Documents that are used to construct the Finder result set have to be present to create the result Document instance. When unchecked,  some Documents that are used to construct the result may be missing. When this is the case, the result Document is still created with the missing fields set to null. The default is unchecked.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Order(s)</b></td>
+<td class='confluenceTd'>Displays a list of Order types with a check box beside each type. When all the check boxes are unchecked, all Order types are included in the search. When one or more check box is checked, only the checked Order types are included in the search. The default is all check boxes are unchecked.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<h3><a name="ruleFinder">Rule Finder</a></h3>
+<p>A Rule Finder is based on a Business Rule that must be first defined in the <b>Rules</b> folder under the <b>Business Processes</b> folder (Library &gt; cwf_pm (Process Management Product). The expressions from rule instances of the specified Business Rule, defined on the Business Rule <b>Instances tab</b>, are used as search criteria on the Rule Finder invocation. In the Rule Finder metadata, this Business Rule must be selected in the <b>Rule</b> field. The <b>Input Document</b> and <b>Output Document</b> fields in the Rule Finder are read-only. The optional <b>Input</b> Document on the  Rule <b>General</b> tab  appears as the <b>Input Document</b> of the Finder. The <b>Rule document</b> that is defined on the  Rule <b>General</b> tab appears as the <b>Output Document</b> of the Finder. 
+</p>
+<p><img src="finderGeneralRuleV.png" alt="Rule Finder - General Tab" border="1" /></p>
+<p> The following table describes the additional field for this Finder:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Rule</b></td>
+<td class='confluenceTd'>Mandatory. A Business Rule from the <b>Rules</b> folder under the <b>Business Processes</b> folder (Library &gt; cwf_pm (Process Management Product).</td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="interfaceFinder">Interface Finder</a></h3>
+An Interface Finder is based on an Interface that must be first defined in the <b>Interfaces</b> folder under the <b>External Services</b> folder (Library &gt; cwf). At creation of Interface Finder, the Interface is selected. The Interface Finder has additional optional fields <b>Select</b>, <b>Get</b>, <b>Add</b>, <b>Delete</b> and <b>Update</b> where you can select a list of Operations defined for the Interface. Each Operation may or may not have input and output Documents defined in the <b>Input</b> and <b>Output</b> fields on the <b>General</b> tab. If you select an Interface that only has Operations with no documents, the lists is empty.<br>
+<p>The <b>Select</b> operation must be assigned. Only an Operation that contains an output Document can be selected. The input and output Documents of the <b>Select</b> operation  appear as the <b>Input Document</b> and <b>Output Document </b>(read-only)  of the Finder.</p>
+<strong>Note:</strong> Interface finders can only be used with interface operations that have Documents   as inputs or outputs.<br>
+<p><img src="finderGeneralInterfaceV.png" alt="Interface Finder - General Tab"  border="1" /></p>
+<p>The following table describes the additional fields for this Finder:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Interface</b></td>
+<td class='confluenceTd'>Mandatory. Interface type to use for Finder operations from the <b>Interfaces folder</b> under the <b>External Services</b> folder..</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Select</b></td>
+<td class='confluenceTd'>Mandatory. Interface Operation for selecting (searching) results.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Get</b></td>
+<td class='confluenceTd'>Interface Operation used to get the detail Document.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Add</b></td>
+<td class='confluenceTd'>Interface Operation used to add a new Document.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Delete</b></td>
+<td class='confluenceTd'>Interface Operation used to delete a Document.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Update</b></td>
+<td class='confluenceTd'>Interface Operation used to update a Document.</td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="scriptFinder">Script Finder</a></h3>
+<p>A Script Finder contains additional <b>Select</b> and <b>Get</b> fields. These fields allow you to specify Documents for select and get operations with additional JavaScript support.>/
+ <p> <strong>Note:</strong> Script Finders do not specify search criteria operations. 
+</p>
+<p><img src="finderGeneralScriptV.png" alt="Script Finder - General Tab"  border="1" /></p>
+<p>The following table describes the additional fields for this Finder:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Get input</b></td>
+<td class='confluenceTd'>Input Document for get operation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Get output</b></td>
+<td class='confluenceTd'>Output Document for get operation.</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>Use the <b>Methods</b> tab to define the <b>Select</b> and <b>Get</b> scripts.</p>
+<p><img src="finderActionScript.png" align="absmiddle" border="1" alt="" /></p>
+<h3><a name="sqlFinder">SQL Finder</a></h3>
+<p>A SQL Finder defines a database Finder that performs select and get operations by specifying select and get SQL statements. </p><p><strong>Note:</strong> SQL Finders do not specify search criteria operations.</p><p><img src="finderGeneralSQLV.png" alt="SQL Finder - General Tab" border="1" align="absmiddle" /></p>
+<p>The following table describes the additional fields for this Finder.</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Get input</b></td>
+<td class='confluenceTd'>Input Document for get operation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Get output</b></td>
+<td class='confluenceTd'>Output Document for get operation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Logical connection</b></td>
+<td class='confluenceTd'>Database schema. Use the <b>Connect</b> button  to select the database schema.</td>
+</tr>
+</tbody>
+</table>
+<p>
+  Use the <b>Methods</b> tab to define the <b>Select</b> and <b>Get</b> scripts.</p>
+<p><img src="finderActionSQL.png" align="absmiddle" border="0" alt="Finder Action - SQL" /></p>
+<h3><a name="selectSQLstatement">Select SQL statement</a></h3>
+<p>The select statement is written in SQL with additional syntax that defines the product<sup></sup>-specific behavior. It consists of conditional and unconditional segments.</p>
+<p>Conditional segments are enclosed in curly brackets and may contain parameter placeholders. The conditional segments are included in the runtime SQL statement only if the value of the corresponding search Document leaf is not null or if they are marked as always included (refer to &lt;option&gt; A below). The conditional segments contain designators in square brackets that define the properties of the segment (see below).</p>
+<p>Unconditional segments contain the text between the conditional segments and are always included in the runtime SQL select statement. They should not contain parameter placeholders, although the system does not  perform a check for parameter placeholders. For example:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>
+select &lt;unconditional segment&gt; {&lt;conditional segment&gt;}&lt;unconditional segment&gt;{&lt;conditional segment&gt;}...
+select &lt;unconditional segment&gt; {&lt;conditional segment&gt;}{&lt;conditional segment&gt;}...
+</pre></div>
+</div>
+
+<p>Immediately following the opening curly bracket, a conditional segment must specify the segment designator in square brackets. The general format of the segment designator is:</p>
+<p>[&lt;parameter number&gt;,T&lt;test mask&gt;,S&lt;set mask&gt;,&lt;options&gt;] where:</p>
+<ul>
+<li>&lt;parameter number&gt; is a number from 0 to 127 or an asterisk.</li>
+<li>&lt;test mask&gt; is a positive integer number.</li>
+<li>&lt;set mask&gt; is a positive integer number.</li>
+<li>&lt;option&gt; is any combination of the uppercase letters I, E, A, P, N, B.</li>
+</ul>
+<p>The segment designator should contain at least one part (not including the select statement). The &lt;parameter number&gt; must be defined first, while the remaining parts of the segment designator can be in any order. The missing parts of the designator do not need to be marked by commas.</p>
+<p>The designator defines the Finder behaviour as follows:</p>
+<ul>
+<li>If the &lt;parameter number&gt; has a value from 0 to 127, the segment will be included only if the search Document leaf with the corresponding number has a non-null value.
+<ul>
+<li>Example:<br />
+select ... {[3]...} ... {[0]...} ...<br>
+<br />
+The first conditional segment will be included if the fourth field of the search Document is not null; the second segment will be included if the first field is not null.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>If the &lt;parameter number&gt; is *, the segment is included only if the search Document has at least one non-empty leaf. Such segments cannot contain a parameter placeholder.
+  <ul>
+<li>Example:<br />
+select ... {[*] where } ...<br>
+<br />
+The segment will not be included if the whole search Document is empty.</li>
+</ul>
+</li>
+</ul>
+<ul>
+  <li>Each conditional segment may contain only one parameter placeholder. If it contains a parameter placeholder, the placeholder will be bound to the corresponding search Document leaf as specified by the &lt;parameter number&gt;.
+  <ul>
+  <li>Example:<br />
+    select ... {[3] and T1.USERID = ?} ... <br>
+    <br />
+    In runtime, the parameter placeholder will be bound to the value of the fourth field of the Document.<br>
+    <br>
+  </li>
+  </ul>
+  </li>
+  <li>A  conditional segment allows you to use a parameter name along with the &lt;parameter number&gt;. It means that either a leaf position or a leaf name can be specified in the segment designator. <br>
+    <br>
+    <strong>Note:</strong> Similar to the &lt;parameter number&gt;, the parameter name should be used as the first part, if it exists.
+    <ul>
+      <li>Example:
+        <BR>
+        select ... {[:address]...} ... {[:firstName]...} ...<BR>
+        <BR>
+        The parameter name is recognized by the colon (:) prefix and converted into a leaf position at compilation time. <br>
+        <BR>
+      </li>
+    </ul>
+  </li>
+  <li>The operation IN is recognized in the segment and the placeholder is properly replaced by a list of values only if the keyword in is preceded and followed by a space. In this case the placeholder should exist and should not be put in parentheses.
+    <ul>
+      <li>Example:<br />
+        select ... {[3] and TABLE1.COLUMN2 in ?} ...<br>
+        <br />
+        If the fourth parameter of the search Document is A,B the runtime SQL statement will be select ... and TABLE1.COLUMN2 in ('A','B') ...</li>
+      </ul>
+  </li>
+</ul>
+<ul>
+  <li>If the select SQL statement contains the string {+*+}, it is replaced by the list of all columns mapped to DB.
+  <ul>
+  <li>Example:<br />
+    select {+*+} from t1 where TYPE = 3</li>
+  </ul>
+  </li>
+</ul>
+<ul>
+<li>The segment may check bits of the internal mask using the &lt;test mask&gt; number. If the internal mask has at least one bit of the &lt;test mask&gt; set, the segment is included. The &lt;test mask&gt; is checked after all &lt;set mask&gt; operations are performed.
+  <ul>
+<li>Example:<br />
+select ... {[T6] TABLE1.COLUMN IS NULL} ...<br>
+<br />
+The segment will be included if the second or third bit of the internal mask is set.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>The SQL Finder maintains a 31 bit internal mask initially set to 0. Each segment can set bits of this mask by specifying a &lt;set mask&gt; number. The segments that are skipped because of the null search Document leaves do not set the internal mask.
+<ul>
+<li>Example:<br />
+select ... {[12,S4] T1.C1 = ? } ...<br>
+<br />
+If the thirteenth field of the search Document is not null, the third bit of the internal mask will be set to 1.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>If &lt;option&gt;I is specified in the designator, the segment must contain a parameter placeholder. In this case the value of the corresponding search Document leaf replaces the placeholder in the SQL statement. The value must be a number or string, if the value is a string it is delimited by single quotation marks.
+<ul>
+<li><strong>Note:</strong> For backwards compatibility with AVM 3.0, the designator of format +n+ is supported and has the equivalent functionally to the segment designator [n,I].</li>
+<li>Example: select ... {[0,I] T1.C1 = ? } ...<br>
+  <br />
+If the first field of the Document contains the string value ABC, the runtime SQL statement will be select ... T1.C1 = 'ABC' ...</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>If &lt;option&gt;E is specified in the designator, the segment must contain a parameter placeholder. In this case the value of the corresponding search Document leaf replaces the placeholder in the SQL statement. The value must be a number or string, if the value is a string it is not delimited by single quotation marks. This option can be used to extend the SQL statement.
+<ul>
+<li>Example:<br />
+select ... {[5,E] order by ? } ...<br>
+<br />
+If the sixth field of the search Document has the value COLUMN1, the runtime SQL statement will be select ... order by COLUMN1 ...</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>If &lt;option&gt;A is specified in the designator, the segment is always present independently of the parameter value. Such a segment behaves as an unconditional segment except that it may have placeholder. Just as an unconditional segment, it may check the internal mask and can be skipped correspondingly.
+<ul>
+<li>Example:<br />
+select ... {[5,A] or TABLE1.COLUMN &lt;&gt; ? } ...<br>
+<br />
+The segment will always be present and the placeholder will be bound to the value of the sixth field of the search Document.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>If &lt;option&gt;P is specified, the test mask operation checks for all bits set. If the internal mask has all bits of the &lt;test mask&gt; set, the segment is included.
+<ul>
+<li>Example:<br />
+select ... {[T9,P] TABLE1.COLUMN3 IS NOT NULL } ...<br>
+<br />
+The segment will be included if the first and the fourth bits of the internal mask are set.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>If &lt;option&gt;N specifies that the segment will be replaced by the keyword null if the condition for its inclusion is not true. This is usually used in the column list of the select statement.
+<ul>
+<li>Example:<br />
+select TABLE1.C1, {[1,N]TABLE1.C2} ...<br>
+<br />
+If the second field of the search Document is null, the runtime select statement will be select TABLE1.C1,null ...</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>If &lt;option&gt;B is specified and the corresponding search Document field is Boolean, the segment will not be included if the field value is false.
+<ul>
+<li>Example:<br />
+select ... {[14,B] or TABLE1.COLUMN &lt;&gt; ? } ...<br>
+<br />
+The conditional segment will not be included if the fifteenth field of the Document has a value of false or is null.</li>
+</ul>
+</li>
+</ul>
+<p><b>Note:</b> The conditional segments should not contain the symbol ? except when used for the parameter placeholder. The select SQL statement should not contain the symbols '{' and '}' except as conditional segment delimiters.</p>
+<h3><a name="4.8.5FinderGeneralProperties-ReferencingtheDBmappedtable"></a>Referencing the DB mapped table</h3>
+<p>If the select SQL statement contains the string '{+*+}', it is replaced by the list of all columns mapped to the database.
+  </p>
+  For example:
+</p>
+<blockquote>
+  <p> select {+*+} from t1 where TYPE = 3</p>
+</blockquote>
+<h4><a name="4.8.5FinderGeneralProperties-SQLstatementexample"></a>SQL statement example</h4>
+<p>The following is an SQL statement example:</p>
+<blockquote>
+  <p>select TBL1.A,TBL1.B from TBL1 {[T1],TBL2} {[*]where} {[0,S2]TBL1.A &gt; ?} {[T3,P]and} {[1,S1]TBL1.K = TBL2.K and TBL2.B &lt; ?}</p>
+</blockquote>
+<h3><a name="4.8.5FinderGeneralProperties-ReferencingtheDBmappedtable"></a>Support for Conditional Clauses for Multiple Deployed Applications</h3>
+<p>The SQL finder contains conditional clause support. This support is based on your system configuration for multiple deployed applications.</p>
+<p>The conditional clause supports the $multiApp system variable, indicating that multiple application deployment is configured on the system. The following is an  example:
+    </p>
+  </p>
+<blockquote>
+  <p>    SELECT {+*+} FROM DUAL {[:multiApp] WHERE APP_NAME = ?}</p>
+</blockquote>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

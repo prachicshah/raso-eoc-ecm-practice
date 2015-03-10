@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Create User Interface Objects</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name=""></a>Create User Interface Objects</h2>
+<p>A top-level User Interface is not included within a model-based metadata object. You can create a top-level User Interface in the Presentation folder within the Navigation Pane. Although there are several different base  User Interface objects (see <a href="#Table">Table</a>) to  choose from, only two top-level User  Interface objects are available:</p>
+<ul>
+  <li><em>com.conceptwave.system.UserInterface</em></li>
+  <li><em>com.conceptwave.system.Application</em></li>
+  </ul>
+<p>The com.conceptwave.system.UserInterface  object is a base metadata object used to extend the top-level  User Interface object under the  <strong>Presentation</strong> folder in the <strong>Navigation Pane</strong>. It contains child objects ( default, menu, page) that sets the  runtime interfaces appearance. By default, this User Interface contains  a <a href="Page.htm">Page</a>  object that may be presented to users as a Web page via URL mapping. The Forms  and Page  contain only  Form elements and are  for the most part, empty.</p>
+<p>In the Page Form, the Form Frame element, which represents the dialog, displays the dialog in the User Interface. The dialog Form Frame allows objects to be created as dialog content. Without the Form Frame, objects continue to be created as dialog content, but they are not displayed. When the  Page Form is copied and replaced, the Form element properties can be configured. When the dialog element's <em>Unmanaged</em> property  is set to<em> false, </em>content does not display in a dialog. In addition, if the Unmanaged property is set to <em>false,</em> and the Variable property is bound to a Form Frame, the dialog content displays in the main dialog window,  top and left, positioned as 0. </p>
+<p>Similar to the com.conceptwave.system.UserInterface object is a metadata  object that extends the top-level User Interface object.  The com.conceptwave.system.Application object contains  child objects (default, menu) that sets runtime interfaces appearance. Use the system.Application to add a Web application to the runtime. Once logged in to the application, select an application using the <strong>Select Application</strong> screen.  </p>
+
+<img src="select_application.png" align="absmiddle" border="1" alt="Select Application screen" />
+  
+<p><strong>Note:</strong> The Select Application page is specialized. After it is created, it is set as the application, which overrides any call to setApplication within the onInit() function.</p>
+<h3>Application Name under the Select Application dialog</h3>
+<p>The name of the application that appears in the Select Application screen has the syntax <em>namespace: application name</em>. The <em>namespace</em> represents the name of the namespace in which the application resides. The application name is the name defined for the application under its <strong>General</strong> tab.</p>
+<p>In this example, the <em>namespace</em> is ns and the <em>application name</em> is OrderApplicationShort. As a result, the Select Application screen shows <strong>ns:OrderApplicationShort</strong> as an available application that you can select.</p>
+<p><img src="Creating UI objects - application name.png" alt="Application name from Select Application consists of the namespace name and the application name"></p>
+<h3><a name="createTopLevelUI"></a>Create a Top-level User Interface</h3>
+<p>To create a top-level User Interface, complete these steps:</p>
+<ol>
+  <li>In the <b>Metadata tab</b> of <b>Navigation</b> pane right-click  a Namespace. </li>
+  <li>Select <b>New</b>. The New Metadata Object wizard appears.</li>
+  <li> Expand the <b>Presentation </b>node, and select <b>User Interface.</b></li>
+  <li>Click <b>Next</b>.</li>
+  <li> In the Name field, type a unique name for the  User Interface (must conform to JavaScript naming conventions).</li>
+  <li>In the Label field, type a unique name for the User Interface (this is the name that appears in the user interface).</li>
+  <li>The <b>Extends </b>field,  is defaulted to system-standard. You may choose a specific User Interface to extend from it.</li>
+  <li>Click <b>Finish</b>.</li>
+</ol>
+<p><i>Alternatively</i></p>
+<ol>
+  <li>From <strong>Namespace</strong> &gt; <strong>Presentation,</strong> right-click the <b>User Interfaces</b> folder.</li>
+  <li> Select <b>New User Interface</b>.</li>
+  <li>Continue by following steps 3-8 above.</li>
+</ol>
+<p>After the User Interface is created, the node is added under the <b>User Interfaces</b> folder.</p>
+
+<img src="newUI.png" align="absmiddle" border="1" alt="User interface node in User Interfaces folder" />
+      
+<p>The User Interface product metadata objects are stored under  the <strong>Library</strong> tab of the <strong>Navigation Pane </strong>under <strong> com &gt; conceptwave &gt; System &gt;  Presentation &gt; UserInterfaces &gt; Application</strong>. </p>
+
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

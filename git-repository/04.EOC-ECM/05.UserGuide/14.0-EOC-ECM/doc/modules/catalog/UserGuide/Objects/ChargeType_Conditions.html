@@ -1,0 +1,128 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Change Type</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Charge Type Conditions</h2>
+<p>You can add  conditions to a charge type. Conditions are business rules which decide, at runtime, which association (version) apply for particular operation, user, shopping basket and service inventory.</p>
+<p>To add a condition to a charge type, from the Conditions tab, click the <strong>Add</strong> button to launch the Condition Detail section.</p>
+
+<p><img src="ChargeType_Conditions.png" alt="Attribute Type Detail" />  </p>
+<p>The Condition tab has the following buttons:</p>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th width="101" class='confluenceTh'>Action</th>
+<th width="679" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td height="25" class='confluenceTd'><strong>Add</strong></td>
+  <td class='confluenceTd'>Click this button to a  new condition.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Delete</strong></td>
+<td class='confluenceTd'> Deletes the selected condition.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Copy</strong></td>
+  <td class='confluenceTd'>Create a new version with the same values of the       selected condition. This button also copies the Charge Type in the selected condition.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Detail</strong></td>
+<td class='confluenceTd'>View the properties of the selected condition.</td>
+</tr>
+</tbody>
+</table>
+<br>
+The Condition Detail section has the following fields:
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th width="103" class='confluenceTh'>Field</th>
+<th width="884" class='confluenceTh'>Description</th>
+<th width="131" class='confluenceTh'>Rules </th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Code</strong></td>
+<td class='confluenceTd'>An identifying condition code for this Charge Type.</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Rule Name</strong></td>
+  <td class='confluenceTd'>Enter a name for the  condition.</td>
+  <td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Name</strong></td>
+  <td class='confluenceTd'>Enter a descriptive name for the condition.</td>
+  <td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Label</strong></td>
+  <td class='confluenceTd'>Enter the label for this condition, which is used in the application user interface.  This field can be translated at runtime.</td>
+  <td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Business Type</strong></td>
+  <td class='confluenceTd'>Select from the options: biweekly, monthly, one time. Options are defined in Associations.</td>
+  <td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Status</strong></td>
+  <td class='confluenceTd'>Select the status for the Charge Type. Choose between Definition and Active.</td>
+  <td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Start Date</strong></td>
+  <td class='confluenceTd'>The start date of the Charge Type.</td>
+  <td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>End Date</strong></td>
+  <td class='confluenceTd'>The period of the  Charge Type that will cease to apply.</td>
+  <td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Message Code</strong></td>
+  <td class='confluenceTd'>Display a pop-up  error message if eligibility fails.</td>
+  <td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Project</strong></td>
+  <td class='confluenceTd'>Indicates which project in which the Charge Type is included.</td>
+  <td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Language</strong></td>
+  <td class='confluenceTd'>Specify whether the condition language used in the <strong>Script</strong> field is either the Catalog rule language or JavaScript.</td>
+  <td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Script</strong></td>
+  <td class='confluenceTd'>Specifies the price  recurrence. Values come from the  Recurring Charge code table.  </td>
+  <td class='confluenceTd'>Mandatory</td>
+</tr>
+
+
+
+
+</tbody>
+</table>
+
+
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

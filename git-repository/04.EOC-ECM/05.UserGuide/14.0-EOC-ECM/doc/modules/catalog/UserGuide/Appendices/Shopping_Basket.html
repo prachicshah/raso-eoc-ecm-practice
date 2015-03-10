@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Runtime Shopping Basket</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<h2>Runtime Shopping Basket</h2>
+<p>The shopping basket is a runtime data structure consisting of three segments:</p>
+<ul>
+  <li> Catalog order items – a hierarchical structure of Catalog order items, which contains the selected Catalog items and the values of their attributes.</li>
+  <li> Catalog item associations – the relationship between the items.</li>
+  <li> Catalog order prices – the charges (prices) of the Catalog order items.</li>
+</ul>
+<p>The segments are virtual structures (that is, they define non-intersecting sets of data, but not physical data structures). However, in different media (DB, XML), the segments may be more visible.</p>
+<p> The main part of the Catalog order is the Catalog Order item – a scriptable object that represents an instance of a Catalog item definition.</p>
+<p> The Catalog order items are dynamic documents (see the <em>Velocity Studio User Guide</em> for more details). As such, they have fixed and dynamic parts based on the item attributes. The fixed part of the Catalog order item contains information for the structure and associations of the order. The variable part of the order item contains the values of the item attributes.</p>
+<p><strong>Note</strong>: The Catalog order item does not contains physically the Catalog item properties (that is, the attributes that have immutable values), but they can be accessed in the scripts in the same manner that other attributes are accessed.</p>
+<p>The Catalog order items are saved in three tables:</p>
+<ul>
+  <li>CWT_ORDERITEMS</li>
+  <li>CWT_ORDERITEMSNVP</li>
+  <li>CWT_ORDERASSOCIATIONS</li>
+</ul>
+<p> The CWT_ORDERITEMS table has the following mandatory fields:</p>
+<ul>
+  <li> Catalog order item ID. The ID type is UB64 (Unique Base 64).</li>
+  <li> Catalog order item type (for example, offer, product, etc.).</li>
+  <li> Catalog order ID. The ID type is either Numeric or UB64 type.</li>
+  <li> Catalog item definition ID. The UB64 ID of the Catalog item definition.</li>
+  <li> Last price date. The last date the item price has been calculated.<br>
+  </li>
+</ul>
+<p>The  CWT_ORDERITEMSNVP table contains the following columns:</p>
+<ul>
+  <li> Catalog order item ID</li>
+  <li> Catalog order item dynamic leaf name</li>
+  <li> Catalog order item dynamic leaf value</li>
+</ul>
+<p> The CWT_ORDERASSOCIATIONS table has the following columns:</p>
+<ul>
+  <li> Catalog parent order item ID</li>
+  <li> Catalog child order item ID</li>
+  <li> Association definition ID</li>
+</ul>
+</td>
+</body>
+</html>

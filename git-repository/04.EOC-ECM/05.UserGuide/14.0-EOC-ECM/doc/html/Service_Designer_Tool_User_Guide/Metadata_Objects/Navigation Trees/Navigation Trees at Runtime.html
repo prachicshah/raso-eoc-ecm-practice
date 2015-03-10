@@ -1,0 +1,133 @@
+<html>
+<head>
+<title>Navigation Trees at Runtime</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Navigation Trees at Runtime</h2>
+
+<p>Presented below is a sample Navigation Tree at runtime, <a href="../../Velocity_Studio/Displaying Forms at Rumtime.htm">displayed within an application</a> in a project via menu item in the application. This is an illustrative sample which demonstrates the significant runtime features of Tree Node, Finder Node and Recursive Node.</p>
+
+<p>In addition, a great reference implementation of the Navigation Tree is the User Profile Manager in System Administration App; you can find the metadata in <i>cwf_up / Presentation / Navigation Trees / upadminTree</i> in <b>Library</b> tab of the Velocity Studio's Navigation Pane.</p>
+
+<img src="navTreeRuntime.png" align="absmiddle" border="1" alt="Navigation tree at runtime" />
+
+<p>The Navigation Tree runtime is rendered via the <b>Default</b> Form in the Root Node of the Navigation Tree. By default, this Form displays several important components:<ul>
+<li><i>Tree Form Element</i> at the left-side - which enables the user to browse the Navigation Tree. Nodes with children can be toggled to expand/collapse by clicking the expand/collapse icon.</li>
+<li><i>Detail Pane</i> at the right-side - it is empty until user clicks on a node, which displays the node's model object Form.</li>
+<li><i>Menu</i> at the bottom - appears and displays the model object's menu when user clicks on a node. This menu is not within the <b>Default</b> Form of the Navigation Tree, but rather rendered via the Application's Menu Form.</li>
+</ul>
+</p>
+
+<p>Many of the runtime appearance and behaviour of the Navigation Tree can be changed, via Variables and Methods. Please see the <a href="Navigation Tree Variables.html"><b>Variables</b></a> and <a href="Navigation Tree Methods.html"><b>Methods</b></a> tab for the list of the system-defined variables and methods for details.</p>
+
+<p>For example, the label appearing on node is determined by <i>onNodeVisualKey</i> method. By default, the node's visual key is determined by the object's Visual Key method (for example, <i>cwOnDocVisualKey</i>) if specified, the object's label or the node's label, in that order of precedence.</p>
+
+<p>As another example, the icon of the node can be modified by the <i>onNodeIcon</i> method or use the <b>Image</b> property in the <b>General</b> tab.</p>
+
+<p>Below diagram shows the mapping of tree nodes rendered at runtime to the tree nodes in Velocity Studio at design time.</p>
+
+<img src="navTreeRuntimeMapping.png" align="absmiddle" border="1" alt="Navigation tree - runtime and design time" />
+
+<p>Note that the Tree loads a tree node of most types "on-demand", when user (or programmatically) expands the node. Then the node loads and creates all child nodes; for Finder nodes, finder Select operation is performed (see Finder Node below). The exception is with Order or Data Structure Item Nodes, where the source data is loaded at once.</p>
+
+<h3>Tree Node</h3>
+
+<p>A tree node at design time is a single node at runtime, as exemplified by <i>customerTreeNode</i> in our example. Clicking the node at runtime shows its <b>Form</b> specified in <b>General</b> tab at the detail pane.</p>
+
+<p>Runtime validation occurs similarly on the tree node's model when the Form is modified by user and click <b>Save</b> (or, if <b>Auto save</b> is enabled at design time, whenever the user clicks away to another node in the Navigation Tree).</p>
+
+<img src="navTreeRuntimeNode.png" align="absmiddle" border="1" alt="Navigation tree - runtime validation" />
+
+<h3>Finder Node (and its children)</h3>
+
+<p>A Finder Node at design time becomes a single node of its children nodes at runtime, which is the parent node of the Finder results and represented by the Finder child node at design time. In our example, the Finder Node <i>Contacts</i> has three children nodes as returned by the Finder's execution, <i>Bobby Smith</i>, <i>John Smith</i> and <i>Mary smith</i>. These children nodes are characterized by the <i>FinderChild</i> node at design time.</p>
+
+<p>By default, the Finder Node displays the <b>Search</b> Form of the Finder (but can be customized by <b>Form</b> property in <b>General</b> tab of the Finder Node).</p>
+
+<img src="navTreeRuntimeFinder.png" align="absmiddle" border="1" alt="Navigation tree - search" />
+
+<p>The user can populate the Search Form and click the <b>Search</b> menu command to invoke the Finder, which updates the children nodes in the Navigation Tree.</p>
+
+<img src="navTreeRuntimeFinder2.png" align="absmiddle" border="1" alt="Navigation tree - contacts search" />
+
+<p>The Finder Child node always displays the Form of the <i>output</i> object of the Finder (in our example, an output Document <i>customer</i> as Contact).</p>
+
+<img src="navTreeRuntimeFinderChild.png" align="absmiddle" border="1" alt="Navigation tree - finder search" />
+
+<p>At design time, a popular property enabled at the Finder node is the <b>Exclude</b> flag in <b>General</b> tab, which hides the Finder node, and directly positions Finder Children nodes at its place. This is useful when the Finder mechanics are to be hidden from the user.</p>
+
+<img src="navTreeRuntimeFinderExclude.png" align="absmiddle" border="1" alt="Navigation tree - Exclude flag" />
+
+<h3>Recursive Node</h3>
+
+<p>In our example, the Recursive Node is positioned below the Finder Child node, and the target of the recursion at the Finder node. In essence, the objective of the example here is to recursively invoke the Finder to find descendants of <i>Contacts</i>. This is accomplished by, at the Finder node, defining initialization conditions of the Finder Input Document to search based on the node's parent model. Furthermore, by checking <b>exclude</b> flag in <b>General</b> tab of the Recursive Node, the Finder Nodes are hidden on recursion. Thus at runtime, the children Contacts appear directly below its parent Contact.</p>
+
+<p>In the sample data of our example, <i>Mary Smith</i> is a descendant of both John Smith and Bobby Smith. Meanwhile, Mary Smith has no descendants, and thus the recursion ends at her. (Otherwise, she will have children nodes and the recursion continues.)</p>
+
+<p>The "Recursion on Finder Node" is a commonly-used approach to present dynamically recursive data structures at tree nodes in the Navigation Tree. See the implementation of <i>Org chart</i> in User Profile Manager of System Administration App as a reference of this approach; pay attention on <i>onInit</i> Method to understand the setup of Finder Input Document that makes possible the recursion.</p>
+
+<h3><a name="Tabs"></a>Navigation Tree with Tabs</h3>
+
+<p>A variation of the Navigation Tree is capable of displaying children nodes of a tree node as tabs in a <a href="../../Velocity_Studio/Element - Tabset.htm">Tabset</a> in the Detail Pane.</p>
+
+<img src="navTreeRuntimeTabs.png" align="absmiddle" border="1" alt="Navigation tree - tabs" />
+
+<p>Navigation Tree with Tabs are typically desirable in showing an array of items as a single node in the Navigation Tree. The display of individual item is then organized by tabs at the Tabset. Common examples include line-items of an Order, equipment list of an Order, etc. In our example as shown in screenshot above, we have condensed the <i>Contacts</i> Finder node to show all the results of the Finder (<i>Mary Smith</i>, <i>John Smith</i> and <i>Bobby Smith</i>) as tabs in the Detail Pane. Notice that these items no longer appear as children nodes of the Finder node. (Note: the Recursive Node from the original example is removed here).</p>
+
+<p>To enable this tabularization feature in Navigation Tree, you must initially create your Navigation Tree based on <i>com.conceptwave.system.NavigationTreeWithTabs</i>, which is a derived system metadata object of the base Navigation Tree. In our example, we then enable <b>Display in parent tabs</b> flag in <b>General</b> tab at the Finder Child node. Furthermore, the <b>Form</b> property is deselected as <i>&lt;NONE&gt;</i> at the Finder node, to avoid displaying Finder Search Form as the first tab of the Tabset.</p>
+
+<p>The presentation of Navigation Tree with Tabs works by having two extra Forms at the Root node -- the <b>Single</b> Form and the <b>Tabs</b> Form, which renders the Detail Pane. The developer may choose to display either of the two Forms (or even, other customized Forms) by the <i>currentForm</i> Variable. The Single Form renders the detail pane similarly as the original Navigation Tree, which is limited to display the Form of the tree node's model. On the contrary, the Tabs Form renders the detail pane with a Tabset Form Frame with Iterator on the <i>tabs</i> User Interface array Variable, which are the User Interface objects to be shown in the Tab Frames.</p>
+
+<h3>Tree Table</h3>
+
+<p>The Tree Form Element in the root Default Form of the Navigation Tree may be configured differently to create different presentations of the Navigation Tree. For instance, the Tree Form Element may contain multiple children Form Elements (note: the default has the Tree Form Element contain one child Label Element, which displays a read-only label for the node) to become a <i>Tree Table</i>, which displays multiple columns at the Tree.</p>
+
+<img src="navTreeRuntimeTable.png" align="absmiddle" border="1" alt="Navigation tree - tree table" />
+
+<p>Typically, the additional columns of the Tree displays essential Variables of the tree node models. This information is modelled by adding Variables to the Table Document (see property <b>Table Document</b> in <a href="Navigation Tree General Properties.html">General Tab</a>), and the data is sourced from the node's model object mapped by the Table Conversion Map. In our exemplary screenshot above, the <i>active</i> checkbox is created by first adding such Variable at the Table Document, map it against the existing <i>active</i> Variable of node's model <i>Customer</i> at the Table Conversion Map, and then create the Checkbox Form Element underneath the Tree Form Element using Variable <i>navTree.active</i>.</p>
+
+<p>You can see some more details on how to setup Tree Table at <a href="../../Velocity_Studio/Element - Tree.html#Table">Tree Table</a> section of Tree Form Element.</p>
+
+<p>These columns in the Tree Table are automatically updated when the node's model is updated. In our example, the <i>active</i> checkbox is updated in the Tree whenever a user clicks on a customer node, edits the customer at the detail pane and clicks <b>Save</b>.</p> 
+
+<p>The columns at the Table Tree can also be made editable by the <b>Editable</b> property of the child Form Element of the Tree. However, the editing at Table Tree does not automatically save at the node model object. (for example, if our <i>active</i> checkbox is made editable, by default, toggling the checkbox does not get reflected into the model <i>customer</i>.) You must overwrite the <b>onNodeEdited</b> Method to do so; see this method at the <a href="Navigation Tree Methods.html">Methods tab</a> for details.</p>
+
+<h3>Miller Table</h3>
+
+<p>Another style of presentation of the Navigation Tree is the Miller Columns. Instead of showing children nodes underneath the parent node in an indented way, Miller Columns expands an extra column at the right to display children nodes when the parent node is clicked, and recursively so.</p>
+
+<img src="navTreeRuntimeMiller.png" align="absmiddle" border="1" alt="Miller table" />
+
+<br>
+<p>Miller Columns are typically used to present homogeneous trees (that is, all nodes are of the same object type). To use Miller Columns in Navigation Trees, simply override the root <b>Default</b> Form, then </b><strong>Copy & Replace</b></strong> the Tree Form Element, and set true to <b>Miller Columns</b> property of the Tree Form Element. You can also set false to <b>Hide Header</b> property, which displays the selected parent node at the header label of the child column, as depicted in the previous screenshot. </p>
+<p><strong>Note:</strong> You can deselect a parent node in a Miller table. Additionally, single- and double-click operations are available to select the child node display. Single-clicking highlights the record and double-clicking proceeds with the operation.</p>
+<p>You may want to move the detail pane to be displayed below (instead of to the right) of the Tree Form Element, since Miller Columns require a large horizontal real estate.</p>
+<p><img src="navTreeRuntimeMillerProperties.png" alt="Miller table - properties"></p>
+<p><strong>Note:</strong> Velocity Studio features require a separate license key that is activated in Velocity Studio. </p>
+<h4>Drill-up Method for a Miller Table to Simulate Navigation Tree Expand Action</h4>
+<p>To implement a drill-up method for a Miller Table to simulate the Navigation Tree expand action, complete these steps:</p>
+<ol>
+  <li>Override the onNodeDetail method of the Finder node's result node.</li>
+  <li>Find the selected node by using the findNodeFromModel method.</li>
+  <li>Expand the Miller Table using the selected node. For the navigation tree, use the following statement to expand the tree node:<br>
+    <div class="code">
+<div class="codeContent">
+<pre class="code-java">selectedNode.getRoot().treeSel = selectedNode</pre>
+</div>
+</div>
+  </li>
+  <li>Ensure that you have the Show Multiple Columns property set to true for your Tree element.</li>
+</ol>
+<p>&nbsp;</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

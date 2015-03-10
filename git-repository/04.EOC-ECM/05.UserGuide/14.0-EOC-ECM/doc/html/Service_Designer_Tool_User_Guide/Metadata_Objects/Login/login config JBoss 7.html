@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>Configure JBoss 7.1 Kerberos and Active Directory Single Sign-on Authentication</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2><a name="ConfigJBossAndAD"></a>Configure JBoss 7.1 Kerberos and Active Directory Single Sign-on Authentication</h2>
+
+<p>This procedure for configuring JBoss 7.1 Kerberos and Active Directory for single sign-on authentication consists of six steps:</p>
+<ol>
+  <li><a href="#changeWebXml">Change your  cwf.war file</a></li>
+  <li><a href="#changeStandalone">Change your standalone.xml file</a></li>
+  <li><a href="#registerSPN">Register a Service Principal Name</a></li>
+  <li><a href="#WebBrowserSettings">Configure Web browser settings</a></li>
+</ol>
+<h3><a name="changeWebXml"></a>Step 1:  Change your cwf.war file</h3>
+<p>To change your cwf.war file, complete these steps:</p>
+<ol>
+  <li>Add the following  XML to  web.xml. You can append it at the end of web.xml (that is, before  <tt>&lt;/web-app&gt;).</tt>
+  </li>
+
+<div class="code">
+  <div class="codeContent">
+  <pre class="code-java">&lt;login-config&gt;
+  &lt;auth-method&gt;SPNEGO&lt;/auth-method&gt;
+  &lt;realm-name&gt;SPNEGO&lt;/realm-name&gt;
+&lt;/login-config&gt; <br>&lt;security-constraint&gt;
+  &lt;web-resource-collection&gt;
+    &lt;web-resource-name&gt;SSO Application&lt;/web-resource-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+  &lt;/web-resource-collection&gt;<br>  &lt;auth-constraint&gt;
+    &lt;role-name&gt;*&lt;/role-name&gt;<br>  &lt;/auth-constraint&gt;<br>&lt;/security-constraint&gt;     <br>&lt;security-role&gt;<br>  &lt;description&gt;The role that is required to log in to the Application&lt;/description&gt;<br>  &lt;role-name&gt;*&lt;/role-name&gt;
+&lt;/security-role&gt;
+</pre>
+    </div>
+</div>
+
+
+  <li>Add jboss-web.xml into cwf.war, in cwf.war\WEB-INF. The jboss-web.xml file contains the following content:
+  </li>
+
+<div class="code">
+  <div class="codeContent">
+  <pre class="code-java">
+&lt;?xml version=&quot;1.0&quot;  encoding=&quot;UTF-8&quot;?&gt;
+&lt;jboss-web&gt;
+  &lt;context-root&gt;cwf&lt;/context-root&gt;
+  &lt;security-domain&gt;SPNEGO&lt;/security-domain&gt;
+  &lt;valve&gt;
+    &lt;class-name&gt;org.jboss.security.negotiation.NegotiationAuthenticator&lt;/class-name&gt;
+  &lt;/valve&gt;
+  &lt;jacc-star-role-allow&gt;true&lt;/jacc-star-role-allow&gt;</p>
+&lt;/jboss-web&gt; 
+</pre></div>
+</div>
+If required, you can change the context root (that is, <tt>&lt;context-root&gt;cwf&lt;/context-root&gt;</tt>).<br>
+<br>
+<li>Change jboss-deployment-structure.xml inside cwf.war, in cwf.war\META-INF by adding the following inside<tt> dependencies&gt;&lt;/dependencies&gt;</tt>:<br>
+<div class="code">
+  <div class="codeContent">
+  <pre class="code-java">&lt;module name=&quot;org.jboss.security.negotiation&quot; /&gt;</pre>
+  </div>
+</div></li>
+</ol>
+<h3><a name="changeStandalone"></a>Step 2: Change your standalone.xml file</h3>
+<p>The   standalone.xml file is located in &lt;<em>JBOSS_HOME</em>&gt;/standalone/configuration (for example,  
+  /home/appserv/AppServ/jboss-as-7.1.1.Final/standalone/configuration/standalone.xml).</p>
+<p>Perform these steps:</p>
+<ol>
+  <li>Append the following XML to the file as system properties:
+
+<div class="code">
+  <div class="codeContent">
+  <pre class="code-java">
+&lt;property name=&quot;java.security.krb5.kdc&quot;  value=&quot;&lt;KDC Server&gt;&quot;/&gt;
+&lt;property  name=&quot;java.security.krb5.realm&quot; value=&quot;&lt;REALM&gt;&quot;/&gt; 
+</pre>
+  </div>
+</div>
+
+<p>The following is an example:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+&lt;system-properties&gt;<br>  &lt;property  name=&quot;java.security.krb5.kdc&quot;  value=&quot;carta.conceptwave.com&quot;/&gt;
+  &lt;property  name=&quot;java.security.krb5.realm&quot;  value=&quot;CONCEPTWAVE.COM&quot;/&gt;
+&lt;/system-properties&gt; 
+</pre>
+</div>
+</div>
+</li>
+
+<li>Append the following XML to the <tt>&lt;subsystem xmlns=&quot;urn:jboss:domain:security:1.1&quot;&gt;</tt> section:
+  <div class="code">
+    <div class="codeContent">
+      <pre class="code-java">&lt;security-domain  name=&quot;host&quot; cache-type=&quot;default&quot;&gt;
+  &lt;authentication&gt;<br>    &lt;login-module code=&quot;Kerberos&quot; flag=&quot;required&quot;&gt;
+      &lt;module-option  name=&quot;storeKey&quot; value=&quot;true&quot;/&gt;<br>      &lt;module-option  name=&quot;useKeyTab&quot; value=&quot;true&quot;/&gt;<br>      &lt;module-option  name=&quot;principal&quot; value=&quot;&lt;<strong>pricinpal_in_keytab&gt; </strong>&quot;/&gt;<br>      &lt;module-option name=&quot;keyTab&quot;  value&quot;&gt;<strong>&lt;location_of_keytab&gt;</strong>&quot;/&gt;<br>      &lt;module-option  name=&quot;doNotPrompt&quot; value=&quot;true&quot;/&gt;<br>      &lt;module-option name=&quot;debug&quot;  value=&quot;true&quot;/&gt;<br>    &lt;/login-module&gt;<br>  &lt;/authentication&gt;<br>&lt;/security-domain&gt;<br>&lt;security-domain  name=&quot;SPNEGO&quot; cache-type=&quot;default&quot;&gt;<br>  &lt;authentication&gt;<br>    &lt;login-module code=&quot;SPNEGO&quot; flag=&quot;requisite&quot;&gt;<br>      &lt;module-option name=&quot;password-stacking&quot;  value=&quot;useFirstPass&quot;/&gt;<br>      &lt;module-option name=&quot;serverSecurityDomain&quot;  value=&quot;host&quot;/&gt;<br>      &lt;module-option name=&quot;removeRealmFromPrincipal&quot;  value=&quot;true&quot;/&gt;<br>    &lt;/login-module&gt;<br>  &lt;/authentication&gt;
+&lt;/security-domain&gt; 
+</pre>
+</div>
+  </div>
+</li>
+</ol>
+
+<p><strong>Notes:</strong></p>
+<ul>
+  <li><tt>&lt;<em>principal_in_keytab</em>&gt;</tt> is the principal name  inside the keytab, such as HTTP/ pe05.conceptwave.com @CONCEPTWAVE.COM</li>
+  <li><tt>&lt;<em>location_of_keytab</em>&gt;</tt> is the physical file-system  location of the keytab file, such as /home/appserv/abc.keytab.<br clear="all">
+  </li>
+</ul>
+<h3><a name="registerSPN"></a>Step 3: Register  a Service Principal Name</h3>
+<p>The best way to register a Service Principal Name (SPN) is to have your Administration or Operations team perform this task. The registration process consists of using the setspn.exe  utility to register all your SPNs by logging on as Administrator on any  machine that has the support tools installed and run the pertinent commands.</p>
+<p><strong>Warning:</strong> A given SPN can be registered to only one Domain Account. If you decide to register a given SPN, ensure that it is not already  registered to another Windows NT Domain Account. Otherwise, you will have to  de-register or delete the mapping before registering the SPN to the other account.</p>
+<p>The following is an example:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+  setspn.exe -A HTTP/pe05 domainAccount 
+  setspn.exe -A HTTP/pe05.conceptwave.com domainAccount</pre>
+</div>
+</div>
+<p>Where:</p>
+<ul>
+  <li>    <em>pe05</em> is the host machine for JBoss.</li>
+  <li>    <em>domainAccount</em> is the pre-authenticated  account. It can be a regular account that logs you into your domain.</li>
+  <li> This domainAccount and its password would  be used in <tt>spnego.preauth.username</tt>and <tt>spnego.preauth.password</tt> in <a href="#changeWebXml">web.xml</a><strong>.</strong><br>
+  </li>
+</ul>
+<p>If you are using keytab to do Kerberos authentication, ask your Administration or Operations department to create a keytab file:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">ktpass -out c:\temp\b.keytab -princ &lt;principal&gt; -mapUser &lt;account&gt; -mapOp  set -pass &lt;password&gt;</pre>
+</div>
+</div>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li><tt>&lt;principal&gt;</tt>  is the principal in the keytab file, such as HTTP/pe05.conceptwave.com@CONCEPTWAVE.COM. The format is HTTP/<em>host</em>.<em>domain</em>@<em>Realm</em>.</li>
+  <li><tt>&lt;account&gt;</tt>  is the domainAccount.</li>
+  <li><tt>&lt;password&gt;</tt> is the  password for this domain account.<br clear="all">
+  </li>
+</ul>
+<h3><a name="WebBrowserSettings"></a>Step 4:  Configure Web browser settings</h3>
+<p>See the <a href="login config Microsoft clients.html">Configure Microsoft Clients to Use Windows Integrated Authentication</a> section for configuring your Internet Explorer browser settings.</p></td>
+</tr>
+</table>
+</body>
+</html>

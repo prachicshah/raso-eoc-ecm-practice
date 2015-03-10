@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Navigation Bar Images</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Navigation Bar Images</h2>
+
+<p>The  Navigation Bar Item displays different states  using four images: disabled, focused, over and normal. All these images must exist in the Resource folder of the associated project metadata.  An image for each state needs to be created and then copied into the Resources folder in the project directory. </p>
+<p>Once the navigation bar item is clicked, the image that is presented is the &lt;image name&gt;_Focused.png . The state of the image is set on this image. In other words, the image that will be fetched on state change will be &lt;image name&gt;_Focused_Over.png when the cursor hovers over the already focused image and &lt;image name&gt;_Focused_Down.png when the image is clicked and  pressed down on the already focused image. When an image is disabled the &lt;image name&gt;_Disabled.png is fetched and when the cursor hovers over the disabled image, the image fetched is &lt;image name&gt;_Over.png.   Similarly, when a disabled image is clicked and held down, the &lt;image name&gt;_Down is fetched. Use the following names when creating your images. </p>
+<table class='confluenceTable'>
+  <tbody>
+  <tr>
+      <th class='confluenceTh' width='261'>Image</th>
+      <th width="979" class='confluenceTh'>Description</th>
+  </tr>
+  <tr>
+      <td class='confluenceTd'><strong>&lt;image name&gt;.png </strong></td>
+      <td class='confluenceTd'>Displays an image, as the initial image, on loading of the application. This file name is entered in the Image URL field of <a href="Navigation Bar_Config_Tab.htm#configtab">Configuration Tab</a> of the Navigation Bar object.</td>
+  </tr>
+  <tr>
+      <td class='confluenceTd'><strong>&lt;image name&gt;_Over.png </strong></td>
+      <td class='confluenceTd'><p>Displays an image  when the cursor is hovering over an image and the image is disabled.</p></td>
+  </tr>
+  <tr>
+      <td class='confluenceTd'><strong>&lt;image name&gt;_Down.png </strong></td>
+      <td class='confluenceTd'><p>Displays an image when the clicking and holding down the disabled image.</p></td>
+  </tr>  
+  <tr>
+      <td class='confluenceTd'><strong>&lt;image name&gt;_Disabled.png </strong></td>
+      <td class='confluenceTd'>Displays an image as disabled. </td>
+  </tr>
+  <tr>
+      <td class='confluenceTd'><strong>&lt;image name&gt;_Focused.png </strong></td>
+      <td class='confluenceTd'>Displays the current image after clicking  an item.</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>&lt;image name&gt;_Focused_Over.png </strong></td>
+    <td class='confluenceTd'>Displays the image once the image is focused and the cursor is hovering over the image. </td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>&lt;image name&gt;_Focused_Down.png </strong></td>
+    <td class='confluenceTd'>Displays the image once the image is focused and the mouse is held down over the image. </td>
+  </tr>
+  </tbody>
+</table>
+</tr>
+</table>
+</body>
+</html>

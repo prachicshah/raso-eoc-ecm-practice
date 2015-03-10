@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Metadata Root Classic and Icon Application Page</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onload="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top"><h3>Select Application Page: Classic and Icon</h3>
+
+<p>The Select Application page comes in two varieties:</p>
+<ul>
+  <li><a href="#classic">Classic</a></li>
+  <li><a href="#icon">Icon</a></li>
+  </ul>
+<p>The <a href="Metadata Root Application Page.html#classic"><strong>Classic Select Application</strong></a> property allows you to choose which version of the Select Application page that you want to view and use.</p>
+<h4><strong><a name="classic"></a>Classic</strong> Select Application Page</h4>
+<p>The classic version of the Select Application page list applications that you have access to. To open an application, select the application that you want to open from the list and click the <strong>Select</strong> button.</p>
+<p><img src="MetadataSelectApplicationClassic.png" alt="Classic Select Application page" border="1"></p>
+<h4><a name="icon"></a>Icon Select Application Page</h4>
+<p>The icon version of the Select Application page shows each icon as an application. </p>
+<p><img src="MetadataSelectApplicationIcon.png" alt="Select Application - Icon version" border="1"></p>
+<p>Any application in your metadata that is not specifically told not to show itself through  the application’s <strong><a href="Metadata Root Application Page.html#notValid">Not Valid for Application Selection</a></strong> property or through the  metadata header’s Application Page tab table’s <strong><a href="Metadata Root Application Page.html#show">Show</a></strong> property appears on the Select Application icon page.  </p>
+<p>The icons appear in groups defined by the <strong>Group</strong> property on the metadata header's Application  Page tab of the metadata header. The application's Page overlay's Application Style property determines the icon displayed for each application.  The icon's label comes from the  application’s <strong>Label</strong> Page form property.</p>
+<p>The top right side of each application icon contains a smaller icon that represents the current permission  status:</p>
+<ul>
+  <li>No icon indicates that the user  currently logged in has the correct security provider</li>
+  <li>No entry sign indicates that the user has the right security provider, but the wrong permissions</li>
+  <li>A lock  icon indicates that either the user does not have the right security provider or is not logged  in</li>
+</ul>
+<p>The following actions occur when clicking an application icon:</p>
+<ul>
+  <li>When  you click an application with no icon, the application launches  </li>
+  <li>When  you click an application with either a no entry or a locked icon, you remain on the Select Application icon page. </li>
+  <li>If you have selected the <strong>Show Application Page before Login</strong> property, and you click an application with either a no entry or a locked icon, the application's login page appears.</li>
+  <li>If you enter incorrect login information  for the security provider, an error message appears on the login  page.  </li>
+  <li>If you  enter your login information  correctly for the security provider, but your login information does not have the proper permission for  the selected application, the Select Application page appears and an error message displays.</li>
+</ul>
+<p><strong>Note:</strong> When your metadata project has the <strong>Show Application Page</strong><strong> before Login</strong> property selected, at runtime, all icons on the Select Application page have smaller lock icons. </p>
+<p><img src="MetadataSelectApplicationIconLocks.png" alt="Select Application - all icons have locks" border="1"></p>
+<p>Clicking the application that you want to access launches the application's login page.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

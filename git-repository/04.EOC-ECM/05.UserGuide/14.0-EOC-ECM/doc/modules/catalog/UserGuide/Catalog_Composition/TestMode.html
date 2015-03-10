@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Test Mode</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+  <td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top"><h2>Test Mode</h2>
+    <p>The Product Catalog interface comes with a  built-in test mode, which allows a runtime view without integrating your metadata into Velocity Studio.  The test mode neither creates orders, nor writes any data to the database, but allows you to view and test changes made to the catalog, such as the following:</p>
+    <ul>
+      <li>Allows selecting the current date</li>
+      <li>Ignores the active flag (that is, items in the define state are displayed)</li>
+      <li>Allows you to impersonate a user (that is, set the parameters of the end client, such a residential, lives in Kansas, and so on)</li>
+      <li>Permits control over whether the default catalog order or the application-defined default order is used</li>
+    </ul>
+    <p>Test mode is most useful for testing out offer or product selection, and charging. To access test mode, click <strong>Test Mode</strong> &gt; <strong>Test On</strong> from the menu bar, which initializes all session  variables.</p>
+    <p>Once you have turned on test mode, you can select from the following option within the Test Mode menu:</p>
+    <ul>
+      <li><strong>Set Context Attributes</strong> (for example, city, customer type, and so on)</li>
+      <li><strong>Browse</strong> the catalog</li>
+      <li>View the <strong>Basket</strong> (that is, view ordered items)</li>
+      <li><strong>Turn Off</strong> test mode, which clears  the session of the context variables and current order.</li>
+    </ul>
+    <h3>Catalog  Context</h3>
+    <p>Initialize your session context variables  using the <strong>Designer &gt; Contexts</strong> from the menu bar.  For any of the given variables, you can double-click a row and assign a new value.</p>
+    <p><img src="Context.png" alt="Catalog  Context" /></p>
+    <br />
+    <p><img src="ContextDetails.png" alt="Catalog  Context Details" /></p>
+    <p>Use the <strong>Configuration &gt; Catalog Configuration</strong> to set the following parameters:</p>
+    <ul>
+      <li> Catalog Current Date – Allows you to test date-specific rules.</li>
+      <li> Use Catalog Order – By default, Test Mode  uses the Order Type specified in the Metadata script getCatalogOrder().  Set this option to <strong>Yes</strong> if you want to use the generic Catalog Order instead of a custom Order Type that you have specified in your metadata. </li>
+    </ul>
+    <p>Once you have set your context, you can click <strong>Test Mode</strong> &gt; <strong>Set Context Attributes </strong>to provide a value for each of your defined context attributes.</p>
+    <p><img src="testModeSetContextAttributes.png" alt="Set context attributes"></p>
+    <h3>The Catalog  Browser</h3>
+    <p>Click <strong>Test Mode</strong> &gt; <strong>Browse</strong> from the  menu bar to open the Catalog Browser.</p>
+    <p><img src="browser.png" alt="Catalog Browser" /></p>
+    <p>Click the Catalog Hierarchy node in the left pane to see the search criteria in the right pane, to perform a search.</p>
+    <p><strong>Note:</strong> When browsing in test mode and you are searching a catalog item without having selected a catalog hierarchy node, a  warning dialog appears, indicating that you must select a node. </p>
+    <h3>Selecting Products from the Browser</h3>
+    <p>Use the tree on the left side to view  different product details. Click <strong>Add to Basket</strong> to add products to the Basket.</p>
+    <p><img src="browser_add.png" alt="Add items to the basket" /></p>
+    <h3>View Basket</h3>
+    <p>To proceed with the Item and test Pricing   calculations, click the <strong>Test Mode &gt; Basket</strong> from the menu bar.</p>
+    <p><img src="basket.png" alt="View Basket" /></p>
+    <p>To generate pricing, click the <strong>Price</strong> button.</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<html>
+<head>
+<title>Navigation Pane - Metadata</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Navigation Pane - Metadata</h2>
+<p>The <b>Metadata</b> tab of <b>Navigation</b> pane contains a hierarchy of the metadata objects. These objects are of application metadata. (Product metadata, also known as libraries, are in <b>Library</b> tab.) The metadata root object  is at the top of the structure. Multiple <a href="../Metadata_Objects/Namespace/Namespaces.html">namespaces</a> can be created under this root object. Each namespace has a predefined structure of type folders (for example, <b>Data Types</b>) in which new metadata objects can be created (for example, <b>Postal Code - USA</b>). The figure below shows the Metadata tab of Navigation pane with a right-click pop-up menu.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="navigationMDpopup.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table> 
+
+<p>When editing an existing metadata object in the Details Pane and then click away to another node in the Navigation Pane, a pencil appears at the top-left of the icon of the metadata object's node in the Navigation Pane, to signify it is now "dirty". For example, a dirty Document has this icon: <img src="iconDocumentDirty.png" align="absmiddle" border="0" alt="" /> (compared to <img src="iconDocument.png" align="absmiddle" border="0" alt="" />). This signifies that the metedata must be saved or the changes will be lost. Use the <b>Save</b> <img src="iconSave2.png" align="absmiddle" border="0" alt="" /> or <b>Save All</b> <img src="iconSaveAll.png" align="absmiddle" border="0" alt="" /> command to save the changes to the metadata object's XML file.</p>
+
+<p>If the <b>Label</b> of a metadata object is different from the <b>Name</b> of the metadata object, by default, the corresponding node in the pane shows the name, and then appended by its label in brackets. The nodes' display format in the pane can be configured in <a href="../Service Designer Menu Actions/Preferences.html">preferences</a>.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="navigationMDnameLabel.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+<p>The Metadata objects that you manage here impact the <b>Metadata</b> folder of your Project (source) directory in file system. Overall, metadata creation and deletion impacts the source directory immediately, whereas editing metadata do not impact the source directory until they are saved. The following describes the details of each action:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Action</th>
+<th class='confluenceTh'>Impact on Source Directory</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Create Namespace</b></td>
+<td class='confluenceTd'>A folder by the Namespace's name is created, and an XML file with filename <b>nspace_</b> + Namespace's name is created in the folder to store the Namespace's properties. These are created immediately upon Namespace creation; no saving is necessary.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Create All Other Metadata Objects</b></td>
+<td class='confluenceTd'>An XML file is created in its Namespace folder, with filename by the Metadata object's name prefixed with its object type, as tabularized in <a href="../Introduction_to_Metadata/Metadata Objects Overview.html">Metadata Objects Overview</a>. For example, if a Data Type object of name "postalCode" is created, the XML file would be "dtype_postalCode.xml". The XML file is created immediately upon metadata object creation; no saving is necessary.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Edit Metadata Object</b></td>
+<td class='confluenceTd'>An existing metadata object can be edited in the Details Pane, which would be shown dirty by the mark of a pencil at the top-left of the icon <img src="iconDocumentDirty.png" align="absmiddle" border="0" alt="" />. No source is changed without saving. When save command is issued, Velocity Studio writes the update to the metadata object's XML file.<br/>
+<b>Note</b>: The name of the metadata object is not editable in the Details Pane; use the Rename command in right-click pop-up menu instead.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Rename Namespace</b></td>
+<td class='confluenceTd'>A folder by the Namespace's new name is created, and all metadata object files in the original Namespace folder is moved to this folder. The original Namespace folder is then removed if it is empty. The Namespace XML file (<b>nspace_</b> + Namespace's name) is updated and renamed to the new name. These are effective immediately upon rename at Velocity Studio; no saving is necessary.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Rename All Other Metadata Objects</b></td>
+<td class='confluenceTd'><p>The metadata object's XML file is updated with the new name, and the filename of the XML is also renamed according to the new name. This is effective immediately upon rename at Velocity Studio; no saving is necessary.</p>
+  <p><strong>Note:</strong> When renaming a metadata object, and the label and its name are identical, the object's label is automatically renamed.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Delete Namespace</b></td>
+<td class='confluenceTd'>Removes the Namespace folder in source, and all metadata objects' XML files within the Namespace folder. This is effective immediately upon deletion; no saving is necessary.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Delete All Other Metadata Objects</b></td>
+<td class='confluenceTd'>Deletes the metadata object's XML file. This is effective immediately upon deletion; no saving is necessary.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Cut Metadata Object, and Paste</b></td>
+<td class='confluenceTd'>The behaviour is as if the originating Metadata Object is deleted and the pasted Metadata Object is created.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Copy Metadata Object, and Paste</b></td>
+<td class='confluenceTd'>The behaviour is as if the pasted Metadata Object is created.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Save</b></td>
+<td class='confluenceTd'>Writes the metadata object into its XML file. If saving at Metadata Root (that is, top-level), it only saves its own metadata object, but not any metadata objects contained beneath it. If saving at Namespace level, all metadata objects underneath the Namespace are saved.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Highlight (or Last Highlight)</b></td>
+<td class='confluenceTd'>Highlight an existing metadata object is similar to editing the metadata object -- that is, the pencil would appear on top of the icon, marking it dirty. No source is changed without saving. When save command is issued, Velocity Studio writes the update to the metadata object's XML file.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Refresh</b></td>
+<td class='confluenceTd'>Reloads the metadata object from source directory. All unsaved changes of the metadata object that are in the Velocity Studio are lost. No impact to source directory. If refreshing at Metadata Root (that is, top-level) or Namespace level, all metadata objects underneath are refreshed as well.</td>
+</tr>
+</tbody>
+</table>
+
+<p><b>Note</b>: <b>You cannot move, copy or rename metadata files within project directory (for example,  want a Document "B" from Document "A") directly in file system.</b> In addition to a GUID, there exists a hashvalue that hashes, and thus protects, the relative filepath (to the project directory), including the filename. Use the rename, cut/copy and paste function instead in Velocity Studio.</p>
+
+
+<h3><a name="PopUpMenu">Right-click Popup Menu</a></h3>
+<p>The popup menu is used to manipulate the metadata objects by right-clicking an object in the <b>Navigation</b> pane. The menu items available through the right-click popup menu allow a metadata object to be created, deleted, copied, or pasted or other metadata-specific operations to be performed.</p>
+<p>The figure above shows the common right-click popup menu items available for all metadata objects in a namespace. These menu items are defined in the table below.</p>
+<p>Multiple selections are allowed in the object tree (by holding <i>Ctrl</i>-key while clicking) for the <b>Copy</b> menu item. After the copy action, the <b>Paste</b> menu item will be available in the namespace right-click popup menu, as well as on the folder level if all selected objects have the same metadata type.</p>
+<p><ins><b>Description of common popup menu items</b></ins></p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Menu Item</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>New ...</b></td>
+<td class='confluenceTd'><p>Appears for Namespace level only. Creates a metadata object of a type that can be chosen in the opened <b>New Metadata Object</b> wizard:
+</p>
+  <p> <img src="newMD1.png" align="absmiddle" border="0" alt="Select a metadata type" />
+    </p>
+  <p>Select the desired metadata type and click the <b>Next</b> button. All fields of that metadata type that must be initialized before object creation, such as <b>Name</b>, are prompted:
+  </p>
+
+  <p><img src="newMD2.png" align="absmiddle" border="0" alt="New data type" />
+    </p>
+  <p>Fill in the fields, then click the <b>Finish</b> button to create the metadata object. See references of each metadata object type in this Velocity Studio User Guide for instructions on each specific object type.
+  </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>New <i>&lt;Metadata Object Type&gt;</i></b></td>
+<td class='confluenceTd'>Appears for Namespace or type folders only. Creates a metadata object of this type. The second step of the same wizard in the above <b>New ...</b> command is prompted to fill in mandatory initialization fields before object creation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Copy</b></td>
+<td class='confluenceTd'>Copies the selected metadata object to the clipboard.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Cut</b></td>
+<td class='confluenceTd'>Same as copy but, in addition, the original object will be removed after pasting.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Paste</b></td>
+<td class='confluenceTd'>Pastes a copy of the metadata object currently in the clipboard.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Show</b> <b>Usage</b></td>
+<td class='confluenceTd'>Opens the <b>Dependent Objects</b> dialog that shows all metadata objects which have a reference to the selected object. You can also find variable instances that point to an object's user interface and user interface form. This function finds references in the following:
+  <ul>
+    <li>Form elements that reference the form</li>
+    <li>Pop-up actions or methods that reference the form</li>
+    <li>Finders that reference the form</li>
+    </ul>
+  <p><strong>Notes:</strong></p>
+  <ul>
+    <li>The <strong>Show Usage</strong> function cannot find a method call in a script. This function is used for dependent metadata only.</li>
+    <li>The list of elements returned depends on the given object's usage. The elements in the list are not necessarily directly dependent on the given object, but can be indirectly dependent on it.</li>
+  </ul></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Find</b> <b>in</b> <b>Scripts</b></td>
+<td class='confluenceTd'>Searches for metadata objects that use the selected object's name in their scripts (for example, a method call in a script).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Highlight</b></td>
+<td class='confluenceTd'>Highlights the selected object with a specified color and font style chosen from the <b>Highlighting Settings</b> dialog:
+	<table class='confluenceTable'>
+	<tbody>
+	<tr>
+	<td class='confluenceTd'><img src="highlightDialog.png" align="absmiddle" border="0" alt="" /></td>
+	</tr>
+	</tbody>
+	</table>
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Last</b> <b>Highlight</b></td>
+<td class='confluenceTd'>Highlights the selected object using the last specified highlight color and font style.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Rename</b></td>
+<td class='confluenceTd'>Rename the selected metadata object to a different name.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Delete</b></td>
+<td class='confluenceTd'>Deletes the selected metadata object. If deleting at Namespace level, it also deletes all metadata objects underneath it.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Save</b></td>
+<td class='confluenceTd'>Saves the selected metadata object. If saving at Metadata Root, it only saves its own metadata object, but not any metadata objects contained beneath it. But if saving at Namespace level, it also saves all metadata objects underneath it.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Refresh</b></td>
+<td class='confluenceTd'>Reloads the selected metadata object from source directory. All unsaved changes of the metadata object that are in the Velocity Studio are lost. Refreshing at the Namespace or Metadata Root level will refresh all metadata objects underneath it.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+<h3>View Inherited Leaves from Base Documents</h3>
+<p>You can view inherited leaves (<a href="../Metadata_Objects/Document/Document Variables.html">variables</a>) from base documents through the Metadata tab's navigation tree. In the JavaScript editor, you can either click the <strong><a href="../../JavaScripting in Order Care/new JavaScript Editor select node.html.">Select tree</a></strong> button or use the <em>Ctrl</em> + <em>T</em> key combination to select your top-level metadata and their variable scripts. However, the JavaScript editor only shows leaves defined in the document, but not those inherited.</p>
+</body>
+</html>

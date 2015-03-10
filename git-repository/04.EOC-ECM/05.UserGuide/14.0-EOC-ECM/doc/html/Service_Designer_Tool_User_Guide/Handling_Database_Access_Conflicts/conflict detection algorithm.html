@@ -1,0 +1,34 @@
+﻿
+
+
+<html>
+<head>
+<title>Conflict Detection Algorithm</title>
+<link rel="stylesheet" href="../../styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="ConflictDetectionAlgorithm"></a>Conflict Detection Algorithm</h2>
+<p>If the Document is part of an Order the conflict detection field is the Document stamp field. If it is not part of an Order the conflict detection field is either the Document stamp field or the <em>System last updated timestamp</em> field, if the Document metadata flag <em>Timestamp sync</em> is set.</p>
+<p>The conflict detection algorithm is as follows:</p>
+<ol>
+<li>Partial updates (used by the Process Engine) in the Order Documents do not do conflict detection. However, they change the Order <em>Document stamp</em> field.</li>
+<li>Runtime Orders keep the runtime value for the synchronization type parameter. It is initially set to the metadata value but can be changed programmatically.</li>
+<li>If an Order Document contains a <em>Document stamp</em> field it is used for conflict detection unless the Order synchronization type is <em>Order</em>. In the latter case the Order <em>Document stamp</em> field is used for conflict detection.</li>
+<li>If an Order Document does not contain a Document stamp field and the Order synchronization type is <em>Document</em> no conflict detection is done. This is a potentially dangerous situation and has to be used with caution.</li>
+<li>If the Order synchronization type is <em>Order</em> the Order <em>Document stamp</em> field will be used for conflict detection even if the Order Document has Document stamp field.</li>
+<li>If the Document is not part of an Order and contains the Document stamp field it will be used for conflict resolution.</li>
+<li>If the Document is not part of an Order and has the <em>System last updated timestamp</em> field it will be used for conflict resolution only if the metadata Document flag <b>Timestamp sync</b> is set, and the Document Stamp field (<em>cwf.cwDocStamp</em>) is added into  the  Document.</li>
+<li>If condition 6 and 7 are not satisfied for a Document that is not part of an Order no conflict detection is done.</li>
+<li>All database write operations (including partial updates) set the Document stamp field in the Order instance.</li>
+<li>All system fields are automatically set by the system if specified. Partial updates do not change the system fields automatically.</li>
+</ol>
+</td>
+</tr>
+</table>
+</body>
+</html>

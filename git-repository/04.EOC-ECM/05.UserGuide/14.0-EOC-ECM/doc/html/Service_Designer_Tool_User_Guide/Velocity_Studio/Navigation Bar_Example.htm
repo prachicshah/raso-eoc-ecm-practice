@@ -1,0 +1,149 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Navigation Bar Example</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Setting Up a Navigation Bar </h2>
+<p>The following example, explains the steps required to setup a Navigation Bar. This example assumes that you are configuring the Navigation Bar using Documents, Navigation Bar  Object and User Interface Object. You also need to have configured images that display at runtime. 
+<p>The result of this setup will create the following Navigation Bar and User Interface at runtime. The following diagram shows  a user interface that contains two form frames at runtime. The top form frame contains the navigation bar containing two steps, Step 1 and Step 2. The second form frame contains the content triggered by the navigation bar step.  This runtime example shows Step 1  enabled and  its  associated Default form showing the content of the document user interface (named Step1Doc).
+</p>
+<p><img src="NavBarExample/NavBarRunTime.png" alt="Navigation Bar at runtime" border="1" />
+</p>
+
+<h3>Creating a Document</h3>
+<p>The Navigation Bar  has been designed to work with Document User Interfaces. In this example, the <strong>Default</strong> form of the Document UserInterface will be triggered when the user clicks one of the navigation bar steps. In the Navigation Bar object, the Default form will be called on one of the User Action methods which will be assigned to one of the Navigation Bar Items:</p>
+<ol>
+  <li>
+    Add a <strong>Document User Interface</strong> object by  right-clicking the<strong> Data Dictionaries </strong>node of your Namespace and selecting <strong>Documents</strong>.<br>
+    <br>
+<img src="NavBarExample/CreateDocument.png" alt="Create Documents" border="1" />
+<br>
+<br>
+  </li>
+  <li>More than one Document may be needed depending upon the complexity of your Navigation Bar procedure.  Each Document contains  forms that are used to display the user interface presentation of the Document. You can configure a form to display information that shows in one of the Navigation Bar  steps. In this example, the User Action method of the navigation bar item will trigger the Default form of these documents and a document UserInterface is created for each navigation bar item.</li>
+</ol>
+<h3>Creating a Navigation Bar Object</h3>
+<p>You would use the Navigation Bar object for to configure Variables, Methods and your Navigation Bar Items. This Navigation Bar object is later called in the user interface FormFrame. </p>
+
+<ol>
+  <li><p>Create a <strong>Navigation Bar </strong>object by  right-clicking the <strong>Presentation</strong> node of your Namespace and selecting <b>New Navigation Bar</b> (<em>com.conceptwave.system.NavigationBar</em>).
+
+      <p><img src="NavBarExample/NavBarPresentation.png" alt="Navigation Bar Presentation" border="1" /></p>
+      Four tabs appear in the Navigation Bar item: <em>General, Variables, Methods, Configuration</em> that are used to configure the Navigation Bar.  
+</p></li>
+  <li><strong>Variables</strong>:   The <em>CurrentObject</em> variable appears in the system variable list. This variable will be used by the<em> onNavigationClick</em> method to call the object to which to display in the FormFrame of the UserInterface. In this example, no additional <a href="Navigation Bar_Variables.htm">Navigation Bar Variables</a> have been added. </li><br>
+<li>Create a <strong>New User Action</strong> click method.
+  For this example, add a script that returns the document that was created earlier.  This script will be added to the Navigation Bar Item's <strong>Click Action</strong> field. </p>
+  <p>To create Navigation Bar Methods:
+<ol>
+  <li>Navigate to the <strong>Methods</strong> tab, and right-click the node.  Select <strong>New User Action</strong> method.</li>
+  <li>A methods form is displayed, enter a <strong>Name</strong> for this new user action method and <strong>Script</strong>. The <strong>Script</strong> must return a user interface.  In the script field, type:
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+return new &lt;node&gt;.&lt;document_name&gt;.UserInterface(null, this);
+</pre>
+</div>
+</div>
+
+<img src="NavBarExample/ClickActionMethod.png" alt="Click Action" border="1" />
+<br>
+<br>
+This script will be linked to the Navigation Bar Item's <b>Click Action</b> property.  At runtime when the Navigation Bar Item is clicked, it will return the <b>Default</b> form of the UserInterface document.
+<p>In the click method above, the return statement above will set the currentObject system User Interface variable.  If a return statement is not used, the currentObject variable must be set. Another way to assign the currentObject variable is by creating a UserInterface variable (like VarStep1) and assigning it to the currentObject the Step1Click script:
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+if (this.VarStep1 == null)
+    this.VarStep1 == new hf.Step1Doc.UserInterface(null, this);
+    this.currentObject = this.VarStep1</pre></div>
+</div>
+</p>
+
+</li>
+  <li>Continue to configure methods for all of the actions required. For this example, a similar User Action Method was created for Step 2 with the following script: <em>return new hf.Step2Doc.UserInterface(null, this);</em></li>
+  </ol></p>
+
+<li><a name="#NBConfig"></a>Create and configure a <strong>Navigation Bar Item</strong></strong>.
+  <p>The Configuration tab enables you to create Navigation Bar Items and then configure them. You can think of each item as a single step of a procedure.</p>
+<ol> 
+  <li>From the <strong>Configuration</strong> tab, right-click the Navigation Bar node and select<strong> New Navigation Bar Item</strong>.</li>
+  <li>In the <strong>New Navigation Bar Item</strong> dialog, type the name of the item and click <strong>Finish</strong>.
+    
+    <p>
+    <img src="NavBarExample/NavBarItems.png" alt="Navigation Bar Item" border="1" />
+    </p>
+  </li>
+
+  <li>Click the item to view its properties and then configure each property. Refer to the <a href="Navigation Bar_Config_Tab.htm">Navigation Bar Configuration Tab</a> document for more details on the configuration of the Navigation Bar Items.
+
+    <br>
+    <br>
+    <img src="NavBarExample/NavBarItemConfig.png" alt="Navigation Bar Item Config" border="1" />
+
+<br>
+<br>
+The <strong>Click Action</strong> property is binded to the Click Action method Step1Click created previously. The <strong>Default Image URL</strong> is assigned to the Step1 image as described in the <a href="Navigation Bar_Images.htm">Navigation Bar Images</a> document and the <strong>Visible</strong> property is binded to the CheckTrue <a href="Navigation Bar_Permisisons.htm">permission</a> that returns a <em>True</em> value. </li>
+</ol>
+</ol>
+<h3>Creating a User Interface Object</h3>
+<p>To display the Navigation Bar and related information at runtime, you need to create a User Interface object. This object should contain two Form Frame elements. One Form Frame will contain the Navigation Bar and the second is used to display the data displayed by each Navigation Bar item.</p>
+<ol>
+  <li>Add a <strong>User Interface</strong> object by  right-clicking the <strong>Presentation</strong> node of your Namespace and selecting <strong>New User Interface</strong> (<em>com.conceptwave.system.UserInterface</em>).
+    
+    <br>
+    <br>
+    <img src="NavBarExample/UIPresentation.png" alt="User Interface Presentation" border="1" /><br>
+    <br>
+  </li>
+  <li>In the User Interface object, create a Navigation Bar variable that points to the Navigation Bar object created above (for this example, the <strong>Data Type</strong> points to <strong>hf.NB</strong>).<br>
+    <br>
+
+<img src="NavBarExample/NavBarVariable.png" alt="User Interface NavBar Variable" border="1" />
+<br>
+<br>
+  </li>
+<li>Within the User Interface, the Navigation Bar variable must be initialized. One way for initializing the variable is by overriding the onInit method. Click the <strong>Methods</strong> tab and override the <strong>onInit</strong> method to initialize the Navigation Bar variable.<br>
+  <br>
+
+<img src="NavBarExample/OnInit.png" alt="Initialize Nav Bar variable" border="1" />
+
+<br>
+<br>
+</li>
+  <li>To the <strong>Default</strong> form of the User Interface object, add the following Form Elements:
+    <ol type="a"><li><b>VerticalLayout</b></li>
+<li><b>FormFrame</b></li>
+<li><b>Separator</b></li>
+<li><b>FormFrame</b><br>
+  <br>
+</li>
+
+<img src="NavBarExample/DefaultForm.png" alt="Default Form" border="1" />
+  </ol>
+</li>
+<li> The first Form Frame is where the Navigation Bar displays.  For the first FormFrame Element, first assign the Navigation Bar variable to the <b>Variable</b> property.  Second, depending on the desired horizontal or vertical orientation, assign either the <b>HLayoutForm</b> or <b>VLayoutForm</b> of the Navigation Bar presentation object to the <b>Form</b> property.<br>
+  <br>
+
+<img src="NavBarExample/FormFrame1Properties.png" alt="Form Frame Properties" border="1" />
+<br>
+<br>
+</li>
+<li>For the second FormFrame Element, first assign the currentObject variable of the Navigation Bar object to the variable property. Second, assign the Default form of the Navigation Bar's current object to the Form property.<br>
+  <br>
+<img src="NavBarExample/FormFrame2Properties.png" alt="Form Frame Properties" border="1" />
+</li>
+</ol>
+
+</tr>
+</table>
+</body>
+</html>

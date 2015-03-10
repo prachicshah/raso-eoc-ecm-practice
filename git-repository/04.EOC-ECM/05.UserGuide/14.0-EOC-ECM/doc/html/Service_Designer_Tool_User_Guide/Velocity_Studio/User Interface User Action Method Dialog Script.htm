@@ -1,0 +1,178 @@
+<html>
+<head>
+<title>User Interface User Action Method: Dialog and Script Parameters</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>User Action Method: Dialog and Script Parameters</h3>
+<p>The user action script can have different parameters,  depending on the action properties and the context that this action is invoked  with:</p>
+<ul>
+  <li>If the user action has the <strong>Object</strong> property  specified, this object is created just before the action script invoked  and being passed to the script as the <em>last</em> argument.</li>
+  <li>If the user action under User Interface has  the <strong>Show in popup</strong> flag selected, it means that the object specified as the <strong>Object</strong> property  or returned from script needs to be displayed in the popup dialog.<br>
+    The Dialog object is also created before the action using the specified dialog  properties and passed to the user action as the <strong>last</strong> argument. Then, the object is passed as the <em><strong>second last</strong></em> argument.</li>
+  <li>There are also some special user actions, such as onRefClick and cwOnDetailView methods, that have more than two arguments  passed to the script.</li>
+</ul>
+<h4>Create a Dialog Object</h4>
+<p>When a user action has the <strong>Show in popup</strong> property selected, the Dialog  object is created and passed to the action script. The cwCreateDialog method of the system com.conceptwave.system.UserInterface  contains this logic and has the following script parameters:</p>
+<table class="confluenceTable">
+  <tr>
+    <th class="confluenceTh">Script Parameter</th>
+    <th class="confluenceTh">Description</th>
+  </tr>
+  <tr>
+    <td class="confluenceTd">actionName</td>
+    <td class="confluenceTd">This parameter denotes the  name of the popup action ID.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">dialogMDName</td>
+    <td class="confluenceTd"><p>This parameter contains the full metadata name of the Dialog object specified in the  user action. By default, it is set to com.conceptwave.system.Dialog.</p></td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">width</td>
+    <td class="confluenceTd">This parameter indicates the dialog  width, which is specified in the user action properties.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">height</td>
+    <td class="confluenceTd">This parameter represents the dialog  height, which is specified in the user action properties.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">x</td>
+    <td class="confluenceTd">This parameter denotes the dialog's  X position, which is specified in the user action properties.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">y</td>
+    <td class="confluenceTd">This parameter contains the dialog's Y position, which is specified in the user action properties.</td>
+  </tr>
+</table>
+<p>By default, the cwCreateDialog script calls the cwCreateDialogDefault method of the current application:</p>
+<div class="preformatted">
+    <div class="preformattedContent">
+      <pre>
+if (theApp &amp;&amp;  theApp.hasMethod(&quot;cwCreateDialogDefault&quot;)) {
+  return theApp.cwCreateDialogDefault(this, actionName, dialogMDName,
+  width,  height, x, y);
+  }</pre>
+    </div>
+  </div>
+<p>This call allows customizing the Dialog object for each user action, user  interface, or application.  If the script returns either null or an object that is not instance  of Dialog, then the user action creates a dialog using the old hard-coded  logic.</p>
+<p>  As an example, the cwCreateDialogDefault  method's default implementation of the com.conceptwave.system.Application has some customization for both the onRefClick  and cwOnDetailView methods. These actions are defined in com.conceptwave.system.UserInterface. However, depending on the context, it creates  different Dialog objects. If the action owner extends either ui_common.baseForm or ui_common.baseComponent, it creates  ui_common.dialogExtend instead of the old com.conceptwave.system.Dialog.</p>
+<h4>User Action Parameters</h4>
+<p>When initializing user action arguments, the following  rules are applied:</p>
+      <ol>
+            <li>If  the user action has the <strong>Object</strong> property specified and is <em>not a popu</em>p):
+              <ol type="a">
+                <li>If  the script does not have any parameters defined, the object is still passed to  the script. To access it, use the <strong>arguments</strong> local variable:<br>
+<div class="preformatted">
+    <div class="preformattedContent">
+      <pre>function userAction ()  { 
+    var obj = arguments[0];
+...</pre>
+    </div>
+  </div>
+                </li>
+                <li>If  the script has one parameter defined, no matter what the parameter type is that is defined in the metadata, the first parameter is initialized with the object:<br>
+<div class="preformatted">
+    <div class="preformattedContent">
+      <pre>function userAction  (param1) { 
+    var obj = param1; // or arguments[0] 
+...</pre>
+    </div>
+</div>
+                </li>
+                <li> If more than  1 parameter is specified, it attempts to find the position of the object  parameters by looking at the parameter type, which should be equal to the Object type: <br>
+<div class="preformatted">
+    <div class="preformattedContent">
+      <pre>function  userAction (param1, param2) { 
+    var obj = param2; // or arguments[1]  if param2 has type of Object
+...</pre>
+    </div>
+</div>
+If the parameter is not found, the object is passed as the <em>last</em> parameter (param2). </li>
+              </ol>
+            </li>
+        <li>For <strong>Show in popup</strong> actions:</li>
+        <ol type="a">
+          <li>If  the script does not have any parameters defined, the object and the dialog are  passed to the script. To access them, use <strong>arguments</strong> local variable:<br>
+<div class="preformatted">
+                  <div class="preformattedContent">
+                    <pre>function userAction ()  { 
+    var obj = arguments[0];
+    var dialog = arguments[1];
+...</pre>
+                  </div>
+            </div>
+          </li>
+          <li>If  the script has 1 argument defined, it depends on what the parameter type is. 
+            If the parameter is the type of the Object, the argument is initialized  <em>with</em> the object and the dialog can be accessed using the <strong>arguments</strong> variable:<br>
+<div class="preformatted">
+                  <div class="preformattedContent">
+                    <pre>function userAction  (param1) { 
+    var obj = param1; // or arguments[0]
+    var dialog = arguments[1];
+...</pre>
+                  </div>
+            </div>
+<br>
+            If the parameter is the type of the dialog or or extends it, the argument  is initialized with the dialog and the object can be accessed using the <strong>arguments</strong> variable:<br>
+            <br>
+<div class="preformatted">
+                  <div class="preformattedContent">
+                    <pre>function userAction (param1) {
+    var dialog = param1 // or arguments[0] <br>    var obj = arguments[1]; 
+...</pre>
+                  </div>
+            </div>
+          </li>
+              <li>If the script has two or more arguments defined, it first attempts to define both the object and dialog parameter positions by looking at  the parameters type. The object parameter  should have same data type. The   dialog parameter should have either com.conceptwave.system.Dialog or and extended type.<br>
+              <br>
+            <strong>Note:</strong> There could be different situations where one or the other position is not found:            
+            <ul>
+              <li>                If the object parameter is found, but the dialog parameter is not found, the object parameter  is initialized with the object and the dialog is passed as the last  parameter. If the object parameter <em>is</em> the last one, the dialog is passed as the <em>second  last</em>.</li>
+              <li>                If the dialog parameter is found, but the object parameter is not found, the dialog parameter  is initialized with the dialog and the object is passed as the parameter <em>before</em> the dialog parameter. Although, if  the dialog parameter is the <em>first</em> one,  the object would be the <em>second</em>.</li>
+              <li>                If none of the positions are  found, the last parameter is initialized  with the dialog and the second last parameter contains the object.<br>
+              </li>
+              </ul>
+            </li>
+        </ol>
+        <li>When a user action is used as either a reference or  translation field action (for example, the system onRefClick or cwOnDetailView actions), the  action arguments have a predefined order and the rules defined previously are not  applied to them.<br>
+          <br>
+          <table class="confluenceTable">
+            <tr>
+              <th class="confluenceTh">Parameter</th>
+              <th class="confluenceTh">Description</th>
+            </tr>
+            <tr>
+              <td class="confluenceTd">leafName</td>
+              <td class="confluenceTd">This parameter represents the reference variable's name.</td>
+            </tr>
+            <tr>
+              <td class="confluenceTd">isEditable</td>
+              <td class="confluenceTd"><p>This parameter is true if you can select or change a referenced value.</p></td>
+            </tr>
+            <tr>
+              <td class="confluenceTd">targetObj</td>
+              <td class="confluenceTd">This parameter is an object that denotes the variable's owner.</td>
+            </tr>
+            <tr>
+              <td class="confluenceTd">refDataType</td>
+              <td class="confluenceTd">This parameter denotes the reference data type. If the variable has a non-reference type, this data type is used to find the    reference finder.</td>
+            </tr>
+            <tr>
+              <td class="confluenceTd">dialog</td>
+              <td class="confluenceTd">This parameter represents the dialog object.</td>
+            </tr>
+          </table>
+        </li>
+      </ol>
+</table>
+</tr>
+</td>
+</body>
+</html>

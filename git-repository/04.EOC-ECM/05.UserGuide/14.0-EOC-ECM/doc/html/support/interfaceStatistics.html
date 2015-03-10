@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interface Statistics</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Interface Statistics</h1>
+<p>You can view statistics for any client or listener port by doing the following:</p>
+<ul>
+  <li><a href="#enableStatistics">Enable statistics</a> for a given port</li>
+  <li>Set the <a href="#statisticStoragePeriod">statistic storage period</a></li>
+  <li><a href="#viewStatsSystemAdmin">View stored statistics through the System Administration</a> application</li>
+  <li><a href="#viewStatsJMX">View interface statistics through JMX</a></li>
+  <li>View a list of available <a href="#clientStats">client</a> and <a href="#listenerStats">listener</a> statistics</li>
+</ul>
+<h2><a name="enableStatistics"></a>Enable Statistics in the Configuration Application</h2>
+<p>To enable a collection of statistics for any given port, either client or listener, do the following:</p>
+<ol>
+  <li>In the Configuration application, click <strong>Services &gt; Services</strong> and select the client or server port that you want.</li>
+  <li>In the Settings section, select the  <strong><a href="../Configuration_Tool_User_Guide/Services Services.html#enableStatistics">Enable Statistics</a></strong> option.<br>
+    <br>
+    <img src="interfaceStatisticsEnableStatistics.png" width="656" height="578" alt="Enable Statistics option on port">  </li>
+  </ol>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>Even if statistics are enabled at the CLUSTER level, they are collected on a per node basis.</li>
+  <li>Although statistics are enabled through the configuration for each port, statistics are collected on a per interface basis on the interface that the given port implements.</li>
+</ul>
+<h2><a name="statisticStoragePeriod"></a>Statistic Storage Period</h2>
+<p>Statistics are collected by a specified period, which can be changed by setting the  cwf.stat.storage.period JVM system environment property. This property is in seconds. The default period is 24 hours (that is, 86,400 seconds).  </p>
+<p>At the end of each period, counts are reset and data is persisted into the database  table CWBENCHMARKINTERVALCOUNTER database  table. 
+  If no statistics were collected for either a given interface or statistic, no rows are inserted.</p>
+<p>For all interface statistic benchmark counter variables, such as Max, Min, and histogram, they are cleaned up in each period after they are persisted to the database. For example, if you set the <tt>-Dcwf.stat.storage.period=60</tt> in the &lt;<em>installation_folder</em>&gt;\env\startDesigner.cmd file to 60 seconds, the counter and all JMX attributes are reset.</p>
+<h2><a name="viewStatsSystemAdmin"></a>View Stored Statistics through the System Administration Application</h2>
+<p>  Clicking <strong>Services </strong>&gt; <strong><a href="../System_Administration_Application_User_Guide/Services/interfaceStatistics.html">Interface Statistics</a></strong> from the System Administration application show a view of persisted statistics only. You can filter this view by the following fields:</p>
+<ul>
+  <li><strong>Record Date</strong></li>
+  <li><strong>Record Type</strong> (statistic)</li>
+  <li><strong>AVM</strong></li>
+</ul>
+<p><img src="interfaceStatisticsSystemAdminStatistics.png" alt="Interface Statistics - System Administration application" border="1"></p>
+<h2><a name="viewStatsJMX"></a>View Interface Statistics through JMX</h2>
+<p>You can view current in-memory statistics for a given collection period through JMX by using a tool such as <a href="../Metadata Deployment Guide/Introduction JMX.html">JConsole</a>.</p>
+<p>  One MBean is available for each recorded statistic for each interface operation. Similarly, one MBean is available for each 
+  recorded statistic for each interface. </p>
+<p>As an example, the following image shows that for theSoapListenInterface interface, it has one operation called reqResp. There are six MBeans created for  three different statistics.  For each MBean, you can see the current count or sum of the given statistic, and the average<br>
+  value.</p>
+<p><img src="interfaceStatisticsJConsole.png" alt="View interface statistics in JConsole" width="920" height="604" border="1"></p>
+<p><strong>Note:</strong> There is a known issue with JMX in which statistic nodes for a given interface or operation do not appear until a statistic is actually recorded  for it (that is, the operation is invoked). In the previous image, there is no  MBean for ErrorCount because no errors have occurred.<br>
+  Due to this known issue, you may need to reconnect to the JVM to see any new entries were created while you 
+  were viewing other statistics.</p>
+<h2><a name="clientStats"></a>Client Statistics</h2>
+<p>  The following statistics are available at both the Operation and Interface levels.  The Interface-level statistics are the sum of all operation values under that interface:</p>
+<ul>
+  <li>    Invocation: Number of times that the interface has been invoked.</li>
+  <li>    ProcessTime: Accumulated time (Milliseconds) that an interface has been processing a request, which includes time waiting for responses from remote services.</li>
+  <li>    ErrorCount: Number of times an interface call resulted in an exception.</li>
+</ul>
+<h2><a name="listenerStats"></a>Listener Statistics</h2>
+<p>  The following statistics are available at both the Operation and Interface levels.  The Interface-level statistics are the sum of all operation values under that interface:</p>
+<ul>
+  <li>  Received Messages: Number of messages that have been received by the system, which is equal to 
+    the sum of the Received Message count for all operations under this interface. It does not reflect whether the message was successfully processed.</li>
+  <li>    Invocation: Number of times the Listener API script was invoked.</li>
+  <li>    ProcessTime: Accumulated time in milliseconds that the Listener API script has been processing    data.</li>
+  <li>    ErrorCount: Number of times that the Listener API script resulted in an exception.</li>
+</ul>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

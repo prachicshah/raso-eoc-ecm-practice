@@ -1,0 +1,117 @@
+<html>
+<head>
+<title>User Interface Application</title>
+<link rel="StyleSheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>  User Interface Application</h2>
+<p> This page describes how to customize  User Interface (UI) application  with the built in <a href="./glossaryforUI.html#Application" title="What is an Application"> application</a> functionality for the User Interface. The following topics are covered:</p>
+<ul>
+  <li> <a href="#Implement an Application">Implement an application</a>  </li>
+    <li><a href="#Create Application Menus"> Create application menus</a>  </li>
+    <li> <a href="#Provide an Application Logo">Provide an application logo </a> </li>
+</ul>
+<h3><a name="Implement an Application">Implement an Application</a></h3>
+A user interface  application can be implemented with the same style built in application for the User Interface (UI)  module, which consist of these steps:
+ <ol>
+   <li><a href="../Creating UI Objects.html#createTopLevelUI">Create a new user interface</a> (for example, TestApplicationUI).</li>
+   <li> For the <strong>Extend</strong> field, choose <strong>ui_common.baseApplication</strong> and specify the <strong>URL Mapping</strong> for your application (for example, /TestUIApp).  
+   </li>
+ </ol>
+ <h3><a name="Create Application Menus">Create Application Menus</a></h3>
+To create application menus, complete these steps:
+ <ol>
+   <li>Expand your application’s <strong>User Interfaces</strong> node,  then  right-click the <strong>Page </strong>form  and select <strong>Override</strong>.</li>
+   <li> Provide a value to <strong>Title</strong> property (for example, TestUIBase). By  default, base application  displays five application menus:<br><br>
+   </li>
+ </ol>
+ <table class='confluenceTable' border cellpadding="1">
+   <tbody>
+  <tr>
+  <th width="93" class='confluenceTh'>Menu</th>
+  <th width="665" class='confluenceTh'>Description</th>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>homeMenu</strong></td>
+  <td class='confluenceTd'>Display menu when you click on <strong>Home</strong> menu. Override the <strong>homeMenu</strong> <strong> </strong> to add an action to the menu.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>createMenu</strong></td>
+  <td class='confluenceTd'>Display  screens to create new  objects, such as users, address, and so on. These menus appear under the <strong>Create </strong>Menu.</td>
+  </tr>
+     
+  <tr>
+  <td class='confluenceTd'><strong>manageMenu</strong></td>
+  <td class='confluenceTd'>Display finders to allow you  to manage objects. These menus appear under the <strong>Manage </strong>menu.</td>
+  </tr>
+     
+  <tr>
+  <td class='confluenceTd'><strong>configMenu</strong></td>
+  <td class='confluenceTd'>Allows you to configure the application. These menus appear under the<strong> Configure</strong> menu.</td>
+  </tr>
+     
+  <tr>
+  <td class='confluenceTd'><strong>viewMenu</strong></td>
+  <td class='confluenceTd'>Allows you to see system  information, such as the event log. These menus appear under the <strong>View </strong>Menu.</td>
+  </tr>
+  </tbody>
+</table>
+<br>
+   
+   To  override the visibility of these application menus, follow these steps:
+ <ol>
+   <li> <a href="../../Metadata_Objects/Rule Sets/Rule set.html">Create a rule set</a> of type  <strong>Initialization</strong>. Choose UI application as <strong>Source</strong> (for example, TestApplicationUI). </li>
+   <li>Click  the <strong>Show Base Methods  </strong>(<img src="brownBook.png" alt="Show Base Methods button"/ >) button. Provide a return value for the following variables: </li>
+ 
+ <ul>
+   <li>isMenuHomeVisible</li>
+   <li>isMenuCreateVisible</li>
+   <li>isMenuManageVisible</li>
+   <li>isMenuConfigureVisible</li>
+   <li>isMenuViewVisible</li>
+   <br>
+ </ul>
+ </ol>
+You can add more menus to the application, if needed. To add more menus, follow these steps:  
+<ol>
+  <li>
+    Right-click the <strong>Menu</strong> form and select  <strong>Override</strong>.</li>
+  <li> Navigate to the <strong>manageMenu</strong> element.</li>
+  <li> Right-click<strong> fillMenu1</strong>  element and select <strong>Copy</strong>; it ensures that the base styling  is used.</li>
+  <li> Right-click the application or user interface, where <strong>fillMenu1</strong>  is required and  select <strong>Paste</strong>. Set the following properties:    </li>
+ <ul> <li><strong>Label</strong></li>
+  <li><strong>Click Method</strong></li>
+  <li><strong>Visible</strong>: By default, this property is set to false. Set this property to none  or a permission method.</li></ul>
+</ol>
+<h3><a name="Provide an Application Logo">Provide an Application Logo</a></h3>
+The  default application logo can be provided in two ways:<br><br>
+<ul>
+  <li>Navigate to the  <strong>Resources </strong>tab in the Velocity Studio and complete these steps:</li>
+
+<ol>
+  <li> Find <strong>cwlogo.gif</strong> under the<strong> cwf</strong> folder. </li>
+  <li>Click the <strong>Select</strong> <strong>Substitution</strong> button and select the  image to be used.  <br>
+    <br>
+  </li>
+  </ol>
+
+  
+    <img src="./applicationLogo.png" border="1" alt=" Change application logo"/><br><br>
+    <li>Create a .css file and  save in the metadata&rsquo;s resource directory. 
+    <ol>
+      <li>In this file, provide styling for <em>cwAppLabelWithLogo</em>.</li>
+      <li>Background-image:url('../cwf/cwlogo.gif').</li>
+      <li>Once the .css file is  created, re-open the  file in the metadata, in the Velocity Studio.</li>
+      <li> Navigate to the application&rsquo;s  <strong>Page</strong> form and set the <strong>Stylesheet</strong> property to the .css file that is  created.</li>
+      </ol>
+
+  </ul></td>
+ </tr>
+  </table>
+   </body>
+    </html>

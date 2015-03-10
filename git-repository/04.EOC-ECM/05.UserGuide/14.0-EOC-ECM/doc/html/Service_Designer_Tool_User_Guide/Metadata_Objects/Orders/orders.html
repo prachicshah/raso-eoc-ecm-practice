@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>Orders</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Orders</h2>
+<p>The Order is a major component in any OE application. An Order contains Documents and/or Collections. A Collection is used to hold multiple Document instances so that multiple line items can be stored in the Order, thus a Collection is similar to an array. The objects contained in the Order are called <em>Order Items</em> (that is, Documents, Collections, and Collection instances are all Order Items).</p>
+<p>When defining an Order, you must determine:</p>
+<ul>
+<li>Which Order Documents the Order must contain.</li>
+<li>Whether any Order Documents require multiple instances, in which case a Collection must be created under the Order.</li>
+<li>Whether the ordering process needs to be controlled by a Life Cycle.</li>
+</ul>
+
+<h3>Creating an Order</h3>
+
+<p>To create a new Order, do one of the following:</p>
+<ul>
+<li>In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:</li>
+<ol>
+<li>Right-click a Namespace and select <b>New ...</b></li>
+<li><b>New Metadata Object</b> wizard appears as a popup. Expand <b>Orders</b>, select <b>Order</b>, and then click the <b>Next</b> button.</li>
+<li>Step two of the wizard appears. Type in the name of Order (must conform to JavaScript naming conventions). For <b>Base User Interface</b>, choose <b>com.conceptwave.system.OrderUserInterface</b> to create a new Order. Then, click the <b>Finish</b> button.</li>
+</ol>
+<li><i>OR</i></li>
+<ol>
+<li>Right-click the <b>Orders</b> folder or the <b>Orders</b> folder in a Namespace, if it is present. Select <b>New Order.</b></li>
+<li>Follow step 3 from above.</li>
+</ol>
+</ul>
+
+<p>The newly created Order is added under <b>Orders</b> folder. Beneath the Order node is the Order's User Interface node, which subsequently contains the Forms of the Order.</p>
+
+<p><img src="newOrderNode.png" align="absmiddle" border="1" alt="New Order Node" /></p>
+
+<p><strong>Note:</strong> Velocity Studio features require a separate license key that is activated in Velocity Studio. </p>
+<h4>Create New Order Item</h4>
+
+<p>With an existing Order, the Order hierarchy can be built via creating Order Items, by right-clicking the Order and selecting one of the commands described below.</p>
+<ul>
+<li><b>New Document</b>: Adds an Order Document as a child to this node.</li>
+<li><b>New Collection</b>: Adds a Collection as a child to this node.</li>
+</ul>
+<p>After selecting the pop-up menu command, <b>New Metadata Object</b> wizard appears as pop-up. Type in the name of the Order Item (must conform to JavaScript naming conventions), and populate other fields as necessary. Then click <b>Finish</b>.
+
+The newly created Order Item is added under the Item that is right-clicked. If this child node is a Collection, it can again be right-clicked on to further define the Order hierarchy. The figure below shows an Order containing multiple Collections as well as Documents.</p>
+<p><img src="newOrderNode2.png" align="absmiddle" border="1" alt="Oder Node With Documents" /></p>
+<h4>Extended Order Item Documents</h4>
+<p>When an Order Document is added under a collection, this node accepts a document of the declared document type or any extended type.  At runtime it is possible to add a document of an extended type, by calling the addDocumentIntance method.  From the example above, the "CPE"  order collection will allow any extended document of CPE order item.  The addDocumentIntance method is called to allow extended documents at runtime:
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+var extendedDoc = new Document("SampleNS:extendedCPE");
+order.CPE.addDocumentInstance(extendDoc);
+</pre></div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>System - Compatibility</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Compatibility</h2>
+
+<p>Clicking <b>System</b> &gt;<b> Compatibility</b> displays settings that support document and store procedure modes from product version 5.x.   </p>
+<p><img src="compatibility.png" alt="System - Compatibility tab" border="1"></p>
+<p>By default, the settings are enabled. To disable them, deselect the checkbox next to the setting that you want. When you have finished making your changes, click the <strong>Save</strong> button to save your configuration.</p>
+<p>The following settings are available:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Setting</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>5.x User Profile Document Mode</strong></td>
+      <td class='confluenceTd'><p>By default, support for 5.x mode is available where the cwf_up.userProfile document is returned when accessing relevant UserProfile methods<strong>.</strong></p>
+      <p><strong>Note:</strong> If this setting is not selected,  a data sturcture is returned  instead of the cwf_up.userProfile document.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>5.x Worklist Document Mode</strong></td>
+      <td class='confluenceTd'>By default, support for 5.x mode is available where the   cwl_worklist.worklist document, which is aliased from cwf_pm.BaseWorklist, is returned wherever  the worklist document is expected.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>5.x Worklist Stored Procedure Mode</strong></td>
+      <td class='confluenceTd'><p>By default, support for 5.x mode is available where worklist behaviours  rely on stored procedures in the database. Selecting this checkbox allows you to extend or customize a stored procedure, indicating that the worklist calls the specified stored procedure. Otherwise, when this setting is not selected, the worklist uses the newly implemented JavaScript function. This feature supports backward compatibility.</p>
+        <p>The following stored procedures are available and are implemented in JavaScript:</p>
+        <ul>
+          <li>COMPLETEALERT</li>
+          <li>            COMPLETEWLTASK</li>
+          <li>            COMPLETEWLTASKWITHPART</li>
+          <li>            CREATEALERTARCHIVE</li>
+          <li>            CREATETASKARCHIVE</li>
+          <li>            INSERTPARTICIPANTSMESSAGE</li>
+          <li>            STARTWORKONTASK</li>
+      </ul></td>
+    </tr>
+  </tbody>
+</table>
+<h3>Example: Use the 5.x Worklist Stored Procedure Mode Setting</h3>
+<p>This example determines whether the result is the same by calling either the STARTWORKONTASK stored procedure or the JavaScript.</p>
+<ol>
+  <li>Create two worklist tasks.</li>
+  <li>In the System Configuration application, under <strong>System</strong> &gt; <strong>Compatibility</strong>, select the <strong>5.x Worklist Stored Procedure Mode</strong> setting.</li>
+  <li>Call worklist.startWork on task 1.</li>
+  <li>Uncheck the <strong>5.x Worklist Stored Procedure Mode</strong> setting.</li>
+  <li>Call worklist.startWork on task 2.</li>
+  <li>Verify that the start date has been set in for both tasks.</li>
+</ol>
+</body>
+</html>

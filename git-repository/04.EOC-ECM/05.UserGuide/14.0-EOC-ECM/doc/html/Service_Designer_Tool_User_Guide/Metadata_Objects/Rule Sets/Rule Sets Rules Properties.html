@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Rule Sets Rules Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+  <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+  <td valign="top" class="pagebody">
+  <h2>Rule Sets Rules Properties</h2>
+  <p>The   rule properties of rule sets are on the <strong>Rules</strong>  tab.</p>
+<p><img src= "rulesProperties.png" align="absmiddle" border="1" alt="Rule Sets Rules Properties" /></p>
+
+<p>The following table describes the fields:</p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Description</b></td>
+  <td class='confluenceTd'>Description of the Rule Set for documentation.</td>
+</tr>
+
+
+<tr>
+  <td class='confluenceTd'><b>Enabled</b></td>
+  <td class='confluenceTd'>  This field is mandatory and its default value is true. Editable only if  the Rule Set reduces another and this Rule is defined in the base.</td>
+</tr>
+<tr>
+  <td height="81" class='confluenceTd'><b>Type</b></td>
+  <td class='confluenceTd'> The value of this field depends on Rule Set Type.
+      <ul>
+        <li>For Initialization Rules, this field only takes<strong> Script</strong>.</li>
+        <li>For Validation Rules, this field can be either <strong> Script</strong> or  <strong>Mandatory</strong>. If <strong>Mandatory</strong>, the <strong>Script</strong> property cannot be defined.</li>
+        <li>For Permission Rules, type can be one of the followings depending on node type:
+          <ul>
+           <li>Visible</li>
+           <li>Editable</li>
+           <li>Optional</li>
+           <li>Add</li>
+           <li>Delete</li>
+          </ul>
+        </li>      
+      </ul></td>
+</tr>
+<tr>
+<td height="78" class='confluenceTd'><b>Severity</b></td>
+<td class='confluenceTd'>  This field is Mandatory and Editable for Validation Rules only. select from one of the following values:
+  <ul>
+    <li>Information</li>
+    <li>Warning</li>
+    <li>Error</li>
+  </ul></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Code</b></td>
+<td class='confluenceTd'>This field is  Mandatory and Editable for Validation  Rules only.</td>
+</tr>
+<tr>
+  <td height="82" class='confluenceTd'><b>Script</b></td>
+  <td class='confluenceTd'> This field is Mandatory and Editable if Rule Type is  Script. The script is evaluated in the  context of the data object, allowing the script to access the data object  instance with<strong> this</strong>.   
+      <ul>
+        <li>For initialization rules, the return value from  this script is assigned to the Rule's node.</li>
+        <li>For validation rules, if this script returns  true, the Rule is<em> Triggered</em>.</li>
+        <li>For permission rules, if this script returns  true, it indicates that the user has the given permission type on this node.</li>      
+      </ul>
+    </td>
+</tr>
+</tbody>
+</table><br>
+<p>The following table describes the action icons:<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<td class='confluenceTd'><img src= "addButton.png" alt="" width="30" height="30" border="0" align="absmiddle" /><img src= "deleteButton.png" alt="" width="30" height="30" border="0" align="absmiddle" /></td>
+<td class='confluenceTd'> Use these buttons to add or remove the items from the list.
+</td>
+</tr>
+<tr>
+<td height="40" class='confluenceTd'><img src= "moveUp.png" alt="" width="30" height="30" border="0" align="absmiddle" /><img src= "moveDown.png" alt="" width="30" height="30" border="0" align="absmiddle" /></td>
+<td class='confluenceTd'> Use these buttons to move up or move down the items in the list.
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src= "sort.png" alt="" width="30" height="30" border="0" align="absmiddle" /></td>
+<td class='confluenceTd'> Use this button to sort the items in alphabetical order.
+</td>
+</tr>
+</tbody>
+</table></p>
+
+  </td>
+  </tr>
+  </table>
+</body>
+  </html>

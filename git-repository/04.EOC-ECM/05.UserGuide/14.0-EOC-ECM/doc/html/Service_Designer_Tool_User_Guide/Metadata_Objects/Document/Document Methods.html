@@ -1,0 +1,204 @@
+<html>
+<head>
+<title>Document Methods</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Document Methods</h3>
+<p>The <b>Methods</b> tab is used to add Document-level scripts. There are different types of Methods that can be defined for the Document; they are all consolidated into this tab.</p>
+
+<p><strong>Note:</strong> For Document Variable-level scripts, they can be managed under <b>Variables</b> tab, by selecting the Variable in the Variables List in that tab, and then select the <b>Methods</b> tab in the Variable detail pane to edit the Variable's Methods. These Variable-level Methods also appear and are editable on Document Method tab; these Methods can be differentiated from other Methods by their Method names, which are appended by <i>$&lt;Variable Name&gt;</i>.</p>
+
+<p><img src="documentMethod.png" alt="Document actions - Methods tab" border="0"/></p>
+
+<p>The Methods tab is a <a href="../../../JavaScripting in Order Care/Scripting Interface.html">script management screen</a> in Velocity Studio, which is composed of the <b>Method List pane</b> at the left which lists all scripts of the Document, and <b>Details pane</b> which displays the details of a script when selected at the Method List pane. </p>
+<p>To show all base methods, click the <strong>Show base methods</strong> (<img src="../../Velocity_Studio/methodsTabShowBaseMethods.png" width="24" height="26" alt="Show base methods button">) button. Click the button again to hide all base methods. Base methods appear in blue font, as shown in the following figure. Any method highlighted in blue indicates that you can override it. Methods in black font cannot be overridden. </p>
+<p><img src="DocumentBaseMethods.png" alt="System-defined methods for Documents"border="1"></p>
+<p>To create a new Method, or to override an existing Method of its base Document, right-click the Document in the Method List pane.  A pop-up menu appears.</p>
+<p><img src="DocumentMethodsContextMenu.png" alt="Context-menu for adding methods to Documents" border="1"></p>
+
+
+
+<p>When you select the <strong>Type</strong> radio button for a method, it means that the method can be invoked directly through the script and does not require an instance object.</p>
+<p>If you have a long list of methods in the left pane, you can press the first letter of the method you are looking for to jump to the list of methods beginning with that letter. In this example, pressing the <strong>I</strong> key highlights the first instance of a method that begins with the letter I. The method displays in the right pane.</p>
+<p><img src="DocumentMethodsKeyJumpList.png" alt="Document methods - press a key to indicate first letter of method to jump to the first instance in the list" border="1"></p>
+<p>The table below lists the wide-ranging type of Methods that can be added  at the Document level.</p>
+
+<br><i><u>New Methods</u></i></br>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh' width='100'>Method Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="DocumentActionsIconScript.png" align="absmiddle" border="0" alt="" /> Script</td>
+<td class='confluenceTd'>Generic user-defined JavaScript function that can defined in a Document and explicitly invoked by other scripts; the function is not triggered by other built-in means in the Document.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="DocumentActionsIconPermission.png" align="absmiddle" border="0" alt="" /> Permission</td>
+<td class='confluenceTd'>Permission Method that can be associated to determine permission for a certain property of the Document. (for example, Element properties). See the  <a href="../Permission/Permissions Velocity.html">Permissions</a> section for details.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="DocumentActionsIconValidation.png" align="absmiddle" border="0" alt="" /> <a href="Document Validation Action.html">Validation</a></td>
+<td class='confluenceTd'>Document validation script that determines the validity of runtime data values of the Document. It is triggered with Document method "<i>.validate</i>", and by default, the generated Document Form's "save" menu button triggers such validation. See the <a href="../../../Configuration_Tool_User_Guide/Configure/System/System/configVariables.html#phasedValidation">phasedValidation configuration variable</a> for details.</td>
+</tr>
+</tbody>
+</table>
+<br>
+<i><u>Some of the system-defined Methods</u></i>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+<tr>
+<th class='confluenceTh'>Method Type</th>
+<th class='confluenceTh'>Script Name</th>
+<th class='confluenceTh'>Parameters</th>
+<th class='confluenceTh'>Return Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Initialization</b></td>
+<td class='confluenceTd'><i>cwOnDocInit</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>Document Initialization script to set initial values for any Variables in the Document.<br/>
+It is triggered when the Document is created, after the Variables scripts have executed. This Method is not executed when the Document is read from the database or an external system interface.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Load</b></td>
+<td class='confluenceTd'><i>cwOnDocLoad</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>Document Load script that is executed once after the Document is loaded from the database.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Store</b></td>
+<td class='confluenceTd'><i>cwOnDocStore</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>Document Store script that is executed each time the Document is saved to the database, immediately before the database operation is performed.</td>
+</tr>
+<!--<tr>
+<td class='confluenceTd'><b>On Enter</b></td>
+<td class='confluenceTd'><i>onEnter</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Not supported at the moment.</i> Document script that is executed when "Enter" key is pressed.</td>
+</tr>-->
+<tr>
+<td class='confluenceTd'><b>Visual Key</b></td>
+<td class='confluenceTd'><i>cwOnDocVisualKey</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>Script that shall return a string representing the visual key. The length of the string shouldn't be longer than 64 characters. If longer, the value is truncated. If this Method is empty, the Document Label is used as visual key.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Document Copy</b></td>
+<td class='confluenceTd'><i>docCopyScript</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>Script that is executed whenever the Document is copied.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>View Permission</b></td>
+<td class='confluenceTd'><em>visiblePerm</em></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>View Permission that specifies whether the participant is allowed to view the Document.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Add Permission</b></td>
+<td class='confluenceTd'><em>addPerm</em></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Add Permission that specifies whether the participant is allowed to create an instance of this Document (for example,  Document instances in an Order Collection).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Delete Permission</b></td>
+<td class='confluenceTd'><em>deletePerm</em></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Delete Permission that specifies whether the participant is allowed to delete an instance of this Document (for example, Document instances in an Order Collection).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Update Permission</b></td>
+<td class='confluenceTd'><em>editablePerm</em></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Update Permission that specifies whether the participant is allowed to update the Document (for example, change Variable of the Document).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Attach Permission</b></td>
+<td class='confluenceTd'><em>attachPerm</em></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Attach Permission that specifies whether attachments are allowed to be attached to the Document. </td>
+</tr>
+<!--<tr>
+<td class='confluenceTd'><b>Execute Permission</b></td>
+<td class='confluenceTd'>permExecute<i></i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Attach Permission is related to validation. The Execute permission specifies whether the validation Methods will execute on a save or submit operation. (e.g. A manager may require the ability to override validation rules). </td>
+</tr>-->
+<!--<tr>
+<td class='confluenceTd'><b>to String</b></td>
+<td class='confluenceTd'><i>toString</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Reserved. Do not use.</i></td>
+</tr>-->
+<tr>
+<td class='confluenceTd'><b>Attach</b></td>
+<td class='confluenceTd'><i>attach</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Get Drag Object Type</strong></td>
+  <td class='confluenceTd'><em>cwGetDragObjectType</em></td>
+  <td class='confluenceTd'>None.</td>
+  <td class='confluenceTd'><em>String</em></td>
+  <td class='confluenceTd'><p>Returns the metadata object's type. The purpose of this  method is to allow metadata to provide a different type for the object than  what is used by the product.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>cwOnChangedFromTable</strong></td>
+<td class='confluenceTd'>cwOnChangedFromTable</td>
+<td class='confluenceTd'>State</td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><p>This method takes a single integer  parameter.  The following is the explanation  of values:</p>
+  <ul type="disc">
+    <li>When       set to 0, this document instance is changed within a dynamic table.</li>
+    <li>When       set to 1, this document instance is added to a dynamic table.</li>
+
+<li>When  set to 2, this document instance is deleted from a dynamic table.</li>
+</ul>
+  <p>This method is triggered when you edit a  row in a dynamic table, or when you delete a row in a dynamic table using the  default per-row Delete button, or when you add a new row in a dynamic table  using the default Add button in the dynamic table.<br>
+  <p><strong>Note:</strong> This method is not invoked when you  remove or add new rows to the dynamic table through APIs rather than using the  default UI buttons.</p>
+  You can override the default empty  implementation to add logic to handle the data changes in a dynamic document through  editing the dynamic table, or when the instance is removed or added to the  dynamic table through the default UI buttons. This implementation covers the scenario  where you have no way to get the notifications when dynamic document is  modified through the dynamic table.</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>For Method Types that can be created, you can create multiple Methods of the same Method type (for example, Validation 1, Validation 2...), each identifiable by unique Method name. However, for Methods that are to be overridden from base Document, you can only define one Method per base Method; this is applicable to both system-predefined scripts (that is, from <i>com.conceptwave.system.Document</i>) and any additional Methods that are defined in non-system-based base Document. All of the system-predefined Methods <i>com.conceptwave.system.Document</i> have empty scripts except Permission Methods, which means the default Method is to do nothing. All Permission Methods of <i>com.conceptwave.system.Document</i> return <i>true</i>, which allows all operations on the Document by any participant.</p>
+
+<p>For scripts that are already overridden, they appear in the Method List pane and no longer be available at the right-click context pop-up menu.</p>
+
+<p>If this Document extends from another (non-system based) Document, and the base Document has additional Methods defined in it, those Methods are not displayed in the Methods tab of this Document. </p>
+
+<p>The system-defined Document-level Permission Set above (permView, permAdd, permDelete, permUpdate, permAttach), in essence, govern the Document's Permission. That is, whenever the Document is acted upon (create, read, update, delete...) by a participant, the corresponding Permission Method is invoked by AVM to determine whether the operation is allowed or not. Conversely, the "new" Permission Methods that can be added are not invoked unless explicitly associated with a Permission-related Property (for example, Element Properties in Document Variables).</p>
+
+<p>The Method created in Method List pane can be right-clicked, with various commands available; see <a href="../../../JavaScripting in Order Care/Scripting Interface.html">script management UI</a> for details.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

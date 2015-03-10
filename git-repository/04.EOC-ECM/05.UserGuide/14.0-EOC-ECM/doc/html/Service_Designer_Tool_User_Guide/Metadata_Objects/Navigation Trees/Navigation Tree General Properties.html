@@ -1,0 +1,422 @@
+<html>
+<head>
+<title>Navigation Tree General Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Navigation Tree General Properties</h2>
+
+<p>The general properties of the any Navigation Tree node are on the <b>General</b> tab.</p>
+
+<p>Because there are different node types of Navigation Tree node, and they have slightly different properties in this tab, the properties are tabularized below with each node type
+indicating yes/no on its applicability. 
+<ul>
+<li><i>Root Node</i></li>
+<li><i>Tree Node</i></li>
+<li><i>Order Item Node</i></li>
+<li><i>Data Structure Item Node</i></li>
+<li><i>Finder Node</i></li>
+<li><i>Finder Child Node</i></li>
+</ul>
+On the contrary, the remaining node type, <i>Recursive Node</i>, has its properties described in a separate table further below.</p>
+
+<p>For illustrative purposes, the <b>General</b> tab of a Navigation Tree root node is shown below.</p>
+
+<img src="navTreeGeneral.png" align="absmiddle" border="1" alt="Navigation tree - General tab" />
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Root Node</th>
+<th class='confluenceTh'>Tree Node</th>
+<th class='confluenceTh'>Order Item Node</th>
+<th class='confluenceTh'>DS Item Node</th>
+<th class='confluenceTh'>Finder Node</th>
+<th class='confluenceTh'>Finder Child Node</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Name of the metadata object (used in scripts; must conform to JavaScript naming conventions). Read-only after creation. To change it, use the <b>Rename</b> command in pop-up menu by right-clicking the metadata object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Deprecated</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Node's display label in the Navigation Tree, only if the <b>Object</b> does not have a Visual Key / Label, which has precedence as the node's visual key by default (as defined by method <i>onNodeVisualKey()</i>, which may be overridden).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Description of the metadata object for documentation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Help</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Context sensitive user help.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Extends</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Base metadata object to derive from.<ul>
+<li>For Navigation Tree root node, choose between the regular base object <i>com.conceptwave.system.NavigationTree</i>, or <i>com.conceptwave.system.NavigationTreeWithTabs</i>. The latter base object enables the configurability of Navigation Tree to display children nodes as tabs.</li>
+<li>For Tree Node, Finder Node and Finder Child Node, it is always extended from <i>com.conceptwave.system.TreeNode</i>.</li>
+</ul>This field is unchangeable after metadata object creation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Image</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>The image icon of the node at the Navigation Tree. If unassigned, node without any children node (that is, leaf) in the Navigation has a Document icon <img src="iconDoc.png" align="absmiddle" border="0" alt="Document icon" />, while node with children nodes (that is, non-leaf) has a Folder icon <img src="iconFolder.png" align="absmiddle" border="0" alt="Folder icon" /> by default. This default behaviour is driven by method <i>onNodeIcon()</i>, which may be overridden. For example, in this method, you may assign different icon images based on state of node (for example, expanded/collapsed).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Exclude</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>If checked, the node would not be displayed. However, children nodes of this node, if any, will be displayed under this node's parent. This effectively "flattens" the tree at runtime.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Auto expand</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'><p>If checked, this node is expanded when the Navigation Tree is displayed, showing all children nodes of this node automatically by default. When unchecked, the property is applied to the Navigation Tree node when it contains children nodes.  The Miller Column style of presentation does not automatically expand the columns with this parameter. </p>
+  <p>In your metadata, you can set <strong>Auto Expand</strong> on the  Navigation Tree node, which  automatically expands this node once tree is open. 
+Once running, you can call on the tree by using setNodeSelected() or use the expandCollapse() API, or both.</p>
+  <p>As an example, if you have a tree with ten nodes, and want to automatically expand the third node through scripting. When you load the tree, node three is automatically expanded by doing the following:</p>
+  <ol>
+    <li>Compute what node needs to be selected, based on your criteria.</li>
+    <li>Store the node in a variable.</li>
+    <li>Override the tree's onInit() script.</li>
+    <li>Use the setSelection() method to set the selection to this node and achieve dynamic selection  of the node when the tree displays.</li>
+  </ol></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Auto save</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>This property is a selection of 3 choices if this is a Tree Root Node:
+<ul>
+<li><b>All</b> – overrides auto-save setting for all nodes in the tree, the behaviour is like all children including the root have auto-save setting selected.</li>
+<li><b>Root only</b> – auto-save applies only to the root node and saves only the root node’s model when selection leaves the root or on Auto-save of the User Action. Auto-save for children is set at the node’s level for each node individually.</li>
+<li><b>None</b> – Auto-save is off for the root node, auto-save for children is set at the node’s level for each node individually.</li>
+</ul>
+For all other node types, this property is a boolean checkbox. If checked, any value changes made to the <b>Object</b> in the detail pane of the Navigation Tree are automatically saved when user navigates away (for example, to another node in the Navigation Tree).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Hide node if empty</b></td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>If checked, this node is hidden if it has no children nodes, or if none of them are visible. For example, this is useful when a Finder Node is desired to be hidden when it returns an empty result. When unchecked the property is applied to the Navigation Tree node when it contains children nodes.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Hide expand icon if empty</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>If checked, this node has no expand icon if it has no children nodes. This is usually desirable when a Finder Node returns an empty result. </td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Sort by visual key</b></td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>If checked, the appearance of tree nodes created by this metadata node are sorted (alphabetically) by their visual key, if more than one tree node is generated. See <a href="Navigation Trees at Runtime.html">Navigation Tree at runtime</a> to understand how the visual key of a node is computed.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Show children count</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>If checked, the node's display label is appended with a number in brackets, which is the number of children nodes that is under this node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Display in parent tabs</b></td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Only visible when Root Node of the Navigation Tree extends from <i>com.conceptwave.system.NavigationTreeWithTabs</i>. If checked, the node appears to be assimilated into the parent; the detail <b>Form</b> of the node <b>Object</b> is displayed as a Tab Frame at parent node's Form (which becomes a Tabset), while the node is no longer visible in the Tree Form Element of the Navigation Tree.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Display tab always</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Only visible when Root Node of the Navigation Tree extends from <i>com.conceptwave.system.NavigationTreeWithTabs</i>. If checked, all children nodes with <b>Display in parent tabs</b> enabled must be displayed in tabs, even if there is only one such child node.<br/>
+Note that if unchecked, and there is only one visible <b>Display in parent tabs</b> child node, and this node does not have own details (for example, collections or top order), runtime will display the child node’s detail from in the parent detail form, as-is without tabs.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Object</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>The metadata object that this node represents, which is a model object of:<ul>
+<li><a href="../Finder/Finders.html">Finder (of any type)</a> if this is a Finder Node, or</li>
+<li>fixed as Finder's Output Document of its parent node if this is a Finder Child Node, or</li>
+<li>either <a href="../Document/Documents.html">Document</a>, <a href="../Data Structures/data structures.html">Data Structure</a>, <a href="../Orders/orders.html">Order</a>, or <a href="../Finder/Finders.html">Finder (of any type)</a> if this is a Tree Node or Root Node.</li>
+<li>Item in a Data Structure if this is a Data Structure Item Node</li>
+<li>Item in an Order if this is an Order Item Node</li>
+</ul>
+For Order Item Node or Data Structure Item Node, this field becomes read-only, and assigned based on the item type in <b>Order Item Path</b> or <b>Data Structure Path</b> respectively.
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Detail UI</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>The User Interface of <b>Object</b> to present the object's view at the detail pane of the Navigation Tree <b>Default</b> Form, when the node is clicked. This property may be set to <i>&lt;NONE&lt;</i>, which this node (which is a derived User Interface object in itself) is set to be the detail User Interface. See method <i>onNodeDetail()</i> for details, which returns the detail UI based on variable <i>modelUI</i>.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Form</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>The Form of the <b>Detail UI</b> to display at the detail pane of the Navigation Tree <b>Default</b> Form, when the node is clicked. The choices are restricted to the Forms of the selected <b>Detail UI</b> User Interface. If <b>Detail UI</b> is <i>&lt;NONE&lt;</i>, then the local Forms of this node are available to be chosen.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Table Document</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>The Document that is the model metadata object for the Navigation Tree's <i>Tree</i> Form Element. This Document must be or extended from <i>com.conceptwave.system.TreeDocument</i>, which has TreeNode-defining Variables such as <i>label</i>, <i>image</i>, <i>expanded</i>, etc that controls the appearance of each node as shown in the Tree Form Element. See description following this table for details.<br/><br/>
+When a Table Document is selected that is different from the base Navigation Tree's Table Document, the Variable <i>NavTree</i> is created in the <b>Variables</b> tab to override the Data Type of the existing <i>NavTree</i> Variable to this specified Table Document.
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Search Conversion Map</b></td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>The Conversion Map that translates the parent node's <b>Object</b> to the Input Document of the Finder. This map effectively defines the value of Finder search input based on the object in parent node, and thus obtains the result Documents as children of the Finder Node. This may be <b>&lt;NONE&gt;</b>, <b>Default</b>, or a Conversion Map can be assigned. If assigned, the Conversion Map is applied on the node's initialization, as well as whenever an action event (such as Add, Save, Update, Delete) occurs to the <b>Object</b> of the parent node in the Navigation Tree. <b>Default</b> chooses the Conversion Map, if there are multiple of them for the same source/target pair defined in project, that has boolean <b>Default</b> property enabled.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Table Conversion Map</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'><p>The Conversion Map that translates the <b>Object</b> to the <b>Table Document</b> of the Root Node. This may be <b>&lt;NONE&gt;</b>, <b>Default</b>, or a Conversion Map be assigned. If assigned, the Conversion Map is applied on node's initialization, as well as whenever an action event (such as Add, Save, Update, Delete) occurs to the <b>Object</b> of the Tree Node in the Navigation Tree. <b>Default</b> chooses the Conversion Map, if there are multiple of them for the same source or target pair defined in project, that has boolean <b>Default</b> property enabled.</p>
+  <p><strong>Note:</strong> When displaying a tree node, the system metadata works as follows:</p>
+  <ol>
+    <li>Applies the table conversion map to convert the model document to the tree document.</li>
+    <li>Sets the tree document's image to the value returned from the onNodeIcon() method.</li>
+    </ol>
+  <p>If the image was set through the table conversion map, its value is lost as it is overridden by the onNode() method. If onNodeIcon() is not  overridden, it is still invoked and returns the default tree icons.It is recommended that you move your logic for computing the image value from your table conversion map to your onNodeIcon() script of your corresponding tree nodes.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Order Item Path</b></td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>The path of the Order Item that is to be represented by the node. The Order Item must be in an Order that is modelled as the <b>Object</b> of any ancestor node to this node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Data Structure Path</b></td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>The path of the Data Structure Item that is to be represented by the node. The Data Structure Item must be in a Data Structure that is modelled as the <b>Object</b> of any ancestor node to this node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Timer duration</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>If a timer interval is specified, the timer calls the on Timer method each time an interval elapses.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Default Folder Image</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>The default image icon of nodes that have children nodes.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Default Leaf Image</b></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>The default image icon of nodes that do not have children nodes.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The significant properties in this tab are the <b>Object</b>, <b>Detail UI</b> and <b>Form</b> properties, which bind a metadata object to the node and specifies its User Interface and Form when the node is clicked at runtime.</p>
+
+<p>Another important property is the <b>Table Document</b>, applied only to the Root Node. This property casts the metadata object type of two important Variables in the Navigation Tree, <i>tableDoc</i> and <i>navTree</i>, which controls much of the runtime behaviour of the Navigation Tree. You can simply choose the system Document <i>com.conceptwave.system.TreeDocument</i> here, or extend a Document from it and assign this Document as the Table Document.  In the latter case, you can add Variables (or Methods) to the extended Document, and display these additional Variables as columns of the Tree Form Element via Tree Table. This is a great feature when additional description or properties are required to be displayed alongside nodes within the Tree Form Element. See <a href="Navigation Trees at Runtime.html">Navigation Tree at runtime</a> for runtime samples.</p>
+
+<table cellpadding='5' width='85%' cellspacing='0' class='infoMacro' border='0'><tr><td><b class="strong">Design Note: why is Table Document necessary?</b><br /><br/>
+Unlike other metadata objects, all node types in the Navigation Tree are enforced to be derived from system metadata tree node objects only, and can never be derived from user-defined objects (for example, create <i>TreeNodeA</i>, and then create <i>TreeNodeA1</i> by extending from <i>TreeNodeA</i>). To overcome the inability to declare (User Interface) Variables across all nodes in a Navigation Tree (by creating a base node, create Variables, then have all nodes extend from the base node) and be presented in the Tree Form Element, the Table Document is the means to model extensibility that is assigned to the root node of the Navigation Tree.</td></tr></table>
+
+<p>Lastly, the <b>Exclude</b> flag may be enabled on a container node or a Finder Node to flatten any undesired hierarchy in the Tree, and to have different list of metadata objects (for example, different Documents) appear as siblings of each other.</p>
+
+<p>Below are the general properties of Recursive Node.</p>
+
+<img src="navTreeRecGeneral.png" align="absmiddle" border="1" alt="Recursive node - General tab" />
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Name of the metadata object (used in scripts; must conform to JavaScript naming conventions). Read-only after creation. To change it, use the <b>Rename</b> command in the popup menu by right-clicking the metadata object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Node's label. This is not used at runtime; the label is replaced by the referenced <b>Recursive item</b>'s label.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the metadata object for documentation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Recursive item</b></td>
+<td class='confluenceTd'>Associate any node of any Navigation Tree to become a sub-tree of this Navigation Tree structure, with the chosen node as the root of the sub-tree and its children and their successors, if any, spanned as the sub-tree. To have recursive behaviour, however, the chosen node must be an ancestor of the Recursive Node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Exclude</b></td>
+<td class='confluenceTd'>If checked, the root of the Recursive sub-tree would not be displayed. However, children nodes of this node, if any, will be displayed under this node's parent. This effectively "flattens" the tree at runtime.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Often, a Recursive Node is instructed to recur on an ancestor Finder Node, to display a dynamic, hierarchical data structure on the Navigation Tree. By simply setting the correct search criteria of the Finder (on Finder Node's initialization), the recursiveness naturally ends at the data structure's leaf nodes.</p>
+
+<p>Another generic way to stop the recursiveness is by using the <i>visiblePerm</i> permission.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

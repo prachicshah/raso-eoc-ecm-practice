@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>System Configuration Introduction</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>System Configuration</h2>
+
+<p>The System Configuration application, or commonly referred to as <i>Configuration</i>, can configure across multiple application nodes when your application is deployed in a J2EE-cluster setting. This is achieved by a two-level configuration hierarchy:</p>
+<ul>
+  <li><b>Cluster-level</b>: Configuration set in this level propagates to all nodes in the cluster. There is only one cluster-level configuration; you cannot add/remove cluster in Configuration application.</li>
+<li><b>Node-level</b>: Configuration set in this level applies to a specific node, identified by <i>Node ID</i>, which may override configuration at the cluster-level.</li>
+</ul>
+<p>For example, let's say you have four nodes to run your application. For all common settings, set your configuration at the cluster-level so all four nodes share the same settings. For settings that are different among nodes, such as port settings or hardware-related parameters, set them at the node-level at each of the four nodes. If only one of the nodes need a different setting, you can first set the common value at the cluster level, and then set the unique value at the specific node at the node-level.</p>
+
+<p><b>Note</b>: Beware that modifying a property at the cluster-level overwrites the existing node-level value for all nodes.</p>
+
+<h3>Managing Centralized Configuration</h3>
+<p>The configuration, both cluster-level and node-level of all nodes, is centrally stored in database. You can use the Configuration application at any runtime instance of any application node (or run it through Velocity Studio in Config mode; see <a href="../../Getting Started/accessSystemConfiguration.html">Access System Configuration</a>), and any configuration changes you have made are applicable to all respective nodes.</p>
+
+<p>When a runtime instance is started, it retrieves the configuration from the database based on its assigned <i>Node ID</i>. It cannot be started if there is no node-level configuration based on the Node ID.<br/>
+<ul>
+<li>At deployment, each of the <a href="../../../Metadata Deployment Guide/J2EE Application Server Installation.html">Application Server must be set up</a> with an appropriate Node ID using JVM argument <i>-Dcom.conceptwave.nodeId</i>.</li>
+<li>At metadata development with Velocity Studio, when the application is run in <a href="../../../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Metadata Run.html"><b>Runtime > Run</b></a> menu command, the Node ID is specified in <a href="../../../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Preferences.html">Preferences</a> menu.</li>
+</ul>
+<p>Two important configuration settings at the node-level, which can be found in <b>System</b> vertical tab <b>System parameters</b> horizontal tab, are as follows:</br>
+<ul>
+<li><b>Start mode</b>: determines whether the node runs as a UI server or a process engine (PE), or both
+  <ul>
+    <li><strong>UI</strong> - type of node to run UI servers</li>
+    <li><strong>PE</strong> - type of node to run the process engine</li>
+    <li><strong>UI and PE</strong> - types of node to run both UI servers and the process engine</li>
+    </ul>
+  <strong>Note: </strong>In production, a node needs to be either PE or UI, so the work is  distributed properly.&nbsp;The UI and PE type node is for development, demonstrations,  proof of concept, and so on. <br>
+  <br>
+</li>
+<li><b>Active configuration</b>: boolean that specifies whether or not the node can be started using this node-level configuration</li>
+</ul>
+<p>Cluster-level or a node's node-level configuration can be imported and exported using XML. </p>
+<h3><a name="fast-swapping">Fast-Swapping Configuration in Deployment</a></h3>
+
+<p>To support deployment in production environment where minimal system downtime is desired, there are two sets of <i>configuration version</i> that are stored in the database -- an <i>Active</i> configuration version and an <i>Inactive</i> configuration version.</p>
+
+<p><b>Notes</b>: </p>
+<ul>
+  <li>A configuration version consists of the complete cluster-node hierarchy. The Active/Inactive configuration version is a separate feature from the active/inactive flag of a node configuration, which marks the validity  of a node configuration within a cluster.</li>
+  <li>All cluster configuration 
+    </tr>changes go directly to an active configuration even when it is running in inactive mode, as the CLUSTER node is always active. All configuration changes in inactive mode from non-cluster nodes go to an inactive configuration.</li>
+</ul>
+<p>Under usual circumstances, even in production environment, it is sufficient to use one configuration version, which is the active version. Simply update the configuration through the Configuration application, which is enabled by running in either Run mode or Config mode.</p>
+
+<p>However, if an application-specific configuration is to be introduced with the new WAR file (for example, a new external interface to connect to), while system downtime must be kept to a minimum, the inactive configuration version should be pre-configured to prepare for deployment. The procedure is similar to <a href="../../../Metadata Deployment Guide/Deploying Application.html">deploying application</a> as described in deployment guide, but with the following changes:
+<ol>
+<li>Ensure the new WAR file and target environment's database connectivity are available before running Configuration application.</li>
+<li><a href="../../Getting Started/accessSystemConfiguration.html#-config">Run the configuration application in command-line</a> with <i>inactive</i> argument set; it is not possible to configure the inactive configuration version in other ways (for example,  running the Configuration application with Velocity Studio GUI, or in a J2EE container).</li>
+<li>The configuration application now presents the inactive configuration version. Configure it as necessary in the System Configuration application.</li>
+<li>Bring down target environment, update database schema. Then, run the <a href="../../../Metadata Deployment Guide/Activation in Command Line Interface.html">activate command</a> with <i>inactive</i> argument set.</li>
+<li>Continue with the rest of the deployment procedure.</li>
+</ol>
+
+
+<p><strong>Notes: </strong></p>
+<ul>
+  <li>The activate command with <i>inactive</i> argument causes the inactive configuration version to be overwritten into the active configuration version. As a result, the original active configuration version shall be lost.
+  </li>
+  <li>The runActivate command with the <em>inactive</em> flag copies the inactive configuration to an active configuration, even if the inactive configuration is empty.</li>
+  <li>The CLUSTER node is always active. If you make any changes to the CLUSTER node, and either restart the application server or reload the configuration, all changes take into effect. However,  for non-cluster nodes, changes take into effect only when you activate the WAR file using the inactive argument set through fast-swapping.<BR>
+</li>
+</ul>
+</body>
+</html>

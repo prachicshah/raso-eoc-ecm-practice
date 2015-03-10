@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Introduction to Deployment</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../highlight.js"></script>
+</head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td valign="top" class="pagebody">
+    <h2> Deployment to a Single Web Container</h2>
+      <p>This page provides you  general information about deploying the product to a single Web container. The following describes the steps:</p>
+      <ol>
+        <li><a href="../../html/Installer_User_Guide/Introduction.html">Install Ericsson Order Care and Ericsson Catalog Manager</a>.</li>
+        <li>Locate the <EM>Disk1\InstData\Resource1.zip\$IA_PROJECT_DIR$\cd_source\build\ws\cwf.War</EM> file, and install it to the Web container.</li>
+        You can customize the <strong>web.xml</strong> with the use of <a href="../../html/Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Metadata Build WAR.html">Build Deployment WAR</a> option of Velocity Studio, or <a href="Packaging in Command Line Interface.html">command line</a> option to generate the  WAR file. 
+</li>
+        <p><strong> Note:</strong> The generated WAR  file does not contain the metadata. If you are upgrading an existing deployment,  replace the existing CWF Web application.</p>
+        <li> Add the following system properties to the environment  for the CWF Web application, or in the Web container&rsquo;s startup scripts:<br>
+          <p><em>-Dcom.conceptwave.appName=&lt;Database application name&gt;<br>
+            -Dcom.conceptwave.appVersion=&lt;Database application  version&gt;<br>
+            -Dcom.conceptwave.nodeId=&lt;Configuration Node Name&gt;</em></p>
+          <ul>
+            <li> For new deployments, <a href="../../html/Installer_User_Guide/database initialization.html">create the database and run the required   DDL scripts</a>, and then use Velocity Studio or command-line options to  generate  the <a href="../../html/Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Upgrading System.html"> metadata upgrade script</a>. Run the upgrade scripts.</li>
+            <li>For existing deployments, <a href="../../html/Installer_User_Guide/database initialization.html">upgrade the database</a>.</li>
+          </ul>
+        <li>Start the WEB container.</li>
+      </ol></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<html>
+<head>
+<title>Finder User Interface Methods</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Finder User Interface Methods </h2>
+
+<p>The Methods tab is a <a href="../../../JavaScripting in Order Care/Scripting Interface.html">script management screen</a> in Velocity Studio, which is composed of the <b>Method List pane</b> at the left, and lists all scripts of the Finder, and <b>Details pane</b>. This  displays the details of a script when selected at the Method List pane. To create a new Method, right-click  the Finder in the Method List pane and select a Method from the pop-up menu.</p>
+<p><img src="FinderMethodsContextMenu.png" align="absmiddle" border="1" alt="Finder Methods Context Menu" /></p>
+
+<p>If you have a long list of methods in the left pane, you can press the first letter of the method you are looking for to jump to the list of methods beginning with that letter. For example, pressing the <strong>I</strong> key highlights the first instance of a method that begins with the letter I. The method displays in the right pane.</p>
+<p>The following table lists the types system-defined Methods that can be overridden at the Finder User Interface level. </p>
+<p><strong>Note:</strong> When library methods are overridden, it is recommended that the <em>super method</em> is invoked first and a custom script is written after the super call. If the super method is not invoked the Finder may not work as it is expected.</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Method</th>
+      <th class='confluenceTh'>Usage</th>
+      <th class='confluenceTh'>Code</th>
+      <th class='confluenceTh'>Parameters</th>
+      <th class='confluenceTh'>Description</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>addAction</b></td>
+      <td class='confluenceTd'><p>Invoked when user clicks on the Add menu <img src="Method_addAction.png" align="absmiddle" border="1" alt="Method - Add Action " /></td>
+      <td class='confluenceTd'><p>var finder = this.model.metadata;</p>
+        <p> </p>
+        <p>if(finder.isViewEditable()){</p>
+        <p>      this.searchAction();</p>
+        <p>      addParam = new Document(this.model.selectOutputDocumentMetadataName);</p>
+        <p>      var toAdd = finder.operations.add.invoke(addParam, this.invokeContext);</p>
+        <p>      this.addInit(toAdd);</p>
+        <p>      this.result.updateList; //force   update</p>
+        <p>}else{</p>
+        <p>      var finder = this.model.metadata;</p>
+        <p>      var toAdd = addParam ? addParam : new finder.operations.add.input.UserInterface(null,   this);</p>
+        <p>      this.isSearchButtonVisible = false;</p>
+        <p>      this.addInit(toAdd);</p>
+        <p>      this.detail = toAdd;</p>
+        <p>}</p>
+        <p>// Notify listeners</p>
+        <p>Notifier.notify(this.model, "add", toAdd.model);</p></td>
+      <td class='confluenceTd'><p>addParam; type Document</p></td>
+      <td class='confluenceTd'><p>Finders with non-editable tables  create a new instance of a Document providing the Finder’s output document name. The Finder’s add operation is then   called with the new instance and <em>addInit()</em> is called if any script is provided. The search menu of the Finder is hidden and the new document is set as this Finder’s detail variable.</p>
+        <p>Finders with editable tables call the <em>searchAction()</em> method in cases when this Finder is currently not displaying any data. A new document is then created and the table element is notified to open the new row in edit mode.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>addCustomView</b></td>
+      <td class='confluenceTd'>Invoked when the menu   addView is clicked.<p><img src="Method_addCustomerView.png" align="absmiddle" border="1" alt="Method - addCustomerView" /></p></td>
+      <td class='confluenceTd'><p>return cwf_oe.addToFavorites(true);</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'>Creates a new instance   of <em>cwf_oe.Favorite</em> document and presents it on   a dialog popup for users to create a new custom view for this Finder</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>addInit</b></td>
+      <td class='confluenceTd'><p>Invoked by addAction()</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'><p>May be used to initialize values of a newly added document in this   Finder.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>canDelete</strong></td>
+      <td class='confluenceTd'><p>Used as the visible permission property of the cwfDelete menu.<p> <img src="Method_canDelete.png" align="absmiddle" border="1" alt="Method - canDelete" /></p></td>
+      <td class='confluenceTd'><p>if(!this.model.deletePerm())</p>
+        <p>  return false;</p>
+        <p>if(this.result.selected != null &amp;&amp;   this.result.selected.length == 1){</p>
+        <p>  if(!this.result.selected[0].deletePerm())</p>
+        <p>    return false;</p>
+        <p>}</p>
+        <p>return this.detail!=null ||   (this.result!=null &amp;&amp;   this.result.selected!=null);</p></td>
+      <td class='confluenceTd'><p>$psCondition; type Boolean; Outcome of   the privileges operation</p></td>
+      <td class='confluenceTd'><p>Determines the user’s ability to remove data from this Finder using the   delete menu. If this Finder’s delete permission returns <em>false</em>, the delete menu   does not show for this Finder. Otherwise, if the user is currently   viewing the result table and a row is selected, then the delete menu is visible.   If the Finder’s delete permission returns <em>true</em> but the current selected   document’s delete permission returns   <em>false</em>, this delete menu is hidden. </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>canEditInTable</strong></p></td>
+      <td class='confluenceTd'><p>Invoked when the addAction is   called.</p></td>
+      <td class='confluenceTd'><p>return this.model.isViewEditable;</p></td>
+      <td class='confluenceTd'><p>$psCondition; type Boolean; Outcome of   the privileges operation</p></td>
+      <td class='confluenceTd'><p>Accesses the current Result Form (based on the current view displayed for   this Finder) and determines the editable property of the Finder table within   that Result Form.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>changeFinderView</strong></td>
+      <td class='confluenceTd'><p>Invoked when the user clicks on a view listed under the finder   preferences menu (if any)</p></td>
+      <td class='confluenceTd'><p>if (this.model != null &amp;&amp;   this.model instanceof Finder   &amp;&amp;</p>
+        <p>      this.model.metadata != null &amp;&amp; view !=   null) {</p>
+        <p>    this.model.setVelView(view);</p>
+        <p>    this.header = view;</p>
+        <p> </p>
+        <p>    var finder = this.model;</p>
+        <p>    this.detailForm = finder.getDetailForm();</p>
+        <p>  </p>
+        <p>    this.initSearch();</p>
+        <p>}</p></td>
+      <td class='confluenceTd'><p>view; type String; the name of the view selected</p></td>
+      <td class='confluenceTd'><p>Utilizes the view parameter as a view name and tries to find and set as   the current view of the Finder. The Search Form, Result Form,   Detail Form are set based on the   current view. The Search Form is also initialized. The state of the table for   this Finder, including the order of the columns as well as the sorting of the   data, is set.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>copyAction</strong></td>
+      <td class='confluenceTd'>Invoked when the user   clicks on the copy menu. <p><img src="Method_copyAction.png" align="absmiddle" border="1" alt="Method - copyAction" /></p></td>
+      <td class='confluenceTd'><p>var finder = this.model.metadata;</p>
+        <p>if (this.result.selected!=null &amp;&amp;   this.result.selected.length == 1) {</p>
+        <p>  var selectedDoc = this.result.selected[0];</p>
+        <p>  var copiedDoc = selectedDoc.copyDocument(false,   true);</p>
+        <p> </p>
+        <p>  if(finder.isEditable()){</p>
+        <p>      this.searchAction();</p>
+        <p>      var addParam = copiedDoc;</p>
+        <p>      var toAdd = finder.operations.add.invoke(addParam, this.invokeContext);</p>
+        <p>      copiedDoc.docCopyScript();</p>
+        <p>      this.addInit(toAdd);</p>
+        <p>      this.result.updateList; //force   update</p>
+        <p>  }else{</p>
+        <p> </p>
+        <p>   this.detail = new copiedDoc.metadata.UserInterface(copiedDoc, this);</p>
+        <p>  this.isSearchButtonVisible = false;</p>
+        <p>  this.detail.parent = this;</p>
+        <p>  }</p>
+        <p> </p>
+        <p>  copiedDoc.save();</p>
+        <p>  // Notify listeners</p>
+        <p>  Notifier.notify(this.model, "add", copiedDoc);</p>
+        <p>}</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'><p>This method  creates a new instance of a Document via the <em>copyDocument</em> method on the currently selected document (method is provided under the JavaScript Extensions). </p>
+        <p>The   Finder’s add operation is then called with the new instance and <em>addInit()</em> method is called if any script is provided. The search menu of the Finder is hidden and the new document is set as this Finder’s detail variable.     
+          Finders with editable tables  calls the <em>searchAction()</em> method in cases when this finder is currently not displaying any data. The table element is notified to open the new row in edit mode.</p></td>
+      
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>cwGetDragData</strong></td>
+      <td class='confluenceTd'>This method is called on the source  controller <EM>before</EM> cwGetDropData is  called.</td>
+      <td class='confluenceTd'>return object;</td>
+      <td class='confluenceTd'>object</td>
+      <td class='confluenceTd'>For finder user interfaces, the default   implementation of the method returns  the object  passed in. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>cwGetDragObjectType</strong></td>
+      <td class='confluenceTd'>This method is used to allow metadata to provide a different type for the  object than what is used by the product. </td>
+      <td class='confluenceTd'>return this.model.cwGetDragObjectType(dobj);</td>
+      <td class='confluenceTd'>object</td>
+      <td class='confluenceTd'>When  this method is called on a finder, the finder  returns the output  document’s type. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>cwGetDragTypes</strong></td>
+      <td class='confluenceTd'>This method is called  during the fetch of the data. When an object’s type is not included in the  list returned by this method, it is marked as canDrag=false.</td>
+      <td class='confluenceTd'>return this.model.metadata.selectOutputDocument.toString();</td>
+      <td class='confluenceTd'>None</td>
+      <td class='confluenceTd'>The default implementation of this method for finder user interface returns a list of metadata type names that correspond to the output object’s metadata type, and any objects in the metadata which extend this output type. <br></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>cwGetDropData</strong></td>
+      <td class='confluenceTd'>This  method is  called on the target controller near the beginning of cwOnDrop <em>after</em> cwGetDropData has been  called.</td>
+      <td class='confluenceTd'>return object;</td>
+      <td class='confluenceTd'>object</td>
+      <td class='confluenceTd'>The default  implementation of this method   returns the object passed in. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>cwGetDropTypes</strong></td>
+      <td class='confluenceTd'>This  method is called as part of the data fetch. The list returned from this method is sent to the browser for verification of object acceptance when a user attempts to drop an object.</td>
+      <td class='confluenceTd'>return this.model.metadata.selectOutputDocument.toString();</td>
+      <td class='confluenceTd'>None</td>
+      <td class='confluenceTd'>This method returns  an array of metadata type names.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>cwOnDragOut</strong></td>
+      <td class='confluenceTd'>This method is called once cwOnDrop has  successfully completed.</td>
+      <td class='confluenceTd'><p>if(sourceDs != null){</p>
+        <p>&nbsp;&nbsp;if(dragAction == &quot;copy&quot;){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;return;</p>
+<p>&nbsp;&nbsp;}else{</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;if(draggedData .length &gt;= 1){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(var i = 0; i &lt; draggedData.length; i++){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sourceDs.remove(draggedData[i]);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p>&nbsp;&nbsp;}</p>
+<p>&nbsp;&nbsp;sourceDs.updateList;</p>
+<p>}</p>
+</td>
+      <td class='confluenceTd'>draggedData (Object);<br>
+        sourceName (String);<br>
+        sourceDs (Object);<br>
+        actualDataDropped (Object);<br>
+        dragAction (String)</td>
+      <td class='confluenceTd'>This method performs certain actions once cwOnDrop has  successfully completed.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>cwOnDrop</strong></td>
+      <td class='confluenceTd'>This method is called when the user drags and releases the  mouse button on a table or tree.</td>
+      <td class='confluenceTd'><p>var actualDataDropped;</p>
+        <p>try{<br>
+          if(sourceDs != null){<br>
+          //dragged data from source perspective<br>
+          actualDataDropped =(getDragDataMethod != null &amp;&amp; Global.isMethodDefined(source, getDragDataMethod))?source[getDragDataMethod](dataDropped):dataDropped;<br>
+          if(Global.isMethodDefined(this,getDropDataMethod)){<br>
+          //dropped data from target perspective<br>
+          actualDataDropped = this[getDropDataMethod](actualDataDropped, sourceName, sourceDs, dragAction);<br>
+          }<br>
+          var selectList = new Array();</p>
+        <p> for(var i = 0; i &lt; actualDataDropped.length; i++){<br>
+          var toAdd = actualDataDropped[i].copy(dragAction==&quot;copy&quot;?false:true);<br>
+          targetDs.add(dropIndex+i,toAdd);<br>
+          selectList[selectList.length] = toAdd;<br>
+          }</p>
+        <p> targetDs.setSelected(selectList);<br>
+          targetDs.updateList;<br>
+          }<br>
+          }catch(ex){<br>
+          Global.throwException(&quot;UU0320&quot;);<br>
+          }</p>
+        <p>this.cwOnSaveDrop(targetDs);<br>
+          if(dragMethod != null &amp;&amp; Global.isMethodDefined(source, dragMethod)){<br>
+          source[dragMethod](dataDropped, sourceName, sourceDs, actualDataDropped, dragAction);<br>
+          }</p>
+        <p>if(Global.isMethodDefined(source, &quot;cwOnSaveDrop&quot;)){<br>
+          source.cwOnSaveDrop(sourceDs);<br>
+          }</p></td>
+      <td class='confluenceTd'><p>source, (Object);<br>
+        sourceName (String);<br>
+        sourceDs (Object);<br>
+        dataDropped (Object);<br>
+        dropIndex	(Integer);<br>
+        dragAction (String);<br>
+        target	(Object);<br>
+        targetName (String);<br>
+        targetDs (Object);<br>
+        getDropDataMethod (String);<br>
+        getDragDataMethod (String);<br>
+        dragMethod (String)</p></td>
+      <td class='confluenceTd'><p>This method is the default implementation for drag and drop for tables. For finder tables which accept dropped objects, the following actions take place:</p>
+        <p>The &quot;Get Drop Data&quot; method specified on the source element is called on the source controller first. The objects being dropped  serve as a parameter. The source controller decides what to return for the target to work with. The object returned from this method  serves as the dropped object.</p>
+        <p>1) If the drag action is a &quot;copy&quot; (achieved by holding down the CTRL-key until the mouse is released to drop the object), this method will iterate through the list of objects that have been dropped and call &quot;copy&quot; on it. The copied object is then added to the targetDs starting at dropIndex.</p>
+        <p>2) If the drag action is a &quot;move&quot; (the default drag and drop action), this method  iterates through the list of objects that have been dropped and adds to the targetDs starting at dropIndex.</p>
+        <p>If either #1 or #2 is successful, this method calls the drag out method specified on the source element.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a name="cwOnVelocityRowstyle"></a>cwOnVelocityRowstyle</strong></td>
+      <td class='confluenceTd'><p>This method exists under the Finder  User Interface level. This method is called for every result document for that  finder when finder data is fetched. </p>
+        <p><strong>Note:</strong> The cwOnVelocityRowstyle method is called only if the  Finder User Interface has overwritten this method.</p></td>
+      <td class='confluenceTd'><p>If the result document contains a variable  called isNew, one may write a function like the following:</p>
+        <p>if(document.isNew)<br>
+  &nbsp; &nbsp;return &quot;styleWithGreenFont&quot;;<br>
+          else<br>
+  &nbsp; return &quot;styleWithBlackFont&quot;;<br>
+  <br clear="all">
+  <br>
+        </p></td>
+      <td class='confluenceTd'><p>document; type Document; the current document being   processed</p></td>
+      <td class='confluenceTd'>This method must return a string  representing the style name, which can be found in the application's cascading  stylesheet (.css) file. For convenience, the parameter passed in by the  system represents the current record (data document) being processed.&nbsp;</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>deleteAction</strong></td>
+      <td class='confluenceTd'>Invoked when the user   clicks on the delete menu. <p><img src="Method_deleteAction.png" align="absmiddle" border="1" alt="Method - deleteAction" /></p></td>
+      <td class='confluenceTd'><p>var finder = this.model.metadata;</p>
+        <p>var i;</p>
+        <p>for (i = 0; i &lt; this.result.selected.length; i++) {</p>
+        <p>  var toDelete = this.result.selected[i];</p>
+        <p>  finder.operations.deleteOp.invoke(toDelete, this.invokeContext);</p>
+        <p>  if (this.detail!= null) {</p>
+        <p>    this.detail = null;</p>
+        <p>  }</p>
+        <p>}</p>
+        <p>this.result.updateList; //force   update</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'><p>Takes the currently selected document and calls the Finder’s delete   operation. If the detail form of this document is currently being displayed, set   the detail variable to null. Once the operation is successful, update the   Finder’s data to reflect the change.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>doInitFinder</strong></td>
+      <td class='confluenceTd'><p>Invoked from the onInit() method of the finder.</p></td>
+      <td class='confluenceTd'><p>var finder = this.model.metadata;</p>
+        <p>this.invokeContext = new com.conceptwave.system.InvokeContext(finder, this.model);</p>
+        <p> </p>
+        <p>if (this.model.searchInput != null)   {</p>
+        <p>  this.search = new this.model.searchInput.UserInterface(null,   this);</p>
+        <p>  if (this.model.searchDocument!=null){</p>
+        <p>        this.search.model = this.model.searchDocument;</p>
+        <p>  }</p>
+        <p>}</p>
+        <p> </p>
+        <p>this.isSearchButtonVisible = true;</p>
+        <p>this.chart = false;</p>
+        <p> </p>
+        <p>this.searchForm = this.model.getSearchForm();</p>
+        <p>this.resultForm = this.model.getResultForm();</p>
+        <p>this.detailForm = this.model.getDetailForm();</p>
+        <p>this.result = this.model.list;</p>
+        <p> </p>
+        <p>var viewsList = this.model.getViews();</p>
+        <p>if (viewsList != null) {</p>
+        <p>      var viewsDoc = new Array();</p>
+        <p>      for(var i = 0; i &lt;   viewsList.length; i++) {</p>
+        <p>        viewsDoc[i] = new com.conceptwave.system.FinderViewIteratedItem;</p>
+        <p>        viewsDoc[i].view = viewsList[i].toString();</p>
+        <p>        viewsDoc[i].finder = this;</p>
+        <p>      }</p>
+        <p>      this.views = viewsDoc;</p>
+        <p>      this.header = this.model.getVelView();</p>
+        <p>      this.changeFinderView(this.header);</p>
+        <p>} else {</p>
+        <p>      this.initSearch();</p>
+        <p>}</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'><p>This methods main functionality is to initialize values of essential variables such as the <em>search</em> and <em>result</em> variable.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>downloadCsv</strong></td>
+      <td class='confluenceTd'>Invoked when the cwfCSV menu is invoked. <p><img src="Method_csv.png" align="absmiddle" border="1" alt="Method_downloadCSV" /></p></td>
+      <td class='confluenceTd'><p>this.resetModelStatus();<br>
+        var download = new com.conceptwave.system.DownloadCsv(null, this);<br>
+        download.fileName = &quot;finder.csv&quot;;<br>
+        download.objectToPrint = this;<br>
+        download.mimeType =&quot;text/csv&quot;;<br>
+        download.resultUI = this.resultUI;<br>
+        download.resultForm = this.resultForm;<br>
+        Global.doDownload(download);</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'><p>Creates a new instance   of DownloadCsv and instantiates the   necessary values. <em>Global.doDownload</em> sets the download   variable as the current application’s <em>cwDownload</em> variable value. The   generated method of the download is then called to process the Finder’s data and   present it to the user in coma-separated-value format as a browser download.</p>
+        <p><em>Download.resultUI</em> and <em>download.resultForm</em> are used to specify which user interface to use to look up the result table if result form of finder user interface does not have a table element.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>downloadXml</strong></td>
+      <td class='confluenceTd'>Invoked when the cwfXml menu is invoked. <p><img src="Method_xml.png" align="absmiddle" border="1" alt="Method - XML" /></p></td>
+      <td class='confluenceTd'><p>this.resetModelStatus();<br>
+        var download = new com.conceptwave.system.DownloadCsv(null, this);<br>
+        download.fileName = &quot;finder.csv&quot;;<br>
+        download.objectToPrint = this;<br>
+        download.mimeType =&quot;text/csv&quot;;<br>
+        download.resultUI = this.resultUI;<br>
+        download.resultForm = this.resultForm;<br>
+        Global.doDownload(download);</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'><p>Creates a new instance   of DownloadXml and instantiates the   necessary values. Global.doDownload sets the download   variable as the current application’s <em>cwDownload</em> variable value. The   generate method of the download is then called to process the Finder’s data and   present it to the user in XML format as a browser download.</p>
+        <p><em>Download.resultUI</em> and <em>download.resultForm</em> are used to specify which user interface to use to look up the result table if result form of finder does not have a table element.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>downloadXsl</strong></td>
+      <td class='confluenceTd'>Invoked when the   cwfXsl menu is invoked. <p><img src="Method_xsl.png" align="absmiddle" border="1" alt="Method - XSL" /></p></td>
+      <td class='confluenceTd'><p>this.resetModelStatus();<br>
+        var download = new com.conceptwave.system.DownloadXls(null, this);<br>
+        download.fileName = &quot;/cwf/finder.xls&quot;;<br>
+        download.objectToPrint = this;<br>
+        download.mimeType = &quot;application/vnd.ms-excel&quot;;<br>
+        download.resultUI = this.resultUI;<br>
+        download.resultForm = this.resultForm;<br>
+        Global.doDownload(download);</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'><p>Creates a new instance of DownloadXsl and instantiates the   necessary values. <em>Global.doDownload</em> sets the download   variable as the current application’s <em>cwDownload</em> variable value. The   generate method of the download is then called to process the finder’s data and   present it to the user in XSL format as a browser download.</p>
+        <p><em>Download.resultUI</em> and <em>download.resultForm</em> are used to specify which user interface to use to look up the result table if result form of finder does not have a table element.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>editVisible</strong></td>
+      <td class='confluenceTd'>Used as   cwfUpdate menu’s visible permission property.<p> <img src="Method_editVisible.png" align="absmiddle" border="1" alt="Method - editVisible" /></td>
+      <td class='confluenceTd'><p>return this.searchVisible();</p></td>
+      <td class='confluenceTd'><p>$psCondition; type Boolean; Outcome of   the privileges operation</p></td>
+      <td class='confluenceTd'><p>Returns <em>true</em> if this Finder’s detail variable value is set to   null (the detail form is not currently shown in the browser).</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>hasChart</strong></td>
+      <td class='confluenceTd'>Used as the visible   permission property of the chart menu. <p> <img src="Method_hasChart.png" align="absmiddle" border="1" alt="Method - hasChart" /></p></td>
+      <td class='confluenceTd'><p>return this.model.isChartOverriden();</p></td>
+      <td class='confluenceTd'><p>$psCondition; type Boolean; Outcome of   the privileges operation</p></td>
+      <td class='confluenceTd'>Controls visibility of a chart when the set permissions are evalutated.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>hideDetailAction</strong></td>
+      <td class='confluenceTd'>Invoked when the user   clicks on the back menu (visible only when the detail form is currently being   shown).  </td>
+      <td class='confluenceTd'><p>this.detail = null;</p>
+        <p>this.isSearchButtonVisible = true;</p>
+        <p>this.searchAction();</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'><p>Sets the necessary variables used to determine the visibility of the   <em>detailFormSection</em>. </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>initSearch</strong></td>
+      
+      <td class='confluenceTd'><p>Invoked when the view for this finder is changed.</p></td>
+        <td class='confluenceTd'><p>if (this.model.getAutoSearch()) {</p>
+          <p>  this.searchAction();</p>
+          <p>} else {</p>
+          <p>  if (this.result == null)</p>
+          <p>        this.result = this.model.metadata.operations.select.emptyResult();</p>
+          <p>}</p>
+          <p> </p>
+          <p>this.isSearchFormVisible = this.model.isShowSearchForm()</p></td>
+          <td class='confluenceTd'>N/A</td>
+            <td class='confluenceTd'>Initializes the result   data according to the current view selected.  If the current view specifies to use  auto search, this Finder displays the result data otherwise the result data is   empty.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>onCalculate</strong></td>
+      <td class='confluenceTd'>When you create  a new onCalculate under the finder user interface, the product automatically  adds a document parameter. The code examples shows how to use the onCalculate method to create a customized checkmark icon in a finder result table.</td>
+      <td class='confluenceTd'><ol>
+        <li>Add an image element  under the table element. </li>
+        <li>Create an onCalculate method that returns a string and  set this as the image element's variable property. </li>
+        <li>In your script, perform actions such as the following:<br>
+          <br>
+          if(doc.boolean1){<br>
+          return &quot;\images\customCheck.png&quot;;<br>
+          <br>
+          }else if(doc.boolean2){<br>
+return &quot;\images\customUnCheck.png&quot;<br>
+          }</li>
+      </ol></td>
+      <td class='confluenceTd'>document; type Document</td>
+      <td class='confluenceTd'>The doc parameter represents the current result document  being evaluated at the time of the call. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>onEnter</strong></td>
+      <td class='confluenceTd'><p>This method can be override (if desired) and set on the table’s   onEnter property.</p>
+        <p>For an example of using the onEnter method, see <a href="Finder _Form_Search.html#EnterKeyDisplaySearchResults">Set onEnter Property on Form Frame to Display Search Results</a>.</p></td>
+      <td class='confluenceTd'><p>this.searchAction();</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'>Default method invoked   when the user’s focus is on the Finder table and the <strong>Enter</strong> key is pressed.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>onInit</strong></td>
+      <td class='confluenceTd'><p>Called when the finder user interface is created either through script   (ex var f = new cwf_oe.EventLogFinder.UserInterface() ) or when an   instanceof a Finder is returned from a   User Action Method invoked by a user interface element such as a   menu.</p></td>
+      <td class='confluenceTd'><p>this.doInitFinder();</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'><p>Initializes essential variable values for the Finder view   <em>doInitFinder</em>.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>OnSelChanged</b></td>
+      <td class='confluenceTd'>Invoked when the user   makes a selection on this Finder table</td>
+      <td class='confluenceTd'><b></b>
+        <p>if(this.model.isSingleClickDetail()){</p>
+        <p>      this.showDetailAction();</p>
+        <p>}else if(this.model.isViewEditable){</p>
+        <p>      var doToggle = this.result.selectedColToggle;      //determines whether   to change value or not - available for checkbox under table   ONLY.</p>
+        <p>      var columnName = this.result.selectedColName;      //the column being   clicked on - this is the name of the variable assigned to the   checkbox</p>
+        <p> </p>
+        <p>      if(doToggle == "true"){</p>
+        <p>      if(this.result.selected[0]!=null){</p>
+        <p>            var doc = this.result.selected[0];</p>
+        <p>            eval("doc."+columnName+"=!doc."+columnName);</p>
+        <p>            this.result.updateList; //update result to show doc change</p>
+        <p>      }</p>
+        <p>      }</p>
+        <p>}</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'>If the current view of this finder has <em>Single Click Detail</em> set to True, the <em>showDetailAction() </em>method is called. Otherwise, if the Finder’s table is editable, this method checks if the current column that the user has clicked has specified the toggle functionality to be turned on. This <em>Toggle Edit</em> property can only be set on a checkbox within the table element. If this property is set to<em> true</em>, the value of this variable assigned to the checkbox is modified accordingly and the Finder result data is updated.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>resultVisible</strong></td>
+      <td class='confluenceTd'><p>Used as the visible permission property of the result section. <p> <img src="Method_resultVisible.png" align="absmiddle" border="1" alt="Method - resultVisible" /></td>
+      <td class='confluenceTd'><p>return this.detail == null &amp;&amp;   !this.chart;</p></td>
+      <td class='confluenceTd'><p>$psCondition; type Boolean; Outcome of   the privileges operation</p></td>
+      <td class='confluenceTd'><p>Returns <em>true</em> if a Detail Form or a Chart Form is not currently being   viewed.</p></td> 
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>searchAction</strong></td>
+      <td class='confluenceTd'>Invoked primarily when   the user clicks on the cwfSearch menu.<p> <img src="Method_searchAction.png" align="absmiddle" border="1" alt="Method - searchAction" /></td>
+      <td class='confluenceTd'><p>var finder = this.model.metadata;</p>
+        <p>var searchDoc =   this.search==null?(this.model.searchDocument==null?null:this.model.searchDocument):this.search.model;</p>
+        <p>this.result = finder.operations.select.invoke(searchDoc, this.invokeContext);</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'>Performs the Finder’s   search operation according to the search criteria (if any) provided by the user.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>searchVisible</strong></td>
+      <td class='confluenceTd'><p>Used as the visible permission property of the searchFormSection.</p></td>
+      <td class='confluenceTd'><p>return this.detail == null;</p></td>
+      <td class='confluenceTd'><p>$psCondition; type Boolean; Outcome of   the privileges operation</p></td>
+      <td class='confluenceTd'><p>Returns <em>true </em>if the <em>detail</em> variable does not currently have a value. By   default, the Default Form and the Search Form cannot be visible at the same   time.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>showChart</strong></td>
+      <td class='confluenceTd'>Invoked when the user   clicks on the chart menu.  <p><img src="Method_showChart.png" align="absmiddle" border="1" alt="Method - showChart" /></td>
+      <td class='confluenceTd'><p>this.chart = true;</p>
+        <p>this.isSearchButtonVisible = false;</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'>Modifies the chart and   <em>isSearchButtonVisible</em> variables accordingly. The   chart variable is used to determine the chart form’s visibility (see   chartVisible). The <em>isSearchButtonVisible</em> variable is used in   <em>searchVisible()</em> method to determine the   visibility of the Search Form.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>showDetailAction</strong></td>
+      <td class='confluenceTd'><p>Invoked when the user clicks on the cwfUpdate menu. Also, if the finder’s   table has “Show Detail Column�? set to true, this method is invoked when the   detail column is clicked.</p></td>
+      <td class='confluenceTd'><p>if (this.result.selected != null &amp;&amp;   this.result.selected.length == 1) {</p>
+        <p>            //if this finder is being displayed as a reference finder,   return the currently selected</p>
+        <p>            //document instead of displaying the detail   document.</p>
+        <p>      if(this.model.refFinderDocument!=null){</p>
+        <p>            if(this.model.isRefEditable){</p>
+        <p>                  var leafName = this.model.parentLeafName;</p>
+        <p>                  eval("this.model.refFinderDocument."+leafName+" = this.result.selected[0].id");</p>
+        <p>                  Global.getCurrentObject().dialog =   null;</p>
+        <p>                  //if this finder is being shown as an   editfield for an editable table</p>
+        <p>                  if(this.model.getRootFinderParent!=null){</p>
+        <p>                        this.model.getRootFinderParent.result.updateList;</p>
+        <p>                  }</p>
+        <p>            }</p>
+        <p>      }else if(this.detailForm!=null )</p>
+        <p>            if(this.result.selected[0].metadata!=null){</p>
+        <p>                  this.detail = new   this.result.selected[0].metadata.UserInterface(this.result.selected[0],   this);</p>
+        <p>                  this.detail.parent = this;</p>
+        <p>                  this.isSearchButtonVisible = false;</p>
+        <p>             }</p>
+        <p>      }</p>
+        <p>} else {</p>
+        <p>  this.detail = null;</p>
+        <p>}</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'><p>In a regular Finder, this method  takes the currently selected row and   create the user interface for it. The newly created user interface   instance is then set as the <em>detail</em> variable’s value. If this Finder has   specified a detail form to be used, the <em>detailSection</em> in this finder’s Default   form displays the detail document using the corresponding Detail Form. </p>
+        <p> </p>
+        <p>If this Finder is currently being used as a Reference Finder (made   visible by clicking  a reference element icon), this method  takes the   currently selected document’s ID and sets it as this Finder’s parent document’s variable   value (depending to which variable the reference element is bound).</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>showSearchForm</strong></td>
+      <td class='confluenceTd'>Used as the visible   permission property of the searchFormSection. </td>
+      <td class='confluenceTd'><p>return !this.backVisible() &amp;&amp;   (this.isSearchFormVisible == null ||   this.isSearchFormVisible);</p></td>
+      <td class='confluenceTd'><p>$psCondition; type Boolean; Outcome of   the privileges operation</p></td>
+      <td class='confluenceTd'><p>Returns <em>true</em> if the <em>detail </em>variable currently does not have value and   <em>isSearchFormVisible</em> returns   false.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>toggle SearchAction</strong></td>
+      <td class='confluenceTd'>Invoked when the user   clicks on the toggleMenu.<p> <img src="Method_toggleSearch.png" align="absmiddle" border="1" alt="Method - toggleSearch" /></td>
+      <td class='confluenceTd'><p>this.isSearchFormVisible = !this.isSearchFormVisible;</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'><p>Sets the <em>isSearchFormVisible</em> to its opposite value.   This variable’s value determines the visibility of the search form (see   searchVisible).</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>toggleVisible</strong></td>
+      <td class='confluenceTd'>Used as the visible   permission property of the toggleMenu.</td>
+      <td class='confluenceTd'><p>return (this.detail==null &amp;&amp;   this.search!=null &amp;&amp;   this.searchForm!=null);</p></td>
+      <td class='confluenceTd'><p>$psCondition; type Boolean; Outcome of   the privileges operation</p></td>
+      <td class='confluenceTd'><p>Returns <em>true</em> if the Detail Form is not currently being viewed and this   Finder has specified an input document and a search form to   use.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>updateAction</strong></td>
+      <td class='confluenceTd'>Invoked when the   cwfUpdate menu is clicked.</td>
+      <td class='confluenceTd'><p>if (this.result.selected.length == 1) {</p>
+        <p>  this.detail = new   this.result.selected[0].metadata.UserInterface(this.result.selected[0],   this);</p>
+        <p>  this.isSearchButtonVisible = false;</p>
+        <p>}</p></td>
+      <td class='confluenceTd'>N/A</td>
+      <td class='confluenceTd'><p>Takes the currently selected row data and displays the Detail Form and   the data populated for visible form elements.</p></td>
+    </tr>
+  </tbody>
+</table>
+</tr>
+</table>
+</body>
+</html>

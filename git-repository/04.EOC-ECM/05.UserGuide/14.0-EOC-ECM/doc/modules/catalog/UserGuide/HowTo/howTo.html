@@ -1,0 +1,296 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Catalog How-to</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Catalog How-to</h2>
+<p>This section provides steps on how to accomplish various tasks within Catalog Designer:</p>
+<ul>
+  <li><a href="#markItemAttributeMandatory">Mark an item attribute to be mandatory when another item attribute has a specific value</a></li>
+  <li><a href="#rulesQueryDataInfoTables">Have catalog rules query data in info tables</a></li>
+  <li><a href="#basketAndBasketItemScrubbing">Perform basket and basket item scrubbing</a></li>
+  <li><a href="#useGetItemAttributes">Use CatalogItem.getItemAttributes</a></li>
+  <li><a href="#useitemAttributeCode">Use CatalogItem.useitemAttributeCode</a></li>
+  <li><a href="#saveItemAction">Save an item action with a basket item</a></li>
+</ul>
+<h3><a name="markItemAttributeMandatory"></a>Mark an item attribute to be mandatory when another item attribute has a specific value</h3>
+<p>Suppose an item, High-speed Internet, contains two attributes:</p>
+<ul>
+  <li>TechnologyType  (WiMax, Ethernet, 3G, and so on)</li>
+  <li>Bandwidth (500K, 1024K, 2048K, and so on)</li>
+  </ul>
+<p><img src="example1itemAttributes.png" alt="Item attributes" width="247" height="134" border="1"></p>
+<p>Bandwidth must be populated when TechnologyType=Ethernet, and may not be populated otherwise.</p>
+<p>To create a mandatory flag by attaching a rule, complete these steps:</p>
+<ol>
+  <li>Under the item attribute, click the <strong>Restrictions</strong> tab and then click <strong>Add</strong> button to create a restriction. <br>
+    <br>
+    <img src="example1restrictionIsNull.png" alt="Create a restriction with Is null field selected"><br>
+    <br>
+  </li>
+  <li>Select the <strong>isNull</strong> field and then click the <strong>Save</strong> button to save your restriction.</li>
+  <li>In the Restriction section, click the <strong>Conditions</strong> tab and then click the <strong>Add</strong> button to add a condition to your restriction. </li>
+  <li>Complete all required fields, and then click the button next to the <strong>Script</strong> field to launch its dialog. <br>
+    <br>
+    <img src="example1scriptField.png" alt="Condition - Script field" width="653" height="413" border="1"><br>
+    <br>
+  </li>
+  <li>Indicate in your script that if TechnologyType=Ethernet, the condition returns true. Otherwise, it returns false. In other words, if the attribute restriction exists and the <strong>isNull</strong> field is unchecked, the attribute is required. Otherwise, the attribute is optional. Click the <strong>Save</strong> button to return to the Rule Detail page.<br>
+    <br>
+  </li>
+  <li>    When you have finished entering your rule details for your condition, click the <strong>Save</strong> button.
+  </li>
+</ol>
+<h3><a name="rulesQueryDataInfoTables"></a>Have catalog rules query data in info tables</h3>
+The following is a basic example of using catalog rules to query data in a dynamic info model:<br>
+<ol>
+<li>In your metadata, create a namespace (for example,  <strong>cwInit</strong>).<br></li>
+<li>In this namespace, create a script called <strong>cwDynamicRowCacheLoader</strong>. This script is special in that it is used by the system. You must create it with this name only.<br></li>
+<li>The script contains two parameters:</li>
+<ul>
+  <li><em>infoModelName</em> with type com.conceptwave.system.Object</li>
+  <li><em>dynamicRow</em> with type com.conceptwave.system.Object</li>
+</ul>
+
+<blockquote>
+  <p>The script contains the following code:
+  <div class="code">
+<div class="codeContent">
+<pre class="code-java">if(infoModelName=="testInfo"){<br>    if (dynamicRow.num==1) {<br>      dynamicRow.userNAme=Global.getUserId();<br>      return true;<br>      }<br>    }<br>      else{<br>    return false;}</p>
+</pre>
+</div>
+</div>
+</blockquote>
+
+  <li>Run Velocity Studio and create an info model called <b>testInfo</b> with an attribute, <b>num</b>, as number, and <b>userNAme</b> as string.<br>
+  </li>
+  <li>Create a Catalog rule and call it <b>testRule1</b>, which returns the type as string and rule as a Var string value.
+  
+  <div class="code">
+<div class="codeContent">
+<pre class="code-java">value = Select userNAme from testInfo where num equal 1<br>return value</pre>
+</div>
+</div>
+  Since the info model is dynamic, it calls cwDynamicRowCacheLoader in the cwinit namespace. The rule passes dynamicRow.num==1. The system  then sets the <strong>userNAme</strong> field to Global.getUserIdm. The aforementioned rule returns the username.
+  </li>
+</ol>
+<p>The following steps test the rule:</p>
+<ol>
+  <li>Create  a validation rule that calls the testRule1 rule. Then, create a validation rule, test, as follows:
+  <div class="code">
+<div class="codeContent">
+<pre class="code-java">if(testRule1()=="upadmin") return null<br>    else return invalid <br>    end if</pre>
+</div>
+</div>
+  <br>
+ </li>
+  <li>Create an orderable item and associate this  rule with that item.<br></li>
+  <li>From Catalog Designer's menu bar, click <strong>Test Mode</strong> &gt;  <strong> Test On</strong>, and add the item to the basket.<br></li>
+  <li>Browse the item and then validate it.<br></li>
+  <li>If you have logged into the system as <em>upadmin</em>, no validation errors appear. Otherwise, the rule is  invalid.</li>
+</ol>
+<h3><a name="basketAndBasketItemScrubbing"></a>Perform basket and basket item scrubbing</h3>
+<p>Often, basket items  are created for orders with some attribute or relationship information  that is either lacking or incorrect. Order storage is usually done in relational tables. To combat this problem, scrubbing or cleaning the data is required, by mass-updating tables directly in the database.</p>
+<p>The following is an SQL sample to enable easy mass updates of basket data for existing orders in the  database.</p>
+
+<p>Suppose that you have two relational tables:</p>
+<ul>
+  <li>Basket item (CWPC_BASKETITEM)</li>
+  <li>Basket item attribute (CWPC_BASKETITEMLEAVES)</li>
+</ul>
+<p>The CWPC_BASKETITEM table contains the following attributes:</p>
+<table width="31%" class='confluenceTable' border cellpadding=1>
+  <tr>
+    <th width="51%" scope="col">Attribute</th>
+    <th width="49%" scope="col">Type</th>
+  </tr>
+  <tr>
+    <td>BASKETITEMID</td>
+    <td><p>VARCHAR2(16 BYTE)<br>
+    </p></td>
+  </tr>
+  <tr>
+    <td>BASKETID</td>
+    <td>VARCHAR2(16  BYTE)</td>
+  </tr>
+  <tr>
+    <td>ITEMCODE</td>
+    <td>VARCHAR2(32  BYTE)</td>
+  </tr>
+  <tr>
+    <td>CWCREATEDDATE </td>
+    <td>DATE</td>
+  </tr>
+  <tr>
+    <td>CWCREATEDBY</td>
+    <td>VARCHAR2(64  BYTE)</td>
+  </tr>
+  <tr>
+    <td>LASTUPDATEDDATE</td>
+    <td>DATE</td>
+  </tr>
+  <tr>
+    <td>UPDATEDBY</td>
+    <td>VARCHAR2(64  BYTE)</td>
+  </tr>
+  <tr>
+    <td>PARENTBASKETITEMID</td>
+    <td>VARCHAR2(16 BYTE)</td>
+  </tr>
+  <tr>
+    <td>RELATIONNAME</td>
+    <td>VARCHAR2(32  BYTE)</td>
+  </tr>
+  <tr>
+    <td>SEQUENCENO </td>
+    <td>NUMBER(8,0)</td>
+  </tr>
+  <tr>
+    <td>BASKETCREATIONDATE</td>
+    <td>DATE</td>
+  </tr>
+  <tr>
+    <td>REQUESTTIME</td>
+    <td>DATE</td>
+  </tr>
+  <tr>
+    <td>STATE </td>
+    <td>VARCHAR2(16  BYTE)</td>
+  </tr>
+</table>
+<p>The CWPC_BASKETITEMLEAVES table contains the following attributes:</p>
+<table width="31%" class='confluenceTable' border cellpadding=1>
+  <tr>
+    <th width="51%" scope="col">Attribute</th>
+    <th width="49%" scope="col">Type</th>
+  </tr>
+  <tr>
+    <td>DOC_ID                            </td>
+    <td><p>VARCHAR2(32  BYTE)<br>
+    </p></td>
+  </tr>
+  <tr>
+    <td>PARENT_ID                       </td>
+    <td>VARCHAR2(16  BYTE)</td>
+  </tr>
+  <tr>
+    <td>DOCUMENT_TYPE             </td>
+    <td>VARCHAR2(64 BYTE)</td>
+  </tr>
+  <tr>
+    <td>LEAF_NAME                      </td>
+    <td>VARCHAR2(128BYTE)</td>
+  </tr>
+  <tr>
+    <td>VALUE                    </td>
+    <td>VARCHAR2(2048  BYTE)</td>
+  </tr>
+  <tr>
+    <td>DATA_TYPE                       </td>
+    <td>NUMBER(3,0)</td>
+  </tr>
+  <tr>
+    <td> ARRAY_INDEX                  </td>
+    <td>NUMBER(4,0)</td>
+  </tr>
+</table>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>DOC_ID in CWPC_BASKETITEMLEAVES corresponds to  BASKETITEMID  in CWPC_BASKETITEM. </li>
+  <li>    LEAF_NAME in CWPC_BASKETITEMLEAVES is the item attribute name.</li>
+  <li>    VALUE in CWPC_BASKETITEMLEAVES is the value of the attribute.</li>
+</ul>
+<p>If you already have the basket item ID, the  attribute value can be updated by using the following SQL command:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">Update CWPC_BASKETITEMLEAVES set value = 'value' where DOC_ID = 'id' AND LEAF_NAME = 'attribute'</pre>
+</div>
+</div>
+<p>Otherwise, you must find the basket item ID in  the CWPC_BASKETITEM table by both basket ID and item code:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">Select BASKETITEMID from CWPC_BASKETITEM where BASKETID = 'basketid' AND ITEMCODE = 'itemcode'</pre>
+  </div>
+</div>
+
+<p>Proceed to perform an update by catalogItemCode, attributeName, attributeValue, and conditionExpression (specifies the update filter in <tt>attributeName1=attributeValue1,... , attributeNameN=attributeValueN</tt> format). The following is an example:
+  <div class="code">
+  <div class="codeContent">
+    <pre class="code-java">update cwpc_basketitemleaves bil1 set value='<strong>VALUE1'</strong> where bil1.leaf_name='<strong>ATTRIBUTE'</strong> and bil1.doc_id in (select bi.basketitemid from cwpc_basketitem bi where bi.itemcode = '<strong>item1'</strong>
+  and exists(select rowid from cwpc_basketitemleaves where doc_id = bi.basketitemid and leaf_name = '<strong>ATTRIBUTE1</strong>' and value = <strong>ATTRVALUE1</strong>)
+  and exists(select rowid from cwpc_basketitemleaves where doc_id = bi.basketitemid and leaf_name = '<strong>ATTRIBUTE2</strong>' and value = <strong>ATTRVALUE2</strong>)
+  and exists(select rowid from cwpc_basketitemleaves where doc_id = bi.basketitemid and leaf_name = '<strong>ATTRIBUTE3</strong>' and value = <strong>ATTRVALUE3</strong>))
+);</pre>
+  </div>
+  </div>
+  <h3><a name="useGetItemAttributes"></a>Use CatalogItem.getItemAttributes</h3>
+  <p>The <em>types</em> attribute of getItemAttributes() is only used for filtering. It is usually left as null to get all item attributes.
+The <em>types</em> attribute refers to the association type code. When you create an item attribute from Catalog Designer, you can specify the association type. This <em>types</em> attribute refers to this code.</p>
+  <p>The following is an example:</p>
+  <ol>
+    <li>In Catalog Designer, create a new project called P1, and then open it.</li>
+    <li>Create an association type as an Item Attribute (ia1).</li>
+    <li>Create an attribute (a1).</li>
+    <li>Create an  item (i1).</li>
+    <li>Create an item attribute using a1 as the attribute, and then select the <strong>Type</strong> as ia1.</li>
+    <li>Save the item, and then set it as <strong>Active</strong>.</li>
+    </ol>
+  <p>When debugging and using the Evaluate tab, the following information appears:  
+  <div class="code">
+  <div class="codeContent">
+    <pre class="code-java"><span class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;">% var ci=theCatalog.getItem()<BR>% var ci=theCatalog.getItem('i1')<BR>% ci.getItemAttributes()<BR>% ci.getItemAttributes(['ia1'])<BR>com.conceptwave.catalognew.CwcItemAttribute@1d5bdddf</span></pre>
+  </div>
+</div>
+      <BR>
+      <h3><a name="useitemAttributeCode"></a>Use CatalogItem.itemAttributeCode </h3>
+      <p>The following example shows how to use itemAttributeCode(). You must create an item attribute for the dynamic leaf first by completing these steps:</p>
+      <ol>
+        <li>In Catalog Designer, create an attribute type.</li>
+        <li>Create an item attribute and associate it to the item using an item attribute code (for example, ia1).</li>
+        <li>Add an item to the basket and use it as a dynamic leaf.</li>
+      </ol>
+    <p>The itemAttributeCode refers to the attrAssoc of the item attribute that you have created.</p>
+      <p>The following sample shows how you can test your code:</p>
+      <ol>
+        <li>In Catalog Designer, create a new project called P1, and then open it.</li>
+        <li>Create an item  (i1).</li>
+        <li>Create an attribute (a1).</li>
+        <li>Create an  item attribute with an item attribute code (ia1).</li>
+        <li>Change your project P1 by setting it to <strong>Active</strong>.</li>
+        <li>Create a basket using <tt>var basket = theCatalog.createBasket()</tt>.</li>
+        <li>Add the item to the basket using <tt>var bi = basket.add(i1)</tt>.</li>
+        <li>Access the dynamic leaf using <tt>bi[0].catalogItem.ia1</tt><BR>
+        </li>
+      </ol>
+<p>When debugging and using the Evaluate tab, the following information appears for steps 6 through 8, inclusive:  
+      <div class="code">
+        <div class="codeContent">
+          <pre class="code-java">% var basket = theCatalog.createBasket()
+% var bi = basket.add('i1')
+% bi[0].catalogItem.ia1
+com.conceptwave.catalognew.CwcItemAttribute@b7c5f17</pre>
+        </div>
+      </div>
+      <h3><a name="saveItemAction"></a>Save an item action with a basket item</h3>
+      <p>You can save an item action with a basket item in Catalog. In this example, it is assumed that you have created a project that contains two attributes and an item. It is also assumed that you have created one item attribute for each attribute.</p>
+      <p><strong>Note:</strong> Everything in the project must be in an active state.</p>
+      <ol>
+        <li>Set the Catalog time to a date after the project's active effective date.</li>
+        <li>Create a basket and then add the item to it.</li>
+        <li>Assign a value to the <strong>action</strong> variable in the basket item document, and then store the basket in the database.</li>
+        <li>Read the basket from the database and check that the action <strong>variable</strong>'s value is set correctly.</li>
+      </ol>
+  </p></td>
+</tr>
+</body>
+</html>

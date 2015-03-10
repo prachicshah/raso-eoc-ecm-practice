@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>JConsole - Process Engine Queues Domain</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Process Engine Queues Domain</h1>
+<p>The PEQueues domain allows you to view, manage, and change a number of attributes, including Queue size and Waiting intervals. It also provides you with operations that you can use to manage your process engine queues, such as the Clean the participant cache and Show Waiting Activities operations.</p>
+<h3>Attributes</h3>
+<p>Expanding a process engine queue's <strong>Attributes</strong> node in the MBeans tree provides you with attributes that you can view, manage, and change. As an example, clicking the <strong>Waiting intervals</strong> attribute within <strong>Participant Queue</strong> displays pertinent information about it, including the attribute's description, whether it is readable or writeable, and its data type.</p>
+
+<p><img src="JConsole PEQueues Participant Queues Attributes.png" width="899" height="700" alt="Waiting intervals attribute for PEQueues in JConsole"></p>
+<p>When you hover your mouse pointer over the <strong>Refresh</strong> button, a tooltip indicates the action that occurs after you click the button. In this example, clicking the <strong>Refresh</strong> button refreshes the attribute <strong>Value</strong> field. The <strong>Value</strong> field is blue, which allows you to edit this field and then refresh the attribute.</p>
+<p><strong>Note</strong>: When the cache size is too small for global requests and participant queues, an error is now logged, including the number of items in memory and time of the last overflow.</p>
+
+<h3>Operations</h3>
+<p>Expanding a process engine queue's <strong>Operations</strong> node in the MBeans tree provides you with operations that you can use to manage your queues. As an example, clicking the <strong>Show Waiting Activities</strong> operation within <strong>Participant Queue</strong> displays pertinent information about the operation, including its description, return type, data type, and any parameters that the operation has.</p>
+
+<p><img src="JConsole PEQueues Participant Queues Operations.png" width="824" height="679" alt="Waiting intervals operations for Participants Queue in JConsole"></p>
+<p>To invoke an operation, click the button in the right pane that is associated with the command you want to use. In this example, click the <strong>Show Waiting Activities</strong> button to invoke the command.</p>
+
+<h4><a name="restartNewUserProcess"></a>Restart a New User Process</h4>
+<p>You can restart new user processes from that JMX console that <a href="../Service_Designer_Tool_User_Guide/Business_Process_Metadata/starting user processes.html#processEngineSkipsNewProcess">may have been skipped</a> for some reason when starting up the process engine or a standby PE.</p>
+<p>To restart a new user process, do the following:</p>
+<ol>
+  <li>Start the JMX console.</li>
+  <li> Connect to your destination PE.</li>
+  <li>Click the <strong>MBeans</strong> tab, and then click <strong>com.conceptwave.AVM</strong> &gt; <strong>PEQueues</strong> &gt; <strong>NewProcesses Queue</strong> &gt; <strong>Operations</strong>.</li>
+  <li> Click the <strong>Restart</strong> button. </li>
+  </ol>
+<h4>Analyze Global Requests Queue Content</h4>
+<p>To analyze the Global Requests queue content, a <strong>Dump</strong> button is available in JConsole. </p>
+<p><img src="JConsole PEQueues Global Requests Queues Dump button.png" alt="Analyze Global Requests queue - Dump button"></p>
+<p>Clicking this button creates a globalRequests.txt file in your Velocity Studio's &lt;<em>installation_folder</em>&gt;\designer\env folder, which saves all queue content and allows you to analyze it when troubleshooting.<br>
+</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿<html>
+<head>
+<title>Installation Preliminary Steps</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="InstallationPreliminarySteps"></a>Installation Preliminary Steps</h2>
+<p>Ensure the following requirements are met before installing the product:</p>
+<h3><a name="InstallJDK"></a>Install JDK</h3>
+<p>Install the required JDK version on the target machine.</p>
+<h3><a name="InstallDB"></a>Install Database</h3>
+<p>Install Oracle Database on the target machine, or, as an alternative, have sysdba access to a remote database.</p>
+<p>To use the Catalog SQL import and export features, you need Java installed on your Oracle machine (that is, install $ORACLE_HOME/javavm/install/initjvm.sql, which comes with Oracle).</p>
+<h3><a name="EnableUnixGraphicalDisplay"></a>Enable Unix Graphical Display</h3>
+<p> Graphical display is only required for GUI Installation. </p>
+<p>The graphical display must be assigned to the host. This is done using the command:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+export DISPLAY=hostname:0.0
+</pre></div>
+</div>
+<p>Where <em>hostname</em> is the fully qualified host name or IP address. For example, <em>cw0010.conceptwave.com</em>. To test the graphical display, type <em>xclock</em> and the xclock GUI will appear.</p>
+
+<h3>Install Revision Control System (optional)</h3>
+<p>In typical application development, you will be required to check-in / check-out your metadata in a central repository. Install the Revision Control System, such as SVN, on the target machine.</p>
+<h3>Install Application Server (optional)</h3>
+<p>In the event the machine will mimic the deployment environment where metadata is deployed (instead of running in Velocity Studio), an application server needs to be installed.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Metadata Root Feature Management</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h3>Metadata Root Feature Management</h3>
+
+<p>The <b>Feature Management</b> tab allows you to specify a set of features in your metadata project's header. For each <a href="../Script/Script General Properties.html">global script</a>, <a href="../Script/Event Handlers.html">event handler</a>, and <a href="../Permission/Permissions Velocity.html">permission</a> method, you can select a subset of features from a combined list of features defined in the project header and all dependent library headers.</p>
+<p> By default, if a global script,  event handler, or permission  method does not specify any feature, it is assumed to always be accessible. For the specified subset of  features, if your user <a href="AVM licencing Sentinel RMS.html">licence</a> contains any one of the features in the subset,  it is assumed that you have access to the global script, the event  handler is active, and the permission method is set to true.</p>
+<p>  At runtime, when a global script is invoked  and your user licence does not entitle access to any of the features required  for the global script, an exception occurs. For event handlers, no access to the  necessary feature means that the event handler does not handle the event being  published. For permission methods, it  returns false if your user licence does not support any of the features  required by the permission method.</p>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>This feature does not deal with enabling or disabling features available in Velocity Studio, or loading metadata template libraries.</li>
+  <li>This feature does not handle licence management or feature information management in the licences.
+  </li>
+</ul>
+<p>To use this function, perform the following steps:</p>
+<ol>
+  <li>From the Feature Management tab, click the <strong>Add</strong> button.<br>
+    <br>
+    <img src="MDrootFeatureManagementAddButton.png" alt="Metadata Replacement - Add button" border="1"><br>
+    <br>
+  </li>
+  <li>Click the <strong>Name</strong> field of the new row that you have added and enter the feature's name. The name must match the feature name registered with Sentinel.</li>
+  <li> Click the <strong>Description</strong> field and enter a summary of what the feature entails and how it is to be used.
+    <br>
+  </li>
+  <li>    For 
+    the <strong>Restricted By</strong> field, click the field's <strong>Checkbox</strong> button (<img src="MDrootFeatureManagementCheckboxButton.png" alt="Restricted By field - Checkbox button">) to launch the Select Feature dialog. You can select all features that you want to restrict and then click the <strong>Save</strong> button.</li>
+  <li>Save your metadata project.</li>
+</ol></td>
+</tr>
+</table>
+</body>
+</html>

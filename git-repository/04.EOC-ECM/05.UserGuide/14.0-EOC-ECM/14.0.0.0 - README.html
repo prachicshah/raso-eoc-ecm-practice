@@ -1,0 +1,2860 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Welcome to Ericsson Product Release</title>
+
+<style type="text/css">
+body, p, td, table, tr, .bodytext, .stepfield {
+	font-family: Verdana, arial, sans-serif;
+	font-size: 11px;
+	line-height: 16px;
+	color: #000000;
+	font-weight: normal;
+}
+#PageContent {
+	text-align: left;
+	background-color: #fff;
+	padding: 0px;
+	margin: 0px;
+    padding-bottom:20px;
+}
+body {
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+    background-color: #f0f0f0;
+}
+
+@media print {
+
+body {
+    background-color: #fff;
+}
+
+}
+
+.monospaceInput {
+    font:12px monospace
+}
+
+.wiki-content p, .commentblock p {
+    margin: 16px 0px 16px 0px;
+    padding: 0px;
+}
+
+.wiki-content-preview {
+    padding: 5px;
+    border-left: 1px solid #3c78b5;
+    border-right: 1px solid #3c78b5;
+}
+
+ul, ol {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+pre {
+    padding: 0px;
+    margin-top: 5px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    text-align: left;
+    overflow: auto;
+}
+
+.helpheading {
+    font-weight: bold;
+    background-color: #D0D9BD;
+        border-bottom: 1px solid #3c78b5;
+        padding: 4px 4px 4px 4px;
+        margin: 0px;
+        margin-top: 10px;
+}
+.helpcontent {
+        padding: 4px 4px 20px 4px;
+    background-color: #f5f7f1;
+}
+
+.code {
+ 	border: 1px dashed #3c78b5;
+    font-size: 11px;
+	font-family: Courier;
+    margin: 10px;
+	line-height: 13px;
+    overflow: auto;
+}
+
+.focusedComment {
+    background: #ffffce;
+}
+
+.commentBox, .focusedComment {
+    padding: 10px;
+    margin: 5px 0 5px 0;
+    border: 1px #bbb solid;
+    overflow: auto;
+}
+
+.codeHeader {
+    background-color: #f0f0f0;
+ 	border-bottom: 1px dashed #3c78b5;
+    padding: 3px;
+	text-align: center;
+}
+
+.codeContent {
+    text-align: left;
+    background-color: #f0f0f0;
+    padding: 3px;
+}
+
+.preformatted {
+ 	border: 1px dashed #3c78b5;
+    font-size: 11px;
+	font-family: Courier;
+    margin: 10px;
+	line-height: 13px;
+}
+
+.preformattedHeader {
+    background-color: #f0f0f0;
+ 	border-bottom: 1px dashed #3c78b5;
+    padding: 3px;
+	text-align: center;
+}
+
+.preformattedContent {
+    background-color: #f0f0f0;
+    padding: 3px;
+}
+
+.panel {
+ 	border: 1px dashed #3c78b5;
+    margin: 10px;
+    margin-top: 0px;
+}
+
+.panelHeader {
+    background-color: #f0f0f0;
+ 	border-bottom: 1px dashed #3c78b5;
+    padding: 3px;
+	text-align: center;
+}
+
+.panelContent {
+    background-color: #f0f0f0;
+    padding: 5px;
+}
+
+.anonymousAlert {
+    background-color: #f0f0f0;
+ 	border: 1px dashed red;
+    font-size: 11px;
+    padding: 10px 5px 10px 5px;
+    margin: 4px;
+	line-height: 13px;
+}
+
+.lockAlert {
+    background-color: #f0f0f0;
+    width: 50%;
+ 	border: 1px dashed red;
+    font-size: 11px;
+    padding: 10px 5px 10px 5px;
+    margin: 4px;
+	line-height: 13px;
+}
+
+
+.code-keyword {
+  color: #000091;
+  background-color: inherit;
+}
+
+.code-object {
+  color: #910091;
+  background-color: inherit;
+}
+
+.code-quote {
+  color: #009100;
+  background-color: inherit;
+}
+
+.code-comment {
+  color: #808080;
+  background-color: inherit;
+}
+
+
+.code-xml .code-keyword {
+  color: inherit;
+  font-weight: bold;
+}
+
+.code-tag {
+  color: #000091;
+  background-color: inherit;
+}
+
+.breadcrumbs {
+    background-color: #f0f0f0;
+ 	border-color: #3c78b5;
+	border-width: 1px 0px 1px 0px;
+	border-style: solid;
+    font-size: 11px;
+    padding: 3px 0px 3px 0px;
+}
+
+.navmenu {
+    border: 1px solid #ccc;
+}
+
+.menuheading {
+    font-weight: bold;
+    background-color: #f0f0f0;
+ 	border-bottom: 1px solid #3c78b5;
+	padding: 4px 4px 2px 4px;
+}
+
+.menuitems {
+	padding: 4px 4px 20px 4px;
+}
+
+.rightpanel {
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+#helpheading {
+    text-align: left;
+    font-weight: bold;
+    background-color: #D0D9BD;
+ 	border-bottom: 1px solid #3c78b5;
+	padding: 4px 4px 4px 4px;
+	margin: 0px;
+}
+#helpcontent {
+	padding: 4px 4px 4px 4px;
+    background-color: #f5f7f1;
+}
+.helptab-unselected {
+    font-weight: bold;
+	padding: 5px;
+    background-color: #f5f7f1;
+}
+.helptab-selected {
+    font-weight: bold;
+    background-color: #D0D9BD;
+	padding: 5px;
+}
+.helptabs {
+    margin: 0px;
+    background-color: #f5f7f1;
+	padding: 5px;
+}
+.infopanel-heading {
+    font-weight: bold;
+	padding: 4px 0px 2px 0px;
+}
+
+#profileSummary h3 {
+    font-weight: bold;
+    font-size: 8pt;
+    margin: 1em 0 .5em 0;
+    padding: 0;
+}
+#profileSummary ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pagebody {
+}
+
+.pageheader {
+	padding: 5px 5px 5px 0px;
+ 	border-bottom: 1px solid #3c78b5;
+}
+
+.pagetitle {
+	font-size: 22px;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+	color: #003366;
+}
+
+.newpagetitle {
+    color: #ccc !important;
+}
+
+.steptitle {
+	font-size: 18px;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+	color: #003366;
+	margin-bottom: 7px;
+}
+
+.substeptitle {
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: #003366;
+    margin: 2px 4px 4px 4px;
+    padding: 2px 4px 1px 4px;
+}
+
+.stepdesc {
+    font-family: Verdana, arial, sans-serif;
+	font-size: 11px;
+	line-height: 16px;
+	font-weight: normal;
+    color: #666666;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.steplabel {
+    font-weight: bold;
+    margin-right: 4px;
+    color: black;
+    float: left;
+    width: 15%;
+    text-align: right;
+}
+
+.stepfield {
+    background: #f0f0f0;
+    padding: 5px;
+}
+
+.submitButtons{
+    margin-top:5px;
+    text-align:right;
+}
+
+.formtitle {
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+	color: #003366;
+}
+
+.sectionbottom {
+    border-bottom: 1px solid #3c78b5;
+}
+
+.topRow {
+    border-top: 2px solid #3c78b5;
+}
+
+.tabletitle {
+	font-size: 14px;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+    padding: 3px 0px 2px 0px;
+    margin: 8px 4px 2px 0px;
+	color: #003366;
+	border-bottom: 2px solid #3c78b5;
+}
+.pagesubheading {
+    color: #666666;
+    font-size: 10px;
+    padding: 0px 0px 5px 0px;
+}
+
+HR {
+	color: 3c78b5;
+	height: 1;
+}
+
+A:link, A:visited, A:active, A:hover {
+	color: #003366;
+}
+
+h1 A:link, h1 A:visited, h1 A:active {
+	text-decoration: none;
+}
+
+h1 A:hover {
+    border-bottom: 1px dotted #003366;
+}
+
+.wiki-content > :first-child, .commentblock > :first-child {
+    margin-top: 3px;
+}
+
+.logocell {
+    padding: 10px;
+}
+
+input {
+	font-family: verdana, geneva, arial, sans-serif;
+	font-size: 11px;
+	color: #000000;
+}
+
+textarea, textarea.editor {
+	font-family: verdana, geneva, arial, sans-serif;
+	font-size: 11px;
+	color: #333333;
+}
+
+/* use logoSpaceLink instead.
+.spacenametitle {
+	font: 21px/31px Impact, Arial, Helvetica;
+    font-weight: 100;
+    color: #999999;
+	margin: 0px;
+}
+.spacenametitle img {
+  margin: 0 0 -4px 0;
+}
+.spacenametitle a {
+    text-decoration: none;
+    color: #999999;
+}
+.spacenametitle a:visited {
+    text-decoration: none;
+    color: #999999;
+}*/
+
+.spacenametitle-printable {
+	font: 20px/25px Impact, Arial, Helvetica;
+    font-weight: 100;
+    color: #999999;
+	margin: 0px;
+}
+.spacenametitle-printable a {
+    text-decoration: none;
+    color: #999999;
+}
+.spacenametitle-printable a:visited {
+    text-decoration: none;
+    color: #999999;
+}
+
+.blogDate {
+	font-weight: bold;
+	text-decoration: none;
+	color: black;
+}
+
+.blogSurtitle {
+    background: #f0f0f0;
+ 	border: 1px solid #ddd;
+	padding: 3px;
+	margin: 1px 1px 10px 1px;
+}
+
+.blogHeading {
+    font-size: 20px;
+    line-height: normal;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
+}
+
+.blogHeading a {
+   text-decoration: none;
+   color: black;
+}
+
+.blogHeading a:hover {
+   text-decoration: underline;
+}
+
+.endsection {
+	align: right;
+	color: #666666;
+	margin-top: 10px;
+}
+.endsectionleftnav {
+	align: right;
+	color: #666666;
+	margin-top: 10px;
+}
+
+h1 {
+	font-size: 24px;
+	line-height: normal;
+	font-weight: bold;
+	background-color: #f0f0f0;
+	color: #003366;
+ 	border-bottom: 1px solid #3c78b5;
+	padding: 2px;
+	margin: 36px 0px 4px 0px;
+}
+
+h2 {
+	font-size: 18px;
+	line-height: normal;
+	font-weight: bold;
+	background-color: #f0f0f0;
+ 	border-bottom: 1px solid #3c78b5;
+	padding: 2px;
+	margin: 27px 0px 4px 0px;
+}
+
+h3 {
+	font-size: 14px;
+	line-height: normal;
+	font-weight: bold;
+	background-color: #d7e7f0;
+	padding: 2px;
+	margin: 21px 0px 4px 0px;
+}
+
+h4 {
+	font-size: 12px;
+	line-height: normal;
+	font-weight: bold;
+	background-color: #f0f0f0;
+	padding: 2px 0px 0px 20px;
+	margin: 18px 0px 4px 0px;
+}
+
+h4.search {
+	font-size: 12px;
+	line-height: normal;
+	font-weight: normal;
+	background-color: #f0f0f0;
+	padding: 4px;
+	margin: 18px 0px 4px 0px;
+}
+
+h5 {
+	font-size: 10px;
+	line-height: normal;
+	font-weight: bold;
+	background-color: #f0f0f0;
+	padding: 2px;
+	margin: 14px 0px 4px 0px;
+}
+
+h6 {
+	font-size: 8px;
+	line-height: normal;
+	font-weight: bold;
+	background-color: #f0f0f0;
+	padding: 2px;
+	margin: 14px 0px 4px 0px;
+}
+
+.smallfont {
+    font-size: 10px;
+}
+.descfont {
+    font-size: 10px;
+    color: #666666;
+}
+.smallerfont {
+    font-size: 9px;
+}
+.smalltext {
+    color: #666666;
+    font-size: 10px;
+}
+.smalltext a {
+    color: #666666;
+}
+.greyText
+{
+    color: #666666;
+}
+.smalltext-blue {
+    color: #3c78b5;
+    font-size: 10px;
+}
+.surtitle {
+    margin-left: 1px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #666666;
+}
+
+/* css hack found here:  http://www.fo3nix.pwp.blueyonder.co.uk/tutorials/css/hacks/ */
+.navItemOver { font-size: 10px; font-weight: bold; color: #ffffff; background-color: #003366; cursor: hand; voice-family: '\'}\''; voice-family:inherit; cursor: pointer;}
+.navItemOver a { color: #ffffff; background-color:#003366; text-decoration: none; }
+.navItemOver a:visited { color: #ffffff; background-color:#003366; text-decoration: none; }
+.navItemOver a:hover { color: #ffffff; background-color:#003366; text-decoration: none; }
+.navItem { font-size: 10px; font-weight: bold; color: #ffffff; background-color: #3c78b5; }
+.navItem a { color: #ffffff; text-decoration: none; }
+.navItem a:hover { color: #ffffff; text-decoration: none; }
+.navItem a:visited { color: #ffffff; text-decoration: none; }
+
+div.padded { padding: 4px; }
+div.thickPadded { padding: 10px; }
+h3.macrolibrariestitle {
+    margin: 0px 0px 0px 0px;
+}
+
+div.centered { text-align: center; margin: 10px; }
+div.centered table {margin: 0px auto; text-align: left; }
+
+.tableview table {
+    margin: 0;
+}
+
+.tableview th {
+    text-align: left;
+    color: #003366;
+    font-size: 12px;
+    padding: 5px 0px 0px 5px;
+    border-bottom: 2px solid #3c78b5;
+}
+.tableview td {
+    text-align: left;
+    border-color: #ccc;
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    margin: 0;
+    padding: 4px 10px 4px 5px;
+}
+
+.grid {
+    margin: 2px 0px 5px 0px;
+    border-collapse: collapse;
+}
+.grid th  {
+    border: 1px solid #ccc;
+    padding: 2px 4px 2px 4px;
+    background: #f0f0f0;
+    text-align: center;
+}
+.grid td  {
+    border: 1px solid #ccc;
+    padding: 3px 4px 3px 4px;
+}
+.gridHover {
+	background-color: #f9f9f9;
+}
+
+td.infocell {
+    background-color: #f0f0f0;
+}
+.label {
+	font-weight: bold;
+	color: #003366;
+}
+
+label {
+	font-weight: bold;
+	color: #003366;
+}
+
+.error {
+	background-color: #fcc;
+}
+
+.errorBox {
+	background-color: #fcc;
+    border: 1px solid #c00;
+    padding: 5px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+.errorMessage {
+	color: #c00;
+}
+
+.success {
+	background-color: #dfd;
+}
+
+.successBox {
+	background-color: #dfd;
+    border: 1px solid #090;
+    padding: 5px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+blockquote {
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-left: 5px;
+	margin-right: 0px;
+	border-left: 1px solid #3c78b5;
+}
+
+table.confluenceTable, table.admin
+{
+    margin: 5px;
+    border-collapse: collapse;
+}
+
+td.confluenceTd, table.confluenceTable td.confluenceTd, table.admin td
+{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc;
+    padding: 3px 4px 3px 4px;
+    vertical-align: top;
+}
+
+th.confluenceTh, table.confluenceTable th.confluenceTh, table.admin th
+{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc;
+    padding: 3px 4px 3px 4px;
+    background-color: #f0f0f0;
+    text-align: center;
+    vertical-align: top;
+}
+
+td.referenceTd,
+{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc;
+    padding: 3px 4px 3px 4px;
+    vertical-align: top;
+}
+
+th.referenceTh
+{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc;
+    padding: 3px 4px 3px 4px;
+    background-color: #f0f0f0;
+    text-align: left;
+    vertical-align: middle;
+}
+
+table.admin
+{
+    width: 100%;
+}
+table.admin td, table.admin th
+{
+    width: 50%;
+}
+table.admin th
+{
+    text-align: right;
+    font-weight: bold;
+}
+table.admin td.controls
+{
+    text-align: center;
+}
+
+DIV.small {
+	font-size: 9px;
+}
+
+H1.pagename {
+	margin-top: 0px;
+}
+
+IMG.inline  {}
+
+.loginform {
+    margin: 5px;
+    border: 1px solid #ccc;
+}
+
+/* The text how the "This is a preview" comment should be shown. */
+.previewnote { text-align: center;
+                font-size: 11px;
+                    color: red; }
+
+/* How the preview content should be shown */
+.previewcontent { background: #E0E0E0; }
+
+/* How the system messages should be shown (DisplayMessage.jsp) */
+.messagecontent { background: #E0E0E0; }
+
+/* How the "This page has been modified..." -comment should be shown. */
+.conflictnote { }
+
+.createlink {
+    color: maroon;
+}
+a.createlink {
+    color: maroon;
+}
+.templateparameter {
+    font-size: 9px;
+    color: darkblue;
+}
+
+.diffadded {
+    background: #ddffdd;
+    padding: 1px 1px 1px 4px;
+	border-left: 4px solid darkgreen;
+}
+.diffdeleted {
+    color: #999;
+    background: #ffdddd;
+    padding: 1px 1px 1px 4px;
+	border-left: 4px solid darkred;
+}
+.diffnochange {
+    padding: 1px 1px 1px 4px;
+	border-left: 4px solid lightgrey;
+}
+.differror {
+    background: brown;
+}
+.diff {
+    font-family: lucida console, courier new, fixed-width;
+	font-size: 12px;
+	line-height: 14px;
+}
+.diffaddedchars {
+    background-color:#99ff99;
+    font-weight:bolder;
+}
+.diffremovedchars {
+    background-color:#ff9999;
+    text-decoration: line-through;
+    font-weight:bolder;
+}
+
+.greybackground {
+    background: #f0f0f0
+}
+
+.greybox {
+ 	border: 1px solid #ddd;
+	padding: 3px;
+	margin: 1px 1px 10px 1px;
+}
+
+.borderedGreyBox {
+    border: 1px solid #cccccc;
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+
+.greyboxfilled {
+ 	border: 1px solid #ddd;
+    background: #f0f0f0;
+    padding: 3px;
+	margin: 1px 1px 10px 1px;
+}
+
+.lightGreyBox
+{
+    background: #fafafa;
+}
+
+.navBackgroundBox {
+    padding: 5px 5px 5px 5px;
+    font-size: 22px;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+	color: white;
+    background: #3c78b5;
+    text-decoration: none;
+}
+
+.previewBoxTop {
+	background-color: #f0f0f0;
+    border-width: 1px 1px 0px 1px;
+    border-style: solid;
+    border-color: #3c78b5;
+    padding: 5px;
+    margin: 5px 0px 0px 0px;
+    text-align: center;
+}
+.previewContent {
+    background-color: #fff;
+ 	border-color: #3c78b5;
+	border-width: 0px 1px 0px 1px;
+	border-style: solid;
+	padding: 10px;
+	margin: 0px;
+}
+.previewBoxBottom {
+	background-color: #f0f0f0;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: #3c78b5;
+    padding: 5px;
+    margin: 0px 0px 5px 0px;
+    text-align: center;
+}
+
+.functionbox {
+    background-color: #f0f0f0;
+ 	border: 1px solid #3c78b5;
+	padding: 3px;
+	margin: 1px 1px 10px 1px;
+}
+
+.functionbox-greyborder {
+    background-color: #f0f0f0;
+ 	border: 1px solid #ddd;
+	padding: 3px;
+	margin: 1px 1px 10px 1px;
+}
+
+.search-highlight {
+    background-color: #ffffcc;
+}
+
+/* normal (white) background */
+.rowNormal {
+    background-color: #ffffff;
+ }
+
+/* alternate (pale yellow) background */
+.rowAlternate {
+    background-color: #f7f7f7;
+}
+
+/* used in the list attachments table */
+.rowAlternateNoBottomColor {
+    background-color: #f7f7f7;
+}
+
+.rowAlternateNoBottomNoColor {
+}
+
+.rowAlternateNoBottomColor td {
+    border-bottom: 0px;
+}
+
+.rowAlternateNoBottomNoColor td {
+    border-bottom: 0px;
+}
+
+/* row highlight (grey) background */
+.rowHighlight {
+    background-color: #f0f0f0;
+
+}
+
+TD.greenbar {FONT-SIZE: 2px; BACKGROUND: #00df00; BORDER: 1px solid #9c9c9c; PADDING: 0px; }
+TD.graybar {FONT-SIZE: 2px; BACKGROUND: #808080; BORDER: 1px solid #9c9c9c; PADDING: 0px; }
+TD.redbar {FONT-SIZE: 2px; BACKGROUND: #df0000; BORDER: 1px solid #9c9c9c; PADDING: 0px; }
+TD.darkredbar {FONT-SIZE: 2px; BACKGROUND: #af0000; BORDER: 1px solid #9c9c9c; PADDING: 0px; }
+
+TR.testpassed {FONT-SIZE: 2px; BACKGROUND: #ddffdd; PADDING: 0px; }
+TR.testfailed {FONT-SIZE: 2px; BACKGROUND: #ffdddd; PADDING: 0px; }
+
+.toolbar  {
+    margin: 0px;
+    border-collapse: collapse;
+}
+
+.toolbar td  {
+    border: 1px solid #ccc;
+    padding: 2px 2px 2px 2px;
+    color: #ccc;
+}
+
+td.noformatting {
+    border-width: 0px;
+    border-style: none;
+    text-align: center;
+	padding: 0px;
+}
+
+.commentblock {
+    margin: 12px 0 12px 0;
+}
+
+/*
+ * Divs displaying the license information, if necessary.
+ */
+.license {
+    border-top: 1px solid #bbbbbb;
+    text-align: center;
+    font-size: 10px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-color: lightyellow;
+}
+
+.license-eval, .license-none {
+    background-color: #ffcccc;
+}
+
+.license-eval b, .license-none b {
+    color: #990000;
+}
+
+.license-nonprofit {
+    background-color: #ffffff;
+}
+
+/*
+ * The shadow at the bottom of the page between the main content and the
+ * "powered by" section.
+ */
+.bottomshadow {
+    height: 12px;
+    background-image: url("$req.contextPath/images/border/border_bottom.gif");
+    background-repeat: repeat-x;
+}
+
+/*
+ * Styling of the operations box
+ */
+.navmenu .operations li, .navmenu .operations ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.navmenu .operations ul {
+    margin-bottom: 9px;
+}
+
+.navmenu .label {
+    font-weight: inherit;
+}
+
+/*
+ * Styling of ops as a toolbar
+ */
+.toolbar div {
+    display: none;
+}
+
+.toolbar .label {
+    display: none;
+}
+
+.toolbar .operations {
+    display: block;
+}
+
+.toolbar .operations ul {
+    display: inline;
+    list-style: none;
+    margin-left: 10px;
+    padding-left: 0;
+}
+
+.toolbar .operations li {
+    list-style: none;
+    display: inline;
+}
+
+/* list page navigational tabs */
+#foldertab {
+padding: 3px 0px 3px 8px;
+margin-left: 0;
+border-bottom: 1px solid #3c78b5;
+font: bold 11px Verdana, sans-serif;
+}
+
+#foldertab li {
+list-style: none;
+margin: 0;
+display: inline;
+}
+
+#foldertab li a {
+padding: 3px 0.5em;
+margin-left: 3px;
+border: 1px solid #3c78b5;
+border-bottom: none;
+background: #3c78b5;
+text-decoration: none;
+}
+
+#foldertab li a:link { color: #ffffff; }
+#foldertab li a:visited { color: #ffffff; }
+
+#foldertab li a:hover {
+color: #ffffff;
+background: #003366;
+border-color: #003366;
+}
+
+#foldertab li a.current {
+background: white;
+border-bottom: 1px solid white;
+color: black;
+}
+
+#foldertab li a.current:link { color: black; }
+#foldertab li a.current:visited { color: black; }
+#foldertab li a.current:hover {
+background: white;
+border-bottom: 1px solid white;
+color: black;
+}
+
+.foldertab-box { border-left: 1px solid #3c78b5; border-right: 1px solid #3c78b5; border-bottom: 1px solid #3c78b5; padding: 8px }
+
+/* alphabet list */
+ul#squaretab {
+margin-left: 0;
+padding-left: 0;
+white-space: nowrap;
+font: bold 8px Verdana, sans-serif;
+}
+
+#squaretab li {
+display: inline;
+list-style-type: none;
+}
+
+#squaretab a {
+padding: 2px 6px;
+border: 1px solid #3c78b5;
+}
+
+#squaretab a:link, #squaretab a:visited {
+color: #fff;
+background-color: #3c78b5;
+text-decoration: none;
+}
+
+#squaretab a:hover {
+color: #ffffff;
+background-color: #003366;
+border-color: #003366;
+text-decoration: none;
+}
+
+#squaretab li a#current {
+background: white;
+color: black;
+}
+
+.blogcalendar * {
+    font-family:verdana, arial, sans-serif;
+    font-size:x-small;
+    font-weight:normal;
+    line-height:140%;
+    padding:2px;
+}
+
+
+table.blogcalendar {
+    border: 1px solid #3c78b5;
+}
+
+.blogcalendar th.calendarhead, a.calendarhead {
+    font-size:x-small;
+    font-weight:bold;
+    padding:2px;
+    text-transform:uppercase;
+    background-color: #3c78b5;
+    color: #ffffff;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+}
+
+.calendarhead:visited {color: white;}
+.calendarhead:active {color: white;}
+.calendarhead:hover {color: white;}
+
+.blogcalendar th {
+    font-size:x-small;
+    font-weight:bold;
+    padding:2px;
+    background-color:#f0f0f0;
+}
+
+.blogcalendar td {
+    font-size:x-small;
+    font-weight:normal;
+}
+
+.searchGroup { padding: 0 0 10px 0; background: #f0f0f0; }
+.searchGroupHeading { font-size: 10px; font-weight: bold; color: #ffffff; background-color: #3c78b5; padding: 2px 4px 1px 4px; }
+.searchItem { padding: 1px 4px 1px 4px; }
+.searchItemSelected { padding: 1px 4px 1px 4px; font-weight: bold; background: #ddd; }
+
+/* permissions page styles */
+.permissionHeading {
+    border-bottom: #bbb; border-width: 0 0 1px 0; border-style: solid; font-size: 16px; text-align: left;
+}
+.permissionTab {
+    border-width: 0 0 0 1px; border-style: solid; background: #3c78b5; color: #ffffff; font-size: 10px;
+}
+.permissionSuperTab {
+    border-width: 0 0 0 1px; border-style: solid; background: #003366; color: #ffffff;
+}
+.permissionCell {
+    border-left: #bbb; border-width: 0 0 0 1px; border-style: solid;
+}
+
+/* warning panel */
+.warningPanel { background: #FFFFCE; border:#F0C000 1px solid; padding: 8px; margin: 10px; }
+/* alert panel */
+.alertPanel { background: #FFCCCC; border:#C00 1px solid; padding: 8px; margin: 10px; }
+/* info panel */
+.infoPanel { background: #D8E4F1; border:#3c78b5 1px solid; padding: 8px; margin: 10px; }
+
+/* side menu highlighting (e.g. space content screen) */
+.optionPadded { padding: 2px; }
+.optionSelected { background-color: #ffffcc; padding: 2px; border: 1px solid #ddd; margin: -1px; }
+.optionSelected a { font-weight: bold; text-decoration: none; color: black; }
+
+/* information macros */
+.noteMacro { border-style: solid; border-width: 1px; border-color: #F0C000; background-color: #FFFFCE; text-align:left; margin-top: 5px; margin-bottom: 5px}
+.warningMacro { border-style: solid; border-width: 1px; border-color: #c00; background-color: #fcc; text-align:left; margin-top: 5px; margin-bottom: 5px}
+.infoMacro { border-style: solid; border-width: 1px; border-color: #3c78b5; background-color: #D8E4F1; text-align:left; margin-top: 5px; margin-bottom: 5px}
+.tipMacro { border-style: solid; border-width: 1px; border-color: #090; background-color: #dfd; text-align:left; margin-top: 5px; margin-bottom: 5px}
+.informationMacroPadding { padding: 5px 0 0 5px; }
+
+
+/* Global Message styles */
+.noteMessage { border-style: solid; border-width: 1px; border-color: #F0C000; background-color: #FFFFCE; text-align:center; padding:5px;}
+.warningMessage { border-style: solid; border-width: 1px; border-color: #c00; background-color: #fcc; text-align:center; padding:5px;}
+.infoMessage { border-style: solid; border-width: 1px; border-color: #3c78b5; background-color: #D8E4F1; text-align:center; padding:5px;}
+.tipMessage { border-style: solid; border-width: 1px; border-color: #090; background-color: #dfd; text-align:center; padding:5px;}
+
+
+table.infoMacro td, table.warningMacro td, table.tipMacro td, table.noteMacro td, table.sectionMacro td {
+    border: none;
+}
+
+table.sectionMacroWithBorder td.columnMacro { border-style: dashed; border-width: 1px; border-color: #cccccc;}
+
+.pagecontent
+{
+    padding: 10px;
+    text-align: left;
+}
+
+/* styles for links in the top bar */
+.topBarDiv a:link {color: #ffffff;}
+.topBarDiv a:visited {color: #ffffff;}
+.topBarDiv a:active {color: #ffffff;}
+.topBarDiv a:hover {color: #ffffff;}
+.topBarDiv {color: #ffffff;}
+
+.topBar {
+    background-color: #003366;
+}
+
+
+/* styles for extended operations */
+.greyLinks a:link {color: #666666; text-decoration:underline;}
+.greyLinks a:visited {color: #666666; text-decoration:underline;}
+.greyLinks a:active {color: #666666; text-decoration:underline;}
+.greyLinks a:hover {color: #666666; text-decoration:underline;}
+.greyLinks {color: #666666; display:block; padding: 10px}
+
+.logoSpaceLink {color: #999999; text-decoration: none}
+.logoSpaceLink a:link {color: #999999; text-decoration: none}
+.logoSpaceLink a:visited {color: #999999; text-decoration: none}
+.logoSpaceLink a:active {color: #999999; text-decoration: none}
+.logoSpaceLink a:hover {color: #003366; text-decoration: none}
+
+/* basic panel (basicpanel.vmd) style */
+.basicPanelContainer {border: 1px solid #3c78b5; margin-top: 2px; margin-bottom: 8px; width: 100%}
+.basicPanelTitle {padding: 5px; margin: 0px; background-color: #f0f0f0; color: black; font-weight: bold;}
+.basicPanelBody {padding: 5px; margin: 0px}
+
+.separatorLinks a:link {color: white}
+.separatorLinks a:visited {color: white}
+.separatorLinks a:active {color: white}
+
+.greynavbar {background-color: #f0f0f0; border-top: 1px solid #3c78b5; margin-top: 2px}
+
+div.headerField {
+    float: left;
+    width: auto;
+    height: 100%;
+}
+
+.headerFloat {
+    margin-left: auto;
+    width: 50%;
+}
+
+.headerFloatLeft {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+#headerRow {
+    padding: 10px;
+}
+
+div.license-personal {
+   background-color: #003366;
+   color: #ffffff;
+}
+
+div.license-personal a {
+   color: #ffffff;
+}
+
+.greyFormBox {
+    border: 1px solid #cccccc;
+    padding: 5px;
+}
+
+/* IE automatically adds a margin before and after form tags. Use this style to remove that */
+.marginlessForm {
+    margin: 0px;
+}
+
+.openPageHighlight {
+    background-color: #ffffcc;
+    padding: 2px;
+    border: 1px solid #ddd;
+}
+
+.editPageInsertLinks, .editPageInsertLinks a
+{
+    color: #666666;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+/* Style for label heatmap. */
+.top10 a {
+    font-weight: bold;
+    font-size: 2em;
+    color: #003366;
+}
+.top25 a {
+    font-weight: bold;
+    font-size: 1.6em;
+    color: #003366;
+}
+.top50 a {
+    font-size: 1.4em;
+    color: #003366;
+}
+.top100 a {
+    font-size: 1.2em;
+    color: #003366;
+}
+
+.heatmap {
+    list-style:none;
+    width: 95%;
+    margin: 0px auto;
+}
+
+.heatmap a {
+    text-decoration:none;
+}
+
+.heatmap a:hover {
+    text-decoration:underline;
+}
+
+.heatmap li {
+    display: inline;
+}
+
+.minitab {
+padding: 3px 0px 3px 8px;
+margin-left: 0;
+margin-top: 1px;
+margin-bottom: 0px;
+border-bottom: 1px solid #3c78b5;
+font: bold 9px Verdana, sans-serif;
+text-decoration: none;
+float:none;
+}
+.selectedminitab {
+padding: 3px 0.5em;
+margin-left: 3px;
+margin-top: 1px;
+border: 1px solid #3c78b5;
+background: white;
+border-bottom: 1px solid white;
+color: #000000;
+text-decoration: none;
+}
+.unselectedminitab {
+padding: 3px 0.5em;
+margin-left: 3px;
+margin-top: 1px;
+border: 1px solid #3c78b5;
+border-bottom: none;
+background: #3c78b5;
+color: #ffffff;
+text-decoration: none;
+}
+
+
+a.unselectedminitab:link { color: white; }
+a.unselectedminitab:visited { color: white; }
+
+a.selectedminitab:link { color: black; }
+a.selectedminitab:visited { color: black; }
+
+.linkerror { background-color: #fcc;}
+
+a.labelOperationLink:link {text-decoration: underline}
+a.labelOperationLink:active {text-decoration: underline}
+a.labelOperationLink:visited {text-decoration: underline}
+a.labelOperationLink:hover {text-decoration: underline}
+
+a.newLabel:link {background-color: #ddffdd}
+a.newLabel:active {background-color: #ddffdd}
+a.newLabel:visited {background-color: #ddffdd}
+a.newLabel:hover {background-color: #ddffdd}
+
+ul.square {list-style-type: square}
+
+.inline-control-link {
+    background: #ffc;
+    font-size: 9px;
+    color: #666;
+    padding: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+.inline-control-link a:link {text-decoration: none}
+.inline-control-link a:active {text-decoration: none}
+.inline-control-link a:visited {text-decoration: none}
+.inline-control-link a:hover {text-decoration: none}
+
+.inline-control-link {
+    background: #ffc;
+    font-size: 9px;
+    color: #666;
+    padding: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+div.auto_complete {
+    width: 350px;
+    background: #fff;
+}
+div.auto_complete ul {
+    border: 1px solid #888;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style-type: none;
+}
+div.auto_complete ul li {
+    margin: 0;
+    padding: 3px;
+}
+div.auto_complete ul li.selected {
+    background-color: #ffb;
+}
+div.auto_complete ul strong.highlight {
+    color: #800;
+    margin: 0;
+    padding: 0;
+}
+
+/******* Edit Page Styles *******/
+.toggleFormDiv{
+    border:1px solid #A7A6AA;
+    background-color:white;
+    margin-top: 5px;
+}
+
+.toogleInfoDiv{
+    border:1px solid #A7A6AA;
+    background-color:white;
+    display:none;
+    padding:5px;
+    margin-top: 10px;
+}
+
+.inputSection{
+    margin-bottom:20px;
+}
+
+#editBox{
+   border:1px solid lightgray;
+   background-color:#F0F0F0;
+}
+
+/******* Left Navigation Theme Styles ********/
+.leftnav li a {
+    text-decoration:none;
+    color:white;
+    margin:0px;
+    display:block;
+    padding:2px;
+    padding-left:5px;
+    background-color: #3c78b5;
+    border-top:1px solid #3c78b5;
+}
+
+.leftnav li a:active {color:white;}
+.leftnav li a:visited {color:white;}
+.leftnav li a:hover {background-color: #003366; color:white;}
+
+/* Added by Shaun during i18n */
+.replaced
+{
+    background-color: #33CC66;
+}
+
+.topPadding
+{
+    margin-top: 20px;
+}
+
+/* new form style */
+.form-block {
+    padding: 6px;
+}
+.form-error-block {
+    padding: 6px;
+    background: #fcc;
+    border-top: #f0f0f0 1px solid;
+    border-bottom: #f0f0f0 1px solid;
+    margin-bottom: 6px;
+    padding: 0 12px 0 12px;
+}
+.form-element-large {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: #003366;
+}
+
+.form-element-small {
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: #003366;
+}
+
+.form-header {
+    background: lightyellow;
+    border-top: #f0f0f0 1px solid;
+    border-bottom: #f0f0f0 1px solid;
+    margin-bottom: 6px;
+    padding: 0 12px 0 12px;
+}
+.form-header p, .form-block p, .form-error-block p {
+    line-height: normal;
+    margin: 12px 0 12px 0;
+}
+.form-example {
+    color: #888;
+    font-size: 11px;
+}
+.form-divider {
+    border-bottom: #ccc 1px solid;
+    margin-bottom: 6px;
+}
+.form-buttons {
+    margin-top: 6px;
+    border-top: #ccc 1px solid;
+    border-bottom: #ccc 1px solid;
+    background: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+}
+.form-buttons input {
+    width: 100px;
+}
+.form-block .error {
+    padding: 6px;
+    margin-bottom: 6px;
+}
+
+.status-red
+{
+    color: #800;
+    font-weight: bold;
+}
+.status-green
+{
+    color: #080;
+    font-weight: bold;
+}
+
+.person
+{
+    background-color: white;
+    width: 200px;
+    float: left;
+}
+.person td
+{
+    white-space: nowrap;
+}
+#viewAttachmentsDiv input.commentTextField
+{
+    width: 300px;
+}
+#blogcalendar span.fwdArrow
+{
+    float: right;
+    display: block;
+    width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+    background-image: url(/images/icons/forwd_16.gif);
+}
+#blogcalendar span.fwdArrow span
+{
+    display: none;
+}
+#blogcalendar span.backArrow
+{
+    float: left;
+    display: block;
+    width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+    background-image: url(/images/icons/back_16.gif);
+}
+#blogcalendar span.backArrow span
+{
+    display: none;
+}
+.pageInfoTable {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    width: 100%;
+    border-collapse: collapse;
+}
+.pageInfoTable td
+{
+    padding: 3px;
+}
+.pageInfoTable tr.alternateRow
+{
+    background: #f0f0f0;
+}
+.pageInfoLayoutTable
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+.pageInfoLayoutTable td
+{
+    padding: 5px;
+}
+.searchMacro .result
+{
+    margin-bottom: 3px;
+    padding: 0 5px 5px 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.rssMacro table
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+.rssMacro table th  {
+    border: 1px solid #ccc;
+    padding: 4px;
+    background: #f0f0f0;
+}
+.rssMacro table td
+{
+    border: 1px solid #ccc;
+    padding: 4px;
+}
+
+.memoryusagebar { width: 100%; }
+.memoryusagebar td
+{
+    border: none !important;
+    vertical-align: middle !important;
+}
+
+input.alignedCheckbox { margin: 0px; }
+
+div.spacer {clear: both}
+span.left {float: left; text-align: left}
+span.right {float: right; text-align: right}
+
+
+#permissionsDiv label {
+	font-weight: bold;
+	color: black;
+}
+
+.pagePermissionsTable
+{
+    border-collapse: collapse; padding: 2px; border-top: 1px solid #cccccc; border-bottom: 1px solid #cccccc; width: 100%;
+}
+
+.pagePermissionsTable tr td {padding: 4px}
+
+.pagePermissionsErrorDiv {margin: 6px 0 6px 0; background-color: #fcc; border-top: 1px solid #c00; border-bottom: 1px solid #c00; padding: 3px;}
+
+.pagePermissionsInput {background-color: #FFFFCE; padding: 4px; margin-top: 4px;}
+
+#inheritedPermissionsBox
+{
+    margin: 8px 8px 0 8px;
+    padding: 8px;
+}
+
+#currentPermissionsBox
+{
+    margin: 8px;
+    padding: 8px;
+}
+
+.nobr {
+    white-space: nowrap;
+}
+
+label.normal {
+    font-weight: normal;
+    color: black
+}
+
+div.leftFloatMargined {
+    float: left;
+    margin-right: 2px
+}
+
+table#entitySearchResults {
+    border-collapse: collapse;
+    background-color: #fafafa;
+    text-align: left;
+    width: 100%;
+}
+
+table#entitySearchResults td {
+    border-top: 1px solid #cccccc;
+    padding: 3px;
+    background-color: white;
+    vertical-align: top;
+}
+
+table#entitySearchResults th {
+    color: #666666;
+    padding: 3px;
+    white-space:nowrap;
+}
+
+table#entitySearchResults .firstColumn {
+    width: 2%;
+    text-align: right;
+}
+
+table#entitySearchResults .secondColumn {
+    width: 1px;
+    text-align: right;
+}
+p.MsoListParagraph1 {mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	mso-add-space:auto;
+	line-height:normal;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	color:windowtext;}
+body,td,th {
+	font-family: Verdana, Geneva, sans-serif;
+}
+</style>
+</head>
+
+<body>
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Welcome to <font color="#4169E1">Ericsson</font><font color="#4169E1"> Product Release</font></h1>
+<p>The Ericsson<sup></sup> Product Release is a J2EE-compliant software development platform and services for telecommunication providers to build, deploy, and manage OSS/BSS enterprise solutions.</p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<td width="69" class='confluenceTd'><b>Version</b></td>
+<td width="128" class='confluenceTd'>14.0 GA</td>
+</tr>
+<tr>
+<td height="28" class='confluenceTd'><b>Date</b></td>
+<td class='confluenceTd'>June 13, 2014</td>
+</tr>
+</tbody>
+</table>
+<h1>Notable Enhancements</h1>
+<p><span class=SpellE>Ericsson</span><sup></sup> Product Release <span class="confluenceTd">14.0.0.0</span> contains the following notable enhancements: </p>
+<ul>
+  <li>An enhancement allows for showing automatic summaries of data sets that are viewed using a finder. </li>
+  <li>The following Operation field values appear in the User-Defined Search Items section of Document and Order finders:
+    <ul>
+      <li> is null</li>
+      <li> is not null</li>
+      <li> == (equal to static value)</li>
+      </ul>
+    <indent>
+    This feature allows you to search for null or static values (for example, variableName is null, variableConstant == 5). </li>
+  
+  <li>Core deprecated calls in the Catalog library have been removed.</li>
+  <li>The User Profile Management application allows you to create a user privilege, which is a combination of all privileges for which the user is active in a group. A user may be active or inactive in more than one group. </li>
+  <li>The following enhancements have been made for the Catalog Maintenance API:    
+    <ul>
+      <li>The Catalog Maintenance Import API imports the spreadsheet that contains all the necessary data for the definition of catalog entities, including specific code tables. The enhancement allows to define new code tables (if any), and addition of new elements for existing and new code tables.</li>
+      <li>The Catalog Maintenance Export API exports only the code tables of the product catalog. 
+        </li>
+      </ul>
+    </li>
+  <li>It was noted that the selenium.doubleClick method did not work properly when double-clicking an element using FireFox as the Web browser. However, it worked as expected in Internet Explorer. This release supports the selenium.doubleClick method for in tables. </li>
+  <li>With this release, a validation warning is thrown if the Choice activity of a Process has two children activities of type Operation with a reference to the same operation.</li>
+  <li>This enhancement supports advanced mapping functionality, including the following:
+    <ul>
+      <li>     Data structure-to-data structure mapping</li>
+      <li> An orders as either a source or target</li>
+      <li> An orders as an input or output to interface operations</li>
+      </ul>
+    </li>
+  <li>In past releases, for an XML-over-HTTP call in which the response contained two empty rows before the actual XML content, this response content led to an exception being thrown. In this release, parsing of XML content containing whitespace is supported where the whitespace is removed.</li>
+  <li>A new property <strong>Show Submenu On Hover</strong> has been added for the Menu element.  The property can be set for the ROOT menu button. For child menu elements, it is always true and disabled.  Second level menus are always shown on hover.</li>
+  <li>An issue was found using the Chrome Web browser where Selenium could not select from the Application menu. Instead, Selenium selected the last application and the correct one to use, which threw an exception. A fix has been made where selecting the application manually is no longer required in Chrome to access the application and works as expected.</li>
+  <li>When launching the Safari Web browser to start a Selenium test, the session would hang. It was found that the getNewBrowserSession method required changing the *safariproxy parameter and the Block Pop-up setting in Safari's Preference page needed to be unchecked to resolve the issue.</li>
+  <li>A copy functionality has been provided for methods in Velocity Studio.</li>
+  <li>In a Catalog info table, if a column is of code table type, the user interface now displays the drop-down list for that column.  Catalog info tables are implemented as a Dynamic Table in the metadata and so the Dynamic Table handles the user interface for different type of attributes. Also, there was an enhancement on the Dynamic Table to allow specification of edit controls based on data types.  These data types are now supported: Boolean, Date (MM/dd/yyyy), DateTime (MM/dd/yyyy HH:mm), String, Integer, Double, Enumeration are now supported.</li>
+  <li>This enhancement allows you to define a global exception handler and use a default exception handler if one has not been defined in the Exception element's Default Handler field.</li>
+  <li>Warnings are displayed for all data types if you shrink the lengths via ConversionMap; previously these warnings were only available for the String type. Since it does not make sense to truncate a Number type, an SQL exception will happen at runtime if you ignore the warning and do the conversion from a bigger length to a smaller length for the Number type. </li>
+  <li>A new property <strong>Connector Color Method</strong> has been added under the nodal chart element. This property accepts an action with return type set to String. The first parameter of the action represents the data document. The return string must be a hex color code.</li>
+  <li>The Grid Layout element contains a new property, Label Align, which takes one of the following alignment options:
+    <ul>
+      <li>Left, Centre, Right</li>
+      </ul>  
+    This property can be overridden by the Label Align property of the Grid Layout element (for example, text field, radio button, and so on). </li>
+  <li>While performing workflow modeling, you can now right-click on an empty diagram view and add an activity. </li>
+  <li>A workflow with a notification operation in a choice should not have a before script. This validation is performed at design time now rather than when attempting to start AVM.</li>
+  <li>Improvements have been implemented to the <strong>Import</strong> dialog to guess the namespace from the XSD URL in the following ways:<br>
+    <ul>
+      <li> Automatically replace &quot;-&quot; with &quot;_&quot;</li>
+      <li>&quot;http://a.b.c/' [^]&quot; previously resulted in null; now we get &quot;a.b.c&quot;</li>
+      <li>&quot;urn:abc&quot; previously resulted in null; now we get &quot;abc&quot; </li>
+    </ul>  
+  <li>If a label for your namespace is not specified, the name of the namespace appears in the Configuration application, under the <strong>Services</strong> &gt; <strong>Services</strong> tab.    
+  <li>The following process-related enhancements have been made in Velocity Studio:<br>
+    <ul>
+      <li>Open Process property on the Diagram tab</li>
+      <li>In some cases, especially when Problems pane is high, when we open Process page it scrolls down and tabs are either hidden or visually cut. By default, scroll bar must be set to the highest position.</li>
+      <li>When we rename a process activity, we should stay on the Process Diagram tab.</li>
+      <li>Process revisions are now read-only. It is possible to edit its label.</li>
+      <li>The following three new options have been added on the Diagram tools panel: </li>
+      <ul>
+        <li> tree view: tree panel occupies 100% of the screen and diagram panel 0%</li>
+        <li> diagram view: tree panel is 0% and diagram is 100%</li>
+        <li> standard view: default; same proportion as now</li>
+        </ul>
+      <li> Activity icons on the process diagram and activity nodes in the process tree (left panel) both display labels.</li>
+    </ul>
+  <li>In this release, by default, right-clicking the console pane area has the Auto-Scroll action selected, so that automatic scrolling is on.</li>
+  <li>A new Global.printf function is available, which returns a formatted string instead of sending its output to the console.</li>
+  <li>A <strong>Back</strong> button has been added to the cwf_up.orgChartSelector, which allows you to enter a second level of an organizational chart and return to a previous level. </li>
+  <li>The finder.search() method contains an optional maxRows parameter. When this parameter is specified, it overrides the maximum rows defined in the Finder metadata.</li>
+  <li>The Global.translateText API has been enhanced to return null if the resource does not exist.</li>
+  <li>Velocity Studio checks for user-defined upgrades before starting framework.</li>
+  <li>New base UI for Finders (ui_common.baseFinder) now has the ability to return the result form dynamically.<br>
+  <ul>
+    <li>User metadata should override getResultForm method of the ui_common.baseFinder</li>
+    <li>getResultForm() should return top-level UI (name) that extends ui_coomon.baseResult. For example, cwa_admin.findEventLog: getResultForm() publishes an event to get the result form UI (top-level UI), so that user metadata can provide its own handler and return the extended UI.</li>
+    <li>getResultForm can have any custom logic. For example, it can be used to dynamically choose what result form to display based on the first row from the result list. </li>
+    </ul>
+    <strong>Note</strong>: getResultForm() is not invoked every time on Search; it is usually called once when changing Finder views. </li>
+  <li>Options to set new permission, and override data structure methods include:
+    <ul>
+      <li> new action New Permission has been added to the Methods panel.</li>
+      <li> An action Override.. has been added for data structure methods to select and override the base data structure method.</li>
+    </ul>
+  </li>
+  <li>The Organizational Charts page now has an Import and Export function.  In the User Profile Manager, the following configuration information can be exported and imported:<br>
+  <ul>
+    <li>Groups</li>
+    <li>Users</li>
+    <li>Privileges</li>
+    <li>Organizational Chart</li>
+  </ul>  
+  <li>This enhancement allows you to use a trigger on reference fields for data structures. The <strong>Run Trigger</strong> property of the Reference element can be bound to any method of the UserInterface data structure.</li>
+  <li>A new property, called <strong>Reference Data Type</strong>, has been added under Reference Element. It shows a list of all reference finders in the metadata.</li>
+  <li>The Select Field element was useable only if its Variable property was set to a data object's variable as an enumeration type or reference. With this enhancement, Select Field element can be used in top level user interface with its Variable property set to the user interface's variable of type enumeration (static only).</li>
+  <li>In this release, an automatic conversion (to DataObjectList type)  was implemented for the case when a script finder returns a substructure (variable of a data structure) with the Array flag. </li>
+  <li>Missing functionality implemented for data structures, and changes to mapping </li>
+  <ul>
+  <li> Implemented missing functionality for data structures:<br>
+  <ul>
+    <li>If a reference type variable is bound to a select field, when it gets choices for the dropdown, it runs the reference finder and automatically maps the source data object (document or data structure, the owner of the variable) to the search object (document or data structure), so that the finder can return the result depending on the source object values.</li>
+    <li>The Select Input data structure of the reference finder should be the same metadata type as the source object<br>
+      OR have a default conversion map that maps the source data structure to the search data structure.</li>
+  </ul>
+  </li>
+  <li> The mapping is done only for select fields.  In the case of reference fields with the pop-up finder, the source object is not mapped to the search object, but is set as the finder parent, so it can be reached as &quot;this.parent&quot; in the &quot;cwOnFinderSel&quot; script.</li>
+  <li>To map a data structure to another data structure in a script manually, use the &quot;mapToStructure&quot; method. <br>
+    For example:<br>
+    var targetDs = new DataStructure(&quot;cwl:participantOperationSearch&quot;);<br>
+    this.mapToStructure(targetDs, &quot;cwl:participantToOperationForEsc&quot;, false);<br>
+    where second parameter &quot;cwl:participantToOperationForEsc&quot; is the name of the conversion map. Can be null, if &quot;this&quot; is the same metadata type as &quot;targetDs&quot; or there is a default conversion map for &quot;this&quot; and &quot;targetDs&quot;. </li>
+  </ul>  
+  <li>The reference field is displayed either as a finder or a list box. </li>
+  <li>In past releases, clicking the <strong>Calendar</strong> icon allowed you to only specify the date from the dialog. This enhancement allows you to also specify the time by clicking the <strong>Hour</strong>, <strong>Minute</strong>, and <strong>Second</strong> drop-down fields.</li>
+   <li>In the System Configuration application, a Config Variable that is created at the cluster level can now be deleted from the node level.</li>
+  <li>This enhancement allows you to add an enumeration type Reference Field element in a top-level UI.</li>
+  <li>It is now possible to change the type of model in the top-level user interface so one can assign the variable property of the element on the form to it.</li>
+  <li>The system method setReferenceData of the MasterDetailUserInterface was changed as follows:<br>
+    <ul>
+    <li>When invoking the reference field trigger (method that is specified at the reference field element level of the form), it passes the selected row(s) to the trigger as the first parameter (&quot;selected&quot;).</li>
+    </ul>
+    <strong>Note:</strong> The &quot;selected&quot; parameter can be the following:<br>
+    <ul>
+ <li> Null, if nothing is selected.</li>
+ <li> A Document or DataStructure object, if one row is selected.</li>
+ <li> An array of Documents or DataStructures, if multi-selection is done.</li>
+</ul>
+</ul>
+<ul>
+  <li>A finder's View tab contains the Select UI field, which allows you to select a top-level user interface, finder user interface, or the input document user interface. You have the flexibility of selecting either a local form or a top-level UI form.</li>
+  <li>It is now possible to implement new Security APIs to integrate with multiple authorization provider. See Security Configuration Guide for required function to be implemented.</li>
+  <li>Implemented 2 methods for data structure array element:</li>
+  <ul>
+    <li>removeAt(index),  remove(object)</li>
+    </ul>
+  For example:<br>
+    var ds = new DataStructure(&quot;namespace.Country&quot;);<br>
+    where namespace.Country has a child element &quot;cities&quot; which is Array of namespace.City data structure<br>
+    To remove a city from the array:<br>
+    ds.cities.removeAt(0); // will remove first element from the array<br>
+    ds.cities.remove(city); // will remove a certain namespace.City instance from array
+  <li>This enhancement provides support for multiple profile providers. You can set up multiple profile sources (for example, one profile for each individual partner). A user in the profile provider instance with the Local Profile Administrator (LPAdmin) privilege can only create, change, delete, and update users within the profile provider. A user with this privilege can also only grant privileges to groups within the profile provider and may grant equal privileges to other groups within the same profile provider.</li>
+  <li>The System Configuration application has been enhanced, which allows you to define multiple clusters.         
+      <li>In the Configuration application, changing any process from the PE Processes tab to an empty value at the cluster level, saving the change, and then refreshing the cluster node would return the old value. This enhancement properly shows the saved processes values of changed PE processes after refreshing the node.    
+        <li>The download element is available under the Page form when the user interface parent is based on &quot;com.conceptwave.system.Application&quot;. If an application default Page is overridden and the download element on the Page is deleted, the download element is automatically inserted as part of the Page.    
+        <li>A new property, <strong>Show Validation</strong>, is available for Chart, Nodal Chart, and Gantt Chart elements. By default, the property is unchecked, meaning that validation errors do not appear at runtime. Otherwise, select this property to display validation errors under the chart at runtime.
+        <li>With this release, messages and requests to and from external services are always logged in the message log, even if there are exceptions.
+        <li>A new implementation of the Catalog basket is available, which results in improved performance for tasks related to the Catalog basket.        
+        <li>The metadata header features a new Application Page tab, which provides URL mapping capabilities. In this release, changes have been made for the way applications are mapped to URLs.
+        <li>The Select Application page has been redesigned, where each application appears as an icon. You have the option of using the classic or icon version of the Select Application by selecting or deselecting the Classic Select Application property, respectively, from the metadata header's Application Page tab. This tab contains additional properties to customize your experience using the Select Application page, such as grouping your application icons by heading and more.
+        <li>A new persistent model of the basket has been implemented, including search functionality. Extensibility has been added to provide extension columns in the new BasketItem table or an extension table for basket items. Additionally, events have been provided to support extension table mapping.
+        <li>A new property, <strong>Selection Appearance</strong>, appears under the table element and contains two options:<br>
+          - simple<br>
+          - checkbox<br>
+          When the checkbox option is selected, the first column of table contains a checkbox for each row. This checkbox allows you to select a row in the table. Clicking the row itself neither selects the row, nor fires the Selection Changed Method. The Double Click Method is still applicable when this property is set to checkbox.              
+        <li>With this release, a new property, <strong>Show Errors Inline</strong>, has been introduced that can be used to show the validation error message below the field element.
+        <li>A new property, <strong>Selection Type</strong>, is available for the Table element, which allows the table element's selection type to be configured at a form level.
+                            
+        <li>This release includes the following Catalog date enhancements:
+          <ul>
+            <li>  Support for new dates:
+              <ul>
+                <li>  Start date - The date that the item is published in the catalog.</li>
+                <li> Start selling date - The earliest date that an item may be sold.</li>
+                <li>Start fulfillment date - The earliest due date or installation date for an item.</li>
+                <li> Start service date - The earliest date for which order may be released into fulfillment.</li>
+                <li> End of sale date - The last date for which orders will be taken.</li>
+                <li> End of service date - The last date for which service will be provided using the item.</li>
+              </ul>
+            </li>
+            <li> Extending availability of rules to define two subsets, at the channels and market level</li>
+            <li> Grandfathering of old clients on their offer's terms and conditions </li>
+            <li> Providing a mechanism to define the targeted replacement offer upon end of service through a new relationship type option, on end of service, migrate to.</li>
+            <li> Enhancements to Catalog APIs to support the following:
+              <ul>
+                <li>  Browsing of available items to exclude items that are not available on the supplied date</li>
+                <li>Inquiring of specific items:
+                  <ul>
+                    <li> For items with a start date: provide the item details</li>
+                    <li> For items with a end date in the past by providing the latest version with warning messages that indicate:
+                      <ul>
+                        <li>  Item has an end of service</li>
+                        <li>No active version is available and that the latest version was supplied</li>
+                      </ul>
+                    </li>
+                    <li>  On a request with a specific effective date supplied, provide the correct version or if no active version is available then, provide the latest version with a warning message indicating that no active version was available and that the latest version was supplied.</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <strong>Note: </strong>This feature’s documentation is a work in progress for this release. The documentation will be completed by product version 14.0 General Availability (GA)             
+  <li>This release contains enhanced stylesheet support, which includes the ability to specify width and height properties within the style used for a given element.
+    <li>This enhancement allows you to use a Boolean variable as a permission method.
+      <li>With this release, one queue manager or port can support multiple operations along with the following enhancements:</li>
+  <ul>
+    <li>         Port settings for JMS and MQ listeners allow you to choose an operation.</li>
+    <li> New ports can be created in the System Configuration application. The created port can be tied to a specific binding.</li>
+    <li>Ports created in the System Configuration application can share the port and binding settings from another port by using the port reference. You do not have to set the JMS or MQ connectivity, and queue settings multiple times.</li>
+    <li> Ports created for the same JMS or MQ listener binding can use different operations, and can be configured as separate listeners. </li>
+    </ul>  
+  <li>With this enhancement, the <strong>Extend</strong> right-click menu action can be used to change the variable property of  extended element.
+    <li>Prior to release, double-clicking a table row would reset any selections that were in place to the row that has been double-clicked. There are instances where you want your application to allow the user to double-click a row to see its details and then come back to the table with previous selections still intact. To achieve this functionality, select the Select on View checkbox.            
+      <li>When in runtime or debug mode, you can make changes to your script and then click the Update button from the script's General properties page. Clicking this button saves your changes and updates the runtime version of your script.
+        <li>The generateUpgradeSQL.cmd script has been enhanced to generate separate SQL script files for each logical schema. Additionally, a new setting, Generate upgrade SQL in one output file, is available in Velocity Studio's Preferences page. By default, this setting generates one upgrade SQL file when you select <strong>Database</strong> &gt; <strong>Upgrade Script</strong> from the menu bar.
+        <li>This enhancement allows the price API to filter charges by using the currency.
+        <li>In previous product versions, when starting Velocity Studio, messages in the console pane indicate that the AVM is stopping, and that it has stopped. The DesignerProject.stop method is no longer called twice and these AVM stopping messages no longer appear in the console.
+        <li>When a finder's result form belongs to another user interface, downloading its result list becomes impossible. This does not normally affect application unless the download functionality of a finder user interface is overwritten. It is also added functionality for when a Download object is created via application script. A Download object now contains two new variables that can be set in script:  resultUI, resultForm
+        <li>The background of the Catalog Hierarchy is now white.  The colour blue is used for item related lines and text and the colour orange is used for item contains line and text.
+        <li>With this release, an enhancement has been made for the interval field of Info Models. This field is active only if the Is Dynamic field for the info models is selected.
+        <li>An enhancement has been made for Info Tables. New info table rows can be deleted using the Delete button in front of each row, before saving the info model associated with the info table.    
+        <li>The Info Table's column size has been enhanced such that the Delete icon column is of a reasonable size.
+        <li>The help documentation available from Velocity Studio includes a new Modules Documentation section, which contains documentation for modules such as Catalog Management, Customer Information Management, and so on.
+        <li>This release allows you to track changes to mapped data structures in a database map. Additionally, for event handling, you must create a new event handler for the SYSTEM_AUDIT_TRAIL event.
+        <li>In the System Configuration application, the fields for entering information related to services have been modified so that it is easier to read the entered information.
+        <li>In this release, toJSON ignores elements that have the Exclude property set.
+        <li>The restriction to use static enumerations on top-level user interfaces has been removed in this release. You can use data types with static enumerations on forms under a top-level UI without the need of a separate document to hold it.
+        <li>The Enforce property promotes the reuse of template objects, while keeping the same style that the objects were originally designed and ensuring that they display properly at runtime. By default, this property on the metadata root's General tab is unchecked. Selecting this checkbox indicates that the current metadata is to be used as a template. Other metadata can use the current metadata as a template, allowing you to show objects, such as finders, with proper CSS, unless a different styling on the finder is provided.
+        <li>A number of enhancements have been made to the Event Log, Message Log, and Process Manager section of the System Administration application, including easier access to information and additional details about activities for troubleshooting purposes.    
+        <li>This enhancement includes improvements to worklist tasks and its behaviour in the Worklist Management application.    
+        <li>The cancelTask API definition has been enhanced to return an alert if it is created as a result (based on the metadata definition of the participant) of the cancel operation. Otherwise, the cancelled task is returned.    
+        <li>The Security API's getUserProfile operation has been added to the list of Web service-enabled operations.    
+        <li>A new system data type, cwf.cwTimestamp, is available from a document's Variables tab when adding a system variable. This system data type based from com.conceptwave.system.Timestamp.
+        <li>A new field, Template Group, appears on the metadata header's General tab. When your metadata project is used as a template (.jar) field, it appears under a group folder that you have specified in this field in Velocity Studio's Library tab. To define multiple group names in this field, separate each name with a comma.
+        <li>A new API, getOverlays, is available in the MetadataUserInterface class, which returns an array. This array contains all metadata overlays (for example, forms) with unique names from both local and base controllers. To get the name of each metadata overlay, the API's name can be used.
+        <li>An enhancement has been made to the createWorklistAction() API, which allows the oper parameter to accept any string description given that the alert flag is set to true.
+        <li>The enforceConflictResolution has been added to API option. If set true, conflict detection, based on cwDocStamp, is enforced. Otherwise, if this option is not set, the default behaviour (that is, enforce conflict detection if from a UI session) applies.
+        <li>If the XSD Namespace field is not defined and you are generating a WSDL, the namespace name is used as the target namespace URL instead.
+        <li>When an attempt was made to delete an item that was used as base item, by other objects or items in a project, only a message used to appear as “Item is in use. Can not be deleted.” With this enhancement, the details of those child objects or items are also displayed in the popup dialog by which the base item is used.    
+        <li>In the Methods tab, methods appear highlighted in Velocity Studio to indicate whether methods can be extended or overridden, are final, and so on, without clicking each method individually.    
+        <li>This release contains the following additions to the Velocity Studio's &lt;installation_folder&gt;\modules folder:</li>
+  <ul>
+    <li>           cwl_catalog.jar, which will replace catalog.jar in future releases (the latter .jar remains a part of the current Catalog metadata)</li>
+    <li> api_catalog, which is a new API library that does not require a license </li>
+    </ul>    
+  <li>With this enhancement, Catalog provides a new item association object “Actions” which contains some rules or events. You can define actions for an item to do several operations, such as add, remove, upgrade, and downgrade. An item can have different behaviour for different operations. Actions can be executed by an event, workflow, or rule.
+    <li>Clicking <strong>Help</strong> &gt; <strong>Show Log</strong> from the menu bar allows you to view the most recent log file containing output and error information for Velocity Studio.
+      <li>Process revisions are no longer generated automatically. Instead, the user must generate revisions manually. The subflow revision mechanism has also been re-implemented and results in considerably smaller number of subflow revisions. Therefore, the total number of revisions is now expected to be considerably smaller. <br>
+        In addition, a new Analyze Processes tool has been added to Velocity Studio, which allows you to compare processes in deployed metadata versus the metadata from the file system. It is highly recommended that you perform the comparison prior to deploying metadata, especially in production, to ensure metadata compatibility and to avoid runtime process exceptions. <br>
+        
+        If revisions need to be deleted, Velocity Studio now has a Clean Non-Running Revisions tool, which identifies the process revisions that have no running instances or are not used by running instances in the current database schema, and allows you to delete these processes. Please note that this clean-up process is irreversible; the revisions are deleted from the metadata tree and also from database. As such, be careful when deleting processes as this tool might delete processes which don't have running instances in the current database schema but do have running instances in another database schema.
+        
+        <li>A request was made to have more control over what resources are included in the library JAR file. The <strong>Runtime</strong> &gt; <strong>Build Library JAR</strong> function in Velocity Studio has been enhanced, allowing you to select the metadata resources that you want to include when you generate your library JAR file. By default, all project metadata folders are selected. You can click any folder to deselect it and its sub-folders from being included in the JAR file.</li>
+        <li>The Socket provider has been changed to use the Interface Operation's Type. Its behaviour based on operation type is as follows:</li>
+  <ul>
+    <li>One-Way:  The Socket provider opens a socket, sends the request data, and then closes the socket. It does not wait for any kind of acknowledgement from the remote socket.</li>
+    <li>              Request-Response:  The Socket provider opens a socket, sends a request date, reads the response data, and then closes the socket. The provider blocks (with no timeout) after sending a request until the remote socket starts sending data. The provider does NOT send an EOF when done sending data; it is up to the remote server to decide when it has received all data or timeout waiting for more.</li>
+    </ul>
+  <strong>Note:</strong> Notification and Solicit responses are not supported.
+  </li>
+  
+  <li>With this enhancement, old security providers from 5.x releases can be used when &quot;5.x User Profile Document Mode&quot; setting under Compatibility tab is selected in the Configuration application.      
+    <li>The Grid Layout allows you to define an error style and to show the error inline. Two new properties, Show Error Style and Show Error Icon, support this functionality.
+      <li>The <strong>Metadata header</strong> &gt; <strong>Library</strong> tab features a new <strong>Add</strong> button that allows you to add optional system templates to your project. The SystemTemplateSettings.java file defines the list of optional system templates, which includes those that are not mandatory.        
+        <li>The following mandatory libraries are loaded by default: </li>
+  <ul>
+    <li>              - cwf5, api_common, ui_common, security, cwl_security</li>
+    </ul>        
+  If your project metadata does not include these libraries in your metadata header, these libraries are always loaded. If your project metadata contains these JAR files within its own template folder, those JAR files are used. Otherwise, the JAR files in the installation's modules folder are used instead.
+  <li>The Security API's queryOrgChart method has been enhanced to provide a hierarchical organizational chart in the response, based on the search parameter controlling the depth of the response, and whether users should be included in the response.</li>
+  <li>This enhancement allows you to select a tiling layout for table data. The following table element properties are available to support this feature:
+    <ul>
+      <li>  Is Tile Grid</li>
+      <li> Tile Size</li>
+      <li>Tile Count</li>
+      <li> Tile Style </li>
+      </ul>
+    </li>
+  <li>The Export Template JAR Folder setting in Velocity Studio's File &gt; Preferences menu has been enhanced to be project-specific where each project can have a different folder specified for this setting. </li>
+  <li>Velocity Studio's Use New JavaScript Editor setting has been removed from File &gt; Preferences &gt; Setting. The new Javascript Editor in version 5.2 is the standard editor in version 6.0.</li>
+  <li>Metadata objects and Methods can be marked as Virtual. Top-level metadata objects can be virtual and can define virtual scripts, but cannot be instanced in runtime. If the Virtual Field is checked, it provides the ability to create methods in template metadata that does not have an implementation, but can be used in a template script and be bound to user interface elements. </li>
+  <li>In this release, catalog client server communication is secured using the Secure Shell (SSH) protocol. The catalog client server communication is an internal operation and uses a proprietary protocol.</li>
+  <li>This enhancement includes a name change from Product Lifecycle Manager (PLM) to Product Lifecycle Developer (PLD) in the Catalog application.</li>
+  <li>A new element, <strong>Advanced Reference Field</strong>, is available in this release.  This element type contains three icon buttons:
+    <ul>
+      <li> Detail, Finder, Clear</li>
+      </ul>
+    </li>
+  <li>This enhancement includes a new system datatype, Timezone, which inherits a String data type. In the Data Type General property tab in Velocity Studio, when the base data type is DateTime, the <strong>Absolute Time</strong> property becomes available. By default, the property is unchecked, meaning that the DateTime uses timezone conversion. Otherwise, selecting this property indicates that the timezone conversion is disabled.</li>
+  <li>A new Event property on a reference data type appears on the General tab. The Event field acts as a substitute for the Finder field. Events in which the handler returns either the full name of the finder or an instance of the finder object itself to be used as reference must be specified for this field. <br>
+    <strong>Note:</strong> A data type must have either the Finder or the Event field specified, but not both fields.</li>
+  <li>In this release, the following JAR files contain the product system metadata, which are located in the modules folder of your installation:
+    <ul>
+      <li> cwf.jar,  cwf5.jar</li>
+      </ul>
+    </li>
+  <li>The Security queryUser API has been enhanced to search for users with at least one of the privileges specified in the search criteria.</li>
+  <li>The Button element features a new Show Down property, which allows a button to change style when you hold your mouse down on it.</li>
+  <li>When writing &quot;this.&quot; in a script, a list of methods, and local and inherited variables appears. You can then select the method or variable that you want to use in your script from the list.</li>
+  <li>Enhancements have been made to allow a reusable mechanism to extend an application. A new metadata object has been introduced with this release as User Interface (UI) Contributor. UI Contributor can be used to add new information to existing user interface forms from multiple sources. A UI Contributor can only contribute to the Menu form and cannot override, extend, or add any of the base elements other than Menu Elements. </li>
+  <li>The Restart PE operation has been added under com.conceptwave.AVM &gt; CWAVM &gt; Operations in Jconsole.</li>
+  <li>The Worklist module features the queryTaskArchive API to query archived tasks. The query supports the Sender ID (Process ID), Order ID, Order Item ID, Task Created Date [Range], and Task Completed Date [Range].</li>
+  <li>Prior to release, the updateRow API only worked on the first row ID passed in. This issue has been fixed and the API now accepts comma-separated IDs.</li>
+  <li>This release contains enhancements to the Catalog import and export functions, which allows importing and exporting using a .zip file, either through Ericsson Catalog Manager or the command line.</li>
+  <li>An enhancement has been made in the Configuration Application to do the SMTP server settings. The SMTP configuration for e-mail can be done from <strong>System</strong> &gt; <strong>SMTP Server</strong> tab.</li>
+  <li>The Worklist API has been enhanced to return active and available statuses individually on a user summary.</li>
+  <li>It was noted that the process engine skips a process if the revision is not found without changing its status to Error. This enhancement ensures that this status holds true for the process to be found.</li>
+  <li>This enhancement allows you to extend a finder User Interface and invoke its methods.</li>
+  <li>Improvements have been made to the script logging error message in the event log. The previous error contained e as the object ID, which was unhelpful. This script logging error has been removed.</li>
+  <li>A new function <strong>findIndexById</strong> in DataObjectList has been added. This API returns the index of a row when its ID is passed to it.</li>
+  <li>With this release, multi-selectable Classification Types have been added for Catalog Item, Item Attribute, Item Image, and Item Description to support multiple types in different environments. API methods getClassificationTypes and hasClassificationType have been added to check types for the item in scripts.</li>
+  <li>Dynamic distribution of the PE load has been introduced, which allows running process engines (PEs) to dynamically distribute the load of dead PEs between themselves, as well as dynamically reduce their load if new PEs are started.</li>
+  <li>A new API, Process.sendSignalToFamily, allows for sending a signal from the current process (the process instance of the call) to list processes determined by the type parameter. </li>
+  <li>A new property, Click Method, is available for Gantt, Nodal, and Chart elements. When you specify this property, chart elements are clickable. Clicking these elements invokes the method. The method receive two parameters: 
+    <ul>
+      <li> The data object that the chart node represents </li>
+      <li> The variable, if applicable, that the chart node represents</li>
+      </ul>
+    </li>
+  <li>For Finders which generate more than 10K rows, it is possible to perform grouping and sorting on the data during runtime.</li>
+  <li>For displaying the results for a Finder, the UI now retains the current user's position in the list when fetching more rows to display.</li>
+  <li>A Rule Set data object defines a set of rules that can be evaluated against a source data object (Document, Data Structure, or Top Level User Interfaces) and its extensions. Rule Sets are used to replace data object defined initialization, validation, and permission methods.</li>
+  <li>A new <strong>Help</strong> &gt; <strong>Quality Centre</strong> function is now available, which allows you to generate and review reports about the quality of your metadata. The reports created with this command display information about the metadata elements, scripts, global processes, and user processes, as well as inform you about potential problems with your metadata, such as the use of deprecated APIs and older templates. </li>
+  <li>Velocity Studio's <strong>File</strong> &gt; <strong>Export</strong> &gt; <strong>Translation</strong> dialog features a <strong>Sort By Key</strong> checkbox. By default, exported resources are sorted by translation value. Selecting this checkbox sorts the exported resources by translation key.</li>
+  <li>For third-party programs in this release, a throughout review has been made to update and retire redundant items, such as unnecessary JAR files and libraries. For more information on third-party programs used in the product, consult the ConceptWave3rdPartyPrograms.xls file that comes with your installation.</li>
+  <li>Validation of metadata can be done in the command line interface. By using &quot;runValidate.cmd&quot; command, validation can de done without activation or running metadata project.</li>
+  <li>In this release, the cryptography document was reviewed for the following:  </li>
+  <ul>
+    <li>The cryptography description for product codes contains no changes.</li>
+    <li>Updates were made to the libraries version that was upgraded.<br>
+      </li>
+    </ul>
+  <li>The Print Cache Info operation is available in AVM caches, which allows for the exporting of memory queues. 
+    <ul>
+      <li>Activities Cache</li>
+      <li> CodeTable Cache</li>
+      <li> DynamicParticipants Cache</li>
+      <li> Image Cache</li>
+      <li> InterfaceData Cache</li>
+      <li> Process Cache</li>
+      <li> ProcessData Cache</li>
+      <li> RecentlyChecked Cache</li>
+      <li> RecentlyFinished Cache</li>
+      <li>Resource Cache</li>
+      </ul>
+    
+    Additionally, the following Catalog caches can have their memory queues exported:
+    <ul>
+      <li>CatalogTranslations Cache</li>
+      <li> ChargeType Cache</li>
+      <li> DynamicRow Cache</li>
+      <li>InfoTable Cache</li>
+      <li>Item Cache</li>
+      <li> ItemParents Cache</li>
+      <li> QueryResult Cache</li>
+      <li> Tax Cache</li>
+      <li> TaxModel Cache</li>
+      </ul>
+    </li>
+  <li>The Bulk Complete action is available in the Worklist Management application. The user can select tasks belonging to different participants and invoke an action with a name that is common to all participants. Actions with common names belonging to different participants must not have a confirmation script. If they do, they are not allowed to be performed in bulk. Actions with a confirmation script can be processed in bulk if and only if they belong to same participant.</li>
+  <li>The User Profile Manager contains the Move Users button, which allows you to select multiple users to be moved from one group to a different group. This menu action is available in the Groups detail, in the Users tab.</li>
+  <li>With this enhancement, the Dynamic Style property of Menu element can be set to a method which returns the style based on whether the menu action has been called or not.</li>
+  <li>With this release, the default number of rows per page can be changed for all the pages of User Profile Management, from the Preferences hyperlink.</li>
+  <li>A number of enhancements have been made to the Service Registry module, including the following:<br>
+    <ul>
+      <li>Improve performance for Service Registry queries</li>
+      <li>Enhance module flexibility and extendibility<br>
+        </li>
+      <li>Support the existing CRUD API by developing an adapter module<br>
+        </li>
+      </ul>
+    </li>
+  <li>This module has the capability to define notification templates with placeholders. When a message is sent using the framework, placeholders are replaced by provided name/value pair parameters. Part of the notification framework has built-in capabilities to integrate with the Customer module to deliver messages according to preferences defined for the recipient customer or account.</li>
+  <li>This release contains a new Billing API. <br>
+    New APIs, refillAccountBalance and sendPayment, are available, which provide integration points to refill balance and send payment to billing system, respectively. <br>
+    New APIs are available to provide integration points to query account activities (for example, invoices, payments, one-time charges, and so on), and call detail records and account balances from the billing system. These APIs are as follows:
+    <ul>
+      <li> queryAccountActivity</li>
+      <li> queryAccountBalance</li>
+      <li> queryBillingProfile</li>
+      <li> queryCallDetailRecord</li>
+      <li> queryPaymentProfile</li>
+      </ul>
+    </li>
+  <li>The startWork API has been enhanced to allow for a list of tasks. The API specification has been changed.</li>
+  <li>This enhancement reduces the amount of data transmitted between the client and server. The Configuration application contains a new parameter, Disable Data Minimizing, in <strong>System</strong> &gt; <strong>System Parameters</strong>. By default, this parameter is unchecked, meaning that only changed data is sent. Otherwise, selecting this checkbox indicates that all data is sent.</li>
+  <li>In this release, new properties for the Rich Text Editor element are avaiable, which allow you to customize the width and prompt text of both the font and font size selector fields.</li>
+  <li>This release allow applications to acquire connections to a database, based on logical schema name, from script. Database operations, such as Document.save, Global.runSQLUpdate, and so on, may be performed with or without a specified database connection. If not provided, the operation is functionally equivalent as before. Applications may also commit or roll back operations on a database connection from script.</li>
+  <li>This enhancement features the cwLoadValue and cwStoreValue methods of data types, which provide a generic way to load and save variable values of documents similar to document notes. As a result, the implementation of document notes has changed, as system data types have been updated to use the cwLoadValue method (that is, cwf_oe.sysNoteList type to view saved notes) and cwStoreValue method (that is, cwf_oe.sysNoteField to store new notes).</li>
+  <li>The Data Types General tab features the Reference property that allows the reference data type to extend a string, number, or decimal data type, or any types extended from these base types.<br>
+    Both cwf_up.createdByRef and cwf_up.updatedByRef reference system types have been changed to extend cwf.cwCreatedBy and cwf.updatedBy, respectively.</li>
+  <li>The list of known product functionality changes have been added to the readme, What's New - Network Impact Report, and product documentation.</li>
+  <li>The enhancement provides a new attachment finder and attachment detail UI for document and order items.</li>
+  <li>The queryUser API provides matching results where the userId search criterion matches a portion of or the full userId instead of an exact match.</li>
+  <li>The System Administration application has been redesigned.</li>
+  <li>A new implementation of the translation finder user interface is available in this release. A system event, UI_GET_TRANSLATION_FINDER, gets the translation finder user interface.</li>
+  <li>A new API, Global.convertToTimeZone, converts the given date to the same absolute time for the given timezone.</li>
+  <li>Security is separated into three distinct sections:
+    <ul>
+      <li> Authentication: System may choose to support multiple authentication systems (for example, LDAP, Active Directory, ConceptWave, and so on). This section is responsible for password management and verification.</li>
+      <li> Profile: System may choose to support multiple profile systems (for example, Self-Care, Corporate, Partner, and so on). This section is responsible for managing a user's profile and a user's group arrangement.</li>
+      <li> Authorization: System has only one authorization management. This section is responsible for managing each group in each profile being granted a set of privileges.</li>
+      </ul>
+    </li>
+  <li>An enhancement has been made to the Enabled permission property, which is applicable for menu items of second and upper levels, including menu items under iterators.</li>
+  <li>This enhancement implements URL mapping of applications in the metadata header's Application Page tab. In previous releases, this feature appeared in the URL Mapping tab, which has been removed in this release.</li>
+  <li>An <strong>Alias</strong> tab is available for both documents and data structures. This tab allows you to provide an alias for a renamed variable so that dependent metadata that references the original variable will reference the new variable instead.</li>
+  <li>Previous releases of Velocity Studio only allowed selecting search or result forms using the form list. In this release, the selection of events is now accepted.</li>
+  <li>Both the Reference Field and Select Field elements have a new Enumeration Reference property, which allows you to specify a separate data type to use for the list or finder to show during runtime. The variable set on the fields can be primitive strictly for storing values.</li>
+  <li>In this release, cwf_pm.parent is no longer used and has been removed from the product. </li>
+  <li>This enhancement allows access to selected metadata elements at runtime, such as Finder, DataType, DatabaseConnection, and more. A number of methods from the following classes have been changed to support this enhancement: 
+    <ul>
+      <li> MetadataProcess </li>
+      <li> MetadataActivity </li>
+      <li> MetadataFinder </li>
+      <li> MetadataFinderView<br>
+        </li>
+      </ul>
+    </li>
+  <li>This enhancement allows runtime access to all metadata documents and their logical database connection names. The following JavaScript classes are scriptable: 
+    <ul>
+      <li> MetadataDatastructure</li>
+      <li> MetadataDocument</li>
+      <li> MetadataLeafNode</li>
+      </ul>
+    </li>
+  <li>This enhancement provides support for customizing worklist create behaviour invoked from either the Web Service or product. The createWorklistAction API has been changed to accept task action (worklist.data.action) instead of task (worklist.data.task), enabling the Web Service-invoked API to provide extra information as part of its data.</li>
+  <li>ConceptWave Security implementation has been changed where APIs for the profile provider do not change data maintained by the authorization provider and vice versa.</li>
+  <li>The User Profile Manager has been redesigned and is separate metadata application in this release.</li>
+  <li>This enhancement involves changing the worklist API to use runtime metadata to access participant, operation, and worklist information instead of using the CWorklist Java APIs.</li>
+  <li>In this release, the System Configuration application has been redesigned. The implementation has changed from Java to being metadata-driven.</li>
+  <li>The Finder View property panel contains two new fields, Search UI and Result UI, which allow you to specify the user interface to fetch the search and result from, respectively, for added flexibility.</li>
+  <li>In this release, the logic for the reference icon click and setting of data on the field is fully transparent in the system metadata script.</li>
+  <li>This enhancement allows applications to access certain information defined in user interfaces through scripts using the MetadataUserInterface API.</li>
+  <li>This enhancement exposes the following external service-related metadata:
+    <ul>
+      <li> CwfMetadataAlert</li>
+      <li> CwfMetadataPort</li>
+      <li> CwfMetadataExternalService</li>
+      <li> CwfMetadataInterfaceBinding</li>
+      </ul>
+    </li>
+  <li>In many project applications, a form frame element is wrapped with a layout only, to set the dynamic style on the layout. To improve performance, the form frame element contains the Dynamic Style property, which allows you to set dynamic styles under a form frame, to avoid multiple layers of layouts.</li>
+  <li>Applications can access certain information defined in participant and participant operations from script. See the MetadataParticipant and MetadataParticipantOperation classes in the JavaScript documentation for details.</li>
+  <li>The Worklist module integrates with existing worklist product functionality and aligns with the standard architecture for all system modules. This module also allows for easier customization.</li>
+  <li>The Security API provides a function to persist user preferences name-value pairs that can control certain aspects of the application. </li>
+  <li>In this release, the Tree element's Auto Fit Data property has been enhanced. A new Horizontal Scroll option is available, which expands column widths to fit cell values, but without expanding the element width. The horizontal scrollbar appears, if needed. The vertical scrollbar appears by default.</li>
+  <li>MetadataDataStructure class has been exposed to retrieve the metadata element representing the node. For a container node, the metadata element representing the node is null.</li>
+  <li>In the System Administration application, you can search, view, create, and delete an external script in you metadata by clicking <strong>View</strong> &gt; <strong>External Scripts</strong> from the menu bar.</li>
+  <li>This release introduces a revamped user interface, which allows you to hide the banner within a number of applications, such as the User Profile Management and System Configuration applications. To hide this banner, click the <strong>Preferences</strong> hyperlink, select the <strong>Hide Banner</strong> setting from the Preferences page, and then click the <strong>Save All</strong> button to save your change.</li>
+  <li>With this release, the “Warning/Errors” menu command has been added to the Help menu. This command provides the ability to upgrade the warning messages into errors.</li>
+  <li>In this release, cwf_pm.BaseWorklist has been moved to cwl_worklist.DefaultWorklist, which includes enhancements such as creating worklist as a replacement of BaseWorklist and changing the user of BaseWorklist to refer to the new worklist document, including events and maps.</li>
+  <li>With this enhancement, the library files added on Library tab of Metadata Root can be sorted alphabetically.</li>
+  <li>In this release, the cwf5.jar system template is made optional. None of the system templates depend on the template. Instead, cwf5.jar is to be used for backward compatibility with your metadata. New metadata projects need to use the other mandatory and pertinent templates (for example, new UI-common, security, administration, and so on), as required.</li>
+  <li>The Worklist Management application displays a user worklist availability icon in the top right corner of the application. By default, the user worklist availability icon is green, indicating that the user is available for task assignment. This icon is grey when the user is unavailable for task assignment. To click this icon and toggle between availability states requires that users have the WSetAvailable privilege set in the User Profile Management application.</li>
+  <li>Two new properties, <strong>Default</strong> and <strong>Tag</strong>, are available for a Rule Set object from its <strong>General</strong> tab, which allow you to control whether you want to process initialize rules.</li>
+  <li>The Security API has been enhanced to provide support for setting and getting the current user's preferences.</li>
+  <li>When a data object does not have a UserInterface created, an exception occurs. This release contains an enhancement to the exception message, which provides more meaningful information to explicitly state that the UserInterface is missing.</li>
+  <li>This enhancement contains a new cwCreateDialog method of the user interface that creates the dialog object for user actions. This method allows customizing the dialog for an action, user interface, or application.</li>
+  <li>With this release, the Security APIs isActive, isAvailable, isUserInGroup, and userHasPrivilege has been enhanced to support the queries for the current user, where the user is not specified.</li>
+  <li>This enhancement removes references to the base worklist finder user interface from the initialization of controllers. Additionally, calculations for the worklist timer duration (that is, cwf_pm.BaseWorklistFinder.dynamicTimerDuration() and cwa_worklist.UserWorklistFinder.dynamicTimerDuration()) has moved from the product into the metadata. </li>
+  <li>A new Table element property, Autosave on Data Change, allows you to use mapped documents in an editable table without automatically saving the documents each time a record is edited. By default, this property is set to true, meaning that documents are automatically saved each time a record is edited. The default setting makes this feature fully backward-compatible. When this property is unchecked, editing rows in editable table are not saved automatically when exiting edit mode. Instead, table records must be saved by explicitly invoking the save method.</li>
+  <li>This release contains a number of metadata-driven customizations. This master ticket serves to track all related changes, which are fully noted in individual tickets.</li>
+  <li>When creating a menu that uses a dynamic style, the menu icon is sized properly.</li>
+  <li>Support for customizing worklist behaviours invoked from WebService / Product.</li>
+  <li>The Code Tables feature of Catalog has been re-designed. The GUI has been improved, and the maintenance of code tables and codes is more user-friendly.  Other enhancements include the following: <br>
+    <ul>
+      <li>The <strong>Catalog Designer </strong>&gt; <strong>Version Code Tables</strong> menu has been removed, with the functionality to create and maintain versioned code tables and versioned codes appear in the Code Tables feature.</li>
+      <li>There are more output formats for exporting codes tables.<br>
+        </li>
+      <li>The ability to import and export codes has been added.<br>
+        </li>
+      <li>The ability to view the Change History of codes has been added.<br>
+        </li>
+      <li>A new Show Usage feature has been added for code tables and codes.</li>
+      </ul>
+    </li>
+  <li>With this release, a <strong>Generate verbose message in console</strong>  option has been added for Setting Preferences under <strong>File</strong> &gt; <strong>Preferences</strong> menu. This option allows  whether you want to generate verbose messages in the Velocity Studio console.</li>
+  <li>With this release, both static enumeration data types and data types with reference finders can be used for enumeration reference. </li>
+  <li>With this release, new Catalog API’s CatalogItem.evaluateAllConditionByType and CatalogItemItem.evaluateAllConditionByType have been introduced. These API’s can be used to evaluate certain types of rules (for example, eligibility, availability, validation, or any custom types).<br>
+    A new parameter has been added in basket.createCopy() API. This API can be used to create a copy of basket with different basket ID and different basket items ID’s (copy), or to create a copy of basket with same basket ID and same basket items ID’s (clone).</li>
+  <li>This release allows you to obtain the next docId from the DOC_ID sequence independently from a document-generated ID using the CwObject.getNextDocumentId function.</li>
+  <li>With this release, the following system defined data types have been introduced:
+    <ul>
+      <li> cwf.appName - Data definition for application name.</li>
+      <li>cwf.cwAppName - System automatically populate with current application name.</li>
+      <li> cwf.cwMultiApp - System list of application names deployed on current database.</li>
+      </ul>
+    </li>
+  <li>A function, stopProcessing, has been added to allow metadata to control the condition to stop the extractAndProcess finder operation.</li>
+  <li>Two JavaScript classes, zipFileReader and zipFileWriter, allow reading and creating Zip files, respectively.</li>
+  <li>The import and export framework has been enhanced, incorporating metadata and event-driven design changes to these features.</li>
+  <li>With this release, an enhancement has been made to show validation errors on tables when the validation errors exist under the user interface that uses the table element. </li>
+  <li>With this enhancement, new right-click menu Export has been introduced for Search that can be used to export the search results in the form of a .cvs file.</li>
+  <li>This enhancement allows variables that are mapped to same database column to be of different types as long as they are compatible. These compatible types are Boolean and Integer with a length of 1.</li>
+  <li>This enhancement supports backward-compatibility of worklists. The following default event handlers have been created to call cwf_pm rules and scripts:
+    <ul>
+      <li> WORKLIST_IMP_TASK_ASSOCIATED_SEARCH</li>
+      <li> WORKLIST_IMP_TASK_START_ACTION</li>
+      <li> WORKLIST_IMP_TASK_ASSIGN_ACTION</li>
+      </ul>
+    </li>
+  <li>In the System Administration application, the <strong>View</strong> &gt; <strong>User Action</strong> command allows you to perform user actions.</li>
+  <li>In this release, the following data structures and data types have been refactored for LDAP:
+    <ul>
+      <li> ldapAttribute</li>
+      <li> ldapDeleteRequest</li>
+      <li> ldapEntry</li>
+      <li> ldapEntryArray</li>
+      <li> ldapModificationItem</li>
+      <li> ldapModificationItemArray</li>
+      <li> ldapModifyRdnRequest</li>
+      <li> ldapSearchCriteria</li>
+      <li> ldapModifyAttribute</li>
+      <li> ldapSearchScope</li>
+      </ul>
+    </li>
+  <li>When saving the Script or SQL Finder, there was a validation error for the missing Detail Form. With this release, Finders are not necessarily represented in the user interface and could entirely be used for back-end purposes. The restriction for Script or SQL finders to have a Detail Form has been removed. </li>
+  <li>The queryUser method conducts a search against the profile provider specified in the input, if provided. If it is not provided, the profile provider in the current context is assumed instead.</li>
+  <li>A scriptable method, cleanLeafChangedFlag, has been added to CwObject to change a leaf's (variable) changed status.</li>
+  <li>With this enhancement, you can double-click the script link in the Breakpoints tab to open the script and set the focus to the corresponding object or function.</li>
+  <li>The Activity Finder of the Process Manager has been enhanced.  Instead of just having an Activities description, it is now expandable and collapsible at each level.</li>
+  <li>A new setting, 5.x Worklist Stored Procedure Mode, is available in the System Configuration application, under <strong>System</strong> &gt; <strong>Compatibility</strong>. By default, support for 5.x mode is available where worklist behaviours rely on stored procedures in the database. Selecting this checkbox allows you to extend or customize a stored procedure, indicating that the worklist calls the specified stored procedure. Otherwise, when this setting is not selected, the worklist uses the newly implemented JavaScript function. This feature supports backward compatibility.</li>
+  <li>With this enhancement, the validation context caches the commonly used information in the validation methods. This process speeds up the initial validation of the method as they are not recalculated individually each time.</li>
+  <li>This feature allows you to set a Catalog date offset for basket items that are active and have a future start date.<br>
+    <strong>Note:</strong> This feature’s documentation is a work in progress for this release. The documentation will be completed by product version 14.0 General Availability (GA).</li>
+  <li>With this enhancement, the keyboard input is focused inside the JavaScript editor by default.</li>
+  <li>With this enhancement, error cleanup for Rules sets is performed automatically the within the Velocity Studio. To resolve the errors select the rule set and do save.</li>
+  <li>A new system enumeration data type, cwf.interOper, is available as an option in the Enumeration Reference field for drop-down elements.</li>
+  <li>With this enhancement, a new scriptable method resetLeafFlags has been introduced. This method can be used to reset the value of leaf (variable) flags, originally set by setLeafFlag method.</li>
+  <li>This enhancement allows you to specify how to display a service or binding metadata node name by clicking the Show Node Label drop-down field on the Services and Binding tabs in the System Configuration application. <br>
+    The following options are available:   By Label, By Name, By Full Name, By Label (Namespace)<br>
+    This feature also allows for select sorting by name, and by namespace and name.</li>
+  <li>With this enhancement, a deployment jar file can be created with all of the libraries added in a project.</li>
+  <li>With this release, you can build a deployment JAR file that contains project metadata and required library JAR files. You can use the “Runtime &gt; Build Deployment JAR” from the menu bar of Velocity Studio or use the “buildDeployment.cmd” that can be found in the “&lt;installation_folder&gt;\designer\env”.</li>
+  <li>This release contains a re-implementation of the process revision mechanism, which includes the following areas:
+    <ul>
+      <li>     At deployment, revisions are no longer automatically generated by the product. Instead, they are manually user-generated.</li>
+      <li> Subflow revisioning has been changed to decrease the number of generated subflows in multi-level subflows processes. </li>
+      <li> A process analysing tool is available to facilitate a compatibility check between metadata processes and the deployed process. </li>
+      <li> The subflow mechanism has been re-implemented to detach subflow references from subflow activities and store them on a process level.</li>
+      </ul>
+    </li>
+  <li>An issue occurred with conflicting request times between two items, F2 and P1, in a basket. This issue has been rectified by creating a basket item relation. You can add F2 as a root item in the basket, and then create a basket item relation between P2 and F2.</li>
+  <li>With this release, an enhancement has been made to install or upgrade the Advanced Virtual Machine (AVM) and Order Care applications through Software Upgrade Framework (SUF), to support the following on  Next Generation Execution Environment (NGEE). 
+    <ul>
+      <li>Fault management </li>
+      <li>Performance management</li>
+      <li>Logging</li>
+      </ul>
+    </li>
+  <li>To support licensing models with Sentinel RMS, the following enhancements have been made:
+    <ul>
+      <li> New licence handlers (connectors) are implemented in Velocity Studio:
+        <ul>
+          <li>Legacy handler</li>
+          <li>Sentinel connector under a Web container</li>
+          <li> Sentinel offline repository handler for Velocity Studio</li>
+          <li>Testing handler for feature developer license</li>
+          </ul>
+        </li>
+      <li> Scriptable class Licence API with the following features:
+        <ul>
+          <li>Get active features and check feature status</li>
+          <li>Capacity and usage methods</li>
+          <li>Login and logout by feature for future support of concurrent or floating licences</li>
+          </ul>
+        </li>
+      <li>A special *.ini file containing mapping between value pack and feature codes</li>
+      <li>Installation and packaging enhancements</li>
+      </ul>
+    </li>
+  <li>This enhancement includes an extension to the basket charge model to extend pricing logic.</li>
+  <li>Two new APIs have been added:
+    <ul>
+      <li> CwcBasketCharge addNewCharge</li>
+      <li> removeCharge</li>
+      </ul>
+    A new pre-defined parameter, TheBasketCharge, has been added for the Catalog Rule Language.
+    </li>
+  
+  <li>In this release, the AVM can be run without Oracle by using other storage sources, such as Common Interface Layer (CIL) interfaces.  This instance of AVM has limited functionality and is called Slim AVM.</li>
+  <li>Catalog provides an API to access the basket item charge document instance, which the pricing API generates. This API does the following:
+    <ul>
+      <li> Manually overrides the charge price</li>
+      <li> Manually sets discount value or percentage for each charge</li>
+      <li> Sets values for extended fields (asItemCode, asProductCode, Description_En, Description_Fr) related to each charge, which are used by an external system, such as billing AS400, when looking up values in an info table.</li>
+      </ul>
+    </li>
+  <li>All system applications have been changed to reflect Ericsson branding and to comply with user experience requirements.</li>
+  <li>The JavaScript documentation has been for the methods and variables for system.Application and system.Dialog.</li>
+  <li>Clicking <strong>Manage</strong> &gt; <strong>Processes</strong> from the System Configuration application's menu bar allows you to change properties for all configuration node processes on one screen. Each configuration node process appears, grouped by process name.</li>
+  <li>This enhancement allows you to override tab visibility in the System Configuration application for a specified user by creating a new rule set to reduce the existing rule set for each tab component, and then overriding the init script for any isTabXxxxVisible variable. </li>
+  <li>The product has been certified for Red Hat Enterprise Linux (RHEL) 6.4 and JBoss Enterprise Application Platform (EAP) 6.1.</li>
+  <li>The following enhancements have been made to finder customer views:
+    <ul>
+      <li> The Finder View tab has a new checkbox, Allow saving search criteria. By default, this checkbox is selected for backward compatibility, allowing you to save your search criteria.</li>
+      <li> When you add or change a custom view, the following checkboxes are available from the Custom View dialog:
+        <ul>
+          <li> Save Search Criteria, which is selected by default, meaning that the finder's search criteria are saved for custom views and favorites. </li>
+          <li> Save Table State, which is selected by default, indicating that you want to save the table layout for your custom view. This field is always visible.</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  <li>In this release, an enhancement has been made to the REST service implementation, which allows for setting custom HTTP status codes in the HTTP response from HTTP listeners, permitting REST communication between client and server. Additionally, support for DELETE, HEAD, and PUT HTTP methods have been added to HTTP listeners, which adds full support for REST HTTP verbs. New functionality is also available so that HTTP verbs used in client requests can be determined. Finally, to further enhance REST compatibility, support for custom URL paths are available.</li>
+  <li>This release introduces a new module, Resource Locking that provides a mechanism to place constraints on the orders. The following are some features included in this module:
+    <ul>
+      <li> Prevent two orders against the same subscriber, account, or location.</li>
+      <li> Prevent two orders against the same service.</li>
+      <li> Prevent two operators from changing the same order.</li>
+      <li> Prevent two workflows from updating the same order at the same time.</li>
+      </ul>
+    </li>
+  <li>A new metadata object, database map, is available in this release, which allows you to map a data structure to a database schema or tables.</li>
+  <li>The Catalog documentation has been updated to describe catalog user roles, and define GUI components that different groups of users can view and use. </li>
+  <li>This enhancement integrates Orchestration Framework (OF) into the Catalog application, which includes the following:
+    <ul>
+      <li> PLD templates are sourced from the OF database model.</li>
+      <li> New change request UI appears with the ability to browse change request orders.</li>
+      <li> New Tabs in the change request order UI shows the current FPI status and chosen PLM template version.</li>
+      <li> Separate template UI is available from change request UI.</li>
+      <li> PLM template design information is now persisted in OF.</li>
+      <li> Length validation has been added to template code in the template UI to accommodate OF 16 char codes.</li>
+      <li> OF overrides have been removed (that is, TAS, TASFinder, TASSearch, startFPIRequest). Aliases for TAS, TASFinder, and TASSearch have been added to assure backward compatibility.</li>
+      <li> A fix has been made to deleting a stage, leaving TAS and FPSTAS associations behind.</li>
+      <li> Logic has been added to the template design UI to show only participants associated with the selected stages.</li>
+      <li> A UI issue when selecting new stages for templates has been fixed. In the past, toggling the checkboxes caused tabs to become out of sync.</li>
+      <li> An issue with exception in cwt_pclm.createWorklistTask script when changing task dueDates has been resolved.</li>
+      <li> Template versioning is available. A new template version is created when changing templates that are already in use by change request orders.</li>
+      <li> A restriction has been added so that due dates can only be edited when creating change request orders. Due dates can only be changed for tasks that were selected in the chosen template.</li>
+      <li> A specific confirmation message for stage deletion has been added. Deleting a stage also deletes all TASs associated with it.</li>
+      <li> A specific error message when creating change request orders for existing projects, a specific error message has been added.</li>
+      <li> When submitting change request orders, using the service_startFPI API from OF has been enabled.</li>
+      <li> Logic for the order visual key has been added so that worklist items are created with a description of the task to be performed as opposed to the change request visual key/</li>
+      <li>     The cwf.allCalendars override has been removed, leaving only the extension.</li>
+      <li> The cwt_pcdd.projectState override has been removed, leaving only the extension.</li>
+      </ul>
+    </li>
+  <li>This release includes the productization of Orchestration Framework (OF). It does not cover enhancements in the process engine. OF contains the following enhancements:
+    <ul>
+      <li> New Technical Action Specification (TAS) types Script and Poll have been introduced.</li>
+      <li> The Service Level Agreements (SLAs) has been introduced for TAS.</li>
+      <li> The Gantt chart presentation has been enhanced.</li>
+      <li> The functionality within TASs including conditional execution, alerts, and escalations has been enhanced.</li>
+      <li> The versioning on Fulfillment Plans (FPs) has been introduced.</li>
+      </ul>
+    </li>
+  See the OF User Guide for information on metadata migration from previous releases.
+  <li>On the application user interface, you can now drag and drop elements from one table to another, from one tree to another, and between tables and trees. To enable drag and drop, the Can Drag Out and Can Accept Drop properties must be set to true or a permission method. By default, you can only drag and drop elements if they have the same object type. To allow drag and drop between elements which have different object types, you can override the cwGetDropData and cwGetDropTypes methods.</li>
+  <li>The following enhancements have been added to this release: 
+    <ul>
+      <li>The ability to drag a project assignment from one project to another has been added in this release. </li>
+      <li>The ability to drag item associations into the item details and into each item association using the tool palette.</li>
+      </ul>
+    </li>
+  <li>This enhancement restores past functionality in the Order Negotiations and Order Management modules, which includes the following:
+    <ul>
+      <li> Standard subflows:
+        <ul>
+          <li>     Decompose order</li>
+          <li> Hold for due date</li>
+          <li> Forward exception to children </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  <ul>
+    <li> Utility scripts:
+      <ul>
+        <li> Set process priority</li>
+        <li> Resume family of processes</li>
+        <li> Send exception to child processes</li>
+        <li> Send exception to entire family</li>
+        <li> Get order from object</li>
+        </ul>
+      </li>
+    </ul>
+  <li>The ability to have authentication on the request on global level (check box under System/General) and on port level (checkbox under port page) has been added.</li>
+  <li>With this release, the appearance of Login button for the login screen of System Configuration application has been enhanced.</li>
+  <li>Clicking <strong>Help</strong> &gt; <strong>Open Quality Report</strong> from the Velocity Studio menu bar opens that last generated quality report about your metadata using your default Web browser. This option is only available after you have generated a quality report.</li>
+  <li>The following properties have been added to the Gantt chart element, which allow you to adjust the size of the displayed contents: 
+    <ul>
+      <li> Pane Duration </li>
+      <li> Pane Duration Unit <br>
+        </li>
+      </ul>
+    Additionally, the following properties have been added to the Gantt chart, Chart, and Nodal chart elements, which allow you to dynamically set the height and width of the chart: 
+    <ul>
+      <li>     Dynamic Height </li>
+      <li> Dynamic Width</li>
+      </ul>
+    </li>
+  <li>This enhancement allows for re-arranging column nodes under the same table in the database map's Mapping tab. Database column nodes cannot be moved ahead of column nodes that are inherited from the base mapping. Additionally, the order of database column nodes from the base cannot be changed.</li>
+  <li>The following enhancements have been made to database maps:
+    <ul>
+      <li>     Support for DDL generation through right-clicking a database map in Velocity Studio and selecting Create SQL from the menu.</li>
+      <li> Improvements to the update operation in SQL to include only columns that have been updated to optimize performance.</li>
+      <li> Addition of the Conflict Resolution checkbox on the database map's General tab. When selected, this property enables conflict resolution on the database map.</li>
+      <li>     Expansion of a data structure that from the Mapping tab in which the data structure has a data structure variable. This feature works even if the data structure is not marked as a container.</li>
+      <li> Support for defining keys in a data structure with the Keys field on the data structure's General tab.</li>
+      <li> During a save or update operation, the reference key column automatically appears with the data structure object key when the data structure is mapped as a reference key.</li>
+      <li> Conversion map support for an object map with a foreign key is available through the Conversion Map field.</li>
+      </ul>
+    </li>
+  <li>The finder.extractAndProcess() method allows passing a connection object to be used for the finder search.</li>
+  <li>This enhancement includes support for:
+    <ul>
+      <li> Multiple parent IDs</li>
+      <li> Extensions in filename, including making a version object unique name </li>
+      <li> New event to resolve an exception if a parent is not found during an import </li>
+      <li> Multiple threading</li>
+      </ul>
+    </li>
+  <li>A new API, CwfScriptGlobalFunctions.checkCTCode(), is available, which checks whether code exists in a code table. Additionally, the CwfScriptGlobalFunctions.checkForCode() method has been changed to support this enhancement.</li>
+  <li>This release provides an exit code after you have issued a command, indicating whether running the command was successful. The following exit codes are available: <br>
+    <ul>
+      <li> 0, meaning that the command processed successfully. </li>
+      <li> 1, meaning that the wrong command was processed.<br>
+        </li>
+      </ul>
+    </li>
+  <li>This enhancement allows you to run commands simultaneously from the command line (for example, the deploy, upgrade system, and build deployment JAR commands). The logFile parameter is available for most commands, which allows you to specify the log file for a command line. It is an optional parameter. However, when used, it must be the first parameter.</li>
+  <li>This enhancement includes a command line interface script change to start the Velocity Studio from the project directory.</li>
+  <li>In Velocity Studio, an Export Avro Schema option has been added to the context menu of a namespace. This option allows you to export the Avro schema for the namespace.</li>
+  <li>An AVM CIL adapter has been developed to allow AVM applications (metadata scripts) to communicate to CIL.  This adapter allows metadata scripts to pass and get Data Objects.  The AVM CIL adapter serializes and de-serializes Data Objects using native Java calls to CIL library.   The AVM CIL adapter utilizes the CIL client library and uses a CIL JSON based API. Use of the CIL JSON based API allows the support of any object that is supported by CIL without any changes to the AVM adapter.  The following functionality is supported:
+    <ul>
+      <li>     Provides CREATE, READ, UPDATE and DELETE functions.</li>
+      <li> Accepts AVM DataObject and object address as parameters (CIL uses addresses similar to REST to identify objects).</li>
+      <li> Supports array for bulk operations.</li>
+      </ul>
+    </li>
+  <li>This enhancement shows permissions (for example, Optional, Editable, Visible, and so on) and validation errors on a target field when binding a UI element to a dynamic document variable. Showing these permissions involves overriding one or all of the following methods in the document:<br>
+    - cwOnValidateDynamicLeaf(leafName)<br>
+    - cwIsDynamicLeafEditable(leafName)<br>
+    - cwIsDynamicLeafVisible(leafName)<br>
+    - cwIsDynamicLeafOptional(leafName)</li>
+  <li>The default login and select application URL (for example, http://localhost:8080/cwf/login), has been mapped with the new user interface of the login and select application pages. </li>
+  <li>SmartClient version 9 includes CSS3 and some fixes for Internet Explorer version 9+ compatibility, but it also introduces some backward incompatibility. This issue has been resolved.</li>
+  <li>The enhanced finder can show all the attributes of a certain type of catalog item. Each attribute is a column. If the user adds more attributes to the item, when the application is running, these additional columns are reflected.</li>
+  <li>A new property, <strong>Filtering</strong> - <strong>Show Filter</strong>, is available for dynamic tables that allows you to filter dynamic table columns. By default, the property is unchecked.</li>
+  <li>When attempting to run metadata that does not use the cwf5 template (for example, cwf_up), the metadata configuration had the <strong>5.x User Profile Document Mode</strong> field set. As a result, attempting to log in to the metadata was unsuccessful, as the cwf_up.UserProfile document cannot be found. This issue has been fixed. When this compatibility field is selected for metadata that does not use the cwf5 template, a check is performed to determine whether the template has been loaded.</li>
+  <li>This release contains the following changes:
+    <ul>
+      <li>AVM platform package renamed to AVM_Platform.rpm.</li>
+      <li>    Application package renamed to AVM_&lt;applicationName&gt;.rpm.</li>
+      <li>    SUF playlist package renamed to AVM_SUF.tar.gz (OrderCare_SUF.tar.gz).</li>
+      <li>    License file renamed to &lt;hostname&gt;_avm_license.lic (&lt;hostname&gt;_license.lic)</li>
+      <li>    SUF package includes NGEE configuration files.</li>
+      <li>    SUF package includes Catalog configuration import.</li>
+      </ul>
+    </li>
+  <li>The create database user script has been changed to add the CREATE JOB privilege. This privilege is required to create an index with automatic synchronization using EVERY.</li>
+  <li>This enhancement includes a value change for the map item's name attribute of a Conversion Map object. This name value is based on the following syntax:
+    <br>
+    &lt;<em>map item target local name</em>&gt; - &lt;hash code of <em>map item target full name</em>&gt;
+    <br>
+    Rule Set objects do not use index as this attribute and this item attribute is not available for the Database Map object.</li>
+  
+  <li>The AVM contains system limits that are documented in the Velocity Studio User Guide under Introduction to Metadata.</li>
+  <li>A new system defined method, cwOnChangedFromTable(), has been added for the Document metadata object. This method takes a single integer parameter, state. The following is the explanation of this parameter's values:
+    <ul>
+      <li> When set to 0, this document instance is changed within a dynamic table.</li>
+      <li> When set to 1, this document instance is added to a dynamic table.</li>
+      <li> When set to 2, this document instance is deleted from a dynamic table.</li>
+      </ul>
+    </li>
+  <li>To capture defects, channel, and major milestones within the reporting framework, the following reports have been enhanced to match the metrics defined based on GB935 by TM Forum:
+    <ul>
+      <li> F-CE-2a: Mean duration to fulfill a project</li>
+      <li> F-CE-2b: Mean time difference between requested delivery date and planned date</li>
+      <li> F-CE-2c: Percentage (%)  of projects delivered by committed date</li>
+      <li> F-OE-1d: Revenue by channel</li>
+      <li> F-OE-2a: Mean time order to activation</li>
+      <li> F-OE-2b: Order to activation time by major process</li>
+      <li> F-OE-3a: Percentage (%) of orders requiring rework by cause type</li>
+      <li> F-OE-3b: Mean time to handle defects or rework from order to customer acceptance</li>
+      <li> F-OE-3c: Percentage (%) of orders requiring rework</li>
+      </ul>
+    </li>
+  <li>The following product analytics reports have been enhanced to provide product-specific reports in either a tabular or a graphical presentation, based on GB935 by TM Forum:
+    <ul>
+      <li> G-RM-1: Profitability</li>
+      <li> G-RM-1b: Average revenue per user (ARPU)</li>
+      <li> G-RM-5a: Customers acquired</li>
+      <li> G-RM-5b: Customers lost</li>
+      <li> F-CE-2a: Mean duration to fulfill a project</li>
+      <li> F-CE-2b: Mean time difference between requested delivery date and planned date</li>
+      <li> F-CE-2c: Percentage (%) of projects delivered by committed date</li>
+      </ul>
+    </li>
+  <li>This release introduces the ability to queue orders and synchronize processing according to their priority. Order queuing consists of the following functions:
+    <ul>
+      <li> Queue orders</li>
+      <li> Change a queued order’s priority</li>
+      <li> Remove an order from the queue</li>
+      </ul>
+    </li>
+  <li>In Velocity Studio, JSON fields have been added to make it possible to specify JSON settings for data structures, JSON names for data types, and JSON mapping for document mapping.</li>
+  <li>This release provides a <strong>Multi-select</strong> field for dynamic table columns. You can select one or more items in this field. </li>
+  <li>This enhancement allows for overriding variables with a data type user interface, as long as the data type is the same or extends the original variable's data type.</li>
+  <li>Velocity Studio has been enhanced so that it does not write GUIDs for objects where they are not required. For example, the following elements do not have GUIDs after they are saved in Velocity Studio:
+    <ul>
+      <li> Activity</li>
+      <li> Data structure</li>
+      <li> Interface</li>
+      <li> Order node</li>
+      <li> Participant</li>
+      <li> Process</li>
+      <li> Process exception</li>
+      <li> Process signal</li>
+      </ul>
+    </li>
+  <li>The metadata timestamp is neither stored in the header_ConceptWaveMetadata.xml metadata header file, nor in the header_AVMMetadata.xml file. To avoid merging conflicts, the last updated metadata timestamp is no longer required.</li>
+  <li>If the <strong>description</strong> field in XML does not require XML escaping, Velocity Studio generates the simplified XML block.</li>
+  <li>This enhancement supports a data structure with an array of an extended data object for Apache Avro schema generation.</li>
+  <li>Two new buttons, <strong>Expand All</strong> and <strong>Collapse All</strong>, appear on the Search pane. These buttons can be used to expand or collapse the search results, respectively.  By default, the search results are expanded.</li>
+  <li>An enhancement has been made to define a reference data type in Dynamic Document, and to display the reference field correctly in the Dynamic Table as a drop-down list.</li>
+  <li>The installation wizard has been changed to enhance its usability and to conform to Ericsson product branding.</li>
+  <li>To provide support for the Common Business Configuration (COBA), Velocity Studio supports editable and visible control on the dynamic table with the dynamic document. </li>
+  <li>When creating a plan with two technical action specifications (TASs), opening the second one, and deleting the second one, the user interface did not refresh properly, continuing to display the deleted one. A change has been made where when you remove one or more TASs from a plan and one of the selected TAS details displays, the details are hidden. However, when you remove TASs and another TAS appears, this TAS remains displayed.</li>
+  <li>This release contains a number of enhancements to the CIL interface, including introducing the cilDataSet script object, and making changes to the CIL object's put() and get() functions.</li>
+  <li>A new maintenance API, getItemVersions (itemCode, rangeFrom, rangeTo, status), has been added that allows you to get all available item versions with a given time range and status. </li>
+  <li>If no active Fulfillment Plan (FPS) with the given name is found, the message is logged in the Event Log as No active FPS version is found (FPS name).</li>
+  <li>A new Boolean parameter, hideDeleteAndAdd, has been added to the constructor of the Dynamic Table scriptable object. This parameter provides the control to enable or disable the Delete button.</li>
+  <li>This release contains a number of enhancements to the Software Upgrade Framework (SUF), including the following:
+    <ul>
+      <li> Remove the customer folder from the AppName folder</li>
+      <li> Change to the config.xml files, as the playlist failed to fetch information using a one-line format</li>
+      <li> Allow the application to run a specific client, such as app.sh, instead of the SQL that is running.<br>
+        </li>
+      </ul>
+    </li>
+  <li>The JavaScript documentation has been enhanced for dynamic documents and reference tables. A dynamic document definition is used as the metadata object for dynamic document. It contains a list of dynamic variables.  A reference table definition includes a data object list that contains a list of dynamic documents.</li>
+  <li>This enhancement supports running the runScript.cmd command when installing AVM SUF.</li>
+  <li>This release includes new tracing APIs and JMX-based trace configuration APIs for applications. A sample JMX client for trace configuration has been added in the help documentation.</li>
+  <li>The Catalog APIs have been enhanced to support the following:
+    <ul>
+      <li> A list of available items that exclude the ones that are not available for the supplied date.</li>
+      <li> An inquiry of a specific item that supports the following:
+        <ul>
+          <li>         For an item with a START DATE, provide the item details.
+            </li>
+          </ul>
+        </li>
+      <ul>
+        <li> For an item with an END DATE in the past, provide the latest version with the warning messages indicating that the item is under an END OF SERVICE, or indicating that no active version is available and that the latest version has been supplied. </li>
+        <li> On a request where a specific effective date is supplied, the inquiry provides the correct version. If no items are active for this date, provide the latest version with a warning message indicating that no active version is available and that the latest version has been supplied.<br>
+          </li>
+        </ul>
+      </ul>
+    </li>
+  <li>The Audit logging API has been enhanced to record audit messages.<br>
+    <strong>Note:</strong> This feature’s documentation is a work in progress for this release. The documentation will be completed by product version 14.0 General Availability (GA).</li>
+  <li>An enhancement has been made to the REST URL structure. If no operation is specified in the URL structure, it defaults to the first interface operation.</li>
+  <li>The following modules has been enhanced to conform to Ericsson product branding:
+    <ul>
+      <li> Customer Information Management (CIM)</li>
+      <li> Order Negotiations (ON)</li>
+      <li> Order Analytics (OA)</li>
+      <li> Orchestration Framework (OF)</li>
+      <li> Service Registry (SR)</li>
+      <li> Unified Workstation (UWS)<br>
+        </li>
+      </ul>
+    </li>
+  <li>A category-based logging API has been added to support logging-related functionality for BSSF. New categories can be defined using the category tag in the language resources.</li>
+  <li>The Avro schema and CIL AVM have been enhanced, allowing you to select elements to hide. </li>
+  <li>When creating a message body, if the binding is in JSON format, the interface uses JSON settings on the root data object. The following changes have been made to the Data Structures General Properties page:
+    <ul>
+      <li>  The <strong>Json Name</strong> field has been renamed as <strong>Json Settings</strong>.</li>
+      <li>     For a parent or root data structure, the following options have been added for the Json Settings field:
+        <ul>
+          <li><strong>         Include Name Tag</strong> that contains the root data structure name tag in the output.</li>
+          <li><strong> Exclude Name Tag</strong> that excludes the root data structure name tag in the output.</li>
+          </ul>
+        </li>
+      <li> For any child data structure, the following options are available for the <strong>Json Settings</strong> field:
+        <ul>
+          <li> <strong>Include</strong>, which includes this field if the value is not null.</li>
+          <li> <strong>Exclude</strong>, which excludes this field.</li>
+          <li><strong> Include Always</strong>, which includes this field despite whether the  value is null or not.</li>
+          </ul>
+        </li>
+      </ul>
+    Additionally, the following API scripts have been changed:
+    <ul>
+      <li>toJson(boolean)</li>
+      <li>toJson()</li>
+      <li>toJson(false)</li>
+      <li> toJson(true)</li>          
+      </ul>
+   <li>When creating a port in Velocity Studio, the <strong>URL Mapping</strong> field appears when you select the <strong>Listener</strong> field. This field can only be set for HTTP listener ports. The value specified in this field represents a URL path that is to be mapped to the port (listener). This value replaces the current hard-coded interface name in the URL.<br>
+    The URL path can contain multiple path items. However, it must begin with /. This path also supports the wildcard character (*), but it must be at the end and is only supported as the full path element. </li>
+  <li>This release includes the ability to add clickable image buttons to a tile grid cell with the following enhancements: 
+    <ul>
+      <li> Add one layout under the tile grid (table element) either horizontally or vertically. </li>
+      <li> Use the layout's <strong>snapTo</strong> property to define the group of image's position (for example, top left or bottom right).</li>
+      <li> Add image buttons under the layout. </li>
+      <li> Ensure that image buttons support dynamic and static images, dynamic and static styles, and the click action.<br>
+        </li>
+      </ul>
+    </li>
+  <li>The enhancement includes a standard Web breadcrumb navigation control that accumulates navigation history in a delimited set of links. This functionality allows for easy navigation to previously visited pages.</li>
+  <li>This enhancement allows vertical, horizontal, and grid layouts to receive dropped objects from a table, tree, or tile grid.    </li>
+  <li>The following properties have been added to the Gantt chart element:
+    <ul>
+      <li>     <strong>Dynamic Suppress Dependencies</strong></li>
+      <li><strong> Dynamic Pane Duration Unit</strong></li>
+      <li><strong> Gantt Width Percent</strong></li>
+      </ul>
+Additionally, these enhancements have been made:
+<ul>
+      <li> Includes the ability to scroll and scaling. If adjusting a row's height, the font size is also scaled. </li>
+      <li> Provides the ability to suppress display of dependencies (fixed value in metadata and scriptable), and allow you to change the selection from UI.</li>
+      <li> Includes the ability to scroll horizontally across the time window.  </li>
+      <li> Allows specifying the time window with start or end dates.</li>
+      <li> Allows specifying the time scale in days, weeks, months, and years (fixed value in metadata and scriptable).</li>
+</ul>  
+  <li>A Dimensioning Guide is available in the help documentation that explains the hardware sizing guidelines for Ericsson Order Care (EOC) and Ericsson Catalog Manager (ECM). </li>
+  <li>This enhancement allows for an item action to be saved with the basket item. The <strong>action</strong> variable field is available in the basket item document. </li>
+  <li>When sharing or relocating generated quality reports, the reports are unreadable. A fix has been made where the index.html file with a relative path to the report is generated inside the report folder. As a result, when you relocate your reports to other folder locations, you can still access the report without performing any changes to the report.</li>
+  <li>A new script constant, PROPAGATE, has been introduced, that is used as an event type mode when invoking the publishEvent() API. This mode passes the result of the previous event handler as the first parameter for the next event handler.<br>
+  </li>
+  <li>The AVM Software Upgrade Framework (SUF) playlist has been enhanced to support the deployment of two applications into one JBoss. </li>
+  <li>Application icons for which a user does not have permissions has been removed from the Application Selection page.</li>
+  <li>The unique index on association tables that considers the start date have been changed to be non-unique, to prevent the start date from being duplicated.<br>
+  </li>
+  <li>To ensure third-party products are removed from library, the following were removed in this release:
+    <ul>
+      <li> SOAP by Apache</li>
+      <li>Spring Core by Apache</li>
+      <li> Sprint JDBC by Apache</li>
+      <li> Spring Transaction Management by Apache</li>
+      <li> Wingtec by Wingsoft</li>
+      </ul>
+  </li>
+  <li>The Management Server has been upgraded to 1.0.1 in this release.</li>
+  <li>The search functionality for standalone help has been removed in this release.  </li>
+  <li>When creating a new data structure or document, a new checkbox, Create UI, allows you to create a user interface by selecting this property. To add or delete a user interface from an existing data structure or document, right-click the data structure or document that you want, and select Create UI or Delete UI, respectively.</li>
+  <li>The Worklist module's getUserParticipants API allows retrieving a list of participants for a specific user. This API receives an optional parameter for the userId and assumes that userId is from the current context, if it is not provided. </li>
+  <li>Enhancements include integration of AVM System Configuration Application and Common Business Configuration Application (COBA) graphical user interface (GUI) links to the Administration portal.<br>
+    <strong>Note</strong>: This feature’s documentation is a work in progress for this release. The documentation will be completed by product version 14.0 General Availability (GA).</li>
+  <li>The number of warning messages that appeared when adding Customer Information Management (CIM) and all required JAR files has been cleaned up.</li>
+  <li>The list of known product functionality changes have been added to the release notes, What's New - Network Impact Report, and product documentation.</li>
+  <li>A number of assessments have been made to incorporate risk analysis, node hardening, and vulnerability issues to address Ericsson security compliance.</li>
+  <li>The certification matrix has been updated to include certification for Red Hat Enterprise Linux, JBOSS, and Internet Explorer for versions 10  and 11.</li>
+  <li>In this release, both the documentation and release notes have been enhanced to conform to Ericsson product branding.</li>
+  <li>This enhancement addresses a number of issues that are outlined in the Trade Compliance checklist.</li>
+</ul>
+<h1>Product Functionality Changes</h1>
+
+    <p>Product version 14.0.0.0 contains the following functionality changes:</p>
+    <ul>
+      <li>The following changes have been made to deploying applications:
+        <ul>
+          <li>The <strong>Package</strong> command is not mandatory. Use the package command in multi-tenancy deployments only.</li>
+          <li>The <strong>Activate</strong> step has been removed. </li>
+          <li>The <strong>Deploy Application</strong> step has been added. To run your metadata from an application server, the metadata must be in the   database.</li>
+          <li>For the <strong>Deploy WAR File</strong> step, the descriptions related to ACTIVATED_IVERSION and ACTIVATED VERSION columns have been removed.</li> </ul>
+          
+         For an overview of the deployment process, see <strong>Deployment and Operations Guide</strong> &gt; <strong>Deploying Application</strong>.
+         
+      </li>
+<li>The following additional JAR files are required:
+  <ul>
+    <li>api_common.jar</li>
+    <li>cwl_security.jar</li>
+    <li>security.jar </li>
+    <li>ui_common.jar</li>
+    </ul>
+</li>
+      <li>To enable TLS for the SMTP session, you must set the <strong>mail.smtp.starttls.enable</strong> JVM option to true.</li>
+      <li>To start the  framework, ensure the following:
+        <ul>
+          <li>As these JAR files are loaded from the<em> system/JARs</em> directory automatically, remove the following templates from the <em>/templates </em>directory:
+            <ul>
+              <li>            cwl_security.jar</li>
+              <li>security.jar</li>
+              <li>ui_common.jar</li>
+              <li>api_common.jar</li>
+              <li>SIDCommon.jar</li>
+              <li>notification.jar</li>
+              <li>cwl_notification.jar </li>
+              </ul>
+            </li>
+          <li> Replace the following JAR files with version 6.0 templates:
+            <ul>
+              <li>catalog.jar</li>
+              <li>catalogClient.jar</li>
+              </ul>
+            </li>
+          <li>Since the new version of the Orchestration Framework uses new versions of the party, address, customer and report templates that are not compatible with old  metadata, keep  the older version of the following JAR files:
+            <ul>
+              <li> serviceOrchestrationFramework.jar</li>
+              <li>other metadata templates: 
+                <ul>
+                  <li>cwt_inv.jar</li>
+                  <li>cwt_party.jar</li>
+                  <li>cwtaddress.jar</li>
+                  <li>cwtcustomer.jar</li>
+                  <li>cwtdisctionary.jar</li>
+                  <li>cwtorder.jar</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+      </li>
+      <li>Upgrading the database to  version 14.x results in an exception when two fields of different types are mapped to the same database column. <br>
+        For example,  an exception occurs if the om.worklistarchive.disable flag has an integer1 type  mapped to the database and the cwl_worklist.worklistArchive.disable is mapped to the same table, but the field has a  boolean type. Version 5.x did not have these fields mapped but when mapping in version 14.x was added, the type, boolean, was chosen because the original cwf_pm.BaseWorklist originally used it. It is  not  an issue if you are only using an old worklist. </li>
+    </ul>
+    <ul>
+      <li>A newer version of icons is found in the <em>cwf\resources\cwt\images</em> folder. To continue using the old icons, you must extract it from the build (under old_resources, cwt.jar) onto their resources folder under <em>resources\cwt\images</em>.</li>
+      <li>The CWMAXUSERS document and table are removed, as they were not used.<BR>
+        </li>
+      <li>Since this version has more administative options, such as configuration, users with administrative privileges only are presented with the<strong> Select Application</strong> tool. </li>
+      <li>To align with the document as a model behaviour, code tables that have the model as a data structure   display the description and not the code.</li>
+      <li> In  CareUI.orderTypeDoc, the  orderType variable points to CareUI.orderTypeRef instead of the enumeration CareUI.orderType. The cwOnDocVisualKey should return the description instead of this.orderType.</li>
+      <li>The section stack visibility mode, mutex, is not working in version 5.2  when at least one of the sections have a visible permission. Mutex is meant to show only one section as expanded per section stack. This version contains a fix to the section visibility  and now renders the visibility mode properly. </li>
+      <li>In version 5.2, the application URL mapping is not mandatory. In this version, all applications opened or created require a URL mapping. Until this version, the onAppLoading method on an application is called only when the application has a URL mapping. All onAppLoading methods that may not have been called in version 5.2 because of the absence of a URL mapping is   called in this version. </li>
+      <li>In version 5.2, DataObjectList.updateRow selects the row automatically. In this version, this selection no longer happens unless the metadata script calls DataObjectList.setSelected.</li>
+      <li>In this version, the validation error message for the mandatory variables of data structures is changed to use the variable's label instead of the variable data path. For example, in version 5.2, the message appears as, <em>No value in mandatory field "addressDS/street"</em>. In this version, the message appears as, <em>No value in mandatory field "Street"</em>. </li>
+      <li>In this version, data structure data type variables are initialized with the <strong>Default value</strong> property defined in the data type of the variable. In 5.x the<strong> Default value </strong>property is ignored for data structures and applied  to documents only. </li>
+      <li>The mandatory style for fields mapped to data structure variables has been fixed to have the bold text style and an asterisk (*) at the end.
+        As a result, in version 5.x, labels that  have special logic in the metadata to display a mandatory style may now have a double asterisk (**).        To fix the problem,  remove the extra asterisk (*) from the label in the metadata.</li>
+      <li>In statistics monitoring, only the benchmark counter may be increased. A call with an argument (N &lt;= 0) adds a 1 to the existing counter value.</li>
+      <li>It is not recommended to  call the bmc.endHistogram() and   bmc.getHistogram() methods. In this case, (after "endHistogram"), calls getHistogram to return a null value. </li>
+      <li>The application skin  defined at the Page form was not applied if the application does not have a URL mapping. Since the URL mapping is mandatory, in 6.0, the skin  always gets applied which may result in some template applications looking different.</li>
+      <li>Entering an extra backslash (/) at the end of the URL in <em>/cwf/config/</em> does not provide access to the configuration application. Entering the backslash at the end provided access to the configuration component in version  5.x because configuration is not an application and Velocity Studio has a special servlet mapping to handle it. </li>
+      <li>In this version, currently the validation for number data types (Integer and Decimal) and dates (Date, Datetime, and Timestamp) are not complete. Data type validation only happens for min and max on numbers, and for length on dates. <br>
+        With the implementation of full validation for those data types, validation  occurs for content as well. Invalid content  generates errors, which are part of the error list that is returned when invoking validation on documents and data structures containing variables with the aforementioned data types. <br>
+        <strong>Examples:</strong>
+        <ul>
+          <li>  A data structure with a variable named start_date with a Date data type  representing the order start date. If the start_date is assigned with content such as &quot;Hello&quot;, invoking validate  results in no errors. After the changes in the validation logic are implemented, validating the data structure  results in an error indicating that the content for the start_date is invalid.</li>
+          <li>A document containing a variable named <em>days</em> with the Integer data type is used to store the number of days for order fulfillment. If the content &quot;ABCD&quot; is assigned to the variable days, the validate logic  returns no errors as the content is not validated. After the changes in the validation logic, an error message indicates that the &quot;ABCD&quot; is not valid content for the variable days. <br>
+            </li>
+          </ul>
+        </li>
+      <li>Records under the Organization Chart in the User Profile Manager tree are sorted by name. </li>
+      <li>The updated timestamp has been removed from the header metadata. When existing metadata is saved using a new build, it  removes the &lt;updated&gt; tag from header_ConceptWaveMetadata.xml. The Global.getMetadataTimestamp script method is  deprecated and returns the current timestamp for backward compatibility.
+        </li>
+      <li>In Orga metadata, for the createSRRequestForItem and on_createSRResponse scripts, when creating a service registry request, the variable value that has a  date time type is  converted to a string in ISO format.<BR>
+        <BR>
+        However,  in the  createSRResponse script, line 321, 
+        when mapping an item variable  value from a service registry to a basket item, it is not correct to create a date by string in ISO format. The script should call the ISOToDate API to convert the string to a date object. <BR>
+        <BR>
+        When creating a service registry request, all values are  saved as a string, so the date value should be converted to a string value.  It is recommended to use the dateToISO API to format the date to a string in ISO 8601 format.        When getting a response from service registry, if the date value is in ISO 8601 format, you need to call the ISOToDate API to parse the string in ISO format and return the date.<br>
+      </li>
+    </ul>
+<h1>Known Issues</h1>
+    <p>This product release contains the following known issues:</p>
+    <ul>
+      <li> If the cwDBCodeTablesPK index was not created as part of the   primary key CONSTRAINT, you have to manually drop it before running the   upgrade script. </li>
+      <li>Depending on the Web browser that you are using, you may experience inconsistent behaviour with checkbox images in the navigation tree when the browser zoom level is  set to levels greater than 100%. Due to a SmartClient issue,   customized zoom levels  vary by browser, and may result in   rendering  and various sizing  issues.
+      Browser zooms set to levels other than 100% are not supported by SmartClient.</li>
+    </ul>
+    <h1>Upgrade Information and Licensing</h1>
+    <p>To upgrade from a previous version of the Ericsson<sup></sup> product to its latest version, you must migrate your metadata to the current release to continue your metadata development. After installing this product release, please consult <i>Getting Started - Metadata Migration</i> in product documentation for details, which can be found by starting Velocity Studio and clicking <b>Help &gt; Help Contents</b> from the menu bar. For further assistance with metadata migration, please contact 
+      Support Services at <a href="mailto:cw.support.group@ericsson.com">cw.support.group@ericsson.com</a>.</p>
+    <p>All Ericsson<sup></sup> software components are authorized to run by license files (for example, <i>license.lic</i>). You must have the license files to run the product. If your license has expired or you have not received a license, please contact your sales representative.<br>
+    </p>
+  </li></td>
+</tr>
+<tr>
+  <td valign="top" class="pagebody">&nbsp;</td>
+</tr>
+</table>
+
+<div class="bottomshadow"></div>
+  	<div id="poweredby" class="smalltext">© Ericsson AB 2014 <br/>
+    5935 Airport Road, Suite 1105, Mississauga, Ontario, L4V 1W5 Canada. Telephone: (905) 405-2188
+</div>
+
+</body>
+</html>

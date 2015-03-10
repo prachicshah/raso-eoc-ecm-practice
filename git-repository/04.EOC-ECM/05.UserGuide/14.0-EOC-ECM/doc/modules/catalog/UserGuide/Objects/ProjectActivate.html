@@ -1,0 +1,31 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Activate a Project</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Activate a Project</h2>
+<p>When your project is ready to be used in a production environment, change your project's <strong><a href="States.html">Status</a></strong> field to <strong>Active</strong>, and then click the <strong>Save</strong> button.</p>
+<p>Alternatively, you can run the following SQL script, which activates all objects in your project:</p>
+<div class="code">
+  <div class="codeContent">
+  <pre class="code-java">UPDATE CWPC_ATTRIBUTE SET STATUS = 'ACT';<br>UPDATE CWPC_ITEM SET STATUS = 'ACT';<br>UPDATE CWPC_ITEMATTRIBUTE_V SET STATUS = 'ACT';<br>UPDATE CWPC_CHARGETYPE_V SET STATUS = 'ACT';<br>UPDATE CWPC_RESTRICTION_V SET STATUS = 'ACT';<br>UPDATE CWPC_PROJECT SET STATUS = 'ACT';<br>UPDATE CWPC_TAX_V SET STATUS = 'ACT';<br>UPDATE CWPC_ITEMCHARGE_V SET STATUS = 'ACT';<br>UPDATE CWPC_ITEMRULE_V SET STATUS = 'ACT';<br>UPDATE CWPC_ITEMIMAGE_V SET STATUS = 'ACT';<br>UPDATE CWPC_ITEMATTACHMENT_V SET STATUS = 'ACT';<br>UPDATE CWPC_CATALOGHIERARCHY SET STATUS = 'ACT';<br>UPDATE CWPC_ITEMHIERARCHY SET STATUS = 'ACT';<br>UPDATE CWPC_ASSOCIATIONTYPE SET STATUS = 'ACT';<br>UPDATE CWPC_ITEMRELATION_V SET STATUS = 'ACT';<br>UPDATE CWPC_ITEMLABEL_V SET STATUS = 'ACT';<br>UPDATE CWPC_ITEMGROUP_V SET STATUS = 'ACT';<br>UPDATE CWPC_INFOMODEL SET STATUS = 'ACT';<br>UPDATE CWPC_CATALOGRULE_V SET STATUS = 'ACT';<br>UPDATE CWPC_TAXMODEL_V SET STATUS = 'ACT';<br>UPDATE CWPC_INFOTABLE SET STATUS = 'ACT';<br>UPDATE CWPC_CONTEXT SET STATUS = 'ACT';<br>commit;</pre>
+    </div>
+</div>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>The project needs to be activated at least 1 hour before the project effective   date.</li>
+  <li>You change the status in the script to suit your needs. As an  example, if you want to set your project's <strong>Status</strong> field to <strong>Definition</strong>, replace <tt>ACT</tt> with <tt>DEF</tt> in the sample script.</li>
+</ul></td>
+</tr>
+</body>
+</html>

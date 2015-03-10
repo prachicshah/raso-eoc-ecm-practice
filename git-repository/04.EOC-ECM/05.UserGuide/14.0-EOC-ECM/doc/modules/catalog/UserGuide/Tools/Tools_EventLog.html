@@ -1,0 +1,151 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Event Log</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Event Log</h2>
+<p>The Event Log report  displays a list of messages logged by the Catalog Administration. To access the Event Log, click <strong>Tools &gt; Event Log</strong> from the menu bar.</p>
+
+<img src="eventlog.png" align="absmiddle" border="0" alt="Event Log" />
+
+<p>The Event Log report contains the following fields:</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>ID</b></td>
+<td class='confluenceTd'>This field denotes the numeric event-message ID.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>AVM</strong></td>
+  <td class='confluenceTd'>This field contains the node set in the Configuration application.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Timestamp</b></td>
+<td class='confluenceTd'>This field indicates the date and time when the message was logged.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Event Severity</b></td>
+  <td class='confluenceTd'>This field represents the level of importance.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Event Code</b></td>
+  <td class='confluenceTd'>This field denotes the internal code that identifying the type of message.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>User ID</b></td>
+  <td class='confluenceTd'>This field contains the ID of the user who received the message.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Event </strong><b>Description</b></td>
+  <td class='confluenceTd'>This field indicates the description of the message.</td>
+</tr>
+</tbody>
+</table>
+<p>You can perform the following tasks from the Event Log page:</p>
+<ul>
+  <li><a href="#GenerateEventLog">Generate an Event Log report</a></li>
+  <li><a href="#ViewTransDetails">View the details of a transaction</a></li>
+  <li><a href="#OpenProcessManager">Open the Process Manager</a></li>
+  </ul>
+<h3><a name="GenerateEventLog"></a>Generate an Event Log Report</h3>
+<p>To generate an Event Log report, do the following:</p>
+<ol>
+  <li>In the Event Log area, enter your search criteria. The following criteria fields are available:    <br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th class='confluenceTh'>Criterion</th>
+          <th class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Event ID</b></td>
+          <td class='confluenceTd'>This field denotes the numeric event message's identifier.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Event Module</strong></td>
+          <td class='confluenceTd'>This field indicates the message's event source. Click the field's drop-down menu and select the event module that you want.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Event Code</b></td>
+          <td class='confluenceTd'>This field represents the Internal code identifying the type of message.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Event Severity</b></td>
+          <td class='confluenceTd'>This field contains the level of importance.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>AVM</strong></td>
+          <td class='confluenceTd'>This field indicates the node set in the Configuration application. Click the field's drop-down menu and select the node identifier from the list.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Application</b></td>
+          <td class='confluenceTd'>This field denotes the application source of the message.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Transaction ID</strong></td>
+          <td class='confluenceTd'>This field represents the ID that is attached to a grouping for the same request type or a process activity for a process engine.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>User ID</b></td>
+          <td class='confluenceTd'>This field contains the ID of the user who received the message. You can click the following buttons:
+            <ul>
+              <li><strong>Finder</strong> button, to look up a user ID in a finder</li>
+              <li><strong>Details</strong> button, to view details of the event in a dialog</li>
+              <li><strong>Clear</strong> button, to clear any text that appears in this field</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Object ID</strong></td>
+          <td class='confluenceTd'>This field denotes the object code that identifies the message type.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Event Time</strong></td>
+          <td class='confluenceTd'><p>This field allows you to specify the time and date when the event message was logged. There are two fields that you can specify:</p>
+            <ul>
+              <li><strong>From</strong> field<br>
+                Click              the <strong>Calendar</strong> icon and select the date from which you want to search for events. You can also specify the time by using the <strong>Hour</strong>, <strong>Minute</strong>, and <strong>Second</strong> drop-down fields.<br>
+              </li>
+              <li><strong>To</strong> field<br>
+                Click the <strong>Calendar</strong> icon and select the date to which you want to search for events. You can also specify the time by using the <strong>Hour</strong>, <strong>Minute</strong>, and <strong>Second</strong> drop-down fields.</li>
+            </ul></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+
+    <li>Once you have finished entering your search criteria, click the <strong>Search</strong> icon to generate your Event Log.</li>
+</ol>
+<h3><a name="ViewTransDetails"></a>View the Details of a Transaction</h3>
+<p>To view the details of a specific transaction, complete these steps:</p>
+<ol>
+  <li>Locate the transaction and do one of the following:</li>
+  <ul>
+    <li>Double-click the error that you want to view.</li>
+    <li>Click the arrow icon to the left of the transaction <strong>ID</strong> field. <br>
+      <br>
+      <img src="eventLogDetails.png" alt="Event Log Details">    <br>
+      <br>
+    </li>
+  </ul>
+  <li>The details for the transaction you have selected appear on the  page. When you have completed reviewing the transaction's details, click <strong>Cancel</strong> to return to the main Event Log page.<br>
+    <br>
+    <img src="eventLogDetailsPane.png" alt="Event Log details with arrow button"></li>
+</ol></td>
+</tr>
+</body>
+</html>

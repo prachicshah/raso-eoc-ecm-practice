@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Basket in an Order</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+<h4><a name="BasketInOrder">Basket</a> in an Order</h4>
+<p>In the past, the  catalog basket was not integrated in an order. Instead, you had to link the basket by using the basket ID within the order's  order instance. The basket is part of CwfDataOrder, which eliminates the linking process.</p>
+<p><strong>Metadata Preparation</strong></p>
+<p>To prepare your metadata, complete these steps in Velocity Studio as shown in the following example:</p>
+<ol>
+  <li>Create a Data       Document. This example shows a dynamic document that extends the CwcBasketItem document.<br>
+    <br>
+    <img src="basketOrderCreateDocument.png" alt="Create a data document" width="1051" height="365" border="1"><br>
+    <br>
+  </li>
+     <li>The following two fields are required to use this       document in order collections:     </li>
+     <ul>
+       <li>System Order ID<br>
+         <br>
+         <img src="basketOrderOrderID.png" alt="System Order ID" width="1141" height="344" border="1"><br>
+         <br>
+       </li>
+       <li>System Parent ID <br>
+         <br>
+         <img src="basketOrderSystemParentID.png" alt="System Parent ID" width="1141" height="344" border="1">         <br>
+         <br>
+       </li>
+     </ul>
+      <li>Create an order.<br>
+        <br>
+        <img src="basketOrderCreateOrder.png" alt="Create an order" width="782" height="352" border="1"><br>
+        <br>
+      </li>
+      <li>Create a collection, ShoppingBasket, under the testOrder that you have just created. The <strong>Mandatory</strong> field must be checked to get the basket created. <br>
+        <br>
+        <img src="basketOrderCreateCollection.png" alt="Create a collection" width="995" height="345" border="1"><br>
+        <br>
+      </li>
+      <li>Create a document       under the ShoppingBasket collection. The <strong>Order items</strong> field will point to the dynamic document that was created in step 1.<br>
+        <br>
+        <img src="basketOrderCreateDocumentUnderCollection.png" alt="Create document under the ShoppingBasket collection" width="651" height="339" border="1"><br>
+      </li>
+</ol>
+<p><strong>Scripting Usage</strong></p>
+<p>The scripting usage for a basket in an order is as follows:</p>
+<ol start="1" type="1">
+  <li><strong>Create an order and add a basket item</strong><br>
+    The  ShoppingBasket is an instance of CwcBasket, which is automatically  created when the order is initialized.<br>
+    <br>
+   <div class="preformatted">
+  <div class="preformattedContent">
+    <pre>var order = new baorder.testOrder();<br>var basket = order.ShoppingBasket;<br>basket.add(&quot;bif1&quot;);<br>order.save();</pre>
+  </div>
+</div>
+  </li>
+</ol>
+<ol start="2" type="1">
+  <li><strong>Read the order and basket</strong><br>
+    If the  basket is inside an order, use Order.read() to read the basket. It is recommended that you do not use Basket.readFromDB(), as the basket is part of the order.<br>
+    <br>
+    <div class="preformatted">
+  <div class="preformattedContent">
+    <pre>var retOrder = Order.read(null,  order.id, null, true);<br>var retItem =  retOrder.ShoppingBasket.getItemByCode(&quot;bif1&quot;);</pre>
+  </div>
+</div>
+  </li>
+</ol>
+<ol start="3" type="1">
+  <li><strong>Delete the order and basket</strong><br>
+    If the  basket is inside an order, use Order.deleteOrder() to delete both order and  basket. It is recommended that you do not use Basket.deleteFromDB(), as the basket is part of the order.<br>
+    <br>
+    <div class="preformatted">
+  <div class="preformattedContent">
+    <pre>order.deleteOrder();</pre>
+  </div>
+</div>
+  </li>
+</ol>
+<ol start="4" type="1">
+  <li>Copy the order and basket<br>
+    If the  basket is inside an order, use order.copyOrder(true, true). The second  parameter in this method can be used to control whether to save an order. It is recommended that you do not use Basket.createCopy() when a  basket is inside an order. <br>
+    <br><br>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>var order2 = order.copyOrder(true, true);</pre>
+  </div>
+</div>
+  </li>
+</ol>
+<p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

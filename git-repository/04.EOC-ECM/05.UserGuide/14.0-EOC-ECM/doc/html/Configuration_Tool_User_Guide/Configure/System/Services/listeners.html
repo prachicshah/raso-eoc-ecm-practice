@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Services - Listeners</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Listeners</h2>
+
+<p>Clicking  <strong>Services</strong> &gt;<strong> Listeners </strong>displays the metadata-defined listeners. </p>
+<p><img src="listeners.png" alt="Services - Listeners tab" border="1"></p>
+<p>The following fields are available on this page:</p>
+<table width="1030" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="154" class='confluenceTh'>Field</th>
+      <th width="785" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Namespace</strong></td>
+      <td class='confluenceTd'>This field denotes the namespace to which the listener belongs.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>External Service</strong></td>
+      <td class='confluenceTd'>This field has the external service name to which the listener belongs.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Port</strong></td>
+      <td class='confluenceTd'><p>This field represents the listener's port name.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Interface Name</strong></td>
+      <td class='confluenceTd'>This field contains the listener's interface name.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Binding Type</strong></td>
+      <td class='confluenceTd'>This field denotes the listener's binding type.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Threads</strong></td>
+      <td class='confluenceTd'><p>This field contains the number of threads that the listener has. The default value is 1. This field can also take a value of 0, which disables the listener.</p>
+        <p><strong>Note</strong>: For SOAP and HTTP requests, the AVM listener thread setting  only supports the values: 0 for off, and 1 for on. As listener threads are managed by the web container, to configure the number of threads available for SOAP and HTTP requests, refer to Web container documentation.  <br>
+Velocity Studio's embedded web container creates and pools threads as needed to handle HTTP and SOAP requests and these listener thread settings cannot be configured. </p></td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+
+<h3>Edit the Number of Listener Threads</h3>
+<p>To edit the number of threads allocated to a listener, complete these steps:</p>
+<ol>
+  <li> From the Listeners page, double-click the listener row that you want.<br>
+    <br>
+    <img src="listenersEditThreadsField.png" alt="Services - Listeners tab - Edit Threads field" border="1"><br>
+    <br>
+  </li>
+  <li>The <strong>Threads</strong> field is the only one that can be changed. Enter the number of threads in this field, and then click the <strong>Save</strong> button.</li>
+</ol>
+<p><b>Notes</b>: </p>
+<ul>
+  <li>The <strong>Threads</strong> field can be set at both cluster and node levels. If you have different hardware dimensioning for each node in the cluster, you may want to specify a different thread count at the node level for each node that suits the dimensioning.</li>
+  <li>When  you change the number of threads for either a listener or a queue, this value is also updated under the same port in the Services tab or the same queue under the Queues tab.</li>
+  <li> At runtime, listeners are managed through <a href="../../../../Metadata Deployment Guide/Introduction JMX.html">JMX</a>.</li>
+</ul>
+</body>
+</html>

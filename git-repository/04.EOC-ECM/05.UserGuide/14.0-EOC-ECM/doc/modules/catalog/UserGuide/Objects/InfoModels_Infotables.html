@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Info Table</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> 
+<tr>
+<td class="pagebody" >
+
+
+<h2>Info Table</h2>
+<p>The  info table enables you to enter data for the associated Info Model Attributes. The Info Model Attributes are the table columns of a Standard Info Model Table.  The <strong>Start</strong> and <strong>End Dates</strong> version the data in this table and the data is stored as a single row in the Data field of the CWPC_INFOTABLE Catalog table.   For more information, refer to <a href="InfoModels.html">Info Models</a>.</p>
+<p>It is possible to define Info Tables that are Static or Dynamic.  The main difference between the Static and Dynamic tables is the way the data is loaded into cache memory by the AVM. The Static tables are loaded in whole automatically whereas the Dynamic tables are loaded one row at a time on demand. There are three types of Static and Dynamic Info Tables that can be referenced in Catalog Management:</p>
+<p><table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="77" class='confluenceTh'>Table</th>
+      <th width="160" class='confluenceTh'>Static or Dynamic</th>
+      <th width="771" class='confluenceTh'>Comments</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Standard</strong></td>
+      <td class='confluenceTd'>Static</td>
+      <td class='confluenceTd'>Standard Table is maintained and defined within Catalog.  Data values are stored in a standard Catalog table that supports version control.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Database</strong></td>
+      <td class='confluenceTd'>Static</td>
+      <td class='confluenceTd'>Database table is an external table that is referenced by Catalog.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Dynamic</strong></td>
+      <td class='confluenceTd'>Dynamic</td>
+      <td class='confluenceTd'>The Dynamic table is external table that has the same name as the Info Model that defines it.</td>
+    </tr>
+  </tbody>
+</table></p>
+<p>The info tables are used in the catalog for several major purposes:</p>
+<ul>
+  <li> As data tables used in rules to by the rule decision logic.</li>
+  <li> As price tables to provide data for calculating the catalog items prices.</li>
+  <li> As dynamic table rows uniquely identified by set of keys.</li>
+</ul>
+<p>You can access info tables from the Info Model Details. Click <strong>Designer</strong> &gt; <strong>Info Models</strong> from the menu bar, and then click the Info Tables tab. The system then displays the Info Table details.</p>
+  
+    <p><ol><img src="Info_Table.png" alt="Info Table Tab">  </ol>  </p>
+    <p>When the info model is active, after adding  active attributes to it, the following actions can  be performed with the info table: </p>
+    <UL>
+    <LI><a href="CreateInfoTable.html">Add an  info table</a></LI>
+    <LI><a href="deleteInfoTable.html">Delete  an info table</a></LI>
+    <LI><a href="copyInfoTable.html">Copy an    info table</a></LI>
+    <LI><a href="viewInfoTableDetails.html">View info table    details</a></LI>
+    <LI><a href="exportInfoTable.html">Export an info table</a></LI>
+    <LI><a href="importInfoTables.html">Import an info table</a></LI>
+</UL>
+ 
+
+</td>
+</tr>
+</table>
+</body>
+</html>

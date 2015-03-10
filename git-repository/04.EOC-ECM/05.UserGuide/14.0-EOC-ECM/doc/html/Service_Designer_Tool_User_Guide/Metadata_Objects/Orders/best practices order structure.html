@@ -1,0 +1,103 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Best Practices for Order Structures</title>
+<link rel="StyleSheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Best Practices for Order Structures</h2>
+<p>When modelling an order, follow these guidelines:</p>
+<h3>Model  Network-Based Products</h3>
+<p>Network based products, such as Frame  Relay, ATM, and IP VPN, consist of a series of sites or nodes, and connections or  links. Ensure following when modelling these types of orders:
+<ul>
+  <li>Order entry is simple and logical.</li>
+  <li>Network components may be ordered, provisioned, and placed  in-service independently from other components of the network. For example, the  provisioning of a 200-node network may never actually complete due to change  orders placed by the customer. It is essential that components may be placed  in-service as they are completed.</li>
+  <li>Network components should be able to be changed independently  from other components of the network. For example, disconnection of PVC between  two sites should not be encumbered by provisioning another PVC to one of  the sites.</li>
+  <li>The relationship of the components of the network is respected. For  example, a disconnection order against a site should force the disconnection of all  associated PVCs.</li>
+  <li>Data entry, such as site information, should be limited to one  per order.  </li>
+</ul>
+From a design perspective, follow these guidelines  for a selected order model:<br>
+<br>
+    <ul><li>Represent nodes as a  collection with 0 to N instances. For example:</li>
+ 
+  <ul>
+    <li>0: A new PVC to two existing sites.</li>
+    <li>1: A new PVC to a new site,  from an existing site.</li>
+    <li>2 or more: new sites and PVCs.</li>
+  </ul>
+  <li>Represent links  as a collection with 0 to N instances.  These instances are linked only by reference to the nodes and are not explicit  children of the nodes (since they must be children of two nodes). For example:</li>
+  <ul>
+    <li>0: A change order on a site  that does not affect the connected links.</li>
+    <li>1 or more: new PVCs.</li>
+  </ul>
+  <li>A link  includes a reference to the two endpoints without  requiring the definition of those endpoints, which means that they need not be  located on the order. The following possibilities can be permitted (Frame  Relay used as an example):</li>
+  <ul>
+    <li>A PVC with an endpoint being a  new site defined on the same order.</li>
+    <li>A PVC with an endpoint being a  new site defined on another order, not yet completed.</li>
+    <li>A PVC with an endpoint being  an existing site.</li>
+    <li>A PVC with an endpoint being a  site under a different service (for example, Frame Relay to ATM interworking).</li>
+    <li>A PVC with an endpoint  belonging to another customer.</li>
+    <li>A PVC with an endpoint being a  gateway, such as the Internet, an  interconnection to another service provider, and so on.</li>
+  </ul>
+  <li>An order should be able to be split,  either physically or logically, so that the complete portions can be considered  closed, while the outstanding portions can be managed under a new order. This  splitting permits closing activities, such as billing activation, service turn-up, and so on that may be modelled once per order, to be performed on the completed  components.</li>
+  <li>An order that affects a node also auto-discovers the impact on the links:</li>
+  <ul>
+    <li>A disconnection on the node   automatically require a disconnection on any associated links.</li>
+    <li>A bandwidth change on a node to  below that specified on a link  illicits a warning.</li>
+    <li>Provide a wizard  to automatically add the affected links.</li>
+  </ul>
+</ul>
+    <h3>When  a  Link is Explicitly Ordered or Modelled</h3> 
+<p>  In some network-based products, a  topology selection drives the network configuration. For example, if a topology  of fully meshed is selected, links are assumed between each of the sites. Do  these links (for example, PVCs) need to be physically ordered? The links are modelled if the answer is yes to any  of the following questions:
+<ul>
+  <li>Can the topology be altered through the addition or removal of  individual links, or both?</li>
+  <li>Can the characteristics of the links vary, such as the bandwidth,  class of service, and so on?</li>
+  <li>Are there individual provisioning activities, such as configuration,  required on each link?</li>
+  <li>Are the links itemized billable entities?</li>
+  <li>Are the links to be represented individually in the inventory  system?</li>
+  
+</ul>
+<p>In the event that the links are  physically ordered, provided wizards automatically create the  relevant links based on   topology selected by network.</p>
+ <h3> Manage Lists of Orderable Items</h3>
+ <p>In many products, the order data includes  potentially lengthy lists of items.  Examples include telephone numbers, dialing plans, IP addresses,  end users, time-of-day routing rules, and more. </p>
+    <p>There are two basic models for managing  this data:</p>
+    <ul>
+      <li> On-order </li>
+      <li> Off-order</li>
+    </ul>
+    <p><strong>On-Order  modelling</strong> is the traditional mode. A collection is  defined on the order to hold and manage the list of items:
+      
+    </p>
+    <ul>
+    <li>The order definition includes these items.</li>
+  <li>The items are automatically loaded and displayed to the end user  with other order data.</li>
+  <li>The length of the order can be managed by selecting <strong>minimized</strong> under the collection folder, which displays the folder in <strong>unexpanded</strong> mode (the default is fully expanded).</li>
+  <li>Long lists can be cumbersome as no filtering is provided.</li>
+  <li>Actions are limited to the one-item-at-a-time operation as multi-select actions are  not supported.</li>
+  <li>Instances cannot be hidden elegantly;  the item remains visible in  the tree, although the details are blocked.</li>
+  <li>Access to the data within business rules is simplified.</li>
+  <li>System performance is compromised since the lists are  retrieved on order load.  </li>
+  </ul>
+    <p><strong>Off-order  modelling</strong> consists of defining documents and finders  to manage the list of items. The items  are not part of the order. Buttons or menus, or both are  defined to access the items through finders. In this model:    </p>
+    <ul>
+      <li>Navigation through the order is simplified as data is accessed by  buttons or menus using popup finders.</li>
+  <li>Long lists of data are better managed through the finder filter  capability.</li>
+  <li>Individual items can be hidden through filters.</li>
+  <li>Multi-select operations, such as delete, are permitted.</li>
+  <li>Access to the data within business rules is complicated as finders  must be invoked.</li>
+  <li>System performance is improved since the lists are only  retrieved when explicitly requested.</li>
+  <li>Order copy, archiving, and deleting functionality must be scripted to  accommodate the off-order data.</li>
+</ul>
+<p>In general, the longer the list of items,  the more suited off-order modelling will be to the situation.</p></td>
+</tr>
+</table>
+
+
+</body>
+</html>

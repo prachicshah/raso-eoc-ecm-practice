@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Common Actions Outside Velocity Studio</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Common Actions Outside Velocity Studio</h2>
+
+<p>There are various tasks where project manipulation is done outside of Velocity Studio. The following lists and describes the actions necessary to accomplish these tasks.</p>
+
+<h3><a name="copy">Make a Copy of a Project</a></h3>
+
+<p>To make a copy of the project, you can simply copy the Project Directory to another location. Close the project if it is already opened in Velocity Studio, so that the project lock file <i>.cw.inuse.lock</i> is not present when copying.</p>
+
+<p>To aid the transfer of the project files (for example, through FTP, e-mail, and so on), compress the Project Directory to a zip file before transferring. The recipient can then unzip before working on the project in Velocity Studio.</p>
+
+<p>On a related note, the Velocity Studio supports <a href="../Service Designer Menu Actions/Metadata Build JAR.html">exporting the project as JAR file</a>, but only as a library to be included in another project.</p>
+
+<h3><a name="versioning">Version Control on a Project</a></h3>
+
+<p>In a typical engineering environment for building enterprise applications, you are expected to be sharing development work in a team, and centralize your project work with a version control system, such as <a href="http://subversion.tigris.org/">Subversion</a> (that is, SVN). Simply create version control repository with Project Directory, and check-in / check-out files in the directory for metadata, library, and resource changes.</p>
+
+<p>Refer to <a href="../Introduction_to_Metadata/Understanding Your Metadata Files.html">Understanding Your Metadata Files</a> on the nature of the folders and files in the project, and <a href="../Introduction_to_Metadata/Metadata Objects Overview.html">Metadata Objects Overview</a> on metadata files, which are stored as XML. If multiple team members work on the same metadata object, a conflict may occur in version control. Since product version 5.x, Velocity Studio no longer provides metadata merging tool. Instead, use a third-party tool or manually merge the XML file. Be careful to the integrity of the XML file in this case (for example, matching tags).</p>
+
+<p>Depending on your team's environmental setup (such as local versus centralized database), you may or may not want to include <i>.settings</i> file in Project Directory's root folder.</p>
+<p>The following are some best practices on managing project files and folders in a version control system:</p>
+<ul>
+  <LI>
+    <p><strong>Keep your source files in source control</strong><br>
+      It is helpful to check in a copy of each source file that you need to build your project.</p>
+  </LI>
+  <LI>
+    <p><strong>Ensure that you are working with the latest version of your file or metadata</strong><br>
+      Follow the file check-out procedures that your source-control administrator has specified or that your team has established. Those procedures help make sure that you are using the latest copies of each file, meaning that you have the latest changes from other members of your team.</p>
+  <p>As other team members make changes to files in your project source control repository, the copies of those files that you have in your workspace become outdated and require that you update them. Because source control automatically assumes that the last checked-in version of a file is the newest version, checking in a stale version of a file after somebody else has checked in a newer version creates extra work. It also increases the risk that you will lose some important changes to the file.</p>
+</LI>
+  <LI>
+    <p><strong>Check out only the files that  you need</strong><br>
+      Check out only the files that you plan to change and work on. Do not check out an entire folder unless you plan to change every file in that folder.</p>
+</LI>
+  <LI>
+    <p><strong>Check in promptly</strong><br>
+      It is not recommended that you leave your files checked out any longer than necessary. Check your files in as soon as you are done changing and testing them, ensuring that your teammates have access to the latest versions of the files.</p>
+</LI>
+  <LI>
+    <p><strong>Write good check-in comments</strong><br>
+      When a problem occurs, you can use good check-in comments to help identify where your metadata went wrong and how to fix it more quickly. Even if nothing goes wrong, you can quickly identify what changes you made and why you made them.</p>
+  </LI>
+</ul>
+<h3><a name="importMD">Import Metadata</a></h3>
+
+<p>To import parts or all application metadata of one project into another project, you must first <a href="../Service Designer Menu Actions/Metadata Build JAR.html">export Metadata as a library JAR</a>, and <a href="../Metadata_Objects/Metadata Root/Metadata Root Templates.html">import it</a> into the target project as a library. Then, copy the desired metadata that is in the <b>Library</b> tab of <b>Navigation Pane</b> to application metadata <i>using Velocity Studio</i>'s <b>Copy</b> and <b>Paste</b> command (in right-click pop-up menu).</p>
+
+<p>You shall not arbitrarily copy folders and XML files in Project Directory's metadata folder into another Project Directory via file system. There exists a hashvalue in each metadata XML file that hashes, and thus protects, the relative filepath (to the project directory), including the filename. Thus, you must instead use rename, cut/copy and paste functions in Velocity Studio.</p>
+
+<h3><a name="resource">Manage Resources</a></h3>
+
+<p>In general, with the exception of <a href="../Service Designer Menu Actions/Import XSD.html">XSD</a> and <a href="../Service Designer Menu Actions/Import WSDL.html">WSDL</a> files, resource files are imported into project by simply adding them into Project Directory's <b>resources</b> folder through the file system. Similarly, they are removed by simply deleting them in file system.</p>
+
+<p>The <b>Resources</b> tab in <b>Navigation Pane</b> provides navigational and other functionalities per file type; please see <a href="Navigation Pane - Resource.html">its documentation</a> for details in supported file types and functionalities, such as Image files, XSD, WSDL, CSS and even JAR files. Indeed, you can package resource files into JAR files and add them into resources folder; Velocity Studio is able to read into content files in the JAR, at both design time and runtime.</p>
+
+<p>For CSS, Velocity Studio does not provide editor to customize styles in the stylesheet. You can text-edit or use a third-party CSS editor for managing <i>.css</i> files in resources.</p>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

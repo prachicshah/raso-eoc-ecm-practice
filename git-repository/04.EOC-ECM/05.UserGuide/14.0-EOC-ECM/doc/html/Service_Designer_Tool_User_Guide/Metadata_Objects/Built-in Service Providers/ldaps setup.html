@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>Set up LDAPS in OpenLDAP using OpenSSL</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h3><a name="4.16.7LDAPServiceProvider-4.16.7%26nbsp%3BLDAPServiceProvider"></a>Set up LDAPS in OpenLdap Using OpenSSL</h3>
+<p>To set up LDAP over SSL (LDAPS) in OpenLDAP using OpenSSL, complete the following steps:</p>
+<ul>
+  <li><a href="#serverSide">Server side</a></li>
+  <li><a href="#SetUpSSLinOpenLDAP">Set up SSL in OpenLDAP</a></li>
+  <li><a href="#SetLDAPSurlUPadmin">Set up LDAPS URL in the System Administration application</a></li>
+  <li><a href="#StartOpenLDAP">Start OpenLDAP</a></li>
+  <li><a href="#ClientSide">Client side</a></li>
+</ul>
+
+<h4><a name="serverSide"></a>Server Side</h4>
+
+<p>Using OpenSSL to create certificates, follow these steps:</p>
+<ol>
+  <li>Install OpenSSL in d:/OpenSSL.</li>
+  <li>You have the option of creating dummy folders under d:/OpenSSL/bin, to simulate a CA system. Create the following folder structure:</li>
+
+<ul>
+  <li>DemoCA
+    <ul>
+      <li>certs</li>
+      <li>newcerts</li>
+      <li>private</li>
+      <li>crl</li>
+    </ul>
+  </li>
+  <li>index.txt</li>
+  <li>serial (with <em>01</em> inside)</li>
+</ul>
+
+  <li>Create a key file and certificate signing request for the server with the following command:<br>
+    <div class="code">
+    <div class="codeContent">
+    <pre class="code-java">Openssl genrsa -des3 -out server.key 1024 -config &quot;d:/OpenSSL/openssl.cnf&quot; 
+Openssl req -new -key server.key -out server.csr</pre></div></div>
+  </li>
+  <li>Sign server.csr with the following command:<br>
+    <div class="code">
+    <div class="codeContent">
+    <pre class="code-java">Openssl ca -in server.csr -out server.crt -cert ca.crt -keyfile ca.key</pre></div></div>
+  </li>
+</ol>
+
+<h4><a name="SetUpSSLinOpenLDAP"></a>Set up SSL in OpenLDAP </h4>
+
+<p>To set up SSL in OpenLDAP, complete these steps:</p>
+<ol>
+  <li>Open the slpad.conf file.</li>
+  <li>Edit the file by adding and change the following:<br>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">TLSCACertificateFile  ./security/certs/ca.crt
+TLSCertificateFile  	./security/certs/server.crt
+TLSCertificateKeyFile ./security/certs/server.key</pre></div></div></li>
+</ol>
+<h4><a name="SetLDAPSurlUPadmin"></a>Set up LDAPS URL in the System Administration Application</h4>
+<p>To set up the LDAPS URL in the System Administration application, see <a href="../../../User Profile Manager User Guide/Configure/securityProviderSetLDAP.html">Set up an LDAP Provider</a>. For step 5 of this procedure, enter your URL in the following form:</p>
+<blockquote>
+  <p><strong>ldaps://&lt;<em>host</em>&gt;:&lt;<em>port</em>&gt;</strong></p>
+</blockquote>
+<h4><a name="StartOpenLDAP"></a>Start OpenLDAP</h4>
+<p>To start OpenLDAP, use the following command:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">slapd -d 1 -h ldaps://&lt;host&gt;:636
+</pre></div></div></p>
+
+<h4><a name="ClientSide"></a>Client Side</h4>
+<p>To set up the client side, perform these steps:</p>
+<ol>
+  <li>Get the ca.crt file create by OpenSSL</li>
+  <li>Create and import a truststore file by using this command:<br>
+  <div class="code">
+  <div class="codeContent">
+  <pre class="code-java">
+    keytool -import -file &quot;d:/ca.crt&quot; -keystore ssl.keystore -alias ldaps</pre></div></div><br>
+  </li>
+  <li>Add the following JVM option to your client program:<br>
+    <div class="code">
+<div class="codeContent">
+<pre class="code-java">-Djavax.net.ssl.trustStore=&quot;&lt;path&gt;/ssl.keystore&quot;
+-Djavax.net.ssl.trustStorePassword=&quot;password&quot;
+-Djavax.net.debug=ssl</pre></div></div>
+    <br>
+<strong>Note:</strong> Adding <tt>-Djavax.net.debug=ssl</tt> allows you to be able to debug JSSE.<br>
+  </li>
+</ol>
+
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

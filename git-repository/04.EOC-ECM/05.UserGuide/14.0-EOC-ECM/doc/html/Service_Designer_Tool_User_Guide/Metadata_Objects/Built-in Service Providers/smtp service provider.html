@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>SMTP Service Provider</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>SMTP Service Provider</h3>
+<p>The SMTP Service Provider allows sending email messages over an SMTP connection. SMTP Service Provider operations are always <em>one-way</em> (since it only sends email message). Email message content is encoded as a XML document based on an input message Document or Data Structure.</p>
+
+<h4>SMTP Attributes in Velocity Studio</h4>
+
+<p>There are no Binding Interface, Operation or message attributes that are exposed by the SMTP Service Provider, therefore, no attributes will appear in the <b>Element definitions</b> table of the Binding properties when an element is selected in the <b>Interface element</b> tree in <b><a href="../External Services/defining a binding.html">Binding</a></b> metadata object.</p>
+
+<h4>SMTP Attributes in Configuration Application</h4>
+
+<p>The following table describes the attributes that are exposed in Configuration application specifically for the SMTP Service Provider.</p>
+
+<p>These attributes are found in <b><a href="../../../Configuration_Tool_User_Guide/Services Services.html">Services</a></b> tab in Configuration application. When clicking a Port, Binding, Operation or message node in the <b>Service Port tree</b>, the Configuration attributes for the node appears at the <b>Configuration</b> section at the right where values can be provided.</p>
+
+<p><ins>Attributes in Configuration application for the SMTP Service Provider</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Location</b></td>
+<td class='confluenceTd'>Specifies the <em>send to</em> email address.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>SmtpServer</b></td>
+<td class='confluenceTd'>Specifies the address of the SMTP server where the mail message is sent.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Port</b></td>
+<td class='confluenceTd'>Specifies the port to use. If not specified, the standard SMTP port 25 is used.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>ReplyAddress</b></td>
+<td class='confluenceTd'>Specifies the <em>sender</em> email address.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>User</b></td>
+<td class='confluenceTd'>Specifies the user name if the SMTP Server requires authentication.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>PasswordKey</b></td>
+<td class='confluenceTd'>Specifies the password key to use for retrieving the password. The password key/value pairs are created in the Configuration application.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p>See the sendEmailMessage API in the JavaScript documentation for information on sending an e-mail message with optional attachments extracted from document attachments or files, and support for CC and BCC.</p>
+<h4>Add an Inline Image in an E-mail</h4>
+<p>Support for including an inline image in an e-mail is available. The following is an example on using an inline image, logo_example.png, in an e-mail:</p>
+<ol>
+  <li>In  Global.setEmailMessage(), create your HTML e-mail message body, which contains an image URL in the following format: <br>
+    <div class="code">
+<div class="codeContent">
+<pre class="code-java">
+&lt;img src="cid:logo_example.png" alt="logo_example.png" /&gt;</pre></div>
+</div></li>
+
+  <li>Pass the full path of logo_example.png as an attachment parameter of this API:<br>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+var attachInfoArr = new Array();<BR>attachInfoArr = [null, "c:/temp/logo_example.png",null];</pre>
+  </div>
+</div>
+  </li>
+  <li>The body of your HTML e-mail message appears as follows:
+    <div class="code">
+  <div class="codeContent">
+  <pre class="code-java">
+var emailDoc_body = '&lt;html&gt;';<br>emailDoc_body += '&lt;header&gt;';<br>emailDoc_body += '&lt;style type=&quot;text/css&quot;&gt;';<br>emailDoc_body += 'body {font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:10px; }';<br>emailDoc_body += 'td.col1 {color:#0a6878; font-weight:bold; padding:5px; border:1px solid #616668; text-align:center;}';<br>emailDoc_body += 'td.col2 {color:#616668; font-weight:normal; font-size:12px; padding:5px; border:1px solid #616668; text-align:center;}';<br>emailDoc_body += 'h2.headerTwo{ font-weight:bold; color:#616668; }';<br>emailDoc_body += '&lt;/style&gt;';<br>emailDoc_body += '&lt;/header&gt;';<br>emailDoc_body += '&lt;body&gt;';<br>emailDoc_body += '&lt;h1&gt;&lt;img src=&quot;cid:logo_example.png&quot; alt=&quot;logo_example.png&quot; /&gt;&lt;/h1&gt;';<br>emailDoc_body += '&lt;hr&gt;&lt;p&gt;&lt;h2 class=&quot;headerTwo&quot;&gt;Order Management&lt;/h2&gt;&lt;/p&gt;&lt;/hr&gt; &lt;p&gt;&lt;/p&gt;';<br>emailDoc_body += '&lt;table&gt;';<br>emailDoc_body += '&lt;tr&gt; &lt;td class=&quot;col1&quot; &gt;Commercial Service ID&lt;/td&gt; &lt;td class=&quot;col2&quot;&gt;IXS.12.11238&lt;/td&gt; &lt;/tr&gt;';<br>emailDoc_body += '&lt;tr&gt; &lt;td class=&quot;col1&quot; &gt;External Order ID&lt;/td&gt; &lt;td class=&quot;col2&quot;&gt;PO.12.65432&lt;/td&gt; &lt;/tr&gt;';<br>emailDoc_body += '&lt;tr&gt; &lt;td class=&quot;col1&quot; &gt;Offer&lt;/td&gt; &lt;td class=&quot;col2&quot;&gt;CFSEWEB&lt;/td&gt; &lt;/tr&gt;';<br>emailDoc_body += '&lt;tr&gt; &lt;td class=&quot;col1&quot; &gt;Task&lt;/td&gt; &lt;td class=&quot;col2&quot;&gt;Change Routes/Protocols&lt;/td&gt; &lt;/tr&gt;';<br>emailDoc_body += '&lt;tr&gt; &lt;td class=&quot;col1&quot; &gt;Customer&lt;/td&gt; &lt;td class=&quot;col2&quot;&gt;Newport Municipality&lt;/td&gt; &lt;/tr&gt;';<br>emailDoc_body += '&lt;tr&gt; &lt;td class=&quot;col1&quot; &gt;Project Manager&lt;/td&gt; &lt;td class=&quot;col2&quot;&gt;Margaret Smith&lt;/td&gt; &lt;/tr&gt;';<br>emailDoc_body += '&lt;tr&gt; &lt;td class=&quot;col1&quot; &gt;Contact Phone Number&lt;/td&gt; &lt;td class=&quot;col2&quot;&gt;678854567&lt;/td&gt; &lt;/tr&gt;';<br>emailDoc_body += '&lt;tr&gt; &lt;td class=&quot;col1&quot; &gt;Technical Manager&lt;/td&gt; &lt;td class=&quot;col2&quot;&gt;Anthony Bell&lt;/td&gt; &lt;/tr&gt;';<br>emailDoc_body += '&lt;tr&gt; &lt;td class=&quot;col1&quot; &gt;Contact Phone Number&lt;/td&gt; &lt;td class=&quot;col2&quot;&gt;678456234&lt;/td&gt; &lt;/tr&gt;';<br>emailDoc_body += '&lt;tr&gt; &lt;td class=&quot;col1&quot;&gt;Offer Date&lt;/td&gt; &lt;td class=&quot;col2&quot;&gt;23/05/2012&lt;/td&gt; &lt;/tr&gt;';<br>emailDoc_body += '&lt;/table&gt;';			<br>emailDoc_body += '&lt;/body&gt;';<br>emailDoc_body += '&lt;/html&gt;';<br>var attachInfoArr = new Array();<br>attachInfoArr = [null, &quot;c:/temp/logo_example.png&quot;,null];<br>Global.sendEmailMessage(&quot;from_Email&quot;, &quot;to_Email&quot;, &quot;Email Subject&quot;, emailDoc_body, &quot;text/html&quot;, &quot;UTF-8&quot;, false, attachInfoArr, &quot;email user&quot;, &quot;email password&quot;, &quot;host&quot;, &quot;port&quot;, true);
+</pre>
+  </div>
+</div></li>
+</ol>
+<h4> STARTTLS Command</h4>
+<p>STARTTLS is an extension to the SMTP service that allows an SMTP server and client to use TLS (Transport Layer Security) to provide private, authenticated communication. This extension offers a way to upgrade a plain text connection to an encrypted connection, instead of using a separate port for encrypted communication.</p>
+<p>By default, STARTTLS is enabled. For the SMTP session to enable TLS, mail.smtp.starttls.enable must be set to true. </p>
+<p>To disable TLS if your e-mail server does not support this extension, use the following JVM option:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+-Dmail.smtp.starttls.enable=false
+</pre></div>
+</div></td>
+</tr>
+</table>
+</body>
+</html>

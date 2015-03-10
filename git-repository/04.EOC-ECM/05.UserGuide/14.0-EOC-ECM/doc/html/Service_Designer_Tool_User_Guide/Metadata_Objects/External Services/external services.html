@@ -1,0 +1,66 @@
+﻿<html>
+<head>
+<title>External Services</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>External Services</h2>
+<p>The framework provides a metadata-driven mechanism for defining interfaces to external services. The product uses WSDL (Web Services Description Language), an XML format for describing Web services.</p>
+<p>WSDL defines services as collections of network endpoints, or ports. In WSDL, the abstract definition of endpoints and messages is separated from their concrete network deployment or data format bindings. This allows the re-use of abstract definitions: messages, which are abstract descriptions of the data being exchanged, and interfaces (or port types), which are abstract collections of operations. The concrete protocol and data format specifications for a particular port type constitute a reusable binding. A port is defined by associating a network address with a reusable binding. A collection of ports defines a service.</p>
+
+<h3>WSDL Definitions</h3>
+<p>The WSDL elements can be divided into two types of definitions: Abstract Definitions and Concrete Definitions. The abstract elements are platform, protocol and language independent. The concrete elements specify the physical details required to interact with the external service. This allows the defining of a set of services that provide the same service (implement the same interface) but reside in different locations, or are implemented on different technologies (for alternate route, backup service, etc).</p>
+<p>WSDL uses the following elements in the definition of a network service:</p>
+<h4>Abstract Definitions</h4>
+<ul>
+<li><em>Data Type</em>: Machine and language independent XSD-based type definitions.</li>
+<li><em>Message</em>: An abstract, typed definition of the data being communicated (input and output messages). Messages consists of a collection of typed data items and Documents and Data Structures used to model WSDL messages.</li>
+<li><em>Operation</em>: An abstract description of an action supported by the service. Each Interface Operation has a name, and describes input and output parameters (messages).</li>
+<li><em>Interface:</em> An abstract set of operations supported by one or more endpoints (ports).</li>
+</ul>
+<h4>Concrete Definitions</h4>
+<ul>
+<li><em>Binding</em>: A concrete protocol and data format specification for a particular Interface. The binding information includes such details as protocol, serialization and encoding on the wire. These details are specific to the service provider type (that is, EJB, SOAP, COM, etc).</li>
+<li><em>Port</em>: A single endpoint defined as a combination of a binding and a network address (location).</li>
+<li><em>Service</em>: A collection of related ports.</li>
+</ul>
+<p>Velocity Studio uses an abstract definition (Interface and Operation) when it needs to specify an external service invocation. The framework will automatically select the appropriate port where the actual service is located. The concrete port selection is determined by service availability (refer to calendars and error status described below).</p>
+
+<h3>Defining External Service Elements</h3>
+<p>The External Service elements can be defined under the <b>External</b><b>Services</b> sub-folders of any namespace in the <b>Navigation</b> pane of Velocity Studio. The elements that can be created include 
+  <!-- Service Providers, -->Interfaces, Bindings and Services.</p>
+<p>In addition, you may be required to define <a href="../Data Type/data types.html">Data Types</a>, <a href="../Document/Documents.html">Documents</a>, and <a href="../Data Structures/data structures.html">Data Structures</a> that are used as messages in Interface Operations.</p>
+
+<p>Refer to <a href="Type Mapping with External Services.html">Type Mapping with External Services</a> for information on mapping the native base Data Types to different technologies.</p>
+<p>External Service leverages <a href="../Built-in Service Providers/built-in service providers.html">built-in service providers</a> in the framework, such as SOAP, HTTP, JMS, etc. There are specific properties in External Service metadata such as Interface and Port attributes for each built-in service provider. Please see the corresponding <a href="../Built-in Service Providers/built-in service providers.html">documentation</a> for details.</p>
+
+<p>After an External Service element is created, the icon will be added under the appropriate folder.</p>
+
+<p><img src="serviceTree.png" align="absmiddle" border="1" alt="External Service Element Tree" /></p>
+
+<p>After External Service elements are created and properly defined, there are more settings of the external service to be configured in <a href="../../../Configuration_Tool_User_Guide/Services Services.html">Configuration application's Service page</a>. These settings are instance-specific and thus to be configured in Configuration application only, and not available to be configured in the metadata / Velocity Studio.</p>
+<p>To export all External Services in a namespace, refer to <a href="../Namespace/Namespaces.html#exportWSDL">Export WSDL</a> for details.</p>
+<p>The CWPRODUCTPROPERTIES table contains the CW-NAMESPACE-AWARE data value, which allows you to turn namespace processing on or off for XML 1.0 support. By default, this value is true. To turn off this support, set CW-NAMESPACE-AWARE to 1.</p>
+<h3>External Service-Related Classes</h3>
+<p>The following classes are available for external services:</p>
+<ul>
+  <li>CwfMetadataAlert</li>
+  <li> CwfMetadataPort</li>
+  <li> CwfMetadataExternalService</li>
+  <li> CwfMetadataInterfaceBinding</li>
+</ul>
+<p><br>
+  For more information, see the JavaScript documentation.</p>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

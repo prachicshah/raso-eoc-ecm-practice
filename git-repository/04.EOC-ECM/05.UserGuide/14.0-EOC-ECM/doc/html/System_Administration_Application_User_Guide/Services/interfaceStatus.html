@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>Interface Status</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Interface Status</h2>
+<p>Clicking <strong>Services</strong> &gt; <b>Interface Status</b> from the menu bar allows you to <SPAN id="internal-source-marker_0.8376582059369466">test external services for connectivity, availability, and status:</SPAN></p>
+<UL>
+  <LI>    <strong>Connectivity</strong> is the ability for the framework to make a network connection to the remote service</LI>
+  <LI>    <strong>Availability</strong> is the existence of of a remote service or operation, or both</LI>
+  <LI><strong>    Status</strong> is the ability to get an expected or OK response from that service or operation.</LI>
+  </UL>
+<p><span class="confluenceTd"><img src="InterfaceStatus.png" align="absmiddle" border="1" alt="" /></span></p>
+<p>The interface status has a mechanism to supply an XML test message for an interface operation. You can use the ping functionality for all operations, except for SOLICIT-RESPONSE, which is not a supported operation type for client external service calls. The result data or error details are displayed.</p>
+<p><strong>Notes:  </strong></p>
+<UL>
+  <li>This feature does not test the connectivity of listener interfaces for remote clients</li>
+  <li>The availability and status of listeners can be checked through Java&#8482; Message Service (JMS)</li>
+  <li>    Changes to either the metadata or the external service that renders the <SPAN id="internal-source-marker_0.">test message invalid are not detected by the interface status feature. Test messages need to be reconfigured.</SPAN><BR>
+  </li>
+</UL>
+
+<p>To test the status of an interface, do the following:</p>
+<ol>
+  <li>Specify the following search criteria:<br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="208" class='confluenceTh'>Field</th>
+          <th width="1210" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Interface</b></td>
+          <td class='confluenceTd'><p>Click the drop-down menu and select the interface that you want to test. </p>
+            <p><strong>Note:</strong> This list contains interfaces that have configured client ports. The ports do not have to be active.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Interface Operation</strong></td>
+          <td class='confluenceTd'>Click the drop-down menu and select the operation name from all possible interfaces from the <strong>Interface</strong> field or operations from the selected interface.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>AVM</b></td>
+          <td class='confluenceTd'>Specify the node name from configuration.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>Click the <strong>Ping</strong> button to apply the specified interface or operation on the specified node.<br>
+    <br>
+  </li>
+  <li>The <strong>Ping Time</strong> field contains the date and time that you clicked the <strong>Ping</strong> button. Similarly, the <strong>Port</strong> field automatically contains the configured port for the specified interface.<br>
+    <br>
+  </li>
+  <li>In the <strong>Response/Error</strong> field, the results appear as a list. Possible results are as follows:<br>
+    <ul>
+      <li>XML data from the response</li>
+      <li>An OK message indicating that the operation completed, but no response was received (likely a one-way operation)</li>
+      <li>An error message and stack trace, if an error occurred</li>
+      </ul>
+    <br>
+    <strong>Notes:</strong> </li>
+  <ul>
+    <li>The results list appears when the ping function has completed.</li>
+    <li>The results are cleared every time the ping function is performed.<br>
+</li>
+  </ul>
+</ol>
+<h3>
+  <!--<h3>Listeners</h3>
+<p>The <b>Listeners</b> report displays a list of system Listeners. </p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="listeners.jpg" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Host</b></td>
+<td class='confluenceTd'>Host machine or IP of the listener.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>AVM ID</b></td>
+<td class='confluenceTd'>AVM ID that created this message log entry.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Provider</b></td>
+<td class='confluenceTd'>Provider type for the listener (i.e. JS, MQ, SOAP)</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Interface</b></td>
+<td class='confluenceTd'>The metadata interface for the Listener.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Port</b></td>
+<td class='confluenceTd'>The metadata port which the listener is defined.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Service</b></td>
+<td class='confluenceTd'>The metadata service name for the listener.</td>
+</tr>
+</tbody>
+</table>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Menu Item</th>
+<th class='confluenceTh'>Function</th>
+</tr>
+<tr>
+<td class='confluenceTd'>Search</td>
+<td class='confluenceTd'>Refreshes the listener report.</td>
+</tr> 
+</tbody>
+</table>--> JMX</h3>
+<p><SPAN id="internal-source-marker_0.2">To enable either the System Administration application or the Configuration UI to be able to ping from any node, and  for it to be synchronous and instant, the node has to be contacted through JMX.  To facilitate this process, the port objects, which are already available in <a href="../../Metadata Deployment Guide/JConsole monitor and manage mbeans.html">JConsole</a>, have the Ping operation added to them.</SPAN></p>
+<p><img src="pingJMX.png" width="900" height="494" alt="JConsole - Ping function"><br>
+</p></td>
+</tr>
+</table>
+</body>
+</html>

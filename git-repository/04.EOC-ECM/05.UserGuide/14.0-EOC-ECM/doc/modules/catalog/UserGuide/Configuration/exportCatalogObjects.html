@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Export Catalog Objects</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+  <td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top"><h3>Export Catalog Objects</h3>
+    <p>You can export catalog objects, such as projects, items, catalog hierarchies, code tables, and so on as one of the following file   formats:</p>
+    <ul>
+      <li>XLS
+      <li>CSV
+      <li>XML </li>
+      <li>ZIP</li>
+    </UL>
+    <h4>Export All Objects</h4>
+    <p>The ECM provides an option to export all instances of a particular catalog objects. The following are the steps to export all item objects, which  are similar for most of the objects in catalog:</p>
+    <ol>
+      <li>From the Overview page, click <strong>Commercial Modeling</strong> &gt; <strong>Items</strong> the<strong> Quick Start</strong> section.
+      <li>The Items page appears; click the <strong>Search</strong> button to display all the items in the catalog.
+      <li>From the results section, click the <strong>Export</strong> button. For example, select the <strong>to XLS</strong> option to save the data as   an Excel file.</li>
+      <p><img src="exportCatalogObjects.png" alt="Export Catalog Objects "/> </p>
+      <li>Depending on what Web browser you are using, you are prompted to open or   select a directory location to save your file. The default filename is   _cwf_finder.xls. You can change this name, if required.
+      <li>When you open the .xls file,  all item objects appear in your exported file. </li>
+    </ol>
+    <h4>Export Selected Objects</h4></td>
+</tr>
+<p>You can export selected objects to different file formats. The following are the steps to export selected item objects, which are same for most of the objects in catalog:</p>
+<ol>
+  <li>From the Overview page, click <strong>Commercial Modeling</strong> &gt; <strong>Items</strong> from the<strong> Quick Start</strong> section.
+  <li>The Items page appears; enter your search criteria in  the fields of search section, and then click the <strong>Search</strong> button.
+  <li>From the results section, select the check box for an  item object you want to export.</li>
+  <li>Click the<strong> Export </strong>&gt;<strong> Export Selected Item</strong> option; the Export Selected Items dialog appears with the following check boxes:</li>
+  <p><ul>
+    <li> Selected Object - When selected, exports that item  with associations.</li>
+    <li> Image/ Attachment of the selected object only - When selected exports the image or attachment associated with the selected object.</li>
+  </ul></p>
+  <li>Click the Selected Object check box. Enter or select the information for the following fields:</li>
+  <p>
+  <table  border cellpadding="1" class='confluenceTable'>
+    <tbody>
+      <tr>
+        <th  class='confluenceTh'>Field</th>
+        <th  class='confluenceTh'>Description</th>
+      </tr>
+      <tr>
+        <td  class='confluenceTd'><strong>Path Accessible by Application</strong></td>
+        <td class='confluenceTd'><p>This  field allows you to specify the folder path to save the exported data.  By default, the data is exported in the XML format. The default name of the file  is exportedCatalog.xml which is editable.</p></td>
+      </tr>
+      <tr>
+        <td  class='confluenceTd'><strong>Log general information</strong></td>
+        <td class='confluenceTd'>When selected, this check box  logs the information of imported data. </td>
+      </tr>
+      <tr>
+        <td  class='confluenceTd'><strong>Exclude expired items</strong></td>
+        <td class='confluenceTd'>When selected, the expired items are not exported.</td>
+      </tr>
+      <tr>
+        <td  class='confluenceTd'><strong>Updated since</strong></td>
+        <td class='confluenceTd'>This field allows you to specify a date that is used to filter the catalog data. </td>
+      </tr>
+      <tr>
+        <td  class='confluenceTd'><strong>Export Domains</strong></td>
+        <td class='confluenceTd'><span class="confluencetd">When selected,  the domains are also exported along with catalog data.</span></td>
+      </tr>
+      <tr>
+        <td  class='confluenceTd'><strong>Include Childs</strong></td>
+        <td class='confluenceTd'><span class="confluencetd">When selected,  the child projects are also included in the export file.</span></td>
+      </tr>
+  </table>
+  </p>
+  <p><strong>Note:</strong> The export fields may differ for different catalog objects
+    (for example, the Include Child field is available only for the <a href="../../UserGuide/Objects/Project.html">Projects</a> object).</p>
+<li>Click the <strong>Export </strong>button;  a message  appears indicating the completion of export process, and the <strong>Summary</strong> field indicates the export results.</li>
+  <li> Click the <strong>Close</strong> button to return to the item results page.</li>
+</ol>
+<p><strong>Note:</strong> You can follow the same steps to export all or selected catalog objects in CSV, XML, and ZIP file formats.</p>
+</body>
+</html>

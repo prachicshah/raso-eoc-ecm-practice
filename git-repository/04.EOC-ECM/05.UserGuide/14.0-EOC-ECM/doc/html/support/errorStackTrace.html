@@ -1,0 +1,48 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Find and Extract a Stack Trace from an Error Message</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Find and Extract a Stack Trace from an Error Message</h1>
+<p>A support team representative may ask that you locate the error message that you are experiencing from the event log in the System Administration application.  The representative may also ask that you find and extract a stack trace from the error message. Perform these steps:</p>
+<ol>
+  <li>Open your project in Velocity Studio and click <strong>Runtime</strong> &gt; <strong>Run</strong> from the menu bar.<br>
+    <br>
+    <strong>Note:</strong> You must be connected to your database and have selected the corresponding UI configuration node.<strong>&nbsp;</strong> </li>
+  <li>In your Web browser, log on to the <a href="../System_Administration_Application_User_Guide/Getting Started/accessSystemAdmin.html">System Administration</a> application by entering <tt>http://localhost:8080/cwf/systemAdministration</tt> as the URL.</li>
+  <li>Enter <tt>upadmin</tt> as both your <strong>Username</strong> and <strong>Password</strong>, and then press the <em>Enter</em> key.</li>
+  <li>In the System Administration application, click <strong>View</strong> &gt; <strong>Event Log</strong> from the menu bar.</li>
+  <li>In the Event Log, click the <strong>Search</strong> icon at the bottom of the screen to display a list of events. Locate the error by double-clicking the row that you want.<br>
+    <br>
+    <img src="../System_Administration_Application_User_Guide/View/eventLogResults.png" alt="List of errors in event log" border="1"><br>
+    <br>
+  </li>
+  <li>Details about the event appear. <br>
+    <br>
+    <img src="../System_Administration_Application_User_Guide/View/eventLogDetails.png" alt="Stack trace with description" border="1"><br>
+    <br>
+  </li>
+  <li>Highlight the information in the <strong>Description</strong> field. Proceed to copy the information by pressing the <em>Ctrl</em> + <em>C</em> keys, and do one of the following actions: </li>
+  <ul>
+    <li>Paste (press the <em>Ctrl</em> + <em>V</em> keys) the information in your e-mail to the support team.</li>
+    <li>In a text editor, such as Wordpad, open a new document, paste the information, and then save the file.</li>
+  </ul>
+  <li>Highlight the information in the <strong>Stack Trace</strong> field, copy the information, and paste the information in your e-mail or text file as in the previous step. You can then send your file as an attachment in your e-mail to the support team.<br>
+    <br>
+    <br>
+    <br>
+  </li>
+</ol>
+<br></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Process Types</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Process Types</h1>
+<p>Two types of processes may be defined in the Process Management product: <em>Global</em> and <em>User</em>.</p>
+<h2>Global Processes</h2>
+<p>A Global Process is usually created to provide certain specific services to other processes (such as automated credit approval) or to perform recurring automated tasks (such as processing batch Orders from a channel partner).</p>
+<p>Global Processes are started automatically by the Process Engine. It is possible to configure the Process Management product to run more than one instance of the same Global Process (see <a href="../../Configuration_Tool_User_Guide/Processes PE Processes.html">Configuration application: Processes</a>). If more than one Global Process of the same type is running, the processes would share the workload of incoming requests (for increased throughput). It is also possible to configure the Process Management product to run specific Global Process types only on specific computers that run a Process Engine; this allows for better resource management or special hardware requirements (like SNA gateway for mainframe connectivity).</p>
+<p>Every Global Process defines the Interface used by processes that want to invoke the services of this Global Process. The Interface used by a Global Process should not have Binding and Port details (see <a href="../Metadata_Objects/External Services/external services.html">External Services</a>).</p>
+<p><strong>Note:</strong> Global processes cannot create user subprocesses. Attempting to create a subprocess as a child of a global process fails and an exception is thrown.</p>
+<h2>User Processes</h2>
+<p>A User Process is a process that is designed to complete one specific job (such as Order fulfillment). Such a process will be usually, but not necessarily, associated with one Order instance. A User Process's life span depends on the complexity of the job this process is designed to perform, and can be anywhere from a few hours to a few months. Complex User Processes can further delegate part of the work to child sub-processes (refer to section <a href="process signals and synchronization.html">Signal</a>). User Processes are started manually from the Menu, in a Decision Tree or Script (see <a href="starting user processes.html">Starting User Processes</a>).</p>
+<h2>Main Differences Between Global and User Processes</h2>
+<ul>
+<li>Global processes are started automatically by the Process Engine.</li>
+</ul>
+<ul>
+<li>Global processes can run on a dedicated computer(s).</li>
+</ul>
+<ul>
+<li>Global processes usually perform the same task over and over.</li>
+</ul>
+<ul>
+<li>User processes can be associated to specific Order instances.</li>
+</ul>
+<ul>
+<li>User processes cannot be used as a Participant (does not provide services to other processes).</li>
+</ul>
+<h2>Interface Processes</h2>
+<p>Process Management product automatically defines special types of processes, called <em>Interface</em> <em>Processes</em>. Interface processes perform interactions with external services that are used in global or user processes. Process Management system creates one interface process type for each external service used in global or user processes. Interface processes can be considered a special type of global process. As with global processes, interface processes are started automatically by the Process Engine, and can be configured to run on specific computers and have several instances of the same interface process type.</p>
+<p>In this approach, all requests from global and user processes (Interface Operations) to specific external services are sent to the interface process that serves this interface. The interface process performs these requests sequentially, where requests from processes with higher <a href="setting process priority.html">priority</a> are served first. When higher throughput is required, more instances of specific interface processes can be configured.</p>
+<p>The interface process will find a currently available <a href="../Metadata_Objects/External Services/defining a port.html">port</a> that implements this interface based on the <a href="../Metadata_Objects/External Services/defining a port.html">port calendar</a>. If no available port is found, the interface process will delay external service invocation until the nearest available time based on the port calendar. This feature allows for the control of when, and which, external service is available for use.</p>
+
+<h2>Memory-Based Processes</h2>
+<p>Memory-based processes enable all three types of processes (user, global, and interface) to be executed in memory only without storing process states in the databases.  Although these processes can still be run  in standard mode, memory-based processes do not store their states in the database (only the first activity with initial timestamp is stored) . If the process is restarted, the system will start again from the first activity. This feature is a performance enhancement and is useful for simple global processes (for example, interface processes), but may also need memory-based user processes.</p>
+
+<b>Velocity Studio:</b>
+<p>
+- To set global and user processes as memory-based, navigate to process property panel and set flag to  Memory only. Each time the process is set as memory-based, a warning appears stating that process will not persist its state</p>
+<p><strong>Configuration Application:</strong><br>
+  - To set interface process as Memory Only, navigate to Configuration and click the <b>Processes</b> tab.  Set the parameter <b>Store interface processes’ states</b> to <i>false</i>. By default, this parameter is set to true.</p>
+<table cellpadding='5' width='85%' cellspacing='8px' class='noteMacro' border="0" align='center'>
+<tr>
+<td><p><b class="strong">Important Note</b>:<br />
+Resume and Rollback activities not allowed within memory processes as they require database persistence of process activities.</p>
+</td>
+</tr>
+</table>
+<b>Runtime:</b>
+<p> - Process Manager and Global Process Manager do not display memory-based processes.<br>
+- As memory processes do no persist their states and previously performed activities, user can only view a “snapshot” of memory processes that is currently available in the memory cache (that is, user can view running processes and their activities). </p>
+<p>To view memory processes, navigate to Administration > AVM > Process Engines.
+Select one Process Engine and click  the<strong> Memory Processes</strong> menu. A new finder similar to Process Manager will appear displaying currently running memory processes (user, global and interface) on the selected process engine and details available from memory. User can further view current activities by selecting the process and clicking Activities menu. Once again, only a snapshot of activities  will appear in the finder. </p>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

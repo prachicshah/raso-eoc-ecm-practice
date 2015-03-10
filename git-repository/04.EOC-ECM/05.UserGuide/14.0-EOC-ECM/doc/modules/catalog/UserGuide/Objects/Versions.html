@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Versions</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Versions</h2>
+<p>All Catalog definitions are constantly changing, so having a mechanism to show
+  their previous state can be beneficially during the project life cycle. When changes are made to the objects' content, the Catalog keeps the change as a new version.
+  The  Catalog does not clone the items;  instead, it clones the
+  instances of the changed objects and associations. This way, making versions takes
+  minimum storage capacity and is fast.</p>
+<p>Catalog items are not really versioned; rather,  it is the details of the item (such as an item attribute) which are versioned.  So, while both the item object and the item attribute object have a start  date, the interpretation of the date is conceptually different:</p>
+<ul>
+  <li> <strong>Item:</strong> The start and  end date on the item control when a given item can be ordered or included  within a basket.</li>
+  <li> <strong>Item attribute:</strong> The start and end dates on an item attribute control which <em>version</em> of that item attribute is embodied within the  constructed <em>basketItem</em>.</li>
+</ul>
+<p><strong>Note</strong>: The following catalog objects do not have versions (are non-versioned):  Attribute Types, Context Types, and Association Types. All other objects as well as all associations (see below) have versions (that is,  they may have different structure and content in different periods).</p>
+<p>All Catalog definitions evolve in  time, but their previous state should be reliably stored and easily accessed. The Catalog can change any single aspect of an object's content  and keep the change as a new version.</p>
+<p>The Catalog operations are performed always in the context of a timestamp called API request time (that is,  the Catalog API specifies the time for which the request is performed). In many cases, the API request time is the current timestamp (for example when ordering new services). In some cases, the timestamp  may be  when the original order was made (when changing or canceling existing services). The Catalog provides a "snapshot"
+  of the item as it is (or has been) at the moment specified by the API request time. This item is said to be <em>applicable</em> for the API (or for the API request time).</p>
+<p>The Catalog versioning mechanism measures the time in units called <em>Catalog time unit</em>.
+  While the APIs can specify any timestamp, it is converted internally to Catalog time using
+  the Catalog time unit. The Catalog time unit is basic application property and is stored in the Product Property DB table under key CTLG_TIME_UNIT. It is measured in hours and can have value of 1, 2, 3, 4, 6, 12 and 24. By default, the Catalog time unit is 24 hours.</p>
+<p><strong>Note</strong>: If the Catalog time unit has incorrect value in the database, the Catalog will not start and an error message will be recorded in the application error log file. Reducing the time unit's value in the database has no functional impact on the Catalog, but may slightly reduce the performance. Before changing the time unit, all Catalog nodes must be shut down.</p>
+<p>The Catalog can change its content dynamically at any time, but the changes become visible (depending on the corresponding start dates) only at the beginning of the corresponding Catalog time unit. This way, the Catalog time unit specifies the smallest time interval between the changes in the Catalog definitions and, for version 5.x, it cannot be less than an hour.</p>
+<p>The versioned Catalog elements have a life span for which they are usable. The life span is defined by a mandatory starting timestamp and an optional ending timestamp. In the latter case, the life span is unlimited in future. The start and end timestamps of the life span are automatically converted to Catalog times.</p>
+<p>Using the life span, the Catalog can easily determine whether an object or association is <em>alive</em> for a given API call. The Catalog object or association is <em>alive</em> if:
+
+<blockquote>Life span start &lt;= API request time &lt;= Life span end timestamp</blockquote>
+  where every timestamp is converted to Catalog time using the Catalog time unit.</p></td>
+</tr>
+</table>
+<h3>Examples</h3>
+<p>The following diagram illustrates how for an arbitrary item,  multiple versions of item attributes and attribute restrictions may exist. </p>
+<p><img src="Versions_Example1.png" width="662" height="506" alt="Versions_example1"></p>
+<ol>
+  <li>ITEM does not have an end date.</li>
+  <li>Attributes should have a start date prior to the start  date of corresponding item attributes.</li>
+  <li>Item Attribute versions need not have an end date, and  typically they will not. All of A1, A2, A3 do <em>not</em> have an end date.</li>
+  <li>Restrictions enhance or override behavior. Restrictions  can also be versioned.</li>
+  <li>End dates can be provided while the object is still in  definition mode, although this presumably would be rare. B1, B2, B3 show item  attributes where each has an end date. Notice that while the behavior is  similar to A1, A2, A3, the implementation is different.</li>
+  <li>Attribute C shows the introduction of a new attribute  after start date of the item.</li>
+  <li>Vertical dashed lines show resulting basketItem  contents had the basketItem been created at the time represented by the line.</li>
+</ol>
+<p>The following diagram is similar to the previous one, except that  it illustrates a situation where the ITEM extends from a base item.</p>
+<p><img src="Versions_Example2.png" width="662" height="505" alt="Versions example 2"></p>
+<p>The <em>getItemVersion</em> API is available to get all versions of an item.
+  The following features are supported by this API:</p>
+<ul>
+  <li> Provides a list of available items that excludes the ones that are not available for the supplied date.</li>
+  <li> Performs an inquiry for a specific item that supports the following:
+    <ul>    <li> For an item with a START DATE, provide the item details. </li>
+  <li> For an item with an END DATE in the past, provide the latest version with the warning messages indicating that the item is under an END OF SERVICE, or indicating that no active version is available and that the latest version has been supplied.  </li>
+  <li> On a request where a specific effective date is supplied, the inquiry provides the correct version. If no items are active for this date, provides the latest version with a warning message indicating that no active version is available and that the latest version has been supplied. </li>
+  </ul>
+</ul>
+<p>For more information about this API, see the JavaScripting  guide under JavaScripting Extensions &gt; JavaScript Documentation in the help documentation.</p>
+<h3>Versions When Importing and Exporting Projects</h3>
+<p>When you import a file, objects are updated or added but  <em>not</em> removed. As such, importing and exporting are not suitable for moving data  between systems while projects are still in <strong>Definition</strong> status. Also, while a  project is in the <strong>Definition</strong> status, it is  easy to make a small date  change without necessarily being aware of it. In such a situation, when a file is  imported, you can easily introduce new versions without intending to do so. For these reasons,  it is recommended that a project in <strong>Definition</strong> status be dropped prior to  being imported.</p>
+<p>Exporting a project allows you to save a project in XML  format to allow movement of the project from one database to another. The file  format is MS Excel XML spreadsheet format. This allows you to view catalog  details in Excel. Modification of the file is not recommended.</p>
+</body>
+</html>

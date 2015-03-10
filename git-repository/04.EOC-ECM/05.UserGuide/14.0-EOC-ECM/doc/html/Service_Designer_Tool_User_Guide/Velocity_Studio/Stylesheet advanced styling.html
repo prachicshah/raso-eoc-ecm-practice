@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Advanced Styling</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Advanced Styling</h3>
+<p>You can create element styles in your stylesheet by defining the following properties:</p>
+<ul>
+  <li>Icon </li>
+  <ul>
+    <li>Style  property: <tt>icon</tt></li>
+    <li>Must  be in single quotation marks</li>
+    </ul>
+  <li>Width </li>
+  <ul>
+    <li>Style  property: <tt>width</tt></li>
+    <li>Must  include either px or %</li>
+    </ul>
+  <li>Height </li>
+  <ul>
+    <li>Style  property: <tt>height</tt></li>
+    <li>Must  include either px or %</li>
+    </ul>
+  <li>Column width</li>
+  <ul>
+    <li>Style  property: <tt>colWidths</tt></li>
+    <li>Must  include either px or % comma-separated values (for example, <tt>colWidths: 70px, 70px, 30px;</tt>)</li>
+    </ul>
+</ul>
+<p>After you have created these style properties in your metadata stylesheet, save your changes, and then open your metadata project in Velocity Studio. You can proceed to set these styles to an element.</p>
+<h4>Icon Property</h4>
+<p>As an example, suppose that you have defined the following style in your stylesheet:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+.cwTakeTasksMenu,.cwTakeTasksMenuOver,.cwTakeTasksMenuDown,.cwTakeTasksMenuDisabled  {
+icon:'/cwt/images/16/user_back.png';
+}</pre>
+</div>
+</div>
+
+<p>Ensure that the <strong>Icon</strong> property is applied to your element (for example, button, menu, input fields, tab, section header, and so on).</p>
+<p><strong>Note:</strong> The <strong>Icon</strong> property specified in Velocity Studio is the icon shown, regardless of whether the stylesheet contains an icon property.</p>
+<h4>Width and Height Properties</h4>
+<p>An element's width and height can be taken from its <strong>Style</strong> property in both px and %. Its width and height can also be defined using the <strong>Dynamic Style</strong> property. When the dynamic style returns a different style than the original, both the width and height properties change accordingly.</p>
+<p>When you have specified either static width or height, or both properties for an element in Velocity Studio as well as the style, the stylesheet properties take precedence.</p>
+<p>Form frame have <strong>Dynamic Width</strong> and <strong>Dynamic Height</strong> properties. If these properties are defined, they take precedence over the stylesheet's width and height.</p>
+<h4>Column Width Property</h4>
+<p>When you specify the column width in your stylesheet of a grid layout, the property takes into effect when the grid layout is visible in runtime.</p>
+<p>When an element's  <strong>Column Width</strong> property is specified in Velocity Studio, it takes precedence over the column width defined in your stylesheet.</p>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>URL mappings are needed for these styles to take  effect. </li>
+  <li>These advanced styles only apply to the stylesheet specified  on the metadata header, and not the application page.</li>
+  <li>It is recommended to that you use dynamic styles with the aforementioned  properties only when absolutely needed. Overuse of this functionality can  degrade UI rendering performance.  Static styles are recommended over dynamic styles.</li>
+</ul>
+</td>
+</tr>
+</table>
+</body>
+</html>

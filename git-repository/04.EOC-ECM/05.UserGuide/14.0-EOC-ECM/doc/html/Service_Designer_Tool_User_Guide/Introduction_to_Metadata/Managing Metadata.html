@@ -1,0 +1,76 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Managing Metadata</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+		<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+			<h2>Managing Metadata</h2>
+		<p>There are two types of metadata: </p>
+		<ol>
+			<li><span style="font-weight: bold;">Application metadata</span> 
+			 - metadata that is written for describing an application, 
+			 and may include many product metadata.</li>
+			<li><span style="font-weight: bold;">Product metadata</span><span> 
+			 - also known as a library, it is metadata that is generalized 
+			 and can be referenced by an application metadata to accelerate 
+			 application development</span>. &#160;These metadata can also 
+			 be customized or extended by application metadata, and can 
+			 reference other product metadata as well. &#160;However, it 
+			 cannot be executed independently without application metadata.</li>
+		</ol>
+        <h3>Application Metadata</h3>
+
+<p>During development and testing phases, Application Metadata is stored as folders and files in a local <b><i>Project Directory</i></b>. In general, each metadata object is stored as a stand-alone XML file in a folder that mimics the metadata hierarchy in the directory; see section <a href="Understanding Your Metadata Files.html">Understanding Your Metadata Files</a> for details on how metadata is structured. A source control system shall be applied to the directory to centrally store, log, revision control, and merge development work among team members.</p>
+
+<p><b>Note</b>: Application Metadata shall be managed with Velocity Studio, and not directly with XML files. An exception to this is when merging files among team members in source control system result in conflicts; in this case, proceed manual merging with care, beware of the integrity of the XML.</p>
+
+<p>During metadata development and functional testing, there is no need to deploy the metadata. Simply run the metadata within Velocity Studio. </p>
+
+<p>If Metadata in source format needs to be transferred (for example, send to another engineering team who does not have access to the source control system), simply zip the Project Directory with a third-party tool such as winzip before transferring.</p>
+
+<h3>Product Metadata</h3>
+
+<p>Similar to Application Metadata, Product Metadata may consist of one or more namespaces that implement functionality;  however, unlike Application Metadata, libraries are unchangeable in Velocity Studio. You can incorporate library functionality into your application, by either</p>
+		<ol>
+			<li>
+			  <p align="left">referencing metadata objects (for example,  create 
+			 a menu item that shows a Document) of a library 
+			 in application metadata; properties of the library metadata 
+			 object is unchangeable.</p></li>
+			<li>
+			  <p align="left">copying metadata objects of a library 
+			 and paste into application metadata. Functionality of 
+			 the metadata object can then be customized accordingly. However, any future library updates by the library owner cannot be trivially incorporated into previously copied objects.</p></li>
+			<li>
+			  <p align="left">overriding existing functionality of library 
+			 metadata objects by creating the same object type in application 
+			 metadata, with the <b>Override</b> property set to the library object.</p></li>
+		</ol>
+
+<p>Velocity Studio has a common set of metadata libraries, available in <b>Library</b> tab of the Navigation Pane to assist your application development. They are system metadata that implements core functionality, and generalized metadata objects that serve common business objectives, such as Common Order Modelling, Order Management and Order Entry.</p>
+
+		<p align="left">You can also create your own libraries to aid the 
+		 distribution and organization of your application. &#160;For example, 
+		 external interface integration based on technical contracts (such 
+		 as WSDL) can be consumed and implemented in Velocity Studio as 
+		 a project, and then use the <a href="../Service Designer Menu Actions/Metadata Build JAR.html">Build Library JAR</a> command to 
+		 create the library.&#160;This library may then be re-used in 
+		 your application, at the same time abstracting away interface setting 
+		 details.</p>
+
+<p>Product Metadata is packaged as a JAR file. To use a library, <a href="../Metadata_Objects/Metadata Root/Metadata Root Templates.html">include the JAR file</a> into your project. You can find the imported metadata in the <b>Library</b> tab, similar to Velocity Studio libraries.</p>
+
+		</td>
+	</tr>
+</table>
+</body>
+</html>

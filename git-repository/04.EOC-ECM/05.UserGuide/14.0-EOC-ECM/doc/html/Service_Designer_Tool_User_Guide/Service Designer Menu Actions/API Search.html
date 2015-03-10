@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>API Search</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>API Search</h2>
+<p>Clicking <strong>Search</strong> &gt; <strong>API Search </strong> from Velocity Studio's menu bar allows you to search for an API in your metadata project scripts. Your search results appear in a log file.</p>
+<h3>API Search Log File</h3>
+<p>The API search function automatically creates a log file with the name CWQCAPISearch<em>yyyymmdd</em>-<em>hhmm</em>ss.html, which is located in the &lt;<em>installation_root_directory</em>&gt;\designer\env\log folder, where:</p>
+<ul>
+  <li><em>yy</em> denotes the year</li>
+  <li><em>mm</em> represents the month</li>
+  <li><em>dd</em> indicates the day</li>
+  <li><em>hh</em> denotes the hour</li>
+  <li><em>mm</em> represents minutes</li>
+  <li><em>ss</em> indicates seconds</li>
+</ul>
+<p>The log contains an HTML table with  three columns:</p>
+<ul>
+  <li>The API used as the search criterion.</li>
+  <li>The location in your metadata where the API appears. The location has the format: <em>namespace:element-name.method-name;line number. </em>If the element is a global script, the method name does not appear in the syntax.</li>
+  <li>The API instance in your metadata.<BR>
+  </li>
+</ul>
+<p>The following is a sample log table row: </p>
+<table border="1" class="confluenceTable">
+  <tr>
+    <td width="135" class="confluenceTd">mapDocToDoc(?1)</td>
+    <td width="345" class="confluenceTd">mapDocToDoc (TestNamespace.TestScript; Line 1)</td>
+    <td width="152" class="confluenceTd"><p>mapDocToDoc(blah); </p></td>
+  </tr>
+</table>
+<h3><a name="APIsearchSyntax"></a>API Search Syntax</h3>
+<p>The API search syntax is the same as the <a href="API Replace.html#APIreplaceSyntax">API replace</a> rule syntax<a href="API Replace.html#APIreplaceSyntax"></a>. </p>
+<h3><a name="useAPIsearch"></a>Use API Search</h3>
+<p>To use the API search function, complete the following steps:</p>
+<ol>
+  <li>From the API Search screen, click the <strong>Add</strong> button.<br>
+    <br>
+    <img src="APIsearchAddButton.png" alt="API Search - Add button"><br>
+    <br>
+    This example uses the API Search function to search for the mapDocToDoc() API, which is present in TestScript:<br>
+    <br>
+    <img src="APIreplaceOldScript.png" alt="API Search - API in script" border="1"><br>
+    <br>
+  </li>
+  <li>The Add Parameter dialog appears. Enter the API that you want to search for in your metadata project in the <strong>API name</strong> field. For the <strong>Replacement</strong> field. See the <a href="API Replace.html#APIreplaceSyntax">API Replace Syntax for Original and Replacement Fields</a> section for syntactical details that also apply to the API Search function.<br>
+    <br>
+    <img src="APIsearchAddParameter.png" alt="API Search - Add parameter"><br>
+    <br>
+    Click the <strong>OK</strong> button to continue.<br>
+    <br>
+  </li>
+  <li>If you have more APIs you want to add, repeat the two previous steps steps of this procedure. You can also delete APIs by highlighting a row and clicking the <strong>Delete</strong> button. Otherwise, to search for your  APIs in your metadata, click the <strong>Search</strong> button.<br>
+    <br>
+    <img src="APIsearchSearchButton.png" alt="API Search - Search button"><br>
+    <br>
+  </li>
+  <li>Check the log file for search results and to ensure that there were no errors:<br>
+        <br>
+        <img src="APIsearchLogFile.png" alt="API Search - Log file" border="1"> </li>
+</ol>
+<h3>Import Your API Search Parameters</h3>
+<p>You can import  your  API parameters  that you have specified in an XML file by following these steps:</p>
+<ol>
+  <li>From the API Search screen, click the <strong>Import</strong> button.<br>
+    <br>
+    <img src="APIsearchImportButton.png" alt="API Search - Import button"><br>
+    <br>
+  </li>
+  <li>The Import search rule dialog appears. Specify the XML file that contains your  API parameters, and then click the <strong>Open</strong> button.<br>
+    <br>
+    <img src="APIsearchImportDialog.png" alt="API Search - Import search rule dialog"><br>
+    <br>
+  </li>
+  <li>The API parameters specified in your XML file are imported to Velocity Studio. <br>
+    <br>
+    <img src="APIsearchImportXML.png" alt="API Search - Import XML file"><br>
+    <br>
+    You can either click the <strong>Add</strong> button to add more API parameters, or click the <strong>Search</strong> button to perform your search.</li>
+</ol>
+<h3>Export Your API Search Parameters</h3>
+<p>You can export your API parameters that you have specified in Velocity Studio to an XML file by following these steps:</p>
+<ol>
+  <li>Enter your API parameters in the <strong>API name</strong> field as indicated in the <a href="#useAPIsearch">Use API Search</a> procedure, and then click the <strong>Export</strong> button.<br>
+     <br>
+    <img src="APIsearchExportButton.png" alt="API Search - Export button"><br>
+    <br>
+  </li>
+  <li>The Export dialog appears. Specify the <strong>File Name</strong> that you want to save your  API parameters to, and then click the <strong>Save</strong> button.<br>
+    <br>
+    <img src="APIsearchExportDialog.png" alt="API Search - Export dialog"><br>
+    <br>
+  </li>
+  <li>Your  API parameters are exported as an XML file.</li>
+</ol></td>
+</tr>
+</table>
+
+</body>
+</html>

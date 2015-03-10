@@ -1,0 +1,109 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>User Interface General Properties</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>User Interface General Properties</h3>
+<p>The User Interface's <b>General</b> tab allows you to view and change a number of general properties. </p>
+<p><strong>Note: </strong>You may see more fields on this tab depending upon which object is used to extend the User Interface.</p>
+
+<img src="UIgeneral.png" border="0" alt="User Interface - General Tab" />
+<br>
+<br>
+The following table describes the fields for the User Interface's General tab: <br><br>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="128" class='confluenceTh'>Field</th>
+<th width="876" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory. Name of the metadata object (used in scripts; must conform to JavaScript naming conventions).The name is always <i>User Interface </i>unless you have created a top-level User Interface. In this case, the name is user-specified.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Mandatory. Display <SPAN name="resultofMatch">label</SPAN> for the User Interface.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is   packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being   displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Deprecated</b></td>
+<td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The   object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+  <td height="40" class='confluenceTd'><b>Virtual</b></td>
+  <td class='confluenceTd'>If checked, it provides the ability to create methods in template metadata that does not have implementation, but can be used in template script and be bound to UI elements. The implementation is done in user metadata (see <a href="../Metadata_Objects/Virtual Field/Virtual Field.html">Virtual Field</a> for more information).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Final</strong></td>
+  <td class='confluenceTd'>Metadata elements can be marked as final, which includes any Boolean final property that is available on any metadata element. Additionally, any metadata element that has the <strong>Final</strong> property set to true can neither be extended, nor overridden.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the metadata object for documentation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Extends</b></td>
+<td class='confluenceTd'>Displays the base User Interface that is extended by this User Interface. <br>
+  A new included User Interface always extends from system default <em>com.conceptwave.system.&lt;UIObject of parent&gt;</em>. If a metadata object, that contains this User Interface, is a derived object, then this User Interface  always extends from the base object's User Interface -- it is not possible to change this derivation. <br>
+  For a new top-level User Interface, any base User Interface can be selected to be extended.  User Interfaces can be extended only at the top-level using the Wizard.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Overrides</strong></td>
+  <td class='confluenceTd'>Metadata object to override. Typically used to customize system or library metadata objects. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Help</strong></td>
+  <td class='confluenceTd'>Help content of the object. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Worklist</strong></td>
+  <td class='confluenceTd'><p>This option is only available if the User Interface is of type Application. This method is used to specify a <em>Worklist</em> Finder for the application. The Worklist Finder is either <em>cwf_pm.BaseWorklistFinder</em> or any Finder on which it is based.  The default Worklist (cwf_pm.BaseWorklistFinder) has no time interval specified, but has an implemented onTimer method. To avoid refreshing this finder, override your worklist finder's onTimer() method and make it empty.	</p>
+    <p>If a logged in user has worklist tasks assigned to him or her, then the application menu displays the number of user worklist tasks  icon indicating whether user is <em>Available</em> or <em>Unavailable</em> (rightmost corner of menu). Clicking the icon beside the task number opens up the Worklist Finder specified on the Application User Interface element.   Worklist's on Timer methods  refreshes Worklist Finder (in case New Worklist Tasks arrived to the Worklist) and updates application icon, where number of worklist tasks is displayed. <br>
+      Worklist Timer polls Worklist Timer interval from Config, which contains a setting for Worklist Timer Interval (Worklist Timers are special case scenario).</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Timer Duration (minutes)</strong></td>
+  <td class='confluenceTd'> <p>Any User Interface element can have a <em>Timer</em> bound to it. If a timer interval is specified, the timer  calls the <em>on Timer</em> method each time an interval elapses.</p>
+    <p><strong>Note:</strong> The system keeps a list of timer objects and searches to remove those that are no longer in use. </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>URL Mapping</strong></td>
+  <td class='confluenceTd'>This field denotes the relative URL path that is binded to the application controller (for example, /testApp).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Not Valid for Application Selection</strong></td>
+  <td class='confluenceTd'>By default, this property is false. When you select this property, the application is not visible on the Select Application page.   However, direct URL access to the application through its <strong>URL  Mapping</strong> property is allowed at runtime. See the <a href="../Metadata_Objects/Metadata Root/Metadata Root Application Page.html#notValid">Metadata Root Application Page - Not Valid for Application Selection</a> for details.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Show Errors Inline</strong></td>
+  <td class='confluenceTd'>If checked, any validation error message is shown below the field element  at runtime (with the validation error icon). If this setting is not selected, only validation error icon is shown and you need to point the mouse over the icon to view the error message.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Block UI on Page Update from Server</strong></td>
+  <td class='confluenceTd'><p>By default, the value for this  property is false.  If checked, this property  blocks the UI (such as, typing or any mouse actions) when the page is being  updated.  A <em>wait </em>cursor remains on the UI while the page is waiting for the  server response and updating the field values. </p></td>
+</tr>
+
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Appendix E - National Character Support</title>
+	    <link rel="stylesheet" href="../styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">	    
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script>    </head>
+
+    <body onLoad="highlight();">
+	    <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+		    <tr>
+			    <td valign="top" class="pagebody"><h1>Appendix E: National Character Support in Database</h1>
+
+<p>The  product supports national characters in your database by performing these steps:</p>
+<ol>
+  <li>When you create an Oracle database instance, the character set needs to be set to  UTF (or UTF8, UTF16, and so on, depending on the language). The following is an  example:
+    
+    <div class="code">
+      <div class="codeContent">
+  <pre class="code-java">CREATE DATABASE sample
+...
+CHARACTER SET AL32UTF8<BR>NATIONAL CHARACTER SET AL16UTF16 
+...</pre>
+        </div>
+      </div>
+    
+    For more information about character sets, refer to the Oracle documentation on <a href="http://docs.oracle.com/cd/B28359_01/server.111/b28298/ch6unicode.htm" target="_blank">Supporting Multilingual Databases with Unicode</a>.<br>
+    <br>
+    <strong>Notes: </strong></li>
+  <ul>
+    <li>    Once your database has been created with a specific character set, it can only be changed to a subset of the current charset. As an example, if you created your database with the Latin charset WE8ISO8859P1, you cannot change it to UTF. You can only  migrate the database.</li>
+    <li>When text with national characters is stored in the  NVARCHAR column (even if the national charset is UTF), the text ends up being broken (that is, text is replaced with ????). This behaviour occurs because the text is being converted to the character set encoding.<BR>
+      To see what the current database character set is, use the following statement:<BR>
+      <div class="code"><div class="codeContent">
+  <pre class="code-java">select * from v$nls_parameters where parameter like '%CHARACTERSET%';</pre>
+</div></div>
+    </li>
+  </ul>
+  <li> When creating a new database schema and executing the product’s DDL, add the following lines  to your &lt;<em>installation_folder</em>&gt;\DDL\avm.sql file and save it:<BR>
+  <div class="code"><div class="codeContent">
+    <pre class="code-java">define NATIONAL_STRING = NVARCHAR2;<BR>define NATIONAL_LARGE_STRING = NCLOB;</pre>
+</div></div>
+  </li>
+</ol>
+
+ 
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>Custom Views</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Custom Views</h2>
+<p>The custom view enables users to search, select, and save particular records of a finder. In System Administration, you can perform the following custom view actions for the current finder:</p>
+<ul>
+  <li><a href="#add">Add a new custom view</a></li>
+  <li><a href="#change">Change an existing custom view</a></li>
+  <li><a href="#delete">Delete a custom view</a></li>
+</ul>
+<h3><a name="add"></a>Add a New Custom View</h3>
+<p>To add a new custom view, complete these steps:</p>
+<ol>
+  <li>From your finder search results, click <strong>View</strong> and then select <strong>Add Custom View</strong>.<br>
+    <br>
+    <img src="customViewAdd.png" alt="Click View &gt; Add Custom View" border="1">  <br>
+    <br>
+  </li>
+  <li>The New Custom View dialog appears. 
+    The following fields are available:<br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="155" class='confluenceTh'>Field</th>
+          <th width="1193" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Label</b></td>
+          <td class='confluenceTd'><p>The name of the label, which is mandatory. </p>
+            <p><strong>Note:</strong> This field cannot be changed once you have entered and saved your changes.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Max Rows</b></td>
+          <td class='confluenceTd'>This field saves the current finder result to the database with the <b>Label</b> field used as the identifier. It denotes the maximum number of rows to retrieve. The maximum rows allowed is 999. Setting   the maximum number of rows avoids caching memory. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Run query at start</strong></td>
+          <td class='confluenceTd'>Select this field to search the database for existing favorites.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Show search form at start</strong></td>
+          <td class='confluenceTd'>By default, this field is selected, which opens the selected custom view and displays the report on screen.</td>
+        </tr>
+        <tr>
+          <td height="27" class='confluenceTd'><strong>Save Search Criteria</strong></td>
+          <td class='confluenceTd'><p>By default, this field is selected, meaning that the finder's search criteria are saved for custom views and favorites. Otherwise, when this field is not selected, the search criteria are cleared when you leave your finder results.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Save Table State</strong></td>
+          <td class='confluenceTd'>By default, this field is selected, indicating that you want to save the table layout for your custom view. This field is always visible.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Default</strong></td>
+          <td class='confluenceTd'>Select this field to indicate that this custom view is the default view for this finder.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    Enter your information in the  field and then click the <strong>Save</strong> button. <br>
+    <br>
+    <img src="customViewSave.png" alt="New Custom View dialog" border="1"><br>
+    <br>
+  </li>
+  <li>A message appears at the top of the dialog, indicating that your custom view has been successfully saved. Click the <strong>Close</strong> button (X) to close the dialog.</li>
+  <li>To verify that your custom view works, click the <strong>Export</strong> button and select the name of your custom view to use this view.<br>
+    <br>
+    <img src="customViewAdded.png" alt="Newly created custom view is available for use" border="1"><br>
+  </li>
+</ol>
+<h3><a name="change"></a>Change an Existing Custom View</h3>
+<p>To change an existing custom view, complete these steps:</p>
+<ol>
+  <li>From your finder search results, click <strong>View</strong> and then select <strong>Modify Custom View</strong>.<br>
+    <br>
+    <img src="customViewChange.png" alt="Change an existing custom view" border="1">  <br>
+    <br>
+  </li>
+  <li>From the Custom View Details dialog, make any pertinent changes to your custom view and then click the <strong>Save</strong> button.</li>
+  <li>A message appears at the top of the dialog, indicating that your custom view has been successfully saved. Click the <strong>Close</strong> button (X) to close the dialog.</li>
+</ol>
+<h3><a name="delete"></a>Delete a Custom View</h3>
+<p>To delete a custom view, follow these steps:</p>
+<ol>
+  <li>From your finder search results, click <strong>View</strong> &gt; <strong>Delete View</strong>, and then select the custom view that you want from the list.<br>
+    <br>
+    <img src="customViewDelete.png" alt="Delete a custom view" border="1"><br>
+    <br>
+  </li>
+  <li>A confirmation message appears, asking whether you want to delete your custom view. Click the <strong>Yes</strong> button to confirm.<br>
+    
+  </li>
+  <li>To verify that your custom view has been deleted, click the <strong>View</strong> button. Your custom view name no longer appears in this menu and has been successfully deleted.</li>
+</ol>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Processes - Catalog External Server</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Catalog External Server</h2>
+
+<p>Clicking  <strong>Catalog</strong> &gt; <strong>Catalog External Server </strong>allows you to define one or more catalog remote servers. A list of catalog  servers appears, allowing you to add a new catalog server or remove any catalog server from this list.</p>
+<p><img src="catalogExternalServer.png" alt="Catalog - Catalog External Server tab" border="1"></p>
+<p>The following fields are available on this page:</p>
+<table width="905" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="163" class='confluenceTh'>Field</th>
+      <th width="875" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Fetch Version Code Table from Server</strong></td>
+      <td class='confluenceTd'><p>By default, this field's checkbox is selected, meaning that the catalog client always reads the versioned code table from the server. Otherwise, the versioned code table defined in the catalog client overrides the versioned code table in the catalog server.</p>
+      <p><strong>Note:</strong> A non-versioned code table always overrides that on the server.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Host</strong></td>
+      <td class='confluenceTd'>This field denotes the catalog remote server name or IP address.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Port</strong></td>
+      <td class='confluenceTd'><p>This field represents the catalog server port. By default,  this field is set to port 0.</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>You can perform the following tasks from the Catalog External Server page:</p>
+<ul>
+  <li><a href="#addCatalogServer">Add</a> a new catalog server</li>
+  <li><a href="#deleteCatalogServer">Delete</a> a catalog server</li>
+</ul>
+<h3><a name="addCatalogServer"></a>Add a Catalog Server</h3>
+<p>To add a catalog server, complete these steps:</p>
+<ol>
+  <li>From the Catalog External Server page, click the <strong>Add</strong> button.<br>
+    <br>
+    <img src="catalogExternalServerAddButton.png" alt="Catalog External Server tab - Add button" border="1"><br>
+    <br>
+  </li>
+  <li>A blank row appears in the table. Click the <strong>Host</strong> field and enter the name of your catalog server.<br>
+    <br>
+    <img src="catalogExternalServerAddHost.png" alt="Catalog External Server tab - Add host" border="1"><br>
+    <br>
+  </li>
+  <li>Click the <strong>Port</strong> field and enter the port number for your catalog server.</li>
+  <li>When you have finished making your changes, click the <strong>Save</strong> button. A confirmation message appears, indicating that you have successfully added your catalog server.<BR>
+  </li>
+</ol>
+<h3><a name="deleteCatalogServer"></a>Delete a Catalog Server</h3>
+<p>To delete a catalog server, do the following:</p>
+<ol>
+  <li>From the Catalog External Server page, select the checkbox next to the <strong>Host</strong> that you want to delete, and then click the <strong>Delete</strong> button.<br>
+    <br>
+  <img src="catalogExternalServerDeleteButton.png" alt="Catalog External Server tab - Delete button" border="1">  <br>
+  <br>
+  </li>
+  <li>A dialog appears, prompting you to confirm deleting the catalog server. Click the <strong>Yes</strong> button.</li>
+  <li>The page refreshes and your selected catalog server has been deleted.</li>
+</ol>
+</body>
+</html>

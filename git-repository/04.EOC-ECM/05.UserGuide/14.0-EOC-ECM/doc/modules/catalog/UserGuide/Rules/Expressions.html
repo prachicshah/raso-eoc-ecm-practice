@@ -1,0 +1,277 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Catalog Rule Expressions</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2><a name="Expressions">Expressions</a></h2>
+<p>An expression calculates a value based on another value. The result of an expression is either a Boolean or numeric value.</p>
+<p>Rules are written in JavaScript-based syntax.  A rule is expected to return a Boolean value of either true or false. If no return statements are provided in the script, an evaluation statement is assumed.  For example, the following rule scripts are equivalent to each other:  </p>
+
+<ul>
+	<li><tt>return($country == &quot;Canada&quot;);</tt></li>
+  	<li><tt>$country  == "Canada";</tt></li>
+</ul>
+
+<p>The following table shows examples of using  expressions in Catalog Designer:</p>
+<table width="679" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="93" class='confluenceTh'><div align="left">Operator</div></th>
+      <th width="214" class='confluenceTh'><div align="left">Description</div></th>
+      <th width="356" class='confluenceTh'><div align="left">Expression Example</div></th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>!</td>
+      <td class='confluenceTd'>NOT; Negative of</td>
+      <td class='confluenceTd'>!resideInApartment</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>&amp;&amp;</td>
+      <td class='confluenceTd'>AND</td>
+      <td class='confluenceTd'>existingCustomer  &amp;&amp; isResidential</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>||</td>
+      <td class='confluenceTd'>OR</td>
+      <td class='confluenceTd'>isInContinentalUS ||  isInHawaii</td>
+      </tr>
+    <tr>
+      <td height="27" class='confluenceTd'>==</td>
+      <td class='confluenceTd'>EQUAL</td>
+      <td class='confluenceTd'>component.attributeA  == ‘3G Access’</td>
+      </tr>
+    <tr>
+      <td height="27" class='confluenceTd'>!=</td>
+      <td class='confluenceTd'>NOT EQUAL</td>
+      <td class='confluenceTd'>offer.product(‘cableTV’).productCode  != 'PC001'</td>
+      </tr>
+    </tbody>
+</table>
+<p>The following table shows operations that the rule language supports and their alternative notations:</p>
+<table border="1" cellspacing="0" cellpadding="0" width="707">
+  <tr>
+    <th valign="top" class='confluenceTh'><strong>Expression</strong></th>
+    <th valign="top" class='confluenceTh'><strong>Description and Result</strong></th>
+  </tr>
+  <tr>
+    <td width="387" valign="top">      Exp <strong>+</strong> Exp<br>
+      Exp <strong>plus</strong> Exp </td>
+    <td width="314" valign="top"><p>Addition operation. Returns the result of the    addition. Needs numeric operands (expressions).</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp <strong>- </strong>Exp<br>
+      Exp <strong>minus </strong>Exp</p></td>
+    <td width="314" valign="top"><p>Subtraction operation. Returns the result of the    subtraction. Needs numeric operands (expressions).</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp <strong>* </strong>Exp<br>
+      Exp <strong>times</strong> Exp</p></td>
+    <td width="314" valign="top"><p>Multiplication operation. Returns the result of the    multiplication. Needs numeric operands (expressions).</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp / Exp <br>
+      Exp divided by Exp</p></td>
+    <td width="314" valign="top"><p>Division operation. Returns the result of the    division. Needs numeric operands (expressions)<strong></strong>.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp % Exp <br>
+      Exp modulo Exp</p></td>
+    <td width="314" valign="top"><p>Modulo operation. Returns the result of the first    expression modulo second expression. Needs numeric operands (expressions).</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp &gt; Exp <br>
+      Exp is greater than Exp<br>
+      Exp greater than Exp<br>
+      Exp is greater Exp<br>
+      Exp greater Exp<br>
+      Exp gt Exp</p></td>
+    <td width="314" valign="top"><p>Greater than operation. Returns true if the first    expression is greater than the second. Needs numeric operands (expressions).</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp &gt;= Exp<br>
+      Exp greater equal to Exp<br>
+      Exp is greater equal to    Exp<br>
+      Exp greater equal Exp<br>
+      Exp is greater equal Exp<br>
+      Exp greater or equal Exp<br>
+      Exp is greater or equal    Exp<br>
+      Exp greater or equal to    Exp<br>
+      Exp is greater or equal    to Exp<br>
+      Exp ge Exp</p></td>
+    <td width="314" valign="top"><p>Greater than or equal operation. Returns true if the    first expression is greater than or equal to the second. Needs numeric    operands (expressions).</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp &lt; Exp<br>
+      Exp less than Exp<br>
+      Exp less Exp<br>
+      Exp is less than Exp<br>
+      Exp is less Exp<br>
+      Exp lt Exp</p></td>
+    <td width="314" valign="top"><p>Less than operation. Returns true if the first    expression is less than the second. Needs numeric operands (expressions).</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp &lt;= Exp<br>
+      Exp less or equal Exp<br>
+      Exp less equal Exp<br>
+      Exp less or equal to Exp<br>
+      Exp less equal to Exp<br>
+      Exp is less or equal to    Exp<br>
+      Exp is less equal to Exp<br>
+      Exp is less or equal Exp<br>
+      Exp is less equal Exp<br>
+      Exp le Exp</p></td>
+    <td width="314" valign="top"><p>Less than or equal operation. Returns true if the    first expression is less than or equal to the second. Needs numeric operands    (expressions).</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp == Exp<br>
+      Exp equal Exp<br>
+      Exp equal to Exp<br>
+      Exp is equal Exp<br>
+      Exp is equal to Exp<br>
+      Exp equals Exp<br>
+      Exp equals to Exp<br>
+      Exp eq Exp<br>
+      Exp is Exp</p></td>
+    <td width="314" valign="top"><p>Equal operation. Returns true if the first    expression is equal to the second. Needs operands (expressions) of the same    type that can be String, Number, or Boolean.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp equal no case Exp<br>
+      Exp is equal no case Exp <br>
+      Exp equal no case to Exp<br>
+      Exp is equal no case to Exp<br>
+      Exp equals no case Exp<br>
+      Exp equals no case to Exp</p></td>
+    <td width="314" valign="top"><p>Case sensitive string equal operation. Returns    true if the first string is equal to the second regardless  of letter    case. Not allowed for any other operand type.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp != Exp<br>
+      Exp &lt;&gt; Exp<br>
+      Exp not equal Exp<br>
+      Exp not equal to Exp<br>
+      Exp is not equal Exp<br>
+      Exp is not equal to Exp<br>
+      Exp not equals Exp<br>
+      Exp not equals to Exp<br>
+      Exp ne Exp<br>
+      Exp is not Exp</p></td>
+    <td width="314" valign="top"><p>Not equal operation. Returns true if the first    expression is not equal to the second. Needs operands (expressions) of the    same type that can be String, Number, or Boolean.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp not equal no case Exp<br>
+      Exp is not equal no    case Exp<br>
+      Exp not equals no case Exp<br>
+      Exp not equal no case    to Exp<br>
+      Exp is not equal no    case to Exp<br>
+      Exp not equals no case    to Exp</p></td>
+    <td width="314" valign="top"><p>Case sensitive string not equal operation. Returns    true if the first string is not equal to the second regardless of     letter case. Not allowed for any other operand type.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp in Literal[, Literal]… ]…/constant list<strong> [no    case]</strong><br>
+      Exp is in Literal[, Literal]… ]…/constant list<strong> [no    case]</strong><br>
+      Exp one of Literal[, Literal]… ]…/constant list<strong> [no    case]</strong><br>
+      Exp is one of Literal[, Literal]… ]…/constant list<strong> [no    case]</strong></p>
+      <p>&nbsp;</p></td>
+    <td width="314" valign="top"><p>True if the expression is in the list of literals    (constants). Works with Numeric or String expressions. The no case clause can    be specified for a string expression only. If specified the comparison is case-insensitive.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp not in Literal[, Literal]…/constant list<strong> [no    case]</strong><br>
+      Exp is not in Literal[, Literal]… ]…/constant list<strong> [no    case]</strong><br>
+      Exp not one of Literal[, Literal]… ]…/constant list<strong> [no    case]</strong><br>
+      Exp is not one of Literal[, Literal]… ]…/constant list<strong> [no    case]</strong></p></td>
+    <td width="314" valign="top"><p>True if the expression is not in the list of    literals (constants). Works with numeric or string expressions. The no case clause    can be specified for string expression only. If specified the comparison is    case-insensitive.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp like Literal[, Literal]… ]…/constant list<strong> [no    case]</strong><br>
+      Exp is like Literal[, Literal]… ]…/constant list<strong> [no    case]</strong><br>
+      Exp like one of Literal[, Literal]… ]…/constant list<strong> [no    case]</strong><br>
+      Exp is like one of Literal[, Literal]… ]…/constant list<strong> [no    case]</strong></p>
+      <p>&nbsp;</p></td>
+    <td width="314" valign="top"><p>True if the beginning of the expression value matches    some literal in the list. Works with String expressions and lists only. If no    case clause is specified, the comparison is case-insensitive.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp not like Literal[, Literal]… ]…/constant list<strong> [no    case]</strong><br>
+      Exp not like one of Literal[, Literal]… ]…/constant list<strong> [no    case]</strong><br>
+      Exp is not like Literal[, Literal]… ]…/constant list<strong> [no    case]</strong><br>
+      Exp is not like one of Literal[, Literal]… ]…/constant list<strong> [no    case]</strong></p></td>
+    <td width="314" valign="top"><p>True if the beginning of the expression value does    not match any literal in the list. Works with String expressions and lists only. If    no case clause is specified, the comparison is case-insensitive.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp.Identifier[.Identifier]</p></td>
+    <td width="314" valign="top"><p>Dot expression that specifies the object member.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp is    null</p></td>
+    <td width="314" valign="top"><p>Check if the element immediately on the left is    null. The element must be a simple identifier, a dot expression, an expression in    brackets, or a function call. If the expression is a dot expression and one of    the elements is null, the operation returns true. Does not apply for numeric    and Boolean expressions.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp is    not null</p></td>
+    <td width="314" valign="top"><p>Check if the element immediately on the left is not    null. The element must be a simple identifier, a dot expression, an expression in    brackets, or a function call. If the expression is a dot expression and one of    the elements is null, the operation is false. Does not apply for numeric and    Boolean expressions.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp and Exp<br>
+      Exp &amp;&amp; Exp</p></td>
+    <td width="314" valign="top"><p>Boolean And operation. Needs Boolean operands    (expressions).</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>Exp or Exp<br>
+      Exp  || Exp</p></td>
+    <td width="314" valign="top"><p>Boolean Or operation. Needs Boolean operands    (expressions).</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>not Exp<br>
+      do    not Exp<br>
+      does    not Exp<br>
+      !Exp</p></td>
+    <td width="314" valign="top"><p>Unary Boolean inversion (not) operation. Needs    Boolean expression.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>- Exp </p></td>
+    <td width="314" valign="top"><p>Unary minus. Needs a numeric expression. Negates the    value of the expression.</p></td>
+  </tr>
+  <tr>
+    <td width="387" valign="top"><p>name([parameter,..])</p></td>
+    <td width="314" valign="top"><p>Rule, object method, or global function invocation.    Referred by general name: function call.</p></td>
+  </tr>
+</table>
+<p>The priority of the operations is as  follows, starting with the highest priority:</p>
+<ol>
+  <li>not, unary minus, one of, select, function call, member access (dot notation), is null, is not null, in,  not in, like, not like</li>
+  <li>multiplication, division, modulo</li>
+  <li>addition, subtraction</li>
+  <li>equal, not equal, greater than,  greater than or equal, less than, less than or equal</li>
+  <li>and</li>
+  <li>or</li>
+</ol>
+<p>When unsure of the priority of the  operations, use parentheses, as shown in this example:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>
+  <strong>((a + b) *  c) - a</strong>
+</pre>
+</div>
+</div>
+<p>  The expressions can include rule  parameters, variables, object members, object method calls, global functions,  and rules calls. </p>
+<p>The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>Rule is (isInBC(location)  or isInOntario(location)) and isBigCity(location) </strong>
+</pre>
+</div>
+</div>
+
+
+
+
+<p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

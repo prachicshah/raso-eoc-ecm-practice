@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>FTP Service Provider</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>FTP Service Provider</h3>
+<p>The FTP Service Provider allows the transfer of XML files to/from FTP server.</p>
+
+<h4>FTP Attributes in Velocity Studio</h4>
+
+<p>The following table describes the attributes that are exposed in Velocity Studio specifically for the FTP Service Provider.</p>
+
+<p>These attributes are found at <b><a href="../External Services/defining a binding.html">Binding</a></b> metadata object in Velocity Studio. When an Interface, Operation or message element is selected in the <b>Interface element</b> tree, the attributes for the element appears in the <b>Element definitions</b> table where values can be provided.</p>
+
+<p><ins>Attributes in Velocity Studio for the FTP Service Provider.</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Direction</b></td>
+<td class='confluenceTd'>The FTP operation to be performed: <em>put</em> or <em>get</em>.</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></p>
+
+<h4>FTP Attributes in Configuration Application</h4>
+
+<p>The following table describes the attributes that are exposed in Configuration application specifically for the FTP Service Provider.</p>
+
+<p>These attributes are found in <b><a href="../../../Configuration_Tool_User_Guide/Services Services.html">Services</a></b> tab in Configuration application. When clicking a Port, Binding, Operation or message node in the <b>Service Port tree</b>, the Configuration attributes for the node appears at the <b>Configuration</b> section at the right where values can be provided.</p>
+
+<p><ins>Attributes in Configuration application for the FTP Service Provider.</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Location</b></td>
+<td class='confluenceTd'>Specifies the location of FTP Server.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Port</b></td>
+<td class='confluenceTd'>Specifies the port to use. If not specified the default FTP port 21 is used.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>User</b></td>
+<td class='confluenceTd'>Specifies the user name if the FTP Server requires authentication.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>PasswordKey</b></td>
+<td class='confluenceTd'>Specifies the password key to use for retrieving the password. The password key/value pairs are created in the Configuration application.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Location</b></td>
+<td class='confluenceTd'>File name to get or put. If the file name is not specified and the put operation is performed, the file name is the runtime ID of the data object being sent. In this case the file type is .xml.</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Metadata Root Aliases</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h3>Metadata Root Aliases</h3>
+
+<p>The <b>Aliases</b> tab allows you to specify a string alias for a metadata element. When you load your metadata, Velocity Studio replaces all references by using an aliases map. </p>
+<p><img src="MDrootAliases.png" alt="Metadata root - Aliases tab" border="1"></p>
+<p>At runtime, any script referring to the string is deferred to the metadata element. This string must take the <em>namespace_name.objectname</em> format. </p>
+<p><strong>Note:</strong> If the string is same as the full name of any existing metadata element, an error occurs in either design or runtime.</p>
+<p>To use the aliases function, perform the following steps:</p>
+<ol>
+  <li>From the Aliases tab, click the <strong>Add</strong> button.<br>
+    <br>
+    <img src="MDrootAliasesAddButton.png" alt="Aliases tab - Add button" border="1"><br>
+    <br>
+  </li>
+  <li>Double-click the <strong>Original</strong> field and specify the replacement element's alias. Press the <strong>Enter</strong> key to continue.<br>
+    <br>
+    <img src="MDrootAliasesElementAlias.png" alt="Aliases tab - Specify element's alias"><br>
+    <br>
+  </li>
+  <li>Click the <strong>Replacement</strong> field of the new row that you have added and select the element that you want from the list. Alternatively, you can click the <strong>Select Element</strong> button (<img src="../../Service Designer Menu Actions/replaceReferencesSelectElementButton.png" width="27" height="25" alt="Replace References - Select Element button">) and enter the object name that you want in the field provided.<br>
+    <br>
+    <img src="MDrootAliasesElement.png" alt="Aliases tab - Select Element"><br>
+    <br>
+  </li>
+  <li>When you save and reload your metadata, all original elements in your script are replaced with the replacement elements using this aliases map.</li>
+  </ol>
+<h4>Delete an Alias</h4>
+<p>To delete an alias from the Aliases tab, highlight the alias that you want and then click the <strong>Delete</strong> button.</p>
+<p><img src="MDrootAliasesDeleteButton.png" alt="Aliases tab - Delete button" border="1"></p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

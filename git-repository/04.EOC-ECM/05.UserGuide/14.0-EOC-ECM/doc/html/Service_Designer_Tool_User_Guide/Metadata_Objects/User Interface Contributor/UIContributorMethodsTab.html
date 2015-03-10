@@ -1,0 +1,129 @@
+<html>
+<head>
+<title>User Interface Contributor Methods Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<h2>User Interface Contributor Methods Properties</h2>
+<p>The<strong> Methods</strong> tab contains default (also known as base), overridden, and newly created methods for the User Interface (UI) Contributor. For example in the following image, methods highlighted in color blue are  default or base methods, and the methods highlighted in color black are overridden or new methods.  The default variables depends on  which UI Controller is selected   in the <strong>General</strong> tab of the UI Contributor in the <strong>Contribute To </strong>field and which default user interface is extended by the selected UI controller.</p>
+<p><img src="UIContributorMethodsTab.png" alt="User Interface Contributor - Methods Tab" border="1" /></p>
+<p>The Methods tab is a <A href="../../../JavaScripting in Order Care/Scripting Interface.html">script management screen</A> in Velocity Studio, which is composed of the <strong>Method List</strong> pane on the left that lists all scripts related to the UI Contributor, and <strong>Details </strong>pane that displays the details of a script when selected at the <strong>Method</strong></SPAN> <strong>List</strong> pane. The fields on the <strong>Detail</strong> pane of the methods tab depends on the method selected in the <strong>Method List</strong> pane. The following table describes the common fields for the <strong>Detail</strong> pane of  methods tab:
+</p>
+<table width="988" class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="95" class='confluenceTh'>Field</th>
+      <th width="881" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td height="29" class='confluenceTd'><b>Name</b></td>
+      <td class='confluenceTd'>This field displays the name of the method. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Private</b></td>
+      <td class='confluenceTd'>If checked, the method is hidden from display when it is   packaged in as Product Metadata (that is, library).</td>
+    </tr>
+    <tr>
+  <td height="43" class='confluenceTd'><b>Virtual</b></td>
+  <td class='confluenceTd'>If checked, it provides the ability to create methods in template metadata that does not have implementation, but can be used in template script and be bound to UI elements. The implementation is done in user metadata (see <a href="../Virtual Field/Virtual Field.html">Virtual Field</a> for more information).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Final</strong></td>
+  <td class='confluenceTd'>Methods  can be marked as final. Any  method that has the <strong>Final</strong> property set to true can neither be extended, nor overridden.</td>
+</tr>
+        <tr>
+      <td class='confluenceTd'><b>Instance</b></td>
+      <td class='confluenceTd'>If checked, the method is accessible by instance objects.</td>
+    </tr>
+        <tr>
+      <td class='confluenceTd'><b>Type</b></td>
+      <td class='confluenceTd'>If checked, the method is accessible  without an instance object.</td>
+    </tr>
+     <tr>
+      <td class='confluenceTd'><b>Leaf</b></td>
+      <td class='confluenceTd'>This field provides   the information about the base method for the  selected method in the list of methods.</td>
+    </tr>
+    <td class='confluenceTd'><b>Description</b></td>
+      <td class='confluenceTd'>Description of the method for documentation.</td>
+    </tr>
+    <td class="confluenceTd"><b style="font-weight: bold;">Script</b></td>
+				<td class="confluenceTd">Validation JavaScript script. 
+				 The script can be one of the following:<br style="clear: all;" />
+				
+				<ul>
+					<li>An expression that evaluates to true to indicate 
+					 that the text in <em>Message</em> field or the message 
+					 corresponding to the specified <em>Message Code</em> 
+					 is to be displayed. Otherwise it must evaluate to 
+					 false.<br style="clear: all;" />
+					</li>
+					<li>A script that returns true to indicate that the 
+					 text in <em>Message</em> field or the message corresponding 
+					 to the specified<em> Message Code</em> specified is 
+					 to be displayed. Otherwise it must return false.<br 
+					 style="clear: all;" />
+					</li>
+					<li>A script that returns a resource identifier string 
+					 or list of identifiers separated by semicolons to 
+					 indicate the resource message(s) to be displayed. 
+					 For example: AW0155 or AI0155, AE0156. It is recommended 
+					 that the first character must be A. The second character 
+					 indicates the message type: I - information, W - warning, 
+					 and E - error.<br style="clear: all;" />
+					</li>
+					<li>A JavaScript script returning text (that is not 
+					 a resource identifier) that can be displayed as a 
+					 rule message.</li>
+				</ul></td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Return 
+				 type</b></td>
+				<td class="confluenceTd">The Object type to be returned 
+				 by the script.</td>
+			</tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Return Description</strong></td>
+      <td class='confluenceTd'>Description of the return type for documentation.</td>
+    </tr>
+  
+</table>
+<br>
+  To show all base methods, click the <strong>Show base methods</strong> (<img src="showBaseMethods.png" alt="Show base methods button">) button. Click the button again to hide all base methods. The default or base methods, weather it is a script, permission or a user method, are not accessible to the UI Contributor. These methods cannot be overridden or no changes can be done to the scripts or permissions.
+</p>
+<p>If you have a long list of methods in the left pane, you can press the first letter of the method you are looking for to jump to the list of methods beginning with that letter. In this example, pressing the<strong> E </strong>key highlights the first instance of a method that begins with the letter E. The details of the method are displayed in the <strong>Detail</strong> pane.</p>
+<h3>Create a New Method </h3>
+<p>To create a new method, right-click the UI Contributor in the <strong>Method List</strong> pane. The following image describes the type of methods that can be selected from the pop-up menu:
+</p>
+<p><img src="rightClickPopup.png" alt="Methods Tab (Pop-Up)" border="1" align="absmiddle" /></p>
+
+<p>There are three types of methods that can be created:</p>
+<table width="1009" class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh' width='107'>Method Type</th>
+      <th width="933" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><img src="UIMethodIconScript.png" align="absmiddle" border="0" alt="" /> Script</td>
+      <td class='confluenceTd'>Generic user-defined JavaScript function that can be defined in UI Contributor and explicitly invoked by other methods or form elements.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><img src="UIMethodIconPermission.png" align="absmiddle" border="0" alt="" /> Permission</td>
+      <td class='confluenceTd'>Permission method that can be associated to properties of form elements to determine participant's access of the form element such as <i>Visible</i>, <i>Optional</i> and <i>Editable</i>. See section <a href="../Permission/Permissions Velocity.html">Permissions</a> for details.</td>
+    </tr>
+    <tr>
+      <td height="40" class='confluenceTd'><img src="UIMethodIconUserAction.png" align="absmiddle" border="0" alt="" /> User Action</td>
+      <td class='confluenceTd'>User Action Method that implements the response of user actions, such as clicking a button or an image, by returning an object presented in a specified form to the user. See section <a href="../../Velocity_Studio/User Interface User Action Method.htm">User Action Method</a> for details.</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<p>You can create multiple methods of the same method type by using unique method names (for example, Permission1, Permission2). A newly added method in the UI controller, the one that is  selected in the <strong>Contribute To </strong>field,  in the <strong>General</strong> tab of the UI Contributor, comes in the list of methods  in the UI Controller's <strong>Method</strong> tab.</p>
+<p>The methods created in <strong>Method List</strong> pane can be right-clicked, with various commands available, such as <strong>Delete</strong>, <strong>Show Usage,</strong> etc. For more information see, <a href="../../../JavaScripting in Order Care/Scripting Interface.html">Scripting Interface</a>.</p>
+
+</body>
+</html>
+

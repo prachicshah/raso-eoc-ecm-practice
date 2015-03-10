@@ -1,0 +1,114 @@
+<html>
+<head>
+<title>Application Virtual Machines (AVMs) History</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>AVMs History</h2>
+<p>Clicking <strong>Manage &gt; AVMs History </strong>from the menu bar allows you to view currently running and archived AVM records.</p>
+<p><img src="avmHistory.png"alt="AVMs History"  border="1" /></p>
+
+<p>The AVMs History page contains the following fields:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'><strong>Field</strong></th>
+<th  class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>AVM</strong></td>
+<td class='confluenceTd'>The ID of the node, assigned in the process engine start script.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Application</strong></td>
+<td class='confluenceTd'>This field indicates the <a href="../../Service_Designer_Tool_User_Guide/Metadata_Objects/Metadata Root/Metadata Internal Version.html">internal name</a> of  application.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Node Name</strong></td>
+<td class='confluenceTd'>This field indicates the node name, specified in <a href="../../Configuration_Tool_User_Guide/Configure/System/systemConfigurationUserInterface.html">node menu</a> of the Configuration application, and selected in the <strong>Node</strong> field of  Select Application menu in Velocity Studio.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>AVM Mode</strong></td>
+<td class='confluenceTd'>The node type (PE or UI, or both).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Host</strong></td>
+  <td class='confluenceTd'>The name of the host address.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>IP Address</strong></td>
+<td class='confluenceTd'>The host IP address.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>PE Mode</strong></td>
+<td class='confluenceTd'>The status of the process engine.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>JMX Port</strong></td>
+<td class='confluenceTd'>The JMX Port for this PE, passed to the PE in its start script.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Started</strong></td>
+<td class='confluenceTd'>Date and time the AVM has been started.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Last Updated </strong></td>
+<td class='confluenceTd'>Last time when the AVM heartbeat thread has updated the database, indicating that the AVM is operational. The AVM&#160;heartbeat is every 5 minutes.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Ended </strong></td>
+  <td class='confluenceTd'>The date and time when the AVM stopped.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Memory Usage (KB)</strong></td>
+<td class='confluenceTd'>Currently used memory in KB.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Total Memory (KB)</strong></td>
+<td class='confluenceTd'>Maximum available memory in KB.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Engine Status</strong></td>
+<td class='confluenceTd'>Process Engine status. Can be <em>Running</em>, <em>Stopped</em>, <em>Saturated</em> (that is, there is no more memory to handle new processes) or <em>Dead</em> (the last heart beat is not received in the expected time).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Number of Processes</strong></td>
+<td class='confluenceTd'>The number of processes runs by this Process Engine.</td>
+</tr>
+</tbody>
+</table>
+<h3>Search AVMs</h3>
+<p>You can search  AVM records based on the  AVM ID, host name, and IP address. The following fields are available for the  search:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+<tr>
+<th  class='confluenceTh'>Field</th>
+<th  class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>AVM</strong></td>
+  <td class='confluenceTd'>This field indicates the ID of AVM node.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Host</strong></td>
+  <td class='confluenceTd'>This field denotes the name of the host where an AVM is either currently running or was running previously.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>IP Address</strong></td>
+  <td class='confluenceTd'>This field indicates the IP address of the host.</td>
+</tr>
+</tbody>
+</table>
+<p> To search, enter the information in one of these fields and  click the<strong> Search </strong>button. </p>
+<h3>Reload </h3>
+You can click the <strong>Reload</strong> button ( <img src="reloadButton.png" alt="Reload button"> ) to load an updated  list of  AVMs history from database.
+ </td>
+</tr>
+</table>
+</body>
+</html>

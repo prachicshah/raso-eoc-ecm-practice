@@ -1,0 +1,40 @@
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Prerequisites</title>
+<link rel="stylesheet" href="../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+    
+    <h2>Add module-specific library files</h2>
+    <p>The module-specific library files contains the metadata that enables the module application to run and is located in the following JAR files that are included in the modules folder of the installation disk.</p>
+    <p>These files must be added to Velocity Studio's library. The following are the steps to add catalog specific library files:</p>
+    <ol>
+      <li>Open the Velocity Studio and click <strong>File &gt; Open Project</strong> from the menu bar.</li>
+      <li>Click the metadata root node and in the right pane, click the <strong>Library</strong> tab, and then click the <strong>Add</strong> button.</li>
+      <p><img src="addLibraryFiles.png" alt="Add Library Files" border="1"/></p>
+      <li>Add the modules JAR files, which are located in the &lt;<em>product_installation_folder</em>&gt;\modules. 
+        For Catalog, the following JAR files are added:
+        <ul>
+          <li>catalog.jar </li> 
+          <li>catalogClient.jar</li>
+          <li>SIDCommon.jar</li>
+          <li>serviceOrchestrationFramework.jar</li>
+        </ul>
+      <li>Once the files are added, <strong>Save</strong> the project metadata, and then reload or open the project  for the library files to take effect.</li>
+    </ol>
+    <p>Once all the library files have been successfully added, the templates folder of your project  contains the appropriate files.
+</td>
+</tr>
+</tbody>
+</table>
+  
+</body>
+</html>

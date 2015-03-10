@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Dynamic Document Definition and Reference Table</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Dynamic Document Definition and Reference Table</h3>
+
+<p>A <strong>dynamic document definition</strong> is used as the metadata object for a dynamic document. It contains a list of dynamic variables. Dynamic document definitons  were originally both instance and metadata objects.  Each dynamic Document can contain a unique set of dynamic variables.</p>
+<p>A dynamic document definition is an  effort to provide a common definition for dynamic documents where you specify the set of  dynamic variables in the dynamic document definition.   Instances of dynamic documents that were created based on the dynamic document definition then share  the same set of dynamic variables. </p>
+<p>The  scriptable type that deals with the dynamic document definition is the DynamicDocumentDefintion type. The  constructor takes two parameters:</p>
+<ul>
+  <li> The first  parameter is the  static metadata document's full name.</li>
+  <li>The second parameter is  the dynamic document definition's unique name. The system manages every dynamic document definition  created and this definition must have a unique  name. Once created, you can retrieve the definition by name using the DynamicDocumentDefinition.findByName static script method .  </li>
+  </ul>
+<p>You can use the save() API to save your dynamic document definition. The default system implementation writes the dynamic document definition to the CWDYNAMICDOCUMENTDEFINTION  system-managed table. To convert the dynamic document definition to and from XML, use the toXML() and  getItemFromXML() methods, respectively.</p>
+<p>A <strong>reference table definition</strong> includes a data object list that contains a list of dynamic documents. A reference table is a way to manage dynamic documents  created by the same dynamic document definition. Currently, there  is a one-to-one relationship between  a reference table and dynamic document definitions.  </p>
+<p>A reference table  constructor takes a single parameter, which is either the dynamic document definition instance, or the dynamic document definition's name. In either case, the dynamic document definition's name also becomes the reference table's name. The reference table's name becomes a  unique key with which you can find existing  tin the system.  </p>
+<p>Reference tables are saved in the database  under the CWREFERENCETABLE system-managed table. While the system  currently does not explicitly prevent creating multiple instances of reference tables  based on the same dynamic document definition, attempts  to save these instances conflict in the database as they end up being saved  under the same row and overwrite one other.  Future implementations will remove this one-to-one restriction and multiple  reference tables will be defined from a single dynamic document definition. In such a case, the reference table's name will still be unique, but will no longer come from the dynamic document definition. </p>
+<p>Dynamic  documents are not created based on a dynamic document definition. Rather, they are created  using the reference table that is based on a dynamic document definition. You would usually create  an instance of the dynamic document definition,  create an instance of the reference table, and then  use the reference table to create and remove instances of dynamic documents.  You can use the ReferenceTable.createNewRecord()  API to create new dynamic documents. This API returns an instance of  the dynamic document based on the dynamic document definition that the reference table is based on. The API offers the option to automatically  add the created instance to its managed list of dynamic document  instances. </p>
+<p>You can retrieve the dynamic document  instances managed by the ReferenceTable by using the findById() and findByValue() methods. You can also convert the reference table's entire  contents to XML using the toXML() method. To create a list of reference tables from XML, use the getItemsFromXML() static method.</p></td>
+</tr>
+</table>
+</body>
+</html>

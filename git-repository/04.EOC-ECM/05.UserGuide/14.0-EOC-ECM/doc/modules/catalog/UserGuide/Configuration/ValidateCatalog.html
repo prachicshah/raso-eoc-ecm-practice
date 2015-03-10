@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Validate Catalog</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Validate Catalog</h2>
+<p>The Validate Catalog function allows you to validate your catalog data. This functionality detects and reports the following catalog anomalies:</p>
+<ul>
+  <li>All catalog objects that are active, but their referenced objects are not active.</li>
+  <li>For a catalog object that has two intervals (one interval defines a valid version of the object, and the other defines a valid version for objects that reference this catalog object), the first interval takes precedence. Any catalog object that  does not satisfy this condition appears in this report.</li>
+  <li>All catalog objects that do not have a project.</li>
+  <li>All project assignments referencing catalog objects that do not exist in the catalog.</li>
+  <li>All catalog objects for which there are two or more versions with the same start date and end date. As an extension,  consider CTLG_TIME_UNIT. If the difference between the start dates of two versions is less than the catalog time unit, these versions are reported.</li>
+  </ul>
+<p>To use the Validate Catalog function, complete the following steps:</p>
+<ol>
+  <li>From the menu bar, click<strong> Configuration</strong> &gt; <strong>Validate Catalog</strong> from the menu bar.</li>
+  <li>The Response Summary dialog appears with two sections:  
+    <ul>
+      <li>A Summary section, which describes the total number of objects that were validated, and a breakdown of how many objects were valid and invalid</li>
+      <li>An Error List section, which describes the error and which object is affected<br>
+        <br>
+        </li>
+      
+      </ul>
+    <img src="validateCatalog.png" alt="Validate Catalog - Response Summary" /><br>
+    <br>
+  </li>
+  <li>You have the option of saving the information to a file by clicking the drop-down icon on the right side of the Error List heading. Otherwise, when you have finished reviewing the report, click the <strong>Close</strong> button to close the Response Summary dialog.<br>
+  </li>
+</ol></td>
+</tr>
+</body>
+</html>

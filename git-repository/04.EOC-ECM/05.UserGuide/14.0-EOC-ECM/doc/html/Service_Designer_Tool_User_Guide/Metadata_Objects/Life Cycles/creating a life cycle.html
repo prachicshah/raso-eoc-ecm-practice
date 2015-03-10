@@ -1,0 +1,30 @@
+﻿<html>
+<head>
+<title>Creating a Life Cycle</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Creating a Life Cycle</h3>
+<p>The <b>Life</b> <b>Cycle</b> element is created based on a series of user-defined Order states that can optionally be used by any Order. Before a Life Cycle element can be created, the user-defined Order states enumeration must be created as a <b>Data</b> <b>Type</b> element under the <b>Data</b> <b>Dictionaries</b> folder, based on the system-defined data type <em>State</em> from the cwf namespace (set the <b>Base type</b> to <em>State</em> or <em>All States</em> on the <b>General</b> tab).</p>
+<p>Enumeration values are required when defining such state elements, in which at least a NEW state must be included for <em>Order</em> state enumerations. Neither a NEW or END is required for non-<em>Order</em> state enumerations.</p>
+<p>The figure below shows an example of enumeration values defined for the data type OrderPhase. In this example, seven states are defined: CAN, NEW, PRV, REV, END, REJ and TMP.</p>
+<P><img src="LifeCycleEnumeration.png" alt="Enumeration" border="1"/></P>
+<p>To create a Life Cycle:</p>
+<ol>
+<li>Right-click the <b>Life</b> <b>Cycles</b> folder in the <b>Orders</b> folder in the <b>Navigation</b> pane of Velocity Studio.</li>
+<li>Select the <b>New Life Cycle</b> command. Give your Life Cycle a <strong>Name</strong> and  <strong>Label</strong>, and then select your <strong>Enumeration</strong> datatype that you previously created. Click the <strong>Finish</strong> button to complete the process.</li>
+<li>The <b>General</b> and <b>Diagram</b> tabs will appear where the Life Cycle properties are defined.</li>
+<li>Click the <b>Create Life Cycle</b> button from the <strong>General</strong> tab to create the Life Cycle.</li>
+</ol>
+<p>After the Life Cycle is created, the icon will be added under <b>Life</b> <b>Cycles</b> folder (see figure below).</p>
+<P><img src="LifeCycleFolder.png"  alt="LifeCycle Folder" border="1"></P>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<html>
+<head>
+<title>Message Log</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Message Log</h2>
+<p>Clicking <strong>Services</strong> &gt; <b>Message Log</b> from the menu bar displays a report containing a list of message log items. The message log contains information about all the messages and requests that are sent to and received from external systems. </p>
+
+<img src="message_log.png" border="1" alt="Message Log" />
+
+<p>To search for an item in the message log, enter your search criteria, and then click the <strong>Search</strong> button. Your search results appear in the area under the search criteria.</p>
+<p>The following search fields are available:</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th width="154" class='confluenceTh'>Field</th>
+<th width="1426" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td height="24" class='confluenceTd'><strong>Queue Search</strong></td>
+  <td class='confluenceTd'>Indicate whether you want the message log to search the queue. By default, this field is unchecked.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Start Time - From</b></td>
+  <td class='confluenceTd'>Date and time when the message was sent. Click the <strong>Calendar</strong> icon to view the calendar and select a date. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Start Time - To</b></td>
+  <td class='confluenceTd'>Date and time when the message was received. Click the <strong>Calendar</strong> icon to view the calendar and select a date.</td>
+</tr>
+<tr>
+  <td height="24" class='confluenceTd'><b>Message ID</b></td>
+  <td class='confluenceTd'>Unique message log entry ID. You can sort by this field. Favorites are enabled for this finder, allowing you to save your preferred format.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>AVM</b></td>
+<td class='confluenceTd'>The AVM ID that created this message log entry.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Interface Type</b></td>
+<td class='confluenceTd'>Interface entry of the logged message.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Process ID</strong></td>
+  <td class='confluenceTd'>The process identifier of the logged message.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Order ID</strong></td>
+  <td class='confluenceTd'>The Order ID of the logged message.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>User ID</b></td>
+  <td class='confluenceTd'><p>The user identifier that performed the interface operation. </p>
+    <p>The following table describes the user identifier that appears in the search results for this field for each type of server listener:</p>
+    <table width="653" height="256" class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="78" class='confluenceTh'>Listener</th>
+          <th width="556" class='confluenceTh'>User ID</th>
+        </tr>
+        <tr>
+          <td height="24" class='confluenceTd'><b>HTTP</b></td>
+          <td class='confluenceTd'>This field contains either <strong>httpApi</strong> or the authorized username from the configuration.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>SOAP</b></td>
+          <td class='confluenceTd'>This field shows either <strong>soapApi</strong> or the authorized username from the configuration.</td>
+        </tr>
+        <tr>
+          <td height="75" class='confluenceTd'><b>JMS</b></td>
+          <td class='confluenceTd'><p>This field displays <strong>jmsApi</strong>.</p>
+            <p><strong>Note:</strong> When a response is made and the protocol is JMS, the <strong>User ID</strong> field shows both the protocol and the queue name with <em>Protocol-QueueName</em> as its syntax (for example, JMS-Queue).</p></td>
+        </tr>
+        <tr>
+          <td height="75" class='confluenceTd'><b>MQ</b></td>
+          <td class='confluenceTd'><p>This field shows <strong>mqApi</strong>.</p>
+            <p><strong>Note:</strong> When a response is made and the protocol is MQ, the <strong>User ID</strong> field shows both the protocol and the queue name with <em>Protocol-QueueName</em> as its syntax (for example, MQ-Queue).</p></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>For client invocations, the following table describes the user identifer that appears in the search results:</p>
+    <table width="653" height="98" class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="78" height="24" class='confluenceTh'>Listener</th>
+          <th width="556" class='confluenceTh'>User ID</th>
+        </tr>
+        <tr>
+          <td height="24" class='confluenceTd'><b>From the process engine</b></td>
+          <td class='confluenceTd'>This field contains <strong>Process:</strong> followed by the process ID (for example, Process: 5001).</td>
+        </tr>
+        <tr>
+          <td height="40" class='confluenceTd'><b>From a user interface call (that is, non-process)</b></td>
+          <td class='confluenceTd'>This field shows the name of the user who is processing the operation.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>&nbsp;</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Application</strong></td>
+  <td class='confluenceTd'>The application used to send the message.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Operation</b></td>
+  <td class='confluenceTd'>Interface operation of the logged message. The content for this field is dependent on the Interface drop-down selection. When an interface is selected, only the operations of this interface is displayed.</td>
+</tr>
+</tbody>
+</table>
+<h3>Event Log</h3>
+<p>You can view a message ID in the event log by selecting it in the search results area and then clicking <strong>Detail</strong> &gt; <strong>Event Log</strong> from the menu bar.</p>
+<h3>Activities</h3>
+<p>You can view the activities available for the message ID by selecting it in the search results area and then clicking <strong>Detail</strong> &gt; <strong>Activities</strong> from the menu bar.</p>
+<h3>Sent Data</h3>
+<p>To view the data that was sent by a selected message, do the following:</p>
+<ol>
+  <li>Select a message from the search results and  click <strong>Sent Data</strong> <strong>&gt; Sent Data</strong> from the result area's menu bar.</li>
+  <li>A popup dialog appears, which shows the data in XML format that was sent by the selected message.</li>
+  </ol>
+<h3>Received Data</h3>
+<p>To view the data that was received by a selected message, do the following:</p>
+<ol>
+  <li>Select a message from the search results and  click <strong>Recv Data</strong> <strong>&gt;</strong> <strong>Recv Data</strong> from the result area's menu bar.</li>
+  <li>A popup dialog appears, which shows the data in XML format that was received by the selected message.</li>
+</ol>
+<h3>Sent Properties</h3>
+<p>To view a message's sent properties, complete these steps:</p>
+<ol>
+  <li>Select the message that you want and then click <strong>Sent Data</strong> <strong>&gt; </strong><strong>Sent Properties</strong> from the result area's menu bar.</li>
+  <li>A popup dialog appears, which shows the message's sent properties.</li>
+</ol>
+<h3>Received Properties</h3>
+<p>To view a message's received properties, complete these steps:</p>
+<ol>
+  <li>Select the message that you want from the search results and then click <strong>Recv Data</strong> <strong>&gt;</strong> <strong>Recv Properties</strong> from the result area's menu bar.</li>
+  <li>A popup dialog appears, which shows the message's received properties.</li>
+</ol>
+<h3>Re-send Data</h3>
+<p>To resend data from a message, complete the following steps:</p>
+<ol>
+  <li>Select the message that you want from the search results and then click the <strong>Sent Data</strong> <strong>&gt; </strong><strong>Re-Send</strong> from the result area's menu bar.</li>
+  <li>A popup dialog appears, which allows you to edit your message before you click the <strong>Re-Send </strong>option.</li>
+</ol>
+<p>
+  <!--<h3>Listeners</h3>
+<p>The <b>Listeners</b> report displays a list of system Listeners. </p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="listeners.jpg" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Host</b></td>
+<td class='confluenceTd'>Host machine or IP of the listener.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>AVM ID</b></td>
+<td class='confluenceTd'>AVM ID that created this message log entry.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Provider</b></td>
+<td class='confluenceTd'>Provider type for the listener (i.e. JS, MQ, SOAP)</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Interface</b></td>
+<td class='confluenceTd'>The metadata interface for the Listener.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Port</b></td>
+<td class='confluenceTd'>The metadata port which the listener is defined.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Service</b></td>
+<td class='confluenceTd'>The metadata service name for the listener.</td>
+</tr>
+</tbody>
+</table>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Menu Item</th>
+<th class='confluenceTh'>Function</th>
+</tr>
+<tr>
+<td class='confluenceTd'>Search</td>
+<td class='confluenceTd'>Refreshes the listener report.</td>
+</tr> 
+</tbody>
+</table>-->
+</p></td>
+</tr>
+</table>
+</body>
+</html>

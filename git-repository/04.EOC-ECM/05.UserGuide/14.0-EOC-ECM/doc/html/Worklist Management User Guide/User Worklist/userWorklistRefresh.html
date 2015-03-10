@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Worklist Refresh</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h3>Worklist Refresh</h3>
+<p>The User Worklist is a dynamic finder and can be changed often for the following reasons: </p>
+<ul>
+  <li>Tasks are created and assigned</li>
+  <li>Some tasks are taken by other users resulting in new taken tasks</li>
+  <li>New alerts are generated</li>
+  </ul>
+<p>As a result, the User Worklist must be systematically refreshed, either automatically or manually.</p>
+<H4>Automatic Refresh</H4>
+<p>By default, the User Worklist is set up to be refreshed automatically every five minutes. You can configure this value in the Configuration application. From the <strong>System</strong> &gt; <strong>System Parameters</strong> page, under the Framework Parameters section, change the value for the <strong>Worklist Poll Time</strong> parameter. </p>
+<p>The worklist refresh time can also be set up in the metadata by going to your Worklist finder User Interface and setting the <strong>Timer Duration</strong>. This way, if you have multiple worklist finders, they can all be set up to refresh at different time intervals. Metadata’s timer trumps the Configuration application's <strong>Worklist Poll Time</strong> value (that is, if <strong>Timer Duration</strong> is specified, the <strong>Worklist Poll Time</strong> value is ignored.</p>
+<p>Once worklist is refreshed, any status message displaying from previous worklist actions is removed. Task selection is preserved if and only if selection consists of a single task. Selection of multiple tasks is lost.</p>
+<H4>Manual Refresh</H4>
+<p>To manually refresh worklist, click the menu <strong>Task (<em>Number</em>)</strong> from the top right  menu bar. The User Worklist reloads  and displays the up-to-date list of tasks.</p>
+Some user actions, such as delegating the task and returning to queue, are set up to fully refresh the current worklist. When user changes his own worklist, most changes are instantly reflected.<BR></td>
+</tr>
+</table>
+</body>
+</html>

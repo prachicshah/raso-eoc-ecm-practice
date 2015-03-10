@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>JConsole - Diagnose Problematic Scripts Using Set Max Execution Time</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Diagnose Problematic Scripts Using Set Max Execution Time</h1>
+<p>If you find that your application is performing slowly and suspect that the slow performance is due to running scripts, you can set the maximum execution time for a script in JConsole to diagnose it.</p>
+<p>To set the maximum execution time for a global script, follow these steps:</p>
+<ol>
+  <li>Get the thread dump (for example, by using a tool such as JConsole or jmap). Proceed to find the stack trace, such as in the following example:<br>
+    <br>
+    <img src="JConsole max script execution stack trace.png" alt="Stack trace" width="802" height="343" border="1"><br>
+    <br>
+    This stack trace indicates that the test.TestUI.Test script is either blocked or  running slowly.<br>
+<br>
+    </li>
+  <li>Using JConsole, enable the <strong>Max Execution Time (minutes)</strong> for the test.TestUI.Test <strong>Script</strong>.<br>
+    <br>
+    <img src="JConsole max script execution set value.png" alt="Set value for max script execution time" width="851" height="312" border="1"><br>
+    <br>
+    <strong>Note:</strong> The <strong>Script</strong> name is the fully qualified name (for example, test.TestUI.Test).<br>
+    <br>
+  </li>
+  <li>After  enabling, soon you would get following exception in the log file:
+    <BR>
+    <div class="code">
+      <div class="codeContent">
+        <pre class="code-java">Caused by: java.lang.Error: Script test.TestUI.Test took more than 2 minutes to execute.</pre>
+      </div>
+    </div>
+    <p>From these steps, it is clear that test.TestUI.Test script is taking too long to finish and further investigation is required.</p>
+<br>
+  </li>
+</ol></td>
+</tr>
+</table>
+</body>
+</html>

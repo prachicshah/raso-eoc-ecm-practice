@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Import XSD</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3></a>Import XSD</h3>
+
+<p>You can import a <i>XML Schema Definition</i> (XSD) file as a resource of the Project using the <b>File &gt; Import &gt; XSD</b> menu command.</p>
+
+<p>Upon invoking the menu command, the <b>Import XSD</b> dialog displays. Select a XSD file to import.</p>
+<p><strong>Note:</strong> Axis2, SOAP encoding, and complex data types are unsupported.</p>
+
+<img src="importXSD.png" alt="Import XSD" border="0" />
+
+<p>Once imported, the XSD file is stored in the <b>schema</b> subfolder of <b>resources</b> folder in project directory. In Velocity Studio, the <b>Resource</b> tab of <b>Navigation Pane</b> is displayed upon successful import.</p>
+
+<p>If the XSD schema in the selected file refers to other files using import statements, the other files will also be imported.</p>
+
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>Importing the XSD file as a resource does not immediately generate application metadata based on the XSD. You can generate Data Types and Data Structures for your application metadata based on the XSD file, by using the <b>Convert to datastructures</b> right-click pop-up menu command on the resource file. See <a href="..\Service_Designer_User_Interface\Navigation Pane - Resource.html#XSD">Navigation Pane - Resource</a> for details.</li>
+  <li>When importing anonymous data types, they are placed in the parent namespace.</li>
+  <li>Name conflicts due to case-insensitive matches in top-level objects are automatically resolved so that all schema objects are imported.</li>
+</ul>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

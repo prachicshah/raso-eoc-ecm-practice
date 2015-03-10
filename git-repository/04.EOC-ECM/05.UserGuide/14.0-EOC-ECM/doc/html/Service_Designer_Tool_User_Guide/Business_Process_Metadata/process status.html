@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>Process Status</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Process Status</h2>
+<p>Every process instance maintains a process status that can have one of the following values:</p>
+<ul>
+<li><em>Executing (1)</em>: The process is running (executing).</li>
+<li><em>Suspended (2)</em>: The process is suspended. Only user processes can be suspended. Processes can be suspended and restarted through the <a href="../../System_Administration_Application_User_Guide/Manage/memory processes.html">System Administration application</a>.</li>
+<li><em>Completed (3)</em>: The process has completed executing successfully.</li>
+<li><em>Aborted (4)</em>: The process is aborted. The process receives an aborted status when the Process Manager framework detects a failure in the Process Engine that executes this process. Aborted processes will return to executing status once restarted.</li>
+<li><em>Error (5)</em>: The process is in error. The process receives an error status when an error occurs during process activity execution (such as a JavaScript error or a database error). The Process Engine will stop executing a process that receives an error status. Such processes can be restarted (after the problem is corrected) through the <a href="../../System_Administration_Application_User_Guide/Manage/memory processes.html">System Administration application</a>.</li>
+<li><em>Terminated (6)</em>: The process is terminated. The process receives a terminated status when a terminate request is sent to the process from the <a href="../../System_Administration_Application_User_Guide/Manage/memory processes.html">System Administration application</a> or from migration record. The process will stop immediately. Terminated processes cannot be resumed.</li>
+<li><em>Cancelled (7)</em>: The process starts a subprocess in   synchronous mode, with the subprocess activity having the <strong>synchronization</strong> checkbox selected. 
+  The process waits in this activity for the child process to complete. If the child process throws an exception, but   does not have a handler to process this exception, it goes into Cancelled status   and does not run other activities. The exception is then sent to the parent process.</li>
+</ul>
+</td>
+</tr>
+</table>
+</body>
+</html>

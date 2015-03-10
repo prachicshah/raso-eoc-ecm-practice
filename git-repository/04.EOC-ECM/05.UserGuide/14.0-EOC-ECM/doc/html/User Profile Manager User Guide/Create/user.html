@@ -1,0 +1,117 @@
+﻿<html>
+<head>
+<title>Create a User</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Create a User</h2>
+<p> To create a new user, perform these steps:</p>
+<ol>
+  <li>From the menu bar, click <strong>Create</strong> &gt; <strong>User</strong> to launch the New Group page.<br>
+    <br>
+    <img src="newUser.png" alt="New User dialog" border="1">  <br>
+    <br>
+  </li>
+  <li>Complete the following fields:<br>
+    <br>
+    <table width="965" class='confluenceTable' border cellpadding="1">
+      <tbody>
+        <tr>
+          <th width="139" class='confluenceTh'>Field</th>
+          <th width="814" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>User ID</strong></td>
+          <td class='confluenceTd'><p>Enter a username. This field is mandatory. Field restrictions are dependent on the security profile provider being used.</p>
+            <p>The default security provider is an internal one, which states that this field<b> </b>cannot start with a number, although numbers are permitted after the first character, and cannot contain spaces. Once you have created this user, this field cannot be changed.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Name</strong></td>
+          <td class='confluenceTd'>Enter the name of the user. This field is mandatory.</td>
+        </tr>
+        <tr>
+          <td height="28" class='confluenceTd'><strong>Email</strong></td>
+          <td class='confluenceTd'>Enter the user's e-mail address in this field.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Active</strong></td>
+          <td class='confluenceTd'>By default, the new user is active in the system. Uncheck this field if you want your user to be inactive.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Available</strong></td>
+          <td class='confluenceTd'>By default, this field is selected and is not editable. It represents whether the user is available for task assignment.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Minimum Effort</strong></td>
+          <td class='confluenceTd'><p>This field indicates the minimum sum of all task efforts. This field is mandatory. </p>
+            <p>When the value of the <strong>Current Efforts</strong> number is less than the value in this field, the system tries to assign the next task to the user. By&#160;default, this field has a value of <strong>3</strong>. This field's value must be numerical.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Maximum Effort</strong></td>
+          <td class='confluenceTd'><p>This field denotes the maximum sum of all task efforts that can be assigned to the user by system distribution. This field is mandatory.</p>
+            <p>By default, this field has a value of <strong>10</strong>.This field's value must be  numerical.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Org Chart Position</strong></td>
+          <td class='confluenceTd'>Click the <strong>Finder</strong> icon next to this field to launch the Organizational Chart menu and identify the user's position within the organization.</td>
+        </tr>
+      </tbody>
+    </table>
+<br>
+  </li>
+  <li>Click the<strong> Save</strong> button to create your new user. A confirmation message appears under the menu bar, indicating that your user has been successfully saved.<br>
+    <br>
+    <img src="newUserSave.png" alt="Create a new user - Save button" border="1"><br>
+    <br>
+  </li>
+  <li>To create another user, click the <strong>New</strong> button. Otherwise, you can configure your new user using the <a href="#groups">Groups</a> tab, or at a later time by clicking <strong>Manage</strong> &gt; <strong>Users</strong> from the menu bar.</li>
+  </ol>
+<p><b>Notes:</b></p>
+<ul>
+  <li>The default values of user general properties can be changed by overriding the User Profile document and initialization rules for the appropriate fields.</li>
+  <li>Refer to the <i>Velocity Studio User Guide > User Participant Tasks Distribution > User Participant </i>section for more details on how the <b>Minimum Effort</b> and <b>Maximum Effort</b> &#160;numbers are used by the system.</li>
+</ul>
+<h3><a name="groups"></a>Groups Tab</h3>
+<p>The <b>Groups</b> tab shows a list of groups to which the user belongs.</p>
+<p>You can perform the following actions from the Users tab:</p>
+<ul>
+  <li><a href="#addGroupToUser">Add a group to a user</a></li>
+  <li><a href="#removeGroupFromUser">Remove a group from a user</a></li>
+</ul>
+<h4><a name="addGroupToUser"></a>Add a Group to a User</h4>
+<p>To add a group  to a user, complete these steps:</p>
+<ol>
+  <li>Click the <strong>Groups</strong> tab, and then click the <strong>Add</strong> button to launch the Search Group dialog.<br>
+    <br>
+    <img src="newUserGroupsAdd.png" alt="Groups tab - click the Add button" border="1">  <br>
+    <br>
+  </li>
+  <li>Select the checkbox next to the <strong>Group Name</strong> that you want to add to the user, and then click the <strong>Select</strong> button.<br>
+    <br>
+    <strong>Note:</strong> Groups must be previously created  to be shown in the Search Group dialog.&#160;<br>
+    <br>
+    <img src="newUserGroupsSelect.png" alt="Groups tab - select a group to add" border="1">  <br>
+    <br>
+  </li>
+  <li>The Groups page appears. Your selected group has been added to your user.<br>
+    <br>
+    <img src="newUserGroupsAdded.png" alt="Groups tab - user has been added to the group" border="1"></li>
+</ol>
+<h4><a name="removeGroupFromUser"></a>Remove a Group from a User</h4>
+<p>To remove a group from a user, complete these steps:</p>
+<ol>
+  <li>From the Groups tab, select the checkbox next to the <strong>Group Name</strong> that you want to remove from the user, and then click the <strong>Remove</strong> button.<br>
+    <br>
+    <img src="newUserGroupsRemove.png" alt="Groups tab - remove group from the user" border="1">  <br>
+    <br>
+  </li>
+  <li>The Groups tab refreshes and a confirmation message appears, indicating that the group has been successfully removed from the user.</li>
+  </ol>
+<h4>&nbsp;</h4>
+</body>
+</html>

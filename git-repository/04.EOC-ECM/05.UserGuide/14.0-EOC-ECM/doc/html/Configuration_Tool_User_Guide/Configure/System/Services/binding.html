@@ -1,0 +1,133 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Services - Binding</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Binding</h2>
+
+<p>Clicking  <strong>Services</strong> &gt; <strong>Binding</strong> displays the bindings that link <span class="confluenceTd">service ports, service providers, and interfaces together</span>. This tab includes a <strong>binding-operation tree</strong> on the left. Clicking a binding shows its details pane on the right. Similarly, clicking an operation shows its details pane on the right. </p>
+<p><img src="binding.png" alt="Services - Binding tab" border="1"></p> 
+<p>The left pane shows a list of nodes (external services). You can specify how the node label appears by clicking the <strong>Show Node Label</strong> drop-down field. See the Service's <a href="servicesShowNodeLabel.html">Show the node label</a> page, which works the same way for the Binding page.</p>
+<p>You can perform the following tasks from the Binding page:</p>
+<ul>
+  <li><a href="#viewBindingDetails">View binding details</a></li>
+  <li><a href="#viewBindingOperationDetails">View binding operation details</a></li>
+  <li><a href="#addNewPort">Add a new port</a></li>
+</ul>
+<h3><a name="viewBindingDetails"></a>View Binding Details</h3>
+<p>You can view a binding's details by selecting one from the left pane to view its details in the right pane.</p>
+<p><img src="bindingDetails.png" alt="Services - Binding tab - View binding details" border="1"></p>
+<p>The following fields appear when viewing a binding's details:</p>
+<table width="1030" class='confluenceTable' border cellpadding="1" >
+  <tbody>
+    <tr>
+      <th width="154" class='confluenceTh'>Field</th>
+      <th width="785" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Provider Type</strong></td>
+      <td class='confluenceTd'>This field denotes the provider type (for example, SOAP).</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Interface</strong></td>
+      <td class='confluenceTd'>This field contains the provider type's interface name.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Port</strong></td>
+      <td class='confluenceTd'><p>This field lists the provider's ports. If a port is associated with a binding, it appears in bolded text that is a hyperlink. Clicking the hyperlink switches your view to the Services tab and shows you the specific port's  details.</p>
+      <p>You can also <a href="servicesAddPort.html">create a new port</a> by clicking the <strong>New Port</strong> button, which launches the New Port dialog.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Encoding</strong></td>
+      <td class='confluenceTd'>This field specifies how message data is formatted when performing a request. This field is optional.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Style</strong></td>
+      <td class='confluenceTd'><p>This field allows you to specify whether  messages are RPC-oriented (data passed as parameters) or document-oriented (data passed as a XML document). This attribute can have one of the following values: </p>
+      <ul>
+        <li><strong>Document</strong></li>
+        <li><strong>RPC</strong></li>
+      </ul>
+      <p>The default value is <strong>Document</strong>.</p>
+      <p>The choice of style affects WSDL generation and formation of the SOAP message's BODY element in both SOAP requests and responses:</p>
+      <ul>
+        <li> Use<strong> Document</strong> when operation messages are defined as elements and you want full control in the metadata on constructing the SOAP message's BODY contents.</li>
+        <li>Use<strong> RPC</strong> when operation messages are defined as types. </li>
+      </ul></td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="viewBindingOperationDetails"></a>View Binding Operation Details</h3>
+<p>You can view a binding operation's details by selecting one from the left pane to view its details in the right pane.</p>
+<p><img src="bindingOperationDetails.png" alt="Services - Binding tab - View binding operation details" border="1"></p>
+<p>The following checkbox field appears when viewing the binding operation's details:</p>
+<table width="1030" class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="154" class='confluenceTh'>Field</th>
+      <th width="785" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Log Messages</strong></td>
+      <td class='confluenceTd'><p>By default, this field is unchecked. If you select this checkbox, the messages that are exchanged with this operation are automatically logged in the runtime database.</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>The following fields appear under the Input, Output, and Fault sections, which may differ depending on the service provider that you are using. This example shows field for the SOAP service provider:</p>
+<table width="1030" class='confluenceTable' border cellpadding="1" >
+  <tbody>
+    <tr>
+      <th width="154" class='confluenceTh'>Field</th>
+      <th width="785" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Parts</strong></td>
+      <td class='confluenceTd'>This field accepts either a single string value or multiple values separated with by semicolons (;). If specified, each value in the string is considered a child tag name of the <em>input</em> data structure. As a result, it is extracted from the <em>input</em> data structure and as part of the SOAP body element in the SOAP request. If you leave this field, the entire input data structure is  used in the SOAP body.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Header</strong></td>
+      <td class='confluenceTd'>This field specifies what information to set as the header of the SOAP request. This field accepts a string value containing the header name and part, separated by a semicolon (for example, <em>hname;hpart</em>).
+        <ul>
+          <li>If <em>hname</em> equals the data structure name used as the input message, the input data structure is taken as the base object for the header. Otherwise, the passed-in header parameter (that is, when calling invokeInterface()) is used.</li>
+          <li>The <em>hpart</em> value works similarly to the <strong>Parts</strong> setting. The product attempts to find the child node in the base object whose name equals <em>hpart</em> and this child node is set in the SOAP header.</li>
+        </ul></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Use</strong></td>
+      <td class='confluenceTd'><p>This field specifies the message's encoding rules. This field can have the value of <em>literal</em> (mainly for document-style messages).</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Namespace</strong></td>
+      <td class='confluenceTd'>This field contains the name to use for encoding. This field is optional.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Timeout</strong></td>
+      <td class='confluenceTd'><p>This field denotes the length of time before the operation times out. This field's value is in seconds.</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>The following field appears in the Ping section:</p>
+<table width="1030" class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="154" class='confluenceTh'>Field</th>
+      <th width="785" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Ping Message</strong></td>
+      <td class='confluenceTd'><p>This field allows you to specify   your ping message in XML format.</p></td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="addNewPort"></a>Add a New Port</h3>
+<p>New ports can be created dynamically from the Services and Binding tabs. The newly created ports in the System Configuration application can share the port and   binding settings from another port by using the port reference. You do not have   to set the JMS or MQ connectivity, and queue settings multiple times.  From the Binding tab, click the node in which you want to add a port, and then click the <STRONG>New Port</STRONG> button.</p>
+<p> <img src="bindingNewPortButton.png" alt="Services tab - New Port button" border="1"></p>
+ <p>Refer to <a href="servicesAddPort.html">Add a new port</a> for more detailed information. You can view the details of  new port on the binding tab. For example, <em>CatalogBasketCondition</em> is a dynamic port associated with the <em>CatalogBasketSOAP </em>port and SOAP as the service provider. </p>
+<p><img src="bindingSOAPports.png" alt="Services tab - SOAP Port Details page - Retry Policy" border="1"></p>
+</body>
+</html>

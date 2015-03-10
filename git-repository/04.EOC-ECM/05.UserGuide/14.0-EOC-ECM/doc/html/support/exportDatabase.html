@@ -1,0 +1,28 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Export a Database</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Export Your Database</h1>
+<p>The support team may need to duplicate the problem you are experiencing by using a copy of your database. To export your database, you can use either Oracle's <strong>exp</strong> command (for Oracle 10g and earlier versions) or <strong>expdp</strong> (for Oracle 10g and higher).</p>
+<p><strong>Note:</strong> You can only use the expdp command if you are using Oracle 11g. The exp command has been deprecated.</p>
+<p>Examples of exporting a database with some parameters for the exp and expdp commands are as follows:</p>
+<div class="code"><div class="codeContent">
+<pre class="code-java">exp system/password@mydb file=c:\exportdmp\exp_full_30Nov11.dmp full=y log=c:\exportdmp\30Nov11.log<br>
+expdp system/password directory=dir1 dumpfile=exp_dbase_30Nov11.dmp content=metadata_only</pre>
+</div></div>
+<p>The exp and expdp command files appear in your $ORACLE_HOME/bin directory. You  can run them interactively, using command line   parameters, or by using parameter files. These parameters can be listed by running <tt>exp help=yes</tt> or <tt>expdp help=yes</tt> from the command line.</p>
+<p>For more information about the exp and expdp commands, consult Oracle's user documentation for your specific version.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

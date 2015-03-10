@@ -1,0 +1,345 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Gantt Chart</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Gantt Chart</h2>
+
+<p>A Gantt chart is  a type of bar chart that shows a project schedule, including the start and finish dates of each task belonging to a project. The Gantt Chart element enables you to configure the overall look and feel of the chart  display at runtime.  The Gantt Chart exists under a finder user interface, relying on its result variable of type document array. Each document in the array represents a new task in the Gantt chart. </p>
+
+<img src="UIganttChart.png" alt="Gantt chart element in user interface" border="1">
+
+<p>Velocity Studio contains the GanttDocument system variable, which  includes seven variables that form a template structure for your Gantt chart. The following table shows the required columns that comprise your document:</p>
+<table class='confluenceTable' border cellpadding=1>
+  <tr>
+    <th align="left" scope="col" class='referenceTh'>Name</th>
+    <th align="left" scope="col" class='referenceTh'>Description</th>
+    <th align="left" scope="col" class='referenceTh'>Nullable?</th>
+    <th align="left" scope="col" class='referenceTh'>Unique?</th>
+  </tr>
+  <tr>
+    <td align="left">processName</td>
+    <td align="left">The name of the process displayed in the Gantt chart.</td>
+    <td align="left">No </td>
+    <td align="left">Yes</td>
+  </tr>
+  <tr>
+    <td align="left">taskName</td>
+    <td align="left">The name or label of each task in the chart.</td>
+    <td align="left">No</td>
+    <td align="left">Yes</td>
+  </tr>
+  <tr>
+    <td align="left">startDate</td>
+    <td align="left">The start date of the task</td>
+    <td align="left">No</td>
+    <td align="left">No</td>
+  </tr>
+  <tr>
+    <td align="left">endDate</td>
+    <td align="left">The end date of the task</td>
+    <td align="left">No </td>
+    <td align="left">No</td>
+  </tr>
+  <tr>
+    <td align="left">percentComplete</td>
+    <td align="left">The completion percentage of the task</td>
+    <td align="left">Yes</td>
+    <td align="left">No</td>
+  </tr>
+  <tr>
+    <td align="left">connectToTask</td>
+    <td align="left">Another task to draw a line starting from this task</td>
+    <td align="left">Yes </td>
+    <td align="left">No</td>
+  </tr>
+  <tr>
+    <td align="left">taskColorFill</td>
+    <td align="left">The colour to fill the completed part of the task</td>
+    <td align="left">Yes</td>
+    <td align="left">No</td>
+  </tr>
+</table>
+<p>The following is an example of a Gantt chart at runtime:</p>
+
+<span class="confluenceTd"><img src="gantt_chart_example.png" align="absmiddle" border="1" alt="Gantt chart example" /></span>
+
+<h3>Display Multiple Charts at Runtime</h3>
+<p>You can display multiple charts in a Form by creating multiple  Form Frame Form elements and then referring the variable of each element to the Finder User Interface  Chart Form that contains the chart that you want to display. Refer to <a href="Element - Chart.htm#DisplayMultipleChartsRuntime">Displaying multiple charts at runtime</a> for details. </p>
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th width="163" class='referenceTh'>references Variable</th>
+<td width="52" class='referenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form</th>
+<td class='referenceTd'>No</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+<p>The following are the properties for the Gantt chart element:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+  <th width="143" class='referenceTh'>Property</th>
+  <th width="144" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+  <th width="1332" class='referenceTh'>Comment</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Name</b></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>The Gantt chart name.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Variable</b></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>Finder result form for the Gantt chart. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Caption</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The title (label) of the Gantt chart.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Click Method</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>When you specify this property, chart elements are  clickable. Clicking these elements invokes the method.  The method  receives two parameters:</p>
+    <ul>
+      <li>The data object that the chart node represents</li>
+      <li>The variable name, if applicable, that the chart node represents</li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Connector Thickness (max 10)</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>The line thickness that connects two tasks in the Gantt chart. The higher the number, the thicker the connection line is between tasks. This property's default value is 2.</p>
+    <p><strong>Note:</strong> If you enter a number that exceeds 10, the Velocity Studio automatically overrides this value and sets this field to 10. </p>
+    <p>See the <a href="#SetUpConnectors">Set Up Connectors</a> section for details.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Date Format</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The date format used in the Gantt chart. The default format is <em>mm/dd/yyyy</em>. Click the drop-down menu in the <strong>Value</strong> field to change the date format.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Dynamic Height</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property allows you to dynamically assign a variable or a script to the <strong>Dynamic Height</strong> property.  For a variable, the data type must be  either an integer or string. For the script, only the script action can be used and its return  type must be defined as either integer or string.</p>
+    <p> At runtime, by default, the regular  width and height are used. However, if <strong>Dynamic Width</strong> and <strong>Dynamic Height</strong> are defined, they replace the regular width and height, and the values are calculated based on either the variable or script.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Dynamic Width</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property allows you to dynamically assign a variable or a script to the <strong>Dynamic Width</strong> property.  For a variable, the data type must be  either an integer or string. For the script, only the script action can be used and its return  type must be defined as either integer or string.</p>
+    <p> At runtime, by default, the regular  width and height are used. However, if <strong>Dynamic Width</strong> and <strong>Dynamic Height</strong> are defined, they replace the regular width and height, and the values are calculated based on either the variable or script.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Dynamic Pane Duration Unit</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This  dynamic property can be set to a method  returning either a String or a String type variable, which allows you to set this property from runtime. This property gets translated into the ganttPaneDurationUnit property, which takes the following values:</p>
+    <table width="227" border cellpadding=1 class='confluenceTable'>
+      <tbody>
+        <th width="76" class='referenceTh'><strong>Code</strong></th>
+        <th width="200" class='referenceTh'><strong>Description</strong></th>
+            <tr>
+              <td class='confluenceTd'>y</td>
+              <td class='confluenceTd'>Year</td>
+            </tr>
+      <tr>
+        <td class='confluenceTd'>m</td>
+        <td class='confluenceTd'>Month</td>
+      <tr>
+        <td class='confluenceTd'>d</td>
+        <td class='confluenceTd'>Day</td>
+      <tr>
+        <td class='confluenceTd'>h</td>
+        <td class='confluenceTd'>Hour</td>
+      <tr>
+        <td class='confluenceTd'>mn</td>
+        <td class='confluenceTd'>Minute</td>
+      <tr>
+        <td class='confluenceTd'>s</td>
+        <td class='confluenceTd'>Second</td>
+      </table>
+    <p>These values must be used as the code table.</p>
+    <p>The following is an example of using this property:</p>
+    <ol>
+      <li>Create a data type that extends String. As the Enumeration,  create the aforementioned code table.</li>
+      <li>In the UserInterface, create a variable with this data  type. </li>
+      <li>Override the Menu form.</li>
+      <li>Add a Select Field element and assign the  newly created variable. </li>
+      <li>Set the <strong>Run Trigger</strong> property to <strong>showChart</strong>. </li>
+      <li>Go to the Gantt chart Form and set the <strong>Dynamic Pane Duration Unit</strong> property to the same variable.</li>
+    </ol></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Dynamic Suppress Dependencies</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>You can set this dynamic property  to either a Boolean or a  method returning a Boolean type. This property can be set during runtime. It   suppresses displaying dependencies connectors in the Gantt chart.</p>
+    <p>The following is an example of using this property:</p>
+    <ol>
+      <li>Create a Boolean type variable in the UserInterface. </li>
+      <li>Override the Menu form.</li>
+      <li>Add a Checkbox element and assign the newly created  variable. </li>
+      <li>Set the <strong>Run Trigger</strong> property to <strong>showChart</strong>. </li>
+      <li>Go to the Gantt chart Form and set the <strong>Dynamic Suppress Dependencies</strong> property to the same variable. </li>
+    </ol></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Gantt Width Percent</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This static property gets translated as  ganttWidthPercent, which can be set as a percentage between 0 and 100. The Gantt chart  consists of two parts:</p>
+    <ul>
+      <li>The Gantt chart</li>
+      <li>The data table, including the process  name</li>
+      </ul>
+    <p> This attribute allows you to set the width of the Gantt part, in percentage,  with respect to the entire chart. If the Gantt takes less space, the grid   automatically gets more space for the process part. As a result, it is inversely allowing  you to control the area width for process names.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Height</b></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'><p>The height of the Gantt chart. Click the <strong>Value</strong> field, and then select whether you want the height represented in pixels or a percentage using the drop-down menu.</p>
+  <p><strong>Note:</strong> Although the Height property does not have a maximum limit, specifying a large pixel or percentage in this field may show a black screen during runtime. As a result, it is recommended that you select an appropriate height value for your Gantt chart.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Palette Color</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The base colour for the entire Gantt chart. Based on the colour specified for this property, the Gantt chart's border colours, font colours, connector colours, and more are automatically changed. Click the <strong>Ellipsis</strong> button in the <strong>Value</strong> field and select a colour from the palette provided. To remove an existing colour selection, click the <strong>Delete</strong> button. See the <em>Notes</em> section for additional details about palettes.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Pane Duration</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This field specifies how many of the duration units specified in the <strong>Pane Duration Unit</strong> field to show in the Gantt chart's main screen without having to scroll. For example, if you specify a duration of one month, the Gantt chart only shows the first month and scrolls the rest. By default, this field contains the value of 1 year. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Pane Duration Unit</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>Click this field's drop-down menu allows you to specify the following duration units:</p>
+    <ul>
+      <li><strong>Year</strong></li>
+      <li><strong>Month</strong></li>
+      <li><strong>Day</strong></li>
+      <li><strong>Hour</strong></li>
+      <li><strong>Minute</strong></li>
+      <li><strong>Second </strong></li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Process Font Style</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>The font style used for process names (labels). Click the <strong>Ellipsis</strong> button and select from the following font styles:</p>
+    <ul>
+      <li><strong>Font</strong> family (for example, Arial, Verdana, and so on)</li>
+      <li><strong>Colour</strong> (click the <strong>Ellipsis</strong> button to select a colour from the palette)</li>
+      <li><strong>Size</strong> in pixels</li>
+      <li><strong>Bold</strong>, <strong>Italic</strong>, and <strong>Underline</strong> styles (click the drop-down menu for each option to select <strong>Yes</strong>; the default value for each option is <strong>No</strong>).</li>
+      </ul>
+    <p>Click the <strong>Save</strong> button to save your font settings.</p></td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><strong>Process Header Label</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The process header title (label) that appears above the process names.</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><b>Show Percent Label</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Select this checkbox to display the percentComplete value for each task in the Gantt chart. </td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><b>Show Slack As Fill</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Select this checkbox to show the percentage of work that has  not yet been completed for each task in the Gantt chart.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Show Task End Date</b></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Select this checkbox to display the end date of each task in the Gantt chart.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Show Task Name</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Select this checkbox to show the name of each task in the Gantt chart.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Show Task Start Date</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Select this checkbox to display the start date of each task in the Gantt chart.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Show Validation</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This boolean property has values of either <em>True</em> or <em>False</em>, which  determines whether a validation warning message displays at runtime. By default, this property is unchecked, meaning that validation errors do not appear under the chart at runtime and supports backward compatibility. Otherwise, selecting this property allows validation errors to appear under the chart at runtime.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Slack Fill Color</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>If provided, the percentage provided as the percentCompleted value is displayed with the specified fill colour.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Visible</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><span class="referenceTd">This field defines the user permissions assigned to this layout. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a>, such as addPerm, attachPerm, deletePerm, editablePerm, and visiblePerm can be assigned as well as Object Permissions. This field defaults to NONE, which means that no permissions are assigned.</span></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Width</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The width of the chart. Click the <strong>Value</strong> field, and then select whether you want the width represented in pixels or a percentage using the drop-down menu.</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3><a name="SetUpConnectors"></a>Set Up Connectors</h3>
+<p>Gantt charts can be set up to have connections between tasks. These  connections are data-driven and can be set by providing a value for  the connectToTask variable. You must ensure that a task with the exact name exists in the  chart; otherwise, the connector will not show. If the proper data is provided,  the connector will be displayed from the end of the current task to the  beginning of the specified task. The following is an example of task connectors within a Gantt chart:</p>
+<p><img src="gantt_chart_connector_example.png" alt="Task connectors within a Gantt chart" border="1"></p>
+<p>The thickness of each connector can be set using the Gantt chart's <strong>Connector Thickness</strong> property.</p>
+<p><strong>Note:</strong> Connectors can also be set up from the first task to any other task within the chart, meaning that they are not limited to one task jump.</p>
+<h3>Notes:</h3>
+<ul>
+  <li>The font style of process labels can be changed using the Gantt chart's <strong>Process Font Style</strong> property, as shown in these examples:<br>
+    <br>
+    <img src="gantt_chart_task_colours.png" width="483" height="304" alt="Process labels - font style change "> <img src="gantt_chart_task_choose_colour.png" alt="Choose a colour for process labels"><br>
+    <br>
+  </li>
+  <li>Each Gantt chart can have its base colour  customized using the <strong>Palette Color</strong> property. Based on <span class="confluenceTd">the colour specified for this property, the Gantt chart's border colours, font colours, connector colours, and more are automatically changed.</span><br>
+    <br>
+    This example shows the Gantt chart using a base palette with modified task colour fills:
+  <br>
+    <br>
+    <img src="gantt_chart_task_colour_fills.png" alt="Gantt chart using a base palette with modified task colour fills"><br>
+    <br>
+    This example shows the Gantt chart with a modified palette:<br>
+    <br>
+    <img src="gantt_chart_changed_palette.png" alt="Gantt chart with changed base palette"><br>
+    <br>
+  </li>
+</ul>
+<ul>
+  <li>To view charts, Adobe Flash Player 8.0 or higher must be installed for the Firefox browser. Adobe Flash Player 8.0 or higher as an Active X object must be installed for Internet Explorer. Adobe Flash Player can be downloaded from Adobe's Web site at <a href="http://get.adobe.com/flashplayer/" target="_blank">www.adobe.com</a>. </li>
+  <li>To view JavaScript-based charts, FusionCharts  automatically renders them on computers that do not  have a Flash player installed. The only client-side requirement is a  browser that supports JavaScript.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

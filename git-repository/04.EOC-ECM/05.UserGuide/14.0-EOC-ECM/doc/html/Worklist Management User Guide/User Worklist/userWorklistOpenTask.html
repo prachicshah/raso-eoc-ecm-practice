@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Open Task</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h3>Open Task</h3>
+<p id="internal-source-marker_0." >To access the Task Details user interface, select the checkbox next to a single task, and then click the <strong>Open</strong> button. </p>
+<p>The Task Details page appears, which provides a single-task view made up of three parts: </p>
+<ul>
+  <li>The <a href="#taskSummary">task summary</a>, which is the top pane</li>
+  <li>The <a href="#taskMenu">task menu</a>, which consists of actions available on the current task</li>
+  <li>The <a href="#taskUserInterface">task user interface</a>, which is the bottom pane</li>
+  </ul>
+<p><img src="UserWorklistMyTasksOpenTaskUserInterface.png" alt="Open Task - Task Details user interface" border="1"></p>
+<p><a name="taskSummary"></a><strong>Task Summary</strong></p>
+<p>The task summary is a short version of a Task Detail form (see <a href="userWorklistTaskDetails.html">Task Details</a>). The task summary section displays four noteworthy task fields:  </p>
+<ul>
+  <li>Task</li>
+  <li>Priority</li>
+  <li>Start Date</li>
+  <li>Due Date<br>
+    <br>
+  </li>
+</ul>
+<a name="taskMenu"></a><strong>Task Menu</strong>
+<p>The task menu provides set of actions and functionalities available on the current tasks. This set of functionalities and actions is similar to the User Worklist menu with some minor changes. The main difference is that local task actions apply to the current task only, while User Worklist actions work on all selected tasks.</p>
+<p>The task menu contains the following set of actions and functionalities:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Action</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Start Work</strong></strong></td>
+      <td class='confluenceTd'><p>This option is visible if the current task has not been started. See <a href="userWorklistWorkWithTasks.html#startWork">Start Work</a> for details. </p>
+        <p>Once task is started, the Start Work option disappears and the <strong>Start Date</strong> field is updated to display the new date and time.<BR>
+        </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Acknowledge</strong></td>
+      <td class='confluenceTd'><p>This option is  visible if the current task is either a taen task or an alert. See <a href="userWorklistWorkWithTasks.html#acknowledge">Acknowledge</a> for details. </p>
+        <p>Once acknowledged, the task is removed from the worklist, and the task view is refreshed to display the task summary only. Neither the task menu, nor the task user interface is applicable to the acknowledged task. Once the user navigates back to the User Worklist or to another task using the <strong>Previous</strong> or <strong>Next</strong> navigation buttons, the acknowledged task is no longer accessible.<BR>
+        </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Delegate</strong></td>
+      <td class='confluenceTd'><p>See <a href="userWorklistWorkWithTasks.html#delegate">Delegate</a> for details. Once delegated, the task is removed from the worklist and and the current task view is refreshed to display the task summary only. Once the user navigates away from the removed task’s view, it is no longer accessible.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Return</strong></td>
+      <td class='confluenceTd'><p>The <strong>Return</strong> option is visible to users having the Return Task privilege in User Profile Management. This option allows the user to unassign his tasks (that is, return them to the available task queue).By default, a confirmation dialog appears, prompting the user to accept unassigning the selected worklist tasks.</p>
+        <p>See <a href="userWorklistWorkWithTasks.html#return">Return</a> for details. Once the task is returned, it is removed from the worklist and current task view is refreshed to display the task summary only. Once the user navigates away from the removed task’s view, it is no longer accessible.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Actions</strong></td>
+      <td class='confluenceTd'><p>Task actions display if the  task is a regular started task. The action displays only if it applies to the current task. See <a href="userWorklistTaskActions.html">Task Actions</a> for details. </p>
+        <p>Once an action is completed, it can either close the task or leave it open, based on the action’s <strong>Keep Open</strong> flag. If the task is closed, it is removed from the worklist and the current task view is refreshed to display the task summary only. Once the user navigates away from the removed task’s view, it is no longer accessible. Otherwise, task remains open and task view remains unchanged. User continues working on this task.</p></td>
+    </tr>
+  </tbody>
+</table>
+<a name="taskUserInterface"></a><strong>Task User Interface</strong>
+<p>The worklist task’s user interface comes from the task’s Participant user interface. As a result, all tasks belonging to the same participant share same user interface.</p>
+<p>By default, regular tasks and alerts display the order associated with the task. If the task is also associated with an order item, the order selection is set on this item. When a task does not have an order, it displays the process document. If the task’s process does not have a document, the user interface is empty.</p>
+<p>Taken Task, by default, displays a form with two fields:</p>
+<ul>
+  <li><strong>Taken By</strong></li>
+  <li><strong>Reason</strong></li>
+</ul>
+<BR></td>
+</tr>
+</table>
+</body>
+</html>

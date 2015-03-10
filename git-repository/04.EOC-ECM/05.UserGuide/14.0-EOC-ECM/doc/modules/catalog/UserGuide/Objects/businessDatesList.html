@@ -1,0 +1,140 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Support for Multiple Business Dates</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h3>Support for Multiple Business Dates</h3>
+<p>Business dates allow you to handle a number of business scenarios that are not handled by the <strong>Start Date</strong> and <strong>End Date</strong> fields. In the past, with these two fields, only two dates could be applied to an item or an association. As a result, you can handle multiple sets of dates with business dates.</p>
+<p>The following scenario shows how multiple dates can be used. A product manager defines an offer in the catalog with the following details:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="141" class='confluenceTh'>Field</th>
+      <th width="630" class='confluenceTh'>Description</th>
+      <th width="394" class='confluenceTh'>How Date Affects APIs</th>
+      <th width="459" class='confluenceTh'>Default Value after Creating First Version of Availability Dates Association</th>
+    </tr>
+    <tr>
+      <td height="26" class='confluenceTd'><p><strong>Start Date</strong></p>
+        <p>&nbsp;</p></td>
+      <td class='confluenceTd'>This field denotes a date controlling when to publish the item in the catalog. The item is not visible by anyone before this  date.</td>
+      <td class='confluenceTd'>
+        <li>This date continues           to drive versioning for catalog objects.</li>
+        <li>The enquiry API for an offer           before this date return the latest version for the offer.</li></td>
+      <td class='confluenceTd'>Not available.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>Advertising Start Date</strong></p></td>
+      <td class='confluenceTd'>This field references a date controlling the earliest  date that an item may be advertised.</td>
+      <td class='confluenceTd'><li>This date drives        the offer availability for browsing only.</li></td>
+      <td class='confluenceTd'>This field  defaults to the start date. You can also set this field to null, meaning that the offer cannot be sold, advertised, fulfilled, or serviced.</td>
+    </tr
+>
+    <tr>
+      <td class='confluenceTd'><p><strong>Start Selling Date</strong></p></td>
+      <td class='confluenceTd'>This field indicates a  date controlling the earliest  date that an item may be sold. The item is cannot be ordered before this  date. However, orders may be taken.</td>
+      <td class='confluenceTd'>
+        <li>This date drives           whether the offer can be added to the basket.</li>
+      
+<li>An offer cannot add to the basket before this date.</li></td>
+      <td class='confluenceTd'>This field  defaults to the start date. You can also set this field to null, meaning that the offer cannot be sold, advertised, fulfilled, or serviced.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>Start Fulfillment Date</strong></p></td>
+      <td class='confluenceTd'>This field indicates a date controlling the earliest  order fulfillment date for an item. This field denotes the earliest date for which orders may be  released into fulfillment.</td>
+      <td class='confluenceTd'>
+        <li>This date is not used by the Catalog runtime logic.</li>
+      
+However, the Catalog application provides a way for the other systems to access this date.</td>
+      <td class='confluenceTd'>This field  defaults to the start date. You can also set this field to null, meaning that the offer cannot be sold, advertised, fulfilled, or serviced.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>Start</strong><strong> Servicing Date</strong></p></td>
+      <td class='confluenceTd'><p>This field denotes  a  date controlling the earliest  requested due date for an item. The earliest indicates the due or installation date for  orders.</p></td>
+      <td class='confluenceTd'><li>This date is not used by the Catalog runtime logic.</li>
+However, the Catalog application provides a way for the other systems to access this date.</td>
+      <td class='confluenceTd'>This field  defaults to the start date. You can also set this field to null, meaning that the offer cannot be sold, advertised, fulfilled, or serviced.</td>
+    </tr
+>
+    <tr>
+      <td class='confluenceTd'><p><strong>Stop Selling Date</strong></p></td>
+      <td class='confluenceTd'>This field contains a date controlling when an item  is pulled from active sale. This field represents the last date for which orders are taken. </td>
+      <td class='confluenceTd'>
+        <li>This date also drives offer availability or browsing.</li>
+        <li>After this date, the offer is not available for browsing, which means that new orders           cannot be taken. However, the offer is valid           for existing customers.</li>
+<li>New orders cannot be taken for (new) customers. However, for an existing customer with a contract, it may be           possible to renew the contract for another 12 months.</li>
+      </td>
+      <td class='confluenceTd'>Not available.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Stop Servicing Date</strong></td>
+      <td class='confluenceTd'>This field denotes a date controlling when an item  is pulled from active service. This field contains the last date for which service is provided  using the item.</td>
+      <td class='confluenceTd'>
+        <li>This date controls when           an item is pulled from service.</li>
+        <li>This date denotes the last date for which           service is provided using the item.</li>
+        <li>The enquiry API gives a warning           message, as this service is in the end-of-service period. If an offer to           migrate is defined in the catalog for this offer, the API provides the           item code of that offer.</li>
+      </td>
+      <td class='confluenceTd'>This field defaults to the end date.</td>
+    </tr>
+  </table>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>For the <strong>End Date</strong> field, after this date, the           offer is no longer available in the catalog. Instead, the enquiry API provides the last offer version available,  with a warning message.  </li>
+  <li>The <strong>Stop Selling Date</strong> field defaults to the end date.</li>
+  <li>See the <a href="itemsAssociateBusinessDates.html">Associate a Business Date</a> page for information on associating business dates to an item.</li>
+</ul>
+
+<h4>Offer Life Cycle and Dates</h4>
+<p>The following timeline describes the scenario in which new offers need to be  advertised and pre-sold before they can be offered.</p>
+<p><img src="businessDatesOfferCycle.png" alt="Business dates - offer life cycle"></p>
+<p>The approach is as follows:</p>
+<ul type="disc">
+  <li>The new offer is available in the catalog       before February 1st, but it can neither be ordered, nor advertised. </li>
+  <li>The runQuery() Catalog API returns       offers with the advertising data &lt; today and the stop selling date &gt; today. </li>
+  </ul>
+<p>For validating dates on input, the following validations apply:</p>
+<ul type="disc">
+  <li>None of the dates are to the start date.</li>
+</ul>
+<ul>
+  <li>None of the dates are past the end date:</li>
+  <ul>
+    <li>Advertising Start Date &lt; = Start Selling Date</li>
+    <li>Start Selling Date &lt; Stop Selling Date</li>
+    <li>Stop Selling Date &lt; End of Service Date</li>
+    <li>Start Fulfillment Date &lt; Start Servicing Date &lt; Start Selling Date &lt; Stop Servicing Date  &lt; End Date</li>
+    
+      
+      
+        
+     
+  </ul>
+ 
+</ul>
+<p>Availability date change means that a product offering needs to have the following  information defined for its modelling to be complete:</p>
+<ul>
+  <li>Availability </li>
+  <li>Product  specification</li>
+  <li>Pricing </li>
+  <li>Billing  information</li>
+  <li>Provisioning</li>
+  <li>and so on</li>
+</ul>
+<p>However, this complete modelling may take some time to get defined, developed, tested, approved, and published. The business may want to start advertising  it or, in some case,s pre-ordering it while the offer is still being  changed and configured    </p>
+
+<h4>Specify  Availability at the Market or Channel Level </h4>
+<p>All these scenarios presented previously indicate that these dates must be captured on the item itself. More granular dates are required that  vary by channel  and by market<strong>. </strong></p></td>
+</tr>
+</table>
+</body>
+</html>

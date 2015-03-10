@@ -1,0 +1,131 @@
+﻿<html>
+<head>
+<title>Test Suites</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="TestSuites"></a>Test Suites</h2>
+<p>A Test Suite is a collection of Test Cases. A Test Suite may also contain other Test Suites. Running a Test Suite processes all its Test Cases contained within the hierarchy.</p>
+<h3><a name="CreatingaTestSuite"></a>Creating a Test Suite</h3>
+<p>Test Cases should have been created before creating a Test Suite. To create a Test Suite, perform these steps:</p>
+
+<ol>
+<li>Right-click the namespace and select <strong>New</strong>.</li>
+<li>From the<strong> Testing</strong> folder, select the <b>Test Cases</b> menu option and then click the <strong>Next</strong> button.<br>
+  <br>
+
+<img src="CreateTestSuiteMenu.png" align="absmiddle" border="1" alt="Creating Test Suite Menu" />
+<br>
+<br>
+</li>
+<li>A new Test Suite form displaying the test case properties appears.</li>
+</ol>
+<h3><a name="TestSuiteGeneralProperties"></a>Test Suite General Properties</h3>
+<p>The following figure shows the general properties of a Test Suite. The table that follows contains a description of the Test Suite fields.</p>
+<img src="TestSuiteProperties.png" align="absmiddle" border="1" alt="Test Suite - general properties" /><br>
+<br>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='referenceTh'>Property</th>
+<th class='referenceTh'>Mandatory/Optional</th>
+<th class='referenceTh'>Description</th>
+</tr>
+  <tr>
+  <td class='confluenceTd'>Name</td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>Unique name for the Test Suite.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'>Label</td>
+  <td class='confluenceTd'>Mandatory</td>  
+  <td class='confluenceTd'>Visible name for the Test Suite.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'>Description</td>
+  <td class='confluenceTd'>Optional</td>  
+  <td class='confluenceTd'>Descriptive text for documentation purposes.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'>Setup SQL</td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Text area that contains the SQL script to be processed before all Test Cases' execution.  It is processed as a procedure. As a result, the SQL script must be contained within <b>BEGIN</b> and <b>END;</b> keywords.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'>Setup JavaScript</td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Text area that contains the JavaScript to be processed before all Test Cases' execution.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'>Tests</td>
+  <td class='confluenceTd'>Optional</td>  
+  <td class='confluenceTd'>Contains a list of Test Cases and Test Suites that defines the Test Suite.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'>Teardown JavaScript</td>
+  <td class='confluenceTd'>Optional</td>  
+  <td class='confluenceTd'>Text area that contains the JavaScript to be processed after all Test Cases' execution.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'>Teardown SQL</td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Text area that contains the SQL script to be processed after all Test Cases' execution.  It is processed as a procedure. As a result, the SQL script must be contained within <b>BEGIN</b> and <b>END;</b> keywords.</td>
+  </tr>
+  </tbody>
+</table>
+<p>To add a Test Case into the Test Suite, select the Test Case in the dropdown box and then click the <b>Add</b> button in the <b>Tests</b> field.</p>
+<p>To edit a Setup or Teardown script, click the corresponding ellipsis button. For Setup or Teardown JavaScript, the Script field can then be opened using the JavaScript Editor, by right-clicking the text area, and selecting the <b>Editor</b> command.</p>
+<p>For Setup or Teardown SQL, the Script field can be opened using the SQL Editor, by right-clicking the text area, and select the <b>Editor</b> command.</p>
+<p>To sort the ordering among Tests, use the Up and Down Arrow buttons to move a selected Test up or down the list.</p>
+<p>To remove a Test, click the existing Test in the <b>Tests</b> field and click the <b>Remove</b> button.</p>
+<h3><a name="8.2TestSuites-8.2.3SequenceofTestFunctionexecution"></a>Sequence of Test Function execution</h3>
+<p>Optionally, Setup and Teardown scripts can be provided to support the pre- and post-activities of the Test Suite (for example, to create a dummy test entity before test, and to delete the entity after test). The sequence of processing is as follows:</p>
+<ol>
+<li>Setup SQL</li>
+<li>Setup JavaScript</li>
+<li>Tests</li>
+<li>Teardown JavaScript</li>
+<li>Teardown SQL</li>
+</ol>
+<p>The setup and teardown runs only once for <em><ins>all</ins></em> Tests in the Test Suite. For example, if there are two Test Cases in the Test Suite (TC1, TC2), then the sequence of processing is Setup SQL, Setup JavaScript, TC1, TC2, Teardown JavaScript, Teardown SQL.</p>
+<p>Among Tests, the order of which Test runs first is determined by top-to-bottom positions among the Tests in the <b>Tests</b> field; that is, the top Test runs first among all Tests.</p>
+<h3><a name="ExecutingaTestSuite"></a>Run a Test Suite</h3>
+<p>The Test Suite can be run by the following script:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-javascript">
+<span class="code-keyword">var</span> test = <span class="code-keyword">new</span> TestSuite("namespace_name:testsuite_name");
+test.run();
+</pre></div>
+</div>
+<p>where <em>namespace_name</em> is the name of the Test Suite's Namespace, and <em>testsuite_name</em> is the name of the Test Suite.</p>
+<p>A recommended practice of Unit Test development is to develop a Unit Test drop-down menu. For each written Test Suite, create a new menu item under the Unit Test dropdown item. Create a new User Action method,  <em>cwOnMenuAction</em> using the previous script (see the figure that follows) and assign this method to the Menu's <strong>Click Method</strong> property.</p>
+
+<img src="testsuitemenutest.png" align="absmiddle" border="1" alt="Create a Unit Test drop-down menu" />
+
+<p>The User Action method - <em>cwOnMenuAction</em> is assigned to the <strong>Click Method</strong> property of the drop-down menu.</p>
+
+<img src="menuclickMethod.png" align="absmiddle" border="1" alt="Click method for drop-down menu" />
+
+<p>The Test Suite can then be run by simply starting and logging into the application, and then clicking the menu item (see the figure that follows).
+<p> <img src="runTest.png" align="absmiddle" border="1" alt="Execute Test" />
+  
+<p>You can also right-click your test suite object in Velocity Studio's left pane and select <strong>Run Test</strong>.</p>
+
+<p><img src="TestSuiteRunTestOption.png" alt="Test suite - Run Test option" border="1"></p>
+
+<p>After the Test Suite is run, go to application Event Log to observe the outcome. By default, the Test Suite execution generates <em>Test Suite</em> <em>Start</em> information log at the beginning, and <em>Test Suite</em> <em>End</em> information log with Test Suite result summary at the end.</p>
+
+<img src="eventlog.png" align="absmiddle" border="1" alt="Event Log" />
+
+<p>If no errors occurred, the event log only shows the start of the outermost Test Suite and the ending of the outermost Test Suite.&#160;If errors occurred (for example, failed assertion statements in a Test Case), the event log shows the error in the Test Case, and continues to run subsequent Test Cases. At the end, it shows how many Test Cases were successful in the Test Suite.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

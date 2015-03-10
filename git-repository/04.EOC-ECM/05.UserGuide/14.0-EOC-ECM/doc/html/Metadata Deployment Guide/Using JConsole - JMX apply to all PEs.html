@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Apply JMX Commands to all Running PEs</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Apply JMX Commands to all Running PEs</h2>
+<p>To apply JMX commands to all running process engines (PEs) in a single request, the <strong>Apply to all PE</strong> attribute is available from JConsole by clicking <strong>com.conceptWave.AVM &gt; Verbose &gt; Attributes &gt; Apply to all PE</strong> in the left pane. </p>
+<p><img src="Using JConsole - Apply to all PEs.png" alt="JConsole - Apply to all PE attribute"></p>
+<p>By default, the <strong>Apply to all PE</strong> attribute is set to <strong>false</strong>, meaning that attribute changes apply to attributes on the current PE only and you work with Verbose attributes as you did before.</p>
+<p>However, when the <strong>Apply to all PE</strong> attribute is set to <strong>true</strong>, the next command to change another attribute's value applies to this attribute on all running PEs. Once this attribute is updated on all running PEs, the <strong>Apply to all PE</strong> attribute is set to <strong>false</strong>, ensuring that you specify this flag each time it is required and does not accidentally change other attributes on all PEs.</p>
+<p>The following are examples on how the <strong>Apply to all PE</strong> attribute value affects each PE's <strong>verbose mask</strong> value.</p>
+<p><strong>Example 1:</strong></p>
+<ol>
+  <li>Two PEs, PE1 and PE2, are running.</li>
+  <li>PE1 has the <strong>verbose mask</strong> attribute set to <strong>70</strong>. PE2 has <strong>verbose mask</strong> set to <strong>70</strong>.</li>
+  <li>You are working with the connection to PE1 and the <strong>Apply to all PE</strong> attribute is set to <strong>false</strong>.</li>
+  <li>You change the value of <strong>verbose mask</strong> to <strong>80</strong>.</li>
+  <li>The results are that PE1 has <strong>verbose mask</strong> set to <strong>80</strong> and PE2 has <strong>verbose attribute</strong> set to <strong>70</strong>.</li>
+  <li>The <strong>Apply to all PE</strong> attribute is set to <strong>false</strong>.</li>
+  </ol>
+<p><strong>Example 2:</strong></p>
+<ol>
+  <li>Two PEs, PE1 and PE2, are running.</li>
+  <li>PE1 has the <strong>verbose mask</strong> attribute set to <strong>80</strong>. PE2 has <strong>verbose mask</strong> set to <strong>70</strong>.</li>
+  <li>You are working with the connection to PE1 and the <strong>Apply to all PE</strong> attribute is set to <strong>true</strong>.</li>
+  <li>You change the value of <strong>verbose mask</strong> to <strong>50</strong>.</li>
+  <li>The results are that PE1 has <strong>verbose mask</strong> set to <strong>50</strong> and PE2 has the same attribute set to <strong>50</strong>.</li>
+  <li>The <strong>Apply to all PE</strong> attribute is set to <strong>false</strong>.<br>
+  </li>
+  </ol>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

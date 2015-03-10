@@ -1,0 +1,202 @@
+<html>
+<head>
+<title>AVM CIL Adapter</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>AVM CIL Adapter</h2>
+<p>The AVM Common Interface Layer (CIL) adapter allows applications (that is, metadata scripts) to communicate with CIL. This adapter allows a metadata  script to pass and get data objects. The adapter also serializes or de-serializes data objects using native Java&#8482; calls to the CIL library.</p>
+<h3>Apache Avro Schema</h3>
+<p>Apache Avro is a data serialization system that relies on schemas. CIL uses Apache Avro to  serialize and  deserialize objects into persistence. Avro requires an objects schema in  JSON format to support serialization and object validation. An Avro schema for  all data objects that are to be used with the AVM CIL adapter must be generated and  stored as metadata resources. For information on how to create an Avro schema for a namespace, see <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Namespace/Namespaces.html#ExportAvroSchema">Namespaces</a>.</p>
+<h3>Access AVM CIL Adapter Functions</h3>
+<p>The AVM CIL adapter has been developed as a Java  library and is a part of the AVM core code (that is, the cwf project). </p>
+<p>You can access the AVM CIL adapter  functions by exposing the AVM CIL adapter as a  scriptable object, CIL,  and then accessing it in your metadata as any other scriptable  object. The following is an example:<br>
+</p>
+
+    <div class="code">
+    <div class="codeContent">
+      <pre>CIL.put(address,object)</pre>
+      </div>
+</div>
+
+    <p>The cilDataSet script object allows you to call CIL.get() and CIL.put(). It can  either pass in parameters to put() or get the  result from get().</p>
+    <p>The cilDataSet script object has the   following attributes:</p>
+    <ul>
+      <li><tt>address</tt> - the CIL path</li>
+      <li><tt>dataObj</tt>  - CwDataObject </li>
+      <li><tt>properties</tt> - a group of properties(key, value) attached to the BLOB when saving to storage. The even index of an array stores keys and the odd index stores values. </li>
+      </ul>
+    <p>The following is sample code on using this script object:</p>
+    
+    <div class="code">
+      <div class="codeContent">
+        <pre>var cilDS = new CilDataSet();
+var props=new Array();
+prop[0]="key1"; prop[1]= "value1"
+prop[2]="key2"; prop[3]= "value2";
+cilData.address='cilA/1';
+cilData.properties=prop;</pre>
+        </div>
+    </div>
+    
+
+    <p>This example uses this script object using the get() function:</p>
+    <div class="code">
+      <div class="codeContent">
+        <pre>var ds=get(""/cilA/*");
+ds[0].address /* cilA/0 */
+ds[0].dataObj /* instance of DataStructure("cilAPIs.nonArray") */
+ds[0].properties /* array of properties */ </pre>
+        </div>
+    </div>
+    <h3>AVM CIL Adapter Functions</h3>
+<p>The AVM CIL adapter is a wrapper layer on top  of the CIL client library and exposes functions that have direct counterparts in the CIL  library:</p>
+<ul>
+  <li><a href="#delete">delete</a></li>
+  <li><a href="#get">get</a></li>
+  <li><a href="#getAddressList">getAddressList</a></li>
+  <li><a href="#put">put</a></li>
+  <li><a href="#setInterface">setInterface</a></li>
+  <li><a href="#setSchemaPath">setSchemaPath</a></li>
+  </ul>
+<p>For more information, see the <a href="index.html">JavaScript documentation</a>.</p>
+<h4><a name="delete"></a>delete</h4>
+<p>The delete function deletes the data object on the CIL server, based on the address provided.</p>
+<p>Function:</p>
+<div class="code">
+	<div class="codeContent">
+		<pre>delete(address)</pre>
+	</div>
+</div>
+<p>Parameters:</p>
+<ul>
+  <li><tt>address</tt> - the data object's address.</li>
+</ul>
+<p>Examples of using this function:</p>
+<ul>
+  <li><tt>CIL.delete(&quot;cilA/1&quot;)</tt> - deletes one object.</li>
+  <li><tt>CIL.delete(&quot;cilA/1&quot;)</tt> - deletes all objects at an address.</li>
+</ul>
+<h4><a name="get"></a>get</h4>
+<p>This function gets the data object from the <span id="highlight" name="highlight">CIL</span> server, based on the provided address.</p>
+<p>Function:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre>get(address, metadataName):CilDataSet[]</pre>
+  </div>
+</div>
+<p>Parameters:</p>
+<ul>
+  <li><tt>address</tt> - the data object's address.</li>
+  <li><tt>metadataName</tt> - the object's metadata name represented by the address parameter. This parameter is optional; it is only needed when  retieving data saved in previous versions.</li>
+  </ul>
+<p>Returns:</p>
+<ul>
+  <li>An array of CilDataSet stored under the specified address.</li>
+  </ul>
+<p>Examples of using this function:</p>
+<ul>
+  <li><tt>CIL.get('customer/1')</tt> - returns object saved at /customer/1.</li>
+  <li><tt>CIL.get('customer/*')</tt> - returns all objects saved at /customer/ .</li>
+</ul>
+<h4><a name="getAddressList"></a>getAddressList</h4>
+<p>This function gets a list of addresses matching the specified address pattern. As an example, <em>/customer/123/agreement/?</em> returns an address list for all agreements for customer 123.</p>
+<p>Function:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre>getAddressList(addressPattern)</pre>
+  </div>
+</div>
+<p>Parameters:</p>
+<ul>
+  <li><tt>addressPattern</tt> - the address pattern to match.</li>
+</ul>
+<p>Returns:</p>
+<ul>
+  <li>A list of addresses matching the address pattern specified in the parameter.</li>
+  </ul>
+<p>Example of using this function:</p>
+<ul>
+     <li><tt>CIL.getAddressList(&quot;cilA/*&quot;);</tt></li>
+</ul>
+<h4><a name="put"></a>put</h4>
+<p>This function saves data objects on the CIL server through the CIL interface. There is no difference between the insert and update operations, which use put() in both cases. CIL uses REST-style address to qualify data objects. As an example, <em>/customer/123/agreement/456</em> represents the address for agreement 456 for customer 123.</p>
+<p>Function:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre>put(para1, para2)</pre>
+  </div>
+</div>
+<p>Examples of using this function:</p>
+<ul>
+  <li><tt>CIL.put(cilDataSet[])</tt> - saves all objects in the array.</li>
+  <li><tt>CIL.put(CwfCilDataSet)</tt> - saves one data object.</li>
+  <li><tt>CIL.put("address/1/", DataObject)</tt> - saves the data object to the specified address.</li>
+  </ul>
+<p><strong>Note:</strong> The putMany() function no longer exists. Instead, use put(CilDataSet[]).</p>
+<p>The following is an example of using the putMany data structure in one put() call:<br>
+    <br>
+</p>
+
+    <div class="code">
+    <div class="codeContent">
+      <pre>var toPut=new Array();
+var ds=new DataStructure("cilAPIs.nonArray")
+for(var i=0;i<5;i++){
+    toPut[i]=new CilDataSet();
+    ds.m_String=i;
+    toPut[i].address="cilA/"+i;
+    toPut[i].dataObj=ds; 
+    }
+CIL.put(toPut);</pre>
+      </div>
+    </div>
+
+<h4><a name="setInterface"></a>setInterface</h4>
+<p>This function selects an interface for proceeding CIL calls.</p>
+<p>Function:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre>setInterface(interfaceName, params[])</pre>
+  </div>
+</div>
+<p>Parameters:</p>
+<ul>
+  <li><tt>interfaceName</tt> - either FileBackend  or HttpCilInterface.</li>
+  <li><tt>Params</tt> - string array of additional parameters to intialize CilInterface.<br>
+    <br>
+    For  FileBackend:
+    <ul>
+      <li> Params[0] : File system path for the CIL interface to use in UNIX format. This parameter is optional.</li>
+    </ul>
+    <br>
+    For  HttpCilInterface:
+    <ul>
+      <li>        Params[]: list of HttpCilInterface lookup service's URL, such as [&quot;http://localhost:8184/rest/&quot;, &quot;http://server.se:9880/rest/&quot;]</li>
+      </ul>
+  </li>
+  </ul>
+<p>String Array of additional parameters to initialize CilInterface FileBackend interface : params[0] optional, it indicates the file system path for CIL interface to use, should always in unix format HttpCilInterface : params[]  list of HttpCilInterface lookup service?s URL like: [?http://localhost:8184/rest/?, ?http://server.se:9880/rest/?]</p>
+<p><strong>Note:</strong> When using HttpCilInterface, you must set the root path to <tt>/rest/</tt>. Otherwise,when testing with a standalone HTTP CIL server version 0.6, a 404 error occurs.</p>
+<h4><a name="setSchemaPath"></a>setSchemaPath</h4>
+<p>This function sets the subdirectory name containing all Avro schema files  that reside in the metadata/resources folder. When exporting the Avro function, you must save the output to the metadata/resources folder. The default location for CIL to read the Avro schema is resource/avsc.</p>
+<p>Function:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre>setSchemaPath(dirName)</pre>
+  </div>
+</div>
+<p>Parameters:</p>
+<ul>
+  <li><tt>dirName</tt> - the directory name containing all Avro schema files.</li>
+</ul>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

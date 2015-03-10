@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>Menu Style</title>
+<link rel="StyleSheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Menu Style </h2>
+<p>A menu can be created with a hierarchy of menu</SPAN> elements (see <a href="../Element - Menu.htm">menu elements</a> for more details). The general styling for menus is to have all menu icons as part of the styling. For example, most finder object menus  have the following styling, which can be used for custom finder menus. </p>
+<div class="code"> <div class="codeContent">
+<pre class="code-java">
+{
+background-repeat:no-repeat;
+background-position:left center;
+vertical-align:center;
+text-indent:20px;
+padding-right: 15px;
+font-family:Arial, Helvetica, sans-serif; font-size:11px;
+}</pre>
+</div>
+</div>
+<p>For every menu requiring an icon, the following styling is also added:</p>
+<div class="code"> <div class="codeContent">
+<pre class="code-java">
+{
+Icon: '../cwt/images/16/document_plain_new.png';/*your location of the image may differ*/
+}</pre>
+</div>
+</div>
+
+<p>Custom menus for data objects (components) follow this styling:</p>
+ <div class="code"> <div class="codeContent">
+<pre class="code-java">
+{
+height: 22px;
+margin-top: 0px;
+margin-right: 0px;
+margin-bottom: 0px;
+margin-left: 0px;
+padding-top: 8px;
+padding-right: 5px;
+padding-bottom: 4px;
+background-position: 2px center;
+width: 63px;
+font-family:Arial, Helvetica, sans-serif;
+font-weight: bold;
+font-size: 11px;
+background-repeat:no-repeat;
+background-color: #f4f4f4;
+border: 1px solid #d9d9d9;
+color: #444444;
+vertical-align:center;
+text-indent:17px;
+text-align:center;
+} </pre>
+</div>
+</div>
+<p> 
+All menu styles also have entries for the style suffixes: <em>Over, Down, </em>and<em> Disabled</em>. For example,<em> .cwSaveMenu,.cwSaveMenuOver,.cwSaveMenuDown,.cwSaveMenuDisabled</em>. </p>
+<h3>Submenus </h3>
+All menus with children specify <strong>ShowRollOver</strong>  property to true, in order to get a mouse-over effect.  
+All application submenus follow the base styling<em> cwAppSpecificSubMenu</em>. If there is no customization for your application menu, set the<strong> Style</strong><strong></strong> property as follows:<br><br>
+
+<div class="code"> <div class="codeContent">
+<pre class="code-java">
+.cwAppSpecificSubMenuOver,.cwAppSpecificSubMenuDown{
+	background-color: #000000;
+}
+
+.cwAppSpecificSubMenu,.cwAppSpecificSubMenuOver,.cwAppSpecificSubMenuDown{
+	font-weight:bold;
+	font-size:9px;
+	color:#ffffff;
+	cursor: pointer;
+	border-bottom: 1px solid #98d0f2;
+}
+.cwAppSpecificSubMenu,.cwAppSpecificSubMenuDisabled{
+	background-color: #53b0ea;
+}</pre>
+</div>
+</div>
+<p>All action submenus follow the styling <em>cwActionSubMenu</em>, such as the views dropdown of the baseFinder.  Like the application submenus, the action submenus have two separate styles for normal and for mouse-over. The following is the normal style:</p>
+<div class="code"> <div class="codeContent">
+<pre class="code-java">
+.cwActionSubMenu,.cwActionSubMenuDisabled{
+	background-color: #53b0ea;
+}
+
+.cwActionSubMenu,.cwActionSubMenuOver,.cwActionSubMenuDown, .cwActionSubMenuDisabled{
+	font-weight:bold;
+	font-size:9px;
+	color:#ffffff;
+	cursor: pointer;
+}
+
+.cwActionSubMenuOver,.cwActionSubMenuDown{
+	background-color: #000000;
+}</pre>
+</div>
+</div>
+<br>
+<p>Most submenus do not require a disabled styling. But in  a situation where a disabled styling is required, follow the base style for <em>cwActionSubMenuDisabled</em>.  The following is the mouse-over style:</p>
+<div class="code"> <div class="codeContent">
+<pre class="code-java">
+.cwActionSubMenuDisabled, .cwViewItemMenuDisabled, .cwModifyViewMenuDisabled,.cwDeleteViewMenuDisabled{
+	color:#c0c0c0;
+	font-size:9px;
+}</pre>
+</div>
+</div><br>
+<p>If your submenu does not require customization, set the <strong>Style</strong> property to <em>cwActionSubMenu</em>. If a submenu requires more specific styling such as icons, then create a separate style for the application. For example:</p>
+<div class="code"> <div class="codeContent">
+<pre class="code-java">
+.cwExcelActionMenu{
+icon:'/cwf/excel.gif';
+}</pre>
+</div>
+</div>
+<p>
+  <em>.cwExcelActionMenu</em> needs to be added to the list of style names where<em> .cwActionSubMenu</em><em></em> is used in the normal style. </p>
+  <h3><a name="_Toc341958274">Permissions</a></h3>
+Properties  such as <strong>visible</strong> and <strong>enabled</strong> use boolean variables that belong to the user  interface.  If boolean variables are not used, privileges are needed. Permission methods are used to provide privileges.
+<p>&nbsp;</p></td>
+ </tr>
+  </table>
+   </body>
+    </html>

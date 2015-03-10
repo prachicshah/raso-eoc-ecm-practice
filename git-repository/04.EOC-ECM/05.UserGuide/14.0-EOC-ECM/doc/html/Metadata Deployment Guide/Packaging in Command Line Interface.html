@@ -1,0 +1,298 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Packaging in Command Line Interface</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Packaging in Command Line Interface</h2>
+<p>Packaging of application metadata can be done in <a href="../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Metadata Build WAR.html">Velocity Studio GUI</a> or command-line interface. It is possible to package multi-tenancy applications on one server or just a single application instance on one server.   This section describes the command line options for both packaging options particularly the syntax of the command-line interface and the available arguments.
+<p>The command found in <b>designer\env\runPackage.cmd</b> that invokes packaging is shown below. You can use the command file as is, or copy the .cmd file and edit it accordingly to create your own packaging script.  The packaged WAR file has filename <b>cwf.war</b> located in &lt;<i>metadata path</i>&gt; as specified in the command line parameters. This command does not add metadata to the <strong>cwf.war</strong> file  but includes custom  <strong>web.xml</strong> or include <strong>multi-tenancy.properties</strong> file.</p>
+<p><strong>Notes:</strong> Running the runPackage command from a directory other than designer\env will fail.</p>
+<p>&nbsp;</p>
+<div class="code"><div class="codeContent">
+  <pre>@echo off<br>if &quot;&quot;%1&quot;&quot;==&quot;&quot;&quot;&quot; goto echoSyntax
+
+set CWOC_CLASSPATH=C:\6\264<br>set CLASSPATH=%CWOC_CLASSPATH%\designer\Designer.jar;^<br>%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^<br>%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^<br>%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^<br>%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^<br>%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^<br>%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^<br>%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^<br>%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^<br>%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^<br>%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^<br>%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;</pre>
+  <pre>set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m
+
+"C:\java\jdk1.6.0_16\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -package %*  </pre>
+  <pre>goto end
+:echoSyntax
+echo ----------------------------------------------------------------------------------------------------------------------------------------------------
+echo Syntax:  runPackage [-logFile logFile] [-multiTenancy <Application Name>:<Application Version>:<Node Name>:<Webapp name>:<JNDI database name>] [-libraryJars <library folder>] [-warFile war_file] [web_xml] [weblogic_xml] [jboss-deployment-structure_xml]
+echo Example: runPackage -warFile c:\cwf.war
+echo          runPackage c:\tmp\web.xml c:\tmp\weblogic.xml
+echo          runPackage null c:\tmp\weblogic.xml
+echo          runPackage null null c:\tmp\jboss-deployment-structure.xml
+echo          runPackage -multiTenancy appName:V1:nodeName:webApp:CWJndi -warFile c:\cwf.war c:\tmp\weblogic.xml
+echo          runPackage -multiTenancy appName:V1:nodeName:webApp:CWJndi -libraryJars c:\libs\ -warFile c:\cwf.war c:\tmp\weblogic.xml
+echo ----------------------------------------------------------------------------------------------------------------------------------------------------
+:end</pre>
+</div>
+</div>
+
+<p>It is possible to package multiple WAR file instances to be run within a single container.  This feature is called <strong>multi-tenancy</strong>.  It is also possible to package a single WAR file instance within a container using single instance packaging parameter options.  However, it is <strong>not</strong> possible to package both a single instance and a multi-tenancy instance on the same server. Besides the number of WAR files that can be deployed in a single container, the following is a list of the differences between the two packaging options:</p>
+
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'></th>
+      <th class='confluenceTh'>Single Instance Packaging</th>
+      <th class='confluenceTh'>Multi-Tenancy Packaging</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>WAR File Name</strong></td>
+      <td class='confluenceTd'>cwf.war</td>
+      <td class='confluenceTd'>&lt;WebappName&gt;.cwf</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Web Application URL Prefix</strong></td>
+      <td class='confluenceTd'>/cwf</td>
+      <td class='confluenceTd'>/&lt;WebappName&gt;</td>      
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Node_ID</strong></td>
+      <td class='confluenceTd'>The Node_ID is specified by the -Dcom.conceptwave.nodeId=
+        <node_Id>parameter in the container startup script. </td>
+      <td class='confluenceTd'>The Node_ID is specified during packaging and stored in the 
+WAR file. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>JNDI Prefix</strong></td>
+      <td class='confluenceTd'>The JNDI datasource name is <em>ConceptWaveConfig</em>, which is the default value and cannot be changed.</td>
+      <td class='confluenceTd'>The JNDI datasource name is specified during packaging (that is, Packaging parameter, <em>JNDI database name</em>).</td>      
+    </tr>
+  </tbody>
+</table>
+<p>The multi-tenancy packaging feature adds flexibility not only by enabling multiple WAR file instances to be deployed in a single container, but it also provides additional parameters to enable changes to the default WAR File Name, Web Application URL Prefix, and JNDI Prefix.  The two packaging options are described below.</p>
+
+
+<h4>JVM parameters</h4>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Parameter</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>&#45;Xms&lt;<em>number</em>&gt;m &amp; &#45;Xmx&lt;<em>number</em>&gt;m </td>
+<td class='confluenceTd'>Mandatory.   Specify the amount of memory that will be used by PE. It is recommended to set -Xms and -Xmx parameters to equal values.</td>
+</tr>
+<tr>
+<tr>
+<td class='confluenceTd'>-XX:MaxPermSize</td>
+<td class='confluenceTd'>Mandatory.  Modify as appropriate to set the maximum size for the permanent generation heap that holds objects such as classes and methods.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>-Dcom.conceptwave.preVelocity=1</td>
+<td class='confluenceTd'>Optional. Specify any value enables "Classic mode", packaging metadata that is assumed to be in Classic mode. If this argument is not specified and Order Care is licensed with Velocity Studio, metadata to package is assumed to be in Velocity mode.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>-Dcom.conceptwave.licenseDir=&lt;<i>licenseDir</i>&gt;</td>
+<td class='confluenceTd'>Optional. Specify the directory of the license file(s). If this argument is not specified, the default is <b>\CWOrderCare\designer\env</b>.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The JVM arguments must appear before the class (i.e. <i>com.conceptwave.servicedesigner.ServiceDesigner</i>) in the command.</p>
+
+<!--
+<h4>Designer.jar parameters</h4>
+-->
+<h3>Single Instance Packaging</h3>
+<p>To package a WAR file for a single instance environment, run the following command:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+runPackage.cmd [-help] [-libraryJars &lt;library jars folder&gt;] &lt;metadata path&gt; [&lt;build version&gt;] [web_xml] [weblogic_xml]</pre>
+</div>
+</div>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Parameter</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'>&lt;<i>library JARs folder</i>&gt;</td>
+  <td class='confluenceTd'>Optional. Specify folder that contains extra JAR files, which will be packaged to WEB-INF/lib folder.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>&lt;<i>war file</i>&gt;</td>
+  <td class='confluenceTd'>Optional. Specify an external WAR file other than cwf.war from your current working directory. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'>&lt;<i>metadata path</i>&gt;</td>
+  <td class='confluenceTd'>Mandatory. Location of the project that contains the metadata to be packaged.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>&lt;<i>build version</i>&gt;</td>
+  <td class='confluenceTd'>Optional. Specify the build version (as well as the corresponding generated GUID, buildInternalVersion) to tag into the WAR file to identify the build version of the packaged WAR. <br/>
+    A recommended practice is to enter the version label of the checked-in metadata in the source control system that corresponds to this WAR file. At least, the Build Version should be different every time you package metadata so that the WAR files that you have generated over time can be differentiated.</td>
+</tr>
+<tr>
+  <td class="confluenceTd">&lt;<em>web.xml</em>&gt;</td>
+  <td class="confluenceTd">Optional. Specify the location of your web.xml that you want to be built into your WAR file. Both the web.xml and weblogic.xml files can be found in the &lt;installation_directory&gt;\conf folder of your Velocity Studio installation. Edit the web.xml file to suit your needs. </td>
+</tr>
+<tr>
+  <td class="confluenceTd">&lt;<em>weblogic.xml</em>&gt;</td>
+  <td class="confluenceTd">Optional. Specify the location of your weblogic.xml file that you want to be built into your WAR file. Both the web.xml and weblogic.xml files can be found in the &lt;installation_directory&gt;\conf folder of your Velocity Studio installation. Edit the weblogic.xml file to suit your needs. </td>
+</tr>
+</tbody>
+</table>
+<p>
+<h3>Multi-Tenancy Packaging</h3>
+<p>To run several WAR file instances under the same container, a multi-tenancy feature is available which uses the <em>Node ID</em>, <em>Webapp name</em> and <em>JNDI database name</em> parameters in the command-line packaging utility and Velocity Studio packaging dialog:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+runPackage.cmd [-help] [-libraryJars &lt;library jars folder&gt;][-multiTenancy &lt;Node ID&gt;:&lt;Webapp name&gt;:&lt;JNDI database name&gt;] [-applicationServer=&lt;application server&gt;] &lt;metadata path&gt; [&lt;build version&gt;] [web_xml] [weblogic_xml]</pre>
+</div>
+</div>
+
+<p>For mulit-tenancy support, each WAR file must be packaged with a unique Node ID. The WAR files must be rebuilt with different node IDs for multi-tenancy support. Multi-tenancy support feature adds additional flexibility such that the Web application URL prefix can be specified (that is not necessarily the &quot;cwf&quot; prefix which is the default for single instance package option). The JNDI datasource name can also be specified. The table below shows the parameters specific to the multi-tenancy packaging feature (note that the other parameters that are common to the Single Instance option are described in the above section).</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+  <th width="195" class='confluenceTh'>Parameter</th>
+  <th width="1993" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'>&lt;<i>library JARs folder</i>&gt;</td>
+  <td class='confluenceTd'>Optional. Specify folder that contains extra JAR files, which will be packaged to WEB-INF/lib folder.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>&lt;<i>Node ID</i>&gt;</td>
+  <td class='confluenceTd'>Mandatory. Used when deploying multiple WAR files. The Node ID is defined in the Velocity Studio Preferences and configured in the <a href="../Configuration_Tool_User_Guide/Configure/System/introduction.html">Configuration application</a>. Each deployed WAR file must be deployed with a unique Node ID.  This Node ID parameter cannot be used with the -Dcom.conceptwave.nodeId property during deployment of   multiple instances in the same container.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>&lt;<em>Webapp name</em>&gt;</td>
+  <td class='confluenceTd'>Mandatory.  The name of generated WAR file, which must be deployed under that name and cannot be renamed (because the name of the file is stored inside that WAR file, J2EE limitations).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>&lt;<em>JNDI database name</em>&gt;</td>
+  <td class='confluenceTd'>Mandatory.  This value overrides the default value of ConceptWaveConfig for config database JNDI datasource name. This is used to support multiple applications's on the same container. For JBOSS deployment, datasources are defined in oracle-ds.xml.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>&lt;<em>application server</em>&gt;</td>
+  <td class='confluenceTd'><p>Mandatory. Indicate your application server (that is, <SPAN id="internal-source-marker_0.0986141688293879">specify which container to deploy</SPAN>). This parameter takes one of the following values:</p>
+    <ul>
+      <li>JBoss5</li>
+      <li> JBoss7</li>
+      <li>WebLogic</li>
+      <li> WebSphere</li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'>&lt;<i>metadata path</i>&gt;</td>
+  <td class='confluenceTd'>Mandatory. Location of the project that contains the metadata to be packaged.</td>
+</tr>
+<tr>
+  <td class="confluenceTd">&lt;<em>web.xml</em>&gt;</td>
+  <td class="confluenceTd">Optional. Specify the location of your web.xml that you want to be built into your WAR file. Both the web.xml and weblogic.xml files can be found in the &lt;installation_directory&gt;\conf folder of your Velocity Studio installation. Edit the web.xml file to suit your needs. </td>
+</tr>
+<tr>
+  <td class="confluenceTd">&lt;<em>weblogic.xml</em>&gt;</td>
+  <td class="confluenceTd">Optional. Specify the location of your weblogic.xml file that you want to be built into your WAR file. Both the web.xml and weblogic.xml files can be found in the &lt;installation_directory&gt;\conf folder of your Velocity Studio installation. Edit the weblogic.xml file to suit your needs. </td>
+</tr>
+</tbody>
+</table>
+
+<!--<p>The Designer arguments must appear after the class (i.e. <i>com.conceptwave.servicedesigner.ServiceDesigner</i>) in the command.</p>
+
+<p>The packaging command of designer.jar must be accompanied by a valid license, in <b>\CWOrderCare\designer\env</b>, with namespace <i>com.conceptwave.license.Packaging</i> in the license file.</p> -->
+
+<h4>oracle-ds.xml</h4>
+Below is an example of the <a href="JBoss Configuration.html#JBossOracle">oracle-ds.xml code</a> to be used in multi-tenancy. The &lt;jndi-name&gt; parameter contains the different nodes (for example, ConceptWaveConfig_Node1 and ConceptWaveConfig_Node2).<br>
+    <div class="code">
+        <div class="codeContent">
+          <pre class="code-java">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;<br>&lt;datasources&gt;<br> &lt;local-tx-datasource&gt;<br>  &lt;jndi-name&gt;ConceptWaveConfig_Node1&lt;/jndi-name&gt;<br>  &lt;connection-url&gt;jdbc:oracle:thin:@cronos:1521:cronosdb&lt;/connection-url&gt;<br>  &lt;driver-class&gt;oracle.jdbc.driver.OracleDriver&lt;/driver-class&gt;<br>  &lt;user-name&gt;cw&lt;/user-name&gt;<br>  &lt;password&gt;cw&lt;/password&gt; <br>  &lt;exception-sorter-class-name&gt;org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter&lt;/exception-sorter-class-name&gt;<br>  &lt;check-valid-connection-sql&gt;select count(*) from cwvminfo&lt;/check-valid-connection-sql&gt;<br>  &lt;metadata&gt;
+    &lt;type-mapping&gt;Oracle9i&lt;/type-mapping&gt;
+  &lt;/metadata&gt;
+<em>  &lt;min-pool-size&gt;5&lt;/min-pool-size&gt;<BR>  &lt;max-pool-size&gt;100&lt;/max-pool-size&gt;<BR>  &lt;blocking-timeout-millis&gt;50000&lt;/blocking-timeout-millis&gt;</em><br> &lt;/local-tx-datasource&gt;<br> &lt;/local-tx-datasource&gt;<br> &lt;local-tx-datasource&gt;<br>  &lt;jndi-name&gt;ConceptWaveConfig_Node2&lt;/jndi-name&gt;<br>  &lt;connection-url&gt;jdbc:oracle:thin:@cronos:1521:cronosdb&lt;/connection-url&gt;<br>  &lt;driver-class&gt;oracle.jdbc.driver.OracleDriver&lt;/driver-class&gt;<br>  &lt;user-name&gt;cw&lt;/user-name&gt;<br>  &lt;password&gt;cw&lt;/password&gt; <br>  &lt;exception-sorter-class-name&gt;org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter&lt;/exception-sorter-class-name&gt;<br>  &lt;check-valid-connection-sql&gt;select count(*) from cwvminfo&lt;/check-valid-connection-sql&gt;<br>  &lt;metadata&gt;
+    &lt;type-mapping&gt;Oracle9i&lt;/type-mapping&gt;
+  &lt;/metadata&gt;
+<em>  &lt;min-pool-size&gt;5&lt;/min-pool-size&gt;<BR>  &lt;max-pool-size&gt;100&lt;/max-pool-size&gt;<BR>  &lt;blocking-timeout-millis&gt;50000&lt;/blocking-timeout-millis&gt;</em><br> &lt;/local-tx-datasource&gt;<br>&lt;/datasources&gt;
+          </pre>
+        </div>
+    </div>
+
+<h4>run.bat file</h4>
+For multi-tenancy, it is not necessary to define the -Dcom.conceptwave.nodeId parameter, ss the node_id is already embedded in the WAR file.  The default run.bat file should remain unchanged (without the -Dcom.conceptwave.nodeID parameter). 
+<h4>Additional Comments</h4>
+<p>If argument &lt;<i>build version</i>&gt; is not specified, the packaging command will prompt you to specify<em> build version</em> to tag into metadata head of the WAR file.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="packageBuildVersion.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p>The <em>-package</em> parameter is mandatory  in the runPackage.cmd script.   
+</p>
+
+<h3>Multi-tenancy in Clusters</h3>
+<p>The previous syntax for multi-tenancy does not work within clusters as the same WAR file is deployed at several different nodes. The WAR renaming mode is a subset of the multi-tenancy functionality that allows multi-tenancy in clusters by deploying renamed WAR files in WebLogic clusters.</p>
+
+The following is an example of running  multi-tenancy commands from a command line that works within clusters:
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>runPackage -multiTenancy null:cwf_Order:null c:\Order 14.0.130<BR>  runPackage -multiTenancy N_FF_Order:cwf_Order:null c:\Order 14.0.130<BR>  runPackage -multiTenancy null:cwf_Order:cwf_Order c:\Order 14.0.131 </pre>
+</div>
+</div>
+
+<h3><strong>Passing the Build Version as a Parameter When Packaging with Output Redirection</strong></h3>
+<p>You can pass the build version as a parameter when you redirect your console output to a file by using the runPackage command:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>sh runPackage.sh <em>metadata_path</em>/<em>build</em> <em>build_version</em> > test1.log</pre>
+  </div>
+</div>
+<!--
+<h4><a name="JVMparameters">JVM parameters</a></h4>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+  <th width="345" class='confluenceTh'>Parameter</th>
+  <th width="716" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'>-Dcom.conceptwave.verbose=true<BR></td>
+  <td class='confluenceTd'>Optional. Enables any warnings during packaging.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'> -Dcom.conceptwave.smartclientCacheExpiry=<em>value</em></td>
+  <td class='confluenceTd'>Optional. Allows you to customize the expiry time for the SmartClient's FileDownload servlet. The expiry time is measured in hours. As an example, to set the expiration at 24 hours, specify <strong>24</strong> as the <em>value</em> in the syntax.</td>
+</tr>
+</tbody>
+</table>-->
+<h3><a name="disableSmartClientCompression"></a>Disabling SmartClient Compression</h3>
+<p>To disable SmartClient Compression when generating your WAR file, add the following parameter to your startup script:</p>
+
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>-Dcom.conceptwave.disableSmartclientCompression=true</pre></div>
+</div>
+
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>This parameter works in conjunction with the <a href="../../../Velocity trunk/html/Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Preferences.html#compressSmartClientResources"><strong>Compress SmartClient Resources</strong></a> checkbox in Velocity Studio's Preferences.</li>
+  <li>WebSphere and WebLogic containers  have options to enable compression. Consult your respective IBM and Oracle container documentation for details.<BR>
+  </li>
+</ul></p></td>
+</tr>
+</table>
+</body>
+</html>

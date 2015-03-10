@@ -1,0 +1,33 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Code Tables</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Code Tables</h2>
+<p>The Code Tables feature allows the maintenance of all enumeration lists used in an application and the maintenance of code tables and codes. The standard tasks  include adding new code tables and codes, as well as viewing, modifying, deleting,  importing and exporting  existing code tables and codes.</p>
+<p>Code  tables contain codes with certain properties and configurations. Each code has a set of properties similar to the parent code table with  the exception of sort settings that only apply to a code table. A code can be a  simple name and description entry or it can refer to another code table that acts as a  sub-table. That is,  all the codes of a sub-table  are inherited by the parent code table .A code table may contain zero or  more codes.</p>
+<h3>  Versioned vs Non-Versioned Code  Tables</h3>
+<p>Every code table has a unique  name, a description, an a active status flag, and   sort settings.</p>
+<p>A <strong>non-versioned </strong>code table is a  simpler code table than a a versioned code table. It does not belong to any project and  its  active status is flagged (checked) as active. As a rule, non-versioned code  tables can only contain non-versioned codes, and vice-versa.</p>
+<p>A <strong>versioned code</strong> table, on the  other hand, is always associated with a catalog project   and its active status depends on the start date and end date,  as  well as the status defined in a life cycle. Versioned code tables include additional  fields such as project, status, and effective dates.   Each versioned  code table and code is associated with a project. This project is set at the time  of creation to the currently opened project. </p>
+<p>Code table codes do not have to  have the same project as a parent code table.</p>
+<p>  If there is no open project,  then the code table and its codes are created as non-versioned. Otherwise, they the have the version property and they are associated with the project that is open. It is not allowed to add a new code to a  versioned code table with no open project.</p>
+<p>You can use the CwfScriptGlobalFunctions.checkCTCode() method to check whether code exists in a code table. Additionally, the CwfScriptGlobalFunctions.checkForCode() method supports the former function.</p>
+<p><strong>Access Code Tables</strong></p>
+<p>The Code Tables feature is accessible from the Catalog application, as well as the Configuration application. However, only the Catalog application, which supports projects, can open the Code Tables page in version mode. </p>
+<p>  In the Catalog application, the Code Tables page can be accessed by clicking <strong>CONFIGURATION &gt; Code Tables</strong> from the menu bar. </p>
+<p><img src="CodeTableSearchHeader.png" alt="Search Code Tables - Header"></p></td>
+</tr>
+<p><strong>Note:</strong> The icon before the <strong>Code Tables</strong> title provides the ability to expand and collapse the top query pane.</p>
+</body>
+</html>

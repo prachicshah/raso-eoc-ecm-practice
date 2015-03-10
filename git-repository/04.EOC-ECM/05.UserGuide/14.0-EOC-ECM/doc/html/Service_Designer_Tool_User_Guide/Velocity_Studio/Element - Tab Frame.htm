@@ -1,0 +1,195 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Tab Frame</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Tab Frame</h2>
+
+<p>A Tab Frame creates a tab in the Tabset. The example below displays four tabs or Tab Frames (Customers, Partners, Employees and Suppliers) within a Tabset. The Tab Frame can reference a Form via the Form or Variable property to display the contents of the Frame when the tab is selected. The Customer Tab Frame below references a form containing a listing of customer names and icons.</p>
+
+<p><img src="exampleTabSet.png" alt="Tabset Example" border="1"></p>
+
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<td class='confluenceTd'>references Variable?</td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'>references Method?</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'>references Form?</td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Allowable Child Elements</td>
+<td class='confluenceTd'><i>None</i></td>
+</tr>
+</tbody>
+</table>
+
+<p>The following table describes the properties of tab frame element:</p>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th width="93" class='confluenceTh'>Property</th>
+<th width="143" class='confluenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+<th width="1377" class='confluenceTh'>Comment</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Name</strong></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>Name of the Tab Frame</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Label</strong></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>Visible label of the Tab Frame which appears in the tab bar. If this property value is empty, the label assumes the Name of the Tab Frame. Default is empty.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Dynamic Tooltip</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Defines a dynamic tooltip text that is displayed in a hover box when the cursor hovers the element.  Set property to a <em>String</em> variable or a script with a Return type <em>String</em>. The static Tooltip property is considered as default until the action returns a value.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Dynamic Tooltip Style</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This property dynamically changes the style of the Dynamic Tooltip.  Set property to a script with a Return type <em>String</em> that is a cascading style sheet (.css) name found in the stylesheet used by the application.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Error Icon Gap</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>Select this property's checkbox to make a gap for the validation icon. By default, this property is false. </p>
+    <p><strong>Note:</strong> This property is available only for left (or default) error orientation. The gap is calculated according to the /cwfv/error.png icon size. When the image is substituted with a smaller one, the gap is also smaller. </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Error Icon Orientation</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This property allows you to configure how an icon are displayed. This property takes the values left (default) and right.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Form</strong></td>
+  <td class='referenceTd' valign="top">Optional</td>
+  <td class='confluenceTd'><p>Choose from a list of available Forms which this Form Frame shall present. If the Form Frame is assigned to a Variable property, the choices are limited to the Forms of that Variable. If Variable property is not assigned, the choices are limited to Forms in the current User Interface. Default is not assigned, where no Form is displayed. Alternatively, a local string variable can be used to dynamically change the form to be used at runtime. This string variable should have ONLY the name of the form such as &quot;Default&quot;. Setting this property to a string variable will automatically use the user interface of the Variable property to look for the form if it is provided, otherwise it will use the current user interface for the form lookup.</p>
+    <p><strong>Note:</strong> If metadata is migrated from different version 5.x releases and property is set to the <em>Form.Default</em>, the migration process will reset the value to <em>Default.</em></p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Icon</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>If an icon is selected, the icon appears in the tab bar to the left of the label. Default is NONE.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Icon Height</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Height of the icon used or consumed within the element.  The value is defined as the number of pixels (integer) or percentage. The default value is 0.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Icon Tooltip</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Click the ellipsis button and specify a tooltip description within the <strong>Value</strong> field for the icon.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Icon Width</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Width of the icon used or consumed within the element.  The value is defined as the number of pixels (integer) or percentage. The default value is 0.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Image Variable</strong></td>
+  <td class='referenceTd' valign="top">Optional</td>
+  <td class='confluenceTd'><p>Choose from a list of available <em>string</em> variables. This value of this variable determines the image that appears on the tab bar and its value is a URL or path of the image location.  This variable can be initialized or dynamically set in any method within its local User Interface. The method should return a path to the image, for example &quot;/cwf/Tree.gif&quot;(return &quot;/cwf/Tree.gif&quot;;). The image will be invoked whenever the tab is visible or when a page is being refreshed (on any user action).  This property is dependent on the Form property and is only available if the Form property is given a value.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Label Style</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Choose from styles in the selected stylesheet on the toolbar, which defines the styling of the Label within the Tab Frame such as color and font. Default is NONE.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Label Variable</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>Choose from a list of available <em>string</em> variables. This variable can be used to dynamically to set, change and use the title that is displayed on the tab bar.   Similar to the Image Variable it can be initialized or dynamically changed  by any method within the local user interface. This property is dependent on the Form property and is only available if the Form property value is given a value.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Remove Label Line</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Select this property's checkbox when the element is in a grid layout and its column span is equal to the grid layout's   number of columns. In other words, if the   field is the only field in that row, this empty line is removed above the element. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Show Label</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Dictates whether the label or title of the Tab is displayed. The default is &quot;True&quot; - which means the label is displayed.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Style</strong></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Choose from styles in the selected stylesheet at the toolbar, which defines the styling of the Tab Frame such as color and font. Default is NONE.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Tab Width</strong></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Width to be taken up by the Tab; can be in integer which is in pixels, or in percentage (for example, "30%") of Tabset. This width is the width of the Tab (that is, Label) and not of the Tab Frame.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tooltip</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Defines the tooltip text, which is displayed in a hover box when the cursor hovers over the Tab Frame. Default is empty, which means no tooltip for the Tab Frame.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tooltip Style</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Defines the tooltip style of the text displayed in the hover box when the cursor hovers over the tab frame. The default is empty. Click the <strong>Value</strong> field to select a tooltip style from the list.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tooltip Width (px)</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Allows you to change the width of the tooltip popup window statically. Enter the width in pixels. The default value for this property is 0.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Validation Icon</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>The Validation Icon property functions in conjunction with the <a href="Validation/User Interface Validation.html">Validation functionality</a>.  There are four options for this property: Default (no validation icon), Static, State or Overlay. This property determines how icons or validation images (as a result of performing user interface validation on the TabFrame) appears on the Tab.  A brief description of this property's values is described below and more details are described in the <a href="Validation/User Interface Validation.html#TabErrors">Tab Errors</a> section of the <a href="Validation/User Interface Validation.html">User Interface Validation</a>.</p>
+    <p><strong>Default</strong> - no images or icons appear on the Tab as a result of errors on User Interface validation.</p>
+    <p><strong>Static</strong> - a predefined error (\resources\cwfv\error.png), warning (\resources\cwfv\warn.png) or information (\resources\cwfv\info.png) image will appear on the tab (to the right on the tab icon).</p>
+    <p><strong>State</strong> - user defined images or icons replace the Icon when a validation error exists on the User Interface. The image files are an extension of the image defined in the Icon property. For example, if the Icon property is assigned the image, Icon.png, then the associated error, warning and information images are Icon_error.png, Icon_warn.png and Icon_info.png.  These image files must be placed in the Resource folder of the metadata.</p>
+    <p><strong>Overlay</strong> - the predefined error, warning and information icons will overlap the image defined in the Icon property when a validation error has been found on the TabFrame user interface. </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Variable</strong></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Choose from the list of Variables available in the User Interface to bind to this Tab Frame. Once a Variable is chosen, you can choose a Form to present the Variable in the Form property. If Form property is not selected with a chosen Variable, the Form with name <i>default</i> (that is, <i>&lt;Variable's data type&gt;.UserInterface.Form.default</i>) is assumed. Default is not assigned. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Visible</strong></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Determines whether the Tab Frame is visible or not. Defaults to NONE, which means visible.</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3>Notes</h3>
+<p>The height and width of the Tab Frame does not define the display area; it is the Tabset's height and width that fixates the dimension of the display frame. If the Tab Frame's height and width is larger than those defined in Tabset, scroll bars appear in the frame to scroll through Tab Frame's content.</p>
+
+<p><img src="Tab Frame with scrolls.png" align="absmiddle" border="1" alt=" Example of Tab Frame with scrolls" /></p>
+<p>If the Tab Frame references a Variable, the Variable's value is unknown at preview time. By default, the Preview Pane shows an empty Form of the Variable. At runtime, the presence of the Variable may change the appearance of the Form (for example, different size). Furthermore, in the event that the referenced Variable's data type is extended by another data type where its Form is also extended from the referenced (base) Form, the extended Form shall appear at runtime if the Variable assumes value of the extended data type.</p>
+
+<p>Images or Icons can be added to the  tab bar either statically via the Icon property or dynamically through the Image Variable property and a method.</p>
+
+<p><img src="Tab Frame with icon.png" align="absmiddle" border="1" alt="Example of Tab Frame with icon" /></p>
+<p>
+*If this element is the first element that appears in the Element Tree pane, you can set the cell alignment. If this element has a parent layout, for example vlayout or hlayout with the width/height set, this element uses these values as a base to set its alignment. If the parent layout does not contain a width/height, then this element does not have a base to which it can set its alignment. If the element has a parent that contains width/height settings, but this form is displayed under another layout with different widths, your form alignment is restricted to the parent's width/height settings.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>System Configuration User Interface</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>System Configuration User Interface</h2>
+
+<p>The Configuration application consists of a node menu on the left and a details menu on the right.</p>
+<h3>Node Menu</h3>
+<p>The node menu displays all nodes by Node ID that are configured under the cluster, which is typically named CLUSTER. You have the option of naming your cluster node in Velocity Studio, but it cannot be renamed after its creation. </p>
+<p><img src="systemConfigurationUserInterface.png" alt="System Configuration - user interface" border="1"></p>
+<p>In Velocity Studio, you can create multiple clusters. When you connect to your database and start runtime, a dialog appears, prompting to you specify the application that you want to launch. Click the <strong>New</strong> button to create a new application by completing all field, and then click the <strong>OK</strong> button. The newly created cluster's name automatically is the application name. Once created, you can neither remove, nor rename the cluster.</p>
+<p>Select a node in the node menu to edit the configuration of that particular node in the main area on the right. You can also select the cluster<b> </b>to edit the configuration at the cluster level. </p>
+<p><img src="systemConfigurationUserInterfaceClusterNode.png" alt="System Configuration - CLUSTER node" border="1"></p>
+<p>You can also add or  remove a node to or from the cluster from the node menu.</p>
+<h4>Cluster Node</h4>
+<p>When you select the cluster node from the left menu, all icons in the details menu and their associated tabbed pages are visible.</p>
+<p><img src="systemConfigurationUserInterfaceClusterNodeSelected.png" alt="System Configuration - CLUSTER node selected" border="1"></p>
+<p>When you make changes to your configuration at the cluster level, the following buttons appear in the node menu:</p>
+<table width="850" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="98" class='confluenceTh'>Button</th>
+      <th width="54" class='confluenceTh'>Icon</th>
+      <th width="682" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Save</strong></td>
+      <td class='confluenceTd'><img src="systemConfigurationUserInterfaceSaveButton.png" alt="Node menu - Save button"></td>
+      <td class='confluenceTd'><p>Click this button to save your configuration.</p>
+      <p><strong>Note:</strong> Clickiing this button with the cluster (that is, root node) selected  overwrites any child  value if the child value has the same value as the root node.<BR>
+        <BR>
+      </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Save All</strong></td>
+      <td class='confluenceTd'><img src="systemConfigurationUserInterfaceSaveAllButton.png" alt="Node menu - Save All button"></td>
+      <td class='confluenceTd'><p>Click this button to save your configuration, including child nodes. This button appears when the selected node has children.</p>
+      <p><strong>Notes:</strong> </p>
+      <ul>
+        <li>Clicking this button with the cluster (that is, root node) selected overwrites any child value even if the child has a different value.</li>
+        <li>Clicking this button with the cluster or root node value being empty causes the child to delete its original value, then look up the parent list until it finds a non-empty value. As a result, you cannot  propagate a null value to its children unless the topmost default value is null.</li>
+      </ul></td>
+    </tr>
+  </tbody>
+</table>
+<h4>PE and PE_UI Nodes</h4>
+<p>When you select a PE (process engine) or PE_UI node, or any child node from the left menu, the following icons do not appear in the details menu:</p>
+<ul>
+  <li><strong>Databases</strong></li>
+  <li><strong> UI</strong></li>
+</ul>
+<p><img src="systemConfigurationUserInterfacePEnodeSelected.png" alt="System Configuration - PE node selected" border="1"></p>
+<h4>UI nodes</h4>
+<p>When you select a UI node or any  child node from the left menu, the following icons do not appear in the details menu:</p>
+<ul>
+  <li><strong>Databases</strong></li>
+  <li><strong> UI</strong></li>
+  <li><strong> Processes</strong><br>
+  </li>
+</ul>
+
+<p><img src="systemConfigurationUserInterfaceUInodeSelected.png" alt="System Configuration - UI node selected" border="1"></p>
+<p>Additionally, only these tabbed pages are available:</p>
+<ul>
+  <li>Under the <strong>System</strong> icon, only  the General and Config Variables tabs appear</li>
+  <li>Under the <strong>Processes</strong> icon, only the General, PE Processes, and PE  Queues tabs are visible</li>
+  <li>    Under the <strong>Services</strong> icon, only the Listeners tab displays</li>
+  <li>    Under the <strong>Catalog</strong> icon, only the Catalog tab appears</li>
+  <li>Under the <strong>Performance</strong> icon, only the AVM Cache and  Catalog Cache tabs are visible</li>
+</ul>
+<h4><strong>Second- and Third-Level Nodes</strong></h4>
+<p>When you make changes to a second-level node and select it from the left menu, the following buttons appear:</p>
+<table width="850" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="98" class='confluenceTh'>Button</th>
+      <th width="54" class='confluenceTh'>Icon</th>
+      <th width="682" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Save</strong></td>
+      <td class='confluenceTd'><img src="systemConfigurationUserInterfaceSaveButton.png" alt="Node menu - Save button"></td>
+      <td class='confluenceTd'>Click this button to save your configuration.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Add</strong></td>
+      <td class='confluenceTd'><img src="systemConfigurationUserInterfaceAddButton.png" alt="Node menu - Add button"></td>
+      <td class='confluenceTd'>Click this button to add a new PE node to your configuration.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Save All</strong></td>
+      <td class='confluenceTd'><img src="systemConfigurationUserInterfaceSaveAllButton.png" alt="Node menu - Save All button"></td>
+      <td class='confluenceTd'>Click this button to save your configuration, including child nodes. This button appears when the selected node has children.</td>
+    </tr>
+  </tbody>
+</table>
+<p>When you select a third-level node from the left menu, the following buttons appear:</p>
+<table width="850" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="83" class='confluenceTh'>Button</th>
+      <th width="49" class='confluenceTh'>Icon</th>
+      <th width="776" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Save</strong></td>
+      <td class='confluenceTd'><img src="systemConfigurationUserInterfaceSaveButton.png" alt="Node menu - Save button"></td>
+      <td class='confluenceTd'>Click this button to save your configuration.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Copy</strong></td>
+      <td class='confluenceTd'><img src="systemConfigurationUserInterfaceCopyButton.png" alt="Node menu - Copy button"></td>
+      <td class='confluenceTd'><p>Click this button to copy the selected node under the same parent node. A dialog then appears, prompting you to enter a node name in the field provided. Click the <strong>Save</strong> button to complete copying the node. </p>
+      <p><strong>Note:</strong> Changing the value of a <a href="../../Config Variables.html">config variable</a> belonging to the source node (that is, the node used to create a copy of it) does not change the  value of the same config variable in the copy node. In other words, nodes that contain the same  config variable can have different values and are  independent of one another.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Add</strong></td>
+      <td class='confluenceTd'><img src="systemConfigurationUserInterfaceAddButton.png" alt="Node menu - Add button"></td>
+      <td class='confluenceTd'>Click this button to add a new PE node to your configuration.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Delete</strong></td>
+      <td class='confluenceTd'><img src="systemConfigurationUserInterfaceDeleteButton.png" alt="Node menu - Delete button"></td>
+      <td class='confluenceTd'>Click this button to delete the selected node from your configuration. Only an inactive node-level configuration  (that is, the   <b>Active configuration</b> field is unchecked) can be deleted.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Save All</strong></td>
+      <td class='confluenceTd'><img src="systemConfigurationUserInterfaceSaveAllButton.png" alt="Node menu - Save All button"></td>
+      <td class='confluenceTd'>Click this button to save your configuration, including child nodes. This button appears when the selected node has children.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Rename</strong></td>
+      <td class='confluenceTd'><img src="systemConfigurationUserInterfaceRenameButton.png" alt="Node menu - Rename button"></td>
+      <td class='confluenceTd'>Click this button to rename the selected node. A dialog appears, which allows you to change the node ID. Click the <strong>Save</strong> button to complete renaming your node.</td>
+    </tr>
+  </tbody>
+</table>
+<h3>Details Menu</h3>
+<p>The details pane displays the configuration of a node or the cluster node selected from the left node menu. The following catagories are available, depending on the node type, by clicking their corresponding icon:
+<ul>
+  <li>System</li>
+  <li>Databases</li>
+  <li>Processes</li>
+  <li>UI</li>
+  <li>Services</li>
+  <li>Catalog</li>
+  <li>Performance</li>
+</ul>
+<p>Within each category, the configuration is further divided into horizontal tabs. When a property is changed, the affected tabbed page appears with an asterisk (*) to denote that the change has not been saved. You must click the <b>Save</b> button to persist your changed configuration into the database before selecting another node in the node menu or closing the System Configuration application.</p>
+<p>The configuration properties may differ between node-level configuration and cluster-level configuration. These differences are explained on each tabbed page in this guide.</p>
+<p><b>Note</b>: For most properties, they are editable at both the cluster and node levels. In this case,  changing these properties at the cluster level overwrites the existing node-level values. You can also change these properties at the node level, to specify different values among nodes.</p>
+<p>&nbsp;</p>
+</body>
+</html>

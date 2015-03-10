@@ -1,0 +1,138 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>GetBasket SID Interface</title>
+<link rel="StyleSheet" href="../../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<h2>GetBasket SID Interface</h2>
+<p>The GetBasket interface validates the catalog basket for errors, and returns a list of validation error codes and   messages. The GetBasket   interface is available in the Library files of Velocity Studio, and contains input, output, and fault data structures defined as follows:</p>
+
+<img src="GetBasket.png" alt="Gets items in the basket" />
+
+<h3>Input</h3>
+There is no input file required for the GetBasket interface.
+
+<h3>Output</h3>
+The output file contains the following elements and data types defined in the cwt_psid.basket data structure:<br>
+<br>
+<table class='confluenceTable' border  cellpadding="1" width="774">
+  <tbody>
+<tr>
+ <th width="151" class='confluenceTh'>Output</th>
+ <th width="159" class='confluenceTh'>DataType</th>
+ <th width="159" class='confluenceTh'>Element</th> 
+ <th width="630" class='confluenceTh'>Notes</th>
+  </tr>
+<tr>
+  <td class='confluenceTd' VALIGN=TOP>basket</td>
+  <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+  <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>    
+  <td class='confluenceTd' VALIGN=TOP><p>Contains the following elements:
+     <ul>
+      <li>basketInstance</li>
+      <ul>
+        <li>basketId (<i>string 10</i>)</li>
+        <li>cwCreated (<i>DateTime</i>)</li>
+        <li>cwCreatedBy (<i>string (64)</i>)</li>
+        <li>lastUpdateDate (<i>DateTime</i>)</li>
+        <li>updatedBy (<i>string (64)</i>)</li>
+        <li>cwOrderID (<i>string (16)</i>)</li>
+        <li>state (<i>string (16)</i>)</li>
+    </ul></ul>
+    <ul>
+      <li>basketItemRelations (<i>array</i>)</li>
+      <ul>
+        <li>basketItemRelation</li>
+        <ul>
+          <li>basketItemIdFrom (<i>string 10</i>)</li>
+          <li>basketItemIdTo (<i>string 10</i>)</li>
+          <li>relationName (<i>string 32</i>)</li>
+          <li>basketId (<i>string 10</i>)</li>
+          <li>cwCreated (<i>DateTime</i>)</li>
+          <li>cwCreatedBy (<i>string (64)</i>)</li>
+          <li>lastUpdateDate (<i>DateTime</i>)</li>
+          <li>updatedBy (<i>string (64)</i>)</li>
+          <li>basketItemRelationId (<i>string</i>)</li>
+        </ul>
+      </ul>
+    </ul>
+
+      <ul>
+      <li>basketItems (<i>array</i>)</li>
+      <ul>
+      <li>basketItem</li>
+      <ul>
+        <li>basketItemId (<i>string 10</i>)</li>
+        <li>basketId (<i>string 10</i>)</li>
+        <li>itemcode (<i>string 32</i>)</li>
+        <li>cwCreated (<i>DateTime</i>)</li>
+        <li>cwCreatedBy (<i>string (64)</i>)</li>
+        <li>lastUpdateDate (<i>DateTime</i>)</li>
+        <li>updatedBy (<i>string (64)</i>)</li>
+        <li>parentbasketitemid (<i>string (10)</i>)</li>
+        <li>relationname (<i>string (32)</i>)</li>
+        <li>sequenceNo (<i>decimal (4)</i>)</li>
+        <li>basketcreationdate (<i>DateTime</i>)</li>
+        <li>requesttime (<i>DateTime</i>)</li>
+        <li>state (<i>string (16)</i>)</li>
+        <li>basketItemCharges (<i>array</i>)</li>
+        <ul>
+          <li>basketItemCharge</li>
+          <ul>
+            <li>basketId (<i>string (10)</i>)</li>
+            <li>basketItemId (<i>string 10</i>)</li>
+            <li>chargeTypeCode  (<i>string (32)</i>)</li>
+            <li>amount (<i>decimal (10.2)</i>)</li>
+            <li>sequenceNo (<i>decimal (4)</i>)</li>
+            <li>currency (<i>string(3)</i>)</li>
+            <li>frequency (<i>string (1)</i>)</li>
+            <li>displayOnly (<i>boolean</i>)</li>
+            <li>taxCode (<i>string (32)</i>)</li>
+            <li>label (<i>string (128)</i></li>
+            <li>cwCreated (<i>DateTime</i>)</li>
+            <li>cwCreatedBy (<i>string (64)</i>)</li>
+            <li>lastUpdateDate (<i>DateTime</i>)</li>
+            <li>updatedBy (<i>string (64)</i>)</li>
+            <li>isDiscount (<i>boolean</i>)</li>
+          </ul>
+        </ul>
+        <ul>
+        <li>dynamicLeaves (<i>array</i>)</li>
+        <ul>
+          <li>dynamicLeaf</li>
+          <ul>
+            <li>leafName (<i>string</i>)</li>
+            <li>leafValue (<i>string</i>)</li>
+          </ul>
+        </ul>
+      </ul>
+    </ul>
+    </ul></ul>
+    </td>
+</tr>  
+ 
+</table>
+
+<h3>Input and Output File Examples</h3>
+<p>These input and output files are examples using  a SoapUI tool.</p>
+
+<b>InputXML:</b>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;<br>  <br>&lt;/soapenv:Envelope&gt;</pre>
+</div>
+</div>
+
+<b>Output XML:</b>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;<br><br>&lt;/soapenv:Envelope&gt;</pre>
+</div>
+</div>
+</body>
+</html>

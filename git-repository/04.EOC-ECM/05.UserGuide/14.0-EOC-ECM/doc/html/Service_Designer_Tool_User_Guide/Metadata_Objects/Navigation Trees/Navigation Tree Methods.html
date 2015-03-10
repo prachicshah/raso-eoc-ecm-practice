@@ -1,0 +1,523 @@
+<html>
+<head>
+<title>Navigation Tree Methods</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Navigation Tree Methods</h2>
+<p>You can use the <b>Methods</b> tab to add scripts to a node in a navigation tree. There are different types of methods that can be defined for the navigation tree; they are all consolidated into this tab.</p>
+
+<p><strong>Note:</strong> For navigation tree variable-level scripts, they can be managed under the <b>Variables</b> tab by selecting the variable that you want in the variables list, and then selecting the <b>Methods</b> tab in the variable detail pane to edit the variable's methods. These variable-level methods also appear and are editable on the navigation tree's <strong>Method</strong> tab. These methods can be differentiated from other methods by their method names, which are appended by <i>$&lt;variable name&gt;</i>.</p>
+<img src="navTreeMethods.png" border="0" alt="Navigation tree Methods tab" />
+<p>The Methods tab is a <a href="../../../JavaScripting in Order Care/Scripting Interface.html">script management screen</a> in Velocity Studio, which is composed of the <b>Method list pane</b> on the left that lists all scripts of the Navigation Tree, and the <b>Details pane</b> that displays the details of a script when selected from the Method list pane. To create a new method, or to override an existing method of its base navigation tree, right-click  the navigation tree in the Method list pane. A pop-up menu appears.</p>
+
+<img src="navTreeMethodsContextMenu.png" border="1" alt="Navigation tree - right-click menu to create a new method or override an existing method" />
+
+<p>If you have a long list of methods in the left pane, you can press the first letter of the method you are looking for to jump to the list of methods beginning with that letter. For example, pressing the <strong>I</strong> key highlights the first instance of a method that begins with the letter I. The method displays in the right pane.</p>
+<p>The following table lists the wide-ranging type of methods that you can either add or override at the Navigation Tree level.</p>
+
+<br>
+<i><u>New user-defined methods</u></i></br>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh' width='100'>Method Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="navTreeMethodsIconScript.png" align="absmiddle" border="0" alt="Script" /> Script</td>
+<td class='confluenceTd'>Generic user-defined JavaScript function that can defined in a Navigation Tree and explicitly invoked by other scripts; the function is not triggered by other built-in means in the Navigation Tree.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="navTreeMethodsIconPermission.png" align="absmiddle" border="0" alt="Permission" /> Permission</td>
+<td class='confluenceTd'>Permission Method that can be associated to determine permission for a certain property of the Navigation Tree. (for example, Element properties). See section <a href="../Permission/Permissions Velocity.html">Permissions</a> for details.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="navTreeMethodsIconUserAction.png" align="absmiddle" border="0" alt="User action" /> User Action</td>
+<td class='confluenceTd'>Navigation Tree <a href="../../Velocity_Studio/User Interface User Action Method.htm">User Action method</a> that may be assigned to Form Elements to respond to a user action such as a mouse click.</td>
+</tr>
+</tbody>
+</table>
+<br>
+<i><u>New system pre-defined methods</u></i></br>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Method Type</th>
+<th class='confluenceTh'>Script Name</th>
+<th class='confluenceTh'>Parameters</th>
+<th class='confluenceTh'>Return Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>Tree Node Style</td>
+<td class='confluenceTd'><i>cwOnVelocityNodeStyle</i></td>
+<td class='confluenceTd'><i>tableDoc</i></td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>Declare this method to return custom row style, in string, for the tree node.</td>
+</tr>
+</tbody>
+</table>
+<br>
+<i><u>System-defined methods that can be overridden for all types of tree nodes, except Recursive Node</u></i></br>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Method Type</th>
+<th class='confluenceTh'>Script Name</th>
+<th class='confluenceTh'>Parameters</th>
+<th class='confluenceTh'>Return Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Apply Search Map</b></td>
+<td class='confluenceTd'><i>applySearchMap</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>This function applies the assigned <b>Search Conversion Map</b> in General tab to populate the search Input Document value. Only applicable for Finder Child node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Apply Table Document Map</b></td>
+<td class='confluenceTd'><i>applyTableDocMap</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>This function applies the assigned <b>Table Conversion Map</b> in General tab to translate the Tree Node model to the Table Document.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Get Drag Data</strong></td>
+  <td class='confluenceTd'><em>cwGetDragData</em></td>
+  <td class='confluenceTd'><em>object</em></td>
+  <td class='confluenceTd'><em>object</em></td>
+  <td class='confluenceTd'> When called under a tree node, this method gathers the list of  models for each tree node being dragged and return this list. If the object  passed in is a collection of objects in a tree, then the children’s models under  this collection are returned. This method is called on the source  controller <em>before</em> cwGetDropData is  called.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Get Drag Object Type</strong></td>
+  <td class='confluenceTd'><em>cwGetDragObjectType</em></td>
+  <td class='confluenceTd'>None</td>
+  <td class='confluenceTd'><em>String</em></td>
+  <td class='confluenceTd'>This method is called for every tree node that is generated as part of the tree data. This type represents the object that is about to be dragged. This type will be checked against the list of types returned from cwGetDragTypes. When this method is called from a tree node, the tree  does the following:
+    <ul>
+      <li>If the tree node represents a  finder, cwGetDragObjectType is called on the node’s finder model.</li>
+      <li>If the tree node represents a  datastructure, the following happens:</li>
+      <ul>
+        <li>If the node is a top level data structure, the model’s  cwGetDragObjectType is called.</li>
+        <li>If the node is a collection, its element metadata type is  returned.</li>
+      </ul>
+      <li>If the node is anything else,  cwGetDragObjectType on the model is called (if it exists).</li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Get Drag Types</strong></td>
+  <td class='confluenceTd'><em>cwGetDragTypes</em></td>
+  <td class='confluenceTd'>None</td>
+  <td class='confluenceTd'><em>String</em></td>
+  <td class='confluenceTd'>This method returns a comma-separated string of metadata type names. The default implementation for Navigation Tree User Interface is as follows:<br>
+    - Gather a list of metadata type names that correspond to the tree node’s model metadata type, and any objects in the metadata which extend this model’s type. <br>
+    - Called during the fetch of the data. When an object’s type is not included in this list, it is marked as canDrag=false.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Get Drop Data</strong></td>
+  <td class='confluenceTd'><em>cwGetDropData</em></td>
+  <td class='confluenceTd'><em>object</em></td>
+  <td class='confluenceTd'><em>object</em></td>
+  <td class='confluenceTd'>The default implementation of this method returns the object passed in. This method is called on the target controller near the beginning of cwOnDrop <em>after</em> cwGetDropData has been called.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Get Drop Types</strong></td>
+  <td class='confluenceTd'><em>cwGetDropTypes</em></td>
+  <td class='confluenceTd'>None</td>
+  <td class='confluenceTd'><em>String</em></td>
+  <td class='confluenceTd'>This method returns an array of metadata type names. This method will be called as part of the data fetch. The list returned from this method is sent to the browser for easy verification of object acceptance when a user attempts to drop an object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Exclude Permission</b></td>
+<td class='confluenceTd'><i>excludePerm</i></td>
+<td class='confluenceTd'>$psCondition</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Exclude Permission that specifies whether the tree node is to be displayed (false) or be hidden (true) such that the node's children will be displayed directly under the node's parent.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Expand All</b></td>
+<td class='confluenceTd'><i>expandAll</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>Expands the node and its children nodes.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Get Node Messages</b></td>
+<td class='confluenceTd'><i>getNodeMessages</i></td>
+<td class='confluenceTd'><i>messagesArray</i>, <i>includeChildren</i></td>
+<td class='confluenceTd'><i>Object</i> - (Array of messages)</td>
+<td class='confluenceTd'>Retrieves and returns an array of Validation Error messages for the node. If boolean parameter <i>includeChildren</i> is true, recursively retrieves node messages from descendant nodes.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Initialization</b></td>
+<td class='confluenceTd'><i>initNode</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>Implementation function that initializes the tree node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Auto-Save</b></td>
+<td class='confluenceTd'><i>onAutoSave</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>System method that is triggered on auto-save.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>On Click</b></td>
+<td class='confluenceTd'><i>onClick</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>The generic system method that is triggered when there is a mouse-click.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Initialization</b></td>
+<td class='confluenceTd'><i>onInit</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>The system method that is triggered on node's initialization. Calls <i>initNode</i>.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>On Model Event</b></td>
+<td class='confluenceTd'><i>onModelEvent</i></td>
+<td class='confluenceTd'><i>event</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>The system method that is triggered when an action event occurs at the node's model, such as user updating the model in the Form.<br/>
+This event handling is enabled at node's initialization by registering to the model's notification service.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Detail UI</b></td>
+<td class='confluenceTd'><i>onNodeDetail</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'><i>User Interface</i></td>
+<td class='confluenceTd'>The system method that is triggered when the node is selected in the tree, to return the detail User Interface of the model object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Detail Form</b></td>
+<td class='confluenceTd'><i>onNodeDetailForm</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>The system method that is triggered when the node is selected in the tree, to return the name of the detail Form of the model object to display to the user.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>On Node Edited</b></td>
+<td class='confluenceTd'><i>onNodeEdited</i></td>
+<td class='confluenceTd'><i>event</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>The system method that is triggered when the row that represents the node in Tree Form Element, the model of which is the Table Document presented as Table Tree, is editable and updated by user. Typically, logic may be inserted to update the node's model based on the updated Table Document.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>ID</b></td>
+<td class='confluenceTd'><i>onNodeID</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>The system method that calculates the node identifier string.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Icon</b></td>
+<td class='confluenceTd'><i>onNodeIcon</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>The system method that calculates the resource path of the tree node icon image. It can have overlay images, similar to those in Navigation Pane of Velocity Studio itself such as a "pencil" overlay for dirty marking, or "green arrow" overlay for overridden objects. To overlay an image, simply return a list of images separated by comma in this method. As an example, <i>return this.cw$super_onNodeIcon() + ",/cwf/add.gif(top-right)";</i> returns all icon images with the "add" icon overlay embedded at top-right.
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>On Node Tab</b></td>
+<td class='confluenceTd'><i>onNodeTab</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'><i>User Interface</i></td>
+<td class='confluenceTd'>The system method that is invoked only for children nodes with <b>Display in parent tabs</b> enabled in <b>General</b> tab, to get the tab UI for the node. By default, it creates Tab User Interface <i>tabUI</i> if not previously created, and otherwise re-uses it.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Update</b></td>
+<td class='confluenceTd'><i>onNodeUpdate</i></td>
+<td class='confluenceTd'><i>node</i>, <i>action</i>, <i>param1</i>, <i>param2</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>The system method that is invoked to update the node as well as the overall Navigation Tree based on an action event; invokes by <i>onModelEvent</i> method.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Visual Key</b></td>
+<td class='confluenceTd'><i>onNodeVisualKey</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>The system method that computes the node's Visual Key (that is, label of the node).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Validate</b></td>
+<td class='confluenceTd'><i>onValidate</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>The system method that is triggered when validation happens:<ul>
+	<li>On User Action method invocation, if its <b>validate</b> checkbox is selected</li>
+	<li>On selection changed in the navigation tree</li>
+	<li>On tabs selection changed.</li>
+</ul>
+By default, validation executes all validation methods for all Variables in the User Interface as well as validation methods on the model (if exists). Note that, however, validation at tableDoc is not executed by default.
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Refresh Node</b></td>
+<td class='confluenceTd'><i>refreshNode</i></td>
+<td class='confluenceTd'><i>reloadChildren</i>, <i>keepExpanded</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>Helper method that forces to refresh the node and its children.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Refresh Privileges</b></td>
+<td class='confluenceTd'><i>refreshPrivileges</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>Helper method that refreshes visible and exclude privileges for the node and its children.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Save Node</b></td>
+<td class='confluenceTd'><i>saveNode</i></td>
+<td class='confluenceTd'><i>startNode</i>, <i>validate</i>, <i>recursively</i></td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Saves the model of <i>startNode</i> and all its successors if <i>recursively</i> is true. Performs validation if <i>validate</i> is true. If validation fails, the save is aborted when returns false.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Set Validation Errors</b></td>
+<td class='confluenceTd'><i>setValidationErrors</i></td>
+<td class='confluenceTd'><i>validationErrorList</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>Populates validation error list Variable <i>errorList</i> from parameter <i>validationErrorList</i>.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Update Node</b></td>
+<td class='confluenceTd'><i>updateNode</i></td>
+<td class='confluenceTd'><i>updateTableDocument</i>, <i>reloadChildren</i>, <i>keepExpanded</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>Helper method to update the node in the Navigation Tree such as to update Table Document, reload children nodes, and keeping expanded states of the node and its children at refresh, if the corresponding boolean parameter is enabled.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Update Table Document</b></td>
+<td class='confluenceTd'><i>updateTableDoc</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>The helper method that implements the Table Document update. Invokes <i>applyTableDocMap()</i>.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Visible Permission</b></td>
+<td class='confluenceTd'><i>visiblePerm</i></td>
+<td class='confluenceTd'>$psCondition</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Visible Permission that determines whether the node is visible in the Navigation Tree or not.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Some of the more significant methods are as follows:<ul>
+<li><i>initNode</i> - the initialization method for the tree node.</li>
+<li><i>onModelEvent</i> - event handler for the node when its model has an action event such as update.</li>
+<li><i>onNodeEdited</i> - the function that handles a user updating a node at the Tree Form element itself. For example, if node label is changed, override this function to update the node's model, such asthe model object's label,  based on Table Document's label.<br>
+  <br/>
+<table cellpadding='5' width='85%' cellspacing='0' class='infoMacro' border='0'><tr>
+  <td><b class="strong">Design Note</b>:<br /><br/>
+Unlike many automatic mechanisms in the Navigation Tree metadata object, <i>onNodeEdited</i> is an explicit handler that must be custom-developed because the specified <b>Table Conversion Map</b> in the General tab converts from the node's model to a table document, but not inversely. You must, in this method,  specify how to update the model based on the changed table document.
+</td></tr></table>
+</li>
+</ul></p>
+
+<br>
+<i><u>Additional system-defined methods that can be overridden for the Root Node only</u></i>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Method Type</th>
+<th class='confluenceTh'>Script Name</th>
+<th class='confluenceTh'>Parameters</th>
+<th class='confluenceTh'>Return Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Display Node</b></td>
+<td class='confluenceTd'><i>displayNode</i></td>
+<td class='confluenceTd'><i>node</i></td>
+<td class='confluenceTd'><i>Tree Node</i></td>
+<td class='confluenceTd'>The method to select and display the node’s detail. The difference between <i>setSelection()</i> and displayNode() is that the latter one works with <b>display in parent tabs</b> nodes as well. It finds the appropriate (closest) visible Tree Node, sets the Tree selection and, selects the necessary Tab ID.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Get Single Selection</b></td>
+<td class='confluenceTd'><i>getSingleSelection</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'><i>Tree Node</i></td>
+<td class='confluenceTd'>The method to return a single selection of tree node, in the event where multiple nodes are selected in the Navigation Tree.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Hide Detail Action</b></td>
+<td class='confluenceTd'><i>hideDetailAction</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>The method that hides the detail pane in the Navigation Tree.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Is Displaying</b></td>
+<td class='confluenceTd'><i>isDisplaying</i></td>
+<td class='confluenceTd'><i>node</i></td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>The method that determines if the node is being displayed or not.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Is Node Selected</b></td>
+<td class='confluenceTd'><i>isNodeSelected</i></td>
+<td class='confluenceTd'><i>node</i></td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>The method that determines if the node is being selected or not.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>On Changed Selection</b></td>
+<td class='confluenceTd'><i>onSelChanged</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>The method that is triggered when node selection at the Tree Form Element is changed.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Set Node as Selected</b></td>
+<td class='confluenceTd'><i>setNodeSelected</i></td>
+<td class='confluenceTd'><i>node</i>, <i>state</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>The method that includes a particular <i>node</i> as a selected node at the Tree Form Element.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Set Node Selection</b></td>
+<td class='confluenceTd'><i>setSelection</i></td>
+<td class='confluenceTd'><i>nodes</i>, <i>fireEvent</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>The method that sets an array of <i>nodes</i> as the list of selected nodes at the Tree Form Element, changing Root Node Variable <i>treeSel</i>. Method <i>onSelChanged</i> is invoked if parameter <i>fireEvent</i> is true or missing.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Show Detail Action</b></td>
+<td class='confluenceTd'><i>showDetailAction</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>This method is triggered when the detail pane is to be displayed based on the node selection.</td>
+</tr>
+</tbody>
+</table>
+
+<br>
+<i><u>Additional system-defined methods that can be overridden for Root Node with tabs only</u></i>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Method Type</th>
+<th class='confluenceTh'>Script Name</th>
+<th class='confluenceTh'>Parameters</th>
+<th class='confluenceTh'>Return Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Add Tab</b></td>
+<td class='confluenceTd'><i>addTab</i></td>
+<td class='confluenceTd'><i>tabsArray</i>, <i>node</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>Adds the <i>node</i> as a tab at the end of the <i>tabsArray</i>.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b><i>currentForm</i>'s Initialization</b></td>
+<td class='confluenceTd'><i>cwLeafInitAction$currentForm</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>The initialization method of Variable <i>currentForm</i> that specifies the Form to display in the detail Form Frame, which defaults to Form "Single".</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Changed Tab</b></td>
+<td class='confluenceTd'><i>onTabChanged</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>The method that is triggered when tab selection is changed among Tabset in the detail pane.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>On Timer</b></td>
+<td class='confluenceTd'><i>onTimer</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>Generic timer method that is periodically invoked.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Select Tab</b></td>
+<td class='confluenceTd'><i>selectTab</i></td>
+<td class='confluenceTd'><i>index</i></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>The method that sets a tab selection based on <i>index</i>.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Recursive Node has only one system method: <i>cwOnVelocityNodeStyle</i>.</p>
+
+<p>For method types that can be created, you can create multiple methods of the same method type (for example, Permission 1, Permission 2...), each identifiable by a unique method name. However, for methods that are to be overridden, you can only define one method for each base method.</p>
+
+<p>For scripts that are already overridden, they appear in the Method list pane and are no longer available by right-clicking from the context popup menu.</p>
+<h3>Use a Script Method for Calculating a Tree Column</h3>
+<p>When creating any script method that will be used in the variable of a calculated column of a tree, use the following two parameters in your script:</p>
+<ul>
+  <li><em>record</em> is the tree document, which is of type com.conceptwave.system.TreeDocument</li>
+  <li><em>node</em> is the tree node, which is of type com.conceptwave.system.TreeNode</li>
+  </ul>
+<p>The following is an example of defining these parameters in a script called hasAttachmentImage:</p>
+<p><img src="navTreeMethodsScriptCalculateColumnParameters.png" alt="Script method used in a variable to calculate column in a tree - parameters"></p>
+<p>For the navigation tree's column, hasAttachmentImage, its <strong>Variable</strong> field uses the hasAttachmentImage script that was previously defined to calculate the tree's column.</p>
+<p><img src="navTreeMethodsScriptCalculateColumn.png" alt="Script method used in a variable to calculate column in a tree - Variable field uses hasAttachmentImage script" border="1"></p>
+<h3>Programmatically Display the Node During Tree Initialization</h3>
+<p>If you have a  display detail form, you can display it automatically after the tree view appears by following these steps:</p>
+<ol>
+  <li>The document ID that needs to be selected must be known.</li>
+  <li>During initialization, find the node by the document ID.</li>
+  <li> Select the node and trace back to expand the entire path from leaf to root.</li>
+  <li>Trigger the onSelChanged method at the root to show the detail form.  </li>
+  </ol>
+<p>The navigation tree's findNodeByID method takes the nodeId as a parameter. This method must be implemented at all levels of the tree node for tracing the node from root to leaf as follows:<BR>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+// Helper method: finds child tree node by node ID<BR>
+if (this.tableDoc.id == nodeId) {
+  return this;<BR>}<BR>
+this.loadChildren();<BR>var nodeFound = null;<BR>
+if (this.childNodes != null) {<BR>  var len = this.childNodes.length;<BR>  for(var i = 0; i &lt; len; i++) {<BR>    nodeFound = this.childNodes[i].findNodeByID(nodeId);<BR>    if (nodeFound != null) {<BR>      return nodeFound;<BR>    }<BR>  }<BR>}<BR>
+return null;</pre>
+</div>
+</div>
+<BR>
+  The trace back script on the navigation tree's onInit  method is as follows:<BR>
+  <div class="code">
+<div class="codeContent">
+<pre class="code-java">
+this.globalUI  = new cwt_pc.globalUI(null, this);<br>this.initNode();<br>this.loadChildren();<br>this.ads = true;
+
+var node = this.findNodeByID(&quot;&lt;Enter node ID here&gt;&quot;); <br>var root = this.getRoot();<br>
+if (!root.isDetailView) {<br>  //display the search form at the very beginning<br>  var nodes = new Array();<br>  nodes[0] = node;<br>  var root = node.getRoot();<br>  root.treeSel = nodes;<br>
+  // expand paths<br>  if (nodes != null) {<br>    for (var i = 0; i &lt; nodes.length; i++) {<br>      var parentN = nodes[i].parentNode;<br>      while (parentN != null) {<br>        parentN.expanded = true;<br>        parentN = parentN.parentNode;<br>      }<br>    }<br>  }<br>
+  root.onSelChanged();
+}</pre>
+</div>
+</div>
+  <h3>Dynamically Change Icons for Nodes in a Navigation Tree</h3>
+  <p>Support for dynamic icons in the first column of a navigation tree is available. The icons are in a separate column is due to being able to invoke an action when you click an icon.</p>
+  <p>When you create a new navigation tree, it is created with one table column. You must ensure that is is not replace with an icon field or something similar.</p>
+  <p>To have both the node text and the icon be dynamic, you need to override the following methods for each tree node:</p>
+  <ul>
+    <li>The onNodeVisualKey method for text</li>
+    <li>The onNodeIcon method for icons<br>
+    </li>
+    </ul>
+  <p><strong>Notes:</strong> </p>
+  <ul>
+    <li>Placing an Image element as the first column does not show any image due to SmartClient's restrictions.
+      The workaround is to use a label with a script returning the HTML image tag with paths dynamically and to set the <strong>Escape HTML</strong> field to false.</li>
+    <LI>Depending on the Web browser that you are using, you may experience   inconsistent behaviour with checkbox images in the navigation tree when the   browser zoom level is set to levels greater than 100%. Due to a smartClient   issue, customized zoom levels vary by browser, and may result in rendering and   various sizing issues. Browser zooms set to levels other than 100% are not   supported by smartClient. </LI>
+  </ul>
+  </p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,79 @@
+﻿<html>
+<head>
+<title>Database Maps - Map an Object Variable</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Map an Object Variable</h2>
+<p>You can map an object variable as an object reference by completing these steps:</p>
+<ol>
+  <li>Select the object from the left side of the page, and then click the <strong>Map Object</strong> button. <br>
+    <br>
+    <img src="databaseMapMappingTabMapObjectButton.png" alt="Database Maps - Map an object" border="1"><br>
+    <br>
+  </li>
+  <li>A number of fields appear.<br>
+    <br>
+    <img src="databaseMapMappingTabMapObjectButtonFields.png" alt="Database Maps - Map an object - Fields" border="1"><br>
+    <br>
+    Specify the following fields:<br>
+    <br>
+    <table class='confluenceTable' border cellpadding="1"
+>
+<tbody>
+        <tr>
+          <th width="114" class='confluenceTh'>Field</th>
+          <th width="1368" class='confluenceTh'>Description</th>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><b>Source</b></td>
+          <td class='confluenceTd'>This field represents the source object variable that you want to map to your database table.</td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><b>Map </b></td>
+          <td class='confluenceTd'>Click the drop-down menu and select an object mapping from the list. If you do not select a map, the default mapping is used for the object. Only the object ID of the child object is saved to the parent data structure. The cwSetStructId and cwGetStructId  methods set and get the object ID, which need to be overridden in the child object data structure.</td>
+          </tr>
+        <tr>
+          <td height="44" class='confluenceTd'><strong>Foreign Key</strong></td>
+          <td class='confluenceTd'><p>An object variable can be mapped  as an object reference where the parent object reference, as a foreign key, is stored in the object variable data structure. A key column value of the parent object is stored in the child data object variable in the foreign key column. No column in the parent data structure exists that refers to the child object variable. However, the child object variable has a reference of the parent object. Click the <strong>Foreign Key</strong> field's drop-down menu and select from the list.</p></td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Save As</strong></td>
+          <td class='confluenceTd'><p>You can take an object variable and map it with a column by clicking this field's drop-down menu and select from one of the following options:</p>
+            <ul>
+              <li><strong>ID<br>
+                </strong> When you map an object with this value, the setting saves an ID of the object variable in a column. The object ID  is  set and get using the cwSetStructId and cwGetStructId methods, respectively, which need to  be overridden in the object variable data structure. You can select an object variable mapping from one of the existing mappings. If you do not select a mapping, the default mapping for the object variable is used.  You can also specify write and read options. If  you specify the <strong>Read on Select</strong> field for your object map, it reads the object  variable with the parent data object. If you specify the <strong>Write on Save</strong> field for your object map, it  writes the object when you save the parent data object.<strong></strong></li>
+              <li><strong>JSON<br>
+                </strong>Setting the field to this value saves the object variable as  a JSON serialized string into the column. No mapping is required, as the entire  object is stored in a column.<strong></strong><br>              
+                <strong>XML<br>
+                </strong>Seeing the field to this value is the same as  <strong>JSON</strong>, except that this setting  stores the XML serialized object as a string.</li></ul></td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Read on Select</strong></td>
+          <td class='confluenceTd'>Selecting this property allows reading the object with the parent data object.</td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><b>Write on Save</b></td>
+          <td class='confluenceTd'>Selecting this property allows writing the object when you save the parent data object.</td>
+          </tr>
+        </tbody>
+      </table>
+  </li>
+  </ol>
+<p><br>
+  <strong>Note:</strong> When a data structure is mapped as a reference key (that is, either a foreign key or an ID mapping), during a save or update operation, the reference key column automatically populates with the data structure object key.</p>
+<h3>  Expand Data Structure Variables When Mapping an Object Variable</h3>
+<p>When a data structure has a data structure variable, you can expand the data structure from the Mapping tab, even if it is not marked as a container.</p>
+<p>In the following example, <strong>address</strong> is a data structure variable that is not a container in the <strong>person</strong> data structure. In this database map, the <strong>address</strong> data structure variable is expanded to show its variables.</p>
+<p><img src="databaseMapMappingTabMapObjectExpandDataStructureVariable.png" alt="Database Maps - Map an object- Expand data structure variable" border="1"></p>
+<p>In this example, you can select <strong>address</strong> and provide object mapping usiing the <strong>Save As</strong> field. You can also choose any of the variables from the <strong>address</strong> data structure (for example, <strong>city</strong>, <strong>province</strong>, and so on) and map it with a column in the PERSON table.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

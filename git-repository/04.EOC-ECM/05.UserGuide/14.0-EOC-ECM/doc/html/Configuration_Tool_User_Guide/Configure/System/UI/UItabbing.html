@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>UI - Tabbing</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Tabbing</h2>
+
+<p>Clicking <b>UI</b> &gt;<b> Tabbing</b>  provides the ability to globally suppress tabbing to either any or all form elements, such as text fields, checkboxes, radio buttons, and more.</p>
+<p><img src="UItabbing.png" alt="UI - Tabbing tab" border="1"></p>
+<p>To exclude an element from the tab order, select the checkbox next to the element that you want, and then click the <strong>Save</strong> button to save your configuration.</p>
+<p><strong>Note:</strong> Suppressing tabbing for elements is not advised as it is not accessibility-friendly. </p>
+<p>The following table describe further details about specific elements when you chose to suppress their tabbing functionality:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="152" class='confluenceTh'>Element</th>
+      <th width="1258" class='confluenceTh'>Notes</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>image</td>
+      <td class='confluenceTd'><p>By default, image buttons are included in the tab order if the <strong>Can Focus</strong> property is set to true.</p>
+        <p><strong>Note:</strong> Suppression is not applied to image buttons of date and reference fields.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>layout</td>
+      <td class='confluenceTd'><p>By default, a layout is included in the tab order if it has scrolling, which excludes all layouts in tabbing (that is, vertical and horizontal layouts, grid layouts, and vertical and horizontal stacks). Exclude each layout individually by setting its <strong>Include in Tab Order</strong> property.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>menu</td>
+      <td class='confluenceTd'>Excludes all menu buttons from tabbing, but is not applicable to submenus. By default, menu items are included in the tab order if the <strong>Can Focus</strong> property is set to true.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>radiobutton</td>
+      <td class='confluenceTd'>A known issue is that excluding the radio button works fine using Firefox as your Web browser. However, in Internet Explorer, Chrome, and Safari, it is impossible to completely exclude it from the tab order. It skips radio buttons from the tab order when moving from field to field, eventually tabbing to them after visiting all other items on the page.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>table, tree</td>
+      <td class='confluenceTd'>By default, the table and tree bodies are focusable such that they can use keys for scrolling and other actions. As a result, they are included in the tab order.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>tabset</td>
+      <td class='confluenceTd'>The default tab order also includes the tab buttons of the tab sets.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>text</td>
+      <td class='confluenceTd'><strong>Note:</strong> It is not recommended to disable tabbing for text items. Instead, exclude elements individually by setting their <strong>Include in Tab Order</strong> property.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>textarea</td>
+      <td class='confluenceTd'><strong>Note:</strong> It is not recommended to disable tabbing for text area items. Instead, exclude elements individually by setting their <strong>Include in Tab Order</strong> property.</td>
+    </tr>
+  </tbody>
+</table>
+<p><strong><br>
+Note:</strong> An element's <span class="confluenceTd"><strong>Include in Tab Order</strong> property can override the global Suppress Tabbing setting. See the <a href="../../../../Service_Designer_Tool_User_Guide/Velocity_Studio/Form Elements Overview.htm">Elements</a></span> section for information on this property.</p>
+<p><br>
+</p>
+</body>
+</html>

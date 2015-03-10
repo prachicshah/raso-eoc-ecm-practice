@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>IBM WebSphere Configuration</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">
+<!--
+.style2 {color: #000000}
+.style3 {color: #FF0000}
+.Hilary {
+	color: #F00;
+}
+-->
+</style>
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onload="highlight();">
+<h2>IBM WebSphere Configuration</h2>
+This section describes the process for configuring the WebSphere application to deploy the application WAR file including:
+<ol>
+<li><a href="#WebSphereIns">Installing WebSphere Application Server</a></li>
+<li><a href="#OracleD">Adding Oracle Drivers</a></li>
+<li><a href="#Database">Setting up the database in WebSphere</a></li>
+<li><a href="#DataSource">Configuring Data Sources</a></li>
+<li><a href="#ConfigServer">Configuring the Application Server</a></li>
+<li><a href="#addJVMoption">Add JVM Option</a></li>
+</ol>
+
+<h3><a name="WebSphereIns">Installing WebSphere Application Server</a></h3>
+<ol>
+<li>Install WebSphere Application Server (<a href="http://www.ibm.com/developerworks/websphere/downloads/">quick link</a>); ensure version is certified under <a href="../Installer_User_Guide/Installation Planning.html#CertificationMatrix">certification matrix</a>.</li>
+<li>Run the WebSphere Application: 
+<ul>
+          <li> For Windows, run the application through a Web browser (by default, it runs on port 9060 (for example, http://hp-int:9060/ibm/console)).</li>
+          <li> For Linux/Unix platforms, the application can be run by issuing the following command:
+                <pre class="code-java">
+                 &lt;WebSphere-Home-Dir&gt;/bin/startServer.sh server1&gt;</pre></li>
+</ul>
+</li>
+
+<li>Log in to the WebSphere Console.</li>
+</ol>
+
+<h3><a name="OracleD">Adding Oracle Drivers</a></h3>
+This section describes the step necessary to add the oracle jars files (ojdbc6.jar, orai18n.jar, orai18n-mapping.jar) to the WebSphere Application through the Console. 
+<ol> 
+<li>Navigate to <strong>Environment</strong> > <strong>Shared Libraries</strong> and click the <strong>New</strong> button to add the library files.<br />
+  <br />
+</li>
+                <table class='confluenceTable'>
+				<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="SharedLibrary.png" alt="Shared Library" border="0"  /></td>
+				</tr>
+				</tbody>
+				</table>
+<li> Copy the Oracle library JARs ojdbc6.jar, orai18n.jar, and orai18n-mapping.jar from the build installation folder (&lt;CWOrderCare&gt;\lib\oracle) to an appropriate Unix directory.<br />
+  <br />
+</li>
+
+<li>The Configuration folder appears.  Enter the path of the Oracle JAR files as shown below. When done, click <strong>OK</strong> to create the shared library and save the changes.<br />
+  <br />
+</li>
+                <table class='confluenceTable'>
+				<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="SharedLibrary2.png" alt="Shared Library" border="0"  /></td>
+				</tr>
+				</tbody>
+				</table>                
+</ol>                
+
+<h3><a name="Database">Setting up the database in WebSphere</a></h3>
+The following steps describe the database setup in WebSphere:
+<ol>
+  <li>Create a new JDBC provider by navigating within the WebSphere Console to <strong>Resources</strong> &gt; <strong>JDBC</strong> &gt; <strong>JDBC Providers</strong> and click the <strong>New</strong> button.<br />
+    <br />
+    <img src="NewJDBCProviderNewButton.png" alt="New JDBC provider - New button" border="1" /><br />
+    <br />
+  </li>
+  <li>Fill in the details as follows:<br />
+    <br />
+  <table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <td class='confluenceTd'><img src="NewJDBCProviderStep1.png" alt="New JDBC Provider" border="0"  /></td>
+      </tr>
+    </tbody>
+    </table>  
+    The Oracle file that the system created in the path is for ojdbc6.jar file. Click the <strong>Next</strong> button to continue.<br />
+    <br />
+  </li>
+  <li>Enter the directory path for your JDBC libraries and click the <strong>Next</strong> button to continue.
+  <br />
+    <br />
+  </li>
+  <table class='confluenceTable'>
+    <tbody>
+      <tr>
+        <td class='confluenceTd'><img src="NewJDBCProviderStep2.png" alt="Step2 - Database ClassPath" border="0"  /></td>
+      </tr>
+    </tbody>
+    </table>
+  <br />              
+  
+  <li>The system displays a summary of the changes. Click the <strong>Finish</strong> button to create the JDBC driver.<br />
+    <br />
+  </li>
+  <table class='confluenceTable'>
+    <tbody>
+      <tr>
+        <td class='confluenceTd'><img src="NewJDBCProviderStep3.png" alt="Summary of Changes" border="0"/></td>
+      </tr>
+    </tbody>
+    </table>
+  <br />
+  <li>
+    <p>On the JDBC providers screen, click the <strong>Save</strong> link to save your changes.<br />
+      <br />
+      <img src="NewJDBCProviderStep4.png" alt="JDBC driver - save changes" />    <br />
+    </p>
+  </li>
+  <li>  Click your newly created JDBC driver, and add the following JAR files to the <strong>class path</strong>:
+<ul>
+      <li>orai18n.jar</li>
+      <li>orai18n-mapping.jar </li>
+    </ul>
+  </li>
+</ol>
+<blockquote>
+  <p>Click the <strong>OK</strong> button to save your changes.</p>
+  <p><img src="NewJDBCProviderStep5.png" alt="New JDBC driver - add JAR files to classpath" /><br />
+  </p>
+</blockquote>
+<h3><a name="DataSource">Configuring Data Sources</a></h3>
+The following steps configure the database source.
+<ol>
+<li>Navigate to <strong>Resources</strong> > <strong>JDBC</strong> > <strong>JDBC Providers</strong>.  Select the JDBC driver that was just created by double clicking its hyperlink.  When the following screen appears, click the <strong>Data Sources</strong> link:<br />
+  <br />
+</li>
+                <table class='confluenceTable'>
+				<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="JDBC Providers General Properties.png" alt="JDBC Provider" border="0"  /></td>
+				</tr>
+				</tbody>
+				</table>
+                <br />
+<li>Click the <strong>New</strong> button to create a New Data Source.<br />
+  <br />
+</li>
+                <table class='confluenceTable'>
+				<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="New Data Source 1.png" alt="New Data Source" border="0"  /></td>
+				</tr>
+				</tbody>
+				</table>
+                <br />
+<li>The system  navigates you through the process of creating a New Data Source.  In the first step, enter the JNDI name as <b>ConceptWaveConfig</b> and click the <strong>Next</strong> button to continue. <br />
+  <br />
+</li>     
+                <table class='confluenceTable'>
+				<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="Data Source Step 1.png" alt="Data Source Step 1" border="0"  /></td>
+				</tr>
+				</tbody>
+				</table>
+                <br /> 
+<li>Step 2, enter the JDBC URL in the format of jdbc:oracle:thin:@&lt;host-name&gt;:&lt;portno&gt;:&lt;sid&gt; (for example, jdbc:oracle:thin:@cronos:1521:cronosdb (note: that the default port is 1521)) and click the <strong>Next</strong> button to continue. <br />
+  <br />
+</li>     
+                <table class='confluenceTable'>
+				<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="Data Source Step 2.png" alt="Data Source Step 2" border="0"  /></td>
+				</tr>
+				</tbody>
+				</table>
+                <table cellpadding='5' width='85%' cellspacing='8px' class='noteMacro' border="0" align='center'>
+				<tr>
+  				  <td><p><b class="strong">Important Note</b><br />
+         The user-name, password, hostname, port and service values assigned here should be the same as those defined in the <a href="../Installer_User_Guide/order care tools configuration.html">Database Configuration</a>.</p>
+         		  </td>
+				</tr>
+				</table>
+                <br />
+<li>The system displays the Security-Alias page.  Do not fill any information in this page.  Click the <strong>Next</strong> button to continue.<br />
+  <br />
+</li>
+<li>The system displays the Summary page.  Click the <strong>Finish</strong> button to continue.<br />
+  <br />
+</li>     
+                <table class='confluenceTable'>
+				<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="Data Source Step 3.png" alt="Data Source Step 3" border="0"  /></td>
+				</tr>
+				</tbody>
+				</table>
+                <br />
+<li>The following steps  configure the JAAS - J2C authentication data. </li>
+<ol type="a">
+		<li>Double-click the Data Source that was  created above to view the General Properties page.  Click the <strong>JAAS - J2C authentication data</strong> hyperlink to begin the process.</li>
+                <table class='confluenceTable'>
+				<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="JAAS - J2C authentication data.png" alt="JAAS - J2C authentication data" border="0"  /></td>
+				</tr>
+                </tbody>
+				</table>
+                <br />
+<li>Click the <strong>New</strong> button to create a new database user and password.<br />
+  <br />
+</li>       
+                <table class='confluenceTable'>
+				<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="JAAS - J2C New.png" alt="New J2C" border="0"  /></td>
+				</tr>
+				</tbody>
+				</table>
+                <br />
+<li>Enter a new <strong>User ID</strong> and <strong>Password</strong>, which need to match  the User ID and Password  used in the <a href="../Installer_User_Guide/database initialization.html"> database configuration</a>. Click the <strong>OK</strong> button to save the changes.<br />
+  <br />
+</li>     
+                <table class='confluenceTable'>
+				<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="JAAS - J2C New User.png" alt="New User" border="0" /></td>
+				</tr>
+				</tbody>
+				</table>
+                <br />
+<li>Link the new user created to the data source you previously created.  Navigate to <strong>Resources</strong> > <strong>JDBC</strong>> <strong>Data Sources</strong>.  Double-click the Data Source previously selected.  The system displays the Configuration of this Data Source.   Add the user created above to the <strong>Component-managed authentication alias</strong> field and save the changes.<br />
+  <br />
+</li>     
+                <table class='confluenceTable'>
+				<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="JAAS - J2C New User Manage Alias.png" alt="New User" border="0"  /></td>
+				</tr>
+				</tbody>
+				</table>
+                <br />
+<li>The system displays the Data Sources page.  Select the Data Source that you have created in the above steps and click <strong>Test Connection</strong>.</li>     
+  </ol>
+</ol>
+<h3><a name="ConfigServer">Configuring the Application Server</a></h3>
+<ol>
+<li>Navigate to <strong>Servers</strong> > <strong>Application Servers</strong>.  Double-click the <strong>server1</strong> hyperlink.  The system displays the server1 configuration.  On the right handside of the Configuration page, navigate to <strong>Server Infrastructure</strong> > <strong>Java and Process Management</strong>.<br />
+  <br />
+</li>
+                <table class='confluenceTable'>
+				<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="server1 Application Server.png" alt="Application Server Configuration" border="0"  /></td>
+				</tr>
+                </tbody>
+				</table>
+<li>The system displays the General Properties.  Click the <strong>Java Virtual Machine</strong> hyperlink from the <strong>Additional Properties</strong> right-hand menu.<br />
+  <br />
+</li>
+<li>The system displays the General Properties of the Java Virtual Machine.  In the <strong>Generic JVM Arguments</strong> field, enter <tt>-Xmx1024M -Xms1024M -Djavax.management.builder.initial= -Dcom.sun.management.jmxremote</tt> and save the record by clicking <strong>Apply</strong>.<br />
+  <br />
+<table class='confluenceTable'>
+<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="JVM.png" alt="JVM" border="0"  /></td>
+				</tr>
+				</tbody>
+				</table>
+<br />
+</li>           
+<li>On the right-hand side of the JVM Configuration page, click the <strong>Custom Properties</strong> link from the <strong>Additional Properties</strong> menu  to define the application specific variables as shown below.<br />
+  <br />
+</li> 
+  <table class='confluenceTable'>
+        <tbody>
+          <tr>
+            <th class='confluenceTh'>Parameter</th>
+              <th class='confluenceTh'>Value</th>
+          </tr>
+          <tr>
+            <td class='confluenceTd'>com.conceptwave.licenseDir</td>
+            <td class='confluenceTd'>{license_file_path}  (that is,  /home/appserv/AppServ/)</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'>com.conceptwave.nodeId</td>
+            <td class='confluenceTd'>{node_id} (Obtain from <a href="../Installer_User_Guide/order care tools configuration.html"> Node Configuration </a> in the Configuration application)</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'>com.ibm.security.jboss.debug</td>
+             <td class='confluenceTd'>1</td>
+          </tr> 
+          <tr>
+            <td class='confluenceTd'>com.ibm.krb5.krb5Debug</td>
+             <td class='confluenceTd'>off</td>
+          </tr>                   
+          <tr>
+            <td class='confluenceTd'>com.sun.management.jmxremote.port</td>
+             <td class='confluenceTd'>9999</td>
+          </tr>                   
+          <tr>
+            <td class='confluenceTd'>com.sun.management.jmxremote.ssl</td>
+              <td class='confluenceTd'>false</td>
+          </tr>
+          <tr>                   
+            <td class='confluenceTd'>com.sun.management.jmxremote.authenticate</td>
+            <td class='confluenceTd'>false</td>
+          </tr>                   
+      </tbody>
+      </table>
+  <br />            
+                <table class='confluenceTable'>
+				<tbody>
+				<tr>
+				  <td class='confluenceTd'><img src="JVM CustomProperties.png" alt="JVM Custom Properties" border="0"  /></td>
+				</tr>
+				</tbody>
+				</table>
+</ol>
+
+<h3><a name="addJVMoption">Add JVM Option</a></h3>
+<p>Add the following JVM option, which helps with PDF XSLT generation:</p>
+<div class="code">
+  <div class="codeContent">
+    <p>javax.xml.transform.TransformerFactory=org.apache.xalan.processor.TransformerFactoryImpl</p>
+  </div>
+</div>
+<p></p>
+<p>&nbsp;</p>
+</body>
+</html>

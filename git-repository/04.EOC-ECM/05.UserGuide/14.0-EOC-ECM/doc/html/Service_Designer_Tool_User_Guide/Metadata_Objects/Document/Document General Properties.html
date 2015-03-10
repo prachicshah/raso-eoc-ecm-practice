@@ -1,0 +1,191 @@
+<html>
+<head>
+<title>Document General Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<tr>
+  <td valign="top" class="pagebody">
+  <h3><a name="DocumentGeneralProperties"></a>Document General Properties</h3>
+    
+  <p>The general Document properties are on the <b>General</b> tab.</p>
+    
+  <!--<p>The <b>General</b> tab of a Document in Classic mode is shown below.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="DocumentGeneralClassic.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>-->
+    
+  <img src="DocumentGeneralVelocity.png" alt="Document - General tab" border="1" />
+    
+  <p>The following table describes the fields for <b>General</b> tab of Document:</p>
+  <table class='confluenceTable' border cellpadding="1">
+  <tbody>
+  <tr>
+  <th class='confluenceTh'>Field</th>
+  <th class='confluenceTh'>Description</th>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Name</b></td>
+  <td class='confluenceTd'>Name of the metadata object (used in scripts; must conform to JavaScript naming conventions). Read-only after creation. To change it, use the <b>Rename</b> command in the popup menu by right-clicking the metadata object.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Private</b></td>
+  <td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Restricted</b></td>
+  <td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><b>Deprecated</b></td>
+    <td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+  </tr>
+  <tr>
+    <td height="42" class='confluenceTd'><b>Virtual</b></td>
+    <td class='confluenceTd'>If checked, it provides the ability to create methods in template metadata that does not have implementation, but can be used in template script and be bound to UI elements. The implementation is done in user metadata (see <a href="../Virtual Field/Virtual Field.html">Virtual Field</a> for more information).</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>Final</strong></td>
+    <td class='confluenceTd'>Metadata elements can be marked as final, which includes any Boolean final property that is available on any metadata element. Additionally, any metadata element that has the <strong>Final</strong> property set to true can neither be extended, nor overridden.</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><b>Label</b></td>
+    <td class='confluenceTd'>Metadata object display label.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Description</b></td>
+  <td class='confluenceTd'>Description of the metadata object for documentation.</td>
+  </tr>
+  <!--<tr>
+<td class='confluenceTd'><b>Help</b></td>
+<td class='confluenceTd'>Context sensitive user help for the framework.</td>
+</tr>-->
+  <tr>
+  <td class='confluenceTd'><b>Extends</b></td>
+  <td class='confluenceTd'>Base Document to derive from. Unchangeable after Document creation.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Overrides</b></td>
+  <td class='confluenceTd'>Metadata object to override. Typically used to customize system or library metadata objects. Visible only if this Document extends from another Document. At runtime, the Document specified in <b>Overrides</b> field is completely replaced by this Document. A search for the overridden Document will return this Document as the result.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Dynamic Document</b></td>
+  <td class='confluenceTd'>Boolean. If enabled, the Document becomes a dynamic Document, which may have dynamic Variables, capable to be added at runtime. See topic <a href="Dynamic Document.html">Dynamic Document</a> for details. Default to false.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Dynamic table name</b></td>
+  <td class='confluenceTd'>The database table name of the name-value pair (NVP) table that stores values of dynamic Variables. Only relevant when <b>Dynamic Document</b> is checked. See topic <a href="Dynamic Document.html">Dynamic Document</a> for details.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Audit trail</b></td>
+  <td class='confluenceTd'><p>If checked, the system will be triggered to record a history for any changes of the content of any runtime instance of this Document. Once it is checked, any change made to the Document will be recorded, providing the audit is requested in the Configuration application, and the <b>Audit</b> flag of the corresponding Document Variable is also checked. The changes are recorded into the <em>cwaudittrail</em> and <em>cwfieldaudittrail</em> database tables, which are system tables used as a history log in the database (refer to the note that follows this table).</p>
+    <p><b>Notes:</b> </p>
+    <ul>
+      <li>A maximum of 100 fields per document can be audited.</li>
+      <li>Translation fields are audited.    The old and new values in the CWFIELDAUDITTRAIL table indicate the language of the change, and takes the format &lt;<em>language code</em>&gt;|&lt;<em>translation text</em>&gt; (for example, en-xx|HELLO).</li>
+      <li>For a dynamic document, a single operation creates one audit field record in the CWAUDITTRAIL table for both static  and dynamic variables.</li>
+      </ul></td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Attachments</b></td>
+  <td class='confluenceTd'>If checked, indicates that attachments to this Document are allowed at runtime. The attached files will be saved into the database. It is recommended that the attached files be smaller than 2 Mbytes to minimize performance degradation. Available only when Keys are defined.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Generated key</b></td>
+  <td class='confluenceTd'><p>If checked, indicates that the system automatically generates the key value for this  document. When checked, the Confirm Generated Key dialog appears. </p>
+    <p></br>
+      <img src="confirmGeneratedKey.png" border="0" alt="Confirm Generated Key" /></br>
+      </p>
+    <p>If you click the <b>Yes</b> button, Velocity Studio tries to locate, within existing variables, a variable with the <em>cwf.cwDocId</em> data type to use as a key. If such a variable is not found, the key is automatically created and added to the variable list of the document. This variable is added to the key list of the document and all other keys are removed.</p></td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><b>Timestamp sync</b></td>
+    <td class='confluenceTd'>The runtime system uses an optimistic strategy to detect situations when a Document is updated simultaneously by two or more users and/or scripts, called <em>update conflicts</em>. To do this, each database transaction that saves the Document will check certain database field to decide if the Document has been changed from the moment it had been read into the memory. Usually the Variable containing the namespace type <em>System doc stamp</em> is used for update conflict detection. However, if such a Variable does not exist and this flag &#160;is checked, the Variable of the  namespace type <em>System last updated timestamp</em> will be used for update conflict detection if it exists in the Document.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Keys</b></td>
+  <td class='confluenceTd'>If the <b>Generated key</b> checkbox is unchecked, this field defines the list of Document Variables used to uniquely identify a Document Instance. To define keys, click the <b>Add</b> button and select Variables from the list in the <b>Document Tree</b> dialog that opens. To remove an existing key, select the key and click the <b>Remove</b> button. When the <b>Generated key</b> checkbox is checked, this field contains the system-generated key and is disabled so that it can neither be changed, nor removed.<br clear="all" />
+    A key must be defined for the following types of Documents:
+    <ul>
+      <li>A Document that is mapped to a database.</li>
+      <li>A Document that is result of a Finder.</li>
+      <li>A Document that is result Document or rule Document of a Finder rule.</li>
+      </ul>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+    
+  <!--<p>Below are additional fields in Document's general tab in Classic mode, to organize the UI presentation.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><b>Permissions</b></td>
+<td class='confluenceTd'>Used to assign the object permissions. ??? (Also talk about Properties and Custom buttons)</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Menu</b></td>
+<td class='confluenceTd'>The menu object that will be an object menu for the Document. At runtime, the selected menu will be shown on the bottom of the screen along with the standard system-defined Document menu.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Default form</b></td>
+<td class='confluenceTd'>The default form used during runtime to display the Document when no form is explicitely specified. The combo box selection can be <em>&lt;none&gt;</em>, <em>&lt;Generated Form&gt;</em> or one of any form defined on the <b>Forms</b> tab. If <em>&lt;Generated Form&gt;</em> is selected, then a system-generated form will be displayed. If <em>&lt;none&gt;</em> is selected, then the Document will not be displayed.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Default columns</b></td>
+<td class='confluenceTd'>If the value <em>&lt;Generated Form&gt;</em> is selected in the <b>Default form</b> combo box, this field specifies the number of columns in the default form.</td>
+</tr>
+</tbody>
+</table>-->
+    
+  <p><b>Note:</b> Setting up an <b>Audit trail</b> for a Document will slow system performance, since extra information will be written to the database if necessary. If an audit trail is set up, to view the log content you can either use database tools or create a Finder object for table <em>cwaudittrail</em>, table <em>cwfieldaudittrail</em> or table view <em>AuditDetails</em> (which is a normalized view of <em>cwaudittrail</em> and <em>cwfieldaudittrail</em>). To create Finder, first import the table by selecting the <a href="../../Service Designer Menu Actions/Import DB Schema.html"><b>Import DB Schema</b></a> command from the <b>Database</b> menu to establish it as a Document in the metadata, then create a <a href="../Finder/Finders.html"><b>Finder</b></a>. The column description of <em>AuditDetails</em> is as follows:</p>
+    
+  <table class='confluenceTable' border cellpadding="1">
+  <tbody>
+  <tr>
+  <th class='confluenceTh'>Column</th>
+  <th class='confluenceTh'>Description</th>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>DOCID</b></td>
+  <td class='confluenceTd'>Document key.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>DOCMETADATATYPE</b></td>
+  <td class='confluenceTd'>Document metadata name.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>UPDATEDBY</b></td>
+  <td class='confluenceTd'>The user who made the change.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>LASTUPDATEDDATE</b></td>
+  <td class='confluenceTd'>The date the change was made.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>OPERATIONTYPE</b></td>
+  <td class='confluenceTd'>Can be: Add, Del(elete), Upd(ate).</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>ATTRIBUTENAME</b></td>
+  <td class='confluenceTd'>Document Variable name.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>NEWVALUE</b></td>
+  <td class='confluenceTd'>New value.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>OLDVALUE</b></td>
+  <td class='confluenceTd'>Old value.</td>
+  </tr>
+    
+    
+  </table>
+</body>
+</html>

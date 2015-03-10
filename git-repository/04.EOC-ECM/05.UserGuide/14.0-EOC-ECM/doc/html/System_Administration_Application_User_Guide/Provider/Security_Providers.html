@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>Security Providers</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<h3>Security Providers</h3>
+<p>Depending on the security provider selected, a Security Provider menu item  appears in the Provider main menu containing the pertinent sub menu items. When changing the Security Provider, please ensure user ID strings specified for Users are in compliance with the Security Provider requirements. </p>
+<p>The following section contains information about security providers that are used in conjunction with the  User Profile Administration application.</p>
+<h4>ConceptWave<sup>&reg;</sup> Security Provider</h4>
+<p>ConceptWave<sup>&reg;</sup> security provider has the following characteristics:</p>
+<ul>
+	<li>The default security provider.</li>
+	<li>Uses the Oracle database user accounts for authentication (performs database connection).</li>
+	<li>The format of the <b>Data</b> field is: <em>&lt;blank&gt;</em> (nothing is required).</li>
+	<li>When creating a new user in the User Profile Administrator application, a new Oracle database user account is created if one does not already exist. The Oracle database user account has the same password as the user ID.</li>
+	<li>When deleting a user from the User Profile Administrator application, the corresponding Oracle database user account is deleted. If deleting an Oracle database user account automatically is not desirable, then the <em>User Profile Manager</em> database account (refer to the Installation User Guide -  <a href="../../Installer_User_Guide/Oracle DB.jpg">Oracle DB Management</a>) should not be assigned the DROP USER system privilege which allows deletion of Oracle users.</li>
+	<li>User Profile Administrator can reset user passwords.</li>
+	<li>Users can change passwords using the framework.</li>
+</ul>
+<h4>Windows NT Security Provider</h4>
+<p>Windows NT security provider has the following characteristics:</p>
+<ul>
+	<li>Uses Windows NT domain security for authentication.</li>
+	<li>The Windows NT domain used by the security provider is set in the security provider <b>Data</b> field. This domain will be used as the default domain for user authentication.</li>
+	<li>The format of the <b>Data</b> field is: <em>&lt;domain name&gt;</em>,[singleid or <em>&lt;blank&gt;</em>].&nbsp; Indicating <em>singleid</em> is optional, and affects how the User ID is stored in the database. When present, the domain name is not pre-pended to the User ID.</li>
+	<li>Can import Windows NT domain groups and users.</li>
+	<li>Users can change passwords using the framework.</li>
+	<li>Can only be used on Windows machines.</li>
+	<li>Supports multiple Windows domains.</li>
+</ul>
+<p><b>Note:</b> You cannot restart the WEB Framework from the Application Server administration panel when using the Windows NT security provider.&nbsp; Workarounds for this problem include:</p>
+<ul>
+	<li>Restart the Application Server.</li>
+	<li>Switch to SMB security provider.</li>
+</ul>
+<h4>JAAS (Java Authentication and Authorization Provider) Security Provider</h4>
+<p>JAAS security provider has the following characteristics:</p>
+<ul>
+	<li>Uses JAAS provider for authentication.</li>
+	<li>JAAS login module name is set in the security provider <b>Data</b> field.</li>
+	<li>The format of the <b>Data</b> field is: <em>&lt;module name&gt;</em> (as noted in JAAS configuration file)</li>
+</ul>
+<h4>LDAP (Lightweight Directory Access Protocol Provider) Security Provider</h4>
+<p>LDAP security provider has the following characteristics:</p>
+<ul>
+	<li>Uses LDAP server for authentication.</li>
+	<li>The LDAP URL and principal used by the security provider are set in the security provider <b>Data</b> field.</li>
+	<li>The format of the <b>Data</b> field is: <em>&lt;URL&gt;;&lt;principal&gt;</em>.</li>
+	<li>For example: <em>ldap://magna:389;CN=?</em> Where the <em>&lt;principal&gt;</em> parameter can be <em>CN</em>=Users, <em>DC</em>=conceptwave or <em>DC</em>=com. If the <em>&lt;principal&gt;</em> parameter contains the '?' character, the LDAP provider will substitute the '?' character with the user ID that is being authenticated to form the principal that is passed to the LDAP server. If the '?' character is not present, the LDAP provider will append <em>CN=&lt;userid&gt;,</em> to the provided principal string to form the principal that passed to the LDAP server.</li>
+</ul>
+<h4>SMB Provider</h4>
+<p>SMB security provider has the following characteristics:</p>
+<ul>
+	<li>Uses Windows NT domain security for authentication.</li>
+	<li>The Windows NT domain and domain controller used by the security provider is set in the security provider <b>Data</b> field.</li>
+	<li>The format of the <b>Data</b> field is: &lt;<em>domain&gt;[,&lt;domain controller&gt;</em> or <em>&lt;blank&gt;],&lt;blank&gt;,</em>[singleid or <em>&lt;blank&gt;</em>]<em>.</em><em>&nbsp;</em> For example, <em>smb.domain.com,,,singleid.</em></li>
+	<li>Indicating "singleid" is optional, and affects how the User ID is stored in the database.&nbsp; When present, the domain name is not pre-pended to the User ID.</li>
+	<li>The specified domain will be used as the default domain for user authentication and the specified domain controller will be used as the authentication server. The domain controller is optional, if one is not specified the domain controller is automatically detected based on the specified user domain.</li>
+	<li>Can be used on non-Windows machines.</li>
+	<li>Supports multiple Windows domains</li>
+	<li>Other (Additional) Security Providers</li>
+</ul>
+<h4>Other</h4>
+<p>Other (additional) security providers have the following characteristics:</p>
+<ul>
+	<li>Can be developed and used by the User Profile Administrator application by selecting <em>&lt;other&gt;</em> in the security provider <b>Provider</b> combo box.</li>
+	<li>Use the <b>Other</b> field to give the Java class of the security provider.&nbsp; For example, <em>com.conceptwave.security</em>.&nbsp;Use the <b>Data</b> field for parameters.</li>
+	<li>Multiple Windows Domains Support</li>
+</ul>
+
+<p>Both Windows NT and SMB security providers support user authentication across multiple Windows domains. The Windows NT provider allows specification of the NT domain name when importing users and groups. The user domain is stored as part of the user ID in the User Profile database in the format <em>&lt;domain&gt;\&lt;user&gt;</em>. When creating users manually in the User Profile Administrator application (in the case of the SMB provider), the user ID should contain the domain name as specified above. The user domain name is also stored as a separate attribute in the User Profile document defined in the <em>User Profile</em> namespace and is displayed as part of the user name.</p>
+<p>During the logon process, the user can enter his/her user ID in full format (that is, <em>&lt;domain&gt;\&lt;user&gt;</em>) or the user name only (that is, <em>&lt;user&gt;</em>). If the user enters the user ID without including the domain, the default domain is used to authenticate the user.</p>
+<h4>Special Handling for SMB</h4>
+<p>When the SMB Security Provider is selected, the <b>Network Info</b> menu becomes available from the main GUI.&nbsp;Here a user may access the Domain Controllers submenu to configure domain preferences.</p>
+
+<!--No screen shot available 
+
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'><img src="image030.jpg" align="absmiddle" border="0" /> </td>
+</tr>
+</tbody></table>-->
+
+<p>Use the <b>Add</b> or <b>Search</b> buttons to add domains to the list, and set their status by checking <b>Active</b>.&nbsp; Note that after a domain has been added, only its <b>Active</b> status can be changed.&nbsp; To rename a domain, it must be deleted and added again.</p>
+<p><b>Note:</b>  The order of the enumeration table is arbitrary.  The system uses the first domain controller returned from the database.</p>
+<h3>&nbsp;</h3>
+</body>
+</html>

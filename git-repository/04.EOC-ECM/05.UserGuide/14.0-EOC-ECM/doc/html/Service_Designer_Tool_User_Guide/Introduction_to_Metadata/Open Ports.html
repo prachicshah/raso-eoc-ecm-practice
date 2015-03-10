@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Open Ports</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Open Ports</h2>
+<p>The following are open ports in the framework:</p>
+<ul>
+  <li>Catalog server port</li>
+  <li> JMX port</li>
+  <li> SSL port</li>
+  <li> JDBC port</li>
+  <li>HTTP port</li>
+</ul>
+<p><strong>Note:</strong> The SSL port is the secure port for HTTP.</p>
+<p>The following table lists the default value for each port and how the default value can be changed:</p>
+<table width="1350" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="189" class='confluenceTh'>Port</th>
+      <th width="589" class='confluenceTh'>Default Value</th>
+      <th width="620" class='confluenceTh'>How to Change the Default Value</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a href="../../Configuration_Tool_User_Guide/System Parameters.html#catalogModeClient">Catalog server port</a></td>
+      <td class='confluenceTd'>If this port's value is not specified in the Configuration application, it is JMX+1.</td>
+      <td class='confluenceTd'><BR>
+The default value can be changed in the Configuration application.<BR></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>JMX port</td>
+      <td class='confluenceTd'><p>The default values for this port are as follows:</p>
+        <ul>
+          <li>No default value for container deployment</li>
+          <li>The default value for Velocity Studio is 10008</li>
+          <li>The default value for runConfig is 10020</li>
+          <li>The 
+            default value for runActivate is 10009</li>
+        </ul></td>
+      <td class='confluenceTd'><BR>
+        <BR>
+        <BR>
+        <BR>
+You can change the default value by changing the <a href="Command Line Options of Designer.html">command lines</a>.<BR></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a href="../../Configuration_Tool_User_Guide/System Parameters.html#frameworkParameters">SSL port</a></td>
+      <td class='confluenceTd'>This port has a default value of  443.</td>
+      <td class='confluenceTd'>The default value can be changed in the Configuration application.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>JDBC port</td>
+      <td class='confluenceTd'>There is no default value. The port is from the Oracle server, which is normally 1521.</td>
+      <td class='confluenceTd'><BR></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a href="../../Configuration_Tool_User_Guide/System Parameters.html#frameworkParameters">HTTP port</a></td>
+      <td class='confluenceTd'> This port has a default value of 8080.</td>
+      <td class='confluenceTd'>The default value can be changed in the Configuration application.</td>
+    </tr>
+    <!--<tr>
+<td class='confluenceTd'><b>Import Node Configuration</b></td>
+<td class='confluenceTd'><i>-config -import</i></td>
+<td class='confluenceTd'>Import configuration from file.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Export Node Configuration</b></td>
+<td class='confluenceTd'><i>-config -export</i></td>
+<td class='confluenceTd'>Import configuration from file.</td>
+</tr>-->
+  </tbody>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>

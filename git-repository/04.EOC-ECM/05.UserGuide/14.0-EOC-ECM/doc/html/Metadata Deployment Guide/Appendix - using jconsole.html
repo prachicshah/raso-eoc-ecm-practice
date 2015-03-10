@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Using JConsole</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Using JConsole</h1>
+<h3>
+Starting JConsole</h3>
+<p>Launch <b>JConsole</b> by executing <em>jconsole.exe</em> from your <em>J2SDK\bin</em> folder. Upon Launch you will be presented with a list of <em>Agents</em> or given the option to connect to a remote host.</p>
+<p>All process engines broadcast on a designated port which may be specified at runtime via a switch on the Process Engine (see Process Engine Configuration Guide for more details).</p>
+<p><em>Figure E1: Starting Jconsole</em></p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="jconsole1.jpg" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h3>Statistics Monitoring in JConsole</h3>
+<p>Once in the JConsole application, go to the <b>MBeans</b> tab, <b>Operations</b> tab and proceed to unfold the <em>com.conceptwave.AVM</em> class which reveals the Caches, Queues, and Performance monitoring properties.</p>
+<p>The values of these variables can be adjusted and refreshed on the fly. In the case of SM Monitoring, a new Monitor can be created by simply copy/pasting the SM Spec string and clicking the launch button. Please refer to Configuration  User Guide, Performance Monitoring for more information on creating an SM Spec string.</p>
+<p><em>Figure E2: The Operations tab of MBeans</em></p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="jconsole-mbeans.jpg" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h3>Cache Configurations in JConsole</h3>
+<p>The cache management domain is <em>com.conceptwave.AVM</em> and the type is <em>DataCaches</em>. Each cache is a separate object with a corresponding name. The management interface includes the following attributes:</p>
+<ol>
+<li>CacheName - provides the cache name (read-only)</li>
+<li>CacheElementsCount - the number of elements in the cache (read-only)</li>
+<li>CacheSizeInBytes - the size of the memory currently used by all cache elements (read-only)</li>
+<li>CacheHitPercentage - the percentage of the direct hits in the cache, averaged from the beginning of its use (read-only)</li>
+<li>CacheRequestsPerMinute - the number of the requests per minute, averaged from the beginning of its use (read-only)</li>
+<li>CacheCapacityInMB - the cache capacity in megabytes (read-write)</li>
+<li>CacheRefreshSchedule - the refresh schedule string (read-write)</li>
+</ol>
+<p>The cache objects expose one operation: <em>cleanTheCache</em> which immediately refreshes the cache (independent of the schedule). <b>Note:</b> Use this operation carefully and only when needed because it can reduce performance significantly for short period of time.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

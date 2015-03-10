@@ -1,0 +1,149 @@
+﻿<html>
+<head>
+<title>Database Maps - JavaScript and Query Support</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>JavaScript and Query Support</h2>
+<p>This page describes <a href="#javaScriptSupport">JavaScript</a> and <a href="#querySupport">query</a> support for database maps.</p>
+<h3><a name="javaScriptSupport"></a>JavaScript Support</h3>
+<p>The data object  supports the following JavaScript functions that work with database maps:</p>
+<ul>
+  <li><a href="#insertInDB">insertInDB</a></li>
+  <li><a href="#updateInDB">updateInDB</a></li>
+  <li><a href="#saveToDB">saveToDB</a></li>
+  <li><a href="#readFromDB">readFromDB</a></li>
+  <li><a href="#readFromDBById">readFromDBById</a></li>
+  <li><a href="#readFromDBByReference">readFromDBByReference</a></li>
+  <li><a href="#deleteFromDB">deleteFromDB</a></li>
+  <li><a href="#deleteFromDBBById">deleteFromDBBById</a></li>
+  <li><a href="#selectFromDB">selectFromDB</a></li>
+</ul>
+<p>See the <a href="../../../JavaScripting in Order Care/index.html">JavaScript documentation</a> for details.</p>
+<h4><a name="insertInDB"></a>insertInDB(<em>destination</em>, <em>connection</em>)</h4>
+<p>This method Inserts the data object in the  database using the <em>destination</em> parameter. </p>
+<p>The <em>destination</em> parameter can be one of  the following values for the destination schema:</p>
+<ul>
+  <li><strong>Null</strong>: The default database map is  used. A error occurs if  more than one default map is found.</li>
+  <li><strong>Schema name</strong>: Use the default  database map for this schema. An error occurs if no default map is found.</li>
+  <li><strong>Database map name</strong>: Use this  database map<br>
+  </li>
+</ul>
+<p>The <em>connection</em> parameter can be a null  or a database connection object. If it is null, the default  database connection for the database map is used.</p>
+<p>The following is an example of using this method:</p>
+<div class="code"><div class="codeContent">
+  <pre class="code-java">var  customerDs = new mynamespace.customer();<br>customerDs.name  = &quot;myname&quot;;<br>...<br>...<br>customerDs.email  = &quot;me@mysite.com&quot;;<br>
+customerDs.insertInDB(&quot;ORDER&quot;);</pre>
+</div>
+</div>
+<h4><a name="updateInDB"></a>updateInDB(<em>destination</em>, <em>connection</em>)</h4>
+<p>This method updates the data object in the database. See the <a href="#insertInDB">insertInDB</a> method for parameter details.</p>
+<p>The following is an example of using this method:</p>
+<div class="code"><div class="codeContent">
+  <pre class="code-java">var customerDs = new mynamespace.customer();
+customerDs.custid = "10016";
+customerDs.readFromDB("ORDER");
+
+customerDs.name = "updatedname";
+
+customerDs.updateInDB("ORDER");
+</pre>
+</div>
+</div>
+<h4><a name="saveToDB"></a>saveToDB(<em>destination</em>, <em>cascade</em>, <em>connection</em>)</h4>
+<p>This method is a generic one for either the Insert  or Update operation. This method calls its respective method based on the object status. If the data object read occurs before it is saved, a call occurs to the  updateInDB method. Otherwise, a call occurs to the insertInDB method for the new data object. </p>
+<p>When the <em>cascade</em> parameter is set to TRUE, it means that  when the database operation is performed, it is also performed for  the child data object if the object’s <strong>Write on Save</strong> property from the Mapping tab is also set to true. When the <em>cascade</em> parameter is FALSE, the database operation for the child object is not performed.</p>
+<p>The following is an example of using this method:</p>
+<div class="code"><div class="codeContent">
+  <pre class="code-java">var customerDs = new mynamespace.customer();
+customerDs.custid = "10016";
+customerDs.readFromDB("ORDER");
+
+customerDs.name = "updatedname";
+
+// Calls updateInDB, as it read from db before save.
+customerDs.saveToDB("ORDER"); 
+</pre>
+</div>
+</div>
+See the <a href="#insertInDB">insertInDB</a> method for parameter details.
+<h4><a name="readFromDB"></a>readFromDB(<em>destination</em>, <em>cascade</em>, <em>connection</em>)</h4>
+<p>This method reads the data object from  the database. You must set a key column value to read the data object from  the database. See the previous code example on using this method.</p>
+<p>See the <a href="#insertInDB">insertInDB</a> and  <a href="#saveToDB">saveToDB</a> method for parameter details.</p>
+<h4><a name="readFromDBById"></a>readFromDBById(<em>ids</em>, <em>name</em>, <em>destination</em>, <em>cascade</em>, <em>connection</em>)</h4>
+<p>This static function reads the data object based on the IDs, name, and destination. It returns a list of  data objects based on the selection criteria.</p>
+<p>The <em>ids</em> parameter is an array of  object that specifies the key column values.</p>
+<p>The <em>name</em> parameter specifies the data object's metadata name. It is the qualified name with its namespace included (for example, mynamespace<em>.</em>customer) . An error occurs if the name is null or does not exist.</p>
+<p>The following is an example of using this method:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">var customerDs = CwObject.readFromDBById(["10016","10020"], "mynamespace.customer", 'ORDER'); 
+</pre>
+  </div>
+</div>
+See the <a href="#insertInDB">insertInDB</a> method for other  parameter details.
+<h4><a name="readFromDBByReference"></a>readFromDBByReference(<em>values</em>, <em>columns</em>, <em>name</em>, <em>destination</em>, <em>cascade</em>,  <em>connection</em>)</h4>
+<p>This static function reads the data object based on the columns and their values, and gets both the data metadata  name and destination schema name. This function generates an SQL SELECT  statement with all the given column names in WHERE clauses (for example, <tt>WHERE  col1=? AND col2=?</tt>), and passes all parameter values to the statement. An SQL exception occurs if the parameter is missing or there are incorrect column  names.</p>
+<p>The <em>values </em>parameter is an array of objects that  contains values for the respective columns listed in the <em>columns</em> parameter. The <em>column</em> and  <em>values</em> parameter counts need to match.</p>
+<p>The <em>columns</em> parameter is an array of  objects that contains the column names. </p>
+<p>The following is an example of using this method:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">var custListA = CwObject.readFromDBByReference(["xyz"], ["name"], "mynamespace.customer",'order'); //single column
+var custListB = CwObject.readFromDBByReference(["xyz", 21], ["name", "age"], "mynamespace.customer",'order'); //multiple column
+</pre>
+  </div>
+</div>
+<p>See the <a href="#insertInDB">insertInDB</a> and <a href="#readFromDBById">readFromDBById</a> methods for other parameter  details.</p>
+<h4><a name="deleteFromDB"></a>deleteFromDB(<em>destination</em>, <em>connection</em>)</h4>
+<p>This method deletes the data object from the database. It returns a deleted record  count when successful. You must provide a key column value to delete the  data object from the database.  </p>
+<p>The following is an example of using this method:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">var customerDs = new mynamespace.customer();
+customerDs.id = "10013";
+customerDs.deleteFromDB("ORDER", true);
+</pre>
+  </div>
+</div>
+<p>See the <a href="#insertInDB">insertInDB</a> and  <a href="#saveToDB">saveToDB</a> methods for parameter details.</p>
+<h4><a name="deleteFromDBBById"></a>deleteFromDBBById(<em>id</em>, <em>name</em>, <em>destination</em>,  <em>connection</em>)</h4>
+<p>This static function deletes the data object based on the IDs, metadata name, and destination schema name.  It returns a deleted record count when successful.  </p>
+<p>The following is an example of using this method:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">var deletedCount =  CwObject.deleteFromDBById([&quot;10016&quot;,&quot;10020&quot;],  &quot;mynamespace.customer&quot;, 'ORDER');</pre>
+  </div>
+</div>
+<p>See the <a href="#insertInDB">insertInDB</a> and  <a href="#readFromDBById">readFromDBById</a> methods for parameter details.</p>
+<h4><a name="selectFromDB"></a>selectFromDB(<em>sql</em>, <em>params</em>, <em>name</em>, <em>destination</em>, <em>cascade</em>, <em>connection</em>)</h4>
+<p>This static function reads  the data from the database using the provided SQL query. The query can be written with a dynamic  parameter that can also pass as the <em>params</em> argument. Both the metadata name and destination  schema name are used to read the data object from the database.</p>
+<p>The <em>sql</em> parameter is the SQL query. To get a result  similar to <tt>SELECT * FROM CUSTOMER WHERE CWDOCID=10011</tt>, the <em>sql</em> parameter needs to be written as <tt>SELECT {+*+} CWDOCID=?</tt>. If there are multiples table  mapped with the data structure, the table alias also needs to be specified (that is, <tt>SELECT  {+*+} T0.CWDOCID=?</tt>). Internally, when the SQL generates, the actual column names replaces the <tt>{+*+}</tt> part. There is neither a table name, nor a WHERE  clause. </p>
+<p>If limited columns  are only required,  instead of using the <tt>{+*+}</tt> expression, column names can be specified.  Column names need to match the exact order as the database map. Additionally, columns cannot be skipped.  </p>
+<p>As an example, if a table has 10 columns (col01... col10), and  queries only need three columns, the SQL statement, <tt>SELECT col01, col06,  col03 FROM XYZ WHERE colum1 = 10016</tt>,  can be written as <tt>SELECT col01,  col02, col03, col04, col05, col06 FROM XYZ WHERE col01 =  ?&quot;,[&quot;10016&quot;]</tt>. </p>
+<p><strong>Note:</strong> Some columns are not listed in the original  statement. As columns cannot be skipped, the SQL specified all columns till the  last one. In this example, col06 is last one. As a result, there is no need to specify the remaining columns.</p>
+<p>The <em>params</em><strong> </strong>parameter passes parameters to the given SQL query. If there is no parameter required, this parameter can be null. </p>
+<p><strong>Note:</strong> The <tt>{+*+}</tt> expression always has one parameter. In the previous example, parameter is denoted as <tt>['10016']</tt>.</p>
+<p>The following is an example of using this method:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">var AddressList = CwObject.selectFromDB("SELECT {+*+} ID = ?",["10016"], "mynamespace.address",'order'); //single table in mapping
+
+var custList1 = CwObject.selectFromDB("SELECT {+*+} T0.ID = ?",["10016"], "mynamespace.customer",'order'); //multiple table in mapping
+
+var custList2 = CwObject.selectFromDB("SELECT col01, col02, col03, col04, col05, col06 FROM XYZ WHERE col01 = ?",["10016"], "mynamespace.customer",'order');
+</pre>
+  </div>
+</div>
+<p>See the <a href="#insertInDB">insertInDB</a> and  <a href="#readFromDBById">readFromDBById</a> methods for parameter details.</p>
+<h3><a name="querySupport"></a>Query Support</h3>
+<p>Scripts and script finders can use SQL queries. The script finder has various event methods, such as cwOnFinderSel, where you can write a script using the selectFromDB   method to get the data object from the database and return it to the script  finder.</p></td>
+</tr>
+</table>
+</body>
+</html>

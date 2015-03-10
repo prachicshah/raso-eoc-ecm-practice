@@ -1,0 +1,202 @@
+<html>
+<head>
+<title>User Interface Contributor Variable Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<h2>User Interface Contributor Variable Properties</h2>
+
+<p>The<strong> Variables</strong> tab displays default (also known as base), overridden, and new variables for the User Interface (UI) Contributor. For example in the following image, variables highlighted in color blue are  default, and the variables highlighted  in color black are overridden. The default variables depends on  which UI Controller is selected   in the <strong>General</strong> tab of the UI Contributor in the <strong>Contribute To </strong>field and which default user interface is extended by the selected UI controller. More variables can be added when you select the default variable from the list and click <img width="13" height="13" src="addIcon.png" alt="Add Element"/> button.</p>
+<p><img src="UIContributorVariableTab.png" alt="User Interface Contributor - Variable Tab" border="1" /></p>
+The UI Contributor variable details appear in the <strong>Detail</strong> pane when a variable  entry is selected. The  UI Contributor variable properties are  listed in the <a href="#propertiestable">property table</a>. Some of the properties appear in the columns of the <strong>Variables  </strong>table.
+<ul>
+  <li>The <strong>Name</strong> column displays the name of the variables either system generated, default variables or  the overridden.</li>
+  <li>The <strong>Type</strong> column is       populated with the primitive data type of the variable's selected data       type (for example, String), its actual data type (for example,       com.conceptwave.system.String), and its length, if it is specified. </li>
+  <li>The <strong>Methods</strong> check box       is checked whenever the UI Contributor variable contains one or more methods. </li>
+</ul>
+<p>The <strong>Vis</strong>, <strong>Opt</strong> and <strong>Edit</strong> fields denote the <strong>Visible</strong>, <strong>Optional</strong>, and <strong>Editable</strong> element properties, respectively.
+A column of action icons exists at the right of the table. The following  table describes their functionalities:<br>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="132" class='confluenceTh'><strong>Icon</strong></th>
+<th width="612" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img width="26" height="26" src="moveUPIcon.png" alt="Move Up"><strong> Move Up</strong></td>
+<td class='confluenceTd'>Move the selected element up one row    in the table.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img width="26" height="26" src="moveDownIcon.png" alt="Move Down"><strong> Move Down</strong></td>
+<td class='confluenceTd'>Move the selected element down one    row in the table.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img width="26" height="26" src="addIcon.png" alt="Add Element"><strong> Add Element</strong></td>
+<td class='confluenceTd'>Add an element to the table.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img width="26" height="26" src="removeIcon.png" alt="Remove Element"><strong> Remove Element</strong></td>
+<td class='confluenceTd'>Remove or delete the selected elements    from the table.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img width="26" height="26" src="sortIcon.png" alt="Sort"><strong>Sort</strong></td>
+<td class='confluenceTd'>Sort the elements in the table in    alphabetical order.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img width="26" height="26" src="highlightIcon.png" alt="Highlight"><strong> Highlight</strong></td>
+<td class='confluenceTd'>Highlight the selected elements in    another color. The <strong>Highlighting Settings</strong> Dialog appears which has the    same functionality as the <strong>Highlight</strong> command in right-click pop-up menu    found in Navigation Pane.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong><img width="26" height="26" src="cutIcon.png" alt="Cut "></strong><strong> Cut</strong></td>
+<td class='confluenceTd'>Cut the selected element.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img width="26" height="26" src="copyIcon.png" alt="Copy"><strong> Copy</strong></td>
+<td class='confluenceTd'>Make a duplicate copy of the selected    elements in the table. The duplicated elements have all the same properties as    the selected elements, but with the name appended with <strong>1</strong> (for    example in the image, when a copy and paste action is done on<em> model</em> variable  the name appears as<em> model1, model2</em>).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong><img width="26" height="26" src="pasteIcon.png" alt="Paste"></strong><strong> Paste</strong></td>
+<td class='confluenceTd'>Paste a selected element that is    either cut or copied.</td>
+</tr>
+
+</tbody>
+</table>
+<p><br>
+<strong>Note: </strong> With the <strong>Cut</strong>, <strong>Copy</strong>, and <strong>Paste</strong> icons, you can move  or copy object parts to other objects. For example, select variables of a UI Contributor then either copy-paste or cut-paste  to another similar UI Contributor, or any other related metadata objects that has <strong>Variables</strong> tab, such as User Interface or Documents.</p>
+<p><a name="propertiestable"></a>The following system variables are  generated for the <em>com.conceptwave.system.UserInterface (User Interface)</em>:</p>
+<table width="823" class='confluenceTable' border cellpadding="1">
+  <tbody>
+<tr>
+<th width="119" class='confluenceTh'>Variable</th>
+<th width="96" class='confluenceTh'>Return Type</th>
+<th width="585" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>cwShowHover</strong></td>
+<td class='confluenceTd'>Boolean</td>
+<td class='confluenceTd'>Instructs the web browser to show hover data when the method is set to  true for table's hover method.</td>
+</tr>
+<tr>
+<td height="24" class='confluenceTd'><strong>confirmObject</strong></td>
+<td class='confluenceTd'>Object</td>
+<td class='confluenceTd'>Name of the variable (used in scripts; must conform to JavaScript naming conventions).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>model</strong></td>
+<td class='confluenceTd'>Model</td>
+<td class='confluenceTd'>The object representing the data for this user interface contributor (that is, Document, Finder or Order).</td>
+</tr>
+</tbody>
+</table><br>
+When you select a variable in the list,  all properties display on the <strong>General</strong> tab, while corresponding method information (if any) displays in the <strong>Method</strong> tab. The following table describes each property of a variable, which is presented in  <b>General</b> tab and <b>Methods</b> tab.<br>
+<br>
+<table width="873" class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="138" class='confluenceTh'>Field</th>
+      <th width="723" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'>This value is automatically set to the data type's original name. It may be overwritten when necessary.</td>
+    </tr>
+    <tr>
+<td class='confluenceTd'><strong>Array</strong></td>
+<td class='confluenceTd'>This fiels specifies that this is an array of this variable.</td>
+</tr><tr>
+<td class='confluenceTd'><strong>Constant</strong></td>
+<td class='confluenceTd'>If checked, the property <b>Constant value</b> appears. It becomes a constant variable that has a fixed value specified in the constant value.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Audit</strong></td>
+<td class='confluenceTd'><p>If checked, the runtime system logs the variable update history in the database if the <b>Audit Trail</b> checkbox for the UI Contributor variable is checked in the <b>General</b> tab and the configuration application has specified that audit is allowed. Any changes made to the variable are recorded into the system table CWFIELDAUDITTRAIL in the database.<br><br>
+  <strong>Note:</strong> Translation fields are audited.    The old and new values in the CWFIELDAUDITTRAIL table indicate the language of the change, and takes the format &lt;<em>language code</em>&gt;|&lt;<em>translation text</em>&gt; (for example, en-xx|HELLO).<BR>
+  </p></td>
+</tr>
+    <tr>
+      <td class='confluenceTd'><strong>Description</strong></td>
+      <td class='confluenceTd'>Description of the  variable  for documentation.</td>
+    </tr>
+    <!--<tr>
+<td class='confluenceTd'>Label</td>
+<td class='confluenceTd'>This value is automatically set to the Data Type's original label. It may be overwritten when necessary. When this Variable is assigned to a Form Element, Label in the form element is defaulted to this label value, as to be displayed in runtime.</td>
+</tr>-->
+    <tr>
+      <td class='confluenceTd'><strong>Data Type</strong></td>
+      <td class='confluenceTd'>The data type of the Variable.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Type Error Code</strong></td>
+      <td class='confluenceTd'>Specifies an error message code that is in the application resources. If set, the specified error message is used instead of the default system message when the field contains an invalid value.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Mandatory Error Code</strong></td>
+      <td class='confluenceTd'>Specifies an error message code that is  in the application resources. If set, the specified error message is used instead of the default system message when the field is mandatory and it has no value.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Encrypt</strong></td>
+      <td class='confluenceTd'>If <strong>Yes </strong>is selected from the list then the variable is encrypted when saving the UI Contributor and decrypted when loading the UI Contributor.  </td>
+    </tr>
+    <tr>
+      <td height="40" class='confluenceTd'><strong>Element Properties</strong></td>
+      <td class='confluenceTd'> Lists the default element properties of a variable that depends on the inherited   data type's element properties.<br>
+        <br></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<p>The <strong>Methods</strong> tab is a <a href="../../../JavaScripting in Order Care/Scripting Interface.html">script management screen</a> in Velocity Studio, which is composed of the <strong>Method List</strong> pane at the left which lists all scripts of the UI Contributor Variable, and <b>Details </b>pane which displays the details of a script when selected at the <strong>Method List</strong> pane. To create a new method, or to override an existing method of its base UI Contributor, right-click the UI Contributor in the <strong>Method List</strong> pane. A pop-up menu appears.</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <td class='confluenceTd'><img src="methodtype.png" alt="Variables - Method Tab (Pop-Up)" height="321" border="1" align="absmiddle" /></td>
+      <td class='confluenceTd'><img src="methodListLeftPane.png" alt="Variables - Method Tab (Left Pane)" height="321" border="1" align="absmiddle" /></td>
+      
+    </tr>
+  </tbody>
+</table><br>
+<p><b>Note</b><strong>:</strong> These methods are created at the UI Contributor variable level, impacting only to the UI Contributor variable. 
+<p>The following table lists the type of methods that can be added or overridden at the UI Contributor variable level:<br>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="75" class='confluenceTh'>Method Type</th>
+      <th width="186" class='confluenceTh'>Script Name</th>
+      <th width="199" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Initialization</b></td>
+      <td class='confluenceTd'><p><em>cwLeafInitAction(document)</em></p></td>
+      <td class='confluenceTd'> <p>This script is to set initial values for the UI Contributor variable.<br/>
+        It is triggered when the UI Contributor is created. This method is not executed when the UI Contributor is read from the database or an external system interface.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Calculate</b></td>
+      <td class='confluenceTd'><p> <em>cwLeafCalculateAction()</em></p></td>
+      <td class='confluenceTd'><p>These variables are called each time variable (also known as leaf) value is requested. UI Contributor variable calculate script is to compute a value for the calculated UI Contributor variable. A calculated UI Contributor variable is a variable that is not stored in the database or sourced from external sources, but their values computed based on values of other UI Contributor variables. Variables with calculate method are read-only fields in the UI at runtime.<br>
+          <br/>
+        <strong>Note:</strong> Because the value of the calculated field is computed every time the field is accessed, it may be accessed many times for different purposes by AVM at runtime. Unwise and excessive use of calculated fields may introduce serious performance problems. It is recommended to limit the method to simple calculations based on UI Contributor variable values, and not invoke database access operations or external interface calls.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Trigger</b></td>
+      <td class='confluenceTd'><p><em>cwLeafTriggerAction($loadTime)</em></p></td>
+      <td class='confluenceTd'> <p> This script is called when document trigger leaf is changed. The <em>$loadTime </em>is not used currently   and its value is always <em>false</em>.
+      UI Contributor variable Trigger script is executed when the content of a UI Contributor form field is changed (and loses focus) at runtime. Trigger execution may come automatically from the UI or can come from a user script at runtime. When a trigger execution request is received, all triggers for variables that has been changed are executed.<br/>
+          <br>
+      <strong> Note:</strong> As a trigger method is triggered at UI, a server round trip is required to send updates to the client; this is done in AJAX, with only changed variables updated to browser with no page refresh. Regardless, trigger methods are used sparingly to avoid incurring this overhead.</p></td>
+    </tr>
+    
+ <tr>
+      <td height="44" class='confluenceTd'><strong>Validation</strong></td>
+      <td class='confluenceTd'><i> cwOnDocValidRule(document)</i></td>
+      <td class='confluenceTd'><p>This script contains validation rule and is used in generated script for UI Contributor variable. It is the validation script that determines the validity of runtime data values of the UI Contributor. It is triggered with UI Contributor's  <i>onvalidate method</i>, and by default, the generated UI Contributor form's <em>save </em>menu button triggers such validation. </p></td>
+    </tr>    
+  </tbody>
+</table><br>
+<p>The variables that are overridden or initialized, they appear in the <strong>Method List</strong> pane  appear with  a check   mark, and may no longer be available from the right-click context pop-up menu. For Method Type <strong>Validation </strong> you can create multiple methods  (for example, Validation 1, Validation 2...), each identifiable by unique method name. The overridden variables in the method tab are accessible in the <strong>Method</strong> tab of the UI Contributor. For each new initialization of the variable method name is a unique. The method created in <strong>Method List</strong> pane can be right-clicked, with various commands available, such as <strong>Delete</strong>,<strong> Highlight</strong>, etc. For more information about <strong>Variables, </strong> see <a href="../../../JavaScripting in Order Care/Scripting Interface.html">script management UI</a> or <a href="../../Velocity_Studio/Scripting in Velocity Studio.htm">scripting</a>.</p>
+<p>&nbsp;</p>
+</body>
+</html>
+

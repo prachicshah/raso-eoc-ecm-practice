@@ -1,0 +1,213 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>User Interface Validation</title>
+<link rel="StyleSheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script><script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>User Interface Validation</h2>
+<p>The base com.conceptwave.system.UserInterface object offers an onValidate method that will check certain standard validations like field length, mandatory fields, minimum and maximum values, etc. on UserInterface Objects. This onValidate method is called automatically when a UserInterface variable has its <strong>Validate</strong> checkbox flagged.  It can also be called when an onValidate method is called from another method (like a UserAction Method) or via a variable's Validate method. The onValidate script will return a True or False value for the isValid property:  False if there is an error and True if there are no errors (warnings are still valid) and it also returns a validationStatus (error, warning, or info).  An example of the implementation of the Validation feature is documented in the <a href="User Interface Validation Example.html">User Interface Validation Example</a>.</p>
+<p>When the <strong>Validate</strong> checkbox is flagged on a <a href="../User Interface User Action Method.htm">User Action method</a>, the onValidate method checks the validation of the page or dialog box (parent controller) and then the subsequent children. If the onValidate method returns a False (not valid), then this isValid property is propagated to the children.  To find the parent object, the onValidate method will access the this.parent value (up to the com.conceptwave.system.Window parent). If a &quot;parent&quot; is not set correctly resulting in the parent window  not being found, then the system will call the application UI (com.conceptwave.system.Application). Below is a listing of the UserInterface Objects and the validations that are performed:</p>
+<table class="confluenceTable">
+  <tr>
+	<th class="confluenceTh">UI Object</th>
+	<th class="confluenceTh">Validation</th>
+</tr>
+<tr>
+	<td class="confluenceTd"><b>Document Finder </b></td>
+	<td class="confluenceTd">Validation is performed on the &quot;detail&quot; variable controller and &quot;model&quot;.</td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b>Document</b></td>
+	<td class="confluenceTd">Validation is performed on the &quot;model&quot; variable controller. </td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b>Navigation Tree</b></td>
+	<td class="confluenceTd">Validation is performed on the &quot;model&quot; variable controller and selected &quot;detail&quot;.</td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b>Order</b></td>
+	<td class="confluenceTd">Validation is performed on the &quot;model&quot; variable of type &quot;order&quot;. </td>
+</tr>
+
+</table>
+<p>There are several methods available to make use of and call the User Interface Validation functionality:</p>
+<ul>
+  <li><b><a href="../User Interface User Action Method.htm">User Action Method</a>:</b> When the <strong>Validate</strong> checkbox is set for any user action.  The validation is invoked <em>before</em> the action is invoked.  Please refer to the <a href="../User Interface User Action Method.htm">User Action Method</a> section for more details.</li>
+  <li><b><a href="#Variables">Variables:</a></b> Validate Method assigned to a variable and a <strong>Validate</strong> checkbox on the variable. </li>
+  <li><b><a href="#NavTree">OrderUserInterface, NavigationTreeWithTabs and NavigationTree:</a></b> Validation is performed on the current node or tab, whenever there is a selection change on either the tree node or tab. </li>
+  <li><b><a href="#MethodCall">onValidate method call:</a></b> An onValidate method can be called when needed to validate a particular UserInterface controller.</li>
+  </ul>
+<p>The onValidate method checks for <a href="#Errors">standard validation errors</a> and displays standard and user-definable validation icons displaying <a href="#TabErrors">tab errors</a> when the UserInterface on the TabFrames are not valid.</p>
+<h3><a name="Variables"></a>Variables</h3>
+<p>Variables can be checked against standard validations by checking the <strong>Validate</strong> checkbox on the variable.  User-specific validations can also be called by creating a Validation method on the variable.</p> 
+<h4>Validate Checkbox</h4>
+<p>Within the  User Interface <strong>Variables</strong> tab, it is possible to set a Validate property for each variable (including other UserInterfaces, documents, arrays, data types, etc.). This <strong>Validate</strong> checkbox is set by default for some of the system Window UI variables like the &quot;Model&quot;, &quot;Content&quot; and &quot;Detail&quot;. When the onValidate method is called, it will iterate all variables with the Validate property selected to validate them.</p>
+
+<img src="../UIvariablesValidate.png" align="absmiddle" border="1" alt="Variables tab - Validate checkbox" />
+
+<h4><a name="ValidationMethod"></a>Validation Scripts</h4>
+<p>It is possible to assign a validation script that is called at runtime at the document and data type levels. The Validation script returns an Error, Warning, or Information severity on the validation and they are only called when the document is invoked. The following is an example of a Validation Script:
+
+<p><img src="DocumentValidationRule.png" alt="Document - validation script" border="1" />
+  
+<table class="confluenceTable">
+			<tr>
+				<th class="confluenceTh">Field</th>
+				<th class="confluenceTh">Description</th>
+		</tr>
+            <tr>
+				<td class="confluenceTd"><b>Name</b></td>
+				<td class="confluenceTd">The object of this type is  instantiated when this method is invoked.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b>Description</b></td>
+				<td class="confluenceTd">This is a description of the method.</td>
+			</tr>
+            <tr>
+				<td class="confluenceTd"><b>Script</b></td>
+				<td class="confluenceTd">Any method, including Permission methods, is considered to be a script method when it includes a custom JavaScript that is invoked as an action.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Return</b></td>
+				<td class="confluenceTd">The object type to be returned by the script.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b>Execute Permission</b></td>
+				<td class="confluenceTd">This is a list of permission methods that return a <i>True</i> or <i>False</i>.  When a <i>True</i> is returned, the validation method is run and if a <i>False</i> is returned, then this validation method is not run.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b>Severity</b></td>
+				<td class="confluenceTd">This is the severity of the error resulting from the script (Information, Error or Warning). The validationStatus parameter is set to this value.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b>Message</b></td>
+				<td class="confluenceTd">This is the message (error, warning or information) to be displayed as a hover over the icon.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b>Message Code</b></td>
+				<td class="confluenceTd">This is the message code that will be used in place of the message. The <a href="../../Service_Designer_User_Interface/Message Resource File.html">message codes</a> exist in the appRC_xx.xml files and can be modified through the Resources folder.</td>
+			</tr>
+
+</table>
+<br />
+<h3><a name="NavTree"></a>Navigation Tree,  NavigationTreeWithTabs, and OrderUserInterface</h3>
+<p><b>Navigation Tree and Navigation Tree Tabs</b><br />
+Validation is performed automatically when changing a selection in the Navigation Tree (either the tree node or tab).  The onValidate method is called for the previously selected node (com.conceptwave.system.TreeNode.onValidate), which will validate the modelUI (the node UI detail) and the model of the tree node. If there are tab elements displayed, then the onValidate method will also validate all tabs.  When navigating between tabs within a Navigation Tree, onValidate method will only validate the previously selected tab. </p>
+<p><b>OrderUserInterface</b> <br />
+Similar to the Navigation Tree, the onValidate method will validate the tree nodes and tabs.  OnValidate is called when there is a change in a tree node or a tab selection. When the onValidate returns a False (not valid), a confirmation dialog box appears with a warning message indicating that there are validation errors and asking users if they would like to continue.  This functionality and warning messages can be modified by overwriting the metadata scripts.</p>
+
+<h3><a name="#MethodCall"></a>onValidate Call</h3>
+<p>OnValidate method can be called from another method.  The onValidate method is called automatically when a variable is selected for Validation and the user navigates away from the form.  However, the validation script can also be called with from a User Action Method without exiting the form by associating a user action method to a button.  When the button is triggered by the user at runtime, the system would then trigger the onValidate method. The following is an example of a User Action Method script that calls the onValidate method. </p>
+
+<p><img src="ExampleValidateButtonAction.png" alt="ValidateAction" border="1" /></p>
+
+<h3><a name="#Errors"></a>Standard Validation Errors</h3>
+<p>The onValidate method will check for certain validation errors including Nullable, Optional, length, max value, and minimum value. </p>
+<p>These fields are available for validation in the Data Type and Document leaves:</p>
+<b>Data Type</b>
+<p>It is possible to define a data type if the item is Nullable, Optional, a specific Length, Minimum Value, and Maximum Value.  These are the fields that can be validated at runtime.</p>
+
+<img src="DataTypeValidation.png" alt="Validation errors - data ype" border="1" />
+<p>It is also possible to define a <a href="#ValidationMethod">validation script</a> for each data type that is invoked when associated with the leaves of a document and that document is invoked. 
+<p><b>Documents</b>
+<p>When defining the Document leaf variables, it is possible to specify whether the leaf is Optional. Setting the <strong>Optional</strong> field to False indicates that the leaf is mandatory for user input. </p>
+
+<img src="DocumentValidation.png" alt="Document variable - Optional field" border="1" />
+
+
+<h3><a name="FieldErrors"></a>Field Errors</h3>
+<p>The onValidate method provides a validateStatus that displays a validation error, warning, or information image next to the field that has been validated.  If a field is in not valid and is in error, then an error image appears next to the field at runtime.  Similarly, if a field validated with a warning or information status, then the field displays with the standard warning and information images: </p>
+<p><img src="FieldValidation.png" alt="Field validations" border="1" />
+  
+</p>
+<h3><a name="TabErrors"></a>Tab Errors</h3>
+<p>When validating a TabFrame, it is possible to display an icon on the Tab that represents the Validation state of that tab.  The icons that can be displayed can change dynamically based on the TabFrame's Validation Icon property that can be set to either Static, State Icon, or Overlay. The icons that are displayed represent the validation state of the tab as either Unknown (validation has not yet been performed), Error (validation errors exist), Warning (errors that constitute a warning only), and Info (information errors of low severity).</p>
+<p>A <b>Static</b> Validation state indicates that there is a static icon (icon defined in the Icon property) and to the right of the icon is a validation warning that dynamically changes based on the validation. </p>
+<p>A <b>State</b> icon are user-defined icons that change dynamically based on the state of the validation.  The Icon property is set to the user-defined icon name (that is, IconName) and the associated validation icons are defined as IconName_error, IconName_warn, and IconName_info.  When there is a validation error (for example, mandatory field not filled), then the system displays the icon named IconName_error.  Similarly, for a warning validation, the icon that is displayed is the IconName_warn and then for the information validation status, the IconName_info is displayed. The Unknown validation state is the icon assigned to the Icon property. The user-defined icons should be put in the metadata Resources folder.</p>
+
+<p>An <b>Overlay</b> icon overlaps the icon defined in the Icon property of the TabFrame element based on the validation status of the tab.  The following table shows examples of the TabFrame with the various validation icons. </p>
+
+<table class="confluenceTable" cellpadding="1">
+<tr>
+	<th class="confluenceTh">Validation Icon</th>
+	<th class="confluenceTh">State</th>
+    <th class="confluenceTh">Icon</th>
+</tr>
+<tr>
+	<td class="confluenceTd">Overlay</td>
+	<td class="confluenceTd">Unknown</td>
+    <td class="confluenceTd"><img src="unknownOverlay.png" alt="Unknown overlay" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd">Overlay</td>
+	<td class="confluenceTd">Error</td>
+    <td class="confluenceTd"><img src="errorOverlay.png" alt="Error overlay" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd">Overlay</td>
+	<td class="confluenceTd">Warning</td>
+    <td class="confluenceTd"><img src="warningOverlay.png" alt="Warning overlay" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd">Overlay</td>
+	<td class="confluenceTd">Information</td>
+    <td class="confluenceTd"><img src="infoOverlay.png" alt="Information overlay" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd">Static</td>
+	<td class="confluenceTd">Unknown</td>
+    <td class="confluenceTd"><img src="unknownStatic.png" alt="Unknown static icons" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd">Static</td>
+	<td class="confluenceTd">Error</td>
+    <td class="confluenceTd"><img src="errorStatic.png" alt="Error static icon" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd">Static</td>
+	<td class="confluenceTd">Warning</td>
+    <td class="confluenceTd"><img src="warningStatic.png" alt="Warning static icon" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd">Static</td>
+	<td class="confluenceTd">Infomation</td>
+    <td class="confluenceTd"><img src="infoStatic.png" alt="Information static icon" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd">State</td>
+	<td class="confluenceTd">Unknown</td>
+    <td class="confluenceTd"><img src="unknownState.png" alt="Unknown state icon"></td>
+</tr>
+<tr>
+	<td class="confluenceTd">State</td>
+	<td class="confluenceTd">Error</td>
+    <td class="confluenceTd"><img src="errorState.png" alt="Error state icon" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd">State</td>
+	<td class="confluenceTd">Warning</td>
+    <td class="confluenceTd"><img src="warningState.png" alt="Warning state icon" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd">State</td>
+	<td class="confluenceTd">Infomation</td>
+    <td class="confluenceTd"><img src="infoState.png" alt="Information state icon"></td>
+</tr>
+
+
+</table>
+
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

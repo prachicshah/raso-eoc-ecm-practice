@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>ChartField</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>ChartField</h2>
+
+<p>The ChartField provides additional properties for configuring the appearance of the Chart Form element at runtime. Using the properties you can configure how the chart renders in the Web browser at runtime. </p>
+<p>The chart data is configured to display data from the Result Form. Each column of data in the Result Form is displayed as a part of the entire chart. The ChartField Form element properties enable you to configure the data that is displayed in the chart. You can have multiple ChartFields elements under the Chart Form element (see list in the note section) each displaying different  data for that Finder.</p>
+<p><strong>Note</strong>: You can only add a chartfield to a User Interface of type Finder User Interface.</p>
+
+<img src="chartfield.png" align="absmiddle" border="0" alt="ChartField element" />
+      
+<p>Each ChartField element displays a column of data in the Finder results.</p>
+
+<img src="barchart.png" align="absmiddle" border="0" alt="ChartField element in finder results" />
+      
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='referenceTh'>references Variable</th>
+<td class='referenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>Allowable Child Elements</th>
+<td class='referenceTd'>No</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+  <th width="60" class='referenceTh'>Property</th>
+  <th width="137" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+  <th width="1422" class='referenceTh'>Comment</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Name</b></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>The ChartField name.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Label</b></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>The ChartField label.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Color</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The chart background color (HTML #rrggbb format).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Height</b></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>The average height of the chart.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>On Enter</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The system will call any script defined in this property (including onInit,   onClick, and toString). This method is invoked when the form element is focused   on the web page and the user presses the ENTER key.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Style</b></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Choose from styles within the selected stylesheet (located in the Velocity Studio toolbar), which defines the styling of the Grid Layout such as positioning and   colour. Default is NONE.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Variable</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Finder result form for the chart. Only Forms of the Output Document with more than one field are listed here. The result form fields are specified as follows: category name, series 1 data, series 2 data, etc. The category label is used as the default <b>Domain axis label</b>, range axis labels are used as the legend labels. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Visible</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Defines the user permissions assigned to this layout. Pre-defined system <A href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</A> such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and   visiblePerm can be assigned as well as Object Permissions. Defaults to NONE,   which means no permissions assigned.</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><strong>Width</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The average width of the chart.</td>
+  </tr>
+</tbody>
+</table>
+
+<h3>Notes</h3>
+<p>You cannot use multiple ChartField form elements with the following charts: Bubble, Scatter, Scroll Line, Scroll Area, Scroll Column, Scroll Stacked Column, Stacked Area, Stacked Bar, Stacked Column.</p></td>
+</tr>
+</table>
+</body>
+</html>

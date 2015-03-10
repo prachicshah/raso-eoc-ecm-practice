@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Catalog Rule Types</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Catalog Rule Types</h2>
+<p>Rules are computational units that may receive parameters and each rule always has a return value. The rules may be called from the Catalog product or from other rules. </p>
+<p>All rules have access to the following four predefined  parameters:</p>
+<ul>
+  <li>theItem</li>
+  <li>theBasket</li>
+  <li>theContext</li>
+  <li>theInventory</li>
+  <li>theBasketItemCharge</li>
+</ul>
+
+<p>The Catalog offers two different types of rules:</p>
+<ul>
+  <li><a href="#ObjectRules">Object rules</a></li>, which are strictly called by the Catalog product 
+  <li><a href="#CatalogRules">Catalog rules</a>, which define a rich set of business rules that can be attached to the Catalog elements</li>
+</ul>
+
+<h3><a name="ObjectRules"></a>Object Rules</h3>
+<p>The rules that are called only by the Catalog product are called <em>Object rules</em>. The object rules are not reusable – other rules cannot call them. The object rules are of type Condition, Validation, or Price. They cannot define parameters or return values.
+  If an object rule consists only of one <em>return</em> statement, you may omit the <em>return</em> keywords and enter only the expression.</p>
+
+<h3><a name="CatalogRules"></a><strong>Catalog Rule</strong>s</h3>
+<p>Rules are global, which means that they can be called from other rules, are called <em>Catalog rules</em>. For example, an Attribute element can access a rule that was configured in the Item element. They must have unique names. The parameters and the return value of such rules are user-defined. If a Catalog rule consists only of one <em>return</em> statement, you may omit the <em>return</em> keywords and enter only the expression.  </p>
+<p>There are three different types of catalog rules:</p>
+<ul>
+  <li>Condition rules that check if a condition is valid. Condition rules return Boolean value of true if the condition is valid.</li>
+  <li>Validation rules that check if the shopping basket or particular item of it is correctly configured. Validation rules can add one or more errors to the operation error list. The validation rule result is either  <em>invalid</em> or <em>null</em>. The invalid constant indicates that the Catalog  adds the error message to the operation error list. If a message (code) is defined for the rule, the Catalog  puts it in the operation error list. If there is no message defined for the rule, the Catalog  uses a predefined error message with code <em>DE9179</em> and the text, <em>Validation rule xxx failed for item xxx</em>. The  null constant indicates that the rule has either found no errors or added the
+    corresponding errors to the error list using the function <em>reportError</em>. In this case, the Catalog does not add any message to the operation error list.</li>
+  <li>Pricing rules (formulas) that  calculate the price of a given item or a set of items. The price rules return a number that represents the price.</li>
+</ul>
+<p>The rules are either locally defined for an element and can be used only within this element (element or local rules), or are globally defined and can be used by any item or called by other rule language specifications (Catalog or global rules). </p>
+</td>
+</tr>
+</table>
+</body>
+</html>

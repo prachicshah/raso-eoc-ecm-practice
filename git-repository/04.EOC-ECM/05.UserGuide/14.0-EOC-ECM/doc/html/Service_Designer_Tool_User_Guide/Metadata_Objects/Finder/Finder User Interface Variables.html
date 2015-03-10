@@ -1,0 +1,190 @@
+<html>
+<head>
+<title>Finder User Interface Variables</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Finder User Interface Variables</h2>
+
+<p>The Variables tab displays the system-generated variables for the Finder User Interface that you have selected.</p>
+<p>The Finder Variable details appear in the detail pane when a Variable entry is   highlighted in <strong>Variables list</strong>. The Finder Variable properties are listed in the  <A href="#properties">chart that follows</A>. Some of the properties   appear in the columns of the <strong>Variables list</strong> table. </p>
+<ul>
+  <li>The <strong>Type</strong> column   is populated with the primitive data type of the Variable's selected Data Type (for example, String), its actual data type (for example, com.conceptwave.system.String), and its length, if it is specified. </li>
+  <li>The <strong>Methods</strong> checkbox is checked whenever the Finder Variable   contains one or more Methods. </li>
+  <li>The <strong>Vis</strong>, <strong><SPAN name="resultofMatch"><SPAN name="resultofMatch">Opt</SPAN></SPAN></strong> and <strong>Edit</strong> fields   denote the <strong>Visible</strong>, <strong><SPAN name="resultofMatch"><SPAN name="resultofMatch">Opt</SPAN></SPAN>ional</strong>, and <strong>Editable</strong> Element properties, respectively. For more information about Variables see, <a href="../Document/Document Variables.html">Document Variables</a>.</li>
+</ul>
+<p><img src="finder_UI_variables.png" border="1" alt="Finder UI Variabless tab" /></p>
+<p>The rows in the <b>Variables list</b> table can be reorganized using the up and down arrow buttons located beside the table. Highlight an item, then click either the up arrow <img src="FinderVariableUpArrow.png" align="absmiddle" border="0" alt="" /> or down arrow <img src="FinderVariableDownArrow.png" align="absmiddle" border="0" alt="" /> button to move it. They can also be sorted alphabetically by clicking the <b>Sort</b> button <img src="FinderVariableSort.png" align="absmiddle" border="0" alt="" />.</p>
+<p>The <strong>Add</strong> button <img src="FinderVariableAddButton.png" align="absmiddle" border="0" alt="" /> is used to add a Data Type as a Document Variable in the <b>Variables list</b>. When you click the <strong>Add</strong> button, the <b>Add Element</b> dialog  opens.</p>
+<p>The dialog contains a list of Data Types under all namespaces in the   metadata. To add Variables, highlight the elements, and click the <strong>Save</strong> button. The dialog  closes and the selected elements are added as   Variables in the <strong>Variables list</strong>.</p>
+<p>To remove Variables from the table, highlight one or more rows in the <b>Variables list</b> and click the <strong>Remove</strong> button <img src="FinderVariableRemoveButton.png" align="absmiddle" border="0" alt="" />. A Variable that is selected as a system-generated key cannot be removed.</p>
+<p>These buttons beside the list follow the <a href="../../Service_Designer_User_Interface/metadata object detail pane.html#ArrayElements">Manage Array Elements</a> presentation convention in Velocity Studio. See this section for details about the aforementioned and additional buttons.</p>
+<p><a name="properties"></a>The following system variables are generated for the <em>com.conceptwave.system.FinderUserInterface</em>.</p>
+<table width="619" class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="167" class='confluenceTh'>Variable</th>
+      <th width="97" class='confluenceTh'>Return Type</th>
+      <th width="339" class='confluenceTh'>Description</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>confirmObject</strong></td>
+      <td class='confluenceTd'> Object</td>
+      <td class='confluenceTd'>Refer to Confirm JavaScript Extension. </td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>model</strong></td>
+      <td class='confluenceTd'>Model</td>
+      <td class='confluenceTd'>Data Finder (equivalent to Finder JavaScript Extension).</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>detail</strong></td>
+      <td class='confluenceTd'>User Interface</td>
+      <td class='confluenceTd'>Detail document of the Finder. It is populated when a selection is performed on the Finder and the showDetailAction method is invoked.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>cwShowHover</strong></td>
+      <td class='confluenceTd'>Boolean</td>
+      <td class='confluenceTd'>Instructs the Web browser to show hover data when the method is set to true for table's hover method.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>detailForm</strong></td>
+      <td class='confluenceTd'>String</td>
+      <td class='confluenceTd'>The form to use for the detail view (includes any form under the output document).</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>result</strong></td>
+      <td class='confluenceTd'>Document</td>
+      <td class='confluenceTd'>An array of documents from the database or a query.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>resultForm</strong></td>
+      <td class='confluenceTd'>User Interface</td>
+      <td class='confluenceTd'>Determines the form name to be displayed. The results Frame uses this variable as a form property.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>header</strong></td>
+      <td class='confluenceTd'>String</td>
+      <td class='confluenceTd'>The section header label of the Finder. This can be changed using views.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>tableState</strong></td>
+      <td class='confluenceTd'>String</td>
+      <td class='confluenceTd'><p>Used for views. It keeps track of the current sorting field visibility of the table. This variable cannot be changed.</p>
+        <p>To customize your view on a finder,  see the <a href="Finder TableState Object.html">TableState object</a> for details.</p></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>views</strong></td>
+      <td class='confluenceTd'>User Interface</td>
+      <td class='confluenceTd'>The views available for this Finder.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>isEditable</strong></td>
+      <td class='confluenceTd'>Boolean</td>
+      <td class='confluenceTd'>Set to true when the Finder table or detail form is editable.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>search</strong></td>
+      <td class='confluenceTd'>User Interface</td>
+      <td class='confluenceTd'>The Search document's User Interface.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>SearchForm</strong></td>
+      <td class='confluenceTd'>String</td>
+      <td class='confluenceTd'>Search form name used by the Finder.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>isSearchFormVisible</strong></td>
+      <td class='confluenceTd'>Boolean</td>
+      <td class='confluenceTd'>Keeps track of the visibility search form section of the search form.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>invokeContext</strong></td>
+      <td class='confluenceTd'>Object</td>
+      <td class='confluenceTd'>Internal functionality of the Finder.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>isSearchButtonVisible</strong></td>
+      <td class='confluenceTd'>Boolean</td>
+      <td class='confluenceTd'>Determines whether the search menu is visible or not.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>chart</strong></td>
+      <td class='confluenceTd'>Boolean</td>
+      <td class='confluenceTd'>When set to true shows the Chart Form. False hides the Chart.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>result</strong></td>
+      <td class='confluenceTd'>Document</td>
+      <td class='confluenceTd'>The results list of the document.</td>
+    </tr>
+    </tbody>
+</table> 
+<p>The Methods tab is a <a href="../../../JavaScripting in Order Care/Scripting Interface.html">script management screen</a> in Velocity Studio, which is composed of the <b>Method List pane</b> at the left which lists all scripts of the Finder Variable, and <b>Details pane</b> which displays the details of a script when selected at the Method List pane. To create a new Method, or to override an existing Method of its base Document, right-click the Finder in the Method List pane. A pop-up menu appears.</p>
+<p><img src="FinderVariableMethodContextMenu.png" align="absmiddle" border="1" alt="Finder Variable Method Context Menu" /></p>
+<p><b>Note</b>: This creates a Method at the Finder Variable level, impacting only  the Finder Variable. To create Methods at the Finder level, go to <a href="Document Methods.html">Finder Methods</a>.
+  
+<h3>Variable Methods</h3>
+<p>This  table  lists the type of Methods that can be added or overridden at the Document Variable level.</p>
+<table class='confluenceTable' border cellpadding="1"><tbody>
+    <tr>
+      <th class='confluenceTh' width='100'>Method Type</th>
+      <th class='confluenceTh'>Description</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><img src="FinderActionsIconValidation.png" align="absmiddle" border="0" alt="" />Validation</td>
+      <td class='confluenceTd'>Finder Variable validation script that determines the validity of runtime data values of the Finder. It is triggered with Finder method <i>.validate</i>, and by default, the generated Finder Form's <em>save</em> menu button triggers such validation. See the <a href="../../../Configuration_Tool_User_Guide/Configure/System/System/configVariables.html#phasedValidation">phasedValidation configuration variable</a> for details.</td>
+      </tr>
+    </tbody>
+</table>
+
+<p>The following lists the system-defined Methods that can be overridden.</p>
+<table class='confluenceTable' border cellpadding="1"><tbody>
+    <tr>
+      <th class='confluenceTh'>Method Type</th>
+      <th class='confluenceTh'>Script Name</th>
+      <th class='confluenceTh'>Parameters</th>
+      <th class='confluenceTh'>Return Type</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Initialization</b></td>
+      <td class='confluenceTd'><i>cwLeafInitAction</i></td>
+      <td class='confluenceTd'>None</td>
+      <td class='confluenceTd'>Document Variable</td>
+      <td class='confluenceTd'>Finder User Interface Variable Initialization script is to set initial values for the Finder Variable.<br/>
+        It is triggered when the Document is created. This Method is not executed when the Document is read from the database or an external system interface.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Calculate</b></td>
+      <td class='confluenceTd'><i>cwLeafCalculateAction</i></td>
+      <td class='confluenceTd'>None</td>
+      <td class='confluenceTd'>Document Variable</td>
+      <td class='confluenceTd'><p>Finder User Interface Variable Calculate script is to compute a value for the calculated Finder Variable. A calculated Finder Variable is a Variable that is not stored in the database or sourced from external sources, but their values are computed based on values of other Finder Variables. Variables with calculate Method are read-only fields in the UI at runtime.<br>
+        <br/>
+          <strong>Note:</strong> Because the value of the calculated field is computed every time the field is accessed, it may be accessed many times for different purposes by AVM at runtime. Unwise and excessive use of calculated fields may introduce serious performance problems. It is recommended to limit the Method to simple calculations based on Finder Variable values, and not invoke database access operations or external interface calls.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Trigger</b></td>
+      <td class='confluenceTd'><i>cwLeafTriggerAction</i></td>
+      <td class='confluenceTd'>None</td>
+      <td class='confluenceTd'>None</td>
+      <td class='confluenceTd'><p>Finder User Interface Variable Trigger script is executed when the content of a Finder Form field is changed (and loses focus) at runtime. Trigger execution may come automatically from the UI or can come from a user script at runtime. When a trigger execution request is received, all triggers for Variables that has been changed are executed.<br>
+        <br/>
+          <strong>Note: </strong>As a Trigger Method is triggered at UI, a server round trip is required to send updates to the client; this is done in AJAX, with only changed variables updated to browser with no page refresh. Regardless, Trigger Methods should be used sparingly to avoid incurring this overhead.</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>For Method Types that can be created, you can create multiple Methods of the same Method type (for example, Validation 1, Validation 2...), each identifiable by unique Method name. However, for Methods that are to be overridden from base Document, you can only define one Method per base Method. All of the system-predefined Methods <i>com.conceptwave.system.Finder</i> have empty scripts, which means the default Method is to do nothing.</p>
+<p>For scripts that are already overridden, they appear in the Method List pane and no longer be available at the right-click context pop-up menu.</p>
+<p>The Method created in Method List pane can be right-clicked, with various commands available; see <a href="../../../JavaScripting in Order Care/JavaScripting Extensions/Scripting Interface.html">script management UI</a> for details.</p>
+</tr>
+</table>
+</body>
+</html>

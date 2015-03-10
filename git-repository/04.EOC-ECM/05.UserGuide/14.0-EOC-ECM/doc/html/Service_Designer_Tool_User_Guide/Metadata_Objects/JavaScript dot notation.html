@@ -1,0 +1,48 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>JavaScript Dot Notation</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+	 padding-right: 0px; padding-bottom: 0px;" valign="top"><h2>JavaScript Dot Notation</h2>
+<p>You can use JavaScript dot notation to access both standard JavaScript objects and metadata objects within the product. Additionally, element scripts can be called by name as object methods.</p>
+<p>As an example, under the Ns namespace, the Ds data structure has a DsElement datatype element. In your Velocity Studio JavaScript, you can access the element as follows:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">var ds = new DataStructure("Ns.Ds");<BR>ds.DsElement="test";</pre>
+</div>
+</div>
+<p>If  the element is an array, accessing it is as follows:</p>
+
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">var ds = new DataStructure("Ns.Ds");<BR>ds.DsElement[0]="test1";<BR>ds.DsElement[1]="test2";</pre>
+</div>
+</div>
+<p>If the DsElement element has method1() and method2() as  defined methods, in your Velocity Studio JavaScript, invoke these methods:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">var ds = new DataStructure("Ns.Ds");<BR>ds.DsElement="test";<BR>ds.DsElement.method1();</pre>
+</div>
+</div>
+<p>If the element is an array, do the following:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">var ds = new DataStructure("Ns.Ds");<BR>ds.DsElement[0]="test1";<BR>ds.DsElement[0].method1(); </pre>
+</div>
+</div>
+
+<p>&nbsp;</p></td>
+	</tr>
+</table>
+</body>
+</html>

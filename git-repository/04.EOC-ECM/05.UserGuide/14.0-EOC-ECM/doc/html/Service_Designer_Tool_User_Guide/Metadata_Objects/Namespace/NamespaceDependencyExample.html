@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Namespace Dependency Example</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Namespace Dependency Example</h2>
+<p>Below is an example of namespace dependency and a description of how the Create Library, Show Dependency and Extract Metadata behaves with the two namespaces.  The example  contains two namespaces:  <b>ns1</b> and <b>ns2</b>.</p>
+<P><img src="CreateLibraryExample.png" border="1" alt="Namespace Dependency Example1"></P>
+
+<p><b>ns1</b> has two local data types that are referenced as variables in the namespace <strong>ns1</strong> document.  These variables are further referenced in the Document user interface's default form.</p>
+<P><img src="DependencyExampleNs1.png" border="1" alt="Namespace Dependency Example2">
+
+<p><strong>ns2</strong> contains a user interface menu that simply has a user action method that calls the <strong>ns1</strong> document default form.  This menu depends on <strong>ns1</strong> for the form and the associated variables.</p>
+
+<h3>Show Dependency</h3>
+<p>By performing this function on <strong>ns1</strong> results in "no dependency found".  However, performing this function on <strong>ns2</strong> results in a Dependency List that contains <strong>ns1</strong>. </p>
+<h3>Create Library</h3>
+<p>When the user tries to create a library file for the selected namespace, <strong>ns2</strong>, the process is interrupted as there are dependencies.  The system displays the Dependency List showing <strong>ns1</strong>. </p>
+<p>When the user tries to create a library file for namespace <strong>ns1</strong>, since there are no dependencies, the system will create a library JAR file for the <strong>ns1</strong> metadata and then delete the associated <strong>ns1</strong> metadata. </p>
+<p>Now that the ns1 is no longer a namespace (as it is a library file), it is possible to create a library file for ns2 because ns1 is no longer a dependent namespace.</p>
+
+<h3>Extract Metadata</h3>
+<p>By performing Extract Metadata on <b>ns1</b>, the system creates a copy of the <b>ns1</b> metadata and its dependent library files (<b>ns2</b>) to a new project. </p>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

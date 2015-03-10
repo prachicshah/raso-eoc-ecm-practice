@@ -1,0 +1,891 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>External Services: Maintenance API</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<h2>External Services: Maintenance API</h2>
+<p>The maintenance API is to be invoked through Services for an external system to perform maintenance on the Catalog data. This includes adding, changing, and deleting the listed objects and object types. The following is an explanation of maintaince APIs, the parameters, and the description:</p>
+<h3> AttributeMaintenance </h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="109" class='confluenceTh'>API Name</th>
+ <th width="295" class='confluenceTh'>Input</th>
+ <th width="241" class='confluenceTh'>Output</th>
+ <th width="610" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateAttribute</strong></td>
+ <td class='confluenceTd'><p>cwt_pcmaintapi.attribute (Attribute) </p></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new catalog attribute object, and saves the record to the database. Input parameter  is a datastructure of attribute object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.attributeSearchDS (Attribute Search)</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the catalog  attribute record. Input parameter is a datastructure with values to find the  catalog attribute. Output parameter is a datastructure that contains the  response upon a successful delete operation, or containing the fault in case of  failures (for example, data not found or violation integrity constraints).</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.attribute (Attribute)</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the catalog  attribute record.  Input is a  datastructure with values to find and update the catalog attribute. Output is a  datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.attributeSearchDS (Attribute Search)</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.attribute (Attribute) </td>
+ <td class='confluenceTd'>This API read the catalog  attribute record.  Input parameter is a  datastructure to find the catalog attribute using the attribute key. Output  parameter is a datastructure that contains the attribute record value, or contains  the fault if the data is not found.</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.attributeSearchDS (Attribute Search)</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.attributeList (Attribute List)</td>
+ <td class='confluenceTd'>This API returns a  list of catalog attribute records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+</tr>
+</table>
+
+<h3> AvailabilityTreeMaintenance</h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="184" class='confluenceTh'>API Name</th>
+ <th width="284" class='confluenceTh'>Input</th>
+ <th width="210" class='confluenceTh'>Output</th>
+ <th width="577" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchAvailabilityNodeItems</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.availabilityNodeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemList</td>
+ <td class='confluenceTd'>This API is to search  the availability node Items. It returns a list of availability node Item records  matching the search criteria provided in the fields of datastructure as input  parameter. This API returns null, if the matching result is not found. </td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateAvailabilityNode</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.availabilityNode</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates the catalog availability  node object, and saves the record in the database. Input parameter is a  datastructure of availability node object with values. Output parameter is a  datastructure that contains the response upon a successful operation or the fault  in case of failure.</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteAvailabilityNode</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.availabilityNodeSearchDS   </td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the availability  node record. Input parameter is a datastructure with values to find the catalog  availability node. Output parameter is a datastructure that contains the  response upon a successful delete operation, or containing the fault in case of  failures (for example, data not found or violation integrity constraints). </td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateAvailabilityNode</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.availabilityNode</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the availability  node record. Input is a datastructure  with values to find and update the availability node. Output parameter is a  datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateAvailabilityNodeRelation</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.availabilityNodeRelation</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates the  availability node relations object, and saves the record in the database. Input  parameter is a datastructure of the availability node relations object with  values. Output parameter is a datastructure that contains the response upon a  successful operation or the fault in case of failure. </td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteAvailabilityNodeRelation</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.availabilityNodeRelation</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the availability  node relations record. Input parameter is a datastructure with values to find  the catalog availability node relations object. Output parameter is a datastructure that  contains the response upon a successful delete operation, or containing the  fault in case of failures (for example, data not found or violation integrity  constraints). </td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchAvailabilityNode</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.availabilityNodeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API is to search  the availability nodes. It returns a list of availability node records matching  the search criteria provided in the fields of datastructure as input parameter.  This API returns null, if the matching result is not found.</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchAvailabilityNodeRelation</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.availabilityNodeRelationSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API is to search  the availability node relations. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+</tr>
+</table>
+<h3> CatalogHierarchyMaintenance </h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="173" class='confluenceTh'>API Name</th>
+ <th width="256" class='confluenceTh'>Input</th>
+ <th width="216" class='confluenceTh'>Output</th>
+ <th width="613" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateCatalogHierarchy</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.catalogHierarchy</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new catalog hierarchy object, and saves the record to the database. Input parameter  is a datastructure of catalog hierarchy object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteCatalogHierarchy</strong></td>
+ <td class='confluenceTd'><p>cwt_pcmaintapi.catalogHierarchySearchDS</p></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the catalog  hierarchy record. Input parameter is a datastructure with values to find the catalog  hierarchy. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateCatalogHierarchy</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.catalogHierarchy</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the catalog  hierarchy record. Input is a  datastructure with values to find and update the catalog hierarchy. Output parameter  is a datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadCatalogHierarchy</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.catalogHierarchySearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.catalogHierarchy</td>
+ <td class='confluenceTd'>This API read the catalog  hierarchy record. Input parameter is a  datastructure to find the catalog hierarchy using the catalog hierarchy key. Output  parameter is a datastructure that contains the catalog hierarchy  record value, or contains  the fault if the data is not found.</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchCatalogHierarchy</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.catalogHierarchySearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.catalogHierarchyList</td>
+ <td class='confluenceTd'>This API returns a  list of catalog hierarchy records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+</tr>
+</table>
+
+<h3> CatalogRuleMaintenance  </h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="119" class='confluenceTh'>API Name</th>
+ <th width="184" class='confluenceTh'>Input</th>
+ <th width="189" class='confluenceTh'>Output</th>
+ <th width="475" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateCatalogRule</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.catalogRule</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new catalog rule object, and saves the record to the database. Input parameter  is a datastructure of catalog rule object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteCatalogRule</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.catalogRuleSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the catalog rule record. Input parameter is a datastructure with values to find the catalog rule. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateCatalogRule</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.catalogRule</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the catalog rule record. Input is a  datastructure with values to find and update the catalog rule. Output parameter  is a datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadCatalogRule</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.catalogRuleSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.catalogRule</td>
+ <td class='confluenceTd'>This API read the catalog rule record. Input parameter is a  datastructure to find the catalog rule using the catalog rule key. Output  parameter is a datastructure that contains the catalog rule record value, or contains  the fault if the data is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchCatalogRule</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.catalogRuleSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.catalogRuleList</td>
+ <td class='confluenceTd'>This API returns a  list of catalog rule records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+ </tr>
+</table>
+<h3>ChargeTypeAttributeMaintenance</h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="166" class='confluenceTh'>API Name</th>
+ <th width="262" class='confluenceTh'>Input</th>
+ <th width="214" class='confluenceTh'>Output</th>
+ <th width="613" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateChargeTypeAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.chargeTypeAttribute</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new charge type attribute object, and saves the record to the database. Input parameter  is a datastructure of charge type object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteChargeTypeAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.chargeTypeAttributeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the charge type attribute record. Input parameter is a datastructure with values to find the charge type attribute. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateChargeTypeAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.chargeTypeAttribute</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the charge type attribute record. Input is a  datastructure with values to find and update the charge type attribute. Output parameter  is a datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadChargeTypeAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.chargeTypeAttributeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API read the charge type attribute record. Input parameter is a  datastructure to find the charge type attribute using the charge type attribute key. Output  parameter is a datastructure that contains the charge type attribute record value, or contains  the fault if the data is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchChargeTypeAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.chargeTypeAttributeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API returns a  list of charge type attribute records matching the search criteria provided in the  fields of datastructure as input parameter.  Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+</table>
+
+
+
+<h3> ChargeTypeMaintenance</h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="123" class='confluenceTh'>API Name</th>
+ <th width="251" class='confluenceTh'>Input</th>
+ <th width="239" class='confluenceTh'>Output</th>
+ <th width="645" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateChargeType</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.chargeType</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates  new charge type  object, and saves the record to the database. Input parameter  is a datastructure of charge type object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteChargeType</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.chargeTypeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the charge type  record. Input parameter is a datastructure with values to find the charge type. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateChargeType</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.chargeType</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the charge type  record. Input is a  datastructure with values to find and update the charge type. Output parameter  is a datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadChargeType</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.chargeTypeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.chargeType</td>
+ <td class='confluenceTd'>This API read the charge type  record. Input parameter is a  datastructure to find the charge type  using the charge type key. Output  parameter is a datastructure that contains the charge type record value, or contains  the fault if the data is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchChargeType</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.chargeTypeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.chargeTypeList</td>
+ <td class='confluenceTd'>This API returns a  list of charge type  records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+ </tr>
+</table>
+
+<h3> CodeTableMaintenance </h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="152" class='confluenceTh'>API Name</th>
+ <th width="200" class='confluenceTh'>Input</th>
+ <th width="197" class='confluenceTh'>Output</th>
+ <th width="1015" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateCodeTable</strong></td>
+ <td class='confluenceTd'>cwt_common.codeTableName</td>
+ <td class='confluenceTd'>cwt_common.cTable (Code Table)</td>
+ <td class='confluenceTd'>This API creates   new code table object, and saves the record to the database. Input parameter  is a datastructure of code table object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteCodeTable</strong></td>
+ <td class='confluenceTd'>cwt_common.cTable (Code Table)</td>
+ <td class='confluenceTd'>cwt_common.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the code table record. Input parameter is a datastructure with values to find the code table. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+ </tr>
+ <tr>
+ <td class='confluenceTd'><strong>DeleteCodeTableCode</strong></td>
+ <td class='confluenceTd'>cwt_common.codeTableCode</td>
+ <td class='confluenceTd'>cwt_common.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the code table record. Input parameter is a datastructure with values to find the code table code. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+ </tr>
+
+<tr>
+ <td class='confluenceTd'><strong>UpdateCodeTable</strong></td>
+ <td class='confluenceTd'>cwt_common.cTable (Code Table)</td>
+ <td class='confluenceTd'>cwt_common.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the code table record. Input is a  datastructure with values to find and update the code table. Output parameter  is a datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadCodeTable</strong></td>
+ <td class='confluenceTd'>cwt_common.codeTableCode</td>
+ <td class='confluenceTd'>cwt_common.response (Reponse)</td>
+ <td class='confluenceTd'>This API read the code table record. Input parameter is a  datastructure to find the code table using the code table key. Output  parameter is a datastructure that contains thecode table record value, or contains  the fault if the data is not found.</td>
+ </tr>
+</table>
+
+<h3> ContextMaintenance </h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="129" class='confluenceTh'>API Name</th>
+ <th width="242" class='confluenceTh'>Input</th>
+ <th width="244" class='confluenceTh'>Output</th>
+ <th width="645" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateContext</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.context</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new catalog context object, and saves the record to the database. Input parameter  is a datastructure of catalog context object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteContext</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.contextSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the catalog context record. Input parameter is a datastructure with values to find the catalog context . Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateContext</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.context</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the catalog context record. Input is a  datastructure with values to find and update the catalog context . Output parameter  is a datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadContext</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.contextSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.context</td>
+ <td class='confluenceTd'>This API read the catalog context record. Input parameter is a  datastructure to find the catalog context using the context key. Output  parameter is a datastructure that contains the attribute record value, or contains  the fault if the data is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchContext</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.contextSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.contextList</td>
+ <td class='confluenceTd'>This API returns a  list of catalog context records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+ </tr>
+</table>
+
+<h3> InfoModelMaintenance </h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="169" class='confluenceTh'>API Name</th>
+ <th width="204" class='confluenceTh'>Input</th>
+ <th width="248" class='confluenceTh'>Output</th>
+ <th width="641" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateInfoModel</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.infoModel</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new info model object, and saves the record to the database. Input parameter  is a datastructure of  info model object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteInfoModel</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.infoModelSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the info model record. Input parameter is a datastructure with values to find the info model. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateInfoModel</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.infoModel</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the info model record. Input is a  datastructure with values to find and update the info model. Output parameter  is a datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadInfoModel</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.infoModelSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.infoModel</td>
+ <td class='confluenceTd'>This API read the info model record. Input parameter is a  datastructure to find the info model using the  info model key. Output  parameter is a datastructure that contains the  info model record value, or contains  the fault if the data is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchInfoModel</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.infoModelSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.infoModelList</td>
+ <td class='confluenceTd'>This API returns a  list of info model records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+ </tr>
+</table>
+
+<h3> ItemAssocationDeleteMaintenance </h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="169" class='confluenceTh'>API Name</th>
+ <th width="204" class='confluenceTh'>Input</th>
+ <th width="248" class='confluenceTh'>Output</th>
+ <th width="641" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteItemAttachment</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemAttachmentSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes an item attachment record. Input parameter is a datastructure with values to find the item attachement. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteItemAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemAttributeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes an item attribute record. Input parameter is a datastructure with values to find the item attribute. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteItemCharge</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemChargeVersionSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes an item charge record. Input parameter is a datastructure with values to find the item charge. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteItemDescription</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemDescriptionSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the item decsription record. Input parameter is a datastructure with values to find the item description. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteItemGroup</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemGroupSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the item group record. Input parameter is a datastructure with values to find the item group. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteItemImage</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemImageSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the item charge record. Input parameter is a datastructure with values to find the item charge. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+</tr>
+
+<tr>
+ <td class='confluenceTd'><strong>DeleteItemRule</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemRuleSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the item rule record. Input parameter is a datastructure with values to find the item rule. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteItemSystemId</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.systemIdentifierSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the item's system ID record. Input parameter is a datastructure with values to find the item's system ID . Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteItemAction</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemActionSearchDS.itemCode   </td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the item action record. Input parameter is a datastructure with values to find the item action. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+</tr>
+</table>
+
+<h3>ItemAttributeMaintenance</h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="169" class='confluenceTh'>API Name</th>
+ <th width="204" class='confluenceTh'>Input</th>
+ <th width="248" class='confluenceTh'>Output</th>
+ <th width="641" class='confluenceTh'>Description</th>
+  </tr>
+  <tr>
+ <td class='confluenceTd'><strong>DefaultValueChangeSearch</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemAttributeChangeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemAttributeChangeList</td>
+ <td class='confluenceTd'>This API returns a  list of modified item attribute records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>ItemChargeTypeAttributeMaintenance</h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="186" class='confluenceTh'>API Name</th>
+ <th width="197" class='confluenceTh'>Input</th>
+ <th width="248" class='confluenceTh'>Output</th>
+ <th width="631" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateItemChargeTypeAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemChargeTypeAttribute</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new item charge type attribute object, and saves the record to the database. Input parameter  is a datastructure of  item charge type attribute object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteItemChargeTypeAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemChargeTypeAttributeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the item charge type attribute record. Input parameter is a datastructure with values to find the item charge type attribute. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateItemChargeTypeAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemChargeTypeAttribute</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the item charge type attribute record. Input is a  datastructure with values to find and update the item charge type attribute. Output parameter  is a datastructure that contains the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadItemChargeTypeAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemChargeTypeAttributeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API read the item charge type attribute record. Input parameter is a  datastructure to find the item charge type attribute using the item charge type attribute key. Output parameter  is a datastructure that contains the response in case of successful read operation,  or contains the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchItemChargeTypeAttribute</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemChargeTypeAttributeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API returns a  response in case of successful read operation,  or contains the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+</table>
+
+<h3> ItemMaintenance </h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="121" class='confluenceTh'>API Name</th>
+ <th width="206" class='confluenceTh'>Input</th>
+ <th width="248" class='confluenceTh'>Output</th>
+ <th width="687" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateItem</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.item</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new item object, and saves the record to the database. Input parameter  is a datastructure of item object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteItem</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the item record. Input parameter is a datastructure with values to find the item. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateItem</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.item</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the item record. Input is a  datastructure with values to find and update the item. Output parameter  is a datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadItem</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.item</td>
+ <td class='confluenceTd'>This API read the item record. Input parameter is a  datastructure to find the item using the item key. Output  parameter is a datastructure that contains the attribute record value, or contains  the fault if the data is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchItem</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.itemList</td>
+ <td class='confluenceTd'>This API returns a  list of item records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+ </tr>
+</table>
+
+
+<h3> ProjectMaintenance </h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="144" class='confluenceTh'>API Name</th>
+ <th width="282" class='confluenceTh'>Input</th>
+ <th width="226" class='confluenceTh'>Output</th>
+ <th width="609" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateProject</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.project</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new project object, and saves the record to the database. Input parameter  is a datastructure of project object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteProject</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.projectDeleteDS   </td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the project record. Input parameter is a datastructure with values to find the project. Output parameter is a datastructure that contains the response upon  a successful delete operation, or containing the fault in case of failures (for  example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateProject</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.project</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the project record. Input is a  datastructure with values to find and update the project. Output parameter  is a datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadProject</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.projectSearchDS (Project Search)</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.project</td>
+ <td class='confluenceTd'>This API read the project record. Input parameter is a  datastructure to find the project using the project key. Output  parameter is a datastructure that contains the project record value, or contains  the fault if the data is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchProject</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.projectSearchDS (Project Search</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.projectList (Project List)</td>
+ <td class='confluenceTd'>This API returns a  list of project records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>MoveProjectObjects</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.MoveProjectAssignmentsDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This  API moves the objects from one project to another.  Input parameter  is a datastructure of project assignment object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>EndDateObject</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.endDateObjectDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API sets the end date for a project. Input parameter  is a datastructure of end date objects with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>DiscardObject</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.discardObjectDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API is to discrad the project objects. Input parameter  is a datastructure of discard object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteMultipleProjects</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.multipleProjectsDelete</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API is to delete multiple projects. Input parameter  is a datastructure of end date objects with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+</tr>
+<tr>
+ <td class='confluenceTd'><strong>ActiveProjects</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.projectsActivationDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API is to activate multiple projects. Input parameter  is a datastructure of project activation objects with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+</tr>
+</table>
+
+<h3> RelationTypeMaintenance </h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="144" class='confluenceTh'>API Name</th>
+ <th width="257" class='confluenceTh'>Input</th>
+ <th width="222" class='confluenceTh'>Output</th>
+ <th width="642" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateRelationType</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.relationType</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new relation type object, and saves the record to the database. Input parameter  is a datastructure of relation type object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteRelationType</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.relationTypeSearchDS   </td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the relation type record. Input parameter is a datastructure with values to find the  relation type. Output parameter is a datastructure that contains the  response upon a successful delete operation, or containing the fault in case of  failures (for example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateRelationType</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.relationType</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the relation type record.  Input is a  datastructure with values to find and update the relation type. Output is a  datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadRelationType</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.relationTypeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.relationType</td>
+ <td class='confluenceTd'>This API read the relation type record.  Input parameter is a  datastructure to find the relation type using the relation type key. Output  parameter is a datastructure that contains the relation type record value, or contains  the fault if the data is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchRelationType</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.relationTypeSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.relationTypeList</td>
+ <td class='confluenceTd'>This API returns a  list of relation type records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+ </tr>
+</table>
+
+
+<h3> RestrictionMaintenance </h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="161" class='confluenceTh'>API Name</th>
+ <th width="234" class='confluenceTh'>Input</th>
+ <th width="229" class='confluenceTh'>Output</th>
+ <th width="646" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateRestriction</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.restriction   </td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new restriction object, and saves the record to the database. Input parameter  is a datastructure of restriction object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteRestriction</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.restrictionSearchDS </td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the restriction record. Input parameter is a datastructure with values to find the  restriction. Output parameter is a datastructure that contains the  response upon a successful delete operation, or containing the fault in case of  failures (for example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateRestriction</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.restriction </td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the restriction record.  Input is a  datastructure with values to find and update the restriction. Output is a  datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadRestriction</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.restrictionSearchDS </td>
+ <td class='confluenceTd'>cwt_pcmaintapi.restriction </td>
+ <td class='confluenceTd'>This API read the restriction record. Input parameter is a  datastructure to find the restriction using the restriction key. Output  parameter is a datastructure that contains the restriction record value, or contains  the fault if the data is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchRestriction</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.restrictionSearchDS </td>
+ <td class='confluenceTd'>cwt_pcmaintapi.restrictionList</td>
+ <td class='confluenceTd'>This API returns a  list of restriction records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+ </tr>
+</table>
+
+<h3> SystemIdentifierMaintenance </h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="164" class='confluenceTh'>API Name</th>
+ <th width="241" class='confluenceTh'>Input</th>
+ <th width="219" class='confluenceTh'>Output</th>
+ <th width="648" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateSystemIdentifier</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.systemIdentifier</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new system identifier object, and saves the record to the database. Input parameter  is a datastructure of system identifier object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteSystemIdentifier</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.systemIdentifierSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the system identifier record. Input parameter is a datastructure with values to find the  system identifier. Output parameter is a datastructure that contains the  response upon a successful delete operation, or containing the fault in case of  failures (for example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateSystemIdentifier</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.systemIdentifier</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the system identifier record. Input is a  datastructure with values to find and update the system identifier. Output is a  datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadSystemIdentifier</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.systemIdentifierSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.systemIdentifier</td>
+ <td class='confluenceTd'>This API read the system identifier record.  Input parameter is a  datastructure to find the system identifier using the system identifier key. Output  parameter is a datastructure that contains the system identifier record value, or contains  the fault if the data is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchSystemIdentifier</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.systemIdentifierSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.systemIdentifierList</td>
+ <td class='confluenceTd'>This API returns a  list of system identifier records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+ </tr>
+</table>
+
+<h3> TaxMaintenance</h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="122" class='confluenceTh'>API Name</th>
+ <th width="239" class='confluenceTh'>Input</th>
+ <th width="242" class='confluenceTh'>Output</th>
+ <th width="673" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateTax</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.tax</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new catalog tax object, and saves the record to the database. Input parameter  is a datastructure of tax object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteTax</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.taxSearchDS   </td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the tax record. Input parameter is a datastructure with values to find the  tax. Output parameter is a datastructure that contains the  response upon a successful delete operation, or containing the fault in case of  failures (for example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateTax</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.tax</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the tax record.  Input is a  datastructure with values to find and update the tax. Output is a  datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadTax</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.taxSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.tax</td>
+ <td class='confluenceTd'>This API read the tax record. Input parameter is a  datastructure to find the tax using the tax key. Output  parameter is a datastructure that contains the tax record value, or contains  the fault if the data is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchTax</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.taxSearchDS</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.taxList (Tax List)</td>
+ <td class='confluenceTd'>This API returns a  list of tax records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+ </tr>
+</table>
+
+<h3> TaxModelMaintenance</h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="138" class='confluenceTh'>API Name</th>
+ <th width="220" class='confluenceTh'>Input</th>
+ <th width="247" class='confluenceTh'>Output</th>
+ <th width="672" class='confluenceTh'>Description</th>
+  </tr>
+<tr>
+ <td class='confluenceTd'><strong>CreateTaxModel</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.taxModel</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new  catalog tax model object, and saves the record to the database. Input parameter  is a datastructure of tax model object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteTaxModel</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.taxModelSearchDs</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the  catalog tax model record. Input parameter is a datastructure with values to find the   catalog tax model. Output parameter is a datastructure that contains the  response upon a successful delete operation, or containing the fault in case of  failures (for example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateTaxModel</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.taxModel</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the  catalog tax model record. Input is a  datastructure with values to find and update the  catalog tax model. Output is a  datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>ReadTaxModel</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.taxModelSearchDs</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.taxModel</td>
+ <td class='confluenceTd'>This API read the  catalog tax model record. Input parameter is a  datastructure to find the  catalog tax model using the tax model  key. Output  parameter is a datastructure that contains the attribute record value, or contains  the fault if the data is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>SearchTaxModel</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.taxModelSearchDs</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.taxModelList</td>
+ <td class='confluenceTd'>This API returns a  list of  catalog tax model records matching the search criteria provided in the  fields of datastructure as input parameter. This API returns null, if the matching  result is not found.</td>
+ </tr>
+</table>
+
+
+<h3> VersionCodeTableMaintenance</h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+<tr>
+ <th width="175" class='confluenceTh'>API Name</th>
+ <th width="296" class='confluenceTh'>Input</th>
+ <th width="212" class='confluenceTh'>Output</th>
+ <th width="594" class='confluenceTh'>Description</th>
+  </tr>
+
+<tr>
+ <td class='confluenceTd'><strong>CreateVersionCodeTable</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.cTable (Code Table)</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API creates a  new version code table object, and saves the record to the database. Input parameter  is a datastructure of version code table object with values. Output parameter is a datastructure  that contains the response upon a successful operation or the fault in case of  failure.</td>
+ </tr>
+  <tr>
+ <td class='confluenceTd'><strong>DeleteVersionCodeTable</strong></td>
+ <td class='confluenceTd'>cwt_common.codeTableName</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the  version code table record. Input parameter is a datastructure with values to find the   version code table. Output parameter is a datastructure that contains the  response upon a successful delete operation, or containing the fault in case of  failures (for example, data not found or violation integrity constraints).</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>DeleteVersionCodeTableCode</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.codeTableCode (Code Table Code)</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API deletes the  version code table record. Input parameter is a datastructure with values to find the   version code table. Output parameter is a datastructure that contains the  response upon a successful delete operation, or containing the fault in case of  failures (for example, data not found or violation integrity constraints).</td>
+ </tr>
+ <tr>
+ <td class='confluenceTd'><strong>ReadVersionCodeTable</strong></td>
+ <td class='confluenceTd'>cwt_common.codeTableName</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.cTable (Code Table)</td>
+ <td class='confluenceTd'>This API read the  catalog version code table record. Input parameter is a  datastructure to find the  version code table using the version code table key. Output  parameter is a datastructure that contains the version code table record value, or contains  the fault if the data is not found.</td>
+ </tr>
+<tr>
+ <td class='confluenceTd'><strong>UpdateVersionCodeTable</strong></td>
+ <td class='confluenceTd'>cwt_pcmaintapi.cTable (Code Table)</td>
+ <td class='confluenceTd'>cwt_pcmaintapi.response (Reponse)</td>
+ <td class='confluenceTd'>This API updates the  version code table record. Input is a  datastructure with values to find and update the  version code table. Output is a  datastructure containing the response in case of successful update operation,  or containing the fault in case of failures (for example, data not found or  violation integrity constraints). </td>
+ </tr>
+
+</table>
+
+
+</body>
+</html>

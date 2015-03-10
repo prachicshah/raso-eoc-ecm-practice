@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>Detail User Interface</title>
+<link rel="StyleSheet" href="../../../styles/site.css" type="text/css" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Detail User Interface</h2>
+<p>To create a detail component user interface, follow these steps: </p>
+<ol>
+   <li><a href="../Creating UI Objects.html#createTopLevelUI">Create a new user interface</a>, which extends  <strong>ui_common.baseComponent</strong>.</li> <p> 
+    <img src="./detailUI.png" alt="Detail User Interface"/></p>
+  <li>Navigate  to the <strong>Variables</strong> tab. </li>
+  <li>Right-click the <strong>model</strong> variable and select <strong>Override</strong>; it  creates a local copy of the variable.</li>
+  <li> Set  the <strong>Data type</strong> property to the desired object.</li>
+  <li> To  show a new data object using this component, click  the<strong> Methods</strong> tab and override the<strong> getNewDetailModel</strong> method to provide the data object instance. Some data  objects require a call to specific API, while others only need a simple  script such as:<br>
+    <tt>return  new Document(&quot;testApplicationUI.testDoc&quot;);</tt></li>
+  <li>  To provide the functionality of saving the  data object, when you click the <strong>Save</strong> button,  override<strong> onSaveModel </strong>method  in the methods list.</li>
+</ol>
+<h3> <a name="usingDetailForm"> Detail Form</a></h3>
+<p>There are two ways to  configure the detail form. You can use either an internal detail form or an  external one. </p>
+<h4> Use an Internal Detail Form</h4>
+To  internally configure the detail form, follow these steps:
+<ol>
+  <li> Right-click  the <strong>detailForm</strong> form and select  <strong>Override</strong>. </li>
+  <li>  To add more elements   right-click the <strong>formGridLayout</strong>  and select <strong>Add</strong>.</li>
+  <li> Set the <strong>Column  Span</strong> property to 2 or more for each field added.</li>
+</ol>
+  <strong>Note:</strong> It is not a good practice to override<strong> formGridLayout</strong>, as it contains  styling used throughout the modules.  
+<h4> Use an External detail form</h4>
+To  create an external detail form, follow these steps: 
+<ol>
+  <li><a href="../Creating UI Objects.html#createTopLevelUI">Create a new user interface</a>, which  extends<strong> ui_common.baseForm</strong>. By default, this  user interface contains one grid layout with seven columns. This user interface allows two fields per row.</li>
+  <li> The <strong>Column Span</strong> property of each field  is set to 2.</li>  
+  <li>To  start using this user interface, navigate to the<strong> Variables</strong> tab.</li>
+  <li> Right-click  the <strong>model</strong> variable and select <strong>Override</strong>, which creates a local copy of  the variable.</li>
+  <li>Set the <strong>Data type</strong>  property to the desired object.
+  <li> Once  the model is set up, right-click the <strong>Default</strong> form and select <strong>Override</strong>.<li>To add more elements   right-click the <strong>formGridLayout</strong> and select <strong>Add</strong>.</li>
+  <li> Set  the <strong>Column Span</strong> property to 2 or more for each field added.</li>
+</ol>
+<strong>Note:</strong> It is not a good practice to override <strong>formGridLayout</strong><em>,</em> as it contains  styling used throughout the modules.<br><br> 
+When the external detail  form is created, it can be used to be fully functional. To display the  detail form created previously, navigate to the detail component UI previously created, and complete these steps:
+<ol>
+  <li>Click the <strong>Methods</strong> tab, and then click  the <strong>Show Base Methods </strong>(<img src="brownBook.png" alt="Show Base Methods button"/ >) button.</li>
+  <li> Right-click the<strong> getComponentForm </strong>method from the list   and select <strong>Override</strong>. This  method can be implemented in a few ways:<ul>
+  <li>If  the component is re-usable, it is a good practice to create an event that  returns a <em>String</em> representation of the full name of the detail form. For  example,  an event can be created using the event ID. If <em>UI_COMMON_ORG_CHART_COMPONENT_FORM</em> is an event id, then in<strong> getComponentForm</strong> method, a  publish can be called for this event as follows:</li>
+<div class="code">
+<div class="codeContent">
+  <pre>return ui_common.doPublishEvent("UI_COMMON_ORG_CHART_COMPONENT_FORM", FIRST_ONE,this.model,"cwa_security.orgChartNodeForm");
+
+</pre>
+</div>
+  </div>  
+ <li>If  this component is not reusable,  return the detail form UI full name. For  example:</li>
+ <div class="code">
+  <div class="codeContent">
+    <pre>return cwa_security.orgChartNodeForm;</pre>
+  </div>
+ </div>
+  </ul>  
+</ol>
+<h3> Tabbed Component Form</h3>
+To create a tabbed component form, follow these steps:
+<ol>
+  <li> <a href="../Creating UI Objects.html#createTopLevelUI"> Create a new user interface</a>, which extends<strong> ui_common.baseTabbedComponent</strong>. </li>
+  <li>To add a tab button, override the <strong>default</strong> form.</li>
+<li>Right-click <strong>tabButtonSample</strong> and select <strong>Copy</strong>.</li>
+<li>Right-click the <strong>tabButtonGrid</strong> element and select <strong>Paste</strong>. Specify   following  properties:
+<ul>
+  <li><strong>Label</strong></li>
+  <li><strong>Click Method</strong> – To change the currently displayed form, the <strong>Click Method</strong> needs to call the   <em>setFrame method</em> by passing in the UI  to display. This UI has an  implementation of <strong>ui_common.baseComponent</strong>.</li>
+  <li><strong>Visible –</strong> Set to <strong>False</strong> by default.</li>
+</ul>
+</ol>
+<h3> Result Component Form<strong>&nbsp;</strong></h3>
+To  create a detail user interface with result form, follow these steps:
+<ol>
+<li> <a href="../Creating UI Objects.html#createTopLevelUI">Create a new user interface</a>, which extends <strong>ui_common.baseResultComponent</strong>.</li>
+<li> Navigate to the<strong> Variables</strong> tab.</li>
+<li> Right-click <strong>model</strong> variable and  select <strong>Override</strong>, which creates a local copy of the variable. </li>
+<li>Set the <strong>Data type</strong>  property to the required data object.
+<li>To  show a new data structure using this component, override<strong> getNewDetailModel </strong>method to provide the data structure instance. Showing  a new data object is similar to detail component.</li>
+<li>This component  form also needs to know, how to save the data  object, when you clicks on the <strong>Save</strong> button. To provide this functionality, click  the <strong>Methods</strong> tab and override <strong>onSaveModel</strong> method.</li>
+</ol>
+
+  <p>Default result form is set to <strong>Result</strong>  form and to use  other result forms,  assign the form to variable <strong>resultForm</strong>. This UI contains two result forms (see   <a href="./finders.html#createResultForm"> Create a Result Form</a> for more details).
+  </p>
+  <h2><a name="customMenus">Custom Menus</a></h2>
+  You can add more menus to the application, if needed. To add more menus, follow these steps:
+<ol>
+  <li>To add a menu, right-click  either the <strong>Menu</strong>  or <strong>MenuRight</strong>.</li>
+  <li> Right-click <strong>customMenuLayout</strong> to add more elements (for example, text field or  check box). </li>
+</ol>
+<p><img src="./addMenu.png" border="1" alt="Custom Menus"/></p>
+
+  <p><strong>Note:</strong> The <strong>Menu</strong> form adds menu items to the left of the default menu items. The <strong>MenuRight</strong> adds menu  items to the right of the default menu items.</p>
+  
+  </td>
+ </tr>
+  </table>
+   </body>
+    </html>

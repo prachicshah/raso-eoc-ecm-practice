@@ -1,0 +1,47 @@
+﻿<html>
+<head>
+<title>Uninstall the Product</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="topic-check-list" content="Ran Smart Index" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>
+  <h1><a name="UninstallingConceptWaveOrderCare"></a>Uninstall the Product</h1>
+</h2>
+<p>The following section explains how to uninstall the product.</p>
+<h2><a name="LaunchUninstall"></a>Launch Uninstall</h2>
+<p>To perform an uninstall of a previous installation, simply locate and execute the uninstall application.</p>
+<ul>
+<li><b>Windows:</b> Use the Start Menu icon, or launch file <em>uninstall.exe</em> from the <em>\&lt;installation_folder&gt;\uninstall</em> folder.</li>
+<li><b>Unix/Linux:</b> Launch <em>uninstall.sh</em> from the <em>\uninstall</em> directory where the components have been installed.<br>
+  <br>
+</li>
+</ul>
+
+<img src="uninstall1.png" border="0" alt="Uninstall Velocity Studio" />
+
+<a name="Uninstall"></a>
+<p>The uninstaller informs you  of its progress.</p>
+
+<img src="uninstall2.png" border="0" alt="Uninstallation - progress" />
+
+<p>The uninstaller provides details of items that have not been removed and indicates that the uninstallation has completed.</p>
+
+<img src="uninstall3.png" border="0" alt="Uninstallation is complete" />
+
+<p><b>Notes:</b></p>
+<ul>
+  <li>The uninstaller removes any files or folders created by you after installation (for example, project files, license files).</li>
+  <li>Framework components that have been deployed to either a JBoss, WebLogic, or WebSphere application server have to be undeployed using the tools provided by each respective vendor. Consult your vendor documentation.</li>
+  <li>Any database schemas have to manually removed by an Oracle DBA, or by using the SQL Plus command <em>DROP USER "SCHEMA_NAME" CASCADE;</em></li>
+</ul>
+</td>
+</tr>
+</table>
+</body>
+</html>

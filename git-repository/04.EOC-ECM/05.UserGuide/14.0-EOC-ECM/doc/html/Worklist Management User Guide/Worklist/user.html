@@ -1,0 +1,152 @@
+<html>
+<head>
+<title>Users</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Users</h2>
+<p>The Worklist Users report  displays a list of active users. Based on configured processes, the Worklist Users report displays a list of all user tasks that are assigned to the current user. The worklist user interface is instantiated using the <em>BaseWorklistFinder (Worklist)</em> found in Velocity Studio's Library tab, under <strong>System &gt; cwf_pm (Process Management Product) &gt; Finders &gt; Document Finders</strong>.</p>
+<p>To access the Worklist Users report, complete these steps:</p>
+<ol>
+  <li>From the menu bar, click <strong>Worklist</strong> &gt; <strong>Users</strong>. <br>
+  </li>
+  <li>The Worklist Users screen appears. Click the <strong>Search</strong> button to view a list of worklist users.<br>
+    <br>
+    <img src="worklist_user.png" border="0" alt="Worklist users" /> <br>
+    You can also specify your search criteria in the fields provided and then click the <strong>Search</strong> button to view your results.<br>
+    <br>
+    The Worklist Users search results contain the following fields:<br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th class='confluenceTh'> Field </th>
+          <th class='confluenceTh'> Description </th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Av</b></td>
+          <td class='confluenceTd'> Indicates whether the user is available. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>User ID</b></td>
+          <td class='confluenceTd'> ID of the user. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Tasks</b></td>
+          <td class='confluenceTd'> Number of tasks assigned to the user. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Overdue</b></td>
+          <td class='confluenceTd'> Number of overdue tasks assigned to the user. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Alerts</b></td>
+          <td class='confluenceTd'> Number of alerts assigned to the user. </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+<p><b>Note:</b> The top two records&nbsp;of the Worklist Users report results display a summary that is unaffected by the search criteria entered. The summary always displays the total number of assigned or unassigned tasks after the <em>&lt;assigned&gt;</em> and <em>&lt;unassigned&gt;</em> user IDs.</p>
+<h4>User Profile</h4>
+<p>You can display specific information about a user by selecting a <strong>User ID</strong> from your Worklist Users search results and then clicking the <b>User Profile</b> button to launch the My User Profile dialog.</p>
+<img src="worklist_manager_userprofile.png" border="0" alt="User Profile - specific details about a user" />
+<p>The General tab contains the following fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'> Field </th>
+      <th class='confluenceTh'> Description </th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>ID</b></td>
+      <td class='confluenceTd'> ID of the selected worklist user. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Name</b></td>
+      <td class='confluenceTd'> Name of the selected worklist user. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>E-mail</b></td>
+      <td class='confluenceTd'> E-mail address of the selected worklist user. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Active</b></td>
+      <td class='confluenceTd'>Indicates whether the selected worklist user is active   or not. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Available</b></td>
+      <td class='confluenceTd'> Indicates whether the selected worklist user is   available or not. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>External User</b></td>
+      <td class='confluenceTd'> Indicates if the worklist user uses  external systems.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Minimum Efforts</b></td>
+      <td class='confluenceTd'> Smallest number of tasks that the selected worklist user   can have assigned. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Maximum Efforts</b></td>
+      <td class='confluenceTd'> Largest number of tasks that the selected worklist user can   have assigned. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Current Efforts</b></td>
+      <td class='confluenceTd'>Number of tasks assigned to the user. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Org Chart (Reference)</strong></td>
+      <td class='confluenceTd'>Indicates the organizational chart to which the selected user belongs.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Employee ID</b></td>
+      <td class='confluenceTd'>Contains the user's employee ID.</td>
+    </tr>
+  </tbody>
+</table>
+<h4>View a Lists of Tasks Assigned to a User </h4>
+<p>To view a list of assigned tasks that a user has, highlight the <strong>User ID</strong> that you want and click the <strong>Tasks</strong> button. The User Worklist dialog appears with all assigned tasks for the selected user.</p>
+<p><img src="worklist_user_user_worklist.png" alt="Worklist User - User Worklist tasks"></p>
+<p>The User Worklist dialog contains the following fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'> Field </th>
+      <th class='confluenceTh'> Description </th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Due</b></td>
+      <td class='confluenceTd'> Date and time when the worklist item is due. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Task</b></td>
+      <td class='confluenceTd'> Description of the worklist item. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Details</b></td>
+      <td class='confluenceTd'> Order details for the worklist item. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Assigned</b></td>
+      <td class='confluenceTd'> Date and time when the worklist item was assigned. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Started</b></td>
+      <td class='confluenceTd'> Date and time when the worklist item was started. </td>
+    </tr>
+  </tbody>
+</table>
+<h4>Set a User as Available or Unavailable for Additional Tasks</h4>
+<p>To set a user as available for additional worklist tasks, highlight the <strong>User ID</strong> that you want from the Worklist User results and click the <strong>Available</strong> button. Similarly, to set a user as unavailable for additional tasks, highlight the <strong>User ID</strong> that you want from the Worklist User results and click the <strong>Unavailable</strong> button.</p>
+<p>The following example shows that the <strong>prv1</strong> user is unavailable for additional worklist tasks, but all other users are available to take on more tasks.</p>
+<p><img src="worklist_user_available_unavailable_users.png" alt="Set users as either available or unavailable"></p>
+<h3></h3>
+<p>&nbsp;</p></td>
+ </table>
+</body>
+</html>

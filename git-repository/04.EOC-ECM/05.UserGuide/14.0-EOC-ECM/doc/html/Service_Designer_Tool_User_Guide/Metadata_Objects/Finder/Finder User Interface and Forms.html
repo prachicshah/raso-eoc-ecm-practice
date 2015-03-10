@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>Finder User Interface and Forms</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Finder User Interface and Forms </h2>
+
+<p>The Finder User Interface behaves similarly to  other User Interface metadata objects such as Documents and Orders. When configuring  Finders, there are three system-defined User Interfaces to choose from and each of these User Interfaces has a set of default Forms.</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>User Interface</th>
+      <th class='confluenceTh'>Description</th>
+      <th class='confluenceTh'>Forms</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><i>com.conceptwave.system.FinderUserInterface</i></td>
+      <td class='confluenceTd'> The generic Finder presentation, which has a <i>List View</i> that presents the Input Document as search border on top (if defined) and Output Document as search results in a Table. See <a href="Finder User Interface Variables.html">Finder Variables</a> and <a href="Finder Methods.html">Finder Methods</a> for more information.</td>
+      <td class='confluenceTd'> <a href="Finder_Form_Chart.html">Chart</a>, <a href="Finder _Form_Default.html">Default</a>, <a href="Finder _Form_Menu.html">Menu</a>, <a href="Finder _Form_ReferenceForm.html">ReferenceForm</a>, <a href="Finder _Form_Result.html">Result</a>, <a href="Finder _Form_Search.html">Search</a></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><i>com.conceptwave.system.OrderFinderUserInterface</i></td>
+      <td class='confluenceTd'><p>This User Interface is similar to the <em>com.conceptwave.system.FinderUserInterface</em>, but the Output Document displayed is an Order Document. Using the Order Document ID, all associated orders (with the same Document ID) are displayed in the Detail View.</p>
+        <p>For example, by configuring the  <em>showDetailAction</em> method you can determine which Order Documents are called and sets it to display in the Detail View of the User Interface. <br>
+          <br>
+          <em>var order = Order.getOrderById(this.result.selected[0].cwDocId)<br>
+          this.detail = new order.metadata.UserInterface(order, this);
+          </em><br>
+        </p></td>
+      <td class='confluenceTd'><a href="Finder_Form_Chart.html">Chart</a><a href="Finder Charts.html"></a>, <a href="Finder _Form_Default.html">Default</a>, <a href="Finder _Form_Menu.html">Menu</a>, <a href="Finder _Form_ReferenceForm.html">ReferenceForm</a>, <a href="Finder _Form_Result.html">Result</a>, <a href="Finder _Form_Search.html">Search</a></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><i>com.conceptwave.system.SplitFinderUserInterface</i></td>
+      <td class='confluenceTd'>Similar to <em>com.conceptwave.system.FinderUserInterface</em>, but in the Detail View,  the Output Document Form is displayed at the bottom in a separate pane, with the Finder's Search Border and result Table still displaying on top.</i><br>
+        This User Interface does not have the following Forms: Chart, ReferenceForm, Search.</td>
+        <td class='confluenceTd'> Default, Menu, Result</td>
+      </tr>
+    </tbody>
+</table> 
+<p>Clicking the finder's UserInterface in the left tree shows the following information in the General tab:</p>
+<p><img src="FinderUserInterfaceGeneralTab.png" alt="Finder User Interface - General tab"></p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="193" class='confluenceTh'>Form</th>
+      <th width="1241" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'>Name of the finder's UserInterface.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Extends</strong></td>
+      <td class='confluenceTd'>The user interface that the finder extends.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Overrides</strong></td>
+      <td class='confluenceTd'>The default value is NONE. Click the drop-down menu and select the user interface to override.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Help</strong></td>
+      <td class='confluenceTd'>Enter help text for the finder, if required.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Timer duration (minutes)</strong></td>
+      <td class='confluenceTd'>Specify the number of minutes that this finder times out in this field.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Validate on update</strong></td>
+      <td class='confluenceTd'><p>By default, this checkbox is selected, meaning that the finder functions as usual. When this property is unchecked,  the product only calls the save   method on the metadata document without validating.</p>
+        <p><strong>Note:</strong> The finder result is only the data document and does   not have controller associated with it.</p></td>
+    </tr>
+  </tbody>
+</table>
+<h4>Extend a Finder User Interface and Invoke Its Methods</h4>
+<p>You can extend a finder User Interface and invoke its methods. The following is an example:</p>
+<ol>
+  <li> Create a User Interface that extends com.conceptwave.system.FinderUserInterface and add a permission method in this User Interface.</li>
+  <li> Create a finder and extend its User Interface to the User Interfacet that you created in the previous step.</li>
+  <li> Set the <strong>Visible</strong> property of one of the User Interface elements to the permission method in step 1.</li>
+  <li> The permission method is invoked when displaying the finder User Interface.</li>
+</ol>
+<h3>Finder User Interface Forms </h3>
+<p>By default there are several Forms that display in the Finder User Interface:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Form</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a href="Finder_Form_Chart.html">Chart</a><a href="Finder Charts.html"></a><a href="Finder_Form_Chart.html"></a></td>
+      <td class='confluenceTd'>Defines different chart types that can be used for graphical presentations of the Finder data.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a href="Finder _Form_Default.html">Default</a><a href="Finder_Form_Default.html"></a></td>
+      <td class='confluenceTd'>This Form is the main form that renders the Finder and includes the Search, Result, Detail and Chart sections that are shown or hidden appropriately based on user's navigation at the Finder. It also displays the preference menu items.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a href="Finder _Form_Menu.html">Menu</a><a href="Finder_Form_Menu.html"></a></td>
+      <td class='confluenceTd'>Defines the object menu options such as Search , Select, Add, Copy, Update, Delete.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a href="Finder _Form_Search.html">Search</a><a href="Finder_Form_Search.html"></a></td>
+      <td class='confluenceTd'>Defines the appearance of the Search at runtime. It includes a Form Frame that displays the content of the search.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a href="Finder _Form_Result.html">Result</a><a href="Finder_Form_Result.html"></a></td>
+      <td class='confluenceTd'>Defines the appearance of the Results at runtime. It includes a table form element that displays the content of the result.</td>
+    </tr>
+  </tbody>
+</table>
+<p>You can define the layout of the Finder, using the Forms and their <a href="../../Velocity_Studio/Extending a Form.htm">extend</a> and <a href="../../Velocity_Studio/Overriding a Form.htm">override</a> functions. For example, you can add additional menu items or alter existing functionality (show results in other Form Elements other than Table). </p>
+<p>When associating a Finder into your application User Interface, create the <a href="../../Velocity_Studio/User Interface User Action Method.htm">User Action Method</a> at the User Interface of the application Page or Form, and associate that method using a Form Element such as <a href="../../Velocity_Studio/Element - Menu.htm">Menu</a> or <a href="../../Velocity_Studio/Element - Button.htm">Button</a>. </p>
+
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<html>
+<head>
+<title>Finder Search</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Finder Search</h2>
+<p>The <b>Search</b> tab is used for defining mappings between search criteria and result Documents fields and the fields of the Documents that  keep the search and result data in the database. The purpose of the mappings is to handle different scenarios and simplify the user's work. For example, a single input and output Document can be used to search Orders. This is done by mapping the fields in the input and output Documents to the corresponding fields in each search target. If either the input or output Document  is the one that is stored in the database, and is used to hold the Order Entry data, the mapping is circular in nature from the Document to itself.</p>
+<p><strong>Note:</strong> </p>
+<ul>
+  <li>The <b>Search</b> tab is not available in Rule Finders or the SQL Finders. The mapping of search Document to result Document is mandatory for Order and Document Finders.</li>
+  <li>In the result Document mapping for Order Finders, the field that is a generated key in the result Document should not be mapped.</li>
+</ul>
+
+<p><img src="finderSearch.png" border="0" alt="Finder - Search tab" /></p>
+<p>The <b>Search</b> tab is divided into these sections:</p>
+<ul>
+<li><b>Document</b> tree: Shows all the Documents that can be used for mapping within their namespaces in a tree structure. Each <b>Documents</b> folder and <b>Orders</b> folder can be expanded to show the available Documents and its variables.</li>
+<li><b>Search criteria items *table: Shows the list of fields in the *Select</b> <b>input</b> Document defined on the <b>General</b> tab.</li>
+<li><b>Search result items</b> table: <i>only in Order Finder.</i> Shows the list of fields in the <b>Select</b> <b>output</b> Document defined on the <b>General</b> tab.</li>
+<li><b>User-Defined Search items</b> table:<i> </i>Allows you to search for a null or static value.</li>
+<li><b>Sort</b> table: Specifies the sort order of the results.</li>
+</ul>
+<p><strong>Note:</strong> All items on the Search tab appear in alphabetical order.</p>
+<p>The following table describes each column in the <b>Search criteria items</b> section:</p>
+<table class='confluenceTable' border cellpadding="1"><tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Assigned by</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Item</b></td>
+<td class='confluenceTd'>Items in the <b>Search criteria items</b> table are the variables of the <b>Select input</b> Document defined on the <b>General</b> tab.</td>
+<td class='confluenceTd'>System</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Operation</b></td>
+<td class='confluenceTd'><p>The usage of the search criteria item in the search. A value can be selected from the combo box by clicking in the field. The choices include the following: </p>
+  <ul>
+    <li>equal</li>
+    <li> not equal</li>
+    <li> greater than</li>
+    <li>greater than or equal</li>
+    <li> less than</li>
+    <li> less than or equal</li>
+    <li> contains</li>
+    <li> ends with</li>
+    <li> starts with</li>
+    <li> like</li>
+    <li> in</li>
+    <li> not in</li>
+    </ul>
+  <p> The field can also be left blank. In this case, the corresponding row is ignored.</p></td>
+<td class='confluenceTd'>User</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Map To</b></td>
+<td class='confluenceTd'>The Document field to which the search criteria item or search result item&#160;is mapped.</td>
+<td class='confluenceTd'>User</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>No Case</b></td>
+<td class='confluenceTd'><p>This field allows you to turn off case-sensitivity. This checkbox can only be selected for the following operations:</p>
+  <ul>
+    <li> Contains</li>
+    <li> Starts with</li>
+    <li> Like</li>
+    <li> In</li>
+    <li> Not in </li>
+  </ul></td>
+<td class='confluenceTd'>User</td>
+</tr>
+</tbody>
+</table>
+
+<p>The following table describes each column in the<strong> </strong><b>Search result items</b> section:</p>
+<table width="1424" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="120" class='confluenceTh'>Field</th>
+      <th width="1146" class='confluenceTh'>Description</th>
+      <th width="142" class='confluenceTh'>Assigned by</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Item</b></td>
+      <td class='confluenceTd'> Items in the <b>Search result items</b> table are the variables of the <b>Select output</b> Document defined on the <b>General</b> tab.</td>
+      <td class='confluenceTd'>System</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Map To</b></td>
+      <td class='confluenceTd'>The Document field to which the search criteria item or search result item&#160;is mapped.</td>
+      <td class='confluenceTd'>User</td>
+    </tr>
+  </tbody>
+</table>
+<p>The <strong>Search result items</strong> section appears in Order finders only:</p>
+<p><img src="finderSearchOrderSearchResultItem.png" alt="Order finder - Search result items section" border="1"></p>
+<p> The following table describes each column in the <strong>User-Defined </strong><b>Search Items</b> section:</p>
+<table width="1423" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="118" class='confluenceTh'>Field</th>
+      <th width="1152" class='confluenceTh'>Description</th>
+      <th width="137" class='confluenceTh'>Assigned by</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Item</b></td>
+      <td class='confluenceTd'>Items in the <b>User-Defined Search Items</b> table are the variables of the <b>Select output</b> Document defined on the <b>General</b> tab.</td>
+      <td class='confluenceTd'>System</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Operation</b></td>
+      <td class='confluenceTd'><p>The usage of the search criteria item in the search. A value can be selected from the combo box by clicking in the field. The choices include the following: </p>
+        <ul>
+          <li>is null</li>
+          <li>is not null</li>
+          <li>== (equal to  static value)</li>
+        </ul></td>
+      <td class='confluenceTd'>User</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Static Value</b></td>
+      <td class='confluenceTd'>This field allows you to set a static value for your item (for example, the variableName item == 2, where 2 is set in the <strong>Static Value</strong> field.</td>
+      <td class='confluenceTd'>User</td>
+    </tr>
+  </tbody>
+</table>
+<p>The following are XML examples after you have defined your search criteria and verify your XML:</p>
+<p><strong>Example:</strong> Static value</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">&lt;search type="sitem"&gt;<BR>   &lt;mappedDocument&gt;doc_cwf_oe.CWPROCESSEVENTLOG&lt;/mappedDocument&gt;<BR>   &lt;mappedPath&gt;doc_cwf_oe.CWPROCESSEVENTLOG/leaf_NodeId&lt;/mappedPath&gt;<BR>   &lt;operation&gt;==&lt;/operation&gt;<BR>   &lt;staticValue&gt;UI&lt;/staticValue&gt;<BR>&lt;/search&gt;<BR>     is not null example - <BR>    &lt;search type="sitem"&gt;<BR>       &lt;mappedDocument&gt;doc_cwf_oe.CWPROCESSEVENTLOG&lt;/mappedDocument&gt;<BR>       &lt;mappedPath&gt;doc_cwf_oe.CWPROCESSEVENTLOG/leaf_STACK_TRACE&lt;/mappedPath&gt;<BR>       &lt;operation&gt;is not null&lt;/operation&gt;<BR>     &lt;/search&gt;</pre>
+</div>
+</div>
+<p><strong>Example:</strong> is not null operator</p>
+
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">&lt;search type=&quot;sitem"&gt;<BR>   &lt;mappedDocument&gt;doc_cwf_oe.CWPROCESSEVENTLOG&lt;/mappedDocument&gt;<BR>   &lt;mappedPath&gt;doc_cwf_oe.CWPROCESSEVENTLOG/leaf_STACK_TRACE&lt;/mappedPath&gt;<BR>   &lt;operation&gt;is not null&lt;/operation&gt;<BR>&lt;/search&gt;</pre>
+</div>
+</div>
+<p><strong>Note:</strong> Document and path elements are no longer mandatory. The staticValue element is only used for static values. </p>
+<p>The <b>Unmap</b>, <b>Map</b> <b>All</b>, and <b>Map</b> buttons  appear below the <b>Search criteria items</b> and <b>Search result items</b> tables depending on the Finder type selected in the <b>General</b> tab. When an items table is empty it means that part of mapping is not applicable for the selected type of Finder. When the buttons do not appear but the items table contains fields, it means the default mapping is always used.</p>
+
+<table class='confluenceTable' border cellpadding="1"><tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Unmap</b></td>
+<td class='confluenceTd'>The <b>Unmap</b> button is used to unmap fields individually. To unmap fields, highlight the field in the table and click the <b>Unm</b><b>ap</b> button. The field in the <b>Map</b> <b>To</b> column is removed.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Map All</b></td>
+<td class='confluenceTd'>The <b>Map</b> <b>All</b> button is used to map all identical fields simultaneously. The identical fields are based on the variable's data type. To map all fields in a single step, highlight the Document in the browser and click the <b>Map</b> <b>All</b> button. All fields are added under the <b>Map</b> <b>To</b> column in the same order as items in the <b>Item</b> column.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Map </b></td>
+<td class='confluenceTd'>The <b>Map</b> button is used to map fields one by one. To map fields one by one, highlight one field in the table, and another one in the Document from the tree, then click the <b>Map</b> button. The field from the Document are added into the <b>Map</b> <b>To</b> column.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The sort order of the results is defined in the <b>Sort</b> table. To define the fields to sort the results by, click the <b>Add</b> button. The <b>Add Fields</b> dialog opens where the fields from the result Document are displayed. For each Sort field, the sort order can be specified in the <b>Descending</b> column. If the check box option is selected, the sort order is descending; otherwise the sort order is ascending. The order in which the results are sorted depends on the order of the fields in the <b>Sort</b> table. The first field is the first sort column; the second field is the second sort column. Use the up and down arrows, located to the right of the <b>Sort</b> table, to move the highlighted field.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

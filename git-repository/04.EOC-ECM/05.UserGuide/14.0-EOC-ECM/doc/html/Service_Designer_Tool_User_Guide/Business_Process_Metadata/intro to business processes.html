@@ -1,0 +1,151 @@
+<html>
+<head>
+<title>Introduction to Business Processes</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Introduction to Business Processes</h1>
+<p>The Process Management product provides a metadata-driven mechanism for defining business processes. The product uses the BPML (Business Process Modeling Language) model for describing business processes.</p>
+<h2>What is a Business Process?</h2>
+<p>A <em>Business</em> <em>Process</em> is an interaction between workflow and its participants, and an execution of workflow activities according to a defined set of rules to achieve a common goal.</p>
+<h2>Process Components and Terminology</h2>
+<ul>
+<li><b>Activity</b> – A component that performs a specific function within the process, such as invoking a service or another process. Activities can be as simple as sending or receiving a message or as complex as coordinating the execution of other processes and activities.</li>
+</ul>
+<ul>
+<li><b>Atomic activity</b> – An elementary unit of work that cannot be further decomposed. Atomic activities can be used to start other processes, perform calculations, or perform operations.</li>
+</ul>
+<ul>
+<li><b>Complex activity</b> – Composed of other activities and directs the execution of these activities. The complex activity instructs these activities to execute in sequential order or in parallel, to execute once or repeatedly, or even whether to execute or not conditionally.</li>
+</ul>
+<ul>
+<li><b>Participant</b> – An entity with which the process interacts. Participants in a process are varied and include external services, users, partners, and other processes.</li>
+</ul>
+<ul>
+<li><b>Interface Operation</b> – An abstract description of an action supported by the <a href="../Metadata_Objects/External Services/external services.html">external service</a> or participant.</li>
+</ul>
+<ul>
+<li><b>Interface</b> – An abstract set of <a href="../Metadata_Objects/External Services/defining an interface operation.html">operations</a>.</li>
+</ul>
+<ul>
+<li><b>Operation</b> – A simple activity that performs a message exchange with a process participant (invokes an interface operation).</li>
+</ul>
+<ul>
+<li><b>Order Instance</b> – In the database each Order is represented as an <em>Order Instance Document</em>. The Order Instance Document can be extended and overridden by a the user's application, if necessary (in the Library tab, <em>Order Entry Product</em> namespace).</li>
+</ul>
+<ul>
+<li><b>Process Revision</b> - an archived, read-only version of a Process metadata object that was then "current" process metadata before changes were made to it and revisioned. Among other purposes, it provides the accurate snapshot of the Process definition for "in-flight" process instances (that is, process instances that have started but not completed) to continue execution upon process metadata change. The terminology may also refer to the <i>Process Revision number</i> of the Process metadata object, which keeps track of the numbering in the latest revision.</li>
+</ul>
+<ul>
+<li><b>Exception handling</b> – Defines activities that respond to an unexpected event. An exception event could be a time-out or an exception activity.</li>
+</ul>
+<ul>
+<li><b>Alert</b> – Defines a destination for a notification mechanism. An alert destination could be an email or pager address, a user or an external service.</li>
+</ul>
+<ul>
+<li><b>Process Document</b> – Serves as a process's local variables that helps process decision-making (process flow) and activities coordination. The total size of all data in a process Document cannot exceed 4000 characters. This limitation is enforced by the Process Management product to optimize database access (the process Document is stored as part of the process information and should not be mapped to database tables).<br>
+  <em><br>
+  </em>If  a process is using a process document that is mapped to the database, the process  document will be stored in  a separate database table.
+Otherwise, an unmapped process document is stored with the  process.  <br>
+</li>
+</ul>
+<ul>
+<li><b>Process Order</b> – The Order instance that a process is working on. Each process instance can be associated with only one Order instance.</li>
+</ul>
+<ul>
+<li><b>Process Engine</b> – The Process Management software module that reads the process definition (metadata) and performs process activity execution. Depending on hardware configuration, a single Process Engine is capable of executing tens of thousands of processes simultaneously. Several Process Engines can run concurrently, providing scalability, load balancing and fault tolerance.</li>
+</ul>
+<ul>
+<li><b>Privilege</b> – A user right which is assigned to a user and that specifies allowable actions in the system.</li>
+</ul>
+<h2>Main Features of Process Management</h2>
+<ul>
+<li>Capable of running multiple Process Engines simultaneously.</li>
+</ul>
+<ul>
+<li>Process Engine can run on any <a href="../../Installer_User_Guide/Installation Planning.html#CertificationMatrix">supported J2EE platform</a>.</li>
+</ul>
+<ul>
+<li>Load balancing mechanisms across Process Engines.</li>
+</ul>
+<ul>
+<li>Recovery of processes that were running on a failed/stopped Process Engine.</li>
+</ul>
+<ul>
+<li>Automatic notification of failed processes (pager, email, worklist or external system).</li>
+</ul>
+<ul>
+<li>Low hardware requirements for Process Engine (as low as 1GHz/512MB server).</li>
+</ul>
+<ul>
+<li>Single Process Engine running on low-end server capable of performing over 100 process transitions per second.</li>
+</ul>
+<ul>
+<li>Ability to run specific processes on dedicated servers.</li>
+</ul>
+<ul>
+<li>Ability to dedicate servers for external system interfaces (so it runs on specialized hardware/software configuration).</li>
+</ul>
+<ul>
+<li>Ability to communicate asynchronously to any external system.</li>
+</ul>
+<ul>
+<li>Ability to specify external system availability and buffer all requests transparently.</li>
+</ul>
+<ul>
+<li>Available APIs for integrating with external systems.</li>
+</ul>
+<ul>
+<li>Ability to run listener (global) processes that are dedicated to specific tasks.</li>
+</ul>
+<ul>
+<li>Ability to assign process priority.</li>
+</ul>
+<ul>
+<li>Ability to define and handle jeopardy situations (business exceptions).</li>
+</ul>
+<ul>
+<li>Ability to synchronize between parallel tasks within a process and between processes (process signals).</li>
+</ul>
+<ul>
+<li>Ability to define and use business calendars for task durations, task schedules and systems availability.</li>
+</ul>
+<ul>
+<li>Ability to define business milestones to measure process efficiency.</li>
+</ul>
+<ul>
+<li>Integrated worklist functionality (manual tasks) with powerful user interface.</li>
+</ul>
+<ul>
+<li>Powerful UI designer for creating process workflow visually.</li>
+</ul>
+<h2>Metadata Elements Used in Process Management Product</h2>
+<p>The following metadata elements can be defined in the Velocity Studio to support Process Management:</p>
+<ul>
+<li><em>Process</em>: Metadata element that defines a business process and all process activities (activities diagram).</li>
+</ul>
+<ul>
+<li><em>Participant</em>: Metadata element that defines a process participant.</li>
+</ul>
+<ul>
+<li><em>Alert</em>: Metadata element that defines an alert destination.</li>
+</ul>
+<ul>
+<li><em>Exception</em>: Metadata element that defines an exception code.</li>
+</ul>
+<ul>
+<li><em>Signal</em>: Metadata element that defines a signal type.</li>
+</ul>
+<p>In addition to the metadata elements listed above, you can also define scripts to provide additional functionality.</p>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

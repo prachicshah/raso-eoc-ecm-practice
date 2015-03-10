@@ -1,0 +1,222 @@
+﻿<html>
+<head>
+<title>Test Cases</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="TestCases"></a>Test Cases</h2>
+<p><b>Test Cases</b> facilitate unit-test development to the metadata. A test case provides the ability to:</p>
+<ul>
+<li>Store unit-tests functions as JavaScripts</li>
+<li>Specify unit-test <em>setup</em> and <em>teardown</em> activities using JavaScript or SQL, or both</li>
+<li>Specify expected duration of the test case processing</li>
+</ul>
+<h3><a name="CreatingaTestCase"></a>Create a Test Case</h3>
+<p>To create a Test Case, complete these steps:</p>
+<ol>
+<li>Right-click  your namespace and select <strong>New</strong> from the menu.</li>
+<li>From the<strong> Testing</strong> folder, select <b>Test Cases</b> and then click the <strong>Next</strong> button.<br>
+  <br>
+<img src="CreateTestCaseMenu.png" border="1" alt="Creating Test Case Menu" />
+
+<br>
+<br>
+</li>
+<li>A new Test Case form displaying the test case properties appears.</li>
+</ol>
+
+<h3><a name="TestCaseGeneralProperties"></a>Test Case Properties</h3>
+<p>The following figure shows the general properties of a Test Case. </p>
+
+<img src="TestCaseProperties.png" align="absmiddle" border="1" alt="Test Case Properties" />
+
+<p>The following table contains a description of the Test Case fields.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='referenceTh'>Property</th>
+<th class='referenceTh'>Mandatory/Optional</th>
+<th class='referenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Name</strong></td>
+<td class='confluenceTd'>Mandatory</td>
+<td class='confluenceTd'>Unique name for the Test Case.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Label</strong></td>
+<td class='confluenceTd'>Mandatory</td>
+<td class='confluenceTd'>Visible name for the Test Case.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Description</strong></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Descriptive text for documentation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Duration</strong></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>The maximum allowed time of the Test Case execution before the test case results in a failure; it can be specified in combination of hours, minutes, and seconds.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Setup SQL</strong></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Text area that contains the SQL script to be processed before all Test Functions' execution. It is processed as a procedure, thus the SQL script must be contained within <b>BEGIN</b> and <b>END;</b> keywords.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Setup JavaScript</strong></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Text area that contains the JavaScript to be processed before all Test Functions' execution.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Functions</strong></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Contains list of Test Functions that defines the Test Case. The top two functions are always the Setup SQL and Setup JavaScript, and the bottom two functions are always Teardown JavaScript and Teardown SQL. The label of Setup and Teardown Functions becomes blue and bold whenever the corresponding Function is populated.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Teardown JavaScript</strong></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Text area that contains the JavaScript to be processed after all Test Functions' execution.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Teardown SQL</strong></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Text area that contains the SQL script to be processed after all Test Functions' execution. It is processed as a procedure, thus the SQL script must be contained within <b>BEGIN</b> and <b>END;</b> keywords.</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="TestFunctions"></a>Test Functions</h3>
+To create or edit a Test Function, do the following:
+<ol>
+<li>To <strong>create</strong> a Test Function:
+<ul>
+  <li>From the general properties, click the <b>Add</b> button in the <b>Functions</b> field.</li></ul>
+
+<li>To <strong>edit</strong> an existing Test Function, including Setup/Teardown scripts:
+  <ul>
+  <li>From the general properties, select the Test Function to be changed and click the <b>Properties</b> button. </li></ul>
+
+<li>The Test Function property pop-up box appears (see figure that follows). Enter or change a test function by changing the fields in the Test Function Property form. The table following contains a description of these fields.</p>
+</li></ol>
+
+<img src="TestFunctionProperty.png" align="absmiddle" border="1" alt="Test Function Property dialog" />
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Name</strong></td>
+<td class='confluenceTd'>Mandatory. Unique name for the Test Function.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Description</strong></td>
+<td class='confluenceTd'>Descriptive text for documentation purposes.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Is test</strong></td>
+<td class='confluenceTd'>Indicates whether the function is an active test or not. If unchecked, the Test Function is not processed by the Test Case. See the example that follows on how selecting this property displays in the <strong>Functions</strong> field.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Parameters</strong></td>
+<td class='confluenceTd'>Available only when <em>Is Test</em> is unchecked. Configures list of parameters for the non-test Function. When the non-test Function is invoked, the ordering of parameters follows the positions listed here, from top to bottom. To sort the ordering among parameters, use the Up and Down Arrow buttons to move a selected parameter up or down the list.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Script</strong></td>
+<td class='confluenceTd'>Text area that contains the test function. The Test script is in JavaScript language.</td>
+</tr>
+</tbody>
+</table>
+<p>If your function has the <strong>Is test</strong> property checked, the function appears in bold font in the <strong>Functions</strong> field. Otherwise, when this property is not selected, the function appears in normal font, as shown in the following example:</p>
+<p><img src="TestCaseIsTestBold.png" alt="Test case - Bolded function when its Is test property is selected" border="1"></p>
+<p>For all Test Functions, except for Setup/Teardown SQL, the Script field can be opened using the JavaScript Editor, by right-clicking the <b>Script</b> area, and select the <b>Editor</b> command.</p>
+<p>For Setup or Teardown SQL, the Script field can be opened using the SQL Editor, by right-clicking the <b>Script</b> area, and select the <b>Editor</b> command.</p>
+<p>To sort the ordering among Functions, use the Up and Down Arrow buttons to move a selected Function up or down the list.</p>
+<p>To remove a Test Function, click the existing Test Function in the <b>Functions</b> field and click the <b>Remove</b> button.</p>
+<p>Following regular Unit Test practices, a Test Function typically includes assertion statements as the means to validate the intended behaviour of a component. See the<a href="../../JavaScripting in Order Care/index.html"> JavaScript Documentation</a>'s CwAbstractTest class for a list of specific assertion methods. Since the TestCase class extends the CwAbstractTest class, in any test case created in Velocity Studio, all assertion methods can be used directly.</p>
+<h3><a name="SequenceofTestFunctionexecution"></a>Sequence of Test Function Processing</h3>
+<p>Optionally, Setup and Teardown scripts and functions can be provided to support the pre- and post-activities of the Test Case (for example, to create a dummy test entity before test, and to delete the entity after test). The Setup and Teardown scripts, at the Test Case level, are different from the Setup and Teardown Functions, within the Function level. The sequence of processing is as follows:</p>
+<ol>
+<li>Setup SQL script</li>
+<li>Setup JavaScript</li>
+<li>Setup SQL Function</li>
+<li>Setup JavaScript Function</li>
+<li>Test Function</li>
+<li>Teardown Javascript Function</li>
+<li>Teardown SQL Function</li>
+<li>Teardown JavaScript</li>
+<li>Teardown SQL script</li>
+</ol>
+<p>Note that the Setup and Teardown Function runs for every Test Function, but the Setup and Teardown script runs only once for each Test Case. For example, if there are two Test Functions in the Test Case (F1, F2), then the sequence of processing is as follows:</p>
+<ol>
+<li>Setup SQL script</li>
+<li>Setup JavaScript</li>
+<li>Setup SQL Function</li>
+<li>Setup JavaScript Function</li>
+<li>F1</li>
+<li>Teardown JavaScript Function</li>
+<li>Teardown SQL Function</li>
+<li>Setup SQL Function</li>
+<li>Setup JavaScript Function</li>
+<li>F2</li>
+<li>Teardown JavaScript Function</li>
+<li>Teardown SQL Function</li>
+<li>Teardown JavaScript</li>
+<li>Teardown SQL script</li>
+</ol>
+<p>Among Test Functions, the order of which Test Function runs first is determined by top-to-bottom positions among the Test Functions in the Functions field; that is, the top Test Function runs first among all Test Functions.</p>
+<h3><a name="ExecutingaTestCase"></a>Run a Test Case</h3>
+<p>Upon completion of all desired Test Functions and Setup/Teardown scripts in a Test Case, the Test Case can be executed by the following script:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-javascript">
+<span class="code-keyword">var</span> test = <span class="code-keyword">new</span> TestCase("namespace_name:testcase_name");
+test.run();
+</pre></div>
+</div>
+<p>Where <em>namespace_name</em> is the name of the Test Case's Namespace, and <em>testcase_name</em> is the name of the Test Case.</p>
+<p>A recommended practice of Unit Test development is to develop a Unit Test drop-down menu. For each written Test Case, create a new User Action method <em>cwOnMenuAction </em>that under the Unit Test dropdown menu that invokes the Test Case using the previous script (see the figure that follows).</p>
+
+<img src="TestCaseMenuTest.png" align="absmiddle" border="1" alt="Create a Unit Test drop-down menu action" />
+
+<p>The User Action method - <em>cwOnMenuAction</em> is assigned to the <strong>Click Method</strong> property of the dropdown menu.</p>
+
+<img src="menuclickMethod.png" align="absmiddle" border="1" alt="Click method for drop-down menu" />
+
+<p>The Test Case can then be run by starting and logging into the application and clicking on the menu item (see the figure that follows). </p>
+<p><b>Note:</b> A Test Case can also be run as part of a Test Suite. See the next section for details.</p>
+
+<img src="runTest.png" align="absmiddle" border="1" alt="Run test" />
+
+<p>You can also right-click your test case object in Velocity Studio's left pane and select <strong>Run Test</strong>.</p>
+<p><img src="TestCaseRunTestOption.png" alt="Test case - Run Test option" border="1"></p>
+<p>After the Test Case is run, go to application's Event Log to observe the outcome (see the figure that follows). By default, the Test Case execution generates Test Case Start information log at the beginning, and Test Case End information log with Test Case result summary at the end.</p>
+
+<img src="eventlog.png" align="absmiddle" border="1" alt="Event Log" />
+
+<p>For any assertion statements that have failed in any Test Function, the exception is shown in the event log as well. The Test Case continues to execute other Test Functions in the event of a Test Function failure.</p>
+<h3><a name="ExecutingaTestCase"></a>Enable and Disable Test Functions</h3>
+<p>The <strong>Is test</strong> checkbox, when selected, indicates that the test case runs the test function. You can also select or deselect this property by following these steps:</p>
+<ol>
+  <li>From your test case, select the function that you want and right-click it to display the menu.</li>
+
+<p><img src="TestCaseEnableDisableTests.png" alt="Enable Test and Disable Test options"></p>
+
+  <li>To enable the selected test function, select <strong>Enable Test</strong>, which selects the test function's <strong>Is test</strong> option. Similarly, to disable the selected test function, select <strong>Disable Test</strong>, which deselects the test function's <strong>Is test</strong> option.</li>
+  <li>The right-click menu also allows you to select a test function and <strong>Copy</strong> its contents. You can then select <strong>Paste</strong> from the menu and create a new function with the same functionality as its original copied test function.</li>
+  <li>When you have completed your changes, save your metadata.</li>
+  </ol>
+<h3>Set a BreakPoint on a Test Case Object</h3>
+<p>You can set a breakpoint on a Test Case object by right-clicking a function and selecting <strong>Break on first line</strong> from the menu. </p>
+<p><img src="TestCaseSetBreakpoint.png" alt="Set a breakpoint on a Test Case object"></p></td>
+</tr>
+</table>
+</body>
+</html>

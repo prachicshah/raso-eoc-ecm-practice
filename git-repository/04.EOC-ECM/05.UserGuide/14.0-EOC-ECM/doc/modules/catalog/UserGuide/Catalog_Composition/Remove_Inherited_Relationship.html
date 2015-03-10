@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Remove an Inherited Relationship</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top"><h2>Remove an Inherited Relationship</h2>
+      <h3>Cancel an  Inherited Relationship</strong></h3>
+      <p>If a  base  item has a relationship  and the item is inherited by another  item, the second item will now inherit the relationship as well. In  this case, in order to indicate that the relationship should not be inherited for the second item,  it needs to be cancelled.</p>
+      <p>You can only cancel a relationship while the item  is still in <strong>Definition</strong> status.</p>
+      <p>To cancel a relationship, do the following:</p>
+      <ol>
+        <li>Expand the item that has inherited the relationship on the left pane, and click on the inherited relationship to see the details of the relationship in the right pane. </li>
+        <li>Click the <strong>Override</strong> button (<img src="Remove_Inherited_Relationship_Override_Button.png" width="24" height="21" alt="Override button">) on the upper-right corner. </li>
+        <li>Click the <strong>Cancel</strong> checkbox, shown in the following figure.</li>
+        <p><img src="Remove_Inherited_Relationship_Cancel.png"  alt="Cancel checkbox"></p>
+      
+        <li>The relationship will now be indicated as <strong>Cancelled</strong>. Click the <strong>Save</strong> button to save your changes.</li>
+        <p><img src="Remove_Inherited_Relationship_Cancelled_Save.png"  alt="Cancelled relationship and Save button"></p>
+      </ol>
+      <h3>End Date an Object or Relationship</h3>
+      <p>When an object or  relationship that was previously active has to be made inactive, the end  date has to be defined for the object or relationship.&nbsp;</p>
+      <p><strong>Note:</strong> You can only end date objects that belong to the same object. For  example, you can end date an offer because the end date is a property of the  offer itself. But you cannot end date an inherited relationship. For example, if a base product has a relationship to a service and the  product is inherited by another product P1, product P1 will now inherit the  relationship to the service. You cannot specify an end date for the service  that appears in P1, as P1 is not the owner of the service; the base product is  the owner of the service. </p>
+      <p>To remove the relationship inheritance for all the items which inherit the base item, you have  to end date the relationship in the base item. Refer to <a href="../Objects/StartEnd_Dates.html">Start and End dates</a> for details.</p>
+      <p>To remove the relationship only in a child item, you have to  apply an eligibility condition on the child relationship, as described in the  following section. </p>
+      <h3>Use an  Eligibility Condition to End an Inherited Relationship</h3>
+      <p>If an end date is  specified on a child item, the catalog will fall back on the version  defined in the parent item when the child version expires. As such, this method  cannot be used to end a relationship for the child item. </p>
+      <p>To end the  inherited relationship for the child item, you have to add an eligibility  condition on the child relationship. This condition will indicate to the  catalog that the service is not eligible for inclusion and should not be added.  The start date of the not eligible condition should to set to the desired end  date of the relationship.</p></td>
+  </tr>
+</table>
+</body>
+</html>

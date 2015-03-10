@@ -1,0 +1,66 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Session Timeout Warning</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Session Timeout Warning</h2>
+<p>The session timeout warning indicates that the  current session is about to expire and provides a means to cancel the session timeout.  The timeout warning appears as a popup with a warning message. However, the user  interface displayed in a popup can be customized in the metadata.</p>
+<h3>Configure Session timeout warning (seconds) parameter</h3>
+<p>You can configure the <strong><a href="../../../../../Velocity 6.0/html/Configuration_Tool_User_Guide/Configure/System/UI/UIgeneral.html">Session timeout warning (seconds)</a></strong> parameter in the System Configuration application. From the menu bar, click  <strong>Configure</strong> &gt; <strong>System </strong>&gt; <strong>UI</strong> &gt; <strong>General</strong>.</p>
+<h3>Configure Internet Explorer and Firefox to Display Popup</h3>
+<p>To see the session timeout warning popup appear in either Internet Explorer or Firefox, you must configure your browser settings.</p>
+<p>In Internet Explorer, do the following:</p>
+<ol>
+  <li>Click the <strong>Tools</strong> icon and select  <strong>Internet Options</strong> to launch its dialog.</li>
+  <li>Click the <strong>Security</strong> tab and then click the <strong>Custom level...</strong> button to launch the Security Settings dialog.</li>
+  <li>Under the <strong>Scripting</strong> heading, locate <strong>Allow status bar updates via script</strong> and select its <strong>Enable</strong> option.<br>
+    <br>
+    <img src="session timeout warning IE security settings.png" alt="Internet Explorer - enable status bar updates via script"><br>
+    e<br>
+  </li>
+  <li>Click the <strong>OK</strong> button. A warning message appears. Confirm your change by clicking the <strong>Yes</strong> button.</li>
+  <li>On the Security tab, click the <strong>Apply</strong> button, and then click the <strong>OK</strong> button to save your change.</li>
+  </ol>
+<p>In Firefox, do the following:</p>
+<ol>
+  <li>From the menu bar, click <strong>Tools</strong> &gt; <strong>Options</strong>.</li>
+  <li>From the Options dialog, click the <strong>Content</strong> icon.</li>
+  <li>Click the <strong>Enable JavaScript</strong> field's <strong>Advanced</strong> button to launch the Advanced JavaScript Settings dialog. </li>
+  <li>Select the <strong>Raise or lower windows</strong> setting and then click the <strong>OK</strong> button.<br>
+    <br>
+    <img src="session timeout warning Firefox settings.png" width="648" height="627" alt="Firefox - Advanced JavaScript settings">  <br>
+    <br>
+  </li>
+  <li>Click the <strong>OK</strong> button to save your changes.</li>
+</ol>
+<h3>System  Metadata</h3>
+<p>The  session  timeout warning event invokes the cwf_oe:sessionTimeoutWarning global script that  generates a popup window displaying the com.conceptwave.system.SessionTimeoutWarning user interface.<br>
+  <br>
+  The system  implementation of com.conceptwave.system.SessionTimeoutWarning consists of the following  warning message:</p>
+  
+  <div class="preformatted">
+  <div class="preformattedContent">
+    <pre>Your session expires in X seconds. Click Continue to continue with the session.</pre>
+  </div>
+</div>
+
+<p>  In the warning message,  <em>X</em> represents the session timeout warning time, which counts down to zero. Clicking the <strong>Continue</strong> button resets the session timeout.</p>
+<p>The configured session timeout appears as a popup clock counter to show the elapsed time. As an example, at twenty seconds, the clock shows the seconds decrease to zero. When the clock reaches zero, the session times out and the popup disappears.</p>
+<p><img src="session timeout warning.png" width="564" height="224" alt="Session timeout warning message"></p>
+<p>  You can override com.conceptwave.system.SessionTimeoutWarning in your metadata to display  any user interface in the warning popup. Any user action (for example, a button click)  cancels the session timeout automatically.</p></td>
+</tr>
+</table>
+</body>
+</html>

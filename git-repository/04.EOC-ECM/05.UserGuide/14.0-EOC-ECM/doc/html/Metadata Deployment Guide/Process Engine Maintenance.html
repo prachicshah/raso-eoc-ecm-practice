@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>Process Engine Maintenance</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Process Engine Maintenance</h1>
+<h2>Managing Low Memory Condition</h2>
+<p>Principally, a low memory condition should be a never-happen scenario. If encountered, all threads are stopped and all cache elements that can be discarded are discarded.<br />
+If not in single PE mode, a batch of processes is relocated. The minimum free memory limit is increased by 2 MB. Proper notifications are sent after the PE resumes operations.<br />
+The recovery from low memory condition is handled by keeping a reserved system buffer of 1.5 MB that will be released when the OutOfMemoryException happens. Once recovered, the buffer will be allocated again. The OutOfMemoryException exception in the code will abort the PE.</p>
+
+<h2>Measuring and Debugging Running PE</h2>
+<p>A PE can output statistics information in a file or the console output. This information is based on Statistics Monitoring Specification (SM Spec). The configuration utility can define many SM Specs that can be used at runtime. The selection of a SM Spec, and the starting and stopping of statistics collection and output can be done at runtime for a particular PE instance through JMX (JConsole).<br />
+The Statistics Monitoring gives information about the different threads, the average duration of the memory and DB operations and how they use the memory. However, it does not give detailed information of the type and duration of the DB operations.</p>
+<h2>Monitoring Activity Queues</h2>
+<p>An activity watchdog thread monitors the health of the activity threads every 60 seconds. The watchdog thread looks for situation when execution of a single activity takes abnormally long time. In this case, the watchdog marks the thread as "in abort mode," that will generate CwfException in the following cases:</p>
+<ol>
+<li>A database operation (get connection) is requested.</li>
+<li>An interface operation is requested.</li>
+<li>A call to AVM supplied JavaScript function or metadata JavaScript function is made.</li>
+</ol>
+<p>The abort mode, however, does not handle the situation when the thread waits on either the network or UI operation. Activity threads themselves will detect certain abnormal situations as follows:</p>
+<ol>
+<li>If the value of REPEAT_COUNT for local process activity is greater than a system-defined limit, the corresponding process will be suspended.</li>
+<li>If a repeat activity is processed 10 times for less than system-defined time interval (default 60 sec), the corresponding process will be suspended.</li>
+</ol>
+<h2>Dead PE Diagnosis</h2>
+<p>Each running PE instance records its "heartbeat" in the corresponding CWVMINFO records by setting the value of the LASTUPDATEDATE column once in a heartbeat interval (default 5 min).<br />
+A PE record represents "dead" PE if:</p>
+<ol>
+<li>The PE specifies on the same JMS port and IP address as the current running PE.</li>
+<li>The PE specifies on the same internal listening port and IP address as the current running PE.</li>
+<li>Its PE_MODE column value is 0.</li>
+<li>The PE heartbeat has not been updated for at least three heartbeat intervals and the PE does not respond on its internal listening port.</li>
+</ol>
+<p>Ensure that there is no situation when two PE try to run under the same PE id. To do that every time, the PE records heartbeat it will check that the CWVMINFO record has not been changed using the PE start time value. If the record has been changed, the PE will restart itself.</p>
+
+<h2><a name="standbyPE"></a><strong>Standby PE</strong></h2>
+<p>The <strong>Standby PE</strong> feature increases the  stability of the PE mechanism. You can define a PE in a standby mode that  remains idle until one of the running PEs fails. When a running PE fails, the standby  PE assumes its workload on the same or different system.&nbsp; </p>
+<p>To create standby PE, do the following:</p>
+<ol>
+  <li>In the Configuration application, click the <strong>Add Node</strong> button.</li>
+  <li>Enter a name in the <strong>Enter a new node name</strong> field, and then click the <strong>OK</strong> button.</li>
+  <li>Under <strong> Main parameters</strong>, click the <strong>Start mode</strong> field's drop-down menu and select <strong>Standby PE</strong>. This PE starts in idle mode (that is, it does not perform any workload).</li>
+  <li>Click the <strong>Save</strong> button to save your changes.</li>
+</ol>
+<p>Once a &quot;deadâ€? PE is detected, the standby PE node assumes the dead PE's node  configurations and starts running the dead PE's workload. A PE is suspected to be  dead if it has not updated its record for 45 seconds. In this case, a JMX call  to the PE confirms whether the PE is truly dead. </p>
+<p><strong>Note:</strong> Each PE has a JMX  port defined. The PE will not start if does not have a defined JMX port.</p>
+<p> This approach  detects a dead PE with considerable accuracy. The only rare case that cannot  be  handled is if a PE is on a separate network segment, which is detached from the  main network due to a network device failure. In this case, the working PE is considered dead and it eventually exits  instead of becoming active because its workload will be assumed by the standby  PE.</p>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>The PE does not perform any operation after recovering from a <em>Lost database connection</em> state until it makes sure that no other PE has  assumed its load.</li>
+  <li>To specify running a standby process engine, use the <span class="confluenceTd"><a href="../Service_Designer_Tool_User_Guide/Introduction_to_Metadata/Command Line Options of Designer.html#JVMparameters">-DstandByPE=true</a></span> JVM command.</li>
+</ul></td>
+</tr>
+</table>
+
+</body>
+</html>

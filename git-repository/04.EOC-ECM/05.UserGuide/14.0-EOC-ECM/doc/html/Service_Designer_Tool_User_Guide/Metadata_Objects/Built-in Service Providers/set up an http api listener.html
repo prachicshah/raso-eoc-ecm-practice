@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Set up an HTTP API Listener</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Set up an HTTP API Listener</h3>
+<p>To set up the HTTP API listener, complete these steps:</p>
+<ol>
+<li>Create an <b><a href="../External Services/defining an interface.html">Interface</a></b> with all the required Operations of type <em>one-way</em> or <em>request-response</em> (Select <em>One-Way</em> or <em>Request-Response</em> in the <b>Operation type</b> combo box).</li>
+<li>Create a <b><a href="../External Services/defining a binding.html">Binding</a></b> that binds this Interface to the HTTP service provider (Select the Interface in the <b>Interface</b> combo box and the <em>HTTP Service Provider</em> in the <b>Provider</b> combo box).</li>
+<li>Create a <b><a href="../External Services/defining a port.html">Service Port</a></b> for this Binding and set it as listener port (Check the <b>Listener</b> check box of the Port properties).</li>
+<li>Create a Binding that binds the same Interface to the JS (JavaScript) service provider (Select the Interface in the <b>Interface</b> combo box and the <em>JS Service Provider</em> in the <b>Provider</b> combo box).</li>
+<li>Implement the Interface Operation script functions in the <a href="../Built-in Service Providers/js (javascript) service provider.html">JavaScript Binding</a> (Select the <i>Operation</i> <img src="iconOperation.png" alt="" border="0" /> element in the <b>Interface element</b> tree of the Binding properties and define the <b>Script</b> attribute value in the <b>Element definitions</b> table).</li>
+<li>Create a Service Port for this JS Binding by selecting the JS Binding in the <b>Binding</b> combo box.</li>
+<li>Save and then run your metadata.</li>
+<li>In the Configuration application, this Port can be found and configured at the <b><a href="../../../Configuration_Tool_User_Guide/Services Services.html">Services</a></b> and <b><a href="../../../Configuration_Tool_User_Guide/Services Listeners.html">Listeners</a></b> horizontal tab of the <b>Services</b> vertical tab.</li>
+<li>In the Configuration application, ensure that the HTTP access for the API is allowed with no authentication (that is, the <b><a href="../../../Configuration_Tool_User_Guide/Configure/System/System/general.html">HTTP API login required</a></b> property is unchecked).</li>
+<li>The AVM  sets up this service under the following URL: <em>h</em><em>ttp://host:port/cwf/api/&lt;namespaceName&gt;-&lt;interfaceName&gt;</em>, where <em>&lt;namespaceName&gt;</em> and <em>&lt;interfaceName&gt;</em> are the names of the Namespace and Interface respectively. (For example, Operation "getEquipment" in Interface "sampleInf" of the "sampleNS" Namespace may have an URL of <em><br>
+  ht</em><em>tp://localhost:8080/cwf/api/sampleNS-sampleInf/getEquipment</em>.) The HTTP API listener supports the POST method.</li>
+</ol>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Catalog Rule Notations</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+<h2><a name="RulesNotation"></a>Rule Notations</h2>
+<p>The Catalog Rules section  uses the following notations when defining the rule language syntax:</p>
+<ul>
+  <li>Bold words are keywords that have to be written exactly as defined. Letter case is not important only for the first letter (all remaining letters are case sensitive), as shown in this example:<br>
+  
+  <blockquote>
+	<strong>assign</strong> expression <strong>to</strong> identifier
+  </blockquote>
+  </li>
+  
+  <li>Elements in square brackets are optional and can be omitted, as shown in this example:<br>
+    <blockquote>
+    	<strong>select [single] row  from </strong>InfoTable<br>
+    	<br>
+    	<strong>Note:</strong> The exception to this rule is the short form for constant list types (see <a href="Statements.html">Statements</a>), which has either the format String[] or Number[]. </blockquote>
+  </li>
+  <li>The ellipses specify repeating elements: <br>
+    <blockquote>    
+    	<strong>[variable]</strong>object-type Identifier <strong>[is </strong>Exp<strong>]</strong>[, Identifier <strong>[as </strong>Exp<strong>]</strong>]...   
+    </blockquote>
+  </li>
+  
+  <li>A forward slash divides a list  of alternative keywords. Only one keyword can be used, as shown in this example:<br>
+    <blockquote>
+    	<strong>while </strong>Exp<strong> [do[:]/ { ]</strong>
+    </blockquote></li>
+</ul>
+<p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

@@ -1,0 +1,102 @@
+﻿<html>
+<head>
+<title>Rule General Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Rules General Tab</h2>
+<p>The general Rule properties are defined on the <b>General</b> tab. The table that follows describes the common fields on the <b>General</b> tab.</p>
+<p> The following image shows the General tab of the Rule properties: </p>
+<p><img src="RulesDefinition.png" border="0" alt="Rule - General tab" /></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tbody>
+<tr>
+<th class='referenceTh'>Field</th>
+<th class='referenceTh'>Mandatory/Optional</th>
+<th class='referenceTh'>Comment</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory</td>
+<td class='confluenceTd'>Unique name of the Rule within the namespace.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Private</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><b>Restricted</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><b>Deprecated</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><strong>Final</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Metadata elements can be marked as final, which includes any Boolean final property that is available on any metadata element. Additionally, any metadata element that has the <strong>Final</strong> property set to true can neither be extended, nor overridden.</td>
+  </tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Mandatory</td>
+<td class='confluenceTd'>Label to identify the Rule.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Description of the Rule for documentation purposes.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Help</b></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>This is the popup <a href="../../Velocity_Studio/Custom Help.html">Help</a> to be displayed at runtime.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Overrides</b></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Specifies an overridden element Only Rules from libraries that have instances can be overridden. The instances of the overridden Rule will not be executed at runtime.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Type</b></td>
+<td class='confluenceTd'>Mandatory</td>
+<td class='confluenceTd'>Type of Rule. Can be either Initialization, Finder or Action. After a Rule is created, the Rule type cannot be changed and this field will be disabled.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Not exclusive</b></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>When checked, all Rule instances are processed. When unchecked (default), the Rule instances are processed executed until the first instance with a true condition is reached.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Rule document</b></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>Mandatory for Initialization and Finder Rules. Specifies a Rule Document.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Finder result</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Click the drop-down menu and specify the output of your finder result (for example, a tree document).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Input1, Input2, Input3</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Input parameters.</td>
+</tr>
+</tbody>
+</table>
+<p>If a Rule has the <b>Type</b> of <em>finder</em> there will be additional fields on the <b>General</b> tab (see figure below) including a <b>Finder result</b> field and <b>Optional</b> radio buttons.</p>
+<p>The <b>Finder result</b> field allows specifying a Document in the result list of the Rule. This field remains disabled until the Rule has been created by clicking the <b>Create</b> button. If the <b>Finder result</b> is not specified, the <b>Rule document</b> will be used as the Finder Rule result Document. If the <b>Finder result</b> is specified, the Finder Rule result Document must be mapped to the rule parameters (<b>Rule document</b> and/or input Documents) and/or to the global variables defined for the Rule (refer to section on Rule Instances).</p>
+<p>Each input Document parameter (<strong>Input 1</strong>, <strong>Input 2</strong> and <strong>Input 3</strong>) has an additional radio button, <strong>Optional</strong>, that allows marking one of the parameters as optional. An optional Document can be used to narrow down the search result (that is, it can specify additional conditions that will be skipped if the parameter is not specified). An expression in the Rule Instance that uses an <em>optional</em> Document is called a <em>filter</em> and is use as search criteria.</p></td>
+</tr>
+</table>
+</body>
+</html>

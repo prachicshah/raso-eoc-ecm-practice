@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>Migration Tab</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Migration Tab</h2>
+
+<p>The <b>Migration</b> tab defines <i>migration records</i> of the Process, where each record specifies how to migrate running process instances of a specific Process Revision to the current Process (that is, the "latest" Process Revision).</p>
+
+<p><b>You are encouraged to consult <a href="process revisions.html#runtime">Process Revisioning</a> before managing migration records.</b></p>
+
+<p>Migration records of a Process are optional metadata. If a migration record does not exist for a particular Process Revision, those running process instances shall continue to execute by that Process Revision. This is known as <i>grand-parenting</i>. Thus, you would only define a migration record when there are (uncompleted) process instances for a Process Revision in the target environment, and you do not want grand-parenting to occur.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="processMigration.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Revision</b></td>
+<td class='confluenceTd'>The Process Revision number to migrate from. This is a fixed field that identifies the migration record, and thus cannot be changed after the record is added.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Migration Action</b></td>
+<td class='confluenceTd'>Specifies how this Process revision should be migrated. Can have one of the following values:
+<ul>
+<li><em>Suspend</em>: Suspends the process instance; sets the process instance's <a href="process status.html">status</a> to <em>Suspended</em>, and executes the migration <b>Script</b> if any.</li>
+<li><em>Terminate</em>: Terminates the process instance; sets the process instance's <a href="process status.html">status</a> to <em>Terminated</em>, and executes the migration <b>Script</b> if any.</li>
+<li><em>Migrate</em>: Executes the migration <b>Script</b> if any. Then change the process instance's revision number to the current revision. Continue to execute the instance, based on the current Process revision.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Script</b></td>
+<td class='confluenceTd'>Specifies a script that will be executed during process migration. The choice of scripts are selected from the Process' Actions (see <a href="process actions.html">Actions tab</a>). This migration script runs with ‘<i>this</i>’ object being the current process instance, which notably includes access to the Process Document and Process Order. The metadata object of <i>this</i> is the process metadata, not the revision metadata. The migration script receives one parameter that is the process instance revision number.</td>
+</tr>
+</tbody>
+</table>
+
+<p><b>Note</b>: Migration converts Process Revision to Process (and not revision to revision). Because Process Revision metadata objects are independent and not related to each other, there is no derivation, and thus re-use, in properties and scripts among Process Revisions. Indeed, migration scripts in different Process Revisions may be completely different even with the same names.</p>
+
+<h4>Common Migration Scenarios</h4>
+
+<p>There are several common migration scenarios. The following describes how each scenario can be accomplished in this <b>Migration</b> tab:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Scenario</th>
+<th class='confluenceTh'>Migration Action</th>
+<th class='confluenceTh'>Script</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Terminate process instance and start new one.</b></td>
+<td class='confluenceTd'><i>Terminate</i></td>
+<td class='confluenceTd'>Analyze the process instance, and then changes the order content and creates and initializes the process document for a new process. At the end the script starts a new process. This is the migration scenario when the process structure is changed.<br/>
+<p>The latest Process Revision has to be able to skip (or compensate) the already performed activities and start from the right point in the new process instance. This approach, a <i>controlled restart</i>, needs a special design for the new process version. For instance, migration of a relatively small and linear process can be done with the following:
+<ul>
+<li>Create a new Process Revision that conditionally executes all major steps of the process. The conditions should be based on the process state computed from the process document and/or process order.</li>
+<li>Create migration record that terminates the current process instance and starts the latest Process Revision with the corresponding changes in the process document or/and order. The changes are computed based on the current process state and the state of some process instance activities.</li>
+</ul></p>
+<p>As an illustration, 
+	<table class='confluenceTable'>
+	<tbody>
+	<tr>
+	<td class='confluenceTd'><img src="processMigrationExample.png" align="absmiddle" border="0" alt="" /></td>
+	</tr>
+	</tbody>
+	</table>
+the new instance starts from the beginning and skips some activities depending on the condition which is calculated entirely based on the process state. This should be done using the activity condition scripts that are available for all activities except the case activities and the operations of the choice activity. Note that if a group activity such as Sequence or All is skipped by the condition script all its children (the whole sub-tree starting at the activity) are skipped too.</p>
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Suspend process instance until the decision is made to how to migrate it.</b></td>
+<td class='confluenceTd'><i>Suspend</i></td>
+<td class='confluenceTd'><i>None</i>. Useful in the situation when there are errors in the process that can be corrected only manually. After the corrections are done, the processes should be manually resumed.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Migrate process instance to the latest revision.</b></td>
+<td class='confluenceTd'><i>Translate</i></td>
+<td class='confluenceTd'>Analyze the process instance and roll back some actions (change the process document or the process order). The process engine will continue to run the process instance with the process object metadata and the latest revision number.  This is the typical scenario for simple migration, where the logic changes are minimal and the activity indexes are not changed. For example, this may be used when the process scripts are changed but the structure of the process is the same.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Stop process instance and do nothing.</b></td>
+<td class='confluenceTd'><i>Terminate</i></td>
+<td class='confluenceTd'><i>None</i>. Used when very wrong process revision that can be handled only manually.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

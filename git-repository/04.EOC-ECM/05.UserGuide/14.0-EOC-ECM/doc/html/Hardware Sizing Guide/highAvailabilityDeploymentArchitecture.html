@@ -1,0 +1,59 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>High Availability Deployment Architecture</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<h2>High Availability Deployment Architecture</h2>
+<p>The performance  sizing is largely dependent on the underlying metadata. The metadata implements an  application as well as the complexity of the business processes which are being  modeled. The ideal solution to sizing hardware accurately relies upon designing  metadata and conducting initial performance testing prior to the final  assignment of hardware.</p>
+<p>The Ericsson  solution is built on top of the leading industry infrastructure products, including  Web servers, application servers, database servers, and enterprise application integration (EAI) middleware. The  high availability requirements for the Ericsson solution are largely handled  through  commercial application servers and database servers that support the  product. For example, a large tier1 customer has achieved high  availability implementation using a BEA clustered environment with a  hardware-based load balancer to support application server clustering.</p>
+The following high availability design characteristics of the Ericsson design  maximize the  availability of the Order Care solution:
+<h4>Application Servers</h4>
+<p><ul>
+  <li> Does not store business data; all business and  system configuration information is stored in the database.</li>
+  <li> Can be configured to handle user  interactions, API interactions, and workflow.</li>
+  <li> Each instance of a workflow server  (or process engine) is allocated to only a portion of the workflow load.</li>
+  <li>An ID is assigned to each instance of a workflow server within a cluster of set size. the work is automatically  distributed within the cluster using a hash scheme, which ensures all the activities for a process  instance are handled by the same workflow server.
+  </li>
+</ul></p>
+<h4>High-Availability Configuration</h4>
+<p><ul>
+  <li>Load balancers are used to balance the load  and perform fail-over between application servers.</li>
+  <li>N-Application servers are managed  as an application server based cluster.</li>
+  <li>Each user is serviced by one  application server.</li>
+  <li>Each process is serviced by one  workflow engine.</li>
+  <li> Hardware based load balancers  manage the database transactions.</li>
+  <li> Use of a high availability  database, such as Veritas clustered server solution for Oracle.</li>
+</ul></p>
+<h4>Monitoring</h4>
+<p>Each server  maintains a heartbeat interaction with the database and  allows third  party tools to monitor the health of the server through JMX. The JMX based interface  exposes a rich set of  statistics  that can be used to determine not only running or not running state, but also the
+  performance,  memory utilization, and thread utilization.</p>
+<h3>Impact of Failed Components</h3>
+<h4>Application Server – User Load</h4>
+<p>Sticky  sessions are configured within the load balancer or Web server as there is  no user session swapping between application servers. In the event  of a  application server failure, the users being served by the server  loses  their connection and they have to login to the server again. All business data from the prior session  is saved from the last successful interaction. Any in- progress transactions  are rolled-back at the database level. The Web servers or load balancer   automatically handles the re-direct to another application server.</p>
+<h4>Application Server – Workflow Server or Process Engine</h4>
+<p>Each server   attempts to remain operational in the event of a problem:</p>
+<ul>
+  <li> On loss of database connection,  the server  immediately stops the processing and attempts to reconnect periodically,  until the connection is restored or the system is restarted.</li>
+  <li>In a low memory condition,  alternate memory management routines are triggered, including management of  system cache sizes and retention periods, and ultimately, suspends the  processing of new workflow processes.</li>
+</ul>
+<ul>
+  <li>On a non-recoverable failure, a  clean-and-restart procedure is followed, that automatically reset the  workflow engine to an initial state. The restart information is logged to be diagnosed   later. No work is lost during this procedure.
+</ul>
+<p>Hot stand-by  nodes can be configured so that a permanent failure of one working node, for example due to a hardware failure, can be  recovered automatically by the  stand-by node. This setting ensures an automated, seamless, and immediate restoral of  service. In the event of a permanent failure, any in-progress transactions are  rolled-back at the database level. Upon restart, workflow is  transparently resumed from the last uncommitted activity within each workflow  instance.</p>
+<h4>Database  Server</h4>
+<p>In the event of   database loss, the server  immediately stops the processing and attempts to reconnect  periodically, until the connection is restored or the system is restarted.</p>
+<h3>High Availability Design </h3>
+<p>The following  diagram depicts a standard high availability design; the user and the  workflow load is split into two clusters of application servers  to isolate the impact of bursts in traffic or  workload from one type of  activity to the other.
+<p><img src="highAvailabilityDesign.png" alt="High Availability Design " /></p>
+
+
+</body>
+</html>

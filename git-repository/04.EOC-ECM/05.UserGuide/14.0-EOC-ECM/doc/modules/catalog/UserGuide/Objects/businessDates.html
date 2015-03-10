@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Business Dates</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Business Dates</h2>
+<p>Business dates allow you to handle a number of business scenarios that are not handled by the <a href="StartEnd_Dates.html"><strong>Start Date</strong> and <strong>End Date</strong> fields</a>. In the past, with these two fields, only two dates could be applied to an item or an association. As a result, you can handle multiple sets of dates with business dates.</p>
+<p>The following scenario shows how multiple dates can be used. A product manager defines an offer in the catalog with the following details:</p>
+<ul>
+  <li>The  product cannot be physically sold until March 31st,  which is the next release date for the billing system that is currently being updated  to support the service.</li>
+  <li>As this response is a competitive one, she wants the  offer to be advertised and pre-sold to clients (for example, &quot;Coming April 1st to  a store near you, the Safety phone for $20,&rdquo; in printed, online, and television advertisements). This detail allows clients calling to be  advised that the offer is imminent and that they should not switch to the  competitor. Not wanting to cannibalize other sales, she wants to restrict who  can pre-order by channel:
+    <ul>
+      <li>Retention channel: February 1st</li>
+      <li>Winback channel: February 1st</li>
+      <li>Inbound call centre: March 1st</li>
+      <li>Outbound telemarketers: April 1st</li>
+      </ul>
+  </li>
+  <li>The competitive problem is with a competitor in one  of 300 markets across the country. A second competitor has pre-announced a  competitive offering in a second region for June 1. The product manager sets  the start sell dates by region, to avoid cannibalizing the existing,  higher priced products:
+    <ul>
+      <li>Market 1: April 1st</li>
+      <li>Market 2: June 1st</li>
+      <li>Market 3 through 300: No planned availability    </li>
+    </ul>
+  </li>
+  <li>The service has a three-day lead time. As a result, the product  manager wants to allow orders to be submitted three days before March 31st.</li>
+  <li>On July 1st, the offer is revised to increase the  price by $5. Existing customers are grandfathered on the $20 per month.</li>
+  <li>Seeing much revenue erosion and competitors that  have matched its prices, the leading competitor withdraws its August  1st offer. The product manager follows suit and issues a stop selling action in Market 1, which is effective as of August 1st.</li>
+  <li>All competitors follow suit in all markets, and a  stop selling action for the offer as a whole is issued, effective October 1st.</li>
+  <li>A decision is made to force all customers onto other  offers effective December 1st. Customers that do not provide   instructions are automatically moved to another offer.</li>
+</ul>
+<p>This section provides the following information:</p>
+<ul>
+  <li><a href="businessDatesList.html">Support for multiple business dates</a></li>
+  <li><a href="businessDatesModel.html">Business date model</a></li>
+  <li><a href="businessDatesDefinition.html">Business date definition</a></li>
+  <li><a href="businessDatesAssociationCategory.html">Business dates association category</a></li>
+  <li><a href="businessDatesVersioning.html">Date versioning</a></li>
+  <li><a href="businessDatesAPIs.html">Business dates APIs</a></li>
+</ul>
+<p><strong>Note:</strong> </p>
+<ul>
+  <li>A sample data file, sampleMarketSegmentsandBusinessDatesModel.zip, is available in the product. This file contains preconfigured data for availability trees, market segment dimensions, and business date models that you can import. This file appears in your &lt;<em>installation_folder</em>&gt;\modules\catalog folder. </li>
+  <li>To associate a business date to an item, see the <a href="itemsAssociateBusinessDates.html">Associate a business date</a> page for details.</li>
+</ul>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

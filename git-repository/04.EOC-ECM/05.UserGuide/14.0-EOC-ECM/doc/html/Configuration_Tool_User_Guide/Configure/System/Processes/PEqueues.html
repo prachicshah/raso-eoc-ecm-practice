@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Processes - Process Engine Queues</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Process Engine Queues</h2>
+
+<p>Clicking  <strong>Processes</strong> &gt; <strong>PE Queues </strong>allows you to specify queue options. The process engine (PE) uses queues to implement process activities.</p>
+<p><img src="PEqueues.png" alt="Processes - PE Queues tab" border="1"></p>
+<h3>Configure PE Queues Parameters</h3>
+<p>To configure your PE queue parameters, do the following:</p>
+<ol>
+  <li>Click either the <strong>Capacity</strong> or <strong>Reload Interval (Seconds)</strong> field next to the queue that you want and complete the field.</li>
+  <li>When you have finished making your changes, click the <strong>Save</strong> button.</li>
+</ol>
+<p>This page contains the following fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="103" class='confluenceTh'>Field</th>
+      <th width="1424" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Capacity</b></td>
+      <td class='confluenceTd'>This field contains the maximum number of database elements that the queue either caches in memory or reads from the database. Not all queues use this parameter. Queues that do not use it should set this value to 0.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Reload Interval (Seconds)</b></td>
+      <td class='confluenceTd'>This field denotes the reload wait interval after a database operation in seconds. Queues periodically read batches of data from the database. If the read operation returns a full batch of data and there is <em>more</em> data left in the database, the next database read operation is performed after the specified wait time. This interval is usually small because this situation may practically happen only when the queue data cache is empty and has to be quickly loaded from the database (for example, at the start of a PE or when a user command cleans the cache).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Queue Descriptions and Default Values</h3>
+<p>The following table describes each of the queues in the queue table and their default values.
+<table width="1302" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="147" class='confluenceTh'>Name</th>
+      <th width="955" class='confluenceTh'>Description</th>
+      <th width="184" class='confluenceTh'>Default</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>GlobalProcesses Queue</strong></td>
+      <td class='confluenceTd'>This queue starts, stops, and monitors global processes. After waiting for the specified reload interval, the queue checks the running global processes and restarts the failed ones.</td>
+      <td class='confluenceTd'><strong>Capacity:</strong> 100<br/>
+        <strong>Reload Interval:</strong> 10 seconds</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>GlobalRequests Queue</strong></td>
+      <td class='confluenceTd'>This queue handles the requests to the global processes (that is, requests to suspend or resume a process). The queue does not keep more than the <strong>Capacity</strong> limit of requests in free memory. If the queue is full, the other requests are not processed.</td>
+      <td class='confluenceTd'><strong>Capacity:</strong> 2,000<br/>
+        <strong>Reload Interval:</strong> 5 seconds</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Maintenance Queue</strong></td>
+      <td class='confluenceTd'>This queue is not used. It is reeserved for future use.</td>
+      <td class='confluenceTd'><strong>Capacity:</strong> 0<br/>
+        <strong>Reload Interval:</strong> 1200 seconds</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>NewProcesses Queue</strong></td>
+      <td class='confluenceTd'>This queue handles new process creation requests. The queue does not read more than the <strong>Capacity</strong> limit for new processes at each iteration.</td>
+      <td class='confluenceTd'><strong>Capacity:</strong> 1000<br/>
+        <strong>Reload Interval:</strong> 2 seconds</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>OldProcesses Queue</strong></td>
+      <td class='confluenceTd'>This queue is for restarting running processes. The queue loops until all old processes are restarted.</td>
+      <td class='confluenceTd'><strong>Capacity:</strong> 5,000<br/>
+        <strong>Reload Interval:</strong> 1 second</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Participants Queue</strong></td>
+      <td class='confluenceTd'>This queue handles the participant requests to processes. The queue does not store more than the <strong>Capacity</strong> limit of messages in memory. If there are more messages, the process engine works slowly.</td>
+      <td class='confluenceTd'><strong>Capacity:</strong> 150,000<br/>
+        <strong>Reload Interval:</strong> 2 seconds</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>TaskDistribution Queue</strong></td>
+      <td class='confluenceTd'>This queue distributes the manual tasks to users. At each iteration, all unassigned manual tasks that require automatic distribution are assigned to manual participants. </td>
+      <td class='confluenceTd'><strong>Capacity:</strong> 100<br/>
+        <strong>Reload Interval:</strong> 60 seconds</td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

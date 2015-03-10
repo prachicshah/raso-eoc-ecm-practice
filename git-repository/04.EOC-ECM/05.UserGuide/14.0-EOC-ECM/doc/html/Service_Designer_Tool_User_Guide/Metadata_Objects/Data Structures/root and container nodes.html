@@ -1,0 +1,28 @@
+﻿<html>
+<head>
+<title>Root and Container Nodes</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>Root and Container Nodes</h3>
+<p>Root and container nodes are nodes that contain a set of child nodes that can be array nodes, container nodes or data type nodes. Root and container nodes have an <b>Elements</b> tab (refer to section on Elements Tab) in addition to the <b>General</b> tab.</p>
+<p>A Data Structure is initially created with one root node that is the root container of the Data Structure. The root node is a container node with slightly different properties. The following figure shows the <b>General</b> tab of a root node.</p>
+<p><img src="dataStructuresRootNode.png" alt="Data Structures - General Tab"></p>
+<p>The <b>Extends</b> field is included on the <b>General</b> tab of the root and container nodes. It allows the user to extend another top level Data Structure. The children from the extended Data Structure will appear as children of the current Data Structure in the data mapping UI. Children do not have the <strong>Extends</strong> field.</p>
+<p>An <b>Abstract</b> data structure may not have child nodes and will usually be extended by other data structures. Some data structures can refer to the Abstract structure, however at runtime the real data may correspond to one of its derived types.</p>
+<p>All nodes have <b>XML settings</b> (refer to section on XML Settings). The root node also has an <b>Initialization</b> script, which is currently not implemented.</p>
+<p><strong>Note:</strong> Top-level nodes that do not have a namespace are unsupported. Instead, you will need to manually create the xmlns attribute in your metadata and populate the value in your script.</p>
+<p>All nodes have <b>JSON settings</b>. The <strong>JSON name</strong> field is used to specify the JSON tag name for this node. This field defaults to <strong>Name</strong>. </p>
+<p>The <b>General</b> tab of a container node is shown in the figure below. The <b>Container</b> checkbox must be selected in a new Data Structure node to make it a container. The checkbox will not appear in the properties of an already created container node. The <b>Mandatory</b> checkbox must be checked if the data objects contained in this node must be always initialized.</p>
+<p><b>Note:</b> The <b>Array</b> checkbox is described in section on Array Node.</p>
+
+<p><img src="dataStructuresArrayNode.png" alt="Data structure - array node"></p>
+
+</body>
+</html>

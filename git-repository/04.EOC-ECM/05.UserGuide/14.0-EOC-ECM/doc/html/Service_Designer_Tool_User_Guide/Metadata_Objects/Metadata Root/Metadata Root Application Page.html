@@ -1,0 +1,164 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Metadata Root Application Page</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h3>Metadata Root Application Page</h3>
+
+<p>The <b>Application Page</b> tab automatically populates with all application metadata objects, including templates. It also contains properties to customize your experience using the Select Application page.</p>
+<p><img src="MetadataApplicationPage.png" alt="Metadata root - Application Page"></p>
+<p>The page has the following properties:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="231" class='confluenceTh'>Field</th>
+      <th width="916" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Group Source</strong></td>
+      <td class='confluenceTd'><p>This field defaults to null and works with the <strong>Group</strong> field located in the table area. To select a group source, you can either click the drop-down menu and select a data type with enumerations as your group from the list, or click the <strong>Globe</strong> button to select your metadata data type with enumerations as your group object from the list. Each  enumeration appears as a header that separate the available  applications into groups. </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Show Application Page before login</strong></td>
+      <td class='confluenceTd'><p>This property's checkbox is unchecked by default. Selecting this property indicates that the Application Page appears first. In other words, the <strong>Show  Application Page before Login</strong> property determines whether the /login or  the /selectApp URL will be directed to when the root / URL is accessed. </p>
+        <p><strong>Notes:</strong> </p>
+        <ul>
+          <li>If you have the <strong>Classic Select Application</strong> property selected, the login screen appears first, regardless of whether you have selected the <strong>Show Application Page before login</strong> property.</li>
+          <li>If the Application Page table has more than one security configuration name (see the Security field in the following table), this property is selected and editing is disabled.</li>
+        </ul>
+        <p>When using the icon version of the Select Application with this property selected, the application icons appears with lock icons. Clicking an application icon shows the login screen, prompting you to enter your username and password. Click the <strong>Login</strong> button to log on to the application. Otherwise, clicking the <strong>Cancel</strong> button returns you to the Select Application page.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a name="classic"></a>Classic Select Application</strong></td>
+      <td class='confluenceTd'><p>Select this property to use the classic Select Application screen at runtime. Otherwise, leave this property unchecked to use the icon version of the Select Application screen.</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>This page contains the following fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="231" class='confluenceTh'>Field</th>
+      <th width="916" class='confluenceTh'>Description</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a name="show"></a>Show</strong></td>
+      <td class='confluenceTd'><p>This field indicates whether to show the application on the Application Page at runtime and allows you to override the <strong>Not Valid for Application Selection</strong> property. This field takes one of the following values: </p>
+        <ul>
+          <li><strong>&lt;Default&gt;</strong>  means that the application's <strong>Not Valid for Application Selection</strong> property is used to  determine whether it displays </li>
+          <li><strong>Yes</strong> indicates that the application page displays</li>
+          <li><strong>No</strong>  means that the application does not display</li>
+          </ul>
+  <p>To change the value of this field, click the drop-down menu and select the value that you want from the list.</p></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Application</strong></td>
+      <td class='confluenceTd'><p>This field contains the application's element name or label, depending on your Velocity Studio display preferences. You cannot edit this field.</p></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Security</strong></td>
+      <td class='confluenceTd'><p>This field denotes the security configuration  name to be used for the application. The field's default value is empty, which indicates that the default security provider  is used for the application.</p>
+        <p>To change select a security provider the value of this field, click the drop-down menu and select a value from the list.</p>
+  <p><strong>Note:</strong> Editing this field requires you to connect to the database, to retrieve the list of possible security providers.</p></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>URL</strong></td>
+      <td class='confluenceTd'><p>This field indicates the URL property to directly access each application. </p>
+        <p>See the <em>URL Mapping</em> section that follows for more information. When <strong>&lt;Default&gt;</strong> appears in this field, it indicates that the application's <strong>Url Mapping</strong> field value is used. By specifying a different value in this field means that you are overridding the  application’s <strong>Url Mapping</strong> property.</p></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Login UI</strong></td>
+      <td class='confluenceTd'><p>This field allows  the selection of a UI to be used for the login page. This UI displays once you have selected an  application and you are accessing the <em>login</em> URL. </p>
+  <p>By default, if no UI  is selected, the login UI specified under the selected provider is  used.  If there is no login UI specified  under the selected provider or if no security provider is selected, the  ui_common.loginUI is automatically used as the login UI. To specify a login UI, click the drop-down menu and select the login page that you want to use. </p></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Group</strong></td>
+      <td class='confluenceTd'><p>This field denotes the application group specified from the <strong>Group Source</strong> field, which shows a list of enumerated values. The application is grouped under its <strong>Group</strong> in the Application Page.  Click the drop-down menu and select the group from the list provided. This field supports internationalization.</p>
+        <p><strong>Note:</strong> If you do not specify a group, the application appears in the General group. <br>
+        </p></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Source</strong></td>
+      <td class='confluenceTd'>This field indicates the template (library)  source of the application. This field is read-only. If  the application originates from user project-specific metadata, <strong>&lt;Local&gt;</strong> appears in this field. This field is not editable.</td>
+      </tr>
+    </tbody>
+</table>
+<h4><a name="urlMapping"></a>URL Mapping</h4>
+<p>You can expose (top-level) User Interface objects to Web clients by assigning them to a relative URL path, relative to</p>
+<blockquote>
+  <p><i>http://&lt;hostname&gt;:&lt;port&gt;/cwf</i></p>
+</blockquote>
+<p>For example, if your project has an application page (say, for checking order status) with URL mapping <i>/orderstatus</i>, the page can be directly accessed by users with the URL <i>http://&lt;hostname&gt;:&lt;port&gt;/cwf/orderstatus</i>. At runtime, the User Interface (controller) is invoked to render according to the UI object's <b>Page</b> when a Web browser sends a request with this relative URL path.</p>
+<p>See <a href="../../Velocity_Studio/Modifying URL Mappings and Style Sheets.html"> Modifying URL Mappings and Style Sheets</a> for more information about URL mapping configuration.</p>
+<p>Each top-level application controller has the <strong>URL Mapping</strong> string property. </p>
+<p><img src="MetadataApplicationPageURL.png" alt="URL Mapping field at application controller level" border="1"></p>
+<p>This property's string value appears in the <strong>URL</strong> field on the Application Page's table.</p>
+<p>The following rules apply to the <strong>URL Mapping</strong> property:</p>
+<ul>
+  <li>This property is mandatory and must be  unique within the entire application. <br>
+    <br>
+    <strong>Note:</strong> Any migrated 
+  5.x application without a  mapped URL  automatically receives a URL set to the application's name. </li>
+  <li>If more than one application has the  same URL, you must resolve this conflict in your metadata project through the metadata  header’s Application Page tab. </li>
+  <li>The URL is case-insensitive. The URL may not be the same as a list of  reserved system URLs or match the wildcard pattern of system URLs. This  means for a given system URL <em>/v</em>, no URL preceded by <em>/v/</em> can be used. The list of reserved system URLs is the  following: 
+    <ul>
+      <li>/v</li>
+      <li> /r</li>
+      <li> /t</li>
+      <li>/cd</li>
+      <li>/design</li>
+      <li> /a</li>
+      <li>/c</li>
+      <li> /login</li>
+      </ul>
+  </li>
+  </ul>
+<p>By default, many system-defined User Interface objects exist in the mapping, and they can neither  be removed, nor edited. They are informational mappings that let you know which relative URLs are exposed in your Web application.</p>
+<p>For your project's User Interface objects, you can assign multiple relative URL paths to the same User Interface object. As an example, the system login page is accessible by both <i>/</i> and <i>/login</i>, as set in default setting.</p>
+<p>Only top-level User Interfaces are allowed to be URL mapped. Included User Interfaces, such as the User Interface of a finder, are not allowed to be mapped. </p>
+<h4><a name="notValid"></a>Not Valid for Application Selection Property</h4>
+<p>Each application controller has the <strong>Not Valid for Application Selection</strong> Boolean property. </p>
+<p><img src="MetadataApplicationPageNotValidForApplicationSelection.png" alt="Not Valid for Application Selection property" border="1"></p>
+<p>By default, this property is false. When you select this property, the application is not visible on the Select Application page.   However, direct URL access to the application through its <strong>URL  Mapping</strong> property is allowed at runtime. </p>
+<h4>Application Style Property</h4>
+<p>The  Page overlay of each  application contains the <strong>Application Style</strong> property, which specifies the style to be used for the icon representing the  application on the icon version of the Select Application page. </p>
+<p><img src="MetadataApplicationPageApplicationStyle.png" alt="Application Style property"></p>
+<p>By default, if no style is provided, the  system automatically attempts to find a appPage&lt;applicationName&gt;Label (for  example, appPageCustomerLabel, where Customer is the name of the application).</p>
+<p>To use the default  styling,  follow this style:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+.cwAppPageLabel,.cwAppPageLabelOver,.cwAppPageLabelDown,.cwAppPageLabelSelected,.cwAppPageLabelSelectedOver,.cwAppPageLabelSelectedDown,.cwAppPageLabelSelectedOverDown{
+word-wrap : break-word;
+background-color: #009999;
+background-image: url("../images/sample_icon.png");
+background-position: 60px 70px;
+-webkit-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.8);
+box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.8);
+background-repeat: no-repeat;
+color: #FFFFFF;
+padding-left: 5px;
+padding-right: 25px;
+padding-top:10px;
+font-family: Arial,Helvetica,sans-serif;
+font-size: 12px;
+height: 110px;
+width: 70px;
+vertical-align: top;
+text-align:left;
+}</pre></div>
+</div>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

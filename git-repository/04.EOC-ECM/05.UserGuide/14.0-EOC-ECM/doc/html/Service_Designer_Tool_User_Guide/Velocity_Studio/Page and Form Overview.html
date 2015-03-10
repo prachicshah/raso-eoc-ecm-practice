@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Page and Form Comparison</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Page and Form Comparison</h2>
+<p> Although there are similarities between Page and Form objects, there are fundamental differences in functionality; specifically which Form elements that they display and how they them. From a metadata perspective, a Page is similar to a Form, but a Form has more functionality than a Page. Understanding how to configure and use these objects is a key component to  configuring metadata objects in a User Interface.</p>
+<h3>User Interface Page</h3>
+<p> A Page represents the formatting of a  Web Page and displays the presentation (physical layout) for an application at runtime. Under the User Interface object, a Page represents a top-level Form. It can appear in metadata objects that have included User Interfaces such as Documents, Finders, Orders, and Data Structures. Only  one Page exists for each User Interface object.  A Page contains settings for Style sheets, Skins, Icons and the Body Style. A Page can be configured with additional elements that format the Page at runtime.</p>
+<h3>User Interface Form</h3>
+<p>By default, Forms are created when a User Interface object is created. While a Page  represents the formatting  of a Web page, a Form defines the presentation of a fragment of a Web page (field, sections). It can appear in metadata objects that have included User Interface objects, such as Documents, Finders, Orders and Data Structures.</p>
+<p>For more information see, <a href="Page.htm">Page</a> and <a href="Form.htm">Form</a>.</p>
+<p>The following information details the characteristics of a Page and a Form.</p>
+
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Page Characteristics</th>
+      <th class='confluenceTh'>Form Characteristics</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Contained within the User Interface Object with a  fixed name of  <strong><em>Page. </em></strong>The Page name cannot be renamed.</td>
+      <td class='confluenceTd'>Contained within the User Interface Object. By default, when the User Interface object is added, two Forms appear with the  names,  <strong>Default, Menu. 
+      </strong>The names of the new Forms can be user-defined.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Cannot be referenced by other Page or Form using a  Form Frame.</td>
+      <td class='confluenceTd'>Can be referenced by other Forms and Page.</td>
+    </tr>
+       <tr>
+      <td class='confluenceTd'>Can be  overridden.</td>
+      <td class='confluenceTd'>A default Form can be extended or overridden.</td>
+    </tr>
+       <tr>
+         <td class='confluenceTd'>Can be requested and served to Web browser directly.</td>
+         <td class='confluenceTd'>Must be rendered to Web browser by being referenced in a Page via Form Frame.</td>
+       </tr>
+       <tr>
+         <td class='confluenceTd'>Maximum one Page for each User Interface</td>
+         <td class='confluenceTd'>One User Interface may have many Forms</td>
+       </tr>
+       <tr>
+         <td class='confluenceTd'>Defines its own Stylesheet and Skin</td>
+         <td class='confluenceTd'>Must follow the Stylesheet and the Skin of the Page that references it.</td>
+       </tr>
+   </tbody>
+</table>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

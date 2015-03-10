@@ -1,0 +1,25 @@
+﻿<html>
+<head>
+<title>Absolute Time and Timezone Support</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Absolute Time and Timezone Support</h3>
+<p>The  DateTime data type takes timezone conversion  into consideration when working with  the data type's value, which Java's Date object does naturally. However, there are cases where the DateTime datatype  needs to be  absolute. When it is marked as absolute,  the timezone is  not taken into consideration.   </p>
+<p>The api_common.data.timezone system data type provides an enumeration of all valid and supported timezone names. This data type is available in the API_Common system template.</p>
+<h4>Absolute Time Property</h4>
+<p>In  the Data Type General property tab, when the base data type is DateTime,  the  <strong>Absolute Time</strong> property becomes available. By default, the property is unchecked, meaning that the  DateTime uses timezone conversion. Otherwise, selecting this property indicates that timezone conversion is disabled.</p>
+<p><img src="dataTypeAbsoluteTime.png" alt="Absolute Time property" border="1"></p>
+<p><span class="confluenceTd">This data type works with a  DateTime Element that binds to a DateTime data type of <strong>Absolute Time</strong>.  The Timezone data type work with a combination box that binds to this data type. </span></p>
+<h4>Runtime</h4>
+<p>At runtime, the difference between an absolute time DateTime  data type and a non-absolute time one becomes evident when working  with two different clients using different timezones. </p>
+<p>For example, consider a scenario in which  Client A works in a GMT-5 timezone and Client B works in a GMT+8 timezone.  If Client A enters Jan 6, 2012 03:00 in a document’s field that is bound  to a non-absolute DateTime data type, when Cent B views the same document,  Client B sees Jan 6, 2012 16:00. In this case, the time has been converted to Client B’s timezone. On  the other hand, if Client A enters Jan 6, 2012 03:00 in a document’s field  that is bound to an absolute time DateTime data type, when Client B views the  same document, Client B also sees Jan 6, 2012 03:00.</p></td>
+</tr>
+</table>
+</body>
+</html>

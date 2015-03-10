@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Use LDAP with a Windows NT ID</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<h3>Use LDAP with a Windows NT ID</h3>
+<p> You can user an LDAP provider with a Windows NT ID to log into an application by following these steps:</p>
+<ol>
+  <li> Run any application from Velocity Studio.</li>
+  <li> Log in to the application using <tt>upadmin</tt> as both the <strong>Username</strong> and <strong>Password</strong>. The security provider is currently set as ConceptWave, which is Oracle.</li>
+  <li> Open the User Profile Management application, and then click <strong>Configure &gt; Security Providers </strong>from the menu bar and create an LDAP provider.</li>
+  <li>For the <strong>Security Type</strong> field, select <strong>LDAP</strong>. </li>
+  <li>For the <strong>Security Data</strong> field, enter your LDAP data. The following is an example: 
+    <div class="code">
+        <div class="codeContent">
+          <pre class="code-java">ldap://carta:389;username@domain.com     </pre>
+        </div>
+      </div>
+  Click the <strong>Save</strong> button.
+  </li>
+  
+  <li> Create a user with a SAM account name (sAMAccountName) defined in the LDAP server domain controller and give the account upadmin privileges (for example, <em>firstName.lastName</em>). <br>
+    <br>
+  <strong>Note:</strong> The SAM account name is the same as your NT ID.</li>
+  <li>Log back in to the application using your SAM account name username (for example, <em>firstName.lastName</em>) and your NT ID password. You are logged in to the application.<br>
+    <br>
+    <strong>Notes:</strong>
+<ul>
+  <li>When you log in using <tt>upadmin</tt> as both your username and password, it will not work.</li>
+    <li>When you attempt to log in without a password, an error occurs, indicating that the password is missing.<BR>
+    </li>
+  </ul>
+  </li>
+</ol>
+<h4>&nbsp;</h4>
+</body>
+</html>

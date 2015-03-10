@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Metadata Root Languages</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onload="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h3>Metadata Root Languages</h3>
+
+<p>The <b>Languages</b> tab in top-level metadata object defines the list of languages to be supported by the application runtime of the project, and the default language to use when  no language is specified in the <a href="../../Introduction_to_Metadata/Internationalization.html#browserLanguage">browser language setting</a>.</p>
+
+<p>This tab, along with <a href="../../Service Designer Menu Actions/Import Translation.html">Translation Import</a> and <a href="../../Service Designer Menu Actions/Export Translation.html">Translation Export</a> functionality, provides runtime support for <a href="../../Introduction_to_Metadata/Internationalization.html">internationalization</a> in applications.</p>
+<p>To ensure that you have access to the language of your choice while configuring the metadata: </p>
+<ul>
+  <li>You need to add the list of supported languages under the Metadata Header object in the Languages tab. </li>
+  <li>You must have a label for the default language (en-xx) for translations of other languages to work. If you do not specify a label in English, other languages do not appear in the list. </li>
+</ul>
+
+<img src="MDrootLanguage.png" border="0" alt="Metadata root - Languages tab" />
+
+<p>The following table describes the fields in the Languages tab.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Available</b></td>
+<td class='confluenceTd'>The list of languages to be available for runtime presentation. Click  the <strong>Add</strong> button to add a language using the <b>Select Language</b> dialog box:<br>
+  <br/>
+<img src="MDrootLanguageList.png" align="absmiddle" border="0" alt="" /> <br>
+<br/>
+Enter a search key to search by prefix, or use asterisk (<b>*</b>) or question mark (<b>?</b>) for wildcard string or character match respectively, or simply click to select from the list of defined language codes. The language codes are in format of either:
+<ul>
+<li><i>aa-BB</i>: (for example, "en-US") where <i>aa</i> is the language and <i>BB</i> is the country or locale</li>
+<li><i>aa</i>: (for example, en) where <i>aa</i> is the language. This is without locale denotation which is a more generic specification than <i>aa-BB</i>. It is equivalent to attaching <i>-xx</i> at the end. For example, "en" is equivalent to "en-xx".</li>
+</ul>
+See how the <a href="../../Introduction_to_Metadata/Internationalization.html#browserLanguage">browser language setting</a> would match against this list upon browser request for pages.
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Default</b></td>
+<td class='confluenceTd'>The default language to serve Web application pages when the browser request does not specify a preferred language, or the language is not in the <b>Available</b> language list. Only languages in the <b>Available</b> language list may be chosen in the drop-down listbox here. For convenience, the English language <i>en-xx</i> is always included as a choice and as the default upon project creation.</td>
+</tr>
+</tbody>
+</table>
+
+<h4>&nbsp;</h4></td>
+</tr>
+</table>
+</body>
+</html>

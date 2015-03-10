@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Value Pack and Feature Codes Mapping</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h3>Value Pack and Feature Codes Mapping</h3>
+
+<p>A special .ini file contains mapping between the value pack and features code, to features names that both the AVM and metadata use. Codes may change from one product version to another. </p>
+<p>The following is a sample .ini file showing its file format:</p>
+
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>FAT1010304/4=AVM
+FAT1010303/12=CatalogDesigner
+FAT1010303/5=VelocityStudio
+...</pre>
+  </div>
+</div>
+
+<p>To protect the file from being changed, its contents require being encrypted.</p>
+<p><strong>Note:</strong> The .ini file with the mapping is packaged with the product installation (that is, either with Install Anywhere within the product wizard installation or System UF).</p>
+<h4>Edit the .ini File</h4>
+<p>In Velocity Studio, there is an additional menu that allows you to create a new .ini file, and open and save an existing .ini file with codes mapping. This part of the user interface contains a table with key-value pairs. When saving the document, it automatically gets signed.</p>
+<p><strong>Note:</strong> To see and use this Velocity Studio menu, you must have the FeatureDeveloper licence.</p>
+<h4><a name="signLicence"></a>Sign Licence through the Command Line</h4>
+<p>You can have your licence signed by using a command-line option.</p>
+<p>The following describes the syntax of the command-line interface and the   available arguments. A shortcut command can be found in the <strong><strong>&lt;<em>installation_folder</em>&gt;</strong>\designer\env\signLicense.cmd</strong> file:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre>
+@echo off
+if ""%1""=="""" goto echoSyntax
+if ""%2""=="""" goto echoSyntax
+
+
+set CWOC_CLASSPATH=C:\6\442
+set CLASSPATH=%CWOC_CLASSPATH%\designer\Designer.jar;^
+%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^
+%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^
+%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^
+%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^
+%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^
+%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;
+
+set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m -Dcom.conceptwave.licenseDir="%CWOC_CLASSPATH%"\designer\env -Dcom.conceptwave.modules.path="%CWOC_CLASSPATH%"\modules
+
+"C:\Program Files\Java\jdk1.7.0_45\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -license -sign %*
+
+goto end
+:echoSyntax
+echo ------------------------------------------------------------------------
+echo Syntax:  signLicense [-logFile logFile] license_file private_key_file 
+echo Example: signLicense c:\license_file.xml c:\private
+echo ------------------------------------------------------------------------
+:end
+</pre>
+  </div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

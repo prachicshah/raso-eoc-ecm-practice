@@ -1,0 +1,277 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Info Table Types</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> 
+<tr>
+<td class="pagebody">
+
+
+<h2>Info Table Types</h2>
+
+<p>There are two different types of Info Tables: </p>
+<ul>
+  <li><a href="#Static info tables">Static info tables </a></li>
+  <li><a href="#dynamicTables">Dynamic info tables</a></li>
+</ul>
+<h3><a name="Static Info Tables">Static Info Tables</a></h3>
+<p>Static tables have size limitations (up to 30,000 rows) and are loaded automatically into memory as a whole table. Static Info Tables provide column sorting that specifies a list of columns with ascending or descending modifier for each column in the list. Sorting allows displaying the table data to the Catalog maintenance user always in the same order. The sorting column makes a unique key for the Info Table rows. The Info Table also has a <em>Calculate base price</em> flag.</p>
+<p>The static info tables are used to define data tables used by the Catalog Rules. A rule can be defined to query  columns  in a table  to select a specific row.  For example, set up a pricing table for an item that has different target prices in  different states. The user would set up an Info Table that might have the following columns or attributes: Item, State, and Price. The rule might then send the following request to return the price   in the row that that has State equal to California and item equal to item code X001. </p>
+<p> There are two methods for defining a static table in the Catalog Management system: <a href="#Standard Table">Standard Table</a> or <a href="#Database Table">Database Table</a>.</p>
+<h4><a name="Standard Table">Standard Table</a></h4>
+<p>The Standard Table is maintained and defined within the Catalog UI and version control is supported for these types of tables. The Info Table is referenced by the Info Model Name which must be unique and start with a letter.  The columns of the Standard Table correspond to Catalog Attributes and are defined as either numeric or string data types.  Each Standard Info Table is stored as a row in the CWPC_INFOTABLE table within Catalog. The data values of the info table are stored in the DATA field (of type NCLOB) within  the CWPC_INFOTABLE.  Changes to the Standard Table data can be performed within the Catalog UI and these changes are version controlled.</p>
+<p>The Info Table columns are defined in the Catalog UI by defining Info Model Attributes. The details of the Attributes will allow the user to define if the column/Attribute is a searchable column, can accept null values and how the data appears sorted.  Attributes that have the &quot;Is Search&quot; field selected,  the Catalog AVM automatically builds search indices.   The Descending checkbox will dictate how the column  values appear sorted in ascending or descending order. The Is Null check box allows the user to dictate if the null values will be permitted within this column.</p>
+<p><b class="strong"> Note</b>: 
+To define the Info Table data values, all the Attributes must have a status of Active.</p>
+<p> Click the <a href="addAttributes_InfoModel.html">Attributes</a> tab and then click the <strong>Add</strong> button to open the Info Model Attribute dialog,  which defines the Attributes or the Info Table columns.</p>
+<p>The following figure shows an Info Model for a price discount containing attributes Brand, Model, and Discount. This Info Model will eventually be referenced in a Catalog Rule that will be linked to a charge type. This Info Model defines a standard static Info Table named infomodel_price_disc. The column data values for this table are stored in the Data field of the CWPC_INFOTABLE.</p>
+<ol>
+  <img src="InfoModelDetailExample.png" alt="Info Model details example" border="1">
+</ol>
+</p>
+<h4><a name="Database Table">Database Table</a></h4>
+<p>The <strong>Database</strong> table is a static table that is defined outside the Catalog UI. Info Model definition defines the Database table in the DB TableName field of the InfoModel Detail form. If this field is left blank, then the system assumes that a Standard Info Model table is being defined.  The DB TableName field accepts a string value that matches  the database table name.  The Database table is not version controlled and is not maintained within the Catalog UI.   Similar to the Standard Table, the Catalog Rules can reference the columns of the Database Table. Both the database table definition (that is, columns names) and data are maintained externally to the Catalog UI. Catalog has no control over the columns (for example, whether the columns can contain null values, can be searched or appear sorted).</p>
+<h4>Static Info Table Cache</h4>
+<p>The static info tables are stored and accessed by the Info Table Cache.  The Info Table Cache is created in both the Catalog server and client AVMs.  It has a default size of 10MB and one cell in the table requires 25 bytes of memory.  These parameters can be used to calculate the number of info tables that can be cached. For example, it is possible to cache 100 info tables of 800 rows by 5 columns each or 10 tables of 5000 rows by 8 columns each. </p>
+<p><b class="strong"> Note</b><strong>:</strong>  Numeric column values consume less memory and have less performance impact than string values.</p>
+<p>The Static Info Tables are loaded into cache memory as a whole table automatically by the Catalog AVM. </p>
+<p>The content of the external Database Info table is loaded by the Info Table cache loader script. The Info Table cache calls the script &quot;cwInit:cwInfoTableCacheLoader&quot; to load the whole static external info table. The loader script loads the rows in the table and has the parameters Info Model Name and Info Table Object. Below is an example of the loader script function. The script will return a &quot;true&quot; or &quot;false&quot; indicating if the table was successfully loaded (&quot;true&quot;) or cannot process the table (&quot;false&quot;). It will also throw an exception if it cannot return either a &quot;true&quot; or &quot;false&quot; (that is, cannot find the table).</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>
+function cwInfoTableLoader(name, table) {
+..
+return true; //rows successfully loaded
+return false; //table not loaded successfully
+}</pre>
+  </div>
+</div>
+<h3><a name="dynamicTables"></a>Dynamic Tables</h3>
+<p>Dynamic info tables do not have a size limitation and are loaded row by row on demand. The info tables are defined in the Catalog and their definition is called <em>Info model</em>. For more information see <a href="InfoModels.html">Info Model</a>.</p>
+<p>Info tables contain expiration interval which defines how long the info table row can stay in the cache memory before being reloaded from the external source. The interval is specified in minutes and can have value from 0 to 30,000 or value of -1 (never expires). Since the cache has an expiration interval and automatically refreshes, dynamic info tables do not support versioning.</p>
+<p>Dynamic info tables are external tables that contain dynamic data.  Each row of the dynamic table can be loaded from an external interface. The cache loader for dynamic tables is the dynamic row cache loader, which loads a single row of data from a table in a single request.</p>
+<p>The dynamic info table is different from a static info table based on implementation and behavior.   The dynamic info table allows for metadata scripts and Java programs to be defined in the Catalog Server application and the results can be used by the Catalog Client application.  The mechanism is similar to a remote procedure call that returns a single dynamic row, caching the results of the procedure call (rows).</p>
+<p>Both standard and database info tables have an limitation of 32,765 rows for storing data in the memory. If you require loading an info table that exceeds this limitation, it is recommended that you use a dynamic info table.</p>
+<p>The following limitations apply for Dynamic Info Tables calls:</p>
+<ul>
+  <li>They implement only "Select single row" or "Select column" operations.</li>
+  <li>The search criteria of the operations must specify all search columns of the table.</li>
+  <li>The only search operation that can be specified is "equal".</li>
+</ul>
+<p>To use 
+  a dynamic info table, complete these steps:</p>
+<ol>
+  <li>Create an info model and select the <strong>Is Dynamic</strong> property's checkbox.</li>
+  <li>Add attributes that represent the table's columns.</li>
+  <li> In the cwInit namespace of the application, create a script with the following method signature. This script loads the dynamic row with data when certain criteria are given. The following is an example:<BR>
+    <BR>
+    <div class="preformatted">
+      <div class="preformattedContent">
+        <pre>function cwDynamicRowCacheLoader(infoModelName, dynamicRow) {
+    if (infoModelName=="&lt;info model name&gt;") {<BR>        if (srcOffer == "SPO_COMMON_DATA_TST_DRV_01" and tgtOffer == "SPO_SBR_NSK_DATA_MB_0001" and srcStatus == "ACTIVE" and offerLinkType == "CHANGE" and term="UNCONDITIONAL|0.0" and
+    changeEventType == "NA") {<BR>        dynamicRow.result1 = "TestingData1";
+        dynamicRow.result2 = "TestingData2";<BR>        return true;<BR>        }<BR>    return false;<BR>}</pre>
+      </div>
+    </div>
+  </li>
+  <li>A dynamic info table is only used in a catalog rule. The following is an example of how to perform the query:<BR>
+    <div class="preformatted">
+      <div class="preformattedContent">
+        <pre>Var String value<BR>value = select single row from dynOfferingLink where srcOffer == "SPO_COMMON_DATA_TST_DRV_01" and tgtOffer == "SPO_SBR_NSK_DATA_MB_0001" and srcStatus == "ACTIVE" and offerLinkType == "CHANGE" and
+    term="UNCONDITIONAL|0.0" and<BR>    changeEventType == "NA"</pre>
+      </div>
+    </div>
+  </li>
+</ol>
+<h4>Use the count() Operation in a Dynamic Info Model</h4>
+<p>To implement the count() operation, you need to  add one more column (that is,  rowCount), implement the cwDynamicRowCacheLoader, and populate the rowCount with the value from &quot;select count() where searchCriteria&quot;. This query is run once for each  distinct searchCriteria. The select count() operation does not cache all rows in its out-of-box form.</p>
+<p>The following is an example of using the count() operation in a dynamic Info Model, assuming that this rule exists:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>if theItem is null <br>  return false; <br>end if; <br>
+var Item cItem = theItem; <br>  if (select row count from INFM_MATRIX_INFO where RULE_TYPE = 2 &amp;&amp; <br>  PR_CODE = cItem.code &amp;&amp; FET_CODE = the_fetCode &amp;&amp; <br>  MI1 = the_spCode ) == 1 <br>  return true; 
+else 
+  return false <br>end if; </pre>
+  </div>
+</div>
+<p>Perform these steps:</p>
+<ol>
+  <li> Define a new dynamic info table called INFM_MATRIX_RL2 as follows: <br>
+  </li>
+  <ul>
+    <li>PR_CODE</li>
+    <li> FET_CODE</li>
+    <li> MI1</li>
+    <li> ROWCOUNT </li>
+  </ul>
+  <li> Alter the rule similar to the following:<br>
+    <br>
+    <div class="preformatted">
+      <div class="preformattedContent">
+        <pre>if theItem is null <br>  return false; <br>end if; <br>
+var Item cItem = theItem; <br>var x = SELECT ROWCOUNT FROM INFM_MATRIX_RL2 WHERE PR_CODE = cItem.code &amp;&amp; FET_CODE = the_fetCode &amp;&amp; MI1 = the_spCode ;<br><br>if x == 1 <br>  return true; <br>else <br>  return false <br>end if; </pre>
+      </div>
+    </div>
+    <br>
+  </li>
+  <li>Alter the load script such that it is similar to the following:<br>
+    <div class="preformatted">
+      <div class="preformattedContent">
+        <pre>function cwDynamicRowCacheLoader(infoModelName, dynamicRow) {<br>  var rc = false;<br>  if (infoModelName==&quot;INFM_MATRIX_RL2&quot;) {<br>    var rowCount = ... call a SQL finder to get count of rows in USEC_INFO_MATRIX<br>    dynamicRow.ROWCOUNT= rowCount;<br>    rc = true;<br>    }<br>  return rc;<br>}</pre>
+      </div>
+    </div>
+  </li>
+</ol>
+<h4>Dynamic Row Cache</h4>
+<p>The Dynamic Row cache (the cache name is DynamicRow) is created in both Catalog server and Catalog client AVMs. It contains the rows of the dynamic Info Tables and has a default size of 5MB. One column of the row requires about 60 bytes of memory, so a 5MB cache table can have  approximately 17,000 rows by 5 columns.</p>
+<p>Unlike the Static Tables, the Dynamic table data is not refreshed based on a refresh schedule or refreshed as a whole table. The Dynamic Table row is refreshed individually based on the Interval value of the Info Model details. If a row which has been kept in the cache  for more than the specified expiration interval,  the cache reloads  that row  from the external source. The expiration interval can vary from 0 to 30,000  minutes (from immediate expiration which means that the row is loaded from the  external source on every request, to approximately 20 days).  If the expiration interval is set to negative  value the row never expires and will be reloaded from the external source only  if the cache has discarded it.</p>
+<p>The Info Table cache calls the cwlnit:cwDynamicRowCacheLoader script to load the row of a dynamic table. </p>
+<p>The parameters of this script are the following:</p>
+<ul>
+  <li>Info model name</li>
+  <li>Info Table Row Object</li>
+</ul>
+<p> Similar to the Info Table cache, the Dynamic Row Cache  returns a value of <em>true</em> when it finds the row to load, <em>false</em> it is unable to find the row, and an exception if it is unable to return either <em>true</em> or <em>false</em>. </p>
+<p>For an example of using the cwDynamicRowCacheLoader script, see the <a href="#dynamicTables">Dynamic tables</a> section.</p>
+<p>Info Tables are  two-dimensional array of data represented as a database table or an Excel spreadsheet and is contained within an Info Model.</p>
+
+<h3>Search Info Tables</h3>
+<p>Indexes are used to find rows with specific column values fast. The  Search functionality of Info Tables provides enhanced search performance on columns. </p>
+<h3>Info Table Creation</h3>
+<p>The info tables consist of rows and columns. The columns contain the same type of data which can be numeric or string and matches the corresponding attributes of the info model. The standard Info tables have versions. The DB and external Info tables do not have versions. The following table illustrates how tables are created based on the  load type and source of the table.</p>
+<table class="confluenceTable" width="100%" border="1">
+  <tr>
+    <th class="confluenceTh" width="11%" scope="col">Source / Load Type</th>
+    <th class="confluenceTh" width="71%" scope="col">Static</th>
+    <th  class="confluenceTh"width="18%" scope="col">Dynamic</th>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Standard<br>
+      (Support versions)</strong></td>
+    <td class="confluenceTd"> <p>The static Info Table is stored as a single NCLOB field in the database table CWCTINFO_TABLES. Only standard tables support versions. They can be exported to or imported from Excel spreadsheets in CSV format. The standard tables are maintained by the Catalog UI and can be maintained externally as a spreadsheet. These tables are created by the AVM in a single request.</p></td>
+    <td class="confluenceTable">N/A</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Database<br>
+      (No versions)</strong></td>
+    <td class="confluenceTd"> The static Info Table is stored as a database table. The database table name matches the info model table name. The table column names match the info model
+    column names. Database Info Tables do not support versions and are not maintained by the Catalog.   The Database table content can be maintained by the application or external application, or copied from another database. These tables are created by the AVM in a single request.</td>
+    <td class="confluenceTd">N/A</td>
+  </tr>
+  <tr>
+    <td height="59" class="confluenceTd"><strong>External<br>
+      (No versions)</strong></td>
+    <td class="confluenceTd"><p> The static Info Tables are loaded by the Info Table cache loader script. The loader script can get the table content from any possible source, including external systems. The external Info Tables do not support versions. The Info Table cache loader creates the whole table in a single request.</p></td>
+    <td class="confluenceTd">The Dynamic Row cache loader creates a single row of a table in a single request.</td>
+  </tr>
+</table>
+<p>The AVM loads the standard and database Info tables automatically from the Catalog database. The static external tables are loaded by the Info Table cache loader based on table name. The dynamic Info table rows are loaded by the Dynamic Row cache loader based on table name and row search criteria (see below).</p>
+<h3>Scripting Info Table Object</h3>
+<p>The info table objects are scriptable objects of type <em>InfoTable</em>. They do not have constructor – only the AVM can create them. The object methods of the InfoTable objects are as follows:</p>
+<table width="100%" border="1">
+  <tr>
+    <th class="confluenceTh" width="11%" scope="col">Method</th>
+    <th class="confluenceTh" width="71%" scope="col">Description</th>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>addCSVRow(CSV string)</strong></td>
+    <td class="confluenceTd">This method adds a row to the end of the info table. The row values are taken in the same orders as in the CSV string. The string may specify fewer values than the number of table attributes.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>addNameValueRow(Array of pairs of column names and column values)</strong></td>
+    <td class="confluenceTd">This method adds a row to the end of the Info table. The column names should match the Info model attribute names.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>addRow(Array of strings)</strong></td>
+    <td class="confluenceTd"> This method adds a row to the end of the info table. The strings represent the values of the columns in the order defined in the Info model. The array may have fewer values than the number of columns. The missing values are set to zero if numbers or empty string if strings.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>getCellValue(row,column)</strong></td>
+    <td class="confluenceTd">This method gets the cell value by a specified row and column. The method returns either a double value if the string is numeric or a string value.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>getColumnCount()</strong></td>
+    <td class="confluenceTd">This method returns the number of columns.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>getColumnName(index)</strong></td>
+    <td class="confluenceTd">This method gets the column name by index.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>getRow(index)</strong></td>
+    <td class="confluenceTd">This method returns the InfoRow scriptable object that represents a table row the index.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>getRowCount()</strong></td>
+    <td class="confluenceTd"> This method returns the number of rows.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>getTableName()</strong></td>
+    <td class="confluenceTd"> This method returns the name of the Info table (that is, the name of the Info model).</td>
+  </tr>
+</table>
+<p>When creating a table, either a table ID or a table model ID needs to be specified:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>// Loads the info table from DB
+var iTable = new InfoTable(tableId); <BR>
+// Creates an empty info table with the model
+var iTable2 = new InfoTable(null, infoModelId);</pre>
+  </div>
+</div>
+<p>The InfoTable object also has the <tt>length</tt> property and <tt>[index]</tt> operation, so it can be accessed as either an array or rows:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>for (var i = 0; i < iTable.length; i++) {
+    var row = iTable.getRow(i); // InfoRow
+    // same as
+    row = iTable[i];
+    ...
+}</pre>
+  </div>
+</div>
+<h3>Scripting Info Row Object</h3>
+<p>The rows of the Info table objects are scriptable objects of type <em>InfoRow</em>. They do not have constructor – only the AVM can create them. The Info Row objects have read only access to the values of their columns that can be accessed by dot notation.</p>
+<p> <strong>Note</strong>: When used in Dynamic Row cache loader the info row object exposes setters for the result columns which can be used with dot notation.</p>
+<p>InfoRow is a scriptable object that represents a single row in the table.</p>
+<p>To get a cell value that was already implemented) by column name, use the column name as a property:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>var value = row.column1; // or
+
+value = row["column1"];</pre>
+  </div>
+</div>
+<p>The InfoRow object also has the <tt>length</tt> property and <tt>[index]</tt> operation, so it can be accessed as either an array of cells by column index:<BR>
+</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>for (var i = 0; i < iTable.length; i++) {
+    var row = iTable.getRow(i); // InfoRow
+    // same as
+    row = iTable[i];
+    for (var j = 0; j < row.length; j++) {
+        var val = row[j];
+        // same as
+        val = iTable.getCellValue(i, j);
+        // same as
+        val = iTable[i][j];
+        // same as
+        val columnName = iTable.getColumnName(j);
+        val = row[columnName];
+        ...
+    }
+}</pre>
+  </div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

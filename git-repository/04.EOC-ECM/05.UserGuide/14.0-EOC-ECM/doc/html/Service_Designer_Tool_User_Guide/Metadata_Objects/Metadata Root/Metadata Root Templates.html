@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Metadata Root Libraries</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h3>Metadata Root Libraries</h3>
+
+<p>The <b>Library</b> tab in the top-level metadata object manages all project-specific libraries included in the project.</p>
+<h4>Add a Library JAR File</h4>
+<p>Click the <strong>Add</strong> icon (<img src="iconAdd.png" align="absmiddle" border="0" alt="" />) to include a library by adding a JAR file using the opened dialog box. The JAR file must be a library based on another project that was packaged using the <a href="../../Service Designer Menu Actions/Metadata Build JAR.html">Build Library JAR</a> menu command by Velocity Studio. Once the library inclusion is successful, the name of the library JAR file is added to the list, and the JAR file is stored in the <i>templates</i> folder of project's root directory.</p>
+
+<p><img src="MDrootTemplate.png" border="1" alt="Metadata root - Library tab" /></p>
+
+<p>A (manual) project reload is necessary to have the added libraries to appear in Velocity Studio. In fact, Velocity Studio prompts you to do so once you save or navigate to another metadata object. Simply open the same project again to reload.</p>
+
+<p><img src="MDrootTemplateReload.png" align="absmiddle" border="0" alt="" /></p>
+
+
+<p>After the project is reloaded, you can find and access metadata of the included library in the <a href="../../Service_Designer_User_Interface/Navigation Pane - Template.html"><b>Library</b> tab</a> of <b>Navigation</b> pane.
+
+<h4>Remove a Library JAR File</h4>
+<p>To remove a library from the list, highlight the library that you want and then  click the <strong>Remove</strong> icon (<img src="iconRemove.png" align="absmiddle" border="0" alt="" />).</p>
+<h4>Sort Library JAR Files</h4>
+<p>To sort a library JAR files list alphabetically,   click the <strong>Sort</strong> icon (<img src="librarySortIcon.png" align="absmiddle" border="" alt="" />).</p>
+
+<h4>Add a System Template to a Project</h4>
+<p>To add an system template to your metadata project, complete these steps:</p>
+<ol>
+  <li>Click the <strong>Add</strong> button (<img src="MDrootTemplateAddSystemTemplate.png" width="21" height="21" alt="Add button to add a system template">) to launch the Add system template dialog.</li>
+  <li>Highlight the optional templates that you want to add and then click the <strong>Add</strong> button.<br>
+    <br>
+    <img src="MDrootTemplateSelectSystemTemplate.png" width="304" height="428" alt="Add system template dialog"><br>
+    <br>
+  </li>
+  <li>The system templates appear in the Library tab. Click the <strong>Save</strong> button to save your changes.</li>
+</ol>
+<p><b>Notes</b>: </p>
+<ul>
+  <li>The included metadata files are also subject to <a href="../../Service_Designer_User_Interface/Error Pane.html">metadata validation</a> as well as <a href="../../Service_Designer_User_Interface/DB Mapping Pane.html">DB mapping check</a> before you can run your project.</li>
+  <li>After you have added all optional system templates, clicking the <strong>Add</strong> button results in a message appearing, indicating that you have added all available system templates.</li>
+  <li>The SystemTemplateSettings.java  file defines the list of optional system templates, which includes those that are not mandatory.</li>
+</ul>
+<h4>Automatically Loaded Libraries</h4>
+<p>The following mandatory libraries are loaded by default: </p>
+<ul>
+  <li>api_common</li>
+  <li> ui_common</li>
+  <li> security</li>
+  <li> cwl_security</li>
+  </ul>
+<p>  If your project metadata does not include these libraries in your metadata header, these libraries are always loaded. If your project metadata contains these JAR files within its own <em>template</em> folder, those JAR files are used. Otherwise, the JAR files in the installation's <em>modules</em> folder are used instead.</p>
+<h4>System JAR Files</h4>
+<p>The following JAR files contain the product system metadata, which are located in your &lt;<em>installation_folder</em>&gt;\modules folder:</p>
+<ul>
+  <li>cwf.jar</li>
+  <li>cwf5.jar</li>
+  </ul>
+<p><strong>Note:</strong> The cwf5.jar is optional. None of the system templates depend on this .jar file. Instead, cwf5.jar is to be used for backward compatibility with your metadata. New metadata projects need to use the other mandatory and pertinent templates, as needed.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

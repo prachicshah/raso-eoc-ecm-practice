@@ -1,0 +1,242 @@
+<html>
+<head>
+<title>API Replace</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>API Replace</h2>
+<p>Clicking <strong>Search</strong> &gt; <strong>API Replace </strong> from Velocity Studio's menu bar allows you to replace an API call with another one in your metadata project scripts, but not in the modules (templates). You can use this feature in a couple of ways:</p>
+<ul>
+  <li>Replace deprecated APIs by using an <SPAN id="internal-source-marker_0.21048212380917441"> internal list of migration (replacement) specifications</SPAN></li>
+  <li><SPAN>Use  your own migration specification for renaming or migrating your project metadata.</SPAN></li>
+</ul>
+<h3>API Replace Log File</h3>
+<p>The API replace function automatically creates a log file with the name CWQCAPIMigrate<em>yymmdd</em>-<em>hhmm</em>, which is located in the &lt;<em>installation_root_directory</em>&gt;\designer\env\log folder, where:</p>
+<ul>
+  <li><em>yy</em> denotes the year</li>
+  <li><em>mm</em> represents the month</li>
+  <li><em>dd</em> indicates the day</li>
+  <li><em>hh</em> denotes the hour</li>
+  <li><em>mm</em> represents minutes</li>
+</ul>
+<p>The log contains an HTML table with  three columns:</p>
+<ul>
+  <li>The old API name.</li>
+  <li>The new API name.</li>
+  <li>Change locations that are sorted by the old API names. The locations have the format: <em>namespace:element-name.method-name;line number. </em>If the element is a global script, the method name does not appear in the syntax.<BR>
+  </li>
+</ul>
+<p>The following is a sample log table row: </p>
+<table border="1" class="confluenceTable">
+  <tr>
+    <td width="158" class="confluenceTd">Document.myOLdAPI</td>
+    <td width="220" class="confluenceTd">theDocumentCache.myNewAPI</td>
+    <td width="188" class="confluenceTd"><p>myns:myel1.onStore; 21<BR>
+      myns:myel2.method; 3<BR>
+      myns1:myscript;234</p></td>
+  </tr>
+</table>
+<p><strong>Notes: </strong></p>
+<ul>
+  <li>The table is sorted by the first column</li>
+  <li> The list in each cell in the third column is sorted alphabetically </li>
+  <li>If there are rule parsing errors, they will appear in your log file</li>
+</ul>
+<h3><a name="APIreplaceSyntax"></a>API Replace Syntax for Original and Replacement Fields</h3>
+<p>When adding API parameters using the API replace function, both the <strong>Original</strong> and <strong>Replacement</strong> fields take the format <em>object-name.API-name</em>(<em>parameter specification</em>), where the <em>object-name</em> and the dot after it are optional. The parameter specification is either an ellipsis (...) specifying any number of parameters or a list of parameters in format <em>?n</em>, where <em>n</em> is from 1 to the required number of parameters.</p>
+<p><strong>Note:</strong> The old API must specify the parameter number in a natural sequence (that is, 1, 2, 3, ...),  while in the new API can specify it in any order.  Naturally, the API may not specify parameters at all – only the opening and closing parentheses. </p>
+<p>The following table provides examples of using the syntax for the <strong>Original</strong> and <strong>Replacement</strong> fields, a description of the syntax, and how the APIs are migrated:</p>
+<table width="1026" class="confluenceTable">
+  <tr>
+    <th width="112" class="confluenceTh">Original field</th>
+    <th width="124" class="confluenceTh">Replacement field</th>
+    <th width="561" class="confluenceTh">Description</th>
+    <th width="209" class="confluenceTh">Example</th>
+  </tr>
+  <tr>
+    <td class="confluenceTd">o1.api1(?1, ?2)</td>
+    <td class="confluenceTd"> o2.api2(?2, ?1)</td>
+    <td class="confluenceTd">Replace the call to o1.api1 with the call to o2.api2, and reverse the two parameters. The migration only occurs if the o1 API has two parameters.</td>
+    <td class="confluenceTd"><p>var x = b + o1.api1(c + d, 7);<BR>
+      var y = x + o1.api1(x);</p>
+      <p> will be migrated as:<BR>
+        var x = b + o2.api2(7, c + d);<BR>
+        var y = x + o1.api1(x);</p></td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">o1.api3(…) </td>
+    <td class="confluenceTd">o2.api4(…)</td>
+
+    <td class="confluenceTd">Replace the call to o1.api3 with the call to o2.api4, and keep all parameters. The migration occurs, independent of the number of parameters in the o3 API call.</td>
+    <td class="confluenceTd"><p>var x = b + o1.api3(c + d, 7);<BR>
+      var y = x + o1.api3(x);</p>
+      <p> will be migrated as:<BR>
+        var x = b + o2.api4(c + d, 7);<BR>
+        var y = x + o2.api4(x);</p></td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">.api5() </td>
+    <td class="confluenceTd">.api6()</td>
+    <td class="confluenceTd">Replaces any occurrence of api5 with api6, as long as the API  is preceded by a dot and has no parameters.</td>
+    <td class="confluenceTd"><p>var x = b + o1.api5(c + d, 7);<BR>
+      var y = x + o1.api5();</p>
+      <p> will be migrated as:<BR>
+        var x = b + o1.api5(c + d, 7);<BR>
+        var y = x + o1.api6();</p></td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">.api5(?1,?2)</TD>
+    <td class="confluenceTd">.api6(?1,?2)</td>
+    <td class="confluenceTd">Replaces any occurrence of api5 with api6, as long as the API  is preceded by a dot and has exactly two parameters.</TD>
+    <td class="confluenceTd"><p>var x = b + o1.api5(c + d, 7);<BR>
+      var y = x + o1.api5();</p>
+      <p> will be migrated as:<BR>
+        var x = b + o1.api6(c + d, 7);<BR>
+        var y = x + o1.api5();</p></TD>
+  </tr>
+  <tr>
+    <td class="confluenceTd">api7(…)</TD>
+    <td class="confluenceTd">api8(…)</td>
+    <td class="confluenceTd">Replaces any occurrence of api7 with api8, as long as the API is not preceded by a dot,  independent of the number of parameters. </TD>
+    <td class="confluenceTd"><p>var x = b + o1.api7(c + d, 7);<BR>
+      var y = x + api7();</p>
+      <p> will be migrated as:<BR>
+        var x = b + o1.api7(c + d, 7);<BR>
+        var y = x + api8();</p></TD>
+  </tr>
+  <tr>
+    <td class="confluenceTd">o1.api7(…) </TD>
+    <td class="confluenceTd">api8(…)</td>
+    <td class="confluenceTd">Replaces any occurrence of o1.api7 with api8, independent of the number of parameters. </TD>
+    <td class="confluenceTd"><p>var x = b + o1.api7(c + d, 7);<BR>
+      var y = x + o1.api7();</p>
+      <p> will be migrated as:<BR>
+        var x = b + api8(c + d, 7);<BR>
+        var y = x + api8();</p></TD>
+  </tr>
+  <tr>
+    <td class="confluenceTd">a.b()</TD>
+    <td class="confluenceTd">c()</td>
+    <td class="confluenceTd">Replaces any occurrence of a.b() with c().</TD>
+    <td class="confluenceTd"><p>a.b().x();<br>
+      will be replaced by <br>
+      c.x();</p></TD>
+  </tr>
+  <tr>
+    <td class="confluenceTd">a(...)</TD>
+    <td class="confluenceTd">c(?1, &quot;1&quot;, null, 3)</td>
+    <td class="confluenceTd">Replaces any occurrence of a with c. Note that the original and replacement APIs can have a different number of parameters, including null.</TD>
+    <td class="confluenceTd"><p>a(1, &quot;x&quot;, &quot;5&quot;)<br>
+      will be replaced by<br>
+      c(1,  &quot;1&quot;, null, 3);</p></TD>
+  </tr>
+  <tr>
+    <td class="confluenceTd">a(...)</TD>
+    <td class="confluenceTd">c(?2, 0, ?1)</td>
+    <td class="confluenceTd">Replaces any occurrence of a with c. Note that the original and replacement APIs can have a different number of parameters.</TD>
+    <td class="confluenceTd"><p>a(1)      will be replaced by <br>
+      c(null,  0, 1);</p></TD>
+  </tr>
+  <tr>
+    <td class="confluenceTd">api9(?2,?1) </TD>
+    <td class="confluenceTd">api10(?1,?2)</td>
+    <td class="confluenceTd">Invalid specification, as the parameter numbers in the old API are incorrect.</TD>
+    <td class="confluenceTd"></TD>
+  </tr>
+</table>
+<p><strong>Note:</strong> If the old API specifies any number of parameters, the new API should specify the same.</p>
+<h3>Use API Replace</h3>
+<p>To use the API Replace function, complete the following steps:</p>
+<ol>
+  <li>From the API Replace screen, click the <strong>Add</strong> button.<br>
+    <br>
+    <img src="APIreplace.png" walt="API Replace - Add button"><br>
+    <br>
+    This example uses the API Replace function to replace the mapDocToDoc() API, which is present in TestScript:<br>
+    <br>
+    <img src="APIreplaceOldScript.png" alt="API Replace - old API in script" border="1"><br>
+    <br>
+  </li>
+  <li>The Add Parameter dialog appears. Enter the old API that you want to replace in your metadata project in the <strong>Original</strong> field. For the <strong>Replacement</strong> field, enter the API that will replace the old one. See the <a href="#APIreplaceSyntax">API Replace Syntax for Original and Replacement Fields</a> section for syntactical details.<br>
+    <br>
+    <img src="APIreplaceAddParameter.png" alt="API Replace - Add parameter"><br>
+    <br>
+    Click the <strong>OK</strong> button to continue.<br>
+    <br>
+  </li>
+  <li>If you have more APIs you want to add, repeat the two previous steps steps of this procedure. Otherwise, to replace your original APIs with their corresponding new APIs, click the <strong>Replace</strong> button.<br>
+    <br>
+    <img src="APIreplaceReplaceButton.png" alt="API Replace - Replace button"><br>
+    <br>
+  </li>
+  <li>You can check whether the API Replace function was successful by performing one of the following actions:
+    <ul>
+      <li>Checking your scripts to see the change. In TestScript, the API change has been made.<br>
+        <br>
+        <img src="APIreplaceNewScript.png" alt="API Replace - Script with new API" border="1"><br>
+        <br>
+      </li>
+      <li>Checking the log file to ensure that there were no parsing errors:<br>
+        <br>
+        <img src="APIreplaceLogFile.png" alt="API Replace - Log file" border="1"></li>
+    </ul>
+  </li>
+</ol>
+<blockquote>
+  <p><strong>Notes:</strong></p>
+  <ul>
+    <li>After all API replacement changes have been completed, the migration automatically stores all changed files.</li>
+    <li> The migration cannot start under these conditions:
+      <ul>
+        <li>If there are changes in memory that are not stored in the file system. You are prompted to save your changes before continuing. </li>
+        <li>If the log file cannot be created.</li>
+        <li>If the user-defined migration specification has errors.</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+<h3>Import Your API Replace Parameters</h3>
+<p>You can import  your original and replacement APIs  that you have specified in an XML file by following these steps:</p>
+<ol>
+  <li>From the API Replace screen, click the <strong>Import</strong> button.<br>
+    <br>
+    <img src="APIreplaceImportButton.png" alt="API Replace - Import button"><br>
+    <br>
+  </li>
+  <li>The Import Replace Rule dialog appears. Specify the XML file that contains your original and replacement APIs, and then click the <strong>Open</strong> button.<br>
+    <br>
+    <img src="APIreplaceImportDialog.png" alt="API Replace - Import replace rule dialog"><br>
+    <br>
+  </li>
+  <li>The original and replacement APIs specified in your XML file are imported to Velocity Studio. <br>
+    <br>
+    <img src="APIreplaceImportXML.png" alt="API Replace - Import XML file"><br>
+    <br>
+    You can either click the <strong>Add</strong> button to add more original and corresponding replacement APIs, or click the <strong>Replace</strong> button to apply the changes to your metadata.</li>
+</ol>
+<h3>Export Your API Replace Parameters</h3>
+<p>You can export your original and replacement APIs that you have specified in Velocity Studio to an XML file by following these steps:</p>
+<ol>
+  <li>Enter your <strong>Original</strong> and <strong>Replacement</strong> APIs in the fields provided, and then click the <strong>Export</strong> button.<br>
+    <br>
+    <img src="APIreplaceExportButton.png" alt="API Replace - Export button"><br>
+    <br>
+  </li>
+  <li>The Export  dialog appears. Specify the <strong>File Name</strong> that you want to save your original and replacement APIs to, and then click the <strong>Save</strong> button.<br>
+    <br>
+    <img src="APIreplaceExportDialog.png" alt="API Replace - Export dialog"><br>
+    <br>
+  </li>
+  <li>Your original and replacement APIs are exported as an XML file.</li>
+</ol></td>
+</tr>
+</table>
+
+</body>
+</html>

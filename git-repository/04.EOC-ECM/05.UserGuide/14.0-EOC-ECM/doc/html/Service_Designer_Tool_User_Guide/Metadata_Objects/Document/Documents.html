@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Documents</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="DataTypes"></a>Documents</h2>
+
+<p>A Document is the container for Data Type objects called Document <i>Variables</i>. A Document may be extended from another Document and, in this case, may add more Variables to the base Document.</p>
+
+<p>Essentially, a Document is used for the following purposes:</p>
+<ul>
+  <li>To display or collect data from the UI (browser).</li>
+  <li>To read or write data from database.</li>
+  <li>To hold input or output parameters for external interface communication.</li>
+  <li>To hold the search criteria and results for Finder search operations.</li>
+  <li>To hold internal data for Decision Trees (wizards).</li>
+  <li>To hold instance data of runtime process instances.</li>
+</ul>
+
+<p>The most common use of Document is to present to the user in UI (that is, it can display itself in a browser and you can enter data in it from the browser). Additionally, a Document can be mapped to the following:</p>
+<ul>
+  <li>The database.</li>
+  <li>Another Document or Data Structure.</li>
+  <li>A text file.</li>
+</ul>
+
+<p>The UI presentation of a Document is defined through <i>Forms</i>. Forms allow different subsets of the Document data to be displayed in different presentation styles and to be used in different runtime conditions. This may depend on the user privileges, Order states, Document content, process operations and data from other runtime objects. The Document Variables displayed in the form are called <em>form fields</em>. Accessing Document data and its presentation in Forms are connected and controlled by the Document's <i>User Interface</i> object.</p>
+
+<p>Document content can be manipulated via JavaScript scripts using pre-defined rules that are defined in <b>Methods</b> tab of the Document, such as Initialization Methods which are used to set initial values for any Variables in the current Document.</p>
+
+<h4><a name="new">Create a New Document</a></h4>
+
+<p>To create a new Document, do one of the following options:</p>
+<ul>
+<li>In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:</li>
+<ol>
+<li>Right-click a Namespace and select <b>New ...</b></li>
+<li><b>New Metadata Object</b> wizard appears as a popup. Expand <b>Data Dictionaries</b>, select <b>Document</b>, and then click the <b>Next</b> button.</li>
+<li>Step two of the wizard appears. Enter the name of Document (must conform to JavaScript naming conventions). For <b>Extends</b>, choose <b>com.conceptwave.system.Document</b> to create a new Document. To create a user interface, select the <strong>Create UI</strong> option. Then, click the <b>Finish</b> button.</li>
+</ol>
+<li><i>OR</i></li>
+<ol>
+<li>Right-click <b>Documents</b> folder or the <b>Data Dictionaries</b> folder in a Namespace, if it is present. Select <b>New Document</b><strong>.</strong></li>
+<li>Follow step 3 from the previous procedure.</li>
+</ol>
+</ul>
+
+<p><strong>Note</strong>: To prevent problems from surfacing in JavaScript and SQL, checks occur to ensure that documents or <a href="Document Variables.html">document variables</a> carrying names that match a set of reserved words are not used during development.</p>
+<p>After the Document is created by the wizard, you can no longer change the base Document that extends it. The newly created Document is added under <b>Documents</b> folder. Beneath the Document node is the Document's User Interface node, which subsequently contains the Forms of the Document.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="newDocumentNode.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> To add or remove a user interface, right-click your document and select <strong>Create UI</strong> or <strong>Delete UI</strong>, respectively.</p></td>
+</tr>
+</table>
+</body>
+</html>

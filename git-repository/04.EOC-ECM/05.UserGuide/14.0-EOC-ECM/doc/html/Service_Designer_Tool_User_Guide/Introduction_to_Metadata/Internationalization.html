@@ -1,0 +1,181 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Internationalization</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+  <td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Internationalization</h2>
+
+<p>Applications built by Velocity Studio enables clients to work simultaneously in different languages. The elements of Velocity Studio<sup></sup> applications that can be internationalized are set by establishing a <i>Translation</i> per language, which are Excel files that can be <a href="../Service Designer Menu Actions/Import Translation.html">imported</a> and <a href="../Service Designer Menu Actions/Export Translation.html">exported</a> of the following types:</p>
+<ul>
+<li>Attributes of the metadata elements such as label, help, etc.</li>
+<li>Messages in validation rules.</li>
+<li>Messages for applications, the system and users.</li>
+</ul>
+
+<p>The first two types of Translation are user-defined, which means a Translation record can be added or removed, and can be translated using Translation. Conversely, the last type is system-defined, which can be translated using Translation but the translation record cannot be added or removed.</p>
+
+<p>Translation supports the internationalization of the following elements:</p>
+<ul>
+<li>The label and help of the data types, documents, orders, menus, forms and dashboards.</li>
+<li>The labels of the interfaces, operations, exceptions, signals, participants, alerts, processes, finders and navigation trees.</li>
+<li>The messages of validation rules in the data types, documents and orders.</li>
+<li>The enumeration code descriptions in the data types.</li>
+<li>The labels of the leaves in the documents.</li>
+<!-- <li>The labels of the form elements in the forms.</li> -->
+<li>The label, help, range axis and domain axis of the chart items in the finders.</li>
+<li>The application, system and user messages.</li>
+</ul>
+
+<p>At the top-level application metadata object, the <a href="../Metadata_Objects/Metadata Root/Metadata Root Languages.html">Languages tab</a> defines all languages that shall be supported by the application runtime, as well as a default language that shall be used when browser requests have no language specified. All Translations can only be made to this list of languages defined by the application metadata.</p>
+<h3><a name="browserLanguage">Client Browser Language Settings</a></h3>
+
+<p>To see the runtime Web application in the desired language, the following steps should be taken:</p>
+<ol>
+<li>The language specific Translation should be created using <a href="../Service Designer Menu Actions/Import Translation.html">Translation Import</a> menu command.</li>
+<li>The browser language should be set to the same language. For example, in Internet Explorer, do the following steps to set up the language:
+<ul>
+<li>Select <strong>Internet Options...</strong> from the Tools menu. The Internet Options dialog opens.</li>
+<li>Click the <strong>Languages...</strong> button at the bottom of the Internet Options dialog. The Language Preference dialog opens.</li>
+<li>If you do not see your language in the Language list of the dialog, click the <strong>Add...</strong> button, select your language, and then click the <strong>OK</strong> button. The language is added to the Language list.</li>
+<li>Select your language in the Language list and use the <strong>Move Up</strong> button to move the selected row to the first position in the list.</li>
+<li>Click the <strong>OK</strong> button in the Language Preference dialog, and then click the <strong>OK</strong> button from the Internet Options dialog.</li>
+</ul>
+</li>
+<li>If the character set of the selected language is not installed on your computer, you are prompted to install it when running the Web framework for the first time. You must have privileges to install programs on your computer  to run the installation.</li>
+<li>The Web framework uses the browser language setting to select the language resource according to the following rules:
+  <ul>
+    <li>The language code is taken from the browser request (for example, lr-cc).</li>
+    <li>If language resource lr-cc exists, it will be used.</li>
+    <li>If language resource lr-cc does not exist, but the language resource lr-xx exists, the latter will be used.</li>
+    <li>If language resource lr-xx does not exist, the default language resource specified in the <a href="../Metadata_Objects/Metadata Root/Metadata Root Languages.html">top-level Metadata's Language tab</a> will be used.</li>
+    </ul>
+</li>
+</ol>
+<p><strong>Note:</strong> You can sort language resource files by keyword (for example, name) after saving  all metadata.</p>
+<h3><a name="translationFallback">Translation Fallback for Labels</a>, and System and User Messages</h3>
+<p>Velocity Studio uses a system default language. By default, it uses EN-XX. </p>
+<p>The fallback for translations for labels, and system and user messages is as follows:</p>
+<ul>
+  <li>  If the language requested is the system default language, it  will not fall back to any other language. </li>
+  <li>    If the language requested is in the same family as the  system default language, it will fall back to the system default language if  either one of the following conditions are met:
+    <ul>
+      <li>The language requested is not defined in the metadata</li>
+      <li>The language  requested has no value for the requested code      </li>
+      </ul>
+  </li>
+  <li>If the language requested is a language is not in the same  family (see the definition that follows the table) as the system default language:
+    <ul>
+      <li> If the language requested  is defined in the metadata, but  does not contain the code requested, it falls back to the system default  language. If the language requested is not defined in the metadata, it  falls back to the  –xx version of its language. Failing that, it  falls back to the next  language in the same family. Failing that, it ultimately falls back to the system  default language.</li>
+    </ul>
+  </li>
+  </ul>
+<p>As an example, the language fallback priority is as follows: </p>
+<ol>
+  <li>DE-CH   falls back to DE-XX. </li>
+  <li>If DE-XX is not defined, it  falls back to whichever DE-  it finds first that is defined in the metadata. </li>
+  <li>If there are no other DE-XX  languages defined, it  falls back to the system default language (EN-XX).</li>
+</ol>
+<p>The following table summarizes the language requested, whether the language is defined in the metadata or code, whether the language in the same language family has been defined in either the metadata or code, and the final fallback result.</p>
+<table width="1106" border="1" cellpadding="0" cellspacing="0" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width='235' class='confluenceTh'>Language requested</th>
+      <th width='145' class='confluenceTh'>Has language requested been defined in metadata?</th>
+      <th width='136' class='confluenceTh'>Code is defined in language requested?</th>
+      <th width='142' class='confluenceTh'>Has language in same family* been defined in metadata?</th>
+      <th width='137' class='confluenceTh'>Code is defined in language in same family?</th>
+      <th width='297' class='confluenceTh'>Fallback result</th>
+    </tr>
+    <tr>
+      <td valign="top"><p>System default (EN-XX)</p></td>
+      <td valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td valign="top"><p>System default (EN-XX)</p></td>
+    </tr>
+    <tr>
+      <td rowspan="3" class='confluenceTd'>System default family (EN-CA)</td>
+      <td rowspan="2" class='confluenceTd'>Yes</td>
+      <td width="136" valign="top"><p>Yes</p></td>
+      <td width="142" valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td width="137" valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td width="297" valign="top"><p>System default family (EN-CA)</p></td>
+      </tr>
+    <tr>
+      <td width="136" valign="top"><p>No</p></td>
+      <td width="142" valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td width="137" valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td width="297" valign="top"><p>System default (EN-XX)</p></td>
+      </tr>
+    <tr>
+      <td valign="top"><p>No</p></td>
+      <td valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td valign="top"><p>System default (EN-XX)</p></td>
+      </tr>
+    <tr>
+      <td rowspan="5" class='confluenceTd'>Non-system language (DE-something)</td>
+      <td rowspan="2" class='confluenceTd'>Yes</td>
+      <td class='confluenceTd'>Yes</td>
+      <td width="142" valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td width="137" valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td width="297" valign="top"><p>Non-system language (DE-something)</p></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>No</td>
+      <td valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td valign="top"><p><span class="confluenceTd">Not applicable</span></p></td>
+      <td width="297" valign="top"><p>System default (EN-XX)</p></td>
+      </tr>
+    <tr>
+      <td rowspan="3" class='confluenceTd'>No</td>
+      <td rowspan="3" class='confluenceTd'>Not applicable</td>
+      <td rowspan="2" class='confluenceTd'>Yes</td>
+      <td class='confluenceTd'>Yes</td>
+      <td class='confluenceTd'>Language in same family (for example, DE-XX)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>No</td>
+      <td class='confluenceTd'>System default (EN-XX)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>No</td>
+      <td class='confluenceTd'>Not applicable</td>
+      <td class='confluenceTd'>System default (EN-XX)</td>
+    </tr>
+  </tbody>
+</table>
+<p>* Language in the same family means languages that have the  same prefix. </p>
+<p>For instance, these languages belong to the same family:</p>
+<ul>
+  <li> EN-XX</li>
+  <li>EN-CA</li>
+  <li>EN-US</li>
+  </ul>
+<p>Another example of languages belonging to the same family is as follows:</p>
+<ul>
+  <li>DE-XX</li>
+  <li>DE-CH</li>
+  <li>DE-AT</li>
+</ul>
+<p><strong>Note:</strong> This fallback strategy is primarily based on whether  the possible fallback language is defined in the metadata, and is not based on  whether the possible fallback language actually has the code requested. Ultimately, the last fallback language is always the system default language.  As a result, it is recommended that you ensure that any message code has  a value in the system default language.</p>
+<p><br>
+  <br>
+</p></td>
+</tr>
+</table>
+</body>
+</html>

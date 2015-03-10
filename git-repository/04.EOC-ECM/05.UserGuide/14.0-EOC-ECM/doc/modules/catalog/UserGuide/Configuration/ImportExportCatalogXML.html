@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Import and Export Catalog in XML Format</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Import and Export Catalog in XML Format</h2>
+<p>The import and export functions allow you to transfer catalog data between different environments. You can export catalog data to an XML file, which you can open in Excel and view it as a spreadsheet. Additionally, you can add data to this Excel spreadsheet XML file, and then import it to the catalog database.</p>
+<h3>Template File in XML Format</h3>
+<p>Catalog provides a template file for importing and exporting data in XML. You can access this template file in Velocity Studio by doing the following:</p>
+<ol>
+  <li>Click the Resources tab and expand the <strong>Excel Template</strong> folder.</li>
+  <li>Right-click the <strong>Template.xml</strong> file and select <strong>Export Resource</strong>.<br>
+    <br>
+    <img src="ImportExportXMLresourcesTemplate.png" width="248" height="510" alt="Resources tab - export Excel template">  <br>
+    <br>
+  </li>
+  <li>Provide a file name for the template, indicate where you want to save the file, and click the <strong>Save</strong> button.</li>
+</ol>
+<p>The Excel-compatible XML file contains a set of sheets where each sheet represents a catalog object or association. Within a  sheet, the columns provide the definition of the object or association. Every row represents a different object or association. </p>
+<p>The following sample spreadsheet represents sample data used to define an item in the catalog. The first  row in the sheet lists the properties of the item. The next two rows reflect  two items:</p>
+<ul>
+  <li>Handset</li>
+  <li>Internet</li>
+  </ul>
+<p><img src="ImportExportXMLsampleExcelTemplateExport.png" alt="Sample Excel template for importing and exporting catalog data" width="1080" height="213" border="1"> </p>
+<p>If any of the cells expect input in a  specific format, the column header provides this information in the form of a  comment.</p>
+<h3>Export Data to an XML File</h3>
+<p>When exporting, all catalog  objects are exported one at a time into the XML file. Eventually, all data  from all catalog tables are placed in this file.</p>
+<h3>Import Data from an XML File</h3>
+<p>You can fully import data from a formatted XML file into a catalog database. The  relationship between all data is also established according to the sheets  in the XML.</p>
+<p>The following   image gives an example of creating an item attribute association. This  association is used to link an item object with an attribute object. In this example, <strong>handset</strong> has been defined in the <strong>itemCode</strong> column and the  attribute refers to <strong>brand</strong> in the <strong>attributeCode</strong> column.</p>
+<p><img src="ImportExportXMLsampleExcelTemplateImport.png" alt="Sample Excel file for importing" width="1078" height="182" border="1"></p>
+<p><span class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;">Similar to  the previous example, all relations of the Catalog data can be indicated in  this manner. When inputting data into the XML spreadsheet, all  relations must be well considered.</span></p>
+During  the import process, if the object already exists in the catalog, it is updated.  If the object does not exist, it is created.
+<h3>Object-specific Import or Export</h3>
+<p>Catalog  also provides the ability to perform an object-specific import or export. Instead of  importing or exporting all data contained in the catalog, you can perform  these operations on an item, project, or hierarchy. When you perform an export at the object level, only data related to the object, including the  definition, associations, and dependent objects are exported. </p>
+Similarly,  instead of placing all catalog data in one XML file and inputting it into the  database, you can choose to put data <span class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;">only </span>related to one item, project, or hierarchy  in an XML file, and then importing it.<BR>  <BR></td>
+</tr>
+</body>
+</html>

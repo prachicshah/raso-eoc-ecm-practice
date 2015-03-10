@@ -1,0 +1,98 @@
+﻿<html>
+<head>
+<title>Rules Config Instances</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+<!--
+hilary {
+	color: #906;
+}
+.Hilary {
+	font-size: x-large;
+	color: #93F;
+}
+-->
+</style>
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<h2>Rules Config Instances Tab</h2>
+<p>The <strong>Config Instances</strong> tab allows you to maintain a list of database or deployment instances. These instances are stored in a BLOB within a CLUSTER record in the CWVMINFO table. The <strong>Config Instances</strong> tab is available for metatdata and templates (that is, from the <strong>Library</strong> tab), and is enabled when a database connection is available. This tab contains <a href="ruleInstances.html">Rule Instance</a> field. </p>
+<p> The order of instances in the list defines the order in which the instances will be evaluated at runtime. This order can be changed using the <strong>Up</strong> and <strong>Down</strong> arrow buttons on the right side of the table and the <strong>Sort</strong> button. </p>
+<p><strong>Note:</strong> The Rule properties are read-only. When connected to the database, on the <strong>Config Instances</strong> pane, you can add and change rule instances for a rule either from the library or in your metadata. </p>
+<p><img src="ConfigInstances.png" alt="Config Instances tab" border="1" /></p>
+<p>The <strong>Rules Instances</strong> tab contains the following fields:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="108" class='confluenceTh'>Column</th>
+      <th width="691" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Label</strong></td>
+      <td class='confluenceTd'>The instance label.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Exclude</strong></td>
+      <td class='confluenceTd'>When checked, the instance will be excluded from the evaluation sequence, but can be invoked from other instances.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Has Condition</strong></td>
+      <td class='confluenceTd'>When checked, the instance has a condition.</td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>The system must be restarted once runtime instances are changed.</li>
+  <li>When you have a rule  that contains both instance rules and configuration instances, the configuration instances  are processed first.</li>
+</ul>
+<p>The <strong>Rule Instance</strong> tab contains the following buttons:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="141" class='confluenceTh'>Button</th>
+      <th width="1482" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Up</strong></td>
+      <td class='confluenceTd'>Moves the selected instance rule up in the instance list.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Down</strong></td>
+      <td class='confluenceTd'>Moves the selected instance rule down in the instance list.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Add</strong></td>
+      <td class='confluenceTd'>Opens the <b>Rule Instance Properties</b> dialog  so that a new instance can be added for the rule selected in the <b>Rule</b> combo box. The new instance will be placed below the selected row. New instances can be added to any rule, including rules from libraries.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Remove</strong></td>
+      <td class='confluenceTd'>Removes the selected instances from the list.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Properties</strong></td>
+      <td class='confluenceTd'>Opens a <b>Rule Instance Properties</b> dialog  allowing the user to view or change the selected instance.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Sort</strong></td>
+      <td class='confluenceTd'>Sorts the instances list table in ascending order.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Create rule instance from template</strong></td>
+      <td class='confluenceTd'>Click this button to either enter the object name that you want or select the rule instance available from the dialog.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Copy and Paste</strong></td>
+      <td class='confluenceTd'>Create a copy of the selected instance and pastes it below the selected row.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Save All</strong></td>
+      <td class='confluenceTd'>Saves all changes that you have made.</td>
+    </tr>
+  </tbody>
+</table>
+<p>When an instance has the same name as a metadata instance, the instance overrides the metadata instance (that is, a database rule replaces a metadata one). To create a config instance from a template, click the <strong>Add</strong> button. When a database instance name is unique, it is added at runtime to the set of metadata rule instances.</p>
+</body>
+</html>

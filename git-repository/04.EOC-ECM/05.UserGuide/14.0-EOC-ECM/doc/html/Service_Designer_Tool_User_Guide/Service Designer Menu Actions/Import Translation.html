@@ -1,0 +1,35 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Import Translation</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Import Translation</h2>
+
+<p>The purpose of <a href="../Introduction_to_Metadata/Internationalization.html">Translation</a> is for defining all fields and labels visible in the runtime application in a specific language. You can import Excel files that contain Translation records of a specified language in the project with the <b>File/Import/Translation</b> menu.</p>
+
+<p>With this menu command, you can import Translation that has been previously <a href="Import Translation.html">exported</a> and subsequently edited using the Excel application.</p>
+ 
+<p>Upon invoking the menu command, the <b>Import Translation</b> dialog is displayed. Select an Excel file to import. For the multiple Excel files that were exported, you need to import each of them separately if they are all modified. The filename and content of the Excel file must follow the format described in <a href="Import Translation.html">Translation Export</a>. The language code in the filename must correspond to one of the available languages in top-level metadata's <a href="../Metadata_Objects/Metadata Root/Metadata Root Languages.html">Language tab</a>.</p>
+
+<img src="importTranslationDir.png" alt="Import Translation dialog" border="0" />
+
+<p>If there are no errors with the Translation Import, a success prompt appears. Click the <strong>OK</strong> button to continue.</p>
+<p>The imported Translations are stored in <b>languages</b> folder of Project Directory as XML files.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

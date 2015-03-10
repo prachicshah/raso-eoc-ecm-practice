@@ -1,0 +1,165 @@
+<html>
+<head>
+<title>Scripting</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Scripting</h2>
+
+<p>As per MVC architecture pattern, the <b>User Interface</b> metadata object type is the <i>Controller</i> of the pattern that decouples and defines the interaction among data access, business logic, data presentation and user presentation. As such, scripting resides mostly within <a href="">User Interface</a> metadata objects.</p>
+
+<p>This article explains various important ideas and tips when scripting, in addition to regular <a href="../../JavaScripting in Order Care/JavaScripting Extensions/Writing Scripts.html">JavaScripting guidelines</a> in Velocity Studio.</p>
+
+<h3>User Interface Object Instantiation</h3>
+
+<p>As controller, User Interface metadata objects must be instantiated to serve requests from a browser. At runtime, it is automatically instantiated by AVM when that User Interface is requested by browser. Specifically, it is the browser's requested URL that identifies the User Interface as per <a href="../Metadata_Objects/Metadata Root/Metadata Root URL Mapping.html">URL mapping</a> configuration.</p>
+
+<p>However, when displaying a Form using Form Frame from a different User Interface, the User Interface of the Form Frame must include and explicitly instantiate, by script, the Form's User Interface. See section <a href="#UIcascade">cascading User Interface objects</a> below for details. With JavaScript, the syntax of User Interface instantiation is similar to other object instantiation. For example, if you are to instantiate a top-level User Interface metadata object <i>topUI</i> in namespace <i>nsTop</i>, you may write:</p>
+
+<div class="code"><div class="codeContent">
+<pre>
+var myTopUI = new nsTop.topUI();
+</pre>
+</div>
+</div>
+<p>or, alternatively:</p>
+<div class="code"><div class="codeContent">
+<pre>
+var myTopUI = new com.conceptwave.system.UserInterface("nsTop.topUI");
+</pre>
+</div>
+</div>
+
+<h3>Scripting with Included User Interface</h3>
+
+<p><i>Included User Interface</i> -- User Interface metadata objects that are included by model metadata objects such as Document, Order, Finder and etc -- have a fixed pathname of:
+
+<div class="code"><div class="codeContent">
+<pre>
+&lt;metadata object pathname&gt;.UserInterface
+</pre>
+</div>
+</div>
+
+For example, the included User Interface of Document <i>doc1</i> in Namespace <i>ns</i> has the pathname of <i>ns.doc1.UserInterface</i>.</p>
+
+<p>Even though, in this pathname arrangement and in <b>Navigation Pane</b> of Velocity Studio, that the included User Interface appears "underneath" its model metadata object, the instantiation of model metadata object does not imply instantiation of the object's included User Interface.</p>
+
+<p>In our example above, if Document <i>doc1</i> is instantiated via</p>
+
+<div class="code"><div class="codeContent">
+<pre>
+var doc = new ns.doc1();
+</pre>
+</div>
+</div>
+
+<p>runtime only gives you a Document with no User Interface counterpart. Specifically, <i>ns.doc1.UserInterface</i> is null at this point.</p>
+
+<p>To instantiate an included User Interface with its model counterpart created as well, you may write the following script:
+
+<div class="code"><div class="codeContent">
+<pre>
+//create a document instance
+var doc = new ns.doc1();
+
+//set some values on the doc here...
+...
+
+//create the user interface
+var docUI = new ns.doc1.UserInterface(doc);
+</pre>
+</div>
+</div>
+
+<p>Or alternatively, simply:</p>
+<div class="code"><div class="codeContent">
+<pre>
+var docUI = new ns.doc1.UserInterface(null);
+</pre>
+</div>
+</div>
+
+<p>In the second script, the User Interface instantiation automatically creates a new instance of <i>doc1</i> as the model. Whereas in the first script, the existing Document object <i>doc</i> is the model. In both scripts, the Document instance can be accessed via the User Interface Variable <i>ns.doc1.UserInterface.model</i>.</p>
+
+<h3>Accessing User Interface Variables and Methods</h3>
+
+<p>Similar to JavaScripting with other metadata objects in Velocity Studio, Variables of User Interface can be accessed (get/set) by <i>UserInterface.VariableName</i> syntax. For example, Variable <i>confirmed</i> in User Interface object <i>docUI</i> that is created above may be set to true by:</p>
+<div class="code"><div class="codeContent">
+<pre>
+docUI.confirmed = true;
+</pre>
+</div>
+</div>
+
+<p>Similarly, Methods of User Interface can be invoked by <i>UserInterface.MethodName(param1, param2...)</i> syntax. For example, Method <i>submitOrder</i> without parameters may be invoked by:</p>
+<div class="code"><div class="codeContent">
+<pre>
+docUI.submitOrder();
+</pre>
+</div>
+</div>
+
+
+<h3><a name="UIcascade">Cascading User Interface objects</a></h3>
+
+<p>Often, a Form or a Page is required to display another Form from a different User Interface, via <a href="Element - Form Frame.htm">Form Frames</a>. For the sake of this discussion, let's denote the User Interface of the Form or Page that displays a foreign Form as the <i>parent</i>, and the User Interface of the foreign Form as the <i>child</i>. As explained in the <a href="Element - Form Frame.htm#Notes">notes in Form Frame</a>, the parent User Interface must include the child User Interface as one of its Variables.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="UIcascade.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+
+
+<p>At runtime, the parent User Interface delegates to the child User Interface to render its Form. Thus, whenever the foreign Form needs to be rendered, the child User Interface must already be instantiated. (Otherwise, the Form will not be rendered.) This is required to be done in script. For example, the child User Interface object instantiation can be done at parent User Interface's initialization script,
+
+<div class="code"><div class="codeContent">
+<pre>
+this.childUI = new ns.doc1.UserInterface(null, this);
+</pre>
+</div>
+</div>
+
+where <i>childUI</i> is the UI Variable declared in parent User Interface metadata object, and the child User Interface to instantiate is an included User Interface in Document <i>ns.doc1</i>.</p>
+
+<p>The second parameter of the constructor is responsible for specifying which User Interface, if any, that the instantiated User Interface object shall be parented. Notice that this parameter is necessary even though the parent User Interface has the child User Interface as one of its User Interface Variable. Indeed, there is no automatic parenting when a User Interface Variable is declared and set within another User Interface metadata object.</p>
+
+<p>From the child User Interface object, the parent User Interface can be get/set using <i>.parent</i> variable. In our example, the parent User Interface can be retrieved by:
+<div class="code"><div class="codeContent">
+<pre>
+childUI.parent
+</pre>
+</div>
+</div>
+</p>
+
+<table cellpadding='5' width='85%' cellspacing='0' class='infoMacro' border='0'><tr><td><b class="strong">Design Note</b><br /><br/>
+You are not necessarily required to set the parental relationship. That is, you may instantiate a User Interface with no parent, even in the scenario of cascading User Interfaces. However, popups will not work, because the dialog variable, which is set when an object is displayed in a popup, is found by going up the parenting chain.<br/><br/>
+More importantly, setting parental relationship enables sibling User Interface objects to share the parent's Variables, if there are multiple User Interfaces belong under the same parent.
+</td></tr></table>
+
+<p>User Interface objects may be cascaded at runtime by means of <a href="User Interface User Action Method.htm">User Action method</a> instead. For example, an application-level Page (for example, Page of a User Interface built from <i>com.conceptwave.system.Application</i>) may have a Menu Item, when clicked, invokes a User Action method that instantiates a model (a Document, Order, or Finder) and displays its Form in the Page. The model and its User Interface are not declared in application User Interface as variables. Yet, it is not necessary to instantiate these objects by script, because the model (that is,.the <b>Object</b> in User Action) and its User Interface are automatically instantiated when the User Action method is invoked. In particular, the User Interface object is parented by the application User Interface at instantiation.</p>
+
+<h3>Parameters in User Interface Object Instantiation</h3>
+
+<p>Please see <a href="../../JavaScripting in Order Care/Writing Scripts.html">User Interface contructor syntax</a>  in JavaScript reference for more details. The parameters of User Interface constructor are as follows:
+<ul>
+<li>Parameter 1 is the model (for example, Document, Finder, Order, etc.). If it is a top-level User Interface, set to <i>null</i>.</li>
+<li>Parameter 2 is the parent User Interface. Set to <i>null</i> if there is no User Interface to parent from.</li>
+</ul>
+</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

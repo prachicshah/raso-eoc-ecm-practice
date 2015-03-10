@@ -1,0 +1,98 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Default Configuration</title>
+<link rel="stylesheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<h2> Default Configuration</h2>
+<h3>Business Configuration</h3>
+<p>There are default configurations for business entities such as Product Type, Offer Type, etc. that are deployed with ECM. Any additional configuration can be done by the user via the Codes Table.</p>
+<p>The following predefined tariff time specification is also published to CIL during the installation of ECM.</p>
+<ul>
+  <li>TariffTime_Spec</li>
+</ul>
+<p>The product, service and pricing entities and relationships of the following sample plans are loaded with the deployment of ECM:
+<ul>
+  <li>Silver Line</li>
+  <li> Gold Nugget</li>
+</ul>
+<p>Recurrence specification with default recurrent event configurations:</p>
+<ul>
+  <li>Daily</li>
+  <li> Weekly</li>
+  <li> Monthly</li>
+  <li> Yearly</li>
+</ul>
+<p>Resource specifications with characteristics:</p>
+<ul>
+  <li>MSISDN-PCS </li>
+  <li> MSISDN-DCS </li>
+  <li> ISMI </li>
+  <li> Numbering Scheme </li>
+  <li> Serial Number </li>
+  <li> IPv4 Address </li>
+  <li>IPv6 Address </li>
+</ul>
+<h3>System Configuration</h3>
+<ul>
+<li><strong>Node</strong>: PEUI node is defined and active</li>
+<li> <strong>Configuration Variables: </strong></li>
+<ul>
+  <li>PSCM_CILSERVER_HOST: Host from CIL</li>
+  <li>PSCM_CILSERVER_PORT: 8184 (to be replaced with port from CIL)</li>
+  <li>PSCM_CILSERVER_ROOT: /rest</li>
+</ul>
+<li> <strong>Default Calendar</strong>. USA</li>
+<li> <strong>Privileges:</strong> Default privileges for catalog</li>
+<li> <strong>User:</strong> All privileges as defined by upadmin user</li>
+<li><strong>Catalog Mode:</strong> Server</li>
+<li><strong>Web Services:</strong> The following services are active:</li>
+<ul>
+  <li>services.ICFSSpecification (HTTP)</li>
+  <li> services.ICharacteristics (HTTP)</li>
+  <li> services.IProductOffering(HTTP)</li>
+  <li> services.IProductSpecification(HTTP)</li>
+  <li> services.IRFSSpecification(HTTP)</li>
+  <li> services.IResourceSpecification (HTTP)</li>
+  <li> worklist.service.worklist(SOAP).</li>
+</ul>
+<li>
+<strong>Charging Capabilities</strong><br>
+ The application configuration file contains the following default configuration for the charging capabilities:</li>
+<ul>
+<p><strong>Capability Group Service</strong>: From the bmarp.wsInterface.capabilityGroupService node, create a new port (sub-node). Configure as follows:</p>
+<ul>
+      <li>.Port Name: portHTTP</li>
+    <li> Binding: bmarp.wsInterface.capabilityGroupBindingHTTP</li>
+    <li> Provider Type: HTTP</li>
+    <li> Active: Set as checked.</li>
+    <li> Provider Settings &gt; Location: http://localhost:xxxx/charging/capabilities/{groupName}</li>
+  </ul>
+  <p> <strong>Function Definition Service</strong>: .From the bmarp.wsInterface.funcitonDefinitionService node, create a new port (sub-node). Configure as follows:</p>
+  <ul>
+    <li>Port Name: serviceDeterminationPortHTTP</li>
+    <li> Binding: bmarp.wsInterface.functionDefinitionsBindingHTTP</li>
+    <li> Provider Type: HTTP</li>
+    <li> Active: Set as checked.</li>
+    <li> Provider Settings &gt; Location: http://localhost:xxxx/charging/capabilities/FunctionDefinitions</li>
+
+</ul>
+<p><strong>Service Determination Service</strong>: From the bmarp.wsInterface.serviceDetermination node, create a new port (sub-node). Configure as follows:</p>
+<ul>
+  <li>Port Name: serviceDeterminationPortHTTP</li>
+  <li> Binding: bmarp.wsInterface.serviceDeterminationBindingHTTP</li>
+  <li> Provider Type: HTTP</li>
+  <li> Active: Set as checked.</li>
+  <li> Provider Settings &gt; Location:http://localhost:xxxx/charging/capabilities/ServiceIdentification </li>
+</ul></ul>
+<p>After the ECM application is deployed, the localhost and the port number (xxxx) of the Provider Settings > Location must be configured. <br>
+  For more information on how to configure the location of webservices for these charging capabilities, refer to the Operations and Maintenance > System Configuration > Configure Charging Capabilities section.</p>
+</body>
+</html>

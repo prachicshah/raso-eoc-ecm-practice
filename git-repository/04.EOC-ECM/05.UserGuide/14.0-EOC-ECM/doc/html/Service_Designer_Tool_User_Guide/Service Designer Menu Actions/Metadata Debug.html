@@ -1,0 +1,172 @@
+<html>
+<head>
+<title>Debug</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Debug</h2>
+
+<p>If there are no <a href="../Service_Designer_User_Interface/Error Pane.html">validation errors</a>, the project's metadata can be debugged with menu <b>Runtime &gt; Debug</b>. In addition to the startup of the runtime similar to <a href="Metadata Run.html"><b>Run</b></a>, the Velocity Studio launches the third-party Rhino JavaScript debugger to perform the actual debugging.</p>
+
+<p>If the project has not been connected to a database upon clicking the menu command, a <b>Database Login</b> pop-up dialog appears to prompt for database login before the metadata can be debug. Refer to <a href="Database Connect.html">Database Connect</a> for details.</p>
+
+<img src="dbLogin.png" border="0" alt="Database Login dialog" />
+
+<p>While the metadata is interpreted by AVM to start running, the metadata popup appears, and then disappears when startup has finished loading.</p>
+<p>The console displays information on starting runtime. Note the port at which the Web server runs the application.</p>
+
+<img src="runMetadataConsole.png" border="0" alt="Console pane" />
+
+<p>Similar to running metadata, you can access the started Web application with Web browser upon successful start of runtime in Velocity Studio. In addition, the Rhino JavaScript Debugger is launched in a separate window.</p>
+
+<img src="debugMD.png" border="0" alt="JavaScript Debugger" />
+
+<p>Closing the Rhino JavaScript Debugger will also stop the metadata.</p>
+
+<p>Also similar to running metadata, the <b>Runtime &gt; Debug</b> command:</p>
+<ul>
+<li>may have <a href="Metadata Run.html#URL">Port and URL Configurations</a></li>
+<li>must not have <a href="Metadata Run.html#NoError">validation errors in metadata</a></li>
+<li>may <a href="Metadata Run.html#NodeID">select Node ID</a> in preferences</li>
+<li>may fail to start such that <a href="Metadata Run.html#CONFIGmode">CONFIG mode</a> is run instead</li>
+<li>requires a <a href="Metadata Run.html#license">runtime license</a></li>
+<li>can be stopped by menu <a href="Metadata Stop.html"><b>Stop</b></a></li>
+</ul>
+<p>You can also right-clicking a script in Velocity Studio and then selecting <strong>Debug Script</strong>, which allows for the single script to be debugged. </p>
+<p><img src="debugScript.png" alt="Debug Script - right-click menu option" border="1"></p>
+
+<p>Runtime starts when you use this menu option, but workflow engine-processing does not occur in the background. </p>
+<p><strong>Note:</strong> If you use the <strong>Debug Script</strong> menu option, the <strong>Update</strong> button does not appear in your script's General tab in Velocity Studio while you are running the script. However, if you run the debugger first (that is, click <strong>Runtime</strong> &gt; <strong>Debug</strong> from the menu bar), and then use the <strong>Debug Script</strong> menu option, the <strong>Update</strong> button appears in your script's General tab, allowing you to make changes to your script as you debug it.</p>
+<h3>Using Rhino Debugger</h3>
+
+<p>A full description of how to use the Rhino JavaScript Debugger can be found at the following Web site:</p>
+<p><a href="http://www.mozilla.org/rhino/debugger.html">http://www.mozilla.org/rhino/debugger.html</a></p>
+<p>The Rhino JavaScript Debugger can debug scripts running in multiple threads and provides facilities to set and clear breakpoints, control execution, view variables and evaluate arbitrary JavaScript code in the current scope of an executing script.</p>
+
+<p>For instance, as you start using the runtime (for example, logging into application in browser), the JavaScript invoked is displayed in the debugger.</p>
+
+<img src="debugMDlogin.png" align="absmiddle" border="0" alt="Invoked JavaScript appears in the debugger when you start using the runtime" /><h4><a name="breakFirstLine"></a>Breakpoints</h4>
+<p>You can set breakpoints in a script in the Rhino JavaScript Debugger, which will stop on the first line of the script when this script is loaded for execution. Breakpoints can be set or unset without a debugger session running for all scripts except validation scripts. When the debugger starts, and when breakpoints are either set or unset, the <strong>Breakpoints</strong> tab appears at the bottom of Velocity Studio. Additionally, the <strong>Break on first line</strong> menu option for scripts is always displayed. For validation script debugging, breakpoints can only be set once the Debugger has been initiated.</p>
+<h4>Search</h4>
+<p>The Rhino JavaScript Debugger also allows you to search for scripts at runtime, including catalog rules. To search for scripts, click <strong>Search</strong> &gt; <strong>Script</strong> from the menu bar. A dialog box opens with the search functionality.
+
+</p>
+<p><img src="SearchDebugger.png" alt="Search in the debugger"></p>
+<p><strong>Note:</strong> For scripts that have parameters, initialized parameters are remembered between debugger sessions.</p>
+<p>In the Rhino JavaScript debugger, you can set the <strong>Debug UI Path</strong> checkbox, which shows <span class="confluenceTd">the full form path</span>. By default, the flag is unchecked.</p>
+
+<h4>Console Window</h4>
+<p>The debugger redirects the System.out, System.in, and System.err streams to an internal JavaScript console window which provides an editable command line for you to enter JavaScript code and view system output. The console window maintains a history of the commands you have entered. You may move backward and forward through the history list by pressing the Up/Down arrow keys on the keyboard.</p>
+<h4><a name="2.1JavaScriptDebuggerToolDebuggingScripts-ControllingExecution"></a>Controlling Execution</h4>
+<p>The debugger provides the following facilities for you to control the execution of the scripts you are debugging:</p>
+<p><em>Step Into</em><br />
+To single step enter any function calls, you may do any of the following:</p>
+<ul>
+<li>Select the <strong>Debug</strong> &gt; <strong>Step Into</strong> menu item on the menu bar.</li>
+<li>Press the <strong>Step Into</strong> button on the toolbar.</li>
+<li>Press the F11 key on the keyboard.</li>
+</ul>
+<p>Execution will resume. If the current line in the script contains a function call, control will return to the debugger upon entry into the function. Otherwise, control will return to the debugger at the next line in the current function.</p>
+<p><em>Step Over</em><br />
+To single step to the next line in the current function, you may do any of the following:</p>
+<ul>
+<li>Select the <strong>Debug</strong> &gt; <strong>Step Over</strong> menu item on the menu bar.</li>
+<li>Press the <strong>Step Over</strong> button on the toolbar.</li>
+<li>Press the F7 key on the keyboard.</li>
+</ul>
+<p>Execution will resume but control will return to the debugger at the next line in the current function or top-level script.</p>
+<p><em>Step Out</em><br />
+To continue execution until the current function returns, you may do any of the following:</p>
+<ul>
+<li>Select the <strong>Debug</strong> &gt; <strong>Step Out</strong> menu item on the menu bar.</li>
+<li>Press the <strong>Step Out</strong> button on the toolbar.</li>
+<li>Press the F8 key on the keyboard.</li>
+</ul>
+<p>Execution will resume until the current function returns or a breakpoint is hit.</p>
+<p><em>Go</em><br />
+To resume execution of a script, you may do any of the following:</p>
+<ul>
+<li>Select the <strong>Debug</strong> &gt; <strong>Go</strong> menu item on the menu bar.</li>
+<li>Press the <strong>Go</strong> button on the toolbar.</li>
+<li>Press the F5 key on the keyboard.</li>
+</ul>
+<p>Execution will resume until a breakpoint is hit or the script completes.</p>
+<p><em>Break</em><br />
+To stop all running scripts and give control to the debugger you may do any of the following:</p>
+<ul>
+<li>Select the <strong>Debug</strong> &gt; <strong>Break</strong> menu item on the menu bar.</li>
+<li>Press the <strong>Break</strong> button on the toolbar.</li>
+<li>Press the Pause/Break key on the keyboard.</li>
+</ul>
+<p><em>Break on Exceptions</em><br />
+To give control to the debugger whenever a JavaScript exception is thrown select the <strong>Debug</strong> &gt; <strong>Break on Exceptions</strong> checkbox from the menu bar.&#160; Whenever a JavaScript exception is thrown by a script a message dialog will be displayed and control will be given to the debugger at the location the exception is raised.</p>
+<p><em>Break on Function Enter</em><br />
+Selecting <strong>Debug</strong> &gt; <strong>Break on Function Enter</strong> will give control to the debugger whenever the execution is entered into a function or script.</p>
+<p><em>Break on Function Exit</em><br />
+Selecting <strong>Debug</strong> &gt; <strong>Break on Function Return</strong> will give control to the debugger whenever the execution is about to return from a function or script.</p>
+<p><em>Moving Up and Down the Stack</em><br />
+The lower-left pane in the debugger main window contains a <b>Context</b> combo-box which displays the current stack of the executing script. You may move up and down the stack by selecting an entry in the combo-box. When you select a stack frame the variables and watch windows are updated to reflect the names and values of the variables visible at that scope.</p>
+<p><em>Setting and Clearing Breakpoints</em><br />
+The main desktop of the debugger contains file windows that display the contents of each script you are debugging. You may set a breakpoint in a script by doing one of the following:</p>
+<ul>
+<li>Place the cursor on the line at which you want to set a breakpoint and right-click with the mouse. This action will display a pop-up menu. Select the <b>Set Breakpoint</b> menu item.</li>
+<li>Click the line number of the line at which you want to set a breakpoint.</li>
+<li>If the selected line contains executable code a red dot will appear next to the line number and a breakpoint will be set at that location.</li>
+</ul>
+<p>You may clear a breakpoint in a script by doing one of the following:</p>
+<ul>
+<li>Place the cursor on the line at which you want to clear a breakpoint and right-click with the mouse. This action will display a pop-up menu. Select the <b>Clear Breakpoint</b> menu item.</li>
+<li>Click the red dot or the line number of the line at which you want to clear a breakpoint.</li>
+<li>The red dot will disappear and the breakpoint at that location will be cleared.</li>
+</ul>
+
+<h4><a name="2.1JavaScriptDebuggerToolDebuggingScripts-ViewingVariables"></a>Viewing Variables</h4>
+<p>The lower-left pane in the debugger main window contains a tab-pane with two tabs, <b>this</b> and <b>Locals</b>. Each pane contains a tree-table which displays the properties of the current object and currently visible local variables, respectively.</p>
+<p><strong>Note:</strong> Arrays are expandable in the debugger's variable view, which makes viewing data structures (for example, arrays within arrays) visible.</p>
+<p><em>This</em><br />
+The properties of the current object are displayed in the <b>this</b> table. If a property is itself a JavaScript object the property may be expanded to show its sub-properties. The <b>this</b> table is updated each time control returns to the debugger or when you change the stack location in the <b>Context</b> window.</p>
+<p><em>Locals</em><br />
+The local variables of the current function are displayed in the <b>Locals</b> table. If a variable is itself a JavaScript object the variable may be expanded to show its sub-properties. The <b>Locals</b> table is updated each time control returns to the debugger or when you change the stack location in the <b>Context</b> window</p>
+<p><em>Watch Window</em><br />
+You may enter arbitrary JavaScript expressions in the <b>Watch</b> table located in the lower-right (dockable) pane in the debugger main window. The expressions you enter are re-evaluated in the current scope and their current values are displayed each time control returns to the debugger or when you change the stack location in the Context: window.</p>
+<p><em>Evaluation Window</em><br />
+The <b>Evaluate</b> pane located in the lower-right (dockable) pane in the debugger main window contains an editable command line where you may enter arbitrary JavaScript code. The code is evaluated in the context of the current stack frame. The window maintains a history of the commands you have entered. You may move backward or forward through the history by pressing the Up/Down arrow keys on the keyboard.</p>
+<p>&nbsp;</p>
+<h4><a name="Validation Script Debugging">Validation Script Debugging</a></h4>
+<p>
+Validation rules for data objects (documents, orders, data structures) can be created on different levels: as a validation method at the data type level, at the leaf level (for documents) or validation script within the object <b>Methods</b> tab.
+<p>At runtime, the validation scripts are triggered when validating a data object (document, data structure or order). For instance, before a document is <b>Saved</b> the validation occurs in the following sequence:
+<ol>
+<li>Data Type</li>
+<li>Leaf validation</li>
+<li>Document</li>
+<li>Order</li>
+</ol>
+</p>
+The usual way of debugging scripts is to set a breakpoint in  Velocity Studio. However, this approach is not working for validation scripts because when metadata are compiled, a runtime script is created. For validation scripts, the system is not using the scripts created in Velocity Studio but instead is using this runtime script. This runtime script is an all-encompassing script that contains all scripts. This script is used during runtime and debugging. Breakpoints must be placed on the runtime script when debugging validation scripts.
+<p>To run the debugger, click on the Debugger icon<img src="debugIcon.png" width="18" height="18"> from the menu bar within Velocity Studio. The runtime script can be opened in Debugger through <b>Search</b>-><b>Scripts</b>. A dialog box is open that allows you to search for the runtime scripts.  The names of the validation runtime scripts generated are:</p>
+<p><b>Data Type</b></p>
+<p>The <metadata object name>
+  <em>.cwOnDataValidation</em> script is generated when the metadata is compiled.  This script contains the validation methods for Data Types.</p>
+
+<p><b>Leaf and Document</b></p>
+<p>The <metadata object name>
+  <em>.cwOnGenDocValidation</em> script is generated when the metadata is compiled. This script contains the validation methods for leafs and documents. At runtime, this script will validate at the leaf level and then the document level.</p>
+<p><b>Order</b></p>
+<p>The <metadata object name><em>.cwOnOrdValidate</em> script is generated when the metadata is compiled.  This script contains the validation methods orders.</p>
+<p><b>Order</b></p>
+<p>The <metadata object name><em>.cwOnOrdValidate</em> script is generated when the metadata is compiled.  This script contains the validation methods orders.</p>
+<p><b>List of Errors</b></p>
+<p>During validation, a list of errors are stored in <b>$cwerr</b> (ValidationErrorList name) variable and can be retrieved with the following methods:
+<li><b>$cwerr.getErrorList()</b>:  This method returns an array of strings.</li>
+<li><b>$cwerr.toMessageArray()</b>: This method returns an array of <b>com.conceptwave.system.Message</b> objects.</li></p>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Import Code Tables</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Import Code Tables</h2>
+<p>You can import codes tables in one of the following methods:</p>
+<ul>
+  <li><a href="#importFromFile">From a file</a></li>
+  <li><a href="#importFromCommandLine">From the command line</a></li>
+</ul>
+<h3><a name="importFromFile"></a>Import Code Tables From a File</h3>
+<p>You can import code tables from XML and ZIP files.</p>
+<ol>
+  <li> From the Code Tables page, click the <strong>Import</strong> button. </li>
+  <li>The Import dialog appears.</li>
+
+<p><img src="CodeTableImport.png" width="551" height="218" alt="Code Tables Import"></p>
+
+  <li>Enter or select the information for the following fields:</li>
+<p><table border cellpadding="1" class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="178" class="confluenceTh" >Field</th>
+          <th width="594" class="confluenceTh">Description</th>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Select File</strong></td>
+          <td class="confluenceTd"><p>Click the <strong>Browse</strong> button and specify the file containing the code tables. You can import code tables from XML and ZIP files.</p>
+            <p><strong>Note:</strong> Only a ZIP file created through the <a href="CodeTables_Exporting.html">export option</a> can be imported; you can not import custom ZIP files.</p></td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Import Mode</strong></td>
+          <td class="confluenceTd"><p>By default, this field is set to <strong>Replace</strong>, indicating that if the code tables exist, this import action replaces them. Otherwise, click the drop-down menu and select from the following options:</p>
+            <ul>
+            <li><strong>Create</strong>, which creates all code tables</li>
+            <li><strong>Update</strong>, which updates all existing code tables</li>
+            </ul></td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Max Errors </strong></td>
+          <td class="confluenceTd" >This field defaults to 10, indicating that up to ten errors are ignored when importing the code tables. If the number of errors during the import exceeds the number set in this field, the import action stops and a message   occurs, indicating that the action has failed.</td>
+        </tr>
+      </tbody>
+    </table></p>
+
+    
+      <li>Click the<strong> import </strong>button; a confirmation message displays the summary of code tables import.</li>
+    </ol>
+   
+<h3><a name="importFromCommandLine"></a>Import Code Tables from the Command Line</h3>
+<p>You can import a code table from the command line in Windows and Unix. The catalog import syntax is as follows:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>
+catalogImport username=a password=b server_url=http://localhost:8080/cwf import_file=C:\tickets\ACC_CAN_TYPE.xml import_codetable=true log_general_info=false import_domains=false</pre>
+  </div>
+</div>
+<p>The following is an example is as of using this command:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>
+catalogImport username=upadmin password=upadmin server_url=http://localhost:8080/cwf <A href="http://localhost:8080/cwf" target="_blank"></A>import_file=D:\codeTableExport\t1.xml import_codetable=true </pre>
+  </div>
+</div>
+<p>&nbsp;</p>
+<p><br>
+</p>
+</body>
+</html>

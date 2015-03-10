@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>Starting User Processes</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Starting User Processes</h2>
+<p>The following options can be used to activate a user process:</p>
+<ul>
+<li><em>Menu</em>: A Data Object menu item, with the <b>Type</b> of <em>process</em> defined on the <a href="../Metadata_Objects/4.9.3 menu general properties.html"><b>General</b> tab of <i>Menu</i></a>, is created in Velocity Studio and can be used to start the selected process at runtime.</li>
+</ul>
+<ul>
+<li><em>Decision Tree</em>: A Decision Tree is created in Velocity Studio with the required process added to the Decision Tree diagram as a <a href="../Metadata_Objects/Decision Tree/Decision Tree Activities Types and Execution.html#Subproc">Sub-Process activity</a>. The process will be started when this activity is reached in the Decision Tree.</li>
+</ul>
+<ul>
+<li><em>Script</em>: A process can be started from a script (for example, <i>startProcess("namespace.processname", pdoc)</i> in the Process object of the <a href="../../JavaScripting in Order Care/index.html">JavaScript Extensions</a> documentation).</li>
+</ul>
+
+<p>In contrast, a <i>Global Process</i> is started automatically by the Process Engine at runtime.</p>
+<h3><a name="processEngineSkipsNewProcess"></a>Process Engine Skips a New Process</h3>
+<p>As indicated previously, the product has script methods to create new processes, such as startProcess() and startSubProcess(). A new process in the database is created at the end of the current database transaction. It is recommended that your application not include additional database activities in this transaction, to make it process as quickly as possible.</p>
+<p>If you find that the transaction is taking too long, a possible situation  occurs in which the process engine skips a new process. To resolve this problem, the process engine reads  processes by overlapping the creation time. Use the <strong><a href="../../Configuration_Tool_User_Guide/Configure/System/Processes/general.html#newProcessesReadOverlap">New processes read overlap</a></strong> configuration  parameter in the Configuration application, under <strong>Processes</strong> &gt;<strong> General</strong>. By default, its value is 10 seconds. However, you can increase this time when a process engine skips new processes, as required.</p>
+<p>You can <a href="../../Metadata Deployment Guide/JConsole PE queues.html#restartNewUserProcess">restart new user processes from that JMX console</a> that may have been skipped for some reason when starting up the process engine or a standby PE. This feature resets the current reading time and allows the process engine to go back and read skipped processes.</p>
+<p>&nbsp;</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

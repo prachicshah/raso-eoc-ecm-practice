@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>Initialization Rule Set</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+  <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+  <td valign="top" class="pagebody">
+    <h2>Initialization Rule Set</h2>
+    <p>An initialization rule defines how to initialize data for  specific nodes of a data object. Initialization rules consist of scripts whose return value is applied to  a given node. Each node can have only  one initialization rule. Initialization  rule sets are applied automatically to an object when the object is  constructed. During construction, the  order of initialization actions is:</p>
+    <ol>
+      <li>Data type default values are applied to nodes.</li>
+      <li>Leaf initialization scripts are applied.</li>
+      <li>Rule sets are applied.</li>
+      <li>Data object initialization scripts are applied.</li>
+    </ol>
+    <p>An initialization rule can only be applied to the immediate child  data-type nodes of an object. When  applied to data type nodes, the return type is expected to match the type of  the node, but it is not enforced. Applying an initialization rule to a node is equivalent to running the  following in script:</p>
+    <p><tt>dataObject.nodeName = dataObject.ruleScript();</tt></p>
+    
+     <p> where <em>ruleScript</em>  is a script method with the same content of  the rule’s script.</p>
+    <p>
+      During normal object initialization, element nodes are not  automatically created. Therefore, rule sets for element nodes  do  not run automatically. Rule sets for  element  nodes are triggered when these nodes are manually instantiated (for example with a  constructor), or automatically instantiated when referenced.  
+      When rule sets are applied to a  data structure element node, the result is expected to be a new data structure  object.</p>
+    <h1>&nbsp;</h1></td>
+  </tr>
+  </table>
+  </body>
+  </html>

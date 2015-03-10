@@ -1,0 +1,90 @@
+﻿<html>
+<head>
+<title>Data Structures in Tables</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Data Structures in Tables</h2>
+<p>Velocity Studio allows you to display and edit data structures in a table element. You can also add a table component to any form (that is, not only under the finder UI) using DataObjectList as a data source variable (that is, any instance of DataObjectList, and not necessarily the finder result).</p>
+<h3>Supported Data Structure Column Types</h3>
+<p>The table element supports all types of columns, such as image and calculated columns. The Reference type element can be bound to either a Select or text column.</p>
+<p>The following sections contain examples how to complete the following tasks:</p>
+<ul>
+  <li>Create a table with data structures</li>
+  <li>Implement table methods</li>
+  <li>Initialize the table data source variable at runtime</li>
+  <li>Edit the data structure within the table</li>
+</ul>
+
+<h3>Create a Table with Data Structures</h3>
+<p>To create a table with data structures, complete the following steps:</p>
+<ol>
+  <li>Add a table element to any form, which can be a top-level User Interface.</li>
+  <li>Create a new UI variable. Then, set the variable type to the data structure and select the <strong><a href="array node.html">Array</a></strong> checkbox.</li>
+  <li>Set the <strong>Variable</strong> property of the table element to the new UI variable.</li>
+  <li>Add columns under the table and attach them to the first-level data-type leaves of the data structure:
+    <ul>
+      <li>Label</li>
+      <li>Text field</li>
+      <li>Checkbox</li>
+      <li>Date</li>
+      <li>Image</li>
+      <li>Calculated field</li>
+    </ul>
+  </li>
+  </ol>
+<h3>Implement Table Methods</h3>
+<p>When creating a calculated column, create a method with one parameter (the row data structure) and String as the return value. Creating a calculated column is similar to creating calculated columns in finders.</p>
+<p>To track a changing selection in a table, create a new <strong>OnSelChanged</strong> method under your UI (provide any name you want for this  method). Then, select the method as <strong>Selection Changed</strong> method.</p>
+<p>If you require the <strong>Show detail</strong> image column, add the <strong>showDetailAction</strong> method to the UI. Proceed to implement the method, get the selected data structure, and create a UI. An example is as follows:</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre><SPAN id="internal-source-marker_0.48881827161595104">if (this.tableVar.selected   &amp;&amp; this.tableVar.selected.length &gt; 0) {</SPAN>
+    return new this.tableVar.selected[0].metadata.UserInterface(
+                       this.tableVar.selected[0], null);
+   }</pre></div>
+</div>
+
+  <p><strong>Note:</strong> The top-level UI does not have any finder functionality, such as the <strong>Back</strong> button. This functionality needs to either be implemented or details can be displayed in a popup window.
+<p>The table also supports the double-click method. You can create a new method under the UI with any name and then set it with the <strong>Double Click Method</strong> property for the table.</p>
+<h3>Initialize the Table Data Source Variable at Runtime</h3>
+<p>Although the table variable type in Velocity Studio is an array of data structures, at runtime, the table variable requires a DataObjectList instance. The following is an example of initializing the variable and adding data structures to it:</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>this.tableVar = new DataObjectList(); // tableVar is the table data source
+   var ds = new DataStructure("ds:TableDS");
+   ds.id = "101";
+   ds.string1 = "Str value 1";
+   ds.number2 = 1;
+   ds.date3 = new Date();
+   ds.checkbox4 = true;
+   this.tableVar.addLast(ds);   // add new data structure to the list</pre>
+   </div>
+</div>
+ 
+ <p>Every time you change the data object list (for example, by adding, updating, or removing items), call the <strong>updateList</strong> property to refresh the table in your browser:<br>
+ </p>
+ <div class="preformatted">
+   <div class="preformattedContent">
+<pre>
+this.tableVar.addLast(ds);
+//or
+this.tableVar.remove(ds);
+this.tableVar.updateList;</pre>
+</div>
+</div>
+<h3>Edit the Data Structure within the Table</h3>
+<p>To create an editable table with data structures, set the <strong>Editable</strong> property to <strong>TRUE</strong> or any Permission method returning true when editable. Columns can then be edited at runtime and edited values are then stored into their corresponding data structure.</p>
+<p><strong>Note:</strong> Adding a new row within the table for editing is not supported. This action is only supported in finders.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

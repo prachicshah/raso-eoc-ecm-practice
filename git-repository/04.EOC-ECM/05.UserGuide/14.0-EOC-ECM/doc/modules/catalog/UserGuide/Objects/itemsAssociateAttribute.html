@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Associate an Attribute</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" >
+
+
+<h2>Associate an Attribute</h2>
+<p>To create a new Item Attribute, follow these steps<strong>:</strong></p>
+<p><strong>Note:</strong> A project must be opened to create an item attribute.</p>
+<ol>
+  <li>From the  Overview page, click <strong>Commercial Modeling</strong> &gt;<strong> Items</strong> in the Quick start section.</li>
+  <li>The Item page appears;  perform a search and then double-click one item from the results list (for example, Phone Offer).</li>
+  <li>Click the Attributes tab and then click the <strong>New</strong> button.</li>
+  
+  <li>The Item Attribute page appears, click the<strong> Finder</strong> button next to the<strong> Attribute Type</strong> field. </li>
+  <li>The <a href="Attributes.html"><strong>Attribute Finder</strong></a> dialog appears with the list of  attributes.</li>
+  
+  <li>Click  one attribute (for example, Bandwidth) from the list and click the <strong>Select</strong> button.</li>
+  <li>The <strong>Attribute Detail</strong> dialog appears with information filled in some fields inherited from the base attribute .</li>
+    <p><img src="itemsAssociateAttribute.png" alt="Associate Attribute Type to Item" /></p>
+  <li>Enter the information in the following fields:</li>
+  <p><table class='confluenceTable' border cellpadding="1">
+  <tbody>
+  <tr>
+  <th width="125" class='confluenceTh'>Field</th>
+  <th width="925" class='confluenceTh'>Description</th>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>AttributeType</strong></td>
+  <td class='confluenceTd'>This field defines the basic property of an item's attribute and defines the data type of the Item Attribute. This field cannot be updated; the information is inherited from the base Attribute Type.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>Code</strong></td>
+  <td class='confluenceTd'>This is the code used to identify the item attribute.  This code is not restricted to alphanumeric characters, it can also contain a combination of spaces, hyphens, etc. Strings can be up to 32 characters long.</td>
+  </tr>
+    
+  <tr>
+  <td class='confluenceTd'><strong>Name</strong></td>
+  <td class='confluenceTd'>The name of the attribute can be used as a visual label for internal use when designing your catalog model (for example, Internet Offer Bandwidth). This field is not supported by language translation. </td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>Status</strong></td>
+  <td class='confluenceTd'>A list of available <a href="States.html">Status</a> for this attribute (for example, Definition and Active).</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>Type</strong></td>
+  <td class='confluenceTd'>This is a list of association types of category Item attribute. </td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>Label</strong></td>
+  <td class='confluenceTd'>The visual label used  for this attribute, which is used in the application user interface. This field is a translational string that supports language translations (refer to Velocity Studio's Translation Element for more details).</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>Start Date</strong></td>
+    <td class='confluenceTd'>The effective date of this attribute. Refer to <a href="StartEnd_Dates.html">Start and End dates</a> for details.</td>
+    </tr>
+  <tr>
+  <td class='confluenceTd'><strong>End Date</strong></td>
+  <td class='confluenceTd'>The end date of this attribute represents the date when this attribute is no longer effective. Refer to <a href="StartEnd_Dates.html">Start and End dates</a> for details.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>Cancel</strong></td>
+  <td class='confluenceTd'>Objects that are extended have this Cancel flag checked. If the flag is checked, then the   extended item does not inherit that association. </td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>Is Property</strong></td>
+  <td class='confluenceTd'>If checked, the Default Value cannot be modified in the client application.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>Sequence</strong></td>
+  <td class='confluenceTd'>If checked, the Default Value cannot be modified in the client application.</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>Project</strong></td>
+    <td class='confluenceTd'>Each object is assigned to a Project. This defaults to the active or opened project when the attribute is first created.</td>
+    </tr>
+  <tr>
+  <td class='confluenceTd'><strong>Default Value</strong></td>
+  <td class='confluenceTd'>The value that appears in the client application during runtime for this item attribute.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><a href="#Default Value Rule"><strong>Default Value Rule</strong></a></td>
+  <td class='confluenceTd'>The default value can be derived from a condition. This launches the Catalog Rule Finder. User is able to select a Catalog Rule which will determine the runtime Default Value for this item attribute.</td>
+  </tr>
+  <tr>
+  <tr>
+    <td class='confluenceTd'><a href="classificationTypes.html"><strong>Classification Types</strong></a></td>
+    <td class='confluenceTd'>Select different classification  types  to identify item under different environments.</td>
+    </tr>
+  </tbody>
+</table></p>
+
+  <li>Click the <strong>Save</strong>  button. </li>
+  <li> The  item attribute  appears under the list of attribute versions.</li>
+  </ol>
+<p>Alternatively, you can also use the <a href="itemsPalette.html"> item palette</a> to create an item association.</p>
+<h3><a name="Default Value Rule">Default Value Rule</a></h3>
+<p>A default value rule can be used to assign attribute values during runtime. For example, during a promotional period the BasicSpeed and HighSpeed Internet offers have been upgraded.  The default values for the <em>Upload Speed</em>, <em>Download Speed</em>, and <em>Bandwidth</em> are assigned during the promotional period.  The rule would define that during the promotional period the values for attributes <em>Upload Speed</em> is <em>250K</em>, <em>Download speed</em> is <em>2MB</em>, and <em>Bandwidth</em> is <em>30GB/month</em> for the BasicSpeed offer. </p>
+</td>
+</tr>
+</table>
+</body>
+</html>
+

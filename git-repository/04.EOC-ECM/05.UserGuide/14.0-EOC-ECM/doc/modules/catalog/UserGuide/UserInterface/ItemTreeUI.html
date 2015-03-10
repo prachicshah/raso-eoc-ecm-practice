@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Item Tree User Interface</title>
+<link rel="stylesheet" href="../../site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Item Tree User Interface</h2>
+<p>The items listed in the item tree node can be identified graphically by distinguishing icons.  The system default icons are as follows:</p>
+
+
+<table width="251" border cellpadding="1" class='confluenceTable'>
+<tbody>
+<tr>
+<th width="60" align="left" class='confluenceTh'>Icon</th>
+<th width="185" align="left" class='confluenceTh'>Default Item Type</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="cube_green.png" alt="Component item icon" width="20" height="20" border="0" align="absmiddle" /></td>
+<td class='confluenceTd'>Component item</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="cubes.png" alt="Product item icon" width="20" height="20" border="0" align="absmiddle" /></td>
+<td class='confluenceTd'>Product item</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="package.png" align="absmiddle" width="20" height="20" border="0" alt="Offer item icon" /></td>
+<td class='confluenceTd'>Offer item</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="product_green.png" alt="Default icon" width="20" height="20" border="0" align="absmiddle" /></td>
+<td class='confluenceTd'>Default</td>
+</tr>
+<tbody>
+</table>
+
+<p>These icons are stored in the <em>templates</em> folder of the project metadata (that is,<em> &lt;metadata_project_name)</em>\templates\catalog.jar|\resources\images\tree_icons<em>)</em>.</p>
+<p>The script that associates these icons to the item type can be overwritten and changed. In Velocity Studio, you can find these icons by clicking the Resources tab in the left pane, and then clicking <strong>Images</strong> &gt; <strong>tree_icons</strong>. You can add icons to this folder. </p>
+<p>You can also overwrite and change the script that associates these icons to the item type. The script appears in the library files. In Velocity Studio, click the Library tab in the left pane, and then click <strong>Catalog </strong>&gt; <strong>cwt_pc (CWT Catalog Designer)</strong> &gt; <strong>Global  Scripts </strong>&gt; <strong>Scripts </strong>&gt;<strong> getItemTreeNodeIcon</strong>.</p>
+<p><img src="GetItemTreeNodeIcon.png" alt="Get Item Tree Node Icon script" /></p>
+<p>At runtime, you can  click the <strong>Item</strong> icon from the tree node menu to view the model's graphical presentation of the model, which is an item nodal chart. The following figure shows the product item with a relation to an offer and a component:</p>
+<p><img src="TreeNodeGraphicalPresentation.png" alt="Tree Node Graphical Presentation" /></p>
+<p>The connector colour in the item nodal chart can also be controlled by the cwt_pc.getConnectorColor() script. You can access this script in Velocity Studio's Library tab by clicking <strong>Catalog </strong>&gt; <strong>cwt_pc (CWT Catalog Designer) </strong>&gt; <strong>Global  Scripts </strong>&gt; <strong>Scripts </strong>&gt;<strong> getConnectorColor</strong>. Based on the relationship's association type, the connector colour changes.
+<p><img src="connectorColor.png" alt="Change Connector Colour"></p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

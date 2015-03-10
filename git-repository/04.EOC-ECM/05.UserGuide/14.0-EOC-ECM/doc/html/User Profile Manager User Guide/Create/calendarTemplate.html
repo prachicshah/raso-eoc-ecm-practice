@@ -1,0 +1,153 @@
+﻿<html>
+<head>
+<title>Create a Calendar Template</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Create a Calendar Template</h2>
+<p>The calendar template allows you to set up user availability, and contains default recurrences for USA and Canada. You can use this information when configuring calendars or creating a custom calendar template.</b> </p>
+<p>To create a new calendar template, perform these steps:</p>
+<ol>
+  <li>From the menu bar, click <strong>Create</strong> &gt; <strong>Calendar Template</strong> to launch the New Calendar Template Type page.<br>
+    <br>
+    <img src="newCalendarTemplate.png" alt="New Calendar Templates Type dialog" border="1">  <br>
+    <br>
+  </li>
+  <li>In the <strong>Template</strong> field, enter the name of your template, and then click the <strong>Save</strong> button to create your new calendar type. A confirmation message appears under the menu bar, indicating that your calendar has been successfully saved.
+    <br>
+    <br>
+    <img src="newCalendarTemplateSave.png" alt="Create a new calendar template" border="1"><br>
+    <br>
+  </li>
+  </ol>
+<p><strong>Note:</strong> You can configure your  new calendar template by complete the section steps that follow, or at a later time by clicking <strong>Manage</strong> &gt; <strong>Calendar Templates</strong> from the menu bar.</p>
+<h3><a name="templateCalendarDay"></a>Template Calendar Day</h3>
+You can perform the following actions:
+<ul>
+  <li><a href="#addTemplateCalendarDay">Add a template calendar day</a></li>
+  <li><a href="#removeTemplateCalendarDay">Remove a template calendar day</a><a href="#removeGroupFromPrivilege"><br>
+    </a></li>
+</ul>
+<h4><a name="addTemplateCalendarDay"></a>Add a Template Calendar Day</h4>
+<p>To add a  new template calendar day,  do the following:</p>
+<ol>
+  <li>From the Calendar Template Type Details page, click the <strong>Add</strong> button to launch the New Calendar Template Day page.<br>
+    <br>
+    <img src="newCalendarTemplateDetailsAdd.png" alt="Add calendar template details" border="1"><br>
+    <br>
+  </li>
+  <li>The following fields are available:<br>
+    <br>
+    <table width="965" class='confluenceTable'border cellpadding="1">
+      <tbody>
+        <tr>
+          <th width="139" class='confluenceTh'>Field</th>
+          <th width="814" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Day Name</strong></td>
+          <td class='confluenceTd'><p>Enter the name of your day. This field is mandatory.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Template</strong></td>
+          <td class='confluenceTd'>This field displays the template name and is not editable.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Day Type</strong></td>
+          <td class='confluenceTd'><p>Click the drop-down menu and select the day type from the list. This field is mandatory. </p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Recurrence Type</strong></td>
+          <td class='confluenceTd'><p>Click the drop-down  menu and select the type of recurrence for your calendar day. Depending on your selection from the drop-down list, additional drop-down fields display. In this example, Family Day occurs on the first Monday every February.</p>
+            <p>The following options are available from this field:</p>
+            <ul>
+            	<li><strong>Weekly</strong> - Specify the weekday that the recurrence takes place.</li>
+            	<li><strong>Monthly Every</strong> - Select the day of the month that the recurrence takes place.</li>
+            	<li><strong>Monthly The</strong> - Select the weekday within the month that the recurrence takes place.</li>
+            	<li><strong>Yearly Every</strong> - Select the year that the yearly recurrence takes place.</li>
+            	<li><strong>Yearly The</strong> - Select the parameters for the yearly setting that the recurrence takes place.</li>
+            	<li><strong>Script</strong> - In the Calendar Script field, specify the script that you want to use. You can create your scripts in Velocity Studio, in the   Scripts folder, under the Business Processes folder. </li>
+            </ul>
+            <p><strong>Note:</strong> Any changes made in this section are not saved to the database until you click the <b>Save</b> button.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Date</strong></td>
+          <td class='confluenceTd'><p>Click the calendar icon to specify a specific date. This field is mandatory.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Working Day</strong></td>
+          <td class='confluenceTd'>Select the field to indicate that this day is a working day. By default, the field is unchecked.</td>
+        </tr>
+      </tbody>
+    </table>
+<br>
+    <br>
+    <img src="newCalendarTemplateNewDay.png" alt="Calendar Year Details - Edit button" border="1"><br>
+    <br>
+  </li>
+  <li>When you have finished entering your information, click the <strong>Save</strong> button. A confirmation message appears, indicating that your calendar template day has been saved.</li>
+  <li>Click the <strong>Back</strong> button to return to the Calendar template Type Details page. Your new calendar name appears on this page.<br>
+    <br>
+    <img src="newCalendarTemplateDetailsAdded.png" alt="Calendar Template Type Details - New calendar day has been added" border="1"><br>
+    <br>
+  </li>
+  <li>Complete the following fields:<br>
+    <br>
+    <table width="965" class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="139" class='confluenceTh'>Field</th>
+          <th width="814" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Day Name</strong></td>
+          <td class='confluenceTd'><p>Enter the name of your day. This field is mandatory.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Day Type</strong></td>
+          <td class='confluenceTd'><p>Click the drop-down menu and select the day type from the list. This field is mandatory. </p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Date</strong></td>
+          <td class='confluenceTd'><p>Click the calendar icon to specify a specific date. This field is mandatory.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Work Slots 1, 2, and 3</strong></td>
+          <td class='confluenceTd'>Specify the from and to periods for these work slots, if needed.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>  When you have completed entering your information, click the <strong>Save</strong> button.<br>
+    <br>
+    <img src="newCalendarYearDetailsAddCalendarDaySave.png" alt="Save new calendar day" border="1"><br>
+    <br>
+    A confirmation message appears, indicating that your calendar day has been successfully saved. Click the <strong>Close</strong> button (X) to close the dialog.<br>
+    <br>
+  </li>
+  <li>Your new calendar day appears on the Calendar Year Details page.<br>
+    <br>
+    <img src="newCalendarYearDetailsAddCalendarDaySaved.png" alt="Save new calendar day" border="1"></li>
+  </ol>
+<p><b>Note:</b> Once you have created a new recurrence, you can change its name, day type, and recurrence pattern before clicking the <b>Save</b> button. Once your recurrences is stored in the database, its name cannot be changed.</p>
+<h4><a name="removeTemplateCalendarDay"></a>Remove a Template  Calendar Day</h4>
+<p>To remove a template calendar day, complete these steps:</p>
+<ol>
+  <li>From the Calendar Template Type Details page, select the checkbox next to the <strong>Day Name </strong> that you want to remove from the calendar template, and then click the <strong>Remove</strong> button.<br>
+    <br>
+    <img src="newCalendarTemplateDetailsRemove.png" alt="Remove day from calendar template" border="1">  <br>
+    <br>
+  </li>
+  <li>The day that you have selected is removed from your calendar template.</li>
+  </ol>
+<p>&nbsp;</p>
+<h4>&nbsp;</h4>
+<p>&nbsp;</p>
+</body>
+</html>

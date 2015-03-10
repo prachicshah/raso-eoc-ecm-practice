@@ -1,0 +1,234 @@
+<html>
+<head>
+<title>Process Activities Types</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Process Activities Types</h2>
+<p>The following process activity types are available.</p>
+<h4><a name="Alert"></a>Alert</h4>
+<p><img src="Alert.jpg" align="absmiddle" border="0" alt="" /> An <em>atomic</em> activity that executes a specified Alert.</p>
+<ul>
+<li>Not defined in the BPML specification.</li>
+<li>For <em>email</em> and <em>pager</em> Alerts, <b>Before</b> script is used for message content.</li>
+<li>For a <em>worklist</em> Alert, <b>Before</b> script is used for alert description.</li>
+<li>For an <em>external service</em> Alert, <b>Before</b> script is used for output message initialization.</li>
+<li>An <b>After</b> script is not allowed.</li>
+</ul>
+<h4><a name="All"></a>All</h4>
+<p><img src="All.jpg" align="absmiddle" border="0" alt="" /> A <em>complex</em> activity that finishes after all its sub-activities have completed.</p>
+<ul>
+<li>The <em>All</em> activity cannot include more than 16 sub-activities.</li>
+<li>These sub-activities can be run in parallel (concurrently) or in series (one after another).</li>
+<li>In addition, sub-activties are run in no particular order, meaning a sub-activity that is defined first may not be run first.</li>
+</ul>
+<h4><a name="Break"></a>Break</h4>
+<p><img src="break.png" width="41" height="57" alt="Break activity"> Activity that is a child of the <em><a href="#While">While</a></em> activity.</p>
+<ul>
+  <li>When  the condition script returns true, the closest <em>While</em> loop (that is, the parent of this <em>Break</em>) is completed.</li>
+  <li>The <em>Break</em> activity is optional in the <em>While</em> activity's loop.</li>
+  <li>This activity does not have <strong>Before</strong> and <strong>After</strong> scripts.</li>
+</ul>
+<h4><a name="Case"></a>Case</h4>
+<p><img src="case.jpg" align="absmiddle" border="0" alt="" /> Associates a condition with a <em>Switch</em> activity.</p>
+<ul>
+<li>Can contain zero or one sub-activity.</li>
+<li>No <b>Before</b> script or <b>After</b> script allowed.</li>
+</ul>
+<h4><a name="Choice"></a>Choice</h4>
+<p><img src="choice.jpg" align="absmiddle" border="0" alt="" /> A <em>complex</em> activity that completes after one of its sub-activities have been completed. All sub-activities are defined in parallel but only one activity is processed. The <a href="Choice/Choice Setup.html">Choice Setup</a> section gives an example of a Choice setup process diagram.<br />
+The <em>Choice</em> activity allows a process to wait for one of the sub-activities to arrive such as an Operation activity with a notification messages
+(for example, the credit approver participant can reply to the process with either an <em>approved</em> or <em>rejected</em> message).</p>
+<ul>
+<li><em>Choice</em> sub-activities include:  <em>Operation</em>, <em>Synchronize</em>, <em>Timeout</em>, <em>On Exception</em> and <em>Compensate</em>.</li>
+<li>Two (2) or more sub-activities must be specified of the types: <em>Operation</em>, <em>Synchronize</em> and <em>Timeout</em>.
+</li>
+<li>The <em>Operation</em> sub-activity must be defined with its <b>Operation</b> parameter set to a notification operation.
+</li>
+<li><strong>Before</strong> and <b>After</b> script are allowed.</li>
+</ul>
+<h4><a name="Compensate"></a>Compensate</h4>
+<p><img src="compensate.jpg" align="absmiddle" border="0" alt="" /> Associates a <em>Compensate</em> activity with a <em>atomic</em> or <em>complex</em> activity. The <em>Compensate activity</em> is used to revert any changes resulting from the completion of the activity in the event of <em>Rollback</em> activity.</p>
+<ul>
+<li>Can contain one and only one sub-activity.</li>
+<li>The <em>Compensate</em> activity will be executed if the activity has completed, but the <em>Rollback</em> activity is executed by the <em>On Exception</em> activity of the ancestor.</li>
+<li><em>Compensate</em> activities will be executed in the reverse order in which they were defined.</li>
+<li>If a <em>Compensate</em> activity is defined for a <em>complex</em> activity, it overrides any <em>Compensate</em> activities defined for any of its sub-activities, once the <em>complex</em> activity has completed.</li>
+<li>An <b>After</b> script is not allowed.</li>
+</ul>
+<h4><a name="Complete"></a>Complete</h4>
+<p><img src="complete.jpg" align="absmiddle" border="0" alt="" /> An <em>atomic</em> activity that completes the process.</p>
+<ul>
+<li>Can appear as the last activity in a sequence, or once in a <em>Choice</em> or <em>Switch</em> activity.</li>
+<li>The <em>complete</em> activity causes the process to complete immediately. It does not cause children or parent processes to complete.</li>
+<li>Activities that are waiting for their children (in the current process) to complete do not run the <strong>After</strong> script, if it exists, and do not have a completion time in the database. </li>
+<li>An <b>After</b> script is not allowed.</li>
+</ul>
+<h4><a name="Exception"></a>Exception (Fault)</h4>
+<p><img src="exception.jpg" align="absmiddle" border="0" alt="" /> An <em>atomic</em> activity causes an exception to occur in the process or to be sent to another process.</p>
+<ul>
+<li>To send an exception to another process, the <b>Before</b> script should return a process ID or process object indicating to whom the exception should be sent (refer to the <a href="../../index.html">JavaScript Extensions HTML documentation</a>).</li>
+<li>The exception occurs in the parent <em>complex</em> activity.</li>
+<li>The exception code name provides a global identifier for the exception type.</li>
+<li>An <b>After</b> script is not allowed.</li>
+</ul>
+<h4><a name="OnException"></a>On Exception</h4>
+<p><img src="onexception.jpg" align="absmiddle" border="0" alt="" /> Associates an <em>Exception</em> activity with a <em>complex</em> activity. It is used for recovering from exceptions, and allows the process to continue.</p>
+<ul>
+<li>Can contain one and only one sub-activity.</li>
+<li>The <em>Exception</em> activity will be executed if the activity ends with an exception.</li>
+<li>If the <em>Exception</em> activity completes successfully, then the failed activity also completes successfully.</li>
+<li>Multiple <em>On Exception</em> activities may be used to handle different exception codes. A set of <em>On Exception activities</em> must use unique exception codes, and at most one element may omit the exception code attribute.</li>
+<li>An <b>After</b> script is not allowed.</li>
+<li><strong>Note:</strong> On Exception activities for process and decision trees cannot use subflow processes.</li>
+</ul>
+<h4><a name="Operation"></a>Operation</h4>
+<p><img src="operation.jpg" align="absmiddle" border="0" alt="" /> An <em>atomic</em> activity that performs a message exchange with a process participant.</p>
+<ul>
+<li>The participant is mandatory for non-global processes.</li>
+<li>A global process can specify the participant (using services of another participant), or omit the participant and use its own Interface Operation (providing services to other participants).</li>
+<li>This activity will either consume the message (<em>notification</em>), produce a message (<em>one-way</em>), or both, depending on the Interface Operation selected.</li>
+<li>When a global process specifies its own Interface Operation, it will be interpreted in opposition to the operation type (that is, a <em>one-way</em> Operation will perform consume).</li>
+<li>Can contain zero or one sub-activity.</li>
+</ul>
+<h4><a name="Poll"></a>Poll</h4>
+<p><img src="poll.png" width="40" height="57" alt="Poll activity"> An <em>atomic</em> activity that allows you to define the process flow dynamically and recalculate it later.</p>
+<ul>
+  <li>The <strong>Schedule</strong> option in any activity  allows you to delay an activity only one time, and this activity eventually runs  and completes. 
+    Sometimes, business-process logic needs to recalculate and delay the process flow  to wait for some changing condition, which can be done using the <em>Poll</em> activity.</li>
+  <li>The process engine  expects to receive&nbsp;a positive number from the <em>Before</em> script of  this activity that represents the activity's delay time in seconds.    After this time passes, the process engine calls the <strong>Before</strong> script again to receive  a new time for new delay.<br>
+    </li>
+  <li>When the script returns 0 (zero), the process engine completes this activity and performs the next  activity in the flow. </li>
+  <li>Negative numbers are not allowed. Additionally, any other type of data that not an integer number is not allowed.<br>
+    </li>
+  <li>This activity has both <strong>Before</strong> and <strong>After</strong> scripts.<br>
+    <br>
+    <strong> Poll scenarios:</strong>
+    <ul>
+      <li>If the <strong>Before</strong> script is empty (that is, it returns nothing), the process goes into an error  state (DE0332: Invalid poll interval).</li>
+      <li>If the <strong>Before</strong> script is not empty, but does not return anything, the process  goes into an error state (DE0332: Invalid poll interval).</li>
+      <li>If the <strong>Before</strong> script returns null, the process goes into the error state  (DE0332: Invalid poll interval)</li>
+      <li>If the <em>Poll</em> activity defines a delay time in <strong>Schedule</strong>  property, the first delay activity time is the time defined in the <strong>Schedule</strong>  property. For the process engine, it is the delay before this activity starts. After this time, the process engine starts the activity, runs its <strong>Before</strong> script,  and then delays the flow as a result of this script.</li>
+      <li>If the <em>Poll</em> activity defines the duration time in the <strong>Schedule</strong>  property, the <strong>Schedule</strong> property (that is, the waiting timeout&nbsp; period  starts only when the scheduled delay has passed) is first evaluated. The waiting timeout period starts when  the <strong>Before</strong> script runs for first time because this delay (from the <strong>Before</strong> script) occurs after starting this activity.</li>
+    </ul>
+  </li>
+  </ul>
+<h4><a name="Repeat"></a>Repeat</h4>
+<p><img src="Repeat.jpg" align="absmiddle" border="0" alt="" /> An <em>atomic</em> activity that repeats a <em>complex</em> parent activity. The <em>Repeat</em> activity is used to model <em>while</em> loops.</p>
+<ul>
+<li>Can appear as the last activity in a sequence, or once in a <em>Choice</em> or <em>Switch</em> activity.</li>
+<li>The parent activity is not limited to the immediate parent (it can go back to grandparent or above).</li>
+<li>An <b>After</b> script is not allowed.</li>
+</ul>
+<h4><a name="Resume"></a>Resume</h4>
+<p><img src="Resume.jpg" align="absmiddle" border="0" alt="" /> An <em>atomic</em> activity that resumes previously suspended activities by the <em>On Exception</em> activity.</p>
+<ul>
+<li>Can only be used as part of the <em>On Exception</em> activity flow.</li>
+<li>A <em>Resume</em> activity is executed in parallel to the <em>On Exception</em> activity flow.</li>
+<li>An <b>After</b> script is not allowed.</li>
+</ul>
+<h4><a name="Rollback"></a>Rollback</h4>
+<p><img src="Rollback.jpg" align="absmiddle" border="0" alt="" /> An <em>atomic</em> activity that invokes a <em>Compensate</em> activity for all completed activities of a <em>complex</em> activity that is a parent of an <em>On Exception</em> activity</p>
+<ul>
+<li>Can only be used as part of the <em>On Exception</em> activity flow.</li>
+<li>The <em>Rollback</em> activity will wait until all <em>Compensate</em> activities are complete.</li>
+</ul>
+<h4><a name="Script"></a>Script</h4>
+<p><img src="script.jpg" align="absmiddle" border="0" alt="" /> An <em>atomic</em> activity that executes a <b>Before</b> script.</p>
+<ul>
+<li>An <b>After</b> script is not allowed.</li>
+</ul>
+<h4><a name="Sequence"></a>Sequence</h4>
+<p><img src="Sequence.jpg" align="absmiddle" border="0" alt="" /> A <em>complex</em> activity that completes after all its sub-activities have completed. All sub-activities are executed in sequence.</p>
+<h4><a name="Signal"></a>Signal</h4>
+<p><img src="Signal.jpg" align="absmiddle" border="0" alt="Signal" /> An <em>atomic</em> activity causes a Signal to be raised in the process or to be sent to another process.</p>
+<ul>
+<li>To send a Signal to another process, the <b>Before</b> script should return a process ID or process object indicating to whom the Signal should be sent (refer to the <a href="../../index.html">JavaScript Extensions HTML documentation</a>).</li>
+<li>The Signal name provides a global identifier for the Signal type.</li>
+<li>An <b>After</b> script is not allowed.</li>
+</ul>
+<h4><a name="Subprocess"></a>Spawn (Sub-process)</h4>
+<p><img src="subprocess.jpg" align="absmiddle" border="0" alt="Subprocess" /> An <em>atomic</em> activity that spawns a child process.</p>
+<ul>
+<li>A sub-process is started asynchronously by the Spawn activity -- as independent process, running in parallel with its parent.</li>
+<li>If <b>Synchronization</b> flag is unchecked, the activity completes immediately, which means it may complete before its children complete. If <b>Synchronization</b> flag is checked, the activity completes only when the sub-process completes.</li>
+<li>The parent process can wait for child process completion by using a <em>Join</em> activity.</li>
+<li>An <b>After</b> script is not allowed if <b>Synchronization</b> flag is unchecked.</li>
+<li>Contrast this activity with <i>sub-flow</i> activity, where sub-flow is expanded in-line into parent process. See <a href="sub-process and sub-flow.html">sub-processes and sub-flows</a> for details.</li>
+<li><strong>Notes:</strong>
+<ul>
+  <li>A child process cannot write into process document of parent process; it is read-only for child processes.</li>
+  <li>The process engine creates a new document instance for a child process and copies all fields, except for system objects, such as cwf.cwDocId. It is a document copy of the parent when creating the sub-process. If a field is changed in the parent process document at a later period, this change is not visible in the sub-process document, even with the <strong>Use parent process document</strong> field selected for the sub-process document.</li>
+    <li>Subprocess activities for process and decision trees cannot use subflow processes.</li>
+  </ul>
+</li>
+</ul>
+<h4><a name="Subflow"></a>Sub-flow</h4>
+<p><img src="subflow.png" align="absmiddle" border="0" alt="" /> A <em>complex</em> activity that calls a subflow (akin to a procedure call). The <em>Sub-flow</em> activity is used for breaking a complex process into separate components, but in contrast to a <a href="#Subprocess"><em>Spawn</em> activity</a>, the activities in <em>Sub-flow</em> become part of the parent activities and they run synchronously within the process. See <a href="sub-process and sub-flow.html">sub-processes and sub-flows</a> for details.</p>
+<ul>
+<li>Not defined in the BPML specification.</li>
+<li>Current process priority used for subflow activities.</li>
+<li>When executing scripts of included process activities, the process parameter passed to those scripts is the process where the <em>Sub-flow</em> activity is defined (refer to the <a href="../../index.html">JavaScript Extensions HTML documentation</a>).</li>
+<li>Cannot include <em>On Exception</em> activities.</li>
+<li><strong>Note:</strong> The context menu of the <strong>Sub-flow</strong> activity includes the <strong>Edit</strong> option,  which opens up the top-level subflow property panel where subflow is in editable  mode.</li>
+</ul>
+<h4><a name="Switch"></a>Switch</h4>
+<p><img src="switch.jpg" align="absmiddle" border="0" alt="" /> A <em>complex</em> activity which completes after zero or more of its sub-activities have completed, subject to one or more conditions. This models process branching.</p>
+<ul>
+<li>Can only have <em>Case</em> sub-activities.</li>
+<li>Can only have one default <em>Case</em> activity (a case with no condition).</li>
+<li>Can execute more than one <em>Case</em> activity (not exclusive). When <em>Switch</em> activities are marked as none-exclusive, all <em>Case</em> activities that have a condition evaluated to true execute the same way.</li>
+<li>If no <em>Case</em> activity has a condition that evaluates to true, the default case is executed.</li>
+<li>Cannot have more than 16 sub-activities (optimization restriction).</li>
+</ul>
+<h4><a name="Sync"></a>Sync</h4>
+<p><img src="sync.jpg" align="absmiddle" border="0" alt="" /> An <em>atomic</em> activity that synchronizes on a Signal. It waits for a specified Signal and completes when such a Signal arrives. Used for synchronization of parallel execution branches within a process or for synchronization of parent/child processes.</p>
+<ul>
+<li>A <b>Before</b> script is not allowed.</li>
+</ul>
+<h4><a name="Timeout"></a>Timeout</h4>
+<p><img src="Timeout.jpg" align="absmiddle" border="0" alt="" /> An <em>atomic</em> activity that executes based on a schedule. Can be used to ensure a process does not get stuck waiting infinitely for an incoming message.</p>
+<ul>
+<li>Can only be the child of a <em>Choice</em> activity.</li>
+<li>When completed, the parent <em>Choice</em> activity will also complete.</li>
+<li>Can contain only one sub-activity.</li>
+</ul>
+<h4><a name="Wait"></a>Wait</h4>
+<p><img src="wait.jpg" align="absmiddle" border="0" alt="" /> An <em>atomic</em> activity that waits for spawned children processes to complete before proceeding.</p>
+<ul>
+  <li>If a process type is specified, the activity completes after all spawned processes of this type have completed execution.</li>
+  <li>If no process type is specified, the activity completes after all spawned children processes have completed execution.</li>
+  <li>This activity will wait only for sub-processes instantiated from the same process in which the activity is executed.</li>
+  <li>If no nested processes are executing when this activity occurs, it completes immediately.</li>
+  <li>A <b>Before</b> script is not allowed.</li>
+  <li><b>Notes</b>:
+    <ul>
+      <li>Under parallel activities of a process, there must not exist multiple Wait activities in parallel waiting for the same sub-process type to complete. Under such circumstances, it is possible for some Wait activities permanently waiting even when all such sub-processes are completed.</li>
+      <li>Wait activities for process and decision trees cannot use subflow processes.</li>
+    </ul>
+  </li>
+</ul>
+<h4><a name="While"></a>While</h4>
+<p><img src="while.png" width="41" height="56" alt="While"> A complex activity that performs loops in the flow of processes.</p>
+<ul>
+  <li>
+Activities that run within the loop are children of the <em>While</em> activity.</li>
+  <li>    Loop performs as long as the condition script of the <em>While</em> activity returns true.<br>
+    </li>
+  <li>The process engine  checks the condition script for the first time when the <em>While</em> activity  starts and after every loop iteration of loop, except when the <em><a href="#Break">Break</a></em> script  returns true in the middle of the loop.<br>
+    </li>
+  <li>Loop may be finished in the middle if it has a <em>Break</em> activity inside  and the <em>Break</em> activity's condition script returns true.<br>
+  </li>
+  <li>The <strong>Before</strong> script of the <em>While</em> activity runs only before the first  iteration of the loop.</li>
+  <li>The <strong>After</strong> script of the <em>While</em> activity runs only after  the loop completes, with a return value of the condition script as a result (any  <em>While</em> or <em>Break</em>).</li>
+</ul>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

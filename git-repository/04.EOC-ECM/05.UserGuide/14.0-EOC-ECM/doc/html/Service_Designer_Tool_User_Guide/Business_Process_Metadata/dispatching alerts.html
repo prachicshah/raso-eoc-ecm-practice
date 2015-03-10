@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Dispatching Alerts</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Dispatching Alerts</h2>
+<h4>Alert Activity</h4>
+<p>As part of the process flow, an alert activity can issue an Alert to indicate and/or escalate a business error.</p>
+<h4>Process Abnormal Termination</h4>
+<p>This Alert is dispatched when a process instance terminates prior to completing all process activities. The causes for process abnormal termination include such conditions as JavaScript errors, failure to handle process exceptions and database errors.</p>
+<p>When issuing email/pager Alerts for a process failure, the email message content is a fixed system message (WE0013) that contains the process ID and process type.</p>
+<p>Process abnormal termination Alerts are configured in the Configuration application: <a href="../../Configuration_Tool_User_Guide/Processes Alerts Assignments.html">Processes - Alerts Assignments</a>.</p>
+
+<h4>Process Engine Abnormal Termination</h4>
+<p>This Alert is dispatched when the Process Management product detects a Process Engine failure. Only User Participant Alerts are supported for Process Engine failure notifications.</p>
+
+<p>Process Engine abnormal termination can be caused by server shutdown or by Java VM (virtual machine) shutdown. Process Engine abnormal termination is detected by a database stored procedure that runs periodically as a database job. Every Process Engine updates the database approximately every 5 minutes. This database job checks that every Process Engine has updated its information in the last 15 minutes. Any Process Engine that has stopped running will not update its timestamp, and will be considered dead within 15 minutes.</p>
+<p>The Process Engine abnormal termination Alerts are also configured in the Configuration application: <a href="../../Configuration_Tool_User_Guide/Processes Alerts Assignments.html">Processes - Alerts Assignments</a>.</p>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

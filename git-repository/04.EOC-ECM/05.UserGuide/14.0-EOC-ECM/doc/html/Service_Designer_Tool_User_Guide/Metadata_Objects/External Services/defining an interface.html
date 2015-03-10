@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Defining an Interface</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>Defining an Interface</h3>
+<p>An Interface represents a collection of abstract operations.</p>
+
+<p>To create a new Interface:</p>
+
+In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:
+<ol>
+<li>Right-click a Namespace. Select <b>New ...</b></li>
+<li><b>New Metadata Object</b> wizard appears as pop-up. Expand <b>External Services</b>, and select <b>Interface</b>, and then click <b>Next</b>.</li>
+<li>Step two of wizard appears. Type in the name of Interface (must conform to JavaScript naming conventions), and populate other fields as desired. Then click <b>Finish</b>.</li>
+</ol>
+OR
+<ol>
+<li>Right-click the <b>Interfaces</b> folder or the <b>External Services</b> folder in a Namespace, if it is present. Select <b>New Interface</b></li>
+<li>Follow step3 from above.</li>
+</ol>
+</ul>
+
+<p>After the Interface is created, the icon will be added under the <b>Interfaces</b> folder.</p>
+
+<p><img src="newInterfaceNode.png" align="absmiddle" border="1" alt="New Interface Node" />
+<h4>Interface General Properties</h4>
+<p>The general Interface properties are defined on the <b>General</b> tab. The table below describes the fields.</p>
+<p><img src="InterfaceGeneral.png" align="absmiddle" border="1" alt="Interface General Properties" /></p>
+
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory. Name of the Interface within the namespace.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Deprecated</b></td>
+<td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Mandatory. Label to identify the Interface.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the Interface for documentation purposes.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Privileges</b></td>
+<td class='confluenceTd'>When the button is clicked at the end of the field, the <b>Select Privileges</b> dialog opens, allowing the user to select a combination of user privileges.
+<p>A Privilege is a user right which is assigned to a user and specifies allowable actions in the system. Privileges in an Interface definition specify who can use this Interface and the Interface Operations. If privileges are not defined, any user can use the Interface. Currently, privileges are enforced only for API users (external systems using services of the framework).</p>
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Revision</b></td>
+<td class='confluenceTd'>Read-only. Revision number of the Interface; increments when any of its Interface Operations is added or removed. At the moment, this is for informational purposes only -- previous revisions of the Interface are not stored, and there is no runtime functionality that leverages this revision number.</td>
+</tr>
+</tbody>
+</table>
+
+<h4>Interface Operations</h4>
+<p>The <b>Operations</b> tab contains a <b>Children</b> <b>list</b> which lists all the Interface Operations. The order of the Operations is dependant on the order in the list.</p>
+<p>The arrow buttons located at the side of the list are used to move the selected element in the list to the desired location. The <b>Sort</b> button is used to sort the elements in alphabetical order.</p>
+ <p><img src="InterfaceOperations.png" align="absmiddle" border="1" alt="Interface Operations" /></p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

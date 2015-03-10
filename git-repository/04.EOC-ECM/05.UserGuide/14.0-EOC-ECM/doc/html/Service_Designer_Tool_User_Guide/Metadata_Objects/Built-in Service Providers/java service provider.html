@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Java&#8482; Service Provider</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Java&#8482; Service Provider</h3>
+<p>The Java Service Provider allows invocation of external Java class methods. Only primitive types are supported (for example, Date, String, Number). As such, to transfer complex types, you may need to create a bridge -- a Java method that translates the complex type to the primitive types.</p>
+<p><strong>Note:</strong> The JAR file of the external Java class should be in the CLASSPATH.</p>
+
+<h4>JAVA Attributes in Velocity Studio</h4>
+
+<p>The following table describes the attributes that are exposed in Velocity Studio specifically for the Java Service Provider.</p>
+
+<p>These attributes are found at <b><a href="../External Services/defining a binding.html">Binding</a></b> metadata object in Velocity Studio. When an Interface, Operation or message element is selected in the <b>Interface element</b> tree, the attributes for the element appears in the <b>Element definitions</b> table where values can be provided.</p>
+
+<p><ins>Attributes in Velocity Studio for the Java Service Provider</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Scope</b></td>
+<td class='confluenceTd'>Specifies how the session cookie is used. Can have one of the following values:<br clear="all" />
+<ul>
+<li><b>application</b>: All session cookies are shared by all user sessions. This is the default behaviour.<br clear="all" /></li>
+<li><b>session</b>: Each session cookie is dedicated to one user session.<br clear="all" /></li>
+<li><b>request</b>: The session cookie is used for the duration of one user request (when invoking service provider operations from within the same JavaScript, all service invocations are considered one request).</li>
+<li><strong>none</strong>: A session cookie is not used between interface invocations. </li>
+</ul>
+</td>
+<td class='confluenceTd'>Interface <img src="iconInterface.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Method</b></td>
+<td class='confluenceTd'>The class method name.</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Constructor</b></td>
+<td class='confluenceTd'>Specifies that this method is a constructor.</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></p>
+
+<h4>Java Attributes in Configuration Application</h4>
+
+<p>The following table describes the attributes that are exposed in Configuration application specifically for the Java Service Provider.</p>
+
+<p>These attributes are found in <b><a href="../../../Configuration_Tool_User_Guide/Services Services.html">Services</a></b> tab in Configuration application. When clicking a Port, Binding, Operation or message node in the <b>Service Port tree</b>, the Configuration attributes for the node appears at the <b>Configuration</b> section at the right where values can be provided.</p>
+
+<p><ins>Attributes in Configuration application for the Java Service Provider</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Location</b></td>
+<td class='confluenceTd'>Fully qualified Java class name.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>cacheSize</b></td>
+<td class='confluenceTd'>The number of connections to be cached for the Service Provider. 100 is the default, and also capped to 100.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

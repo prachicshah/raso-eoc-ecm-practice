@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>Navigation Pane - Library</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Navigation Pane - Library</h2>
+<p>The <b>Library</b> tab of <b>Navigation</b> pane contains all libraries available for your project. It consists of the following:</p>
+<ul>
+<li>All core product metadata that are exposed to all projects in Velocity Studio</li>
+<li>All project-specific libraries that are loaded from <b>Templates</b> folder of your project root directory. These may be accelerators, such as <i>Product Catalog</i> and <i>Customer library</i>, or it may be other libraries provided by partners or your project team.</li>
+</ul>
+
+
+<p><b>Note</b>: To add libraries to your project, go to <b>Metadata</b> tab of <b>Navigation pane</b>, and use <a href="../Metadata_Objects/Metadata Root/Metadata Root Templates.html"><b>Library</b> tab</a> of top-level metadata object to add JAR files into your project root directory's Template folder. A project reload is necessary to have the added libraries shown in the <b>Library</b> tab of the <b>Navigation Pane</b>.</p>
+
+<p>The following is a snapshot of the core product metadata available for your application development:<ul>
+<li><b><i>com.conceptwave.system</i></b> - base metadata objects of various types exposed by core. Most application metadata objects are derived from these base objects.</li>
+<li><b><i>cwf</i></b> - Framework objects, which are core system metadata that implements many of the product<sup></sup>'s "off-the-shelf" functionality. Only relevant metadata of the Framework is exposed here, others remain hidden.</li>
+<li><b><i>cwf_oe</i></b> - Framework objects for Order Entry component. Notably, the following Documents may be overridden to provide customization to your application:</li>
+	<ul>
+	<li><i>cwf_oe:login</i> - User login</li>
+	<li><i>cwf_oe:SelectApp</i> - Application selection</li>
+	<li><i>cwf_oe:OptionalItemSelect</i> - Add optional Order Item selection</li>
+	</ul>
+<li><b><i>cwf_pm</i></b> - Framework objects for Process Management</li>
+<li><b><i>cwf_up</i></b> - Framework objects for User Profile management</li>
+<li><strong><em>cwt_common</em></strong> - Framework objects for Common Elements<br>
+</li>
+</ul>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<td class='confluenceTd'><img src="navigationTemplate.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+<p>This <b>Library</b> tab is a means to browse and access the library metadata -- to reference, copy, and override them, as explained in section <a href="..\Introduction_to_Metadata\Managing Metadata.html">Managing Metadata</a>. Library metadata cannot be changed. The right-click popup menus for library metadata objects do not contain actions that incur changes to metadata. The common menu items are as follows:
+<ul>
+<li><b>Copy</b> - Copies the selected metadata object to the clipboard.</li>
+<li><b>Show Usage</b> - Opens the <b>Dependent Objects</b> dialog that shows all metadata objects which have a reference to the selected object. <span class="confluenceTd">You can also find variable instances that point to an object's user interface  and user interface form.</span> This function finds references in the following:
+  <ul>
+    <li>Form elements that reference the form</li>
+    <li>Pop-up actions or methods that reference the form</li>
+    <li>Finders that reference the form</li>
+    </ul>
+  <br>
+  <p><strong>Notes:</strong></p>
+  <ul>
+    <li>The <strong>Show Usage</strong> function cannot find a method call in a script. This function is used for dependent metadata only.</li>
+    <li>The list of elements returned depends on the given object's usage. The elements in the list are not necessarily directly dependent on the given object, but can be indirectly dependent on it.</li>
+  </ul>
+</li>
+<li><b>Find in Scripts</b> - Searches for metadata objects that use the selected object's name in their scripts.</li>
+</ul>
+<p>When you add
+  a library (that is, a .jar file) to your project, Velocity Studio allows you to display the header file label in the JAR file as the library's root node, instead of the JAR file. </p>
+<p><img src="libraryJarLabel.png" alt="Display header label in JAR file as library root node" width="292" height="274" border="1"></p>
+<p>If the header file's label is either empty or null, the name appears instead. </p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

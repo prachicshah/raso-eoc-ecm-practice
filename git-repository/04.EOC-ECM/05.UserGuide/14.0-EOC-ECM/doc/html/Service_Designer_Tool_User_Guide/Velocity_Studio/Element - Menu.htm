@@ -1,0 +1,301 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Menu</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Menu</h2>
+
+<p>A menu can be created with a hierarchy of Menu Elements. The following is an example of a Menu element with child Menu elements to form a hierarchical structure.  </p>
+<p><img src="exampleMenu.png" alt="Menu" border="1">
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='referenceTh'>references Variable</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method</th>
+<td class='referenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>Allowable Child Elements</th>
+<td class='referenceTd'>
+Menu<br/>
+Separator
+</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th width="117" class='referenceTh'>Property</th>
+<th width="144" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+<th width="1352" class='referenceTh'>Comment</th>
+</tr>
+<tr>
+  <th class='referenceTh'>Name</th>
+  <td class='referenceTd'>Mandatory</td>
+  <td class='referenceTd'>Name of the Menu.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Visible label or title of the Menu. If empty, a label or title is not displayed. Default is empty.</td>
+</tr>
+<tr>
+  <th class='referenceTh'><a name="accelerator"></a>Accelerator</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Enter a shortcut key (such as <em>Ctrl</em> + <em>s</em>) to be used to invoke the Click Method of the menu. When the shortcut key entered in this property  is typed by the user, the method for the menu's Click Method will be called. The accelerators are only enabled by the menuItem's child. </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Action Auditor</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Specify the Action Validator object for this button's <strong>Action Auditor</strong> property. During runtime, when you click this button, the associated logging action is also invoked, provided that the <strong>Enable action logging</strong> checkbox from the System <a href="../../Configuration_Tool_User_Guide/Log Levels.html"><strong>Logging</strong></a> tab has been selected.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Can Focus</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Headers on a page consist of a layout, an image button, and a menu item. Menu items are focusable by default (that is, the <strong>Can Focus</strong> checkbox is already checked). When you deselect this option, pressing the <strong>Tab</strong> key to tab within the form skips headers.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Click Method</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Choose from the list of Methods available in the User Interface to bind to this Menu. The Method is invoked when a user clicks on the Menu Element. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</p>
+    <p>When adding Child Menu Elements, the Menu Element becomes a pure drop-down menu item and this method is no longer editable.  The click method of a top-level menu cannot have an assigned click method as its click method purpose is to show the children drop-down menu.</p></td>
+</tr>
+<tr>
+<th class='referenceTh'>Dynamic Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Defines a dynamic style for the menu item. This property is used to select a method which returns the style based on whether the menu action has been called  or not.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Dynamic Tooltip</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines a dynamic tooltip text that is displayed in a hover box when the cursor hovers the element.  Set property to a <em>String</em> variable or a script with a Return type <em>String</em>. The static Tooltip property is considered as default until the action returns a value.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Dynamic Tooltip Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>This property dynamically changes the style of the Dynamic Tooltip.  Set property to a script with a Return type <em>String</em> that is a cascading style sheet (css) name found in the stylesheet used by the application.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Enabled</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>When this property is set to false and the <strong>Icon</strong> property is set, icon_Disabled must be provided. Otherwise, it appears as a  broken image.</p>
+    <p>See the <a href="#enabledExample">Apply  Enabled Property for Second-level Menu Items and Under Iterators</a> for an example on how to use this property for second-level menu items and iterators.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Height</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property allows top-level menus to have their height adjusted. Only menus that are not children of other menus can set this property. In other words, top-level menus can set this property, but not menus that are shown as a submenu.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Icon</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Choose from a list of icons. The selected icon appears in the menu item adjacent to the label. Default is NONE.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Icon Height</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Height of the icon used or consumed within the Menu.  The value is defined as the number of pixels (integer) or percentage.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Icon Variable</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'><p>Choose from a list of available <em>string</em> variables. This value of this variable determines the icon that appears in the menu. Its value is the path where the  icon is located.  This variable can be initialized or dynamically set in any method within its local User Interface. The method should return a path to the icon (for example, &quot;cwf/Tree.gif&quot;). The icon will be invoked whenever the menu is visible or when a page is being refreshed (on any user action).  </p></td>
+</tr>
+<tr>
+<th class='referenceTh'>Icon Width</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Width of the icon used or consumed within the Menu.  The value is defined as the number of pixels (integer) or percentage.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Image on Right</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Specifies whether the icon image is left or right justified within the Menu. Default is "false", which means that the image is left justified.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Include in Tab Order</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>This property allows you to optionally suppress tabbing to any or all form elements. The <strong>Include in Tab Order</strong> property overrides the <a href="../../Configuration_Tool_User_Guide/Configure/System/UI/UItabbing.html">suppress tabbing</a> configuration setting and can take the following values:</p>
+    <ul>
+      <li>When set to <strong>&lt;Default&gt;</strong>, the element is included in tab order according to global rules and its focusable state.</li>
+      <li>If the property is set to <strong>Exclude</strong>, the element is excluded from tabbing even if the element is focusable.</li>
+      <li>If the property is set to <strong>Include</strong>, the element is included <em>only if it is focusable</em>, even if all items of that type are excluded through the Suppress Tabbing variable.</li>
+      </ul>
+    <p><strong>Note:</strong> For menu items and images, the <strong>Can Focus</strong> property affects including the element in the tab order. To ensure that an element is in the tabbing order, select this property.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>On Enter</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>The system calls any script defined in this property (including onInit, onClick and toString). This method is invoked when the Menu is focused on the Web page and the user presses the ENTER key.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Show Menu Drop Down</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>The showMenuDropdown simply refers to a down arrow which would appear beside the menu element to indicate to the user that there are more menus to choose from under it. The developer can choose not to display this down arrow but still have access to the menu's menu item children.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show RollOver</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This value set as true would increase the font of the Menu label when the user's mouse hovers over the Menu element.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show Submenu On Hover</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property is only available for root menu elements, as second-level menus already have hover capabilities. Selecting this checkbox indicates that you can hover your mouse over the menu item to display its submenus. </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Choose from styles within the selected style sheet (located in the Velocity Studio toolbar), which defines the styling of the Menu such as background color. Default is NONE.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the tooltip text, which is displayed in a hover box when the cursor hovers over the Menu. Default is empty, which means no tooltip for the Menu.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the tooltip style of the text displayed in the hover box when the cursor hovers over the element. The default is empty. Click the <strong>Value</strong> field to select a tooltip style from the list.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip Width (px)</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Allows you to change the width of the tooltip popup window statically. Enter the width in pixels. The default value for this property is 0.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>URL</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Enter a Web path or URL (for example, http://google.com). This URL is invoked when the user clicks the menu label.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Variable</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Allows you to dynamically set the menu's label. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Visible</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Defines the user permissions assigned to this layout. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and visiblePerm can be assigned as well as Object Permissions. Defaults to NONE, which means no permissions assigned.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Notes</h3>
+<ul><li>A menu is created by assembling a hierarchy of Menu Elements together. Create expandable sub-menus of a menu item by adding child Menu Elements to it. You can have multiple levels in the menu hierarchy, but should limit the depth to, say two to three, for usability reasons.</li>
+
+<li>The example below shows three levels of menus.  The first level of sub-menu expands vertically down from the root-level menu item. Other deeper levels of sub-menu expands horizontally from parent menu item.
+ <p><img src="exampleMenuNotes.png" alt="Menu levels" border="1"></p></li>
+
+<li>Instead of Horizontal Layout, you can use Vertical Layout to stitch together a vertical menu.</li>
+
+<li>It is important to spend time on designing a style in CSS and assign it to the menu system to refine its appearance.</li>
+<li>The menu height/width can be controlled by how long the label is or its style. The icon used for the menu can also control the menu's overall size. Menus automatically resize to fit its label as well as its icon.</li>
+</ul>
+<h3>Top-level Menus with the Accelerator Property</h3>
+<p>Using the <strong><a href="#accelerator">Accelerator</a></strong> property provides added accessibility to both top-level menus and submenus. You can define shortcut keys at design time to access the top-level or submenu you want during runtime.</p>
+<p>Accelerators for top-level menus function as follows:</p>
+<ul>
+  <li>You can use a combination of the <strong>Alt</strong> key with a character (for example, A)</li>
+  <li>When using Firefox as your Web browser, you  use the <strong>Alt</strong> key with a character key</li>
+  <li>When using Internet Explorer as your Web browser, you  use the <strong>Alt</strong> + <strong>Shift</strong> + character key combination</li>
+  </ul>
+<p>Submenus with accelerators defined have the shortcut key displayed to the right of the menu label, which you specify at design time. For example, if you want to use the character key A as a shortcut key for the <strong>Save</strong> option, the menu would look as follows:</p>
+<p><img src="menuAcceleratorSave.png" alt="Menu with shortcut key defined" border="1"></p>
+<p>Accelerators for submenus have at least one character and a combination of one or more of these keys:</p>
+<ul>
+  <li><strong>Alt</strong></li>
+  <li><strong>Shift</strong></li>
+  <li><strong>Ctrl</strong></li>
+  </ul>
+<p><strong>Note:</strong> Some shortcut keys may already used by Web browsers. As a result, the menu you have designed with shortcut keys may not always work. Ensure that you use shortcut keys that will not interfere with your Web browser's behaviour.</p>
+<p>To use the <strong>Accelerator</strong> property with a top-level menu, do the following:</p>
+<ol>
+  <li>Create a top-level menu.</li>
+  <li>Locate the <strong>Accelerator</strong> property and click the <strong>...</strong> button.</li>
+  <li>Specify a character key to use as your shortcut and then click the <strong>Save</strong> button.<br>
+    <br>
+    <img src="menuAcceleratorKey.png" alt="Specify shortcut key for Accelerator property" border="1">  <br>
+    <br>
+  </li>
+  <li>Select a <strong>Click Method</strong> for this menu from the drop-down menu.</li>
+  <li>During runtime, depending on the Web browser you are using, press the shortcut key combination. This action puts the focus on the menu item.</li>
+  <li>Press the <strong>Enter</strong> key to fire the click method you have specified for this menu.</li>
+  </ol>
+<p>To use the <strong>Accelerator</strong> property with a submenu, do the following:</p>
+<ol>
+  <li>Follow the same steps previously used to create a shortcut for a top-level menu. Instead of specifying a click method, add submenus.</li>
+  <li>During runtime, depending on the Web browser you are using, press the shortcut key combination, which puts the focus on the menu.</li>
+  <li>Press the down arrow key to show this menu's children.</li>
+</ol>
+<h3><a name="enabledExample"></a>Apply  Enabled Property for Second-level Menu Items and Under Iterators</h3>
+<p>The following example shows how to use the <strong>Enabled</strong> property for second-level menu items and under <a href="Element - Iterator.htm">iterators</a>:</p>
+<ol>
+  <li> Create a top-level UserInterface called <strong>MenuItemUI</strong> with the following methods: </li>
+  <ul>
+    <li> <strong>getLabel()</strong>, which returns String</li>
+    <li> <strong>getIcon()</strong>, which returns String</li>
+    <li> <strong>editablePerm()</strong>, which returns either true or false, depending on some condition</li>
+    <li> <strong>getStyle()</strong>, which returns String </li>
+  </ul>
+  <p>The methods should return dynamic values based on some dynamic condition.</p>
+  <li>Create another top-level UserInterface called <strong>testUI</strong> and do the following: </li>
+  <ol type="a">
+    <li>Add two variables of <em>MenuItemUI</em> type to be used for two different iterators:
+      <ul>
+        <li><strong>iteratorLevel1</strong></li>
+        <li><strong> iteratorLevel2</strong></li>
+      </ul>
+      Select the <strong>Array</strong> property. </li>
+    <li> Add the <strong>isMenuEnabled</strong> method, depending on some condition.</li>
+    <li>Add a variable to bind to a checkbox to change the <strong>Editable</strong> condition (for example, <strong>isMenuEnabledCheckbox</strong>).</li>
+  </ol>
+  <li> Create a multi-level menu in the testUI with the following static items:<br>
+    <blockquote> Static Menu Item<br>
+      ---- Submenu<br>
+      --------- Static Item Level 2<br>
+      --------- Static Item Level 2<br>
+      ---- Static Item Level 1</blockquote>
+    Set the <strong>Enabled</strong> property for all <strong>Static Item Level <em>x</em></strong> menu items to <strong>isMenuEnabled</strong>. <br>
+  </li>
+  <li> Create a multi-level menu in the testUI with iterator items:<br>
+    <blockquote> Iterator Menu Item<br>
+      ---- Submenu<br>
+      --------- Iterator Level 2<br>
+      -------------- Menu Item Iterator Level 2<br>
+      ---- Iterator Level 1<br>
+      --------- Menu Item Iterator Level 1 </blockquote>
+  </li>
+  <li> Set the <strong>Variable</strong> property for <strong>Iterator Level 2</strong> to <strong> iteratorLevel2</strong>, and set <strong>Iterator Level 1</strong> to <strong>iteratorLevel1</strong>.</li>
+  <li> For the menu item under <strong>Menu Item Iterator Level</strong>, set the following properties: </li>
+  <ul>
+    <li><strong> Variable</strong> property to <strong>iteratorLevel1.getLabel</strong></li>
+    <li><strong> Dynamic Style</strong> property to <strong>iteratorLevel1.getStyle</strong></li>
+    <li><strong> Image Variable</strong> property to <strong>iteratorLevel1.getIcon</strong></li>
+    <li><strong> Enabled</strong> property to <strong>iteratorLevel1.editablePerm</strong></li>
+  </ul>
+  <li> Use the same properties in the previous step for <strong>Menu Item Iterator Level 2</strong>.</li>
+</ol>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>J2EE Application Server Installation</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">
+<!--
+.style2 {color: #000000}
+.style3 {color: #FF0000}
+.Hilary {
+	color: #F00;
+}
+-->
+</style>
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<h2>J2EE Application Server Installation</h2>
+This section explains the additional steps required to properly install and set up each J2EE Application Server: 
+<ul>
+<li><a href="../Metadata Deployment Guide/JBoss Configuration.html">JBoss</a></li>
+<li><a href="../Metadata Deployment Guide/Oracle WebLogic Configuration.html">Oracle WebLogic Configuration</a></li>
+<li><a href="../Metadata Deployment Guide/IBM Websphere Configuration.html">IBM WebSphere Configuration</a></li>
+<li><a href="#Parameter">Parameter Settings</a></li>
+<li><a href="#JMX">Enabling JMX</a></li>
+<li><a href="#PEMemory">PE Memory Allocation Guidelines</a></li>
+<li><a href="#Interfaces">Enabling Interfaces</a></li>
+<li><a href="#tagCookieHttpOnly">Tag a Cookie using the HttpOnly Attribute</a></li>
+</ul>
+<br>
+*Refer to your Application Server User Documentation for full installation instructions.  
+<br>
+<h3><a name="Parameter">J2EE Parameter Settings</a></h3>
+The following parameters are required for the various J2EE applications including JBoss, IBM WebSphere, and Oracle WebLogic.  The are all mandatory parameters<!--, with the exception of the -Dom.conceptwave.preVelocity=1 parameter which is only mandatory when executing Classic Designer-->.  
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th width="384" class='confluenceTh'>Parameter</th>
+<th width="150" class='confluenceTh'>Mandatory</th>
+<th width="528" class='confluenceTh'>Description</th>
+</tr>
+<!--<tr>
+<td class='confluenceTd'>-Dcom.conceptwave.preVelocity=1</td>
+<td class='confluenceTd'>Yes Mandatory - for Classic Designer only</td>
+<td class='confluenceTd'><p>Set this parameter value equal to 1 for Classic  Designer. </p>
+  <p>Do not set this parameter when running in Velocity Mode. </p>
+  <p>This parameter, in both the Linux and Windows environment, defines the ConceptWave Designer version to be used for deployment. Setting this value to one (1) indicates that the metadata is run in Classic mode and any value other than one (1) indicates that the metadata is run in Velocity mode.</p></td>
+</tr>-->
+<tr>
+<td class='confluenceTd'>-Dcom.conceptwave.licenseDir=&lt;<i>license Dir</i>&gt;</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Specify the directory of the license file(s)</td>
+</tr>
+<tr>
+<td class='confluenceTd'>-Dcom.conceptwave.nodeId=<node_Id>
+<i>&lt;nodeID&gt;</i></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>This value is found in the Cluster defined in the <a href="../Installer_User_Guide/order care tools configuration.html">Configuration application</a><img src="ClusterUI.png" alt="Cluster" width="87" height="28" align="absbottom">.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>
+  <p>-Dcom.sun.management.jmxremote.port=<i>&lt;port number&gt;</i>
+    -Dcom.sun.management.jmxremote.ssl=false</br>
+    -Dcom.sun.management.jmxremote.authenticate=false</p></br>
+  </td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'> Enables JMX on the Virtual Machine. See section <a href="#JMX">Enabling JMX</a> for details.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>-Djavax.management.builder.initial=</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'><p>WebSphere Application Server has JMX enabled by default through an  RMI connector. Setting any JMX Java parameter (for example, com.sun.management.jmxremote.*) causes the WebSphere Application Server to call the unavailable IBM MBeanServerBulder class. </p>
+    <p>To prevent this error condition, unset this parameter, which causes the Sun's default class to be used instead.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'>-Dcom.conceptwave.configMode=true</td>
+  <td class='confluenceTd'>No</td>
+  <td class='confluenceTd'>To be able to deploy the WAR file within <strong>only</strong> the Configuration application, this parameter is set to <strong>True </strong>in the \\bin\run.bat file. This argument must be removed once you are done with the Configuration application deployment..</td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="JMX">Enabling JMX</a></h3>
+      <p>Enabling JMX in an application server provides access to manage and monitor the application server, and the framework that is deployed within.</p>
+      <p>To enable JMX for your application server, append the following VM arguments:</p>
+      <div class="code">
+        <div class="codeContent">
+          <pre class="code-java">
+-Dcom.sun.management.jmxremote.port=&lt;port number&gt; 
+-Dcom.sun.management.jmxremote.ssl=<span class="code-keyword">false</span> 
+-Dcom.sun.management.jmxremote.authenticate=<span class="code-keyword">false</span>
+        </pre>
+        </div>
+      </div>
+      <p>where <em>&lt;port number&gt;</em> is the desired JMX port number.</p>
+      <p>These parameters enable access to the application server in JMX without authentication. In production environment, SSL is strongly recommended to be set up for the JMX interface  to protect the production systems. The following table categorizes the JVM related startup parameters.</p>
+      <p><strong>Note:</strong> To configure the catalog server node, set the port number to &lt;<em>JMX  port number</em>&gt; + 1.</p>
+      <table class='confluenceTable'>
+        <tbody>
+          <tr>
+            <th width="384" class='confluenceTh'>JVM Parameter</th>
+              <th width="150" class='confluenceTh'>Mandatory</th>
+              <th width="532" class='confluenceTh'>Description</th>
+              
+          </tr>
+          <tr>
+            <td class='confluenceTd'>-Dcom.sun.management.jmxremote.port=<em>&lt;number&gt;</em></td>
+              <td class='confluenceTd'>Optional</td>
+              <td class='confluenceTd'>Specifies unique JMX port for the PE instance. Any port number can be specified but we recommend using values above 10000.</td>
+              
+          </tr>
+          <tr>
+            <td class='confluenceTd'>-Dcom.sun.management.jmxremote.authenticate=<em>&lt;true/false&gt;</em></td>
+              <td class='confluenceTd'>Optional</td>
+              <td class='confluenceTd'>Specifies the authentication mode for JMX. If the value of the parameter is false, no authentication is performed and anyone can use the JMX interface. This is a potential security risk in production environments. When true, additional parameters may be required.</td>
+              
+          </tr>
+          <tr>
+            <td class='confluenceTd'>-Dcom.sun.management.jmxremote.ssl=<em>&lt;true/false&gt;</em></td>
+              <td class='confluenceTd'>Optional</td>
+              <td class='confluenceTd'>Specifies the secure socket mode for the JMX socket. If true additional parameters may be needed.</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'>-Dcom.sun.management.jmxremote.password.file=<em>&lt;file location&gt;</em></td>
+               <td class='confluenceTd'>Used with <em>authenticate=true</em></td>
+               <td class='confluenceTd'><p>Specifies the JMX password file when authentication is enabled (for example, jmxremote.password). </p>
+               <p><b>Note:</b> The password library file can be found at <em>&lt;JRE_HOME&gt;</em>/lib/management/jmxremote.password.template</p></td>
+          </tr>
+        </tbody>
+</table>
+<p>With JMX enabled, the Application Server may be monitored using a JMX Remote Management application, such as JConsole. JConsole is packaged along with your Java Development Kit, which can be executed by <em>&lt;JDK Home&gt;\bin\jconsole.exe</em>. See the <a href="Introduction JMX.html">JMX</a> section  for details on using JConsole.</p>
+      <p><strong>Notes:</strong>
+<ul>
+          <li>For details on JMX authentication,  see <a href="http://www.onjava.com/pub/a/onjava/2004/09/29/tigerjmx.html?page=2">http://www.onjava.com/pub/a/onjava/2004/09/29/tigerjmx.html?page=2</a></li>
+        <li>For more information on remote monitoring through JMX, see <a href="http://java.sun.com/j2se/1.5.0/docs/guide/management/">http://java.sun.com/j2se/1.5.0/docs/guide/management/</a></li>
+        <li>For more information on JMX, consult Sun Microsystem's JMX Monitoring and Management page: <a href="http://java.sun.com/j2se/1.5.0/docs/guide/management/agent.html">http://java.sun.com/j2se/1.5.0/docs/guide/management/agent.html</a>.</li>
+      </ul>
+      </p>
+      
+<h3><a name="PEMemory"></a>PE Memory Allocation Guidelines</h3>
+<p>If the Application Server is to run as a PE instance, the following is a guideline of how to estimate the amount of memory to allocate based on the number of processes it can run. While this number depends on many factors, the major of which are volume of orders and complexity of metadata, the following table gives some general guidelines. For further details, refer to the PE Memory Allocation Guidelines</p>
+      <table class='confluenceTable'>
+        <tbody>
+          <tr>
+            <th class='confluenceTh'>Safe Number of Process Instances</th>
+              <th class='confluenceTh'>Value of Min free memory (MB)<br/>
+              [in Configuration Application, System Parameters]</th>
+              <th class='confluenceTh'>Value of -Xms/-Xmx (MB)</th>
+          </tr>
+          <tr>
+            <td class='confluenceTd'>50,000</td>
+              <td class='confluenceTd'>60</td>
+              <td class='confluenceTd'>256m</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'>150,000</td>
+              <td class='confluenceTd'>120</td>
+              <td class='confluenceTd'>512m</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'>500,000</td>
+              <td class='confluenceTd'>230</td>
+              <td class='confluenceTd'>1024m</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'>800,000</td>
+              <td class='confluenceTd'>350</td>
+              <td class='confluenceTd'>1535m</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Generally, reducing the size of free memory increases the number of processes the PE can handle. This however runs the risk of a low memory condition occurring, which may delay the completion of some processes. Optimum values may be found after accumulating performance data in a test or production environment.</p>
+      <p>See <a href="../Configuration_Tool_User_Guide/Processes PE Processes.html#ProcessInstances">Determining Process Instances</a> for details on estimating the number of Process Instances your application would require.</p>
+
+<h3><a name="Interfaces"></a>Enabling Interfaces</h3>
+<p>If your application is using interfaces that requires additional Java libraries, you should include them in the Application Server as shared libraries. For example, the following files may be required for handling SOAP messages:</p>
+      <ul>
+        <li>axis.jar</li>
+          <li>axis-ant.jar</li>
+          <li>saaj.jar</li>
+          <li>soap.jar</li>
+          <li>jaxrpc.jar</li>
+          <li>commons-logging.jar</li>
+          <li>log4j-1.2.8.jar</li>
+          <li>commons-discovery.jar</li>
+          <li>wsdl4j.jar</li>
+      </ul>
+      <p><strong>Example:</strong> CLASSPATH when interfaces are enabled</p>
+      <div class="code">
+        <div class="codeContent">
+          <pre class="code-java">
+set HELP=C:\Program Files\CWOrderCare\help
+set AXIS=C:\lib\axis\axis.jar;C:\lib\axis\axis-ant.jar;C:\lib\axis\commons-discovery.jar;
+ C:\lib\axis\commons-logging.jar;C:\lib\axis\jaxrpc.jar;
+ C:\lib\axis\log4j-1.2.8.jar;C:\lib\axis\saaj.jar;C:\lib\axis\soap.jar;C:\lib\axis\wsdl4j.jar
+set CLASSPATH=C:\Program Files\CWOrderCare\lib\oracle\ojdbc6.jar;
+ C:\Program Files\CWOrderCare\lib\oracle10g\orai18n.jar;
+ C:\Program Files\CWOrderCare\lib\mail\imap.jar;C:\Program Files\CWOrderCare\lib\mail\mail.jar;
+ C:\Program Files\CWOrderCare\lib\mail\mailapi.jar;C:\Program Files\CWOrderCare\lib\mail\pop3.jar;
+ C:\Program Files\CWOrderCare\lib\mail\smtp.jar;%AXIS%
+
+        </pre>
+        </div>
+</div>
+    <p><strong>Note:</strong> saaj.jar may cause errors if in a file folder that contains spaces.</p>
+    <h3><a name="tagCookieHttpOnly"></a>Tag a Cookie with the HttpOnly Attribute</h3>
+    <p>When you tag a cookie with the HttpOnly flag, it tells the Web browser that you are usiing that this particular cookie should only be accessed by the server.  As a result, any attempt to access the cookie from a client script is strictly forbidden and protects your cookie from vulnerabilities.</p>
+    <p>For clients using Web containers that support Java servlet version 3.0 and higher, the following configuration can be applied to the web.xml file, to set the HttpOnly attribute:</p>
+    <div class="code">
+      <div class="codeContent">
+        <pre class="code-java">&lt;session-config&gt;<BR> &lt;cookie-config&gt;<BR>  &lt;http-only&gt;true&lt;/http-only&gt;<BR> &lt;/cookie-config&gt;<BR>&lt;/session-config&gt;</pre>
+      </div>
+    </div>
+    <p>&nbsp;</p>
+</body>
+</html>

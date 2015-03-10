@@ -1,0 +1,88 @@
+﻿<html>
+<head>
+<title>Data Structures in Finders and Reference Fields</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Data Structures in Finders and Reference Fields</h2>
+<p>Velocity Studio provides you with the following functions pertaining to data structures in finders and reference fields:</p>
+<ul>
+  <li>Return a list of data structures from a finder</li>
+  <li>Use data structures as reference field values, including displaying a data structure finder on a reference button and in drop-down elements</li>
+  <li>Use reference data types and fields in data structures</li>
+</ul>
+<h3>Data Structures with Get and Set ID actions, and Visual Key</h3>
+<p>To use data structures in finders and as a reference, the following data object methods must be overridden and implemented:</p>
+<ul>
+  <li>getDataObjectId()</li>
+  <li>setDataObjectId()</li>
+  <li>getVisualKey()</li>
+</ul>
+<p>The following system data structures support these methods:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>function cwGetStructId(){  // Returns data structure ID as String.
+}
+
+function cwSetStructId(structId){  // Sets the ID for the data strcture. The structId is a String parameter with an ID.
+}
+
+function cwOnStructVisualKey(){  // Computes the data structure visual key when requested.
+}</pre>
+</div>
+</div>
+
+<p>These data structure actions are available by clicking the <strong>Methods</strong> tab of the data structure property panel. Right-click your data structure and select the action you want.</p>
+
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>All actions operate with String values. Both ID and visual key are assumed to be strings.</li>
+  <li>The data structure ID's length does not have a limit.</li>
+  <li><strong>Get ID</strong> is required for the Output data structure of any script fiinder.</li>
+  <li>The <strong>visual key</strong> action is required for the Output data structure of the finder when it is used as a reference type to display the value in either the <strong>Reference</strong> field or the drop-down menu.</li>
+  <li><strong>Set ID</strong> is required only for the Input data structure of the script finder's Get action when the finder is used as a reference type.</li>
+</ul>
+<h3>Script Finders with Data Structures</h3>
+<p>Script finders can only have data structures as Input and Output parameters. Script finders can also be a combination of document and data structure types (for example, the search is a document and the output is a data structure, or vice versa).</p>
+<p>A script finder has at least one property specified (Select output) and implements the Select operation. The Output data structure needs to implement the cwGetStructId method to provide a unique structure ID.</p>
+<p>Since all finders share the same finder data object (either CwfDataFinder Java class or the Finder script type), the data object and all metadata finder objects accept CwfDataObject (CwObject) as search input and output.</p>
+<p><strong>Note:</strong> All properties, method names, and function parameter names remain the same and use the old &quot;document&quot; notation.</p>
+<h4>Caution Using the Finder Result Object (DataObjectList)</h4>
+<p>Caution is necessary when copying data structure objects from one finder result or DataObjectList to another.</p>
+<p>Suppose a finder needs to return a subset of objects from an existing DataObjectList received by another action (for example, by invoking another finder). If the output is a document, when adding this document to the script finder result, a copy of this document is added. If the document has a parent document, which can be a finder or an order, the document is replicated to avoid damaging or changing the original list. </p>
+<p>Additionally, when adding to the DataObjectList, all data objects are automatically linked. As a result, the new DataObjectList can be iterated by the object.next() method.</p>
+<p>Data structures do not support replication, so they will add the original object to the new list, changing its parent and relinking the next() object. As a reult, the original DataObjectList becomes broken. For this reason, the concatenate method is not supported for non-document lists.</p>
+<h3>Reference Data Type with Data Structures</h3>
+<p>Finders used in reference types, in addition to a regular data structure finder, must do the following:</p>
+<ul>
+  <li>Implement the Get operation</li>
+  <li>Specify both the Get input and Get output types</li>
+  </ul>
+<p>Additionally, the Get input data structure must implement the cwSetStructId method, and the Get output data structure must implement both the cwGetStructId and cwOnStructVisualKey methods. Data structures can have a data type element with a reference data type that can use both document and data structure finders.</p>
+<h4>Get Reference Field's Value</h4>
+<p>Internally, the data structure keeps a reference key (ID) as the value for the element. However, when the data structure retrieves the value in scripts or when displaying it in either the <strong>reference</strong> or drop-down field, the data structure returns the ReferenceValue object.</p>
+<p>The ReferenceValue object supports the following properties:</p>
+<ul>
+  <li>key</li>
+  <li>visualKey</li>
+  <li>reference</li>
+  </ul>
+<p><strong>Note:</strong> The <strong>reference</strong> property returns the reference object, which is either a document or data structure.</p>
+<h4>Set reference field's value</h4>
+<p>To change the value of the <strong>reference</strong> field, using either the key string (ID) value or the ReferenceValue object are acceptable.</p>
+<h4>Retrieve the &quot;Reference&quot; object</h4>
+<p>When a finder needs to retrieve a referenced data structure by ID, the reference cache accesses the Interface Data Cache (CwfInterfaceDataCache) using the ID and the finder's full name as a reference type. If the object is not found in the cache, the finder invokes its Get operation.</p>
+<h4>Reference Fields in the Data Structure UI</h4>
+<p>Technically, data structures can have reference types at any level. At this stage, displaying and editing the <strong>reference</strong> field is only implemented at the first level for  data structures (direct leaves, which are document leaves).</p>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

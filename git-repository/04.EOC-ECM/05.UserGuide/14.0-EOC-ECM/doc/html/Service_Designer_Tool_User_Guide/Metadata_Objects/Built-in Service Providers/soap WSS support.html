@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>SOAP WSS (Web Services Security) Support</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>SOAP WSS (Web Services Security) Support</h3>
+<p>
+  The SOAP service provider supports specification of a policy file conforming to the W3C WS-Policy and WS-SecurityPolicy 
+  specifications. Understanding of these specifications is highly recommended before using these settings, to allow Web services to express their constraints and requirements, such as encryption, message signing, timestamping, and use 
+  of authentication tokens in SOAP messages. </p>
+<h4>SOAP Port Security Configuration Settings (SOAP Service Provider)</h4>
+<p>Basic operations such as signing, encryption, user token 
+  authentication are supported 
+  with additional configuration values. See the table that follows.</p>
+<h4>Restrictions and limitations:</h4>
+<ul>
+  <li>If a user name token is provided in a message to a SOAP listener, the user is authenticated against product user accounts. Similar to how HTTP authentication is handled.</li>
+  <li>Signing and encryption certificates must be located in the same Java JKS keystore file. The location of the keystore must be specified with a system property.</li>
+  <li>The keystore and certificate passwords must be the same.</li>
+  <li>For encryption, only one certificate can be referenced per policy.</li>
+  <li>For signing, only one certificate can be referenced per policy.</li>
+  <li>For username tokens, only one user can be referenced per policy.</li>
+</ul>
+<h4>Required System Properties:</h4>
+<ul>
+  <li>org.apache.ws.security.crypto.merlin.file: Location of Java JKS keystore file.</li>
+  <li>org.apache.ws.security.crypto.merlin.keystore.password: Java JKS keystore password<br>
+  </li>
+  </ul>
+<p>The following are fields that you can use to configure your port settings for SOAP WSS:</p>
+
+<table width="893" class='confluenceTable'  border cellpadding="1">
+  <tbody>
+<tr>
+<th width="156" class='confluenceTh'>Attribute</th>
+<th width="645" class='confluenceTh'>Description</th>
+<th width="70" class='confluenceTh'>Element</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Policy File</strong><br></td>
+  <td class='confluenceTd'>This field represents an XML file conforming to the W3C WS-Policy specification. Can be set for both client and listener
+    ports.<br></td>
+  <td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Username Token User<br>
+  </strong></td>
+  <td class='confluenceTd'>This field represents the username value for the authentication token if it is required by policy file.<br></td>
+  <td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Username Token<br>
+    Password<br>
+  </strong></td>
+  <td class='confluenceTd'>This field denotes the password value for the authentication token if required by the policy file.<br></td>
+  <td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Signing Certificate Alias<br>
+  </strong></td>
+  <td class='confluenceTd'>This field contains the Java keystore alias for either the certificate or private key used to sign parts of a message.<br></td>
+  <td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Encryption Certificate<br>
+    Alias<br>
+  </strong></td>
+  <td class='confluenceTd'>This field represents the Java keystore alias for either the certificate or public key used to encrypt parts of a message.<br></td>
+  <td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

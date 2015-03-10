@@ -1,0 +1,78 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Runtime Access to Selected Metadata Objects</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+	 padding-right: 0px; padding-bottom: 0px;" valign="top"><h2>Runtime Access to Selected Metadata Objects</h2>
+<p>You have access to selected metadata elements at <a href="../Service Designer Menu Actions/Metadata Run.html">runtime</a>, such as Finder, DataType, DatabaseConnection, and more. A number of methods from the following classes have been changed to support this enhancement:</p>
+<ul>
+  <li> MetadataProcess class:
+    <ul>
+      <li>getAllGlobalProcesses()</li>
+      <li>        getAllUserProcesses()</li>
+      <li>        processDocument()</li>
+      <li>        activities()</li>
+      <li>        topActivity()</li>
+      <li>        priority()</li>
+      <li>        memoryProcess()</li>
+      <li>        global()
+        <br>
+        <BR>
+      </li>
+    </ul>
+  </li>
+  <li> MetadataActivity class
+    <ul>
+      <li>activityType()</li>
+      <li>        children()</li>
+      <li>        milestone()</li>
+      <li>        nextActivity()</li>
+      <li>        milestoneConditional()</li>
+      <li>        position()</li>
+      <li>        duration()</li>
+      <li>        getExpectedDueDate()<br>
+        <BR>
+      </li>
+    </ul>
+  </li>
+  <li> MetadataFinder class (scriptable):
+    <ul>
+      <li>selectInputDocument()</li>
+      <li>        selectOutputDocument()</li>
+      <li>        getInputDocument()</li>
+      <li>        getOutputDocument()</li>
+      <li>        detailFormName()</li>
+      <li>        maxRows()</li>
+      <li>        finderType()</li>
+      <li>        views()<br>
+        <br>
+      </li>
+    </ul>
+  </li>
+  <li> MetadataFinderView class (scriptable):
+    <ul>
+      <li>searchFormName()</li>
+      <li>        resultFormName()</li>
+      <li>        searchUI()</li>
+      <li>        resultUI()</li>
+      <li>        searchImmediately()</li>
+      <li>        showSearchForm()</li>
+      <li>        runInitScript()</li>
+    </ul>
+  </li>
+  </ul>
+<p>For more information, refer to the <a href="../../JavaScripting in Order Care/index.html">JavaScript Documentation</a>.</p></td>
+	</tr>
+</table>
+</body>
+</html>

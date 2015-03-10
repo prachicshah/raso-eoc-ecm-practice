@@ -1,0 +1,106 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Metadata Root - General tab</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+	 padding-right: 0px; padding-bottom: 0px;" valign="top"><h2>Metadata Root General Properties</h2>
+<p>Metadata properties can be defined or updated by clicking the 
+        metadata root object. The following figure shows a sample <b>General</b> tab.</p>
+      <img src="MDrootGeneral.png" alt="Metadata root - General tab" border="1" />
+      <p>The <strong>General</strong> tab contains the following fields:</p>
+      <table class="confluenceTable" border cellpadding="1">
+        <tr>
+          <th width="205" class="confluenceTh">Field</th>
+          <th width="1413" class="confluenceTh">Description</th>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><b style="font-weight: bold;">Label</b></td>
+          <td class="confluenceTd">Mandatory. Label of the current 
+            metadata version. This field defaults to the product's root metadata name.</td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><b style="font-weight: bold;">Author</b></td>
+          <td class="confluenceTd">Mandatory. Author of the metadata. This field defaults to Unknown.</td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><b style="font-weight: bold;">Version</b></td>
+          <td class="confluenceTd">Metadata version ID.</td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><b style="font-weight: bold;">Description</b></td>
+          <td class="confluenceTd">Description text.</td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><b style="font-weight: bold;">Created</b></td>
+          <td class="confluenceTd">System-assigned metadata creation 
+            date.</td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><b style="font-weight: bold;">Updated</b></td>
+          <td class="confluenceTd">System-assigned metadata update 
+            date.</td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong><a name="Internal Name">Internal Name</a></strong></td>
+          <td class="confluenceTd">Specify the internal name of the metadata.</td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Internal Version</strong></td>
+          <td class="confluenceTd">Specify the <a href="Metadata Internal Version.html">metadata internal version</a>. This version number is eight digits long and is editable.</td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Product Version</strong></td>
+          <td class="confluenceTd">Indicates the product version number of Velocity Studio.</td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Auto-Show Application</strong></td>
+          <td class="confluenceTd">This field defaults to NONE. Select an application that you want to automatically show from the drop-down menu. You can view a dynamic, full list of applications by creating a user action method that returns the selectApp page. When you call this action, the entire list of applications appears. </td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Template Group</strong></td>
+          <td class="confluenceTd">This field indicates the template group that your metadata belongs to, if applicable. When your metadata is used as a template (that is, .jar file), it appears under a group folder that you have specified in this field in Velocity Studio's Library tab. To define multiple group names in this field, separate each name with a comma.</td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Style Sheet</strong></td>
+          <td class="confluenceTd">Click the drop-down menu and select the style sheet that you want to use.</td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Enforce</strong></td>
+          <td class="confluenceTd"><p>By default, this property is unchecked. Select this checkbox to indicate that the current metadata is to be used as a template. Other metadata can use the current metadata as a template, allowing you to show objects, such as finders, with proper CSS, unless a different styling on the finder is provided. This property promotes the reuse of template objects, while keeping the same style that the objects were originally designed and ensuring that they display properly at runtime.</p>
+            <p>See the example that follows this table on how to use this property.</p></td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Use size from CSS</strong></td>
+          <td class="confluenceTd">Select this option to use the size specified in your style sheet.</td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Debug UI Path</strong></td>
+          <td class="confluenceTd">When you select this property's checkbox, the full form path is shown at runtime.</td>
+        </tr>
+    </table></td>
+  </tr>
+</table>
+<h3><strong>Example: Using the Enforce property</strong></h3>
+<p>The following is an example using using the <strong>Enforce</strong> property:</p>
+<ol>
+  <li> Create a metadata with one application page. Ensure that you also create a URL mapping.</li>
+  <li>In the header property, set a stylesheet and select the <strong>Enforce</strong> property.</li>
+  <li>Create a user interface that uses styles from this stylesheet.</li>
+  <li> Display this user interface during runtime. Make sure that you see the styles that you have set.</li>
+  <li> Create a .jar file for this metadata.</li>
+  <li> Create a new metadata and add the .jar file from the Library tab.</li>
+  <li> Create an application that displays the user interface that you have previously created. </li>
+  <li>Save and run your metadata. This user interface can still be styled by the styles that were originally used.</li>
+</ol>
+</body>
+</html>

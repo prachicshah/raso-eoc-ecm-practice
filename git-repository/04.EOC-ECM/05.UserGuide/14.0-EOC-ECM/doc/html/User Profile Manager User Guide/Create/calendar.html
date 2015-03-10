@@ -1,0 +1,158 @@
+﻿<html>
+<head>
+<title>Create a Calendar</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Create a Calendar</h2>
+<p>You can create calendar type objects based on one of the existing calendar templates.&#160;</p>
+<p>To create a new calendar, perform these steps:</p>
+<ol>
+  <li>From the menu bar, click <strong>Create</strong> &gt; <strong>Calendar</strong> to launch the New Calendar page.<br>
+    <br>
+    <img src="newCalendar.png" alt="New Calendar dialog" border="1">  <br>
+    <br>
+  </li>
+  <li>Complete the following fields:<br>
+    <br>
+    <table width="965" class='confluenceTable' border cellpadding="1">
+      <tbody>
+        <tr>
+          <th width="139" class='confluenceTh'>Field</th>
+          <th width="814" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Calendar</strong></td>
+          <td class='confluenceTd'><p>Enter the calendar type name. This field is mandatory. Once you have created this calendar type, it cannot be renamed. You can reference the name in your JavaScript scripts.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Label</strong></td>
+          <td class='confluenceTd'><p>Enter a label for the calendar type. This field is mandatory. The label appears in the user interface.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Template</strong></td>
+          <td class='confluenceTd'><p>Click the drop-down menu and select an existing calendar template from the list that can be used as a base for creating the current calendar type. This field is mandatory.</p>
+            <p><strong>Note:</strong> After creating a calendar template, it is recommended that you wait at least a minute to create a calendar. The cache needs this period to refresh the calendar template list and have your newly created calendar template appear in this field. </p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Is Default</strong></td>
+          <td class='confluenceTd'>Select this checkbox if you want to set this calendar as the default for groups. By default, this property is unchecked.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>First Day</strong></td>
+          <td class='confluenceTd'>Click the drop-down menu and select the first day of the week to  be used in the yearly calendars for this calendar type. If you do not select a day from the list, the default system setting is used.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Work Hours</strong></td>
+          <td class='confluenceTd'><p>Specify the starting work hour and ending work hour in the fields, respectively, to be applied by default for all working days in the yearly calendar.</p></td>
+        </tr>
+      </tbody>
+    </table>
+<br>
+  </li>
+  <li>Click the<strong> Save</strong> button to create your new calendar type. A confirmation message appears under the menu bar, indicating that your calendar has been successfully saved.
+    <br>
+    <br>
+    <img src="newCalendarSave.png" alt="Create a new calendar" border="1"><br>
+    <br>
+  </li>
+  <li>To create another calendar type, click the <strong>New</strong> button. Otherwise, you can configure your new calendar using the <a href="#years">Years</a> tab, or at a later time by clicking <strong>Manage</strong> &gt; <strong>Calendars</strong> from the menu bar.</li>
+</ol>
+<h3><a name="years"></a>Years Tab</h3>
+<p>The <b>Years</b> tab allows you to create a yearly calendar object. This object presents a business calendar to be used by process engines. </p>
+<p>The initial business calendar properties  depend on the calendar template object  that the calendar type object is based on. For example, the calendar template object specifies the recurring days (for example, Saturday and Sunday make up a weekend). These recurring days are related to the business calendar through the calendar template of the calendar type object that it falls under.</p>
+<p>You can perform the following actions from the Years tab:</p>
+<ul>
+  <li><a href="#addYearlyCalendar">Add a yearly calendar object and configure calendar days</a></li>
+  <li><a href="#removeYearlyCalendar">Remove a yearly calendar object</a><a href="#removeGroupFromPrivilege"><br>
+  </a></li>
+</ul>
+<h4><a name="addYearlyCalendar"></a>Add a Yearly Calendar Object</h4>
+<p>To add a  new yearly calendar object and configure specific calendar days, do the following:</p>
+<ol>
+  <li>Click the <strong>Years</strong> tab, and then click the <strong>Add</strong> button to create a yearly calendar object.<br>
+    <br>
+    <img src="newCalendarYearAdd.png" alt="Years tab - click the Add button to add a yearly calendar" border="1">  <br>
+    <br>
+    The business calendar for the next year in the sequence appears in the results table. Before this new business calendar can be saved in the database, it must be customized by updating the properties of at least one day. Otherwise, an error message occurs.<br>
+    <br>
+  </li>
+  <li>Double-click the newly created year object to launch the Calendar Year Details dialog, and then click the <strong>Edit</strong> button.<br>
+    <br>
+    <img src="newCalendarYearDetailsEdit.png" alt="Calendar Year Details - Edit button" border="1"><br>
+    <br>
+  </li>
+  <li>Click the <strong>Add</strong> button to launch the New Calendar Day dialog, where you can add specific days to your calendar.  These calendar customizations  override any properties specified by the calendar template object on which the calendar is based.<br>
+    <br>
+    <img src="newCalendarYearDetailsAddCalendarDay.png" alt="Calendar Year Details - Add a new calendar day" border="1"><br>
+    <br>
+  </li>
+  <li>Complete the following fields:<br>
+    <br>
+    <table width="965" class='confluenceTable'border cellpadding="1">
+      <tbody>
+        <tr>
+          <th width="139" class='confluenceTh'>Field</th>
+          <th width="814" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Day Name</strong></td>
+          <td class='confluenceTd'><p>Enter the name of your day. This field is mandatory.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Day Type</strong></td>
+          <td class='confluenceTd'><p>Click the drop-down menu and select the day type from the list. This field is mandatory. </p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Date</strong></td>
+          <td class='confluenceTd'><p>Click the calendar icon to specify a specific date. This field is mandatory.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Work Slots 1, 2, and 3</strong></td>
+          <td class='confluenceTd'>Specify the from and two periods for these work slots, if needed.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>  When you have completed entering your information, click the <strong>Save</strong> button.<br>
+    <br>
+    <img src="newCalendarYearDetailsAddCalendarDaySave.png" alt="Save new calendar day" border="1"><br>
+    <br>
+    A confirmation message appears, indicating that your calendar day has been successfully saved. Click the <strong>Close</strong> button (X) to close the dialog.<br>
+    <br>
+  </li>
+  <li>Your new calendar day appears on the Calendar Year Details page.<br>
+    <br>
+    <img src="newCalendarYearDetailsAddCalendarDaySaved.png" alt="Save new calendar day" border="1"><br>
+    <br>
+     To add another calendar day, click the <strong>Add</strong> button and repeat the previous steps. Otherwise, to remove a calendar day, select the checkbox next to the day name that you want to remove, and then click the <strong>Remove</strong> button. Click the <strong>Yes</strong> button to confirm.<br>
+    <br>
+  </li>
+  <li>  Click the blue <strong>Back</strong> button to return to the Years tab of your calendar, where the <strong>Days</strong> field contains the number of days that you have configured.<br>
+    <br>
+    <img src="newCalendarYearDaysColumn.png" alt="Days column has incremented" border="1"><br>
+    <br>
+  </li>
+  <li>  Click the General tab, and then click the <strong>Save</strong> button to save your changes.&#160; </li>
+</ol>
+<h4><a name="removeYearlyCalendar"></a>Remove a Yearly Calendar Object</h4>
+<p>To remove a yearly calendar object, complete these steps:</p>
+<ol>
+  <li>From the Years tab, select the checkbox next to the <strong>Year </strong> that you want to remove, and then click the <strong>Remove</strong> button.<br>
+    <br>
+    <img src="newCalendarYearRemove.png" alt="Years tab - remove yearly calendar" border="1">  <br>
+    <br>
+  </li>
+  <li>The Years tab refreshes and a confirmation message appears, indicating that the yearly calendar object has been successfully removed from the calendar.</li>
+  </ol>
+<p>&nbsp;</p>
+<h4>&nbsp;</h4>
+<p>&nbsp;</p>
+</body>
+</html>

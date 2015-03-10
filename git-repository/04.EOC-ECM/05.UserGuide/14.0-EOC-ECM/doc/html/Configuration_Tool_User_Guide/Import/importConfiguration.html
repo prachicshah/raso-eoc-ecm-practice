@@ -1,0 +1,128 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Import Configuration</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Import Configuration</h2>
+
+<p>To import your configuration settings from an XML file,  complete these steps:</p>
+<ol>
+  <li>From the menu bar, click <strong>Import</strong> &gt; <strong>Import</strong> to launch the Import dialog.</li>
+  <li>Click the <strong>Browse</strong> button and select the XML file containing your configuration settings that you want to import. Proceed to click the <strong>Open</strong> button to return to the Import dialog.<br>
+    <br>
+    <img src="importConfiguration.png" alt="Import configuration file" border="1"><br>
+    <br>
+  </li>
+  <li>Click the <strong>Import</strong> button to import your configuration settings.</li>
+  </ol>
+
+  <h3>Import the Configuration from the Command Line</h3>
+  <p>You can import the configuration  through <a href="../../Service_Designer_Tool_User_Guide/Introduction_to_Metadata/Command Line Options of Designer.html">command-line</a> interface. The following describes the syntax of the command-line interface and the available arguments. A shortcut command can be found in the <strong><STRONG>&lt;<EM>installation_folder</EM>&gt;</STRONG>\designer\env\configImport.cmd</strong>.</p>
+  <div class="code">
+    <div class="codeContent">
+      <pre class="code-java">@echo off
+if ""%1""=="""" goto echoSyntax
+if ""%2""=="""" goto echoSyntax
+if ""%3""=="""" goto echoSyntax
+if ""%4""=="""" goto echoSyntax
+
+IF &quot;&quot;%1&quot;&quot;==&quot;&quot;-logFile&quot;&quot; (<br>set LOG_FILE=%2<br>set JDBC_URL=%3<br>set APP_NAME=%4<br>set APP_VERSION=%5<br>set CREATE_APP=%6<br>set IMPORT_FILE=%7<br>set META_DIR=%8<br>) ELSE (<br>set JDBC_URL=%1<br>set APP_NAME=%2<br>set APP_VERSION=%3<br>set CREATE_APP=%4<br>set IMPORT_FILE=%5<br>set META_DIR=%6<br>)
+
+set CWOC_CLASSPATH=C:\Program Files\6.x\6.0 (242)
+set CLASSPATH=%CWOC_CLASSPATH%\designer\Designer.jar;^
+%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^
+%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^
+%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^
+%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^
+%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^
+%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;
+
+set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m
+
+"C:\java\jdk1.6.0_16\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -config -jdbc=%JDBC_URL% -app_name=%APP_NAME% -app_version=%APP_VERSION% -create_app=%CREATE_APP% -import %IMPORT_FILE% %META_DIR%
+
+goto end
+:echoSyntax
+echo -----------------------------------------------------------------------------
+echo Syntax: 
+echo configImport [-logFile logFile] JDBC_URL application_name application_version create_application import_file metadata_path
+echo JDBC_URL could be user@host:port:sid,user@host:port/service_name or any jdbc url
+echo Example: 
+echo configImport cw@localhost:1521:orcl ON V1 true c:\myconfig.xml c:\metadata\ON
+echo configImport "cw@oracle.jdbc.driver.OracleDriver;jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=on)(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl))) ON V1 true c:\myconfig.xml c:\metadata\ON"
+echo (refer to documentation for details.)
+echo ------------------------------------------------------------------------------
+:end       </pre>
+    </div>
+  </div>
+  <p>The following table describes the input parameters for this command:</p>
+  <table class='confluenceTable' border cellpadding="1">
+    <tbody>
+      <tr>
+        <th width="132" class='confluenceTh'>Parameters</th>
+        <th width="1225" class='confluenceTh'>Description</th>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>logfile</strong></td>
+        <td class='confluenceTd'>This parameter allows you to specify the log file for a command line. It is an optional parameter. However, when used, it must be the first parameter.</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>JDBC_URL</strong></td>
+        <td class='confluenceTd'>This parameter describes the standard format of database connection<SPAN id="docs-internal-guid-5ca49971-23de-78ad-9c1c-3bffd9db8728">, such as </SPAN><em> user@host:port:sid, user@host:port/service_name</em>, or any JDBC url.</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>APP_NAME</strong></td>
+        <td class='confluenceTd'>This parameter  indicates the metadata application name.</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>APP_VERSION</strong></td>
+        <td class='confluenceTd'>This parameter indicates the metadata application version.</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>CREATE_APP</strong></td>
+        <td class='confluenceTd'>The value for this parameter can be  TRUE or FALSE. If the value is set to TRUE, an application is created through command-line interface.   If set to FALSE and an application does not exist, the command-line interface exits with error.</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>CONFIG_XML</strong></td>
+        <td class='confluenceTd'> This parameter denotes the operating system dependent path to  the configuration XML file.</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>METADATA_DIR</strong></td>
+        <td class='confluenceTd'>This parameter is optional. It refers to the project metadata path or Deployment JAR file path.  If specified, the metadata is loaded from the file system instead of the  database. </td>
+      </tr>
+      <!--<tr>
+<td class='confluenceTd'><b>Import Node Configuration</b></td>
+<td class='confluenceTd'><i>-config -import</i></td>
+<td class='confluenceTd'>Import configuration from file.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Export Node Configuration</b></td>
+<td class='confluenceTd'><i>-config -export</i></td>
+<td class='confluenceTd'>Import configuration from file.</td>
+</tr>-->
+    </tbody>
+  </table>
+  <p>The following are examples of this command:</p>
+  <div class="code">
+    <div class="codeContent">
+      <pre class="code-java">configImport cw@localhost:1521:orcl ON V1 true c:\myconfig.xml c:\metadata\ON<br>echo configImport &quot;cw@oracle.jdbc.driver.OracleDriver;jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=on)(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl))) ON V1 true c:\myconfig.xml c:\metadata\ON&quot;</pre>
+    </div>
+  </div>
+</td>
+</tr>
+</table>
+</body>
+</html>

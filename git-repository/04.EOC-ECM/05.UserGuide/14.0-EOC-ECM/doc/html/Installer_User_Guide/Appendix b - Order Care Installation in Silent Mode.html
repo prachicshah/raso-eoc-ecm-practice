@@ -1,0 +1,123 @@
+<html>
+    <head>
+        <title>Appendix B - Installation in Silent Mode</title>
+	    <link rel="stylesheet" href="../styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">	    
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script>    </head>
+
+    <body onLoad="highlight();">
+	    <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+		    <tr>
+			    <td valign="top" class="pagebody">
+
+				    <h1><a name="AppendixB-OrderCareInstallationinSilentMode-AppendixB%3AOrderCareInstallationinSilentMode"></a>Appendix B:  Installation in Silent Mode</h1>
+
+<p>The installation of the product can be automated by using <em>silent mode</em> installation. This feature may be useful in a sizeable project where the product is to be installed on all machines of all team members. </p>
+<p><strong>Note:</strong> The graphical display is only required for GUI installation.</p>
+<p>Before silent mode installation can be executed, a installation-replay file must be created to define the installation configuration. But before the creation of the installation-replay file, the target machine should have the system variables <i>JDK_HOME</i> and <i>JAVA_HOME</i> specified. In Windows, this can be located in Windows Explorer, right-click <b>My Computer</b> and select <b>Properties</b>, go to <b>Advanced</b> tab, and click the <b>Environment Variables</b> button. Add <i>JDK_HOME</i> and <i>JAVA_HOME</i> as system variables with the path for their JDK (for example, <tt>C:\java\jdk1.6.0_34</tt>)</p>
+<p>To create the replay file, Execute <b>\Disk1\InstData\Windows\NoVM\install.exe</b> (or <em>install.bin</em> for Unix) with command line using the <tt>-r</tt> option:</p>
+
+
+ 
+<div class="code"><div class="codeContent">
+<pre class="code-java">install -r</pre>
+</div></div>
+ 
+<p>Follow the installation wizard as normal. Upon completion, the installation-replay file <em>installer.properties</em> is created at the current folder of command prompt; the content of the file is a record of your choices in the installation wizard. An example is as follows.</p>
+ 
+<p><b>Note</b>: If the installation directory is read-only (for example, installing from CD), specify the location of the installation-replay file in the command (for example, <tt>install -r c:\installer.properties</tt>):</p>
+ 
+<div class="code"><div class="codeContent">
+<pre class="code-java"># Replay feature output
+# Replay feature output
+# ---------------------
+# This file was built by the Replay feature of InstallAnywhere.
+# It contains variables that were set by Panels, Consoles or Custom Code.
+
+
+
+#Choose Java Virtual Machine
+#---------------------------
+JDK_HOME=C:\\java\\jdk1.6.0_12
+JAVA_DOT_HOME=C:\\java\\jdk1.6.0_12\\jre
+JAVA_EXECUTABLE=C:\\java\\jdk1.6.0_12\\bin\\java.exe
+
+#Choose Install Folder
+#---------------------
+USER_INSTALL_DIR=C:\\Program Files\\CWOrderCare
+
+#Choose Shortcut Folder
+#----------------------
+USER_SHORTCUTS=C:\\Documents and Settings\\All Users\\Start Menu\\Programs\\CWOrderCare
+
+</pre>
+</div></div>
+ 
+<p>Change the variables in installation-replay file as required for silent mode installation. Furthermore, add a <i>JAVA_HOME</i> variable in the <b>Choose Java Virtual Machine</b> section, with the path of their JDK. For example, the following replay file has been changed from the previous example.</p>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java"># Replay feature output
+# Replay feature output
+# ---------------------
+# This file was built by the Replay feature of InstallAnywhere.
+# It contains variables that were set by Panels, Consoles or Custom Code.
+
+
+
+#Choose Java Virtual Machine
+#---------------------------
+JDK_HOME=C:\\java\\jdk1.6.0_12
+JAVA_DOT_HOME=C:\\java\\jdk1.6.0_12\\jre
+JAVA_EXECUTABLE=C:\\java\\jdk1.6.0_12\\bin\\java.exe
+JAVA_HOME=C:\\java\\jdk1.6.0_12
+
+#Choose Install Folder
+#---------------------
+USER_INSTALL_DIR=C:\\Program Files\\CWOrderCare
+
+#Choose Shortcut Folder
+#----------------------
+USER_SHORTCUTS=C:\\Documents and Settings\\All Users\\Start Menu\\Programs\\CWOrderCare
+
+</pre>
+</div></div>
+
+<p>Add the following code into the installation.properties files for a full licence.</p>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>If you do not have a full licence, remove those modules for which you do not have a licence. </li>
+  <li>These lines are   case-sensitive.<br>
+    <br>
+  </li>
+</ul>
+<div class="code"><div class="codeContent">
+<pre class="code-java">
+  HAS_TEMPLATES=1<br>
+  SelfCare=1<BR>  OrderAnalytics=1<BR>  CustomerInformationManagement=1<BR>  OrderManagement=1<BR>  OrderNegotiations=1<BR>  CatalogManagement=1<BR>  ServiceRegistry=1
+</pre>
+</div>
+</div>
+<BR>
+Then, move the file to the same directory where <em>install.exe</em> (or <em>install.bin</em> for Unix) is located for the silent installation, if it is not already so.
+<p>To run the installation in silent mode, execute <em>\Disk1\InstData\Windows\NoVM\install.exe</em> (or <em>install.bin</em> for Unix) with command line using the <tt>-i silent</tt> option:</p>
+ 
+<div class="code"><div class="codeContent">
+<pre class="code-java">install -i silent</pre>
+</div></div>
+ 
+<p>The silent installation should complete without any user prompts.</p>
+<h2><a name="AppendixB-OrderCareInstallationinSilentMode-UninstallingOrderCareinSilentMode"></a>Uninstalling the Product in Silent Mode</h2>
+ 
+<p>Similarly,  uninstalling  the product can be automated in silent mode. There is no need to create a replay file for uninstallation. Simply use <tt>-i silent</tt> option on &lt;<em>installation_folder</em>&gt;<em>\uninstall\uninstall.exe</em>:</p>
+ 
+<div class="preformatted"><div class="preformattedContent">
+<pre>"C:\Program Files\installationFolder\uninstall\uninstall.exe" -i silent
+</pre>
+</div></div>
+ 
+<p><b>Note</b>: At command prompt, do not execute uninstall.exe within <b>\</b>&lt;<em>installation_folder</em>&gt; (that is, invoking the uninstall command when at local folder \&lt;<em>installation_folder</em>&gt;\uninstall). Otherwise, the uninstallation does not remove the folder where the prompt resides.</p>
+                            </div>
+
+</body>
+</html>

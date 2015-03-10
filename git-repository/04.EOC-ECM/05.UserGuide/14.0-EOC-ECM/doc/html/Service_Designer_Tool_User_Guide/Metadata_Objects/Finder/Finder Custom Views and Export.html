@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>Finder Custom View and Export</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Finder Custom View and Export</h2>
+<p id="internal-source-marker_0.7695527810071713" dir="ltr">The  finder user interface allows you to add custom views and export favorites for the finder. When creating a custom view, it stores the current search and result forms, the table state (for example, width, visibility, and order of columns), search criteria, and other parameters to the favorite document.</p>
+<p>You can then open the custom view through the favorites finder, and change or delete it. If the view is marked as the default, it is  loaded automatically when creating and displaying the finder user interface.</p>
+<p>The favorites finder can also be displayed as a global finder. In this case, it shows all custom views of all finders, so you can select and open any finder for any page content.  See <a href="../../../System_Administration_Application_User_Guide/Getting Started/exportResultsToFile.html">export  </a>and <a href="../../../System_Administration_Application_User_Guide/Getting Started/customView.html">custom view</a>  options on how this functionality can be used  in your application.</p>
+<h3 dir="ltr">Metadata Objects</h3>
+<p>The following table describes metadata objects pertaining to custom views and favorites:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Metadata Object</th>
+      <th class='confluenceTh'> Description </th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.favoriteFinder</td>
+      <td class='confluenceTd'>This finder displays favorites and custom views. It also displays the old cwf_oe.favoriteFinder.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.favorite</td>
+      <td class='confluenceTd'>This object represents the favorite document. It does not have child UI. Instead, use the the top-level ui_common.favoriteUI.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.favoriteSearch</td>
+      <td class='confluenceTd'>This object is the search document for the finder.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.customViewFinder</td>
+      <td class='confluenceTd'>This object is an SQL finder that searches for custom views, to replace cwf_oe.customViewFinder. It does not have a child UI and is only used to get data.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.favoriteResult</td>
+      <td class='confluenceTd'><p>This object denotes the top-level UI for the favorite finder's result table.</p></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3 id="internal-source-marker_0." dir="ltr">Scripts</h3>
+<p>The following table describes scripts pertaining to custom views and favorites:</p>
+<table width="1035" class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="183" class='confluenceTh'>Script</th>
+      <th width="797" class='confluenceTh'> Description </th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.addFavorite</td>
+      <td class='confluenceTd'>This script adds a new favorite record based on the specified finder UI state.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.addToFavorites</td>
+      <td class='confluenceTd'>This script gets the current finder (that is, application page content) and adds the favorite record for it.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.checkFavoriteLabel</td>
+      <td class='confluenceTd'>This script returns true if the label is already used by other favorite, except for the favDoc specified.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.deleteFavorite</td>
+      <td class='confluenceTd'>This script deletes the favorite document with the specified ID.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.getDefaultFavorite</td>
+      <td class='confluenceTd'><p>This script gets the default favorite view for the current user, application, and finder specified</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.getFavorites</td>
+      <td class='confluenceTd'>This script gets custom views for the current user and application. If the finder name is specified, it returns views for the finder only. If the finder name is null, it returns all found favorites.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.loadDefaultFavorite</td>
+      <td class='confluenceTd'>This script loads the default favorite for the specified finder UI.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.loadFavoriteRecord</td>
+      <td class='confluenceTd'>This script loads the specified favorite using both the specified finder and finder UI. If the finder UI is null, this script creates and returns a new finder UI.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.openFavorite</td>
+      <td class='confluenceTd'>This script opens the specified favorite record to the specified finder UI. If the finder UI is null, the script creates a new UI and sets it as the application page content.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ui_common.processDefaultFlag, <br>
+        resetDefaultFavoriteID, setDefaultFavoriteID</td>
+      <td class='confluenceTd'>These scripts manage the <strong>Default</strong> flag for the favorite record.</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3 id="internal-source-marker_0.2" dir="ltr">Events</h3>
+<p>The following table describes events pertaining to custom views and favorites. Parameters that are bolded signify that they are mandatory:</p>
+<table width="1443" class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="214" class='confluenceTh'>Event</th>
+      <th width="352" class='confluenceTh'> Parameters</th>
+      <th width="959" class='confluenceTh'> Description </th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><SPAN id="internal-source-marker_0.3">UI_ADD_FINDER_VIEW</SPAN><BR></td>
+      <td class='confluenceTd'><SPAN id="internal-source-marker_0.4"><strong>finderUI</strong></SPAN><BR></td>
+      <td class='confluenceTd'><SPAN id="internal-source-marker_0.5">This event creates a new favorite view based on the current finder UI state. It returns the ui_common.favorite document.</SPAN></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><SPAN id="internal-source-marker_0.6">UI_GET_FINDER_VIEWS</SPAN><BR></td>
+      <td class='confluenceTd'><SPAN id="internal-source-marker_0.7"><strong>finderName</strong></SPAN><BR></td>
+      <td class='confluenceTd'>This event r<SPAN id="internal-source-marker_0.8">eturns the list of custom views for the specified finder.</SPAN></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><SPAN id="internal-source-marker_0.9">UI_LOAD_DEFAULT_FINDER_VIEW</SPAN><BR></td>
+      <td class='confluenceTd'><strong>finderUI</strong></td>
+      <td class='confluenceTd'>This finder returns true if the default view has been found and has been loaded to the specified finder UI.        </td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>UI_OPEN_FAVORITE</td>
+      <td class='confluenceTd'>
+        <li><strong>favDoc</strong></li>
+    
+          <li>parentFinderUI (that is, the finder in which this favorite should be loaded; it can be null, meaning that a  new finder UI is created)</li>
+        </td>
+      <td class='confluenceTd'><SPAN id="internal-source-marker_0.10">This finder loads the favorite record into the specified parentFinderUI. If parentFinderUI is null, the event creates a new UI and sets it as the application's page content.</SPAN><BR></td>
+    </tr>
+    </tbody>
+</table>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

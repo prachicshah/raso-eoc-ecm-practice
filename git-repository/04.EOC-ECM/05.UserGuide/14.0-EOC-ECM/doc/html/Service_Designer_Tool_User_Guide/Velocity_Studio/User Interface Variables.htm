@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>User Interface Variables</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>User Interface Variables</h2>
+<p>The User Interface <strong>Variables</strong> tab is used to define variables. These variables help facilitate a Form's access to data within models.</p>
+
+<img src="UIvariables.png" align="absmiddle" border="1" alt="User Interface - Variables tab" />
+
+<p>The <strong>Variable</strong> tab shows the list of Variables in the User Interface. </p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th width="109" class='confluenceTh'>Field</th>
+<th width="471" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Name of the variable (used in scripts; must conform to JavaScript naming conventions).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Type</b></td>
+<td class='confluenceTd'>Metadata object type of this variable.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Methods</b></td>
+<td class='confluenceTd'>Checked if the Variable has associated methods.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Visible</b></td>
+<td class='confluenceTd'>Visible permission of the variable.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Optional</b></td>
+<td class='confluenceTd'>Optional permission of the variable.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Editable</b></td>
+<td class='confluenceTd'><p>Input field linked to this Variable can not be modified when this field is <em>False</em>.</p>
+  <p><strong>Note:</strong> If a field contains  an editable permission that is either coming from the form field itself, or inherited  from the variable or data type, it takes precedence. Otherwise, the user  interface's editablePerm permission takes over. If this method is not  overwritten, the model's editablePerm permission is used. User interfaces  displayed under another user interface with editablePerm are also be inherited  if the embedded user interfaces do not have their own editablePerm permission. </p></td>
+</tr>
+
+</tbody>
+</table>
+
+<p>When you select a variable in the list,  all properties display on the <strong>General</strong> tab, while corresponding method information (if any) displays in the <strong>Method</strong> tab. The toolbar provides functionality to add, delete, sort, sort alphabetically, highlight, and copy and paste variables.</p>
+<p>For an included (non top-level) User Interface object, when a metadata object is created, by default, variables designed to connect with  that object type are created. For example, when a new Document object is added to the metadata, system variables associated to this document are added to the <strong>Variables</strong> tab. The User Interface then exposes the Document to its Forms using the <strong>Model</strong> variable (of type document).</p>
+
+<!--
+<p>The following lists the metadata object type:</p>
+<ul>
+  <li><i>Document</i> - a Variable named <b>model</b> of its Document type is established. </li>
+  <li><i>Data Structure</i> - a Variable named ????of its Finder type is established</li>
+  <li><i>Order</i> - a Variable named <b>???</b> of its Finder type is established</li>
+  <li><i>Document Finder</i> - 	a Variable named <b>model</b> of its Finder type is established.</li>
+</ul>
+-->
+
+<p>Variables have different length of persistence depending on the type of User Interface:</p>
+<ul>
+  <li>At runtime in the User Interface,  a variable instance is persisted while a Page is being displayed.</li>
+  <li>At runtime, in the Application page, a variable instance is persisted throughout the user session of the application.</li>
+</ul>
+<p>As the variable instance is within the User Interface (MVC-Controller) at runtime, the variable persists as long as the Page's lifetime. In an Application Page, for example, the Variable persists throughout the user session of the application.</p>
+<p><strong>Note:</strong> Enumeration type variables cannot be added under the user interface variable list. To display the enumeration as part of a form, the variable must exist under a document variable before that document can be added as a variable of the User Interface. After adding the document as a user interface variable, the enumeration variable is  visible through the document variable (for example, doc.enumVar) when attempting to add a variable through the Add Element wizard or through the variable drop-down list of the <strong>Select Field</strong> property.</p>
+<h3>Initialize property</h3>
+<p>Initializing variables often takes this form:</p>
+
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+this.ui1 = new ns.ui1(null,this);
+</pre></div>
+</div>
+
+<p>For variables that require initialization when the UI appears, you can create the variable with the proper UI type and set the <strong>Initialize</strong> property, which creates an instance of the variable type.</p>
+<p><img src="UIinitializeProperty.png" alt="Initialize property" border="1"></p>
+<h3>System-Defined Variables</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th width="109" class='confluenceTh'>Variable</th>
+<th width="471" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>confirmObject</b></td>
+<td class='confluenceTd'>Name of the variable (used in scripts; must conform to JavaScript naming conventions).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>model</b></td>
+<td class='confluenceTd'>The object representing the data for this user interface (that is, Document, Finder, Order).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>content</b></td>
+<td class='confluenceTd'>Type user interface. The current object which is being displayed in the content Form Frame.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>contentForm</b></td>
+<td class='confluenceTd'>Type String. The name of the Form that belongs to the content object being used to display the content.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>context</b></td>
+<td class='confluenceTd'>Used for backward compatibility. Used to display two different objects on the screen.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>contextForm</strong></td>
+  <td class='confluenceTd'>Type String. The name of the Form which belongs to the context object used to display the context.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>dialog</strong></td>
+  <td class='confluenceTd'>Type Dialog.  The current dialog user interface being displayed. Used by the Form Frame.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>title</strong></td>
+  <td class='confluenceTd'>The title to display in the Web Browser.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>HelpVariables</strong></td>
+  <td class='confluenceTd'>Type String. The text that displays in the Help dialog.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>banner</strong></td>
+  <td class='confluenceTd'>The image location of the banner that is display on the top of the application menu.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>cwDownload</strong></td>
+  <td class='confluenceTd'>Type Download. Populated when the user performs a download action.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>dialogOwner</strong></td>
+  <td class='confluenceTd'>The user interface that invokes the dialog.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>statusMessage</strong></td>
+  <td class='confluenceTd'>The message that is displayed at the bottom of the page.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>workListFinder</strong></td>
+  <td class='confluenceTd'>Type User Interface. Displays the Work List finder if the  user has correct permissions.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>workListImage</strong></td>
+  <td class='confluenceTd'>Type String. The image that displays (available/unavailable) for the user who has permissions for the work list.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Editable</b></td>
+  <td class='confluenceTd'>Optional permission of the variable.</td>
+</tr>
+
+</tbody>
+</table>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

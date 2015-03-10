@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>Writing Scripts</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Writing Scripts</h2>
+<p>In Velocity Studio, most of application development is accomplished through point-and-click environment in Velocity Studio. Though, there are often business and functional requirements that require you to write scripts to provide additional business logic and to "glue" together metadata objects. All scripts in Velocity Studio are in JavaScript language.</p>
+
+<p>For Global Scripts, they are created in Velocity Studio under the <strong>Global Scripts</strong> folder. See the <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Script/Scripts.html">Script</a> metadata object for details.</p>
+
+<p>For Object Scripts or Component Scripts, they are created within the metadata object or component in the metadata object, respectively, in the <b>Methods</b> tab. The tab presents a unified user interface for writing scripts of different types, such as (regular) script, user action, permission, validation, etc, depending on the metadata object type. You may be creating new methods for these types, or overriding base methods -- that is, existing methods from the base metadata object -- including those of the system base metadata objects that provide pre-defined base functionality. Please see <a href="Scripting Interface.html">documentation on scripting interface</a> for details. Regardless, the syntax and semantics of scripting are the same across the types of  script.</p>
+
+<h3>Instantiate Metadata Objects</h3>
+
+<p>Similar to object-oriented programming, metadata objects in a project defines the characteristics of an object akin to class definition, while runtime must instantiate object instances of such metadata object for execution. Sometimes, object instantiation may be performed implicitly by runtime. But often, you need to write script to instantiate objects explicitly.</p>
+
+<p>For example, if your project has defined Document <i>dwelling</i> in Namespace <i>ns</i> of application metadata, you may instantiate it by:</p>
+
+<div class="code"><div class="codeContent">
+<pre>
+var myDwelling = new ns.dwelling();
+</pre>
+</div>
+</div>
+<p>or, alternatively, using a syntax akin to legacy releases (4.x) via system base metadata types:</p>
+<div class="code"><div class="codeContent">
+<pre>
+var myDwelling = new com.conceptwave.system.Document("ns.dwelling");
+</pre>
+</div>
+</div>
+
+<p>Almost all constructible base metadata object types have <i>metadataName</i> as the first parameter. There may be other, usually optional, parameters that may follow. Please see its Constructor details in <a href="index-all">JavaScript reference</a> for each metadata object type.</p>
+
+<h3>Access Variables of Metadata Objects</h3>
+
+<p>Many metadata objects may have Variables defined in the metadata, found in <b>Variables</b> tab. These object Variables can be accessed (get/set) by script.</p>
+
+<p>For example, if your project has defined Document <i>dwelling</i> with boolean Variable <i>rural</i>, the Variable may be accessed by the following:</p>
+<div class="code"><div class="codeContent">
+<pre>
+var myDwelling = new ns.dwelling();
+//Get statement
+var x = myDwelling.rural;
+//Set statement
+myDwelling.rural = true;
+</pre>
+</div>
+</div>
+
+<h3>What is "this"?</h3>
+
+<p>When scripting in Object Method or Component Method, you may use the keyword <i>this</i> to identify the current instance of metadata object. This is a similar concept found in object-oriented programming.</p>
+
+<p>For example, if your project has defined Document <i>dwelling</i> with boolean Variable <i>rural</i>, you can access (get/set) the Variable in Object Method or Component Method by the following:</p>
+<div class="code"><div class="codeContent">
+<pre>
+//Get statement
+var x = this.rural;
+//Set statement
+this.rural = true;
+</pre>
+</div>
+</div>
+
+<h3>Change Top-level Scripts During Runtime</h3>
+<p>You can  change top-level scripts during runtime, which no longer requires that you stop runtime, change your script, and then restart it in Velocity Studio when debugging. During runtime, the changes are picked up. Running the old script is replaced with running the recently updated one.</p>
+<h3>Runtime Access to Metadata Documents</h3>
+<p>You can access metadata documents and their logical database connection names at runtime. The following classes are scriptable:</p>
+<ul>
+  <li>MetadataDatastructure</li>
+  <li>MetadataDocument</li>
+  <li>MetadataLeafNode</li>
+</ul>
+<p>Refer to the <a href="index.html">JavaScript</a> documentation for details.</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Exception Types</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Exception Types</h2>
+<p>The following exceptions are defined and used by the Process Management product (find them in <b>Library</b> tab of <b>Navigation</b> pane, under <i>cwf_pm</i> namespace):</p>
+
+<h4>Timeout Exception</h4>
+<p>System-defined exception type. The Process Management framework automatically issues a <em>timeout</em> exception for activities that fail to complete in a specified time provided they have a <a href="process activity properties.html#schedule">duration attribute</a> defined.</p>
+
+<h4>External Interface Error</h4>
+<p>System-defined exception type. The Process Management framework automatically issues an <em>external</em> <em>interface</em> error exception for any error that occurs when an <em>operation</em> activity invokes an <a href="external service participant.html">external service participant</em></a>. The interface process will log an actual error, and the Process Management framework will send an <em>external interface</em> error exception to the <em>operation</em> activity that sent that particular request. The AVM can be configured not to return the <em>external interface</em> error to a calling process, but instead retry indefinitely, by unchecking the <b>Return error to process</b> flag of the External Services Participant properties. The operation activity that sent the request must be of the type <em>Request-Response</em> so that it will receive the error and the external service participant must have the <em>Return error to process</em> flag set to receive the error.  Once the error is received by the External Service Participant, then the error can be sent back to the awaiting operation of the type <em>Request-Response</em>.</p>
+<p>External Service Fault</p>
+<p>System-defined exception type. The Process Management framework automatically issues an <em>external</em> <em>service</em> <em>fault</em>exception when an external service that was invoked by an <em>operation</em> activity returns a <em>fault</em> <em>message</em>. The fault message returned by an external service will be passed as a Document to the <b>Before</b> script of the <em>On</em> <em>Exception</em> activity.</p>
+
+<h4>Stop Exception</h4>
+<p>System-defined exception type. Can be used to send a stop request to a Global process. To ensure that Global processes stop properly (since only the process itself knows how to stop properly), the Process Management framework provides only a facility to deliver a stop request to a process but does not automatically stop it. The <em>stop</em> exception is always delivered to the process' top activity. A properly designed Global process should provide an <em>On</em> <em>Exception</em> handler for this exception and either complete the process immediately or mark it with a <em>stop request</em> and check for this condition in the process flow.</p>
+
+<h4>Cancel Exception</h4>
+<p>System-defined exception type. Can be used to send a cancel request to a User process. Since only the process itself knows how to cancel properly, the Process Management framework provides only the facility to deliver a cancel request to a process but does not automatically cancel it. The <em>cancel</em> exception is always delivered to the process' top activity. The process should provide an <em>On</em><em>Exception</em> handler for this exception and perform whatever is appropriate for the current process state (for example, ignore completely, perform rollback, notify children or exit immediately).</p>
+
+<h4>Change Exception</h4>
+<p>System-defined exception type. Can be used to send a change request to a User process. Since only the process itself knows how to perform a process change properly, the Process Management framework provides only the facility to deliver a change request to a process. The <em>change</em> exception is always delivered to the process' top activity. The process should provide an <em>On</em><em>Exception</em> handler for this exception and perform whatever is appropriate for the current process state (for example, ignore completely, perform rollback, notify children or exit immediately).</p>
+
+<h4>User Exception</h4>
+<p>Exception type defined in the application metadata. This exception can be triggered by an <a href="process activities types.html"><em>exception</em> activity</a>. This exception usually indicates a form of business error (for example, an external system failed to locate a customer record) and requires some form of corrective action such as creating a new customer record, changing the flow of the process or even terminating the process.</p>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

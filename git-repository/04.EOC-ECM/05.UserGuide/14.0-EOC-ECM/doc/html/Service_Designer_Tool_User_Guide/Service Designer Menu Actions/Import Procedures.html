@@ -1,0 +1,112 @@
+
+<html>
+<head>
+<title>Import Procedures</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Import Procedures</h2>
+<p>The <b>Import Procedures</b> command in the <b>Database</b> menu automatically generates the data type objects and Document objects needed to call a stored procedure. Velocity Studio allows the stored procedure to be called with atomic parameters only. Array and object parameters are not supported.</p>
+<p>The <b>Import Procedures</b> command is a helper function that is used to reduce the development work. Instead of manually creating the corresponding data type objects and Document objects, the metadata developer can automatically generate them. When this command is used, certain assumptions are made that may not be valid in all cases. It is recommended that the developer carefully examines the generated objects and does appropriate changes where needed.</p>
+<p>The stored procedure call is internally modelled using the WSDL model. Two Documents (input and output messages in the WSDL model) are generated if the stored procedure has output or in/out parameters and one Document if the stored procedure has only input parameters. Velocity Studio always attempts to use the existing metadata objects before generating new ones. In some cases, Velocity Studio may decide to change an existing metadata object to fit the properties required for the stored procedure call, but this will only be done if the modified object is backward compatible with the original one (that is,  Velocity Studio changes existing data type objects only if their base type (integer, boolean, string, etc.) is the same, and the length and precision of the modified data type object can accommodate the length and precision of the original type.) For Documents, Velocity Studio  adds new Document leaves if needed, but  never removes existing leaves. If a metadata object with the same name already exists in the specified namespace and it cannot be reused or changed, Velocity Studio  generates a new object that has the name of the existing object with a numeric suffix added for uniqueness.</p>
+<p>Before Velocity Studio performs the generation, you must select a namespace in which the objects will be generated, changed, or reused. The required data type objects are created, updated, or reused first, one for each procedure input and output parameter. Then, Velocity Studio  creates, or tries to reuse or modify existing Documents if you have specified the corresponding option.</p>
+<p>For example, for the stored procedure SQL in the figure below, the <b>Data Type</b> objects, <em>WID</em> (<b>Base Type</b> String), <em>USERID</em> (<b>Base Type</b> String), and <em>FOUND</em> (<b>Base Type</b> Decimal), will be created first. Then the <b>Document</b> objects, <em>COMPLETEALERTInput</em> and <em>COMPLETEALERTOutput,</em> will be created. The <em>COMPLETEALERTInput</em> Document will have the leaves WID and USERID and the <em>COMPLETEALERTOutput</em> Document will have the one leaf, FOUND.</p>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java">
+CREATE OR REPLACE PROCEDURE CWLC.COMPLETEALERT (wId IN VARCHAR2, userId IN VARCHAR2, found OUT NUMBER)
+
+AS
+
+BEGIN
+
+select CWDOCID into found from cwpWorkList where CWDOCID = wiId and USER_ID = userId for update;
+
+CreateAlertArchive(wiId,userId);
+
+delete from cwpWorkList where CWDOCID = wiId;
+
+found := 1;
+
+EXCEPTION
+
+WHEN NO_DATA_FOUND THEN
+found := 0;
+
+END; |
+</pre>
+</div>
+</div>
+
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>The <b>Import Procedure</b> command is only used for Oracle databases.</li>
+  <li>In the cwpWorkList table, FLAGS=3 means that when a task is reassigned to a user, the original task is set to 3. The new task being created is set to 0.  </li>
+</ul>
+<p>Once you select the <b>Import Procedure</b> command, the <a href="Database Connect.html">Database Login</a> dialog  opens so that you can connect to the desired database where the stored procedures are located. The <b>Select Package</b> dialog  opens, asking you to enter the package name that contains the stored procedures.</p>
+
+<img src="dbProcImportPackage.png" align="absmiddle" border="0" alt="Select package containing stored procedures" />
+
+<p>If the stored procedures are not part of a package then this field is left empty. Click the <b>OK</b> button.</p>
+
+<p>The <b>Import Stored Procedures</b> dialog  opens, where you can select the stored procedures to import as Documents.</p>
+
+<img src="dbProcImport.png" align="absmiddle" border="0" alt="Import stored procedures" />
+
+<p>After the desired stored procedures have been selected, click the <b>Import</b> button to start the import. The following table contains a description of each field.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Category</b></td>
+<td class='confluenceTd'>A list of categories in which the imported objects belong to. Currently not used for stored procedure import.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Procedure(s) to import</b></td>
+<td class='confluenceTd'>A list of available stored procedures that can be imported into the metadata.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>All</b></td>
+<td class='confluenceTd'>When clicked, all the stored procedures in the <b>Procedure(s) to import</b> list will be selected for import.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>None</b></td>
+<td class='confluenceTd'>When clicked, all the stored procedures in the <b>Procedure(s) to import</b> list will be deselected.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Target namespace</b></td>
+<td class='confluenceTd'>The namespace in which the data type objects and Document objects, for the selected stored procedures, will be created/updated. If <em>&lt;new&gt;</em> is selected, then the <b>Create Namespace</b> dialog will open when the <b>Import</b> button is clicked.
+
+  <br>
+  <br>
+  <img src="dbProcImportNewNS.png" align="absmiddle" border="0" alt="Create a namespace" />
+    
+  <br>
+  <br>
+  You can define the <b>Name</b>, <b>Label</b> and <b>Namespace</b> properties of the new namespace. When the <b>OK</b> button is clicked, the new namespace will be created in the metadata along with the corresponding data type objects and Document objects for the selected stored procedure(s).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Update existing documents</b></td>
+<td class='confluenceTd'>If checked, existing Document objects in the metadata will be updated to reflect changes in the selected stored procedures.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Once the import is completed, the <b>Import Stored Procedures</b> completed dialog  opens, allowing you to either close the dialog by clicking the <b>Close Import Dialog</b> button or do another import by clicking the <b>Continue Import</b> button. If you click the <b>Continue Import</b> button, you are returned to the original <b>Import Stored Procedures</b> dialog.</p>
+<p><br>
+  <br>
+</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

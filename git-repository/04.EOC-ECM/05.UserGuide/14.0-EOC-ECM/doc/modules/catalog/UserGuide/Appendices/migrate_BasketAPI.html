@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Catalog Basket API: migrateBasket</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<h2> Catalog Basket API: migrateBasket</h2>
+<p>The  version of a new basket item is fixed by the request time. To migrate the basket  or basket items from one version to another, Catalog provides a  migrateBasket API. The migration is done by changing the request time. This API is also used for the reformation of  a catalog basket that was created with  erroneous version of the  catalog data (either in SIT or production). This API is useful in a scenario where it takes long time to negotiate an order before submitting it, and you need to use newer versions of catalog objects (for example, relations, attributes, charges, etc.). This API is  for the orders in the quotation phase, not for in service orders.</p>
+<p>To use  this API, check and perform one of these steps:</p>
+<ol>
+  <li> If the items do not have newer version and the basket is still valid,   no change is required. </li>
+  <li>If  the items have newer versions, use the migrateBasket API to rebuild the basket. After migration,  review the new basket for any invalid changes (for example, missing relations, changed validation rule,  etc.).</li>
+</ol>
+<p>The process of rebuilding the basket performs the following actions:</p>
+<ol>
+  <li> Verify each basket item (if parent is not null,  verify parent and relation) in target time. If the basket item is not valid, remove it.</li>
+  <li> Migrate basket item leaves, add new item attribute, remove attributes which do not exist.</li>
+  <li> Clean all basket item charges. You need to  price again to get charges. </li>
+</ol>
+    <p>The parameters of migrateBasket API  are<em> basketItems</em>,<em> targetTime and ignoreEligibility. </em>The following table provides information about these parameters:</p>
+    <table width="700" border cellpadding="1" class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="68" class='confluenceTh'>Parameter</th>
+          <th width="434" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>basketItems</strong></td>      
+          <td class='confluenceTd'> This parameter can be used to specify the basket items which need to be migrated, using the basket item IDs. If the list is null or empty, the whole basket will be migrated.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>targetTime</strong></td>      
+          <td class='confluenceTd'>This parameter represents the newer request time.</td>
+        </tr>
+        <tr>
+          <td height="29" class='confluenceTd'><p><strong>ignoreEligibility</strong></p></td>
+          <td class='confluenceTd'> This parameter denotes the value whether to run Catalog eligibility rule on rebuild action.</td>
+        </tr>
+      </tbody>
+    </table>
+ 
+<p>This API  returns either a boolean value or an error list:</p>
+<table width="700" border cellpadding="1" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="78" class='confluenceTh'>Type</th>
+      <th width="551" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td height="135" class='confluenceTd'><strong>Boolean</strong></td>
+      <td class='confluenceTd'><p>The following table provides the information for boolean values returned by the migrateBasket API:</p>
+        <table width="518" border cellpadding="1" class='confluenceTable'>
+          <tbody>
+            <tr>
+              <th width="68" class='confluenceTh'>value</th>
+              <th width="434" class='confluenceTh'>Description</th>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>false</strong></td>
+              <td class='confluenceTd'>This value indicates that  no change is required.</td>
+            </tr>
+            <tr>
+              <td height="29" class='confluenceTd'><strong>true</strong></td>
+              <td class='confluenceTd'> This value indicates that the basket is rebuilt and validated successfully.</td>
+            </tr>
+          </tbody>
+        </table>
+        </p></td>
+    </tr>
+    <tr>
+      <td height="40" class='confluenceTd'><strong>Error List</strong></td>
+      <td class='confluenceTd'><p>This list denotes the errors found in validation after rebuilding the basket.</p></td>
+    </tr>
+</table>
+
+
+</body>
+</html>

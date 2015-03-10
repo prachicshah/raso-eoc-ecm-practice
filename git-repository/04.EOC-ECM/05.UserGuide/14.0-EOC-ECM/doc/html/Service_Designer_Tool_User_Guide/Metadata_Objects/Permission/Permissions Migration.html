@@ -1,0 +1,69 @@
+﻿<html>
+<head>
+<title>Permissions Migration</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Permissions: Changes and  Migration</h2>
+<p>The Permissions in Velocity Studio have significantly changed since 5.0. This article discusses how to migrate permission object from release 4.2.</p>
+
+<p> Wizard is used to assist developer in creation of <b>Permission</b> Object</p>
+<p><b>Permission</b> (operations) are created directly instead of a whole <b>Permission Set</b>.</p>
+<p>Global Permissions have been relocated under the <b>Navigation</b> pane <b>Business Processes</b> -> <b>Permissions</b>
+<p>All Permissions are now script methods that can be invoke any script.  Developers can now extend the permission operations beyond the system default permission methods of: addPerm, deletePerm, attachPerm, editablePerm, and executePerm.</p>
+<p>Permission Set operation mapping to Permission Methods</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>4.2 Permission</th>
+<th class='confluenceTh'>5.x Permission Method</th>
+</tr>
+<tr>
+<td class='confluenceTd'>Add</td>
+<td class='confluenceTd'>addPerm</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Delete</td>
+<td class='confluenceTd'>deletePerm</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Attach</td>
+<td class='confluenceTd'>attachPerm</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Update</td>
+<td class='confluenceTd'>editablePerm</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Execute</td>
+<td class='confluenceTd'>executePerm</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>optionalPerm</td>
+</tr>
+
+<tr>
+<td class='confluenceTd'>View</td>
+<td class='confluenceTd'>visiblePerm</td>
+</tr>
+</table>
+<p>Custom Permissions can not be created.  Document Permission can perform the same function as Custom Permissions in pervious release.  All Custom Permissions will be migrated to Document permissions as extension to default Permissions</p>
+<p>Global <b>Permission Set</b> can no longer be assigned directly to Object.  Global permissions are assigned using Object Permission <b>Methods</b>.  For each operation in a Classic Global <b>Permission Set</b>, there will be a Global Permission created.  These Global Permissions will be implemented as a local Object Permission in the <b>Methods</b> tab which will use a reference property to link to the Global Permission.<p>  
+<p><b>Permission Set</b> operations are not created automatically.  Only create a permission <b>Methods</b> that change from the default - grant all access.</p>
+<p>The general tab of the Permission now contains the properties of the permission (no additional tabs).  Permissions are now methods under the <b>Methods</b> tab and no longer have a permissions tab.</p>
+<p>Permissions now has a two new properties for input para maters and return value.</p>
+<p>Format codes and field level scripts have been replace by field permissions.</p>
+<p>The Metadata is used to manage privileges, not managed by admininstration application any more.</p>
+
+<p><em>Velocity Studio:Before and After Picture of Permission.</em></p>
+
+<img src="Migration Velocity.png" align="absmiddle" border="0" alt="Velocity Studio:Before and After Picture of Permission" />
+
+</body>
+</html>

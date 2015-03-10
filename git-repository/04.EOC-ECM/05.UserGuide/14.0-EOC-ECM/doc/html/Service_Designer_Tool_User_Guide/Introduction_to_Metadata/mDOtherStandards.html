@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>Other Standards</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Metadata Development Coding Other Standards</h2>
+<p>The following describes other standards related to metadata  development coding.</p>
+<h3>Order Status Codes (in  OrderInstance Document)</h3>
+<p>Order Status field   represents a hierarchical structure. The structure makes the status flow  clear and searching for orders faster. It is much more convenient and easy to  implement. Each project has its own requirements for order status. Follow the example when creating the  order  status codes:</p>
+  <table width="576" border="1" cellpadding="0" cellspacing="0" class="confluenceTable">
+    <tr>
+      <th class="confluenceTh" width="165" valign="top"><strong>Code</strong></th>
+      <th class="confluenceTh" width="224" valign="top"><strong>Hierarchy</strong></th>
+      <th class="confluenceTh" width="179" valign="top"><strong>UI Description</strong></th>
+    </tr>
+    <tr>
+      <td width="165" valign="top"> O_NR_NEW</td>
+      <td width="224" valign="top"> open.notrunning.new</td>
+      <td width="179" valign="top">New</td>
+    </tr>
+    <tr>
+      <td width="165" valign="top">O_R_CON</td>
+      <td width="224" valign="top">open.running.configuration</td>
+      <td width="179" valign="top">Configuration</td>
+    </tr>
+    <tr>
+      <td width="165" valign="top">O_R_PRO</td>
+      <td width="224" valign="top">open.running.provisioning</td>
+      <td width="179" valign="top">Provisioning</td>
+    </tr>
+    <tr>
+      <td width="165" valign="top">O_NR_ERR</td>
+      <td width="224" valign="top">open.notrunning.error</td>
+      <td width="179" valign="top">Error</td>
+    </tr>
+    <tr>
+      <td width="165" valign="top">C_C</td>
+      <td width="224" valign="top">closed.completed</td>
+      <td width="179" valign="top">Completed</td>
+    </tr>
+    <tr>
+      <td width="165" valign="top">C_X</td>
+      <td width="224" valign="top">closed.cancelled</td>
+      <td width="179" valign="top">Cancelled</td>
+    </tr>
+    <tr>
+      <td width="165" valign="top">…</td>
+      <td width="224" valign="top">…</td>
+      <td width="179" valign="top">…</td>
+    </tr>
+</table><br>
+<h3>Global Configuration Variables (in  Configuration Tool)</h3>
+<p>Configuration variables are grouped by their type, subtype, etc. Configuration names are in  mixed case, with first letter lowercase. Use a period (.)  to separate types and subtypes. For example:</p>
+  <table class="confluenceTable" border="1" cellspacing="0" cellpadding="0">
+    <tr>
+      <th class="confluenceTh" width="277" valign="top"><strong>Key</strong></th>
+      <th class="confluenceTh" width="277" valign="top"><strong>Value</strong></th>
+    </tr>
+    <tr>
+      <td width="285" valign="top"><strong>host</strong>.<strong><em>name</em></strong>.smtpServer</td>
+      <td width="285" valign="top">smtp.conceptwave.com</td>
+    </tr>
+    <tr>
+      <td width="285" valign="top"><strong>host.<em>name</em>.</strong>pop3Server<strong></strong></td>
+      <td width="285" valign="top">pop3.conceptwave.com</td>
+    </tr>
+    <tr>
+      <td width="285" valign="top"><strong>host</strong>.<strong><em>port</em></strong>.smtpServer</td>
+      <td width="285" valign="top">25</td>
+    </tr>
+    <tr>
+      <td width="285" valign="top"><strong>host.<em>port</em>.</strong>pop3Server<strong></strong></td>
+      <td width="285" valign="top">110</td>
+    </tr>
+    <tr>
+      <td width="285" valign="top"><strong>url</strong>.conceptwave</td>
+      <td width="285" valign="top"><a href="http://www.conceptwave.com">http://www.conceptwave.com</a></td>
+    </tr>
+    <tr>
+      <td width="285" valign="top"><strong>time.</strong>archiveOrders<strong></strong></td>
+      <td width="285" valign="top">01:00</td>
+    </tr>
+    <tr>
+      <td width="285" valign="top"><strong>time</strong>.reloadCache</td>
+      <td width="285" valign="top">03:30</td>
+    </tr>
+    <tr>
+      <td width="285" valign="top"><strong>path</strong>.interfacesRoot</td>
+      <td width="285" valign="top">D:\interfaces</td>
+    </tr>
+    <tr>
+      <td width="285" valign="top"><strong>num</strong>.maxResults</td>
+      <td width="285" valign="top">1000</td>
+    </tr>
+    <tr>
+      <td width="285" valign="top">….</td>
+      <td width="285" valign="top">….</td>
+    </tr>
+</table><br>
+  <h3>Password Configuration (in  Configuration Tool)</h3>
+  <p>Define passwords  using the Passwords tab. Instead of defining configuration variables with clear  text, follow metadata naming conventions. For example:</p>  
+    <table border="1" cellspacing="0" cellpadding="0">
+      <tr>
+        <th class="confluenceTh" width="277" valign="top"><strong>Password parameter name</strong></th>
+        <th class="confluenceTh" width="277" valign="top"><strong> Password value</strong></th>
+      </tr>
+      <tr>
+        <td width="277" valign="top">smtp.provisioning.password</td>
+        <td width="277" valign="top">********</td>
+      </tr>
+    </table>    
+    <h3>Privileges for Manual  Participants (in User Profile Administrator Tool)</h3>
+<p>Privileges needed  to define manual participants can have a suffix such as <strong>PartPriv</strong> to separate them from the rest of the privileges. For  example:&nbsp;</p>
+    <table class="confluenceTable"border="1" cellspacing="0" cellpadding="0">
+      <tr>
+        <th class="confluenceTh" width="277" valign="top"><strong>Participant</strong></th>
+        <th class="confluenceTh" width="277" valign="top"><strong> Participant Privilege</strong></th>
+      </tr>
+      <tr>
+        <td width="261" valign="top">serviceActivationPart</td>
+        <td width="293" valign="top">serviceActivationPartPriv</td>
+      </tr>
+      <tr>
+        <td width="261" valign="top">translationsPart</td>
+        <td width="293" valign="top">translationsPartPriv</td>
+      </tr>
+    </table>
+ </td>
+</tr>
+</table>
+
+</body>
+</html>

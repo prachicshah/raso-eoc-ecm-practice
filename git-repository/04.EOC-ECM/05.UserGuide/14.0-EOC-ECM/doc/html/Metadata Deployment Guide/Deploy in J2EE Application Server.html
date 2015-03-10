@@ -1,0 +1,153 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Deploy in J2EE Application Server</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css">
+<style type="text/css">
+<!--
+.hilary {
+	font-size: 18px;
+	color: #F00;
+}
+-->
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></style></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Deploy in J2EE Application Server</h2>
+<p>The following sections detail how to deploy WAR file in each J2EE Application Server.&#160;</p>
+<h3><a name="JBoss">JBoss</a></h3>
+<ol>
+<li>Place the application WAR file in <b>&lt;jboss-home&gt;\server\default\deploy</b></li>
+<li>Start JBoss: run <b>&lt;jboss-home&gt;\bin\run.bat</b></li>
+<li>If the file has been deployed successfully, there should not be any errors or exceptions logged in the log files. </li>
+<ul>
+  <li>Log files are located in <b>&lt;jboss-home&gt;\server\default\log.</b></li>
+</ul>
+  <li>The cwf application can be executed at http://&lt;hostname&gt;:8080/cwf</li>
+  </ol>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>To be able to deploy the WAR file with only the Configuration application, the argument <i>-Dcom.conceptwave.configMode=true</i> must be added to <b>&lt;jboss-home&gt;\\bin\run.bat</b> file.
+      This argument must be removed once you are done with the Configuration application deployment.</li>
+  <li>When you are deploying your WAR file and experience an error message, indicating that <tt>X Connection to localhost 10.0 broken (explicitly kill or server shutdown)</tt>, the problem is a known JBoss issue. JBoss crashes and this error message occurs when you are using PuTTY Configuration, have the <strong>Enable X11 forwarding</strong> option checked, and do not have X server running on your workstation.<br>
+    <br>
+    <img src="JBoss PuTTY configuration.png" width="463" height="442" alt="PuTTY Configuration - Enable X11 forwarding option"><br>
+    <br>
+  </li>
+  <li>To deploy the application on JBoss at the root  level (that is, using http://localhost:&lt;<em>portNumber</em>&gt; instead of http://localhost:&lt;<em>portNumber</em>&gt;/cwf), you can rewrite the URL by following the steps outlined on <a href="http://docs.jboss.org/jbossweb/3.0.x/rewrite.html" target="_blank">http://docs.jboss.org/jbossweb/3.0.x/rewrite.html</a>.</li>
+  <li>While deploying JBoss on Sun Solaris, there is a known issue regarding the AttachmentStore MC bean (org.jboss.system.server.profileservice.repository.AbstractAttachmentStore). The configuration does not specify the parameter type for the constructor.<br>
+    <br>
+    The fix is to provide the parameter type for the constructor in the MC bean configuration (note the use of class="java.io.File" for the constructor parameter): <br>
+    
+    <div class="code">
+        <div class="codeContent">
+          <p>&lt;bean name="AttachmentStore"   class="org.jboss.system.server.profileservice.repository.AbstractAttachmentStore"&gt;<BR>
+&lt;constructor&gt;&lt;parameter   class="java.io.File"&gt;&lt;inject bean="BootstrapProfileFactory"   property="attachmentStoreRoot" /&gt;&lt;/parameter&gt;&lt;/constructor&gt; </p>
+        </div>
+      </div>
+  </li>
+  <li>If you receive a message indicating that the serialization policy file was not found, followed by an incompatible remote service exception, these events occur when a change to a service implementation is deployed to a server, but out-of-date clients are still active.
+ 
+It is recommended that you clean up your client's browser cache and JBoss's temporary files (that is, ...server\default\tmp  and ...server\work\jboss.web\localhost)
+before you access the new deployment.</li>
+</ul>
+<h3><a name="WebLogic">Oracle WebLogic</a></h3>
+<ol>
+<li>Add the application WAR file through WebLogic Administrative Console.</li>
+<li>Locate xercesImpl-2.9.1.jar, xalan-2.7.0.jar, and serializer-2.7.0.jar in the &lt;<em>installed_folder</em>&gt;/lib/xml folder. Proceed to add them into its classpath, which is the same location as your Oracle JDBC drivers.</li>
+<li>Start the application through WebLogic Administrative Console.</li>
+</ol>
+<h3><a name="WebSphere">IBM WebSphere</a></h3>
+<p>Once you have completed the <a href="IBM WebSphere Configuration.html">WebSphere installation and configuration</a>, you are able to use the WebSphere Administration Console to deploy the application WAR file.  This section describes the WAR file deployment process.</p>
+<p><strong>Note:</strong> To avoid a conflict between some older versions of JCA JAR files and the WAS   libraries, do not put any Java EE or J2EE JARs (that is, connector.jar) into the WAR file. </p>
+<h4>Application WAR file deployment through WebSphere Administrative Console</h4>
+<ol>
+<li>Within the WebSphere Administrative Console, from the left menu, navigate to <strong>Applications</strong> <strong>Types</strong> &gt; <strong>Enterprise Applications</strong> and click the <strong>Install</strong> button.<br>
+  <br>
+</li>
+       
+       <img src="Install Applications.png" alt="Install applications" border="1"><br>
+       <br>
+<li>Select whether your cwf.war file is either on your <strong>Local file system</strong> or a <strong>Remote file system</strong> if it is on a server where WebSphere is installed. Proceed to click the <strong>Browse</strong> button. <br>
+  <br>
+  <img src="Install cwf local remote file system.png" alt="Path to cwf.war file on local or remote file system" width="1306" height="318" border="1"><br>
+  <br>
+</li>
+<li> Upload the cwf.war file and click the <strong>Next</strong> button.<br>
+  <br>
+</li>
+        <img src="Install CWF War file.png" alt="Install CWF War File" border="1">    <br>
+        <br>
+<li>In the next step, choose to install the application by <strong>Fast Path</strong>.  Click the <strong>Next</strong> button to continue.<br>
+  <br>
+  <img src="Install fast path.png" alt="Fast Path option" border="1"><br>
+  <br>
+</li> 
+<li>The system navigates through five steps in the enterprise application installation.  On the first step, change the <strong>Application name</strong> field to <strong>cwf_war</strong> and accept all other system defaults.  Click the <strong>Next</strong> button to continue.<br>
+  <br>
+</li>
+        <img src="Install New step 1.png" alt="CWF Installation Step 1" border="1"><br>
+        <br>
+<li>In step 2 - Map modules to servers, accept all system defaults and click the <strong>Next</strong> button to continue .<br>
+  <br>
+</li>
+        <img src="Install New step 2.png" alt="CWF Installation Step 2" border="1">   <br>
+        <br>
+<li>In step 3 - Map virtual hosts for Web modules, accept all system defaults and click the<strong> Next</strong> button to continue.<br>
+  <br>
+</li>
+        <img src="Install New step 3.png" alt="CWF Installation Step 3" border="1"><br>
+        <br>
+<li>In step 4, assign the value of <strong>/cwf</strong> to the <strong>Context Root</strong> field and click the <strong>Next</strong> button to continue.<br>
+  <br>
+  <img src="Install New step 4.png" alt="Step 4 - Context Root field" width="1258" height="410" border="1"><br>
+  <br>
+</li>
+<li>Step 5 contains the summary page. Click the <strong>Finish</strong> button to install the cwf application in WebSphere.<br>
+  <br>
+</li>
+        <img src="Install New step summary.png" alt="CWF Installation Summary" border="1"><br>
+        <br>
+<li>Once the application has been installed successfully, save your changes by clicking the <strong>Save</strong> link. <br>
+  <br>
+</li>
+		<img src="Install New Installed.png" alt="CWF Installed" border="1">
+</ol>
+<h3>Initialize the application through WebSphere Administrative Console</h3>
+<ol>
+<li>Within the WebSphere console, navigate to <strong>Applications &gt; Application Types &gt; WebSphere Enterprise Applications</strong> and click the <strong>cwf</strong> application hyperlink.  From the cwf application page, click the <strong>Manage Modules</strong> hyperlink.<br>
+  <br>
+</li>
+        <img src="Cwf Enterprise Applications modules.png" alt="Enterprise applications" width="1100" height="540" border="1"><br>
+        <br>
+
+<li>From the Manage Modules page, click the <strong>ConceptWave<sup>&reg;</sup> Framework</strong> hyperlink.<br>
+  <br>
+</li>        
+        <img src="Manage Modules CWFramework.png" alt="Manage Framework modules" width="1100" height="540" border="1"><br>
+        <br>
+<li>Select all system defaults, except for the <strong>Class loader order</strong> field.  For the <strong>Class loader order</strong> field, click the drop-down menu and select <strong>classes loaded with local class loader first(parent last)</strong>, and then click  the <strong>OK</strong> button to continue.<br>
+  <br>
+</li>
+        <img src="Manage Modules CWF.png" alt="Manage Modules" width="1100" height="540" border="1">   <br>
+        <br>
+<li>The system displays the Manage Modules page.  Click the <strong>OK</strong> button to continue.<br>
+  <br>
+</li>
+        <img src="Manage Modules.png" alt="Manage Modules" width="1100" height="540" border="1">
+<li>The system displays the CWF configuration. Save the changes to continue.</li>
+        <img src="cwf Configuration.png" alt="CWF Enterprise Application" width="1100" height="540" border="1">
+        <br>
+<li>Restart the Web server, and ensure that cwf Application is up and running.</li>                           
+
+</ol>
+</td>
+</tr>
+</table>
+</body>
+</html>

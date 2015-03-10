@@ -1,0 +1,65 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Processes</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Processes</h2>
+
+<p>Clicking <strong>Manage</strong> &gt; <strong>Processes</strong> from the menu bar allows you to change properties for all configuration node processes on one screen. Each configuration node process appears, grouped by process name.</p>
+<p><img src="manageProcesses.png" alt="Manage Processes dialog" border="1"></p>
+<p>To edit the properties of a process, complete these steps:</p>
+<ol>
+  <li>From the Manage Processes dialog, click the process that you want to make changes to.<br>
+    <br>
+    <img src="manageProcessesSelectProcess.png" alt="Manage Processes dialog - Select row to edit" border="1"><br>
+    <br>
+    </li>
+  <li>You can make changes to the following fields:<br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="130" class='confluenceTh'>Field</th>
+          <th width="877" class='confluenceTh'>Description</th>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Number of Processes</strong></td>
+          <td class='confluenceTd'>This field represents the number of process instances for this PE instance, which is used for calculating the cache sizes and memory size.</td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Serialization</strong></td>
+          <td class='confluenceTd'>Click the drop-down menu and select from the available serialization options.</td>
+          </tr>
+        </tbody>
+      </table>
+    <br>
+    For more information about these fields, refer to the <a href="../Configure/System/Processes/PEprocesses.html">PE Processes</a> page.<br>
+    <br>
+    <strong>Notes:</strong>    
+    <ul>
+      <li>When you edit a row, all text in the row appears in blue font to indicate unsaved changes. </li>
+      <li>If the node that you are editing has child nodes inheriting from it, its values change accordingly. If you want a different value for the child node processes,  provide a different  value, and then save the table. </li>
+      <li>When you either set the number of processes to null or set the value with the same value as the parent, the value is inherited. As a result, whenever the parent node contains a change, that  change appears at the child node level. <br>
+        <br>
+      </li>
+    </ul>
+    </li>
+  
+  <li>  When you have completed making your changes, click the <strong>Save</strong> button.<br>
+  </li>
+  <li>A confirmation message appears, indicating that your changes have been saved.<br>
+  </li>
+</ol>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

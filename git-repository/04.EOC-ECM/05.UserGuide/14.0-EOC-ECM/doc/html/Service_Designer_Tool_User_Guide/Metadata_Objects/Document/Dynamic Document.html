@@ -1,0 +1,172 @@
+<html>
+<head>
+<title>Dynamic Document</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Dynamic Document</h3>
+
+<p>Dynamic Documents are Document metadata objects that have Variables with name, data type, and database mapping that are not predefined in metadata, but programmatically defined at runtime. These Variables are called <i>dynamic Variables</i>.</p>
+
+<p>Dynamic Documents are an extension of Document metadata, and thus have static Variables as well -- Variables that have name, data type, and mapping information defined in metadata. Therefore, Dynamic Documents may have both static Variables and dynamic Variables.</p>
+
+<p>Dynamic Variables are mapped to rows in <i>name-value pair</i> (NVP) table, which is in a predefined format, to store their values at runtime. NVP table is also referred to as <i>dynamic table</i>.</p>
+
+<p><img src="DocumentDynamic.png" align="absmiddle" border="1" alt=" Static and Dynamic Document Comparison" ></p>
+
+
+<p>The previous diagram shows the differences between (static) Documents and dynamic Documents with respect to their Variables (<i>Leaf</i>):</p>
+<ul>
+<li>Documents have only static Variables defined in the metadata and mapped to columns of database tables.</li>
+<li>Dynamic Documents have static Variables as well as dynamic Variables. At runtime, the dynamic Variables are mapped to rows in the NVP table.</li>
+</ul>
+
+<p>The dynamic Document can predefine some of the dynamic Variables, but there can be those that will be known only at runtime.</p>
+<p><strong>Note:</strong> Velocity Studio features require a separate license key that is activated in Velocity Studio. </p>
+
+<h4><a name="new">Create New Dynamic Document</a></h4>
+
+<p>To create a new dynamic Document, first follow <a href="Documents.html#new">instructions</a> on creating a new Document. Then, check the <b>Dynamic document</b> checkbox in <b>General</b> tab of the Document, and specify the NVP table name in <b>Dynamic table name</b>.</p>
+
+<p>To be explained below, a dynamic Document must have a Document Key to create the NVP table. Thus, specify the keys of the dynamic Document in the <b>Keys</b> field.</p>
+
+<img src="DocumentDynamicNew.png" align="absmiddle" border="1" alt="New Dymanic Doucment" >
+
+<h4>NVP Table</h4>
+
+<p>The NVP table has the following predefined columns. The first four columns are the unique keys of the table.</p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Column Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>DOC_ID</b></td>
+<td class='confluenceTd'><i>VARCHAR2(36)</i></td>
+<td class='confluenceTd'>Contains the GUID or ID of the document.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>DOCUMENT_TYPE</b></td>
+<td class='confluenceTd'><i>VARCHAR2(38)</i></td>
+<td class='confluenceTd'>GUID of the document type.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>LEAF_NAME</b></td>
+<td class='confluenceTd'><i>VARCHAR2(64)</i></td>
+<td class='confluenceTd'>The dynamic Document variable name.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>ARRAY_INDEX</b></td>
+<td class='confluenceTd'><i>NUMBER(4)</i></td>
+<td class='confluenceTd'>The array size. 0 for single values. 1 to 9999 for arrays.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>DATA_TYPE</b></td>
+<td class='confluenceTd'><i>NUMBER(2)</i></td>
+<td class='confluenceTd'>Data type of the dynamic Document variable.<ul>
+			<li>0 - Decimal</li>
+			<li>1 - Integer</li>
+			<li>3 - String</li>
+			<li>4 - Boolean</li>
+			<li> 5 - Date_Time</li>
+			<li>6 - Date</li>
+			<li>9 - Code Table<br>
+			  <br>
+			</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>VALUE</b></td>
+<td class='confluenceTd'><i>NVARCHAR2(256)</i></td>
+<td class='confluenceTd'>The value stored as string. Details are defined in below section.</td>
+</tr>
+
+</tbody>
+</table>
+
+<p>Notice that the NVP table contains <i>Document ID</i> and <i>Document Type</i> as part of the composite key of the table. Thus at runtime, each dynamic Document object instance may have its own NVP table, separate from other dynamic Document object instances. Indeed, an application may have many NVP tables, but in practice, their number must be limited.</p>
+
+<h4>Data Type Support to Dynamic Variables (and limitations)</h4>
+
+<p>Dynamic Variables are limited to the following base types:</p>
+<ul>
+<li>Boolean</li>
+<li>Number (Integer or Decimal)</li>
+<li>String</li>
+<li>Enumeration (Code table)</li>
+<li>Date</li>
+</ul>
+<p>Notably, <a href="../Data Type/data types.html#DataReferenceTypes">Reference</a> and <a href="../Data Type/data type translation.html">Translation</a> Data Types are not allowed in Dynamic Variables.</p>
+
+<p>There is considerable difference in how values are stored in database for dynamic Variables versus static Variables. For dynamic Variables, they are stored always as characters in the <b>VALUE</b> column as <i>NVARCHAR2(256)</i> with the following restrictions and conventions:</p>
+<ol>
+<li>Boolean values - stored as string 0 to denote false and 1 to denote true</li>
+<li>Number values - stored as decimal string (with or without decimal point)</li>
+<li>String values - limited to 256 characters</li>
+<li>Date values - stored as we keep them in memory (as in XSD standard)</li>
+</ol>
+
+
+<p>As a comparison, the static Variables are stored in database columns of the corresponding type as specified in column <i>Oracle</i> in <a href="../External Services/Type Mapping with External Services.html">Type Mapping</a>.</p>
+
+<p>Because of this implementation in NVP table, numeric manipulation in database with dynamic Variables of Number type is extremely awkward and is discouraged. Thus, <i>only dynamic Variables of String and Boolean types should be used in creating dynamic Finders</i>.</p>
+
+<h4>Scripting and Runtime</h4>
+
+<p>At runtime, the dynamic Document is not different from the (standard) Document. The difference is the ability to create the dynamic part on the fly.</p>
+
+<p>In terms of scripting, there exists the <a href="../../../JavaScripting in Order Care/com/conceptwave/scripting/DynamicDocument.html"><i>Dynamic Document</i></a> object class which is extended from <i>Document</i> object class. This is consistent with the notion that Dynamic Documents are an extension of Document metadata. Dynamic Documents are created by the constructor of this Dynamic Document object class.</p>
+
+<p>Creating dynamic Variables can be done in the <a href="../../../JavaScripting in Order Care/com/conceptwave/scripting/DynamicDocument.html#constructor_summary">constructor of dynamic Document</a> object, or by the method <a href="../../../JavaScripting in Order Care/com/conceptwave/scripting/DynamicDocument.html#method_detail"><i>createLeaf</i></a>. The dynamic Variable names must be unique in the dynamic document (including the static Variable names).</p>
+<p><strong>Note:</strong> Catalog does not support the basketitem.createLeaf operation. As an example, instead of creating a leaf in Catalog, you would create an item attribute relation for the item to the corresponding attribute.</p>
+
+<p>Access to dynamic Variables does not differ from the access to static Variables. The same dot notation is used to get and set values. For example, if dynamic Document <i>myDoc</i> has defined dynamic Variable <i>myVar</i> of type string, then:</p>
+
+<div class="code"><div class="codeContent">
+<pre>
+myDoc.myVar
+</pre>
+</div>
+</div>
+
+<p>returns the value of of the dynamic Variable, and </p>
+<div class="code"><div class="codeContent">
+<pre>
+myDoc.myVar = "string example";
+</pre>
+</div>
+</div>
+<p>sets the value of the dynamic Variable to the value "<i>string example</i>".</p>
+
+<p>It is recommended that the Variables must be defined before the first operation which sets or gets Variable value, regardless whether the Variable is static or dynamic. The dynamic Variable behaves just as the static Variable. However, you may continue to add new dynamic Variables at any moment of the Document life.</p>
+
+<p>Note that there is no way to remove dynamic Variables from a dynamic document.</p>
+
+<h4>Array Types in Dynamic Variables</h4>
+
+<p>Unlike static Variable where it must be single value per Variable, dynamic Variables allow arrays of values per Variable. The type of the array can be one of the types allowed for the dynamic Variables, and the database format of the values remains the same as explained above. The array is ordered, with size up to 9999, but should not be more than, say, 20 elements in practice. For the sake of database operations, the dynamic Variable array values are stored in the same NVP table as the single dynamic Variable values.</p>
+
+<p>In scripting, the getter of dynamic Variable of Array type returns an array, even if it consists of one element only.</p>
+
+<p>The setter, however, accepts array of objects or a single object as parameter. In the latter case, it is converted to a string array of one element. Assigning value to an array Variable will replace the current array value of the Variable with the specified array. It will not add the values to the existing array.</p>
+<h4>Create a Dynamic Document with Dynamic and Static Layouts</h4>
+<p>There are two methods of creating a Dynamic Document:</p>
+<ul>
+  <li><a href="../../Velocity_Studio/Element - Dynamic Document - dynamic form.html">Create a Dynamic Document with a completely dynamic layout</a></li>
+  <li><a href="../../Velocity_Studio/Element - Dynamic Document - static form.html">Create a Dynamic Document with a predefined, static layout</a></li>
+</ul>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

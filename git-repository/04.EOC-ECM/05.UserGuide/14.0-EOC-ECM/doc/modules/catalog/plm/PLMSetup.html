@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Product Lifecycle Designer Setup</title>
+<link rel="StyleSheet" href="..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../highlight.js"></script><script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h3>Product Lifecycle Designer Setup</h3>
+<p>This section describes the process for setting up the Product Lifecycle Designer (PLD) feature including setting up users and their privileges. </p>
+<ol>
+  <li>Assign the <strong>Product Manager</strong> privilege to the user who will be creating the change request. This assignment enables the change request functionality or the <img src="AddProjectButton.png" width="107" height="24"> button.  Within the System Administration Application, add the <strong>Product Manager</strong> privilege to the user who is creating the change requests.
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="PLMAddPMPrivilege.png" alt="PM Privilege"></td>
+</tr>
+</tbody>
+</table>
+</li><br>
+<li>Create the users with the correct privileges.  Along with the <strong>Catalog Management Administrator</strong> privilege, each user should have an appropriate role privilege. When assigning tasks, the PLD workflow will assign a task to the user with the appropriate privilege. The change request provides the ability to assign an approval task to various users. The users specified in the workflow and their associated privilege are:
+  <table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Participant</th>
+<th class='confluenceTh'>Privilege</th>
+</tr>
+<tr>
+<td class='confluenceTd'>Business Analyst</td>
+<td class='confluenceTd'>Business Analyst</td>
+</tr>
+<tr>
+<td class='confluenceTd'>IT/Network Analyst</td>
+<td class='confluenceTd'>IT/Support</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Marketing</td>
+<td class='confluenceTd'>Marketing Manager</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Network Operations</td>
+<td class='confluenceTd'>Network Operations</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Pricing Economics</td>
+<td class='confluenceTd'>Pricing &amp; Economics</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Product Manager</td>
+<td class='confluenceTd'>Product Manager</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Product Modeler</td>
+<td class='confluenceTd'>Product Modeler</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Revenue Assurance</td>
+<td class='confluenceTd'>Revenue Assurance</td>
+</tr>
+</tbody>
+</table>
+</li><br>
+<li>The Process Engine  must be turned on within the defined Catalog node. Within the Configuration application, ensure that the Process Engine is started by setting the <strong>Start mode</strong> value to either <strong>UI and PE</strong> or to <strong>PE only</strong>.  Navigate to the Configuration application (<i>http://localhost:8080/cwf/config/index.html</i>) and ensure that the <b>Start mode</b> value is set correctly  to start the Process Engine:
+  <table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="PEnode.png" alt="Process Engine Setup"></td>
+</tr>
+</tbody>
+</table>
+</li><br>
+<li>Ensure that there is a <b>Default Calendar</b> set up.  The workflow will use the default calendar that is set up in the System Administration Application to initiate the PLD process.  If the default calendar is not set up properly the workflow tasks will not be assigned to the users. Refer to Velocity Studio's  <em>System Administration Application User Guide &gt; User Profile Manager &gt; Calendars</em> documentation for more details.  
+</ol>
+
+</td>
+</tr>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Socket Service Provider</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Socket Service Provider</h3>
+<p>The Socket service provider allows sending and receiving data over sockets. It is used for internal purposes only.</p>
+
+<h4>Socket Attributes in Velocity Studio</h4>
+
+<p>There are no Binding Interface or message attributes that are exposed by the Socket service provider. Therefore, no attributes will appear in the <b>Element definitions</b> table of the Binding properties when an element is selected in the <b>Interface element</b> tree in <b><a href="../External Services/defining a binding.html">Binding</a></b> metadata object.</p>
+<p>The Socket Service Provider uses  the Interface Operation's Type.  Its behaviour based on operation type is as follows:</p>
+<ul>
+  <li>    <strong>One-Way</strong>: The Socket provider opens a socket, sends the request data, and then closes the socket.    It does not wait for any kind of acknowledgement from the remote socket.</li>
+  <li>    <strong>Request-Response</strong>: The Socket provider opens a socket, sends a request date, reads the response data, and then closes the socket. 
+    The provider blocks (with no timeout) after sending a request until the remote socket starts
+    sending data.</li>
+  </ul>
+<p><strong>Note</strong>: 
+  Notification and Solicit responses are not supported.</p>
+<h4>Socket Attributes in Configuration Application</h4>
+
+<p>The following table describes the attributes that are exposed in Configuration application specifically for the Socket service provider.</p>
+
+<p>These attributes are found in <b><a href="../../../Configuration_Tool_User_Guide/Services Services.html">Services</a></b> tab in Configuration application. When clicking  a Port, Binding, Operation, or message node in the <b>Service Port tree</b>, the Configuration attributes for the node appears at the <b>Configuration</b> section at the right where values can be provided.</p>
+
+<p><ins>Attributes in Configuration application for the Socket Service Provider</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Location</b></td>
+<td class='confluenceTd'>TCP/IP server name.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Port</b></td>
+<td class='confluenceTd'>TCP/IP port to use.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

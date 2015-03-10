@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Export Code Tables</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Export Code Tables</h2>
+<h3>Export Code Tables to Files</h3>
+<p>Code tables can be exported in various formats. On the Code Tables page, select the code tables to be exported and click the <strong>Export</strong> button. Select the format of the output: XLS, CSV, XML or ZIP.</p>
+<p><img src="CodeTableExport.png" width="141" height="119" alt="Code Tables Export"><br>
+</p>
+<h3>Export Code  to Files</h3>
+<p>Codes can be exported in various formats. On the Details page of a code table, select the codes to be exported and click the <strong>Export</strong> button. Select the format of the output: XLS, CSV or XML.</p>
+<p><img src="CodesExport.png" width="128" height="89" alt="Codes Export"></p>
+<p>&nbsp;</p>
+<h3>Export Code Tables from the Command Line</h3>
+<p>You can export a code table from the command line in Windows and Unix. The catalog export syntax is as follows:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>
+catalogExport username=a password=b server_url=http://localhost:8080/cwf export_folder=C:\tickets export_type=codetable exported_objectid_list=ACC_CAN_TYPE:manufacturer</pre>
+  </div>
+</div>
+<p>The following are examples of using this command:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>
+catalogExport username=upadmin password=upadmin server_url=http://localhost:8080/cwf export_folder=D:\codeTableExport export_type=codetable exported_objectid_list=t1<BR><BR>catalogExport username=upadmin password=upadmin server_url=http://localhost:8080/cwf export_folder=D:\codeTableExport export_type=codetable exported_objectid_list=cwtct_priceType:provState_CA<BR><BR>catalogExport username=upadmin password=upadmin server_url=http://localhost:8080/cwf export_folder=D:\codeTableExport export_type=codetable exported_objectid_list=cwtct_priceType:provState_CA:manufacturer</pre>
+  </div>
+</div>
+<p></p>
+<p>&nbsp;</p>
+</body>
+</html>

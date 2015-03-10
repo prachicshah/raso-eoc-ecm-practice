@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Licence Handlers</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h3>Licence Handlers</h3>
+
+<p>The AVM provides the following licence handlers, which are also known as connectors: </p>
+<ul>
+  <li><a href="#legacyHandler">Legacy handler</a></li>
+  <li><a href="#sentinelConnectorWebContainer">Sentinel connector under a Web container</a></li>
+  <li><a href="#sentinelOfflineRepositoryHandler">Sentinel offline repository handler for Velocity Studio</a></li>
+  <li><a href="#testingHandler">Testing handler for feature developer licence</a></li>
+</ul>
+<h3><a name="legacyHandler">Legacy handler</a></h3>
+<p>An adapter is available to support the existing file format and existing module-based licencing. </p>
+<h3><a name="sentinelConnectorWebContainer">Sentinel Connector under a Web Container</a></h3>
+<p>This licence handler connects to the Sentinel license  manager server. It is assumed that the connection to the server must be available  at startup, and when the floating licence is used or licence  synchronization is requested.</p>
+<p>  If the AVM is using a floating licence for itself or for a feature  (for example, floating license for <em>n</em> of AVM instances), it requires using a special  request or release API. The request is called with a specified timeout parameter. The licence defines this timeout value, which can be set from 1 to 900 minutes.</p>
+<p>The 
+  AVM heartbeat thread needs to call the update API to  continue using the licence. Otherwise, the licence is released when the timeout occurs.  If the connection to the server is lost, or at runtime, or  the licence has expired, it starts logging errors every update period.</p>
+<h3><a name="sentinelOfflineRepositoryHandler">Sentinel Offline Repository Handler for Velocity Studio</a></h3>
+<p>You should have the ability to work  offline. A special type of license, called a repository, is used. The licence generation defines the type of  licence.  A special Sentinel utility tool is called during the  installation to initialize the local licence storage (that is, licence cache) and check out the licence from the server.</p>
+<p><strong>Note:</strong> The Velocity Studio licence handler <em>does not</em><em> </em>support floating licence behaviour for features when running  the application from Velocity Studio. API calls to request or release features are  ignored. To test the floating licence, it is recommended that the application be deployed on a Web  container and use the floating network licence type.</p>
+
+<h3><a name="testingHandler">Testing Handler for Feature Developer Licence</a></h3>
+<p>If your <a href="../../../Installer_User_Guide/appendix c - license file explained.html">Velocity Studio licence</a> has a special DeveloperFeature  feature code in the licence, you can open any protected template and  start AVM using the special testing handler.  When starting AVM from Velocity Studio, the application creates a special  runtime handler that substitutes the actual licence handler at runtime. All  licence API calls go to the test handler. </p>
+<p>You can find the features that are currently defined and activated for testing in <strong><a href="../../Service Designer Menu Actions/Preferences.html">Preferences</a></strong> &gt; <strong>Runtime Test Features</strong>. You can turn these features on and off on this page.</p></td>
+</tr>
+</table>
+</body>
+</html>

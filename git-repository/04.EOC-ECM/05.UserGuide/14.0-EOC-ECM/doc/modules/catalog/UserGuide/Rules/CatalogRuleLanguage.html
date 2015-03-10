@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Catalog Rule Language</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+<h1>Catalog Rule Language</h1>
+<p>The Catalog Rule Language is a specialized language for writing catalog rules. It includes non-procedural constructs that resemble SQL, and reduce the rule size and complexity.</p>
+
+<p>The Rule Language is case sensitive language that has many synonyms, which allows writing the logic in a format that can be easily read and understood by non-programmers. The language also caters to programmers. The language can be written in a format that, from syntax view point, resembles a simpler version of JavaScript. </p>
+
+<p>Rules can be of any standard type (that is, condition, validation, or price) in which case they do not have user-defined parameters and return values, as well as helper rules that take user-defined parameters and return user-defined values. The helper rules can be only global catalog rules. They may have many versions with different content, but they cannot change their signature.</p>
+
+<p>The catalog rule language section contains the following topics:</p>
+<blockquote>
+  <p><a href="RuleComparisons.html"><strong>Rule comparisons</strong><br></a>
+  The rule language allows programmers and nonprogrammers to write catalog rules, whether they are experts in JavaScript or have little programming experience. This page shows an example of the same rule written three different ways.</p>
+  
+  <p><strong><a href="RuleNotation.html">Rule Notations</a></strong><br>
+  This page describes the notations used when defining the rule language syntax in the Catalog Rules section.</p>
+  
+  <p><strong><a href="RuleStructure.html">Rule Structure</a></strong><br>
+  The rule language consists of a number of simple and complex statements. This section explains what rule structures are available in the catalog rule language.</p>
+
+  <p><strong><a href="ObjectTypes.html">Object Types</a></strong><br>
+    Rule language expressions and identifies have object types such as String, Date, and Row. This section describes each object type, their format, and their predefined attributes.</p>
+  <p><strong><a href="ObjectMembers.html">Object Members</a></strong><br>
+    Object members are internal components of complex objects. This page shows how they are referred using  dot notation. </p>
+  <p><a href="InvokeObjectMethods.html"><strong>Invoking Object Methods</strong></a><br>
+    Objects have methods that perform specific actions. This section provides the syntax for invoking an object method and examples of object methods.</p>
+  <p><a href="InvokeCatalogRules.html"><strong>Invoking Catalog Rules</strong></a><br>
+    Catalog rules are also global ones, allowing you to call them from within another rule. This section provides the rule syntax for a catalog rule, how to write the catalog rule in  positional parameter notation, and how to invoke it.
+  
+<p><strong><a href="Expressions.html">Expressions</a></strong><br>
+  The Expressions section describes the operations that the rule language supports, their descriptions, and the results of performing these operations.</p>
+
+  <p><strong><a href="Statements.html">Statements</a></strong><br>
+  The Statement section lists the set of rule language statements, describes the format of each statement, and provides examples of their usage.</p>
+
+  <p><strong><a href="CatalogRuleAppendices.html">Appendices</a></strong><br>
+  This section features information on keywords, object rule types and predefine parameters, and the rule statement.    </p>
+  <p><br>
+  </p>
+</blockquote>
+</td>
+</tr>
+</body>
+</html>

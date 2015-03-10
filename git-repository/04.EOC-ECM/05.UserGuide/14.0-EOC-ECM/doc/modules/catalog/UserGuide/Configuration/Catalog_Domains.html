@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Catalog Domains</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Catalog Domains</h2>
+
+<p>Catalog Designer provides the Catalog Domains feature that limits access of a catalog object instance (or record) to the users associated with that record.  The users can be associated to a position in the Organizational Chart and a position can be associated with a Domain or Owner on an instance or record. An Organizational Chart position listed for a particular record will limit the access of the users with the same position or higher within the Organizational Chart  to edit/modify and view the record. Only the users assigned to the same position (or a higher position) as that specified by the <strong>Domain</strong> or <strong>Owner</strong> fields have access to the data. These users must still have the appropriate <a href="Catalog_Privileges.html">Catalog Permissions</a>  to the Catalog Object. </p>
+<p>Whenever a Catalog object instance is created, an Owner is assigned to the instance.  This Owner represents the position within the Organizational Chart of the user who created the record.  Only other users with the same position or higher position within the Organizational Chart have access to this instance. For each object instance, it is also possible to assign access to a record for users with different positions within the Organizational Chart. This is done with the <strong>Domain</strong> feature by listing positions in the <strong>Domain Org Chart Name</strong>. </p>
+<p>The Organizational Chart positions are defined and binded to a user within the System Administration application.  Within the Catalog Designer, the association between  the object instance and positions within the Organizational Chart are created. </p>
+<h3>System Administration Application</h3>
+<p>In the System Administration application, the  Organizational Chart positions can be created and can be bound to a user. The User Profile section of the System Administration Application User Guide contains more information on the Organizational Chart. This section describes the steps that bind a position to a user within the System Administration application. </p>
+
+<ol><li>Log into the System Administration Application.</li>
+
+<li>Navigate to <strong>User Profile Manager</strong> and create a new position with the Organizational Chart.  Select the <strong>Organization Chart</strong> node and click the <strong>Add</strong> button.
+  <table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="OrganizationalChart.png" alt="Organizational Chart" /></td>
+</tr>
+</tbody>
+</table></li>
+
+<li>Within the <strong>Users</strong> node, select the user to bind to a particular position. In the <strong>Org Chart (Reference)</strong> field, select the position appropriate for the user.
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="DomainUserInfo.png" alt="User Information" /></td>
+</tr>
+</tbody>
+</table></li>
+
+</ol>
+
+<h3>Catalog Domain</h3>
+<p>When an object instance is created in the Catalog Designer, the user's Organizational Chart position is added to the <strong>Owner</strong> field.  This limits access to this record to only the users sharing the same position or higher in the Organizational Chart.  Users having the same position or higher within the Organizational Chart will have access to this record (with the proper permissions).  Other users will not have any access to this record regardless of permissions. If the <strong>Owner</strong> field is left blank then all users have access to this record.  
+<p>Below is an example of an Item instance &quot;Bundle&quot;, that was created by a user with an Analyst position.  Only the user with the Analyst position or a higher position will have access to this record.
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="DomainInstance.png" alt="Domain Instances" /></td>
+</tr>
+</tbody>
+</table>
+</p>
+
+
+<p>In the <strong>Domains</strong> folder, the user is able to add more positions to restrict access to this record. Positions added here will restrict access to this record to the users with the same position or higher in the Organizational Chart. If both the <strong>Owner</strong> field and the <strong>Domain Org Chart Name</strong> field are left blank, then all users have access to this record - access to this record is not restricted. For the <b>Domains</b> tab, the table below explains the functions:
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Function </th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>Add</td>
+<td class='confluenceTd'>Launches the Organizational Chart finder to select a position to be added to the Domain Org Chart list.  </td>
+</tr>
+<tr>
+<td class='confluenceTd'>Delete</td>
+<td class='confluenceTd'>Deletes the selected position from the Domain Org Chart list.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Detail</td>
+<td class='confluenceTd'>Launches the Organizational Chart finder with the selected position.</td>
+</tr>
+</tbody>
+</table>
+</p>
+
+
+</td>
+</tr>
+</body>
+</html>

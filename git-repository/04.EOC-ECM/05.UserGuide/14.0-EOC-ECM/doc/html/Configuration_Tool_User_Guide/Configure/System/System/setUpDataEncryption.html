@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Set Up Data Encryption</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Set Up Data Encryption</h2>
+
+<p>The following section describes setting up a client appliction that provides functionality to enable sensitive data to be encrypted before it is stored in the database. </p>
+<p>You can use the following functions:</p>
+<ul>
+  <li>For encryption, use Global.encryptRSAText(plaintext, keyAlias)</li>
+  <li>For decryption, use Global.decryptRSAText(encryptedText, keyAlias)</li>
+</ul>
+<p><strong>Note:</strong> Encryption is RSA-based, with BASE64 coding.</p>
+<h3><a name="environmentSetup"></a>Environment Setup</h3>
+<p>Each JVM that either needs to encrypt data or requires access to encrypted data must be  configured using the keytool certificate management utility. Follow these steps:</p>
+<ol>
+  <li>Create  the keystore file and keystore entry (public/private key) using the keytool command with this syntax:
+    <blockquote>
+      <p>keytool -genkey  -dname &quot;cn=<strong><em>&lt;client_application&gt;</em></strong>, ou=<strong><em>CustomerName</em></strong>, o=<strong><em>CustomerName</em></strong>, s=<strong><em>QC</em></strong>,  c=<strong><em>CA</em></strong>&quot;  -keystore <strong><em>/home/appserv/keystore</em></strong> -alias <strong><em>clic</em></strong> -keyalg  &quot;RSA&quot; -keypass  <strong><em>mypass </em></strong>-storepass <strong><em>mypass</em></strong></p>
+    </blockquote>
+  </li>
+  <p><strong>Note:</strong> Your system administrator has to  replace all values marked in bold, italic font to match your environment. </p>
+  <li>Your keystore  file is accessible to all JVMs (framework, process engine) accessing the  encrypted data in the database, allowing the client application to encrypt and decrypt it properly.</li>
+</ol>
+<h3>Client Application Setup</h3>
+<p>To set up your client application, complete these steps:</p>
+<ol>
+  <li>In the Configuration application, click <strong>System</strong> &gt; <strong>Config variables</strong>. </li>
+  <li>Define a variable named <strong>KEYSTORE_PATH</strong> to point to your keystore  file that you created in the <a href="#environmentSetup">Environment setup</a> section.</li>
+  <li>Define <strong>KEYSTORE_PASSWORD</strong>. Use the value  defined for <tt>–storepass</tt> in the keytool command (see <em>Environment setup</em> section).</li>
+  <li>Define <strong>KEY_PASSWORD</strong>. Use the value defined for <tt>–keypass</tt> in the keytool command (see <em>Environment setup</em> section).
+  </li>
+</ol>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>Text to be encrypted cannot be more than 117 bytes (characters).</li>
+  <li>The resulting encrypted text will be approximately 180 bytes (characters). You may need to change the database column size to accommodate the text size.<br>
+  </li>
+</ul>
+<h3>Example: Using Encrypt and Decrypt Functions</h3>
+<p>The following is an example of using the encrypt and decrypt functions:</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+var plain = '1234567890'
+   var enc = Global.encryptRSAText( plain, '&lt;<em>client_application</em>'  );
+   var dec = Global.decryptRSAText( enc, '<em>client_application</em>'  );
+</pre></div>
+</div></td>
+</tr>
+</table>
+</body>
+</html>

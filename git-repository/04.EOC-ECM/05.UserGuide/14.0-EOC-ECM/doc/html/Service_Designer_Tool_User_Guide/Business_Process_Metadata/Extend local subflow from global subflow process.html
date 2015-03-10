@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Subflow Process Migration</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="migrationSubflow"></a>Subflow Process Migration</h2>
+<p>When migrating subflows from  version 5.x, each process or revising that has subflow activities is updated to create a list of subflow references. These subflow references have the following format:</p>
+<blockquote>
+  <p>&lt;<em>subflow full  name</em>&gt;-&lt;subflow revision number&gt;</p>
+</blockquote>
+<p>In version 5.x, a revision&rsquo;s subflow activity always references a subflow  revision. As a result, at migration, you know the subflow revision that this  workflow is using. A (top-level) process's subflow activity always references a (top-level) subflow process. At migration, the revision number for  the top-level subflow process is always calculated.</p>
+<p>Finally, while migrating subflows, all  subflow activities are updated to reference the subflow  process instead of the revision. At compilation, the process replaces its subflow activities with an actual  copy of the subflow workflow. </p>
+<p>Once you have migrated your metadata, no backward compatibility issues should exists, as all  existing processes and revisions behave as in version 5.x. However, the subflow  revision mechanism assumes slightly different behaviour, so revisions  created in this release follow different rules.</p></td>
+</tr>
+</table>
+</body>
+</html>

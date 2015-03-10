@@ -1,0 +1,93 @@
+﻿
+<html>
+<head>
+<title>Appendix A - Installation Troubleshooting</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+
+<h1><a name="AppendixA-InstallationTroubleshooting-AppendixA%3AInstallationTroubleshooting"></a>Appendix A: Installation Troubleshooting</h1>
+
+<h2>Debug output from Wizard</h2>
+
+<p>The installation procedure creates a log file (for  example, ECM-EOC_Install_05_05_2014_17_07_49.log) in the installation folder, which  contains information related to installation. If there any errors in the  installation, use this file to troubleshoot.</p>
+<p>Prior to installation, make sure there is a proper JVM installed.&#160;</p>
+
+<h3>Common Installation Errors</h3>
+
+<table class='confluenceTable' table border="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Error/Symptom</th>
+<th class='confluenceTh'>Comment</th>
+<th class='confluenceTh'>Resolution</th>
+</tr>
+<tr>
+<td class valign="top"='confluenceTd'>Velocity Studio does not start</td>
+<td class valign="top"='confluenceTd'>If the Velocity Studio does not start, consult the log file located in &lt;<em>installation_folder</em>&gt;\designer\env\log.</td>
+<td class valign="top"='confluenceTd'><ol>
+  <li>Review the log file for errors and correct issues. </li>
+  <li><a href="../Service_Designer_Tool_User_Guide/Introduction_to_Metadata/Command Line Options of Designer.html#StartServiceDesigner">Start Velocity Studio by Command Line</a> to view errors.</li>
+</ol></td>
+
+
+<tr>
+<td class valign="top"='confluenceTd'>Cannot Run metadata</td>
+<td class valign="top"='confluenceTd'>The Velocity Studio Console pane will display a message indicating that it is in Design, Config, or Run mode.  The metadata is executed in Run mode. If the Console does not display a Run mode message, then the metadata cannot be run due to some error.</td>
+<td class valign="top"='confluenceTd'>  <ol>
+  <li> If a new version has been installed, metadata may need to be <a href="../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Upgrading System.html">upgraded.</li>
+  <li> Correct errors in the log file (located in &lt;<em>installation_folder</em>&gt;\designer\env\log) and the problems outlined in the Problems pane of Velocity Studio. </li>
+</ol></td>
+</tr>
+<tr>
+<td class valign="top"='confluenceTd'>Framework does not start</td>
+<td class valign="top"='confluenceTd'>If the Framework does not start, usually the console will have a stack trace of the exception. Based on the stack trace you can narrow the source of the error. It could be one of:
+  <ul>
+    <li>Database (missing/invalid tables)</li>
+    <li>Metadata (invalid)</li>
+    <li>Application Server configuration (missing libraries)</li>
+  </ul>
+</td>
+<td class valign="top"='confluenceTd'>Read the stack trace to verify the source of the error.</td>
+</tr>
+<tr>
+  <td class valign="top"='confluenceTd'>Log File Error:  Bootstrap Connection is different from Logical Connection</td>
+  <td class valign="top"='confluenceTd'>The Database configuration in the Configuration application must match the Database configuration in Velocity Studio.</td>
+  <td class valign="top"='confluenceTd'>Follow steps in the Configuration application to ensure that both database configurations match.</td>
+</tr>
+<tr>
+  <td class valign="top"='confluenceTd'>Log File Error: Error validating cluster configuration. Not all database connections are defined</td>
+  <td class valign="top"='confluenceTd'>The Configuration application is not correctly set up.</td>
+  <td class valign="top"='confluenceTd'>Follow steps in the Configuration application to setup the Configuration application properly.</td>
+</tr>
+<tr>
+  <td class valign="top"='confluenceTd'>Log File Error: DE0399: Database structure does not correspond to the metadata</td>
+  <td class valign="top"='confluenceTd'>System upgrade is required.</td>
+  <td class valign="top"='confluenceTd'>Follow steps in the <a href="../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Upgrading System.html">Configuration application </a>to upgrade the database.</td>
+</tr>
+<tr>
+  <td class valign="top"='confluenceTd'>Log File Error: DE6019: Other UI node is running "CLUSTER"</td>
+  <td class valign="top"='confluenceTd'>Two users are sharing the same cluster or node.</td>
+  <td class valign="top"='confluenceTd'>Follow steps in the <a href="order care tools configuration.html#ConfigTool">Configuration application (Step 8)</a> to to create another Cluster or Node.</td>
+</tr>
+<tr>
+  <td class valign="top"='confluenceTd'>Cannot login Config application with <i>upadmin</i>/<i>upadmin</i>.</td>
+  <td class valign="top"='confluenceTd'>Ensure that you have created an Oracle user called <em>upadmin</em>.</td>
+  <td class valign="top"='confluenceTd'>Reset Password in Oracle.</td>
+</tr>
+<tr>
+  <td class valign="top"='confluenceTd'>Cannot run multiple Velocity Studio instances on a single machine.</td>
+  <td class valign="top"='confluenceTd'>The default settings for Velocity Studio are configured for a single instance.</td>
+  <td class valign="top"='confluenceTd'>Refer to the section on configuring the startDesigner.cmd file to enable <a href="../Metadata Deployment Guide/RunningMultipleDesigners.html">multiple Velocity Studio instances</a> on a single machine within the Deployment Guide.</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

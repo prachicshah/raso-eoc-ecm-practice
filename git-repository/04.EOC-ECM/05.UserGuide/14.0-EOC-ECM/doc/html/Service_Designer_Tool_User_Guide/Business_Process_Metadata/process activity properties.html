@@ -1,0 +1,267 @@
+<html>
+    <head>
+        <title>Process Activity Properties</title>
+	    <link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">	    
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script>    </head>
+
+    <body onLoad="highlight();">
+	    <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+		    <tr>
+			    <td valign="top" class="pagebody">
+				    <h2>Process Activity Properties</h2>
+
+<p>The process activity properties can be defined and changed by selecting a process under the Processes node. The title bar of the dialog displays the activity type and label. The tabs contained in the dialog and the fields displayed on each tab will depend on the activity type. The tabs may include the following: <b>General</b>, <b>Actions</b>, <b>Schedule</b>, and <b>Activities</b>.</p>
+<h3>General Tab</h3>
+<p>The general activity properties are defined on the <b>General</b> tab of the property dialog.</p>
+
+<p><em>General tab of the Activities properties for a Choice activity with a milestone.</em></p>
+
+<img src="activityGeneralChoice.png" alt="Activity properties - General tab - Choice activity with a milestone" border="1" align="absmiddle" />
+
+<p>General tab of the Activities properties for an Operation activity.</p>
+
+<img src="activityGeneralOperation.png" alt="Activity properties - General tab - Operation activity" border="1" align="absmiddle" />
+
+<p></p>
+<table class='confluenceTable'><tbody>
+<tr>
+<th class='confluenceTh'> Field </th>
+<th class='confluenceTh'> Description </th>
+<th class='confluenceTh'> Type </th>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Name</b> </td>
+<td class='confluenceTd'> Mandatory. Name of the Activity within the namespace. </td>
+<td class='confluenceTd'> All types </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Label</b> </td>
+<td class='confluenceTd'> Mandatory. Label to identify the Activity. </td>
+<td class='confluenceTd'> All types </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Description</b> </td>
+<td class='confluenceTd'> Description of the Activity for documentation purposes. </td>
+<td class='confluenceTd'> All types </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Milestone</b> </td>
+<td class='confluenceTd'> The current activity is defined with a <a href="common attributes of process activities.html#Milestone">milestone</a>. </td>
+<td class='confluenceTd'> All types except Compensate </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Conditional</b> </td>
+<td class='confluenceTd'> Indicates that this milestone is conditional on execution of this activity. </td>
+<td class='confluenceTd'> All types </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Expected due date</b> </td>
+<td class='confluenceTd'> Mandatory if the area is visible. The area is visible when the <b>Milestone</b> field has a selection. Used for viewing purposes. </td>
+<td class='confluenceTd'> All types </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Allows rerun</b> </td>
+<td class='confluenceTd'> <p>Indicates the activity can be rerun without impact to the process as a whole.  The state of activities marked with this flag are not recorded into the database until an activity without this flag is run. Skillful use of this flag can result in increased process performance. </p>
+  <p><strong>Note:</strong> In PE mode 0 (low speed debug mode), all activity Start/End times are stored. Please refer to <em>Configuration  User Guide</em> for more details. </p></td>
+<td class='confluenceTd'> All types </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Alert</b> </td>
+<td class='confluenceTd'> Associates an Alert that is predefined. </td>
+<td class='confluenceTd'> Alert </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Condition</b> </td>
+<td class='confluenceTd'> Specifies a condition JavaScript script which is evaluated to determine whether or not to execute this case. </td>
+<td class='confluenceTd'> Case </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Compensates</b> </td>
+<td class='confluenceTd'> Specifies a compensate activity. </td>
+<td class='confluenceTd'> Compensate </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Exception</b> </td>
+<td class='confluenceTd'> Associates an Exception that is predefined. </td>
+<td class='confluenceTd'> Exception and On Exception </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Participant</b> </td>
+<td class='confluenceTd'> Associates a Participant to send a task to or to receive notification from. </td>
+<td class='confluenceTd'> Operation </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Operation</b> </td>
+<td class='confluenceTd'> The Participant's <em>one-way</em>, <em>request-response</em>, or <em>notification</em> Operation. For sending a task to or receiving a response from the Participant. </td>
+<td class='confluenceTd'> Operation</td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Participant</b> <b>instance</b> </td>
+<td class='confluenceTd'> Used only for sending a task to a specific Participant from whom the system has already received notification. </td>
+<td class='confluenceTd'> Operation </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Invoke directly</b> </td>
+<td class='confluenceTd'> <p>If checked, the activity will not be invoked through the interface process. </p>
+  <p><strong>Note:</strong> For request/response operations, if the <strong>Invoke Directly</strong> property is checked, the <strong>Retry count</strong> and <strong>Retry delay</strong> settings in the Configuration application are not   used. </p></td>
+<td class='confluenceTd'> Operation </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Activity</b> </td>
+<td class='confluenceTd'> Specifies an activity to repeat. </td>
+<td class='confluenceTd'> Repeat </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Signal</b> </td>
+<td class='confluenceTd'> Specifies a Signal that is predefined. </td>
+<td class='confluenceTd'> Signal </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Sub-Flow</b> </td>
+<td class='confluenceTd'> Specifies a Process that is predefined. The Process activities will be treated as a sub-flow. </td>
+<td class='confluenceTd'> Sub-Flow </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Sub-Process</b> </td>
+<td class='confluenceTd'> Specifies a Process that is predefined that will be treated as a sub-process. </td>
+<td class='confluenceTd'> Sub-Process </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Synchronization</b> </td>
+<td class='confluenceTd'> If checked, the sub-process activity does not complete until the sub-process completes. If unchecked (default), the sub-process activity completes immediately while the sub-process runs asynchronously. In both cases, the activities in sub-process runs in a separate process instance from the parent.</td>
+<td class='confluenceTd'> Sub-Process </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Exclusive</b> </td>
+<td class='confluenceTd'> If unchecked, all the case activities that evaluate to true will be executed. When checked, only the first Case activity that evaluates to true will be executed. </td>
+<td class='confluenceTd'> Switch </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Signal</b> </td>
+<td class='confluenceTd'> Specifies a Signal that is predefined for which  the Synchronize activity waits. </td>
+<td class='confluenceTd'> Synchronize </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Sub-Process</b> </td>
+<td class='confluenceTd'> Specifies a Process that is predefined that will be treated as a sub-process to wait for. </td>
+<td class='confluenceTd'> Wait </td>
+</tr>
+</tbody></table>
+
+<h3>Actions Tab</h3>
+
+<p>The activities may have any of <a href="common attributes of process activities.html#before"><b>Before</b></a>, <a href="common attributes of process activities.html#after"><b>After</b></a> or <a href="common attributes of process activities.html#condition"><b>Condition</b></a> scripts in the <b>Actions</b> tab in the property dialog.</p>
+
+<p>The <b>Before</b> tree node contains a script that will be executed before the activity starts. The <b>After</b> tree node contains a script that will be executed after the activity is completed. If one of the scripts is not relevant for this type of activity, only the applicable field will be shown.</p>
+
+<img src="activityActions.png" alt="Activity properties - Actions tab" border="1" align="absmiddle" />
+
+<p>Notably, process activity scripts have access to the following parameters:</p>
+<ul>
+<li><em>this.process</em>: The process object of the activity, which gives access to all types of process data, and allows the performing of different process functions (such as access to process Document, process Order or process activity information).</li>
+<li><em>this.activityData</em>: This is an activity-specific Document (such as an input Document in an Operation activity). This value can be null.</li>
+</ul>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>Refer to the <a href="../../JavaScript Extensions/com/conceptwave/scripting/ProcessActivity.html">JavaScript Extensions HTML documentation: Process Activity object</a> for reference.</li>
+  <li>Velocity Studio validates process activity scripts. If you have validation errors in your metadata, you must fix them before you can run your metadata project.</li>
+</ul>
+<p>In Velocity Studio's Search pane, you can double-click an activity (for example, cwOnProcActBefore) or one of its scripts to launch the Script field for editing.</p>
+<p><img src="activityActionsSearchDoubleClick.png" alt="Double-click activity to launch Script field for editing"></p>
+
+<h3><a name="Schedule"></a>Schedule Tab</h3>
+
+<p>All activities have the <b>Schedule</b> tab in the property dialog.</p>
+
+<img src="activitySchedule.png" alt="Activity - Schedule tab" border="1" align="absmiddle" />
+
+<p>The tab is divided into these sections:</p>
+
+<ul>
+  <li><a href="common attributes of process activities.html#duration"><b>Duration</b></a> pane: Area used to define a time interval needed to complete the activity. If the <b>Use duration</b> check box is checked, the <b>Duration</b> area will be enabled and the duration can be defined. Table below describes the fields.</li>
+  <li><a href="common attributes of process activities.html#schedule"><b>Schedule</b></a> pane: Area used to schedule the activity execution. If the <b>Use schedule</b> checkbox is checked, the <b>Schedule</b> area will be enabled and the schedule can be defined. The schedule can be based on either a duration or an instance. If the <b>Duration</b> radio button is selected then duration properties are used to define the schedule. The same Table below describes the fields of the duration properties in Schedule pane, except for <em>Dynamic</em> field which is exclusive to Duration Pane. If the <b>Instance</b> radio button is selected then an instance pane is used to define the schedule. The instance pane schedules activities on a calendar basis and has Daily, Weekly and Monthly options.</li>
+  <ul>
+    <li><em>Daily</em>: The activity will be started daily at the specified start time.<br>
+      <br>
+    </li>
+    <img src="image053.gif" alt="Schedule - Daily" border="1" align="absmiddle" /><br>
+    <br>
+<li><em>Weekly</em>: The activity will be started every week on the specified day of week at the specified start time.<br>
+  <br>
+</li>
+    <img src="image054.gif" alt="Schedule - Weekly" border="1" align="absmiddle" /><br>
+    <br>
+        
+    <li><em>Monthly</em>: The activity will be started every month. When the <b>Day</b> radio-button is selected, the activity will be started every month on the specified day of the month at the specified start time. When the <b>The</b> radio-button is selected, the activity will be started every month on the specified occurrence of the day or day of week in the month at the specified start time.<br>
+      <br>
+<img src="image055.gif" alt="Schedule - Monthly" border="1" align="absmiddle" />
+    <br>
+    <p>The <b>Interval</b> fields in the <b>Schedule</b> <b>instance</b> pane specify a time interval in which the activity will be repeatedly executed by the system.</p>
+</li>
+  </ul>
+</ul>
+<table class='confluenceTable'><tbody>
+  <tr>
+    <th class='confluenceTh'> Field </th>
+    <th class='confluenceTh'> Description </th>
+    </tr>
+  <tr>
+    <td class='confluenceTd'> <b>Days</b> </td>
+    <td class='confluenceTd'> Way to define duration time. Cannot be used if a <b>Script</b> is defined. </td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'> <b>Hours</b> </td>
+    <td class='confluenceTd'> Way to define duration time. Cannot be used if a <b>Script</b> is defined. </td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'> <b>Minutes</b> </td>
+    <td class='confluenceTd'> Way to define duration time. Cannot be used if a <b>Script</b> is defined. </td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'> <b>Script</b> </td>
+    <td class='confluenceTd'> <p>Way to define duration time. Cannot be used if <b>Days</b>, <b>Hours</b> and <b>Minutes</b> are defined. </p>
+      <p><strong>Note:</strong> When returning a Date object type, the schedule script overrides the calendar. As a result, the processing engine does not use the calendar if the script returns the Date object.</p></td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'> <b>Dynamic</b> </td>
+    <td class='confluenceTd'> If checked, a <b>Script</b> is specified and should be dynamically updated at runtime. </td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'> <b>Reference</b> </td>
+    <td class='confluenceTd'> Defines a start point of the duration clock. A reference activity can be selected from the combo box or by using the <b>Select Activity</b> dialog that shows the activity hierarchy. To open the dialog, click the button to the right of the combo box.
+      <br>
+      <br>
+      <img src="activityScheduleReference.png" alt="Reference field - Select Activity dialog" border="0" align="absmiddle" />
+      </td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'> <b>Relative to end</b> </td>
+    <td class='confluenceTd'> Check box used to define a start point of the duration clock for the activity. If unchecked, the duration clock will start when the <b>Reference</b> runtime activity starts executing. If checked the clock starts when the <b>Reference</b> runtime activity finishes execution. </td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'> <b>Use Calendar</b> </td>
+    <td class='confluenceTd'> If checked, the <b>Calendar</b> field will be enabled so that a business calendar can be defined to be used to do duration time calculations. </td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'> <b>Calendar</b> </td>
+    <td class='confluenceTd'> <p>Defines the business calendar that is used when determining the duration. The <em>&lt;Default&gt;</em> selection means the default calendar selected in the User Profile Administration application will be used. To select the calendar, click the button to the right side of the <b>Calendar</b> field. The <b>Select Calendar</b> dialog opens.<br>
+      <br>
+      . <img src="activityScheduleCalendar.png" alt="Select Calendar dialog" border="0" align="absmiddle" />
+      <br>
+      <br>
+      Not choosing an entry results in <em>&lt;Default&gt;</em> selection.</p>
+      <p><b>Note</b>: Calendars are defined and managed in the System Administration application's <a href="../../System_Administration_Application_User_Guide/User Profile Manager/Calendar/calendars.html">Calendar page</a>, and the enumeration of these selections in Velocity Studio are defined by the <i>cwf.allCalendars</i> Data Type.
+      </p></td>
+    </tr>
+</tbody></table>
+
+<h3>Activities Tab</h3>
+
+<p>When an activity has children activities, the <b>Activities</b> tab will contain a list which lists all the children activities. The children activities will be executed accordingly to their order in the list, from top to bottom. The arrow buttons located at the side of the list are used to move the selected element in the list to the desired location, thus changing the execution order of the selected activity.</p>
+
+<img src="activityActivities.png" alt="Activities tab" border="1" align="absmiddle" />
+
+</body>
+</html>

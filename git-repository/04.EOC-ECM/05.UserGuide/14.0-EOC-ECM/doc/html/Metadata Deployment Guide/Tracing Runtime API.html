@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Runtime Trace API</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Runtime Trace API</h2>
+<p>The runtime trace API has been implemented as methods on  the scriptable com.conceptwave.runtime.trace.CwfTrace object.</p>
+<p>The  following table lists each method and its description: </p>
+<table class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th width="357" class='referenceTh'>Method</th>
+      <th width="1186" class='referenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='referenceTd'>Trace.setTraceContext(String interfaceName, String  traceId, String [ ] filterValues)</td>
+      <td class='referenceTd'><p>This method is to be invoked when  a new message is either received or created. The trace context is valid until  the system context is destroyed (that is, the listener finishes processing the  request and the UI finishes the request).</p>
+        <p>          The method has these parameters:</p>
+        <ul>
+          <li>interfaceName<br>
+            The interface name to which this message corresponds. If left NULL, the AVM  tries to populate it from the current listener context.</li>
+          <li>traceId<br>
+            Trace ID to associate with this context. It can be left NULL either for new  messages or when the trace ID is not found in an incoming message. </li>
+          <li>filterValues<br>
+The name-value pairs used for trace triggering. Values are expected to be  extracted from message data.</li>
+        </ul></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>Trace.getCurrentTraceId()</td>
+      <td class='referenceTd'><p>This method gets the trace ID  associated with the current context. It returns a value if:</p>
+        <ul>
+          <li>A trace ID has been set in the current context.</li>
+          <li>A  trace job is triggered based on the interface and filter values. In this case,  the value is a system-generated ID.</li>
+          </ul></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>Trace.trace(String logMessage)</td>
+      <td class='referenceTd'><p>This method attempts to trace a  log message for the current trace context. Messages are sent to the trace log  if:</p>
+        <ul>
+          <li>Trace ID was provided to the context and the  interface appears in the activated interfaces list.</li>
+          <li>The  interface name and trace object values set in the context match a trace job.  The method may be invoked multiple times with the same trace context.</li>
+        </ul></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>Trace.isTraceEnabled()</td>
+      <td class='referenceTd'>You can use this method for performance  optimization when constructing a trace message is costly. The method returns  true if the current context matches a trace job.</td>
+    </tr>
+    </tbody>
+</table>
+<p>For more information, see the <a href="../JavaScripting in Order Care/index.html">JavaScript documentation</a>.</p>
+<h3><a>Trace API Example</a></h3>
+<p>The following is an example of using the trace API:</p>
+<ol>
+  <li>The listener receives the message.</li>
+  <li>The listener script parses out the <strong>Trace ID</strong> and <strong>Trace Object</strong> field values.</li>
+  <li>The listener script invokes  Trace.setTraceContext().</li>
+  <li>The listener script then invokes  Trace.trace(Message.toXML()). This method may or may not trace the message.</li>
+  <li>The listener script processes the message and  generates a response.</li>
+  <li>The listener script populates the <strong>Trace ID</strong> field in the response with the  result of Trace.getTraceId().</li>
+  <li>The listener script invokes  Trace.trace(Response.toXML()).This method may or may not trace the message.</li>
+  <li>The listener script returns the response.<br>
+    <br>
+  </li>
+</ol>
+<strong>Note:</strong> API  calls do not have to be made directly from listener handler scripts.
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

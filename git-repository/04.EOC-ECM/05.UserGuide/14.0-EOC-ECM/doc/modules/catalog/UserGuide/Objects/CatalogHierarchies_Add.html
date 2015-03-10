@@ -1,0 +1,150 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Add Catalog Hierarchies</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> 
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Add Catalog Hierarchies</h2>
+<p>To add a new catalog hierarchy, follow these steps<strong>:</strong></p>
+<p><strong>Note:</strong> A project must be opened to create a catalog hierarchy.</p>
+<ol>
+  <li>In Catalog Designer, <A href="ProjectOpen.html">open a project</A>. </li>
+  <li> Access the Catalog Hierarchies option using the Quick Start menu on the Ericsson   Catalog Manager home page or from the menu bar by clicking  <strong> Designer</strong> &gt; <strong>Catalog Hierarchies</strong> menu.  The catalog hierarchies tree node appears.</li>
+  <li>Click  the <strong>Add</strong> <strong>Hierarchy</strong> button in the left pane; the <strong>Hierarchy Detail</strong> dialog appears in the right pane. </li>
+  
+  <p><img src="addCatalogHierarchy.png" alt="Add Catalog Hierarchy"></p>
+  <li>
+    
+    Complete the information in the following fields:
+  </li>
+  
+  <table class='confluenceTable' border cellpadding="1">
+    <tbody>
+      <tr>
+        <th class='confluenceTh'><strong>Field</strong></th>
+        <th class='confluenceTh'>Description</th>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Code</strong></td>
+        <td class='confluenceTd'>The name of the Catalog Hierarchy. See also <a href="../Rules/Catalog_Queries.html">Catalog Queries</a>.</td>
+        </tr>
+      <tr>
+        <td height="565" class='confluenceTd'><strong>Tree Type</strong></td>
+        <td class='confluenceTd'><p>Select a tree type from the drop-down list that has following options:</p>
+          <ol>
+            <table class='confluenceTable' border cellpadding="1">
+              <tbody>
+                <tr>
+                  <th width="129" class='confluenceTh'><strong>Tree Type</strong></th>
+                  <th width="681" class='confluenceTh'>Description</th>
+                  </tr>
+                <tr>
+                  <td class='confluenceTd'><strong>Classification type</strong></td>
+                  <td class='confluenceTd'> <p>Each classification tree is a  hierarchy of tree nodes (catalog items)  that contain two types of links. The  links to children nodes and links to other items. The items are usually, but  not mandatory, attached to the leaf nodes of the tree. One item may be attached  to different tree nodes in one and many trees. </p>
+                    <p>Classification trees are used to guide the process of selection for a  set of items based on successive steps of selection classification options.  These trees are used in self-care applications and  are useful for specific application which needs  to group a set of items on hierarchical selection criteria.</p>
+                    <p> An example of classification  tree may be a communication provider which delivers TV service and allows  selecting individual sports TV channels. A selection of the TSN channel may be  based on the following classification sequence:  Home &gt;TV &gt; Channels &gt; Sport &gt; TSN.</p></td>
+                  </tr>
+                <tr>
+                  <td class='confluenceTd'><strong> Availability tree</strong></td>
+                  <td class='confluenceTd'><p>The availability trees defines simple but universally used  availability rules, such as availability based on geographical region, channel, or  business customer, etc. The availability tree is similar to the classification tree but it maintains two   types of links to the other items <em>inclusive links</em> and <em>exclusive links</em>. The inclusive links specify that the item  is available for the node and exclusive links specify that the item is not  available for the node. </p>
+                    <p>                      The availability tree nodes automatically inherits the items from their parent. if  a parent has a link (inclusive or exclusive) to an item, all children will have  the same link unless the opposite type of link is explicitly specified. This  way the availability trees reduce significantly the amount of data which is  needed to specify the relation between items and tree nodes.<br>
+                      For-example, 
+                      a branch of the availability tree has the following content:<br>
+                      1. Canada – inclusive items A,B,C,D,E<br>
+                      2  Central Canada – exclusive item B<br>
+                      3. Ontario – inclusive item E<br>
+                      4. Southwest Ontario – exclusive item A<br>
+                      5. GTA – inclusive item E<br>
+                      6. Etobicoke – exclusive item A, inclusive item F<br>
+                      Then for Etobicoke the available products are: C, D, E and F<br>
+                      <br>
+                      The  API <em>CatalogAvailabilityNode –  isAvailable(item) </em>can be used for this along with existing API&lsquo;s that it inherits from  Catalog Hierarchy Node. Refer to JavaScript documentation for more information on API&lsquo;s.</p></td>
+                  </tr>
+                </tbody>
+            </table>
+            </ol>
+          <p><strong>Notes:</strong> </p>
+          <ul>
+            <li>The tree type of a child catalog hierarchy is inherited from the parent  catalog hierarchy and it cannot be changed.</li>
+            <li>A sample data file, sampleMarketSegmentsandBusinessDatesModel.zip, is available in the product. This file contains preconfigured data for availability trees, market segment dimensions, and business date models that you can import. This file appears in your &lt;<em>installation_folder</em>&gt;\modules\catalog folder.            </li>
+          </ul></td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Parent</strong></td>
+        <td class='confluenceTd'>The name of the top-level hierarchy node.</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Name</strong></td>
+        <td class='confluenceTd'>This field denotes the unique  name of the Catalog Hierarchy.</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Start Date</strong></td>
+        <td class='confluenceTd'>The start date that the hierarchy is available.</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><strong>End Date</strong></td>
+        <td class='confluenceTd'>The last date that the hierarchy is available.</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Status</strong></td>
+        <td class='confluenceTd'>The status  is attributed to the development stage of the project. For more information on project stages, see <A href="Project.html">Projects</A>.</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Label</strong></td>
+        <td class='confluenceTd'>The label for this node, which is used in the application user interface. Label can be translated at runtime (Refer to Velocity Studio's Translation Element for more details).</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Description</strong></td>
+        <td class='confluenceTd'>The description of this node.</td>
+        </tr>
+      
+      
+      <tr>
+        <td class='confluenceTd'><strong>Project</strong></td>
+        <td class='confluenceTd'>The name of the project in which the hierarchy resides.</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Owner</strong></td>
+        <td class='confluenceTd'>This is the position of the user who created the project and only users with the same position or higher can access the project data.  This value cannot be changed. Refer to <A href="../Configuration/Catalog_Domains.html">Domains</A> for more information. </td>
+        </tr>
+      <!--removed this Base Item field in 14.0>
+      <tr>
+        <td class='confluenceTd'><strong>Base Item</strong></td>
+        <td class='confluenceTd'>This field displays the item from which   the current component is extending, if applicable.</td>
+        </tr>
+      -->  
+      </tbody>
+    </table>
+  <li>Click the <strong>Save</strong> button.</li>
+  <li>The Catalog hierarchy displays <strong>Conditions</strong>, <strong>Domains</strong>, and <strong>Attributes</strong> tabs. </li>
+  <p><img src="CatalogHierarchies_ConditionTab.png" alt="Catalog Hierarchy Tabs"></p>
+  <p>Click on a tab to perform the following tasks:</p>
+  <ul>
+    <li><strong>Conditions</strong> tab displays business rules to add to the hierarchy. For a description of fields that appear in the <strong>Conditions</strong> tab, see <a href="createAttribute.html">Charge Type Conditions</a>. </li>
+    <li><strong>Domains</strong> tab is the area where you can specify an Org Chart to associate with the info model. See also <A href="../Configuration/Catalog_Domains.html">Catalog Domains.</a></li>
+    <li><strong>Attributes</strong> tab is the area where you add or view attribute details for an element or a characteristic of the component based on criteria such as code, attribute, name, status, start date, and end date. See also <a href="AttributeTypeSearch.png">Search For an Attribute Type</a>.</li>
+  </ul>
+</ol>
+<h3>Export Catalog Hierarchies</strong></h3>
+<p>You can export the selected Catalog hierarchy to an XML file format based on the following export types:</p>
+<ul>
+  <li>The <strong>Selected object</strong>. Choose this option to export the selected Catalog hierarchy objects with assocations such as with or without domains.</li>
+  <li><strong>Only the image or attachment of the selected object</strong>. Choose this option if you want to export only the image or attachment that is assocated with the selected object. </li>
+  </ul>
+<p> For more information, see <a href="../Configuration/exportCatalogObjects.html">Export Catalog Objects</a>.</p>
+<h3>Change History</strong></h3>
+<p><span class="confluenceTd">f you make a change to the catalog definition, you can view the Change History form that displays the revisions made to the Attribute Type's field values. See also <a href="ChangeHistory.html">Change History</a>.</span></p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

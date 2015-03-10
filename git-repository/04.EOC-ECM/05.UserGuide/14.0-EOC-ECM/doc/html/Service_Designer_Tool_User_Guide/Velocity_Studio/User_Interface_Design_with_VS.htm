@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>User Interface Design</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+		<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+			<h2>User Interface Design </h2>
+		 
+<p>The presentation-oriented  design  uses <a href="User_Interface_Design_with_VS.htm">MVC architecture</a> patterning to configure and then display data at runtime. This is achieved by introducing a new metadata object type called the <b>User Interface</b>, that implements the <i>controller</i> of the  architecture pattern. There are two different types of User Interface  available:</p>
+<ul>
+  <li><i>Included User Interface</i></li>
+<li><i>Top-level User Interface</i></li>
+</ul>
+
+<p>Included User Interfaces are defined within a metadata object that may contain User Interface objects such as <b>Documents</b>, <b>Orders</b>, and <b> Finders</b>.   With an included User Interface, the <i>model</i> in MVC pattern  connects with the controller. Top-level User Interfaces are defined as a stand-alone metadata object, although their model is  attached to the data source. Either  type of User Interfaces provides data and business logic access to the <i>View</i> in the MVC pattern using <b>Variables</b> and <b>Methods</b>.</p>
+<p><i>View</i>s in the  MVC pattern query the Model to generate an appropriate User Interface.  A Form is  the equivalent of a View in the MVC pattern and is the vehicle that queries the Model and defines a presentation fragment of a Web page. Forms are not  rendered as stand-alone, but are always referenced, by  a <a href="Element - Form Frame.htm">Form Frame</a>, or as part of another Form or <b>Page</b>. A User Interface can contain multiple Forms, each with it's own purpose. For example, by default a Document Finder has multiple Forms within the Finder's User Interface; a parent Form that references a <strong>Search</strong> Form (search border) and a <strong>Results</strong> Form (result table). Another  example  is, two Forms can  create a Document called <em>Product;</em> one for displaying basic information (product name, product code) and another for revealing all product details (description, features and specifications).  Examples of the runtime presentation of a  Form are: the presentation of a customer Document, or Web page header or footers of an Order Finder.</p>
+
+<img src="MVC.png" align="absmiddle" border="1" alt="User interface model" />
+
+<p>The <i>View</i> of the pattern is also constructed by creating a <b>Page</b> within User Interface. The Page is a top-level View that is very similar to the Form object, but unlike Forms, it is never referenced by another Form or Page. Only one Page can be defined for each  User Interface object. The Page is the object that is  referenced by the User Interface object and is displays by the Web server.</p>
+<p>Whether it is a Form or a Page, it may contain many <b>Form Elements</b> that composes the Web page or Web fragment. These elements are assembled in a tree structure called the  <b>Element Tree. </b>The <strong>Preview Pane</strong> in Velocity Studio, when editing a Form or Page, renders the UI view based on the Element Tree. Elements may be distinct objects such as Labels and Images, layout directives such as Vertical or Grid Layout, organizational directives such as Tabs, Tabsets and Section Stacks, or User Interface elements such Tables and Trees. See <a href="Form Elements Overview.htm">List of Form Elements</a> for the complete list of Elements available.</p>
+<h3>Re-use Common User Interface Objects</h3>
+<p>The <b>Form Frame</b> is an element that   references other Forms, and enables a Page or a Form to include another Form as part of its view. In the MVC model context, the Form Frame's variable, which references a Form, enables the  View to present the  Model permitted by the Controller. Common User Interface objects such as application menus and banners are constructed as a Form, and then are included into a Page as Form Frame. These common objects can be reused by other Forms or Pages. The referenced Form and the Page that contains the Form Frame does not have to be in the same User Interface (this is the typically the case). In addition, the Form Frame can assume a variable in the User Interface.  A common example is to use a Form Frame to reference an Order Form that only exposes user-meaningful fields of the Order, and references an Order variable that is managed by User Interface's methods.</p>
+
+<h3>Accelerate Development by Extending objects</h3>
+
+<p>One of the key advantages of Velocity Studio is its ability to accelerate project development by extending existing base metadata objects and making a  set of functionality available. This reduces development time by refining and adding supplementary functionality in the extended metadata objects. Forms are a good example extended metadata functionality. For example, a Form can be extended by another Form. This provides the ability to augment the presentation of metadata objects such as Document, as defined in existing base Forms. The extended Form is located in the same User Interface as the base Form, and therefore  they share the same set of variables and methods provided by the User Interface. The extended Form is enhanced from the base Form by <b>adding</b>, <b>replacing</b>, and <b>deleting</b> Elements in the Form (however it cannot modify properties of existing Elements).</p>
+
+<img src="extendedFinder.png" align="absmiddle" border="1" alt="Extending objects in Velocity Studio to accelerate development" />
+
+<p>The metadata object that has a  User Interface (that is., a Document) can be extended. In this case, the User Interface of the extended object is a copy of the base object's User Interface metadata, with all existing properties (that is, variables, methods, forms) fixed. Additional User Interface variables, methods and forms are added to the extended object to configure it for the desired functionality. For example, when a variable is added at the extended object (not at the User Interface level, but at the object level itself), an extended Form can be added to the extended object's User Interface, based on one of the Forms in the base object.</p>
+
+<p>In addition,  the top-level User Interface object can be extended. Similarly, all existing properties of the base User Interface object is copied and fixed and additional variables, methods and forms can be added.</p>
+
+<h3>User Interface Permissions</h3>
+
+<p>Consult the <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> page for details.</p>
+
+  		</td>
+	</tr>
+</table>
+</body>
+</html>

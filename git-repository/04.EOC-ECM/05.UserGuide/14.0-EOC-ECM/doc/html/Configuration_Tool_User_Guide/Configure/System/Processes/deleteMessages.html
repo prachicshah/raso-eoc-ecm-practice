@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Processes - Delete Messages</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Delete Messages</h2>
+
+<p>Clicking  <strong>Processes</strong> &gt; <strong>Delete Messages </strong>allows you to enable the deletion of participant messages in intervals, to maintain database efficiency.</p>
+<p><img src="deleteMessages.png" alt="Processes - Delete Messages tab" border="1"></p>
+<h3>Configure Message Deletion Parameters</h3>
+<p>To configure your parameters for deleting messages, do the following: </p>
+<ol>
+  <li>Edit the pertinent parameters that you want.</li>
+  <li>When you have finished making your changes, click the <strong>Save</strong> button.</li>
+</ol>
+<p>This page contains the following fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Field</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Enable</strong></td>
+      <td class='confluenceTd'>If checked, this property allows you to specify parameters for deleting messages. By default, this property is unchecked, meaning that deleting messages parameters are disabled and are ignored.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Loop Delay</strong></td>
+      <td class='confluenceTd'>This parameter specifies the wait period between each deletion loop or interval.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Max Messages / Loop</strong></td>
+      <td class='confluenceTd'>This parameter indicates the number of messages to process during each interval.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Schedule</strong></td>
+      <td class='confluenceTd'><p>This parameter allows you to specify the message-deleting process (that is, when the message-deleting process  starts).  Click the drop-down menu and select from one of the following options: </p>
+        <ul>
+          <li><b>Daily</b></li>
+          <li><b>Weekly</b></li>
+          <li><b>Monthly</b></li>
+        </ul></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Run at</strong></td>
+      <td class='confluenceTd'>You can specify the hour and minute (from midnight) in the <strong>Hour</strong> and <strong>Min</strong> fields, respectively, to start the message-deleting process when scheduling is to run  for that day.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Purge Delay</strong></td>
+      <td class='confluenceTd'>You can specify  the interval for the message-deleting process (that is, for how long the message-deleting process runs). Indicate the number of days, hours, and minutes in the <strong>Day</strong>, <strong>Hour</strong>, and <strong>Min</strong> fields, respectively.</td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

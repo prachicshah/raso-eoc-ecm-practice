@@ -1,0 +1,39 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Metadata Root</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Metadata Root</h2>
+
+<p>Metadata Root is the top-level node in <b>Metadata</b> tab of <b>Navigation</b> pane. Unlike other nodes in the pane, this node cannot be removed. It enables you to specify metadata application-wide settings, as well as adding namespaces to the application metadata.</p>
+<p>The User Interface is used to display data from metadata objects at runtime. There are two different types of User Interfaces available:</p>
+<UL>
+  <LI><em>Included User Interface</em>
+    <LI><em>Top-level User Interface</em></LI>
+</UL>
+<p>Included User Interfaces are defined within a metadata object that may   contain User Interface objects such as <strong>Documents</strong>, <strong>Orders</strong>, and <strong>Finders</strong>. With an included User Interface, the <em>model</em> in MVC pattern   connects with the controller. Top-level User Interfaces are defined as a   standalone metadata object, although their model is attached to the data   source. For more information, see <a href="../../Velocity_Studio/User Interface general properties.htm">User Interface</a>.</p>
+<p><b>Notes</b>: </p>
+<ul>
+  <li>Performing a <b>Save</b> function on the metadata root does not save all the metadata underneath the node; it only saves the changes in the metadata root.</li>
+  <li>The top-level metadata object has a maximum Type ID limit of  32,000.</li>
+  </ul>
+<h3>Hover Metadata Node for Tooltip Description</h3>
+<p>You can hover your mouse pointer over any metadata node to see its description in a tooltip. The <strong>Description</strong> field for your metadata node must contain information for this tooltip to appear.</p>
+<p><img src="MetadataTootipDescription.png" alt="Metadata tooltip description" width="249" height="109" border="1"></p>
+<br>  <br>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Audit Logging</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../highlight.js"></script>
+</head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td valign="top" class="pagebody"><h2>Audit Logging</h2>
+      <p>The AuditLog API is available for applications, to record certain <em>auditable</em> events separately from normal logging. These events can include:</p>
+      <ul>
+        <li>Changes to data</li>
+        <li>Changes to configuration</li>
+        <li>Violations or different behaviour </li>
+      </ul>
+      <h3><strong>General  Audit Messages Format</strong></h3>
+      General audit log messages  have the  following format:<br>
+      <blockquote><em>[Date Time]  [Thread Name] [Severity Level] [Category] [Formatted Tag/Value Pairs] [Message] </em></blockquote>
+      <p> The <em>Date Time</em> takes the following form:</p>
+      <blockquote>
+        <p> <em>yyyy</em>-<em>mm</em>-<em>ddThh:mm:ss.nnn+|-hhmm</em></p>
+      </blockquote>
+      <h3><strong>Change audit messages</strong></h3>
+      <p>Change audit messages are similar to  document auditing, where changes made to the documents,  ones mapped to database tables, are  recorded.   The AVM provides a method to record  changes  for audit messages. These messages  have the same format as general audit messages with further formatting available for the <em>message</em>. Change audit messages have the following format:
+      <blockquote><em>[Date Time]  [Thread Name] [Severity Level] [Category] [Formatted Tag/Value Pairs] [Message] [Timestamp] [User ID] [IP] [Object Type] [Operation] [Fields]</em></blockquote>
+      <p>The following  are  some of the components  for log entries:</p>
+      <table width="1200"  border cellpadding=1 class='confluenceTable'>
+        <tbody>
+          <tr>
+            <th width="118"  class="confluenceTh">Component</th>
+            <th width="1066"  class='confluenceTh'>Description</th>
+          </tr>
+          <tr>
+            <td class='confluenceTd'><strong>Time Stamp</strong>
+         </td>
+            <td class='confluenceTd'><p>This component refers to the time when log entry is recorded.  The format of this component is <em>yyyy-mm-ddThh:mm:ss.nnn+|-hhm</em>.</p></td>
+          </tr>
+          <tr>
+            <td  class='confluenceTd'><strong>Severity Level</strong></td>
+            <td class='confluenceTd'><p>This component  indicates the log level.</p></td>
+          </tr>
+          <tr>
+            <td  class='confluenceTd'><strong>Class Name</strong></td>
+            <td class='confluenceTd'><p>This component points to the Java class or category that corresponds to the logger name.</p></td>
+          </tr>
+          <tr>
+            <td  class='confluenceTd'><strong>Tag/Value Pairs </strong></td>
+            <td class='confluenceTd'><p>This component is used to enrich the log messages  with message specific data. This data  can be parsed by Management Server (MSV) and can be used for  searches. This component is a  JSON formatted  string with simple fields (tags) and their values.  The string appears in the log  statement between the <em>SLM=</em> and <em>/=SLM</em> delimiters.</p></td>
+          </tr>
+          <tr>
+            <td  class='confluenceTd'><strong>Message</strong></td>
+            <td class='confluenceTd'><p>This component indicates the free format text message.</p></td>
+          </tr>
+        </tbody>
+      </table>
+      <h3><a name="AuditLogObject"></a> <strong>Audit Log  Object</strong>s</h3>
+      <p>The AVM contains the class <em>com.conceptwave.system.CwfAuditLog</em> and exposes it as a scriptable object called <em>AuditLog</em>.  You can use this object to append the messages  to an audit log file.  </p>
+      <p>The following  are the AuditLog object&rsquo;s scriptable methods:</p>
+      <table width="1200"  border cellpadding=1 class='confluenceTable'>
+        <tbody>
+          <tr>
+            <th width="233" class='confluenceTh'>Scriptable Methods</th>
+            <th width="281" class='confluenceTh'>Description</th>
+            <th width="664"  class='confluenceTh'>Parameters</th>
+          </tr>
+          <tr>
+            <td width="233"class='confluenceTd'><p><strong>static void AuditLog.audit(String rsCode, String[] msgParams, String[]  tagValues)</strong></p></td>
+            <td width="281" class='confluenceTd'>This method appends a generic message to the  audit log. The category of the logged message is determined by the resource entry matching the code.  For more information, see the <a href="#messageResourceEntry">Message Resource Entry</a>. </td>
+            <td  width="664" class='confluenceTd'><ul>
+                <li>rscode:</li> 
+                <ul>
+                  <li>Resource code matching an entry  in the system or application resource files (for example, appRC_en-xx.xml)</li>
+                  <li>This parameter is mandatory.</li>
+                </ul>
+                <li>msgParams:</li>
+                <ul>
+                  <li>Array of string parameters to  be inserted into the message text.</li>
+                  <li>Replacement of parameters is  based on position.</li>
+                  <li>This parameter is mandatory and can be an empty array.</li>
+                </ul>
+                <li>tagValues:</li>
+                <ul>
+                  <li>Values portion of the tag value  pairs for the log entry.</li>
+                  <li>Order of values <em>must</em> correspond  to the order of tags defined in the resource entry.   Individual entries in the array can be NULL.</li>
+                  <li>The value converts to a JSON  string and appears in the log statement between the <em>SLM=</em> and <em>/=SLM</em> delimiters.</li>
+                  <li>This parameter is optional.</li>
+                </ul>
+              </ul></td>
+          </tr>
+          <tr>
+            <td width="233"class='confluenceTd'><p><strong> static void AuditLog. auditChange(String rsCode, String[] msgParams, String[] tagValues, Date dt, String userId, String ip, String objectType, String op, String[] fieldValues)</strong></p></td>
+            <td width="281"class='confluenceTd'><p>This method appends a message to the audit  log related to the changed information.</p>
+             </td>
+            <td width="664" class='confluenceTd'><ul>
+                <li>rsCode:
+                  <ul>
+                    <li>Resource code matching an entry  in the system or application resource files (for example, appRC_en-xx.xml).</li>
+                  </ul>
+                </li>
+                <ul>
+                  <li>This parameter is mandatory.</li>
+                </ul>
+                <li>msgParams</li>
+                <ul>
+                  <li>Array of string parameters to be inserted into  the message text.</li>
+                  <li>Replacing parameters depends on position. </li>
+                  <li>This parameter is mandatory and can be an empty array.</li>
+                </ul>
+                <li>tagValues</li>
+                <ul>
+                  <li>Values portion of the tag value  pairs for the log entry.</li>
+                  <li>Order of values <em>must</em> correspond  to the order of tags defined in the resource entry. Individual entries in the array can be NULL.</li>
+                  <li>Converts to a JSON string and appears in the log  statement between the <em>SLM=</em> and <em>/=SLM</em> delimiters.</li>
+                  <li>This parameter is mandatory and can be an empty array. </li>
+                </ul>
+                <li>dt</li>
+                <ul>
+                  <li>Date object value for when the  change occurred.</li>
+                  <li>This parameter is mandatory.</li>
+                </ul>
+                <li>userId</li>
+                <ul>
+                  <li>ID of the user responsible for the change.</li>
+                  <li>This parameter is mandatory.</li>
+                  <li>If  NULL, user from the context is used.</li>
+                </ul>
+                <li>ip</li>
+                <ul>
+                  <li>String IP Address, the address of an  incoming user interface or API request</li>
+                  <li>This parameter is mandatory and can be NULL.</li>
+                </ul>
+                <li>objectType</li>
+                <ul>
+                  <li>The type of the object that  changed (for example, Metadata name)</li>
+                  <li>This parameter is mandatory.</li>
+                </ul>
+                <li>Op</li>
+                <ul>
+                  <li> String enumeration. Values are <em>Add, Upd, and Del</em> which corresponds to create,  update, and delete object, respectively.</li>
+                </ul>
+                <li>fieldValues</li>
+                <ul>
+                  <li>Array of Strings. Values are triples of the Path, New Value, and the Old  Value.</li>
+                  <li>This parameter is optional.</li>
+                </ul>
+              </ul></td>
+          </tr>
+        </tbody>
+      </table>
+      <h3><a name="messageResourceEntry"></a>Message Resource Entry</h3>
+      <p>The actual message text is stored in the  AVM resource files (that are, sysRC_en-xx.xml and appRC_en-xx.xml).</p>
+      <p> Support is available for additional elements within  the resource string  elements, which are the following:</p>
+      <table width="534" border cellpadding=1 class='confluenceTable'>
+        <tbody>
+          <tr>
+            <th width="192" class='confluenceTh'>Element within Resource String</th>
+            <th width="463" class='confluenceTh'>Description</th>
+          </tr>
+          <tr>
+            <td class='confluenceTd'><p>&lt;category/&gt;</p></td>
+            <td class='confluenceTd'><ul>
+                <li>String.</li>
+                <li>Actual format is up to the  domain or application.</li>
+              </ul></td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'><p>&lt;tagNames/&gt;</p></td>
+            <td class='confluenceTd'><ul>
+                <li>Semi-colon-delimited list of  tags.</li>
+                <li>Format of tags is up to the  domain or application.</li>
+              </ul></td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Category&nbsp;and Tag Format</h3>
+      <p>As indicated in the previous section, the application is responsible for the format of both the category and tag names. 
+        It is strongly suggested that the domains  using these APIs coordinate the values that they use.</p>
+      <h3><a name="logConfiguration"></a>Log Configuration</h3>
+      <p> The default values for log file name, log file retention policy, and maximum  size are loaded, initially, from a standard logback configuration file.</p>
+      <p> The default log filename is as follows:</p>
+      <blockquote>
+        <p><em>/var/log/ngee/audit/avm.AuditTrail.&lt;hostname&gt;.&lt;date&gt;.&lt;index&gt;.log</em></p>
+      </blockquote>
+      <p><strong>Notes:</strong></p>
+      <ul>
+        <li>The default rollover minimum and maximum values  are 1 and 5, respectively.</li>
+        <li>The default maximum file size is 10 MB.</li>
+        <li>It is expected that these values are loaded from  the Management Server (MSV)  as part of the configuration integration.</li>
+      </ul>
+      <p>Applications  are expected to refrain from exposing sensitive information in their logs, and  are responsible for the information included in both the log messages and the  tag-value pairs. </p>
+      <h3><a name="avmAuditEvents"></a>AVM Audit Events</h3>
+      <p>The AVM  publishes the SYSTEM_AUDIT_TRAIL event  to perform the auditing of documents and database maps.
+        AVM auditing is implemented in Java,  but if an event handler for this event is implemented,  the AVM  delegates to that handler. An <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Script/Event Handlers.html">event handler</a> is created, which uses the AuditLog.auditChange() method.  This event is available in the AVM_BSSF.jar library. 
+        The AVM  audits  <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Document/Documents.html">documents</a> and <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Database Map/databaseMap.html">database maps</a> only if the metadata objects have their <strong>Audit</strong> property checked  and auditing is enabled in the configuration.</p>
+      <p>The SYSTEM_AUDIT_TRAIL event has three parameters:</p>
+      <ul>
+        <li><strong>operation</strong>: This parameter can take the following values 
+          <ul>
+            <li><strong>Add</strong></li>
+            <li> <strong>Upd</strong></li>
+            <li> <strong>Del</strong></li>
+          </ul>
+        </li>
+        <li><strong>DataObject</strong></li>
+        <li> <strong>fieldNameValues</strong>: This parameter is a string array that contains the variable name, new value, and old value. The array is a single dimensional array in which  values can be accessed as follows:
+<ul>
+            <li>              index+0 = variable name</li>
+            <li>              index+1 = new value</li>
+            <li>              index+2 = old value        </li>
+          </ul>
+        </li>
+    </ul></td>
+  </tr>
+</table>
+</body>
+</html>

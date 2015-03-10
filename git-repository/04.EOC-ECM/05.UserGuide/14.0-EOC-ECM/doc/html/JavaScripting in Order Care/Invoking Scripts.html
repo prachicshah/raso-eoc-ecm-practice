@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>Invoking Scripts</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Invoking Scripts</h2>
+
+<h3>Global Method</h3>
+
+<p>Global Scripts can be called from any other script in the metadata with the following syntax:</p>
+<div class="code"><div class="codeContent">
+<pre>
+&lt;namespace path&gt;.&lt;global script metadata object name&gt;(&lt;param1&gt;, &lt;param2&gt;, ...)
+</pre>
+</div>
+</div>
+For example, let us create Global Script metadata object <i>sendMail</i> in the <i>oe</i> namespace that has parameters <i>ord</i>, <i>usr</i> and <i>xsl</i>:</p>
+
+<div class="code"><div class="codeContent">
+<pre>
+// this function will perform given XSL transformation on a given order
+// and email http result to a given user
+//
+var x = Global.getResource(xsl); // retrieve XSL
+var http = ord.transform(xsl); // transform order to http
+// get config information
+var host = Global.getConfigVariable("smtpHost");
+var from = Global.getConfigVariable("smtpFrom");
+// send email as http
+Global.sendEmail(from, usr, "Order: " + ord.id, http, host, "text/http");
+</pre>
+</div>
+</div>
+
+<p>To call this script, use following syntax:</p>
+<div class="code"><div class="codeContent">
+<pre>
+oe.sendMail(dsloder, "cw.support.group@ericsson.com", "dslTransform");
+</pre>
+</div>
+</div>
+
+<h3>Object Method</h3>
+
+<p>Object Methods can be called by name from other scripts with proper parameters using the following syntax:</p>
+<div class="code"><div class="codeContent">
+<pre>
+&lt;namespace path&gt;.&lt;metadata object name&gt;.&lt;method name&gt;(&lt;param1&gt;, &lt;param2&gt;, ...)
+</pre>
+</div>
+</div>
+<p>This syntax is consistent regardless of method type (e.g. regular script, permission, validation, etc) or whether the method is provided by templates or application metadata.</p>
+<p>For example, if method <i>calculatePrice</i> is in Document <i>offer</i> in Namespace <i>backOffice</i> has no parameters, and the function returns the resulting price, the following script invokes the Object method:</p>
+<div class="code"><div class="codeContent">
+<pre>
+var myOffer = new backOffice.offer();
+var myPrice;
+myPrice = myOffer.calculatePrice();
+</pre>
+</div>
+</div>
+
+<p>There is an alternative way to invoke Object Method, using <a href="../com/conceptwave/scripting/CwObject.html#runScript(com.conceptwave.scripting.String, com.conceptwave.scripting.Object)"><i>runScript</i> method</a>, as shown below. However, the direct calling of Object Method is faster and preferable in comparison to the <i>runScript</i> method.</p>
+<div class="code"><div class="codeContent">
+<pre>
+var myOffer = new backOffice.offer();
+var myPrice = myOffer.runScript("calculatePrice");
+
+myDoc.runScript("onDocStore");
+</pre>
+</div>
+</div>
+
+<p>If target Object or Component Method is located at the same metadata object as the current script, simply use the <i>this</i> keyword to denote the metadata object.</p>
+<div class="code"><div class="codeContent">
+<pre>
+var myPrice = this.calculatePrice();
+</pre>
+</div>
+</div>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

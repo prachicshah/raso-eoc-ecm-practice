@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Invoke Catalog Rules</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h3><a name="InvokingCatalogRules">Invoke Catalog rules</a></h3>
+<p>A single identifier that is not a keyword, parameter, or variable is  considered either a catalog rule name or predefined global function. Catalog rules  are global rules that may be called from within another rule. They may or may  not have parameters. Catalog rules are  called using positional parameter notation:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>rule-name(expression,  expression,...)</strong>
+</pre>
+</div>
+</div>
+<p>An example of a catalog rule using positional parameter notation is as follows: </p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>v1 = rule1(c.name, a + 5)</strong>
+</pre>
+</div>
+</div>
+
+<p>If a catalog rule does not any parameters, the call must specify the empty parameter list as shown in this example:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>
+  <strong>Return  myRule2() + Select Row Count from InfoTable2 </strong>
+  <strong>where City is "Toronto"</strong>
+</pre>
+</div>
+</div>
+<br></td>
+</tr>
+</body>
+</html>

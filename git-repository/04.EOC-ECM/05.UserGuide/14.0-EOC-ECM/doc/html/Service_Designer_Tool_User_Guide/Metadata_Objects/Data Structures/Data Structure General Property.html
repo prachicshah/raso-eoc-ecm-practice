@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>Data Structure General Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<h2><a name="DataStructureGeneralProperties"></a>Data Structures - General Tab</h2>
+<p><br>
+  The general Data Structure properties are defined on the<strong> General</strong> tab. The following image shows the <strong>General</strong> tab of the Data Structure.<br><br>
+  <img src="dataStructureGeneralProperty.png" alt="Data Structue - General Tab" border="1" /><br><br> 
+  The data structure data type variables get initialized with the default value that is defined in the data type.
+</p>
+<p>The following table describes the fields for the <strong>General</strong> tab of the Data Structure:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+<tr>
+<th width="87" class='confluenceTh'>Field</th>
+<th width="533" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Name of the metadata object (used in scripts; must conform to JavaScript naming conventions). Read-only after creation. To change it, use the <b>Rename</b> command in pop-up menu by right-clicking the metadata object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Restricted</b></td>
+  <td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Deprecated</b></td>
+  <td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+  <td height="27" class='confluenceTd'><b>Virtual</b></td>
+  <td class='confluenceTd'>If checked, it provides the ability to create methods in template metadata that does not have implementation, but can be used in template script and be bound to UI elements. The implementation is done in user metadata (see <a href="../Virtual Field/Virtual Field.html">Virtual Field</a> for more information).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Final</strong></td>
+  <td class='confluenceTd'>Metadata elements can be marked as final, which includes any Boolean final property that is available on any metadata element. Additionally, any metadata element that has the <strong>Final</strong> property set to true can neither be extended, nor overridden.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Label</b></td>
+  <td class='confluenceTd'>Metadata object display label.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the metadata object for documentation.</td>
+</tr>
+
+<tr>
+<td class='confluenceTd'><b>Extends</b></td>
+<td class='confluenceTd'>Base Data Type to derive from. Unchangeable after Data Type creation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Overrides</b></td>
+<td class='confluenceTd'>Metadata object to override. Used to customize system or library metadata objects.</td>
+</tr>
+  <td class='confluenceTd'><b>Abstract</b></td>
+  <td class='confluenceTd'>An Abstract data structure may not have child nodes and will usually be   extended by other data structures. Some data structures can refer to the   Abstract structure, however at runtime the real data may correspond to one of   its derived types.</td>
+</tr>
+  <tr>
+    <td class='confluenceTd'><b>Generated key</b></td>
+    <td class='confluenceTd'><p>If checked, this property indicates that the system automatically generates the key value for this data structure. When checked, the Confirm Generated Key dialog appears. <br>
+      <br>
+      If you click the <b>Yes</b> button, Velocity Studio tries to locate, within existing variables, a variable with the <em>cwf.cwDocId</em> data type to use as a key. If such a variable is not found, the key is automatically created and added to the Variable list of the data structure. This variable is added to the key list of the data structure and all other keys are removed.</p></td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>XML Settings</strong></td>
+    <td class='confluenceTd'>XML settings control the conversion of the Data Structure to and from XML. The properties vary depending on the node type (see <a h href="./xml settings.html">XML Settings</a> for more details).</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>JSON name</strong></td>
+    <td class='confluenceTd'>The JSON tag name for this data structure.  The <strong>JSON name</strong> field is used to specify the JSON tag name for this node. This field defaults to <strong>Name</strong>. </td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>Keys</strong></td>
+    <td class='confluenceTd'>If the <b>Generated key</b> checkbox is unchecked, this field defines the list of data structure variables used to uniquely identify a data structure instance. To define keys, click the <b>Add</b> button and select variables from the list in the Add Elementdialog that opens. To remove an existing key, select the key and click the <b>Remove</b> button. When the <b>Generated key</b> checkbox is selected, this field contains the system-generated key and is disabled so that it can neither be changed, nor removed.<br clear="all" />
+A key must be defined for the following types of data structures:
+  <ul>
+    <li>A data structure that is mapped to a database.</li>
+    <li>A <a href="../Database Map/databaseMap.html">database map</a> having a key column used during DDL generation where all SQL statements use a primary key.</li>
+    </ul>
+  <p><strong>Notes: </strong></p>
+  <ul>
+    <li>You can add any simple type variable in this keys list and you can reorder it. However, changing the key order may affect the key-generating logic. Existing records that have been previously saved may not be accessible when you change the key order. In this case, a warning appears.</li>
+    <li>When you define a key variable in the data structure, the database map uses this data structure key variable and shows it as key columns on the Mapping tab's source tree.</li>
+    <li>When a key variable is not mapped to a database column, an error message appears. If the data structure defines multiple key columns, all key variables must be mapped to database columns.</li>
+  </ul></td>
+  </tr>
+</table>
+</body>
+</html>
+

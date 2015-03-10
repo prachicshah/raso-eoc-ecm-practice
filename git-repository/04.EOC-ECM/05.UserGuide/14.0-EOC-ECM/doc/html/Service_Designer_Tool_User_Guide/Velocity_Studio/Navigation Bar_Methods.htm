@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Navigation Bar Methods</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3> Navigation Bar Methods</h3>
+<p>Navigation Bar Methods tab defines methods that contain JavaScript functions. You can use several system-defined or user-defined methods  to configure information for the Navigation Bar. The following system Navigation  Bar Method types are available:</p>
+
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh' width='211'>Method</th>
+<th width="870" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Script</strong></td>
+<td class='confluenceTd'>Specifies a defined JavaScript function that can be defined in User  Interface and explicitly invoked by other methods or Form Elements.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Permissions*</strong></td>
+<td class='confluenceTd'>A permission  method that can be associated to properties of Form elements to determine  participant’s access of the Form Element such as <em>Visible</em>, <em>Optional</em>, and  <em>Editable</em>. </td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>User Action*</strong></td>
+<td class='confluenceTd'>User  Action method that implements the response of user actions, such as clicking a button or image, by returning an object presented in a specified Form to the  user.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>onNavigationClick</strong></td>
+<td class='confluenceTd'><p>This method  controls, by default, the display of the previous and the current objects based  on click actions performed in the interface at runtime. </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>getCurrentObject </strong></td>
+<td class='confluenceTd'><p>This method returns the current content model object displayed in the interface at runtime.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>getPreviousObject </strong></td>
+<td class='confluenceTd'><p>This method returns the previous object variable.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>setCurrentObject </strong></td>
+<td class='confluenceTd'>This method sets the current  object variable.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>setpreviousObject </strong></td>
+  <td class='confluenceTd'>This method sets the previous  object variable.</td>
+</tr>
+</tbody>
+</table>
+<p>* When the user action only contains a JavaScript, these methods behave the same as the Script Method.</p>
+<p>The system-defined Method, onNavigationClick, is   important because it assigns the state of objects that are displayed at runtime in the user interface. The code in this Method defines two states; previous object and the current  object. The <em>currentObject</em> and <em>previousObject</em> refer to the  system-defined variables located on the Variables tab.</p>
+<p>if(this.cwCurrentClicked !=null){<br>
+//invokeMethod performs a lookup for the click method<br>
+//objects returned from this call would be saved as<br>
+//the current object for this navigation bar<br>
+var method = &quot;this.&quot;+this.cwCurrentClicked+&quot;()&quot;;<br>
+var cObj = eval(method);</p>
+<p> if(cObj!=null){<br>
+  this.previousObject = this.currentObject;<br>
+  this.currentObject = cObj;<br>
+  }<br>
+  //this variable must be reset after this method is called<br>
+  //<br>
+  this.cwCurrentClicked = null;<br>
+  }</p>
+<p>When the user clicks an image in the user interface,  the objects that are returned from this call are saved as the current object. The previousObject variable is reset to the last current object. For example, if the user is at the third step of an operation, this step is  defined as the current state. If they decide to navigate back to the  second step, this becomes the current state and the third step is represented  as the previous state. </p>
+</tr>
+</table>
+</body>
+</html>

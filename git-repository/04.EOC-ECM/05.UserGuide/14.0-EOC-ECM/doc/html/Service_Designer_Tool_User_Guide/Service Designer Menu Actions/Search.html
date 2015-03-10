@@ -1,0 +1,166 @@
+﻿
+
+
+<html>
+<head>
+<title>Search</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Search</h2>
+
+<p>Search functionality is provided in Velocity Studio at <b>Search &gt; Search...</b> menu (or use shortcut key <i>Ctrl-H</i>). Two search functions are provided, in separate tabs of the <b>Search</b> dialog that is opened:
+<ul>
+<li><a href="#MDSearch">Metadata Search</a></li>
+<li><a href="#DBSearch">Database Search</a></li>
+</ul>
+</p>
+You can toggle between the Metadata Search and Database Search tabs by pressing the <em>Alt</em> + <em>M</em> and <em>Alt</em> + <em>D</em> keys, respectively.
+<h3><a name="MDSearch">Metadata Search</a></h3>
+
+<p>With <b>Metadata Search</b> tab of the <b>Search</b> Dialog, you can search for a metadata object by metadata object's Name, Label or Script content, with pattern matching on the search key. Both application metadata (that is, top-level metadata, UI element-level metadata, scripts, user interface, and Form (overlay)) and libraries are searched. </p>
+<p><img src="searchMD.png" border="0" alt="Search dialog" /></p>
+<p>The following table explains the parameters of the search dialog:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Area</th>
+<th class='confluenceTh'>Parameters</th>
+<th class='confluenceTh'>Keyboard Shortcut</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd' rowspan='3'><b>Search Key</b></td>
+<td class='confluenceTd'><b>Search Name</b></td>
+<td class='confluenceTd'>None</td>
+<td class='confluenceTd'>Enter the search key to search against. Wildcard characters <b>*</b>, <b>?</b> and <b>\</b> are supported.
+	<ul>
+	<li>An asterisk matches any sequence of characters, including none.</li>
+	<li>A question mark matches any single character.</li>
+	<li>A backslash indicates that the character that follows should be interpreted as a literal character, not a wild card character, allowing the wildcard characters to be matched.</li>
+	</ul>
+Without wildcards, exact match is to be performed.
+</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Case sensitive</b></td>
+  <td class='confluenceTd'><em>Alt</em> + <em>C</em></td>
+  <td class='confluenceTd'>If checked, the search key is to be matched with exact case (for example, lowercase, uppercase as specified). Default is not checked.</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><strong>Top Level Element Onl</strong>y</td>
+  <td class='confluenceTd'><em>Alt</em> + <em>T</em></td>
+  <td class='confluenceTd'>By default, this parameter is checked, which means that the search results only contain top-level elements. Otherwise, deselecting this checkbox indicates that the search results contain all element types in the metadata. </td>
+</tr>
+<tr>
+  <td class='confluenceTd' rowspan='5'><b>Search For</b></td>
+  <td class='confluenceTd'><b>Name</b></td>
+  <td class='confluenceTd'><em>Alt</em> + <em>N</em></td>
+  <td class='confluenceTd'>Search the search key by object names.<br/>
+    When searching by name, the names of objects inside a metadata object, such as <b>Variables</b>, <b>Methods</b> and Forms, are included in the search as well.
+  </td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'><em>Alt</em> + <em>F</em></td>
+<td class='confluenceTd'>Search the search key by object labels.<br/>
+When searching by label, the label of objects inside a metadata object, such as <b>Variables</b> and Forms, are included in the search as well.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Full Name</strong></td>
+  <td class='confluenceTd'><em>Alt</em> + <em>L</em></td>
+  <td class='confluenceTd'>Search the search key by the object's full name.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Script</b></td>
+  <td class='confluenceTd'><em>Alt</em> + <em>R</em></td>
+  <td class='confluenceTd'>Finds a text fragment in the scripts. All script fields in all metadata are searched.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Name_Script</b></td>
+  <td class='confluenceTd'><em>Alt</em> +<em> C</em></td>
+  <td class='confluenceTd'>Searches both object names and within scripts. The search results will contain results from both Name and Script criteria.	</td>
+</tr>
+<tr>
+  <td class='confluenceTd' rowspan='2'><b>Limit To</b></td>
+  <td height="250" class='confluenceTd'><b>None</b></td>
+  <td class='confluenceTd'>None</td>
+  <td class='confluenceTd' rowspan='2'>Limits the search to select metadata object types. You can choose <b>None</b> to not limit by type, or <b>Selected Types</b>, which opens the <b>Select Metadata Types</b> dialog upon clicking the checkbox icon <img src="iconCheckbox.png" align="absmiddle" border="0" alt="Checkbox icon" /> to choose metadata object types to search.<br>
+    <br>
+    <img src="searchMDtypeDialog.png" align="absmiddle" border="0" alt="Limit To field - Select metadata types" />
+  </td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Selected Types</b></td>
+<td class='confluenceTd'>None</td>
+</tr>
+<tr>
+<td class='confluenceTd' rowspan='3'><b>Scope</b></td>
+<td height="264" class='confluenceTd'><b>All</b></td>
+<td class='confluenceTd'><em>Alt</em> + <em>A</em></td>
+<td class='confluenceTd' rowspan='3'>Limits the search to select namespaces. Can choose <b>All</b> to not limit by namespace, or <b>Selected Namespaces</b> which opens the <b>Select Namespaces</b> dialog upon clicking the checkbox icon <img src="iconCheckbox.png" align="absmiddle" border="0" alt="Checkbox icon" /> to choose namespace(s) to search.
+  <br>
+  <br>
+  <img src="searchNSDialog.png" align="absmiddle" border="0" alt="Scope field - Select namespaces" />
+</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Namespaces</b></td>
+  <td class='confluenceTd'>None</td>
+</tr>
+</tbody>
+</table>
+
+<p>After specifying search parameters, click  the <b>Search</b> button to search, which opens the <a href="..\Service_Designer_User_Interface\Search Pane.html">Search Pane</a>, with all matched results listed in namespace hierarchy. Expand the namespaces using the expand icon, and double-click a metadata object beneath it to jump to that object in the navigation and detail panes.</p>
+
+<img src="..\Service_Designer_User_Interface\paneSearch.png" align="absmiddle" border="0" alt="Search pane - results" />
+
+<p>If no results are found, a <b>No items found</b> pop-up box is displayed.</p>
+<h4><a name="showPreviousSearches"></a>Show History of Previous Searches Performed</h4>
+<p>You can click the <strong>Show Previous Searches</strong> button to display the last five  searches that you have previously performed, including the number of successful search references. </p>
+<p><img src="searchShowPreviousSearches.png" alt="Show Previous Searches button"></p>
+<p>Selecting the <strong>Clear History</strong> option from the menu clears your search history.</p>
+
+<h3><a name="DBSearch">Database Search</a></h3>
+
+<p>With <b>Database Search</b> tab of the <b>Search</b> Dialog, you can search for a metadata object by Table Name and Column Name. Both application metadata and libraries are searched.</p>
+
+<img src="searchDB.png" align="absmiddle" border="0" alt="Database Search tab" />
+
+<p>The table below explains the parameters of the search dialog. The <b>Table Name</b> and <b>Column Name</b> are optional parameters (for example, specify only column name parameter search all database tables with such column name).</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Parameter</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Logical Connection</b></td>
+<td class='confluenceTd'>Choose the Logical Connection (as defined in <a href="../../Configuration_Tool_User_Guide/Configure/System/Databases/databases.html">Configuration application's Database</a> page) to connect to the database. Or, choose <b>&lt;All&gt;</b> to search through all of them.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Table Name</b></td>
+<td class='confluenceTd'>The database tablename to search for. Must be exact match.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Column Name</b></td>
+<td class='confluenceTd'>The database table's column name to search for. Must be exact match.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Similar to Metadata Search, click the <b>Search</b> button to search after specifying search parameters, which opens the <a href="..\Service_Designer_User_Interface\Search Pane.html">Search Pane</a>, with all matched results listed in namespace hierarchy. Expand the namespaces using the expand icon, and double-click a metdata object beneath it to jump to that object in Navigation Pane and Detail Pane.</p>
+
+<p>If no results are found, a <b>No items found</b> pop-up box is displayed.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

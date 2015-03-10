@@ -1,0 +1,124 @@
+﻿<html>
+<head>
+<title>Installation Wizard</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="OrderCareInstallWizard"></a>Installation Wizard</h2>
+<p>This section describes how to install the product. The screens that follow illustrate a standard Windows installation; differences between the <a href=".\Installation Planning.html#CertificationMatrix">various certified platforms</a> are noted where applicable. </p>
+<p>Refer to <a href="appendix a - installation troubleshooting.html">Appendix A: Troubleshooting Installers</a> for the troubleshooting routine if there are problems starting the installation procedure.</p>
+
+<h3><a name="InstallingtheProduct"></a>Install the Product</h3>
+<p>To install the product in Windows, complete these steps: </p>
+<ol>
+  <li>Insert the Product Installation CD, or copy an image of its contents into the target machine. </li>
+  <li>Locate the <em>\Disk1\InstData\Windows\NoVM\install.exe</em> file and run it.</li>
+  </ol>
+<p>To install the product in Unix or Linux, complete these steps: </p>
+<ol>
+  <li>For each target system, log in to the correct user account. </li>
+  <li>Insert the Installation CD into the target machine and ensure that the CD-ROM drive has been mounted. Alternatively, use FTP to copy the CD file contents to an appropriate folder. </li>
+  <li>Locate the <em>Disk1/InstData/[operating_system_name]/NoVM/install.bin</em> file and run it. </li>
+</ol>
+<p>The installation wizard first displays a splash screen when started, followed by the <b>Introduction</b> dialog. Click the <strong>Next</strong> button to continue.</p>
+<p><img src="order care install wizard introduction.png" align="absmiddle" border="0" alt="Introduction" /></p>
+<p><strong>Note:</strong> You must have Java Development Kit (JDK) 1.7 or higher installed.</p>
+
+<h3><a name="Agreement"></a>Third-Party License Agreement</h3>
+<p>Accept the terms of the agreement by clicking the <strong>I accept the terms of the License Agreement</strong> radio button. Scroll down to the end of the agreement to activate the radio button and click the <strong>Next</strong> button.</p>
+<p><img src="order care install wizard third party license agreement.png" alt="Third-party license agreement" border="0" align="absmiddle" /></p>
+
+<h3><a name="SelectLicenseFile"></a>Select your license file</h3>
+<p>The installation program requires the software license file to be entered to be able to use the software.  In this step, select the license file and the system copies the license file in the appropriate folder. If you are using the <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Metadata Root/AVM licencing Sentinel RMS.html">Sentinel RMS server</a>, enter its address in the <strong>Sentinel RMS</strong> field. Click the <strong>Next</strong> button to continue.
+
+<p><strong>Notes:</strong></p>
+<ul>
+  <li> For more information on the license file, see  <a href="./product license.html">Product License</a>.</li>
+  <li>After selecting either the license file or using the Sentinel license server address and completing the installation, you cannot change the license type afterward.</li>
+  <li>The Sentinel server address is saved in a properties file located in the Designer folder of your installation. Velocity Studio allows for synchronizing the license on demand. You can add the server IP address and change it by clicking <a href="../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Help About.html#license"><strong>Help</strong> &gt; <strong>About Velocity Studio - License</strong></a> tab from the menu bar.</li>
+</ul>
+<p><img src="order care install wizard license.png" alt="Choose license file" border="0" align="absmiddle" /></p>
+
+<h3><a name="ChooseTemplates"></a>Choose Products</h3>
+<p>The license file selected in the previous steps dictates which modules appear in this step for selection.  These modules are the standalone software applications that have been purchased along with the product.  The install wizard installs the selected modules in the Modules folder. Select the modules you want to install and then click the <strong>Next</strong> button to continue.</p>
+
+<p><img src="order care install wizard license_choose products.png" align="absmiddle" border="" alt="Choose templates" /></p>
+  <p><b class="strong">Note:</b> All template JAR files are  added to a Modules folder in the installation directory. You must add the  JAR files to a <a href="../../html/Service_Designer_Tool_User_Guide/Service Designer Menu Actions/New Project.html">project</a> through the <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Metadata Root/Metadata Root Templates.html">Library</a> tab of  root metadata. These JAR files are stored in the <em>templates</em> folder of project's root   directory. </p>
+<h3><a name="ChooseStandAloneHelp"></a>Install the Standalone Help System</h3>
+<p>This part of the installation allows you to install the Standalone Help System, which can be accessed without running the Velocity Studio. Select the <strong>Install Standalone Help System?</strong> option and then click the <strong>Next</strong> button.</p>
+<p>Once you have completed the installation, the standalone help documents can be accessed in the &lt;<em>installation_folder</em>&gt;\Help folder.  Open the index.html file to enable a Web browser version of the help documentation.</p>
+
+<p><img src="order care install wizard standalone help.png" align="absmiddle" border="0" alt="Install standalone help" /></p>
+<h3><a name="ChooseShortcut%2FLinkFolder"></a>Choose Shortcut/Link Folder</h3>
+<p>Within the <b>Choose Shortcut Folder</b> dialog, specify the location where the component shortcuts or links will be created and click the <strong>Next</strong> button.</p>
+<p><b>Note:</b> The available shortcut and link options vary depending on your operating system. As an example, the shortcut icon to launch the product is <strong>ECM-EOC Designer</strong>.</p>
+<p><img src="order care install wizard shortcut folder.png" border="0" alt="Choose shortcut folder" /></p>
+
+<h3><a name="InstallationMode"></a>Installation Mode</h3>
+<p>Select from one of the following options:</p>
+<ul>
+  <li><strong>Full Installation</strong><br>
+    Select this option
+  when you are performing a full installation of the product and click the <strong>Next</strong> button. Proceed to the <a href="#ChooseJavaVirtualMachine">Choose Java Virtual Machine</a> section.</li>
+  <li><strong>Update Templates</strong><br>
+    Select this option to update or delete modules (templates) in an existing product installation.</li>
+  </ul>
+<p><p><img src="order care install wizard installation mode.png" alt="Installation mode" border="0" align="absmiddle" /></p>
+
+<p>If you are updating or deleting modules, do the following:</p>
+<ol>
+  <li>Select the <strong>Update Templates</strong> option from the Installation Mode screen and then click the <strong>Next</strong> button.</li>
+  <li>Select the folder of your existing product installation that you want to update and then click the <strong>Next</strong> button.<br>
+    <br>
+    <img src="order care install wizard installed folder update.png" alt="Installed folder to update"><br>
+    <br>
+  </li>
+  <li>The Update Templates screen allows you to <strong>Update</strong> or <strong>Delete</strong> modules by clicking the drop-down menu next to each template. You can also install new modules by selecting the <strong>Install</strong> option next to them. Click the <strong>Next</strong> button to continue, which takes you to the <a href="#PreInstallationSummary">Pre-installation Summary</a> screen.<br>
+    <br>
+    <img src="order care install wizard update templates.png" alt="Update templates"><br>
+    <br>
+    <strong>Note:</strong> There is neither a constraint, nor a dependency between templates. </li>
+</ol>
+<h3><a name="ChooseJavaVirtualMachine"></a>Choose Java Virtual Machine</h3>
+<p>The installed product requires a Java virtual machine. The installer detects any installed JREs or JDKs on your system. Select the appropriate JVM in accordance to <a href=".\Installation Planning.html#CertificationMatrix">certified configurations</a> and click the <strong>Next</strong> button.</p>
+<p><b>Note:</b> Choose the correct  <em>JDK</em> file, and not a JRE file. If the correct JDK is not in this list, use either the <b>Choose Another</b> or <b>Search For Others</b> option. You must specify the file <b><em>\bin\java.exe</em></b> and selected the most recent <a href="Installation Planning.html#CertificationMatrix"> supported configuration file</a> for Velocity Studio.</p>
+
+<p><img src="order care install wizard select JVM.png" alt="Choose Java Virtual Machine" border="0" align="absmiddle" /></p>
+<h3><a name="ChooseInstallFolder"></a>Choose Install Folder</h3>
+<p>Within the <b>Choose Install Folder</b> dialog, specify the location where you want to install the product and click the <strong>Next</strong> button.</p>
+
+<p><img src="order care install wizard install folder.png" align="absmiddle" border="0" alt="Choose installation folder" /></p>
+
+
+
+<h3><a name="chooseWebContainer"></a>Choose Web Container</h3>
+<p>Select a Web container from the list and click the <strong>Next</strong> button.</p>
+<p><img src="order care install wizard web container.png" border="0" alt="Choose Web Container" /></p>
+<h3><a name="PreInstallationSummary"></a>Pre-Installation Summary</h3>
+<p>Use the <b>Pre-Installation Summary</b> dialog to verify all information related to the planned installation. You may navigate to any previous window and make changes. When the installation summary appears to be satisfactory, click the <strong>Install</strong> button to proceed.</p>
+
+<p><img src="order care install wizard preinstallation summary.png" align="absmiddle" border="0" alt="Pre-installation summary" /></p>
+
+<h3>Installing</h3>
+<p>Installation proceeds with various status messages being displayed.</p>
+
+<p><img src="order care install wizard Installing.png" align="absmiddle" border="0" alt="Installing product" /></p>
+
+<p><b>Note:</b> The install program may be cancelled at virtually any screen. However, if a mistake has been made, you may navigate to the previous screen and correct the error before proceeding.</p>
+<h3><a name="InstallComplete"></a>Install Complete</h3>
+<p>When the installation is complete, follow the instructions in the <b>Install Complete</b> dialog to terminate the install program. </p>
+
+<p><img src="order care install wizard install complete.png" align="absmiddle" border="0" alt="Installation complete" /></p>
+
+<p><b>Note:</b> On some Unix systems, the installation procedure may leave a folder named <em>install.dir.*</em> in a system temporary directory (or in the directory specified with the <em>IATEMPDIR</em> environment variable) after it finishes. You can safely remove this directory.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

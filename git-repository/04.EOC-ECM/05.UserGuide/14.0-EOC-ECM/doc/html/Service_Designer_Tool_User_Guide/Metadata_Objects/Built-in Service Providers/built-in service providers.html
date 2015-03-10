@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Built-in Service Providers</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Built-in Service Providers</h2>
+
+<p>The Application Virtual Machine (AVM) is capable of performing interactions with external services through service providers. A service provider is implemented as a Java class, and supports one specific technology (for example, EJB or SOAP). The service provider exposes all the concrete details required to interact with external services. The framework provides built-in support for the following Service Provider types:</p>
+
+<ul>
+<li><a href="dbsp service provider.html" title="DBSP Service Provider">DBSP</a></li>
+<li><a href="ftp service provider.html" title="FTP Service Provider">FTP</a></li>
+<li><a href="http service provider.html" title="HTTP Service Provider">HTTP</a></li>
+<li><a href="java service provider.html" title="JAVA Service Provider">JAVA</a></li>
+<li><a href="jms service provider.html" title="JMS Service Provider">JMS</a> (supports asynchronous mode - can be used to implement API listener)</li>
+<li><a href="js (javascript) service provider.html" title="JS (JavaScript) Service Provider">JS</a> (implements external service with JavaScript functions)</li>
+<li><a href="ldap service provider.html" title="LDAP Service Provider">LDAP</a></li>
+<li><a href="MQ Service Provider.html" title="MQ Service Provider">MQ</a></li>
+<li><a href="smtp service provider.html" title="SMTP Service Provider">SMTP</a></li>
+<li><a href="soap service provider.html" title="SOAP Service Provider">SOAP</a></li>
+<li><a href="socket service provider.html" title="SOCKET Service Provider">SOCKET</a></li>
+<li><a href="tibco service provider.html" title="TIBCO Service Provider">TIBCO</a> (supports asynchronous mode - can be used to implement API listener)</li>
+</ul>
+
+<p>All built-in service providers, with the exception of JMS and TIBCO, interact with external services synchronously.</p>
+<p>Addtionally, some built-in service providers <a href="listener support.html">support listener functionality</a>.</p>
+
+<!-- <p>Additional Service Providers can be developed to support other technologies (such as JMS - Java Messaging Services) or products (such as the Geneva billing system). These should be defined in the Designer (see below). Once defined, custom Service Providers can be used the same way as any built-in Service Provider.</p> -->
+
+</td>
+</tr>
+</table>
+</body>
+</html>

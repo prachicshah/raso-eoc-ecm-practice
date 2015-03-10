@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Select Application</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Select Application</h2>
+
+<p> When running an application, after database connection you are prompted  to select an application to connect to. The <strong>Runtime &gt; Select Application </strong>menu option allows you to choose the application name, version, and the node to run the application.
+    The   application connections settings remain the same until you  change applications, disconnect from the database, or load a different metadata  project. To add new applications, follow these steps:</p>
+<ol>
+<li>Click the  <strong>Runtime &gt; Select Application </strong>menu; the Select Application dialog appears.</li>
+<p>The following table describes the fields available:
+<table class="confluenceTable"  border cellpadding="1">
+  <tr>
+    <th class="confluenceTh">Field</th>
+    <th class="confluenceTh">Description</th>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Application</strong></td>
+    <td class="confluenceTd"><p>This field  denotes application's name that is  based  on the project&rsquo;s internal name.  The project's internal name allows creating a group of related database  applications with compatible configuration and database  schemas. 
+        If  the project's internal name is not set, an Application Select Error dialog provides the information that project's internal name must be set.</p>
+      <p>You can select different applications available in the drop-down list of this field.</p></td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Version</strong></td>
+    <td class="confluenceTd">This field denotes the version of the application. One application can have different versions. Select one from the drop-down list.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Node</strong></td>
+    <td class="confluenceTd"><p>This field indicates the node name to be used in the <a href="../../../html/Configuration_Tool_User_Guide/Configure/System/systemConfigurationUserInterface.html">System Configuration application</a> as cluster node. By default, the application's internal name appears as the node name. You can change the node name after  logging into the System Configuration application.</p>
+      <p>After configuration is done, all the configured or active nodes appear in the drop-down list of this field.</p></td>
+  </tr>
+</table></p>
+
+<li>Click the <strong>New</strong> button from the select application dialog;  another <strong>Add</strong> dialog appears.</li>
+<p><img src="runtimeSelectApplication.png" width="370" height="237" alt="Add new applications"></p>
+<li>Enter the information in the available fields and click the <strong>OK </strong>button.</li>
+<p>
+<strong>Note: </strong>You can change the name of the application.</p>
+<li>The information appears on the Select Application dialog; click the <strong>OK</strong> button to save the application preferences.</li>
+
+</ol>
+</td>
+</tr>
+</table>
+</body>
+</html>

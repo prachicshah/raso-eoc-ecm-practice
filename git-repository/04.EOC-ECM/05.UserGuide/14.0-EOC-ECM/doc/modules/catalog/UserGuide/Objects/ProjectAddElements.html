@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Add Elements to a Project</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h3>Add  Elements to a Project</h3>
+<p> New elements can be freely created under a project and projects can freely create new versions of any element  with the following restrictions:</p>
+<ul>
+  <li> Only one version of an element can be created in a project and belongs to this project. Once you have created this element, it cannot be moved to other projects.</li>
+  <li>Catalog objects are read-only if the current project  is different from the project that the object belongs to. </li>
+  <li> Any change of an association of an object (versioned or not) is considered a change of this object.</li>
+  <li> Only one project in development stage can change a given Catalog object.</li>
+</ul>
+<p> The new elements created in the project have a default start date that is equal to the system date when the object was created. The start date of objects under the project have to be after the effective date of the project. Otherwise, the system will produce a validation error when the user tries to activate the project.  The example below shows the Catalog behavior for a project with an existing item object change and when the changes are picked up by the change monitoring thread.</p>
+
+<table class='confluenceTable'>
+  <tbody>
+  <tr>
+    <th width="125" class='confluenceTh'>Date</strong></th>
+    <th width="271" class='confluenceTh'>Action</strong></th>
+    </tr>
+  <tr>
+    <td class='confluenceTd'>Mar 1, 2010</td>
+    <td class='confluenceTd'>Project created with effective start date June 1, 2010</td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'>Mar 4, 2010</td>
+    <td class='confluenceTd'>New association added to ITEM</td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'>Mar 6, 2010</td>
+    <td class='confluenceTd'>Another association added to ITEM with a start date of June 1st. </td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'>Apr 25, 2010</td>
+    <td class='confluenceTd'>Project is committed</td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'>June 3, 2010</td>
+    <td class='confluenceTd'>Item Start Date</td>
+    </tr>    
+</table>
+<p>The result of the request for the ITEM in different time moments for a request date past the project's effective date is given below. The old content of ITEM is marked as OLD, the new as NEW.</p>
+<table class='confluenceTable'>
+<tbody>
+  <tr>
+    <th width="125" class='confluenceTh'>Date</strong></th>
+    <th width="85" class='confluenceTh'>Action</strong></th>
+    </tr>
+  <tr>
+    <td class='confluenceTd'>Feb 15, 2010</td>
+    <td class='confluenceTd'>OLD</td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'>Mar 2 2010</td>
+    <td class='confluenceTd'>OLD</td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'>Mar 5, 2010</td>
+   <td class='confluenceTd'>OLD</td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'>Apr 5, 2010</td>
+    <td class='confluenceTd'>OLD</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>May 5, 2010</td>
+   <td class='confluenceTd'>OLD</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>June 3, 2010</td>
+    <td class='confluenceTd'>NEW</td>
+    </tr>
+</table>
+
+<p>The project is committed on April 25. However, the effective date of the project is not until June 1st. The project change monitoring thread will notice this change and process it. But the new item specifications will not become active in production until the API request date is on or after June 1.</p>
+<h3>&nbsp;</h3></td>
+</tr>
+</body>
+</html>

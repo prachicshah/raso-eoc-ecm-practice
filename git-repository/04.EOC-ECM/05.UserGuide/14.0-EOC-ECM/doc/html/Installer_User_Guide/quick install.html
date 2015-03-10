@@ -1,0 +1,94 @@
+﻿<html>
+<head>
+<title>Quick Install</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1><a name="QuickInstall%28forExperiencedUsers%29"></a>Quick Install (for Experienced Users)</h1>
+<p><strong>Note:</strong> This chapter is a quick checklist of all installation steps. <strong>It is not intended for first-time users. </strong> For first-time users we recommend reading in detail every chapter of this document to attain a full understanding of the installation process.</p>
+<h3><a name="PreRequisites"></a>Pre-Requisites</h3>
+<ol>
+<li>Install <strong>J2SDK</strong></li>
+<li>Install <strong>Oracle Database</strong></li>
+<li>Install <strong>Revision Control System</strong> (optional)</li>
+<li>Install <strong>Application Server</strong> (optional)</li>
+</ol>
+<h3><a name="ProductInstallWizard"></a>Product Install Wizard</h3>
+<ol>
+<li>Run the Product Installation Wizard (for example, <em>\Disk1\InstData\Windows\NoVM\install.exe</em>).</li>
+<li>Take extra care to select the proper JDK (and not a JRE). Use <strong>Choose Another</strong> if you need to.</li>
+</ol>
+<h3><a name="CreateDatabaseUserandrun%28DDL%29InitializationScript"></a>Create Database User and run (DDL) Initialization Script</h3>
+<ol>
+<li>Create a database user (for example, CW).</li>
+<p><strong>Note:</strong> See <a href="database initialization.html">Database Initialization</a> for roles and privileges).</p>
+<li>Open &lt;<em>installation_folder</em>&gt;\DDL\CW.sql in a text editor (for example, WordPad).
+<li>Edit the DEFINE statement to point to your schema user.</li>
+<li>Log into your schema and run the file CW.sql.</li>
+</ol>
+
+<h3>Set Bootstrap Database Connection in Velocity Studio</h3>
+<ol>
+  <li>Open the Velocity Studio from your start menu.</li>
+  <li>Click <strong>File &gt; New &gt; New Project</strong> from the menu bar to create a project.</li>
+  <li>Enter the <a href="../../html/Service_Designer_Tool_User_Guide/Metadata_Objects/Metadata Root/Metadata Internal Version.html"> internal name</a> for the project.</li>
+  <li>Click <strong>Database</strong> &gt;<strong> Connect </strong>from the menu bar. </li>
+  <li>Click the <strong>New</strong> button to create a new connection.</li>
+  <ul>
+    <li>Enter the name of the connection in the Name field. You can  enter the name with the following convention: CW_SCHEMA@HOST_SID (for example,  CW@CW0016_LOCALDB). </li>
+    <li>Enter the database schema username in the User field (for example, <em>CW</em>).</li>
+  </ul>
+ 
+  <li>From the Connection Properties dialog, click the <strong>New </strong>button to create a new <strong>database driver</strong>.
+    <ul>
+      <li>Indicate the database Host, Port and SID and click the <strong>OK</strong> button.</li>
+    </ul>
+  </li>
+  <li>Click the <strong>Test</strong> button to test the connection.</li>
+  <li>Click the <strong>OK </strong>button to save the connection properties and to close the New Connection dialog box.</li>
+  <li>Type your password to login to that schema.</li>
+  <li>Select <strong>Runtime</strong> &gt; <strong>Run</strong> from the menu bar to run the framework in Config mode.</li>
+  <li>Select the application name, version, and node from the <a href="../../html/Service_Designer_Tool_User_Guide/Service Designer Menu Actions/runtimeSelectApplication.html">Select Application</a> dialog.</li>
+</ol>
+<h3><a name="ConfigureYourProjectintheConfigTool"></a>Configure Your Project in the System Configuration Application</h3>
+<ol>
+<li>Login to System Configuration application by accessing the http://&lt;host_name&gt;:&lt;port&gt;/cwf/config (for example, http://localhost:8080/cwf/config ) URL through your Web browser. </li>
+<li>Login using <strong>upadmin</strong>/<strong>upadmin</strong>.</li>
+<li>Click the Database tab, and then click the  Physical Connections tab.</li>
+<li>The New Physical Connection dialog appears. Enter the database credentials;   when you have finished, click the <strong>Apply</strong> button. A message   appears, indicating that you have successfully updated your Oracle thin   connection.<br> <p><strong>Note:</strong> The database attributes must be same as the database attributes set in the bootstrap database connection of Velocity Studio.</p>
+</li>
+<li>Click the Logical Connection tab to associate your logical connections to   the physical connection you have just created, double-click each of the   following logical connections and select your newly created physical connection   from the drop-down list:
+  <ul>
+    <li><strong>ARCHIVE</strong>
+      <li><strong>ORDER</strong>
+        <li><strong>PE_ORDER </strong></li>
+    </ul>
+</li>
+<li>Click the <strong>Save</strong> button to save the configuration settings.</li>
+</ol>
+<p><strong>Note:</strong> At this point your installation is complete. The following section is optional and is useful if you want to verify your installation.</p>
+
+<h3><a name="ogintotheAdministrationApplication"></a>Log into the System Administration Application</h3>
+<ol>
+<li>In Velocity Studio, select <strong>Runtime</strong> &gt; <strong>Run</strong> from the menu bar.</li>
+<ul>
+<li>If you have just completed configuration with the system configuration application, a system restart is necessary  to reload the configuration data. Stop the run  before restarting by clicking <strong>Runtime </strong>&gt; <strong>Stop</strong>. </li>
+</ul>
+<li>Login to Administration Application</li>
+<ul>
+<li>Open a web browser and load URL <a href="http://localhost:8080/cwf/login">http://localhost:8080/cwf/login</a>.</li>
+<li>Login to the application as upadmin/upadmin.</li>
+</ul>
+<li>Double-click  the System Administration application option.</li>
+</ol>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

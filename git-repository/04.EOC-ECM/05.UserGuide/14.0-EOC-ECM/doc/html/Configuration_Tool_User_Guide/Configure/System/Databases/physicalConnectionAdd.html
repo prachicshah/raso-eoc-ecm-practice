@@ -1,0 +1,179 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Physical Connection</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h3>Add a Physical Connection</h3>
+<p>To add a physical connection, complete these steps:</p>
+<ol>
+  <li>From the Physical Connection page, click the <strong>Add</strong> button.<br>
+    <br>
+    <img src="physicalConnectionAddButton.png" alt="Databases - Physical Connection tab - Click the Add button to add a physical connection" border="1"><br>
+    <br>
+  </li>
+  <li>The New Physical Connection dialog appears. <br>
+    <br>
+    <img src="physicalConnectionNewPhysicalConnection.png" alt="Databases - Physical Connection tab - New Physical Connection dialog" border="1">    <br>
+    <br></li>
+  On the Connection Properties page, the following fields are available:
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="224" class='confluenceTh'>Field</th>
+          <th width="104" class='confluenceTh'>Driver Type</th>
+          <th width="1301" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b><a name="JDBCdriver"></a>Driver Type</b></td>
+          <td class='confluenceTd'>Any driver type</td>
+          <td class='confluenceTd'>Specify the JDBC driver to use for the physical connection by clicking the field's drop-down menu and selecting from one of the following options:
+            <ul>
+              <li><strong>Oracle thin</strong></li>
+              <li><strong>Any JDBC </strong></li>
+            </ul>
+            <p><strong>Note:</strong> Use the <strong>Any</strong> <strong>JDBC</strong> option to connect to any non-Oracle database or to an Oracle RAC database.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Connection Name</b></td>
+          <td class='confluenceTd'>Any driver type</td>
+          <td class='confluenceTd'>Enter a name to identify your physical connection.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Host</b></td>
+          <td class='confluenceTd'>Oracle thin</td>
+          <td class='confluenceTd'>Enter the host name of your Oracle database (for example, localhost).</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Port</b></td>
+          <td class='confluenceTd'>Oracle thin</td>
+          <td class='confluenceTd'>Enter your Oracle database's port number. By default, the port number is 1521.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Connection Type</strong></td>
+          <td class='confluenceTd'>Oracle thin</td>
+          <td class='confluenceTd'>Click this field's drop-down menu and select one of the following options:
+            <ul>
+              <li><strong>Service ID (SID)</strong></li>
+              <li><strong>Service Name</strong></li>
+            </ul></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Service ID (SID)</b></td>
+          <td class='confluenceTd'>Oracle thin</td>
+          <td class='confluenceTd'>Enter your Oracle database's service ID. This field appears when you have specified <strong>Service ID (SID)</strong> in the <strong>Connection Type</strong> field. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Service Name</strong></td>
+          <td class='confluenceTd'>Oracle thin</td>
+          <td class='confluenceTd'>Enter your Oracle database's service name. This field appears when you have specified <strong>Service Name</strong> in the <strong>Connection Type</strong> field. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>User</b></td>
+          <td class='confluenceTd'>
+          Any driver type 
+            </td>
+          <td class='confluenceTd'>Enter the database username.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Password</b></td>
+          <td class='confluenceTd'>Any driver type</td>
+          <td class='confluenceTd'>Enter the database password.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Maximum Connections</b></td>
+          <td class='confluenceTd'>Oracle thin</td>
+          <td class='confluenceTd'>Specify the maximum number of connections in the connection pool for each node. By default, this field is set to 25.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Inactivity Timeout (sec)</strong></td>
+          <td class='confluenceTd'>Any driver type</td>
+          <td class='confluenceTd'>Specify the number of seconds of inactivity before the connection closes. By default, this field is set to 300.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Fast Connection Failover</strong></td>
+          <td class='confluenceTd'>Any driver type</td>
+          <td class='confluenceTd'>Select this checkbox to enable Oracle RAC fast connection failover. For more information on Oracle RAC settings, consult the Oracle help documentation.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Validate Connection</strong></td>
+          <td class='confluenceTd'>Any driver type</td>
+          <td class='confluenceTd'>Select this checkbox to validate the connection.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Driver Class Name</b></td>
+          <td class='confluenceTd'>Any JDBC</td>
+          <td class='confluenceTd'>Class name of Driver (for example, <i>oracle.jdbc.driver.OracleDriver</i>).</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>URL</b></td>
+          <td class='confluenceTd'>Any JDBC</td>
+          <td class='confluenceTd'>The valid JDBC format for the Oracle RAC database is   &lt;user&gt;@&lt;class&gt;;&lt;url&gt;<BR>
+            <br>
+            Driver URL (for example, <EM>cw@oracle.jdbc.driver.OracleDriver;</EM> <em>jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=on)(ADDRESS=(PROTOCOL=TCP)(HOST=rac1.conceptwave.com)(PORT=1521))<br>
+            (ADDRESS=(PROTOCOL=TCP)(HOST=rac2.conceptwave.com)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl))).</em></td>
+        </tr>
+      </tbody>
+  </table>
+    <br>
+<li value=3>When you have finished, click the <strong>Apply</strong> button. A message appears, indicating that you have successfully updated your Oracle thin connection.</li>    
+  <br>
+  <img src="physicalConnectionApplyButton.png" alt="Databases - Physical Connection tab - Apply button" border="1"><br>
+  <br>
+  <li>To test your connection settings, click the <strong>Test</strong> button. <br>
+    <br>
+  </li>
+  <img src="physicalConnectionTestButton.png" alt="Databases - Physical Connection tab - Test button" border="1"><br>
+  <br>
+  If your connection settings are properly set up, a confirmation message appears.<br>
+  <br>
+  <li><a name="advancedConfiguration"></a>The Advanced Configuration page allows you to specify property values when establishing a database connection, such as an <a href="../../../../Metadata Deployment Guide/SSL-encrypted JDBC connection.html">SSL-encrypted JDBC connection</a>. To add a property, click the <strong>Add</strong> button, and specify both the property's <strong>Name</strong> and its <strong>Value</strong>.<br>
+    <br>
+  </li>
+  <img src="physicalConnectionAdvancedConfiguration.png" alt="Databases - Physical Connection tab - Advanced Configuration" border="1"><br>
+  <br>
+  <li>To remove a property from the Advanced Configuration page, do the following:
+    <ol type="a">
+      <li>Select the checkbox next to the property <strong>Name</strong> that you want to delete and click the <strong>Delete</strong> button.<br>
+        <br>
+      </li>
+      <img src="physicalConnectionAdvancedConfigurationDeleteButton.png" alt="Databases - Physical Connection tab - Advanced Configuration - Delete a property" border="1"><br>
+      <br>
+      
+      <li>A confirmation dialog appears. Click the <strong>Yes</strong> button to continue. The page is refreshed and your property has been successfully removed.</li>
+    </ol>
+  </li>
+<li>On the Connection Properties page, click the <strong>Apply</strong> button, and then click the <strong>Close</strong> button to return to the Physical Connection page. </li>
+<li>Click the <strong>Save</strong> button to save your configuration.</li>
+</ol>
+<p><strong>Note:</strong> If you are using Oracle 11g in a RAC environment and want to use the SCAN option, ensure that you have set the following properties:</p>
+<ul>
+  <li>Define your <strong>Driver Type </strong>as <strong>Oracle thin</strong>.</li>
+  <li>Ensure that you enter your SCAN name in the <strong>Host</strong> field.</li>
+  <li>For the <strong>Connection Type</strong> field, ensure that you select <strong>Service Name</strong> from the drop-down menu.</li>
+</ul>
+<p>The following example shows the configuration used for the SCAN option:<br>
+  <br>
+<img src="physicalConnectionScanOption.png" alt="Databases - Physical Connection tab - SCAN option with Oracle Thin JDBC driver" border="1"></p>
+<p>In this example, the host being used is SCAN VIP. To activate your application metadata, you can use either syntax:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">runActivate Vuno@racnode-cluster-scan:1521/racdb.conceptwave.com cwf.war Test_MA active
+</pre>
+  </div>
+</div>
+<p>or</p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">runActivate Vuno@racnode-cluster-scan:1521//racdb.conceptwave.com cwf.war Test_MA active
+</pre>
+  </div>
+</div>
+<p><strong>Note:</strong> For SCAN VIP only, both the single forward slash (/) and double forward slash (//) notation are acceptable. Otherwise, use the single forward slash for all other hosts.</p>
+</body>
+</html>

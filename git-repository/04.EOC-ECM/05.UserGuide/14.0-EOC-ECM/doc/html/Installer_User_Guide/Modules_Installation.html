@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Modules Installation</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+<h2>Modules Installation</h2>
+<p>Each modules installation requires its own set of installation procedures.  Refer to the module's specific configuration guide for more details.  In general, each module requires the library files to be selected in Velocity Studio and the module-specific database tables be created.</p>
+
+<h3>Add module-specific library files</h3>
+
+<p>The module-specific library files contains the metadata that enables the module application to run and is located in the following JAR files that are included in the modules folder of the installation disk.</p>
+<p>These files must be added to Velocity Studio's library.  Here are the steps necessary to complete this process:</p>
+<ol>
+   <li>Open the Velocity Studio and click <strong>File &gt; Open Project</strong> from the menu bar.</li>
+   <li>Click the metadata root node and in the right pane, click the <strong>Library</strong> tab, and then click the <strong>Add</strong> button.</li><p><img src="ConceptwaveMetadata.png" alt="Library Root" border="1"/></p>
+   <li>Add the modules JAR files, which are located in the &lt;<em>product_installation_folder</em>&gt;\modules. 
+     For Catalog, the following JAR files are added:
+     <ul>
+       <li>catalog.jar  
+       <li>catalogClient.jar
+       <li>cwl_pscm.jar
+       <li> cws_pscm.jar                  
+       <li>ecm.jar            
+       <li>pscm.jar            
+       <li>SIDCommon.jar  
+       <li>serviceOrchestrationFramework.jar </li>  
+     </ul>
+     
+    
+   <li>Once the files are added, <strong>Save</strong> the project metadata, and then reload or open the project  for the library files to take effect.</li></ol>
+
+<p>Once all the library files have been successfully added, the <b>Library</b> folder within Velocity Studio should contain the appropriate modules folders.
+<h3>Create the modules database tables</h3>
+		<p>To create the module-specific database tables, you must run the application-specific  DDL file that is included on the Installation CD. Use an SQL program, such as SQL Plus, to run the file.  </p>
+		<p>To run the DDL file, complete these steps:</p>
+		<ol>
+		  <li>Open the SQL program and log into the same user associated with your application node cluster (for example,  <em>cw</em>/<em>cw</em>).</li>
+		  <li>Select the SQL files from &lt;installation_folder&gt;\modules\&lt;<em>module name</em>&gt;\DDL folder (for example, C:\ECM-EOC\modules\catalog\DDL\catalog.sql).</li>
+		  <li>Run these files.</li>
+	  </ol>
+		<p><strong>Note:</strong> If you are running a non-enterprise Oracle edition and want to use Catalog, you must edit the   \modules\catalog\DDL\models.sql script before running these files.</p>
+        <p>When editing the models.sql script, locate the following command: </p>
+        <div class="code">
+          <div class="codeContent">
+            <pre class="code-java">define DEFAULT_ORACLE_EDITION = 'ENTERPRISE';</pre>
+          </div>
+        </div>
+        <p>If you are running Oracle Standard Edition, change this command to the following:</p>
+        <div class="code">
+          <div class="codeContent">
+            <pre class="code-java">define DEFAULT_ORACLE_EDITION = 'STANDARD';</pre>
+          </div>
+        </div>
+        <p>Similarly, when running Oracle Express Edition, change this command to the following:</p>
+        <div class="code">
+          <div class="codeContent">
+            <pre class="code-java">define DEFAULT_ORACLE_EDITION = 'EXPRESS';</pre>
+          </div>
+    </div></td>
+</tr>
+</table>      
+</body>
+</html>

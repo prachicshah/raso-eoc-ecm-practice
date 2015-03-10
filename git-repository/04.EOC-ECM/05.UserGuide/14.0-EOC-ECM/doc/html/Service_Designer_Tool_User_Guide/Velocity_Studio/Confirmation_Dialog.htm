@@ -1,0 +1,316 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Confirmation Dialog</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Confirmation Dialog</h2>
+<p>The Confirmation Dialog is used to execute a user action and  display a  message in a dialog for the  end user to  acknowledge or dismiss.  The User Interface contains several forms (Default, Help, Menu, and messageDialog) that when configured display a combination of  confirmation dialog, message and user action buttons including, <strong>Yes</strong>, <strong>No</strong>, <strong>OK</strong>, and <strong>Cancel</strong>. </p>
+<p>There are a number of variables and methods available to assist you in implementing the Confirmation Dialog configuration. You can add a Confirmation Dialog by adding a User Action Method. From this method you can configure the Confirmation field by  selecting a script method that appears in the drop-down list. The Confirmation Dialog is triggered by a user action; when the script is run, it displays the <span class="confluenceTd"> contents of the  confirmation dialog. </span>You can  setup an action  in the User Interfaces  objects, such as a Document, Finder or Order.  For example, the user action is represented in the interface by a button action on a Document which in turn displays  the Confirmation Dialog. </p>
+<p>You can create a Confirmation Dialog by extending a user Interface using the <em>com.conceptwave.system.ConfirmDialog</em> object.</p>
+
+<p><strong>Note</strong>: The Confirmation Dialog is available from the Template folder.</p>
+<h3>Variables</h3>
+<p>Several system-generated variables are available when a User Interface of Confirmationdialog type is added. </p>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'><b>Variable</b></th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>confirmObject</strong></td>
+  <td class='confluenceTd'>Object</td>
+  <td class='confluenceTd'>Returns the confirmed object by executing the confirm action. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>model</strong></td>
+  <td class='confluenceTd'>model</td>
+  <td class='confluenceTd'>The object representing the data for this user interface (for example, Document, Finder, Order).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>content</strong></td>
+  <td class='confluenceTd'>User Interface</td>
+  <td class='confluenceTd'>Populates the  Confirmation Dialog with the contents of the contentForm when the contentVisible method is invoked.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>contentForm</strong></td>
+  <td class='confluenceTd'>String</td>
+  <td class='confluenceTd'>The name of the Form that belongs to the content object being used to display the content.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>context</strong></td>
+  <td class='confluenceTd'>User Interface</td>
+    <td class='confluenceTd'>Used for backward compatibility. Used to display two different objects on the screen.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>contextForm</strong></td>
+   <td class='confluenceTd'>String</td>
+  <td class='confluenceTd'> The name of the Form which belongs to the context object used to display the context.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>dialog</strong></td>
+  <td class='confluenceTd'>User Interface</td>
+  <td class='confluenceTd'> The current dialog user interface being displayed. Used by the Form Frame.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>owner</strong></td>
+  <td class='confluenceTd'>User Interface</td>
+  <td class='confluenceTd'>Detail document of the Confirmation Dialog. It is populated when a selection is performed on   the Confirmation Dialog and the XXXX method is invoked.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>title</strong></td>
+  <td class='confluenceTd'>String</td>
+  <td class='confluenceTd'>The title to display in the Web Browser.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>dialogHeight</strong></td>
+  <td class='confluenceTd'>Integer</td>
+  <td class='confluenceTd'>The height of the dialog box.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>dialogWidth</strong></td>
+  <td class='confluenceTd'>Integer</td>
+  <td class='confluenceTd'>The width of the dialog box.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>isModal</strong></td>
+  <td class='confluenceTd'>Boolean</td>
+  <td class='confluenceTd'>Allows the dialog box to move positioning.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>dialogOwner</strong></td>
+  <td class='confluenceTd'>Object</td>
+  <td class='confluenceTd'>The user interface that invokes the dialog.</td>
+</tr>
+</tbody>
+</table>
+<p>The following variables are available to configure the confirmation dialog.
+Examples are provided in the <a href="#templates"><strong>Library</strong></a> tab of Velocity Studio.
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'><b>Variable</b></th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+
+<tr>
+  <td class='confluenceTd'><strong>ifContent</strong></td>
+  <td class='confluenceTd'>Boolean</td>
+  <td class='confluenceTd'> Indicates whether to display the content form of the message form.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>ifYes</strong></td>
+  <td class='confluenceTd'>Boolean</td>
+  <td class='confluenceTd'> Indicates whether the <em>Yes</em> button is visible.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>ifNo</strong></td>
+  <td class='confluenceTd'>Boolean</td>
+  <td class='confluenceTd'>Indicates whether the <em>No</em> button is visible. Depending upon how the user responds to the warning message in the confirmation dialog a confirmation script may be  triggered. The confirmation script is executed based on the action of the user.</td>
+</tr>
+
+<tr>
+  <td class='confluenceTd'><strong>ifOK</strong></td>
+  <td class='confluenceTd'>Boolean</td>
+  <td class='confluenceTd'> Indicates whether the <em>OK</em> button is visible.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>ifCancel</strong></td>
+  <td class='confluenceTd'>Boolean</td>
+  <td class='confluenceTd'> Indicates whether the <em>Cancel</em> button is visible.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>userAction</strong></td>
+  <td class='confluenceTd'>String</td>
+  <td class='confluenceTd'> Contains the name of the user action.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>message</strong></td>
+  <td class='confluenceTd'>String</td>
+  <td class='confluenceTd'> Contains a User Message the format is UU0100:YN. The  Y (Yes), N (No) represents buttons</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>scriptConfirm</strong></td>
+  <td class='confluenceTd'>Object</td>
+  <td class='confluenceTd'>This object contains a user message and confirm object.</td>
+</tr>
+
+</tbody>
+</table>
+
+<h3><strong>User Action Method</strong></h3>
+<p>The  User Action Method enables you to configure the settings and create a script   to invoke a user action in a Form. Add a New User Action Method and configure the fields. The Confirmation field enables you to set the confirmation action that displays the message or the Form. </p>
+
+<table width="612" class='confluenceTable'>
+  <tbody>
+<tr>
+<td width="613" class='confluenceTd'><img src="useraction_methods_dialog.png" align="absmiddle" border="0" alt="" />
+</tr>
+</tbody>
+</table>
+<table class="confluenceTable">
+			<tr>
+				<th class="confluenceTh">Field</th>
+				<th class="confluenceTh">Description</th>
+		</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Name</b></td>
+				<td class="confluenceTd">Name of the Method. Must be unique 
+				 within the User Interface.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Description</b></td>
+				<td class="confluenceTd">Descriptive text for documentation 
+				 purposes.</td>
+			</tr>
+            <tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Parameters</b></td>
+				<td class="confluenceTd">Adds parameters in your script.  The last parameter must be defined as the object. For example, if the User Action Method is invoked by the User Interface (object), the only parameter that is used is this  object.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Script</b></td>
+				<td class="confluenceTd">Any method, including Permission Methods, is considered to be a script Method when it  includes a custom JavaScript that is invoked as an action. The User Action script can return a value (a Document, Finder, Order, User Interface, Navigation Tree) and that returned object is set as the content object at the page or pop-up dialog (returning a value  overrides the object property).</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Return</b></td>
+				<td class="confluenceTd">The object type to be returned by the script.</td>
+			</tr>
+            <tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Object</b></td>
+				<td class="confluenceTd">The object of this type is  instantiated when this method is invoked.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Form</b></td>
+				<td class="confluenceTd">The Form to present to user when the object is instantiated. Choices are available and limited only to Forms of the selected object.</td>
+			</tr>
+            <tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Confirmation</b></td>
+				<td class="confluenceTd">Configure a confirmation message that displays the message or the Form before performing the user action.</td>
+			</tr>
+		</table>
+<p>For each action that you want to display in the Confirmation Dialog, you need to create a Using   User Action methods. You can configure the Confirmation field to use a script that triggers the user action.</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <td class='confluenceTd'><img src="methods_confirm.png" align="absmiddle" border="0" alt="" />
+      </tr>
+    </tbody>
+</table>
+
+<p> When a method is triggered,  different types of dialogs  display and certain variables in the ConfirmDialog are set. </p>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+
+<th class='confluenceTh'>Script Example</th>
+<th class='confluenceTh'><b>Returned Value From Script</b></th>
+<th class='confluenceTh'>Confirmation Dialog Displayed</th>
+</tr>
+
+<tr>
+  <td class='confluenceTd'>var doc = new Document(&quot;VelMethods:TestConfirm&quot;);<br>
+     return Global.confirmOK(doc); </td>
+  <td class='confluenceTd'> user message</td>
+  <td class='confluenceTd'> The contents of the messageDialog Form is displayed in the dialog.</td>
+   
+</tr>
+<tr>
+  <td class='confluenceTd'>return new Confirm(&quot;UU0117:Y&quot;); </td>
+  <td class='confluenceTd'>scriptConfirm object</td>
+  <td class='confluenceTd'>The contents of the messageDialog Form is displayed in the dialog.</td>
+   
+</tr>
+<tr>
+  <td class='confluenceTd'>var doc = new Document(&quot;VelMethods:TestConfirm&quot;);<br>
+      doc.TestStr = Global.translateText(&quot;UU0117&quot;, null, null);<br>
+      return new Confirm(&quot;UU0117&quot;,doc); </td>
+  <td class='confluenceTd'>confirmObject</td>
+  <td class='confluenceTd'>The default Form of the confirmObject is displayed.</td>
+    
+</tr>
+
+<tr>
+  <td class='confluenceTd'>var string = &quot;Global.getForceConfirm(document) Returned.  &quot;;<br>
+      if (this.confirmObject!=null)<br>
+string += &quot; There was a confirmObject &quot; + this.confirmObject + &quot;.&quot;;<br>
+else<br>
+string += &quot; There was no confirmObject.&quot;;<br>
+Global.showUserMessage(string); </td>
+  <td class='confluenceTd'>ForceConfirm object</td>
+  <td class='confluenceTd'> No dialog is displayed, and the user action is executed.</td>
+    </tr>
+
+</tbody>
+</table>
+
+<h3>Configuring Forms</h3>
+<p>The Confirmation Dialog User Interface  contains by default four forms: Default, Help, Menu and messageDialog.</p>
+<table width="612" class='confluenceTable'>
+  <tbody>
+<tr>
+<td class='confluenceTd'><img src="Confirmation_Dialog_Forms.png" align="absmiddle" border="0" alt="" />
+</tr>
+</tbody>
+</table>
+<h4>Default Form</h4>
+<p>The Default Form contains the Dialog element, and two Form Frames. The dialog element displays a confirmation dialog and the Form Frame elements allows you to  configure  contents of the dialog.</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <td class='confluenceTd'><img src="dialog_default.png" align="absmiddle" border="0" alt="" />
+      </tr>
+    </tbody>
+</table>
+<h4>Help Form</h4>
+<p>This default Help Form allows you to configure a link to an external help document or site.</p>
+<h4>Menu Form</h4>
+<p>This default Menu Form allows you to configure additional menu items when displaying the Configuration dialog.</p>
+<h4>messageDialog Form</h4>
+<p>The messageDialog Form consists of:</p>
+<ul>
+  <li> a text element  that contains the content of the user message </li>
+  <li>and  menu elements for the user action buttons</li>
+  </ul>
+  <table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <td class='confluenceTd'><img src="dialog_messagedialog.png" align="absmiddle" border="0" alt="" />
+      </tr>
+    </tbody>
+</table>
+<p>The user action buttons, <strong>Yes</strong>, <strong>No</strong>, <strong>OK</strong>, and <strong>Cancel</strong> are  executed using a Click Method. </p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <td class='confluenceTd'><img src="dialogbox.png" align="absmiddle" border="0" alt="" />
+      </tr>
+    </tbody>
+</table>
+<p>The visibility of the buttons are controlled by the<em> Visible</em> property, which is permission based. </p>
+<h3>Implement a Confirmation Dialog</h3>
+<p>You can configure a confirmation dialog by doing the following.</p>
+<ol>
+  <li>In the <strong>Navigation</strong> pane, click the  User Interface object that you want to open.</li>
+  <li>On the Variables tab, ensure that this is an object called ConfirmObject.</li>
+  <li>Next, click the <strong>Methods</strong> tab.</li>
+  <li>Right-click the <strong>User Interface</strong> node and select <strong>New User Action</strong>.</li>
+  <li>In the <strong>New User Action </strong>dialog, configure the settings for the action that you want to take place.</li>
+  <li>In the <strong>Confirmation</strong> drop-down list box, select the script that you want to point to for the user action.</li>
+  <li>Click <strong>Finish</strong>.</li>
+</ol>
+<h3><a name #template>Libraries</a></h3>
+<p>In the <strong>Library</strong> tab, you can view the available layout, including the variables and methods, for the confirmation dialog by navigating to the following path: <strong>Library &gt; com &gt; conceptwave &gt; system &gt; Presentation &gt; User Interface &gt; ConfirmDialog</strong>.</p>
+<p>&nbsp;</p>
+</table>
+</body>
+</html>

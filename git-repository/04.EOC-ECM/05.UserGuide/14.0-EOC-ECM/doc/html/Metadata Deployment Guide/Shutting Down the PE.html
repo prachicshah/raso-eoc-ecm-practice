@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Shut Down the PE</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Shut Down the PE</h1>
+<p>Process engines can be gracefully shutdown by simply stopping their service at their hosted J2EE application servers. As an alternative approach, you can gracefully shut down a process engine through a JMX Remote Management application such as <a href="Profiling.html">JConsole</a>.</p>
+<p>To use JConsole to shut down the process engine, do the following:</p>
+<ol>
+  <li>Connect to the Process Engine using JConsole, and then click the <strong>MBeans</strong> tab. </li>
+  <li>Navigate to <b>com.conceptwave.AVM &gt; CWAVM &gt; Operations &gt; Stop PE gracefully</b> in the MBeans tree.<br>
+    <br>
+    .<img src="JConsole stop PE gracefully.png" alt="Stop PE gracefully in JConsole" border="1"><br>
+    <br>
+  </li>
+  <li>In the right pane, click the <b>Stop PE gracefully</b> button to issue the command and stop the process engine.</li>
+</ol>
+<p>With JMX, the Process Engine can also be stopped using, for example, a <em>Command-line JMX Client</em>: <a href="http://crawler.archive.org/cmdline-jmxclient/index.html">http://crawler.archive.org/cmdline-jmxclient/index.html</a>. The CW bean name is <em>com.conceptwave.AVM:name=general, type=PE</em>, and the Operation to stop the process engine  is: <em>stopPEGracefully</em>. With <em>Command-line JMX Client</em>, a sample command would be as follows:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+java -jar cmdline-jmxclient.jar -:- myhostname:10001 com.conceptwave.AVM:type=PE stopPEGracefully
+</pre></div>
+</div>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

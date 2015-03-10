@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Assignment of Workload to Buckets</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Assignment of Workload to Buckets</h2>
+<p>The following explains the inner workings of how the workload of a process type are assigned to buckets in bucket span.</p>
+<h3>User Process Type</h3>
+<p>The user processes bucket numbers are predefined as follows:</p>
+<ol>
+<li>0 - unassigned processes (new and running waiting for restart).</li>
+<li>1-20 - user processes assigned to buckets 1 - 20 respectively.</li>
+</ol>
+<p>User processes bucket number <em>P</em> contains</p>
+<ul>
+<li>all processes already assigned to bucket <em>P</em>, and</li>
+<li>all unassigned processes that satisfy: <em>PID mod S = P - 1</em>, where <em>PID</em> is the process ID, and <em>S</em> is the user processes bucket span, and <em>mod</em> is the modulo operation (that is, remainder of division).</li>
+</ul>
+<p>User processes keep record to which bucket they belong. Once assigned to a bucket, they stay in this bucket even if bucket span <em>S</em> is changed afterwards.</p>
+<p>When the user processes bucket span is reduced, all processes belonging to buckets above the new bucket span are "unassigned" - moved to bucket 0. Thus, these processes are distributed to existing buckets according to the modulo arithmetic.</p>
+
+<h3>Global and Interface Process Type</h3>
+<p>The global processes do not have bucket numbers. Instead, they are assigned to PE ids. The PE_ID column of the CWGLOBALPROCESS table can have the following values:</p>
+<ol>
+<li>0 - unassigned global processes. Any PE can pick it if needed.</li>
+<li>1-20 - global processes assigned to PE with PE ids 1 - 20.</li>
+</ol>
+<p>Global or interface processes bucket number <em>P</em> contains</p>
+<ul>
+<li>all global participant messages for the given metadata type that satisfy: <em>SID mod S = P - 1</em>, where <em>SID</em> is the global participant message serialization ID, and <em>S</em> is the corresponding type's bucket span.</li>
+</ul>
+<p>Global or interface participant messages do not keep the bucket number; their bucket is always calculated by the serialization ID. At runtime, the PE instance only process messages that belong to its buckets.</p>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

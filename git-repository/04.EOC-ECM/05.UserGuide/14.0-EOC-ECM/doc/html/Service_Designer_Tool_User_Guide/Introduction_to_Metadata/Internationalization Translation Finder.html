@@ -1,0 +1,65 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Translation Finder</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+  <td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+<h2>Translation Finder</h2>
+
+<p>The translation finder popup uses the following system event:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Event</th>
+      <th class='confluenceTh'> Returns</th>
+      <th class='confluenceTh'> Description </th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>UI_GET_TRANSLATION_FINDER</td>
+      <td class='confluenceTd'>This event returns an instance of either the translation finder or the metadata name.</td>
+      <td class='confluenceTd'><p>This event contains the following parameters:</p>
+        <ul>
+          <li>
+                         targetObj<br>
+                This parameter contains either the target document or data  structure </li>
+          <li>varName<br>
+This parameter denotes the variable name</li>
+          <li>            parent<br>
+            This parameter contains the parent UI object </li>
+          </ul>
+        </td>
+    </tr>
+  </tbody>
+</table>
+<p>The default event handler, located in the UI Common  library, returns a string with the finder’s metadata name, ui_common.translationFinder,  for any target object and variable of translation type.</p>
+<h3>Use the Translation Finder User Interface</h3>
+<p>To be able to pop up the translation finder, the translation field needs to contain a value. When the translation field is empty, the reference button is disabled.</p>
+<p>Once you have text in the translation field and you save your changes (the entered value saved for the current language being used), the reference button is enabled. Enabling this button allows you to add and edit the translation contained in this field.</p>
+<p>Translation text can be added for any available language. To manage your available languages, select your project's metadata header and click the Languages tab in Velocity Studio.</p>
+<p><strong>Note:</strong> When adding a new translation, if you select a language that already has a translation record, the existing value is replaced with the new translation value.</p>
+<p>The following is an example of how to set up your metadata to use the translation finder user interface:</p>
+<ol>
+  <li>Create a document that contains some test variables, including a variable of com.conceptwave.system.Translation type.</li>
+  <li>Create a form for the document. Proceed to add a reference field for the translation variable.</li>
+  <li>Add menu actions or use a finder for the following actions:  </li>
+  <ul>
+    <li>Create a new document</li>
+    <li>Open a saved document</li>
+    <li>Open a saved document that is read-only (you can read the document from the database by setting <tt>document.readonly = true;</tt>)</li>
+  </ul>
+  <li>Map the document to the database.</li>
+</ol>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

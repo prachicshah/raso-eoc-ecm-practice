@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Deployment Planning and Environment Setup</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+		<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+			<h1></a>Deployment Planning and Environment Setup</h1>
+
+		<p>The following section details planning and pre-requisites for application deployment.</p>
+
+<h2><a name="HardwareConsiderations"></a>Hardware Considerations</h2>
+<p>The hardware requirements for production systems largely depend on the nature of the application and the expected load; Professional Services can assist you in dimensioning the hardware that your application may need. The following are some general architectural pointers in production systems:</p>
+<ul>
+<li>Typically, the JVM and the database are hosted on separate hardware, although for test-trial or Proof of Concept systems of low load it is possible to host everything in the same hardware.</li>
+<li>The product contains J2EE clustering support. Multiple J2EE Application Servers can be instantiated and clustered, on separate hardware, to distribute load.</li>
+<li>Each of the J2EE Application Server instances can be configured, in the <a href="../Configuration_Tool_User_Guide/Configure/System/introduction.html">Configuration application</a>, to run as AppServer instance or as Process Engine instance, or both. This configuration ability can designate certain hardware to, say, be AppServer while others be Process Engine, in the event that the deploying application requires Process Engine.</li>
+<li>The workload of processes can be distributed, possibly asymmetrically, to different Process Engine instances, which may be hosted on separate hardware with varied dimensions. See the concept explanation in Configuration application's <a href="../Configuration_Tool_User_Guide/Processes PE Processes.html">PE Processes</a> page for details.</li>
+</ul>
+
+<h2>Software Requirements</h2>
+<p>The software prerequisites for deployment environment include those specified in the  Installation Guide:</p>
+<ul>
+	<li>Database</li>
+	<li>JDK</li>
+	<li>Browser</li>
+	<li>Revision Control System (optional) - only necessary if packaging is to be performed in deployment environment as well</li>
+	<li>Velocity Studio (recommended) - although not absolutely necessary for deployment, the Velocity Studio may be needed in deployment environment to <a href="../Configuration_Tool_User_Guide/Getting Started/accessSystemConfiguration.html">run the System Configuration application</a>, in the event that the application cannot deploy due to bad configuration. Also, the <a href="Activation in Command Line Interface.html">activate command</a> is made available in deployment environment. Both commands can be executed in command-line interface of <i>Designer.jar</i> rather than in Velocity Studio GUI, so Windows operating system is not required.</li>
+</ul>
+
+<p>In addition, the deployment environment requires J2EE Application Server to be installed. See the <a href="../Installer_User_Guide/Installation Planning.html#CertificationMatrix">certification matrix</a> in Installer Guide to ensure that the choice of J2EE Application Server, OS Version and JDK is certified. See the installation details for:</p>
+<ul>
+<li><a href="J2EE Application Server Installation.html#JBoss">JBoss</a></li>
+<li><a href="J2EE Application Server Installation.html#WebLogic">Oracle WebLogic</a></li>
+<li><a href="J2EE Application Server Installation.html#WebSphere">IBM WebSphere</a></li>
+</ul>
+
+<h2>Licensing</h2>
+<p>Regardless of whether you have installed the product in a deployment environment, a valid license file is required for deployment runtime. A license is also required for packaging, if it is done in a deployment environment. </p>
+
+<p>Place the license file in <b>&lt;<em>installation_directory</em>&gt;\designer\env</b> folder, if the software is installed. If not, place it anywhere accessible by the Application Server. Make sure that the <a href="J2EE Application Server Installation.html">Application Server is set up</a> with the JVM argument <i>-Dcom.conceptwave.licenseDir=&lt;LICENSEDIR&gt;</i> pointing to the folder of the license file.</p>
+
+<h2>Database Initialization</h2>
+<p>Follow the <a href="../Installer_User_Guide/database initialization.html">Database Initialization</a> steps in the Installation Guide to setup your database for deployment.</p>
+
+<h2>Environment Planning for Deployment</h2>
+<p>In addition to planning for the deployment environment, you must also facilitate environments for running Method of Procedure (MOP) for deployment, while adhere to your organization's operational policy and deployment's physical architecture. If you are not familiar with how application metadata is deployed, you should read about the <a href="Deploying Application.html">procedure of deployment</a> to note the steps necessary for deployment, and to understand the environment prerequisites of each step.</p>
+
+<p>For example, decide on where packaging shall take place; which can be:</p>
+<ol>
+<li>a developer's computer running Velocity Studio,</li>
+<li>a dedicated "build server", or</li>
+<li>server at deployment environment</li>
+</ol>
+<p>While packaging at deployment server eliminates the need to upload the WAR file (tens of MBs) to deployment environment, the server may be located at a DMZ that does not have access to source control system, which blocks any potential metadata check-in due to packaging.</p>
+
+<p>Also, decide on where you would update your the deployment database. If schema update is to be generated by running <a href="../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Upgrading System.html">Upgrade System</a> in Velocity Studio against deployment database, you must facilitate such environment with installed Velocity Studio and access to deployment database.</p>
+
+
+<p>Similarly, you must also decide on where Activation shall take place, which also requires access to deployment database. </p>
+
+<p>The runtime user interface is stateful and requires user sessions. Any load balancer between the user and the application server must be able to direct requests from the same user to a single server for the life of the user session (also known as <em>sticky sessions</em>). Session replication is not supported. </p>
+
+
+<p><b>Note</b>: Even though the Web-based Configuration application is password protected, the Configuration application URL shall be blocked by firewall in production environment whenever it may be exposed to the Internet.</p>
+
+<table cellpadding='5' width='85%' cellspacing='8px' class='noteMacro' border="0" align='center'>
+<tr>
+<td><p><b class="strong">Important Note</b><br />
+While deploying metadata on Unix/Linux environments, you may encounter the following errors and issues on your application server:</p>
+  <ul>
+    <li>Too many open files</li>
+    <li>Class definition not found</li>
+    <li>Missing  libraries or classes that are clearly in the classpath.</li>
+    </ul>
+  <p>To avoid these errors and problems, you should run ulimit –n &lt;max_limit&gt; command in Unix. This command reserves max file pointers corresponding to the Unix/Linux user. Additionally, this Unix/Linux user should be same as the user that was used for the application server installation. For example, in a Unix environment with WebSphere installed at the root and
+    &lt;max_limit&gt; for file pointers is 65000. Then, ulimit –n 65000 should be run using root user.</p>
+</td>
+</tr>
+</table
+
+
+
+
+
+></td>
+</tr>
+</table>
+</body>
+</html>

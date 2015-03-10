@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Message Resources</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Message Resources</h2>
+<p>Throughout Velocity Studio, messages are used to provide notifications or error messages.   These messages are organized by Application, System,and User and can be viewed in the <strong>Resources</strong> folder of Velocity Studio. For each language implemented, there is an associated message resource node file. However, the default messages are written in the English language. The table below contains the default file names for the English language (en-xx[English]) and an associated description of the Message Resource Nodes:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='referenceTh'>File Name</th>
+<th class='referenceTh'>Message Resource Node</th>
+<th class='referenceTh'>Description</th>
+</tr>
+<tr>
+<td class='referenceTd'>appRC_en-xx.xml</td>
+<td class='referenceTd'>Application</td>
+<td class='referenceTd'>Messages defined in user applications for use in scripting.</td>
+</tr>
+<tr>
+<td class='referenceTd'>sysRC_en-xx.xml</td>
+<td class='referenceTd'>System</td>
+<td class='referenceTd'>Messages defined by the system for logging purposes only.  These are rarely translated since only administrators will see these messages.</td>
+</tr>
+<tr>
+<td class='referenceTd'>userRC_en-xx.xml</td>
+<td class='referenceTd'>User</td>
+<td class='referenceTd'>Messages defined by the system that are presented to the user.</td>
+</tr>
+</tbody>
+</table>
+<h3>Message Translation</h3>
+<p>For each <a href="../Metadata_Objects/Metadata Root/Metadata Root Languages.html">Metadata Root Language</a> implemented within Velocity Studio, there is an associated Application, System, and User file created within the metadata <strong>languages</strong> folder. These files can be viewed within the <b>Resources</b> folder of Velocity Studio. For  only the English (en-xx) language files, can the <strong>Message</strong> be modified. Once the English language System and User files are modified, the file will be stored in the <strong>languages</strong> folder of the metadata. For only the Application English language file (appRC_en-xx.xml) can additional message records be added  or deleted by clicking the associated buttons on the side bar as shown below: </p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="ApplicationResourceFile.png" alt="ResourceFile"></td>
+</tr>
+</tbody>
+</table>
+
+<p>When a <a href="../Metadata_Objects/Metadata Root/Metadata Root Languages.html">Metadata Root Language</a> is changed from the default language (en-xx [English]) to another language, it is possible to translate the default English message to another language. By simply selecting the message node file from the Resources Tree directory, the associated language file appears and the user is then able to translate a message by double-clicking  the <strong>Message</strong> column of the file. For the example shown below, the Application messages are being translated for the French/Canada language. The system continues to display the associated <strong>Message ID</strong> and its English translation in the <strong>Default Message</strong> column, while the translated message appears in the <strong>Message</strong> column.
+<p>It is not possible to add  Application messages for any other language other than English.  In this case, the user would have to switch the language back to English, add a new Application message record, and then modify the <b>Message</b> with the associated language file.    The English language message appears as the Default Message.  
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="ApplicationResourceLanguageFile.png" alt="ResourceFile"></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

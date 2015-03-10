@@ -1,0 +1,505 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Worklist Manager</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Worklist Manager</h2>
+<p>The <strong>Worklist Manager</strong> report displays a list of pending worklist items that can require user action. By default, the  top pane of the Worklist provides end users with options to filter a returned list of user tasks.</p>
+
+<p>For more information,  see the <em>Velocity Studio User Guide</em>.</p>
+<p>By performing a search (that is, clicking the <strong>Search</strong> button), pending worklist items display in the details pane.  The Worklist Manager can be configured to display in the Worklist Management application  or in the application provided that the user has the correct permissions.</p>
+
+<img src="worklistmanager.png" align="absmiddle" border="0" alt="Worklist Manager" />
+<p>The Worklist Manager search results section displays the following information:</p>
+<table width="1398" class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th class='confluenceTh'> Field </th>
+          <th class='confluenceTh'> Description </th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Icon Column</strong></td>
+          <td class='confluenceTd'><p>This field indicates the task type:</p>
+            <table width="1075" class='confluenceTable'>
+              <tbody>
+                <tr>
+                  <th width="95" class='confluenceTh'> Icon</th>
+                  <th width="95" class='confluenceTh'> Task Type</th>
+                  <th width="807" class='confluenceTh'> Description </th>
+                </tr>
+                <tr>
+                  <td class='confluenceTd'><img src="worklistIconTask.png" alt="Worklist task type - regular task"></td>
+                  <td class='confluenceTd'>Regular task</td>
+                  <td class='confluenceTd'><p>A (regular) task represents a unit of work, which is a typical task that is created, assigned, and then worked on by users. Users must perform  task actions to complete the task. Participant operations specify the task actions and may include such actions as reject, validate, and accept.<BR>
+                    </p></td>
+                </tr>
+                <tr>
+                  <td class='confluenceTd'><img src="worklistIconAlert.png" alt="Worklist task type - alert"></td>
+                  <td class='confluenceTd'>Alert</td>
+                  <td class='confluenceTd'> <p>An alert notifies you of an event that requires your attention (for example, when a user process that created the task goes into error state, the active task gets closed, and an alert is created). The user must <em>acknowledge</em> the alert to indicate that it  was read and can be closed. </p></td>
+                </tr>
+                <tr>
+                  <td class='confluenceTd'><img src="worklistIconTakenTask.png" alt="Worklist task type - taken task"></td>
+                  <td class='confluenceTd'>Taken task</td>
+                  <td class='confluenceTd'> <p>A taken task notifies the user that his task was reassigned to another user. The user must <em>acknowledge</em> the taken task to indicate that it was read and can be closed.<BR>
+                  </p></td>
+                </tr>
+              </tbody>
+            </table>
+          <p>          The style of the task record indicates whether the task has been started yet (bold) or is overdue (red), or a combination of the two. The task record styles as well as the task icons indicate whether a task is an alert or a regular task. Alerns appear in blue font and taken tasks are greyed out.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Due Date</b></td>
+          <td class='confluenceTd'> This field contains the date and time when the worklist task is due. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Participant</b></td>
+          <td class='confluenceTd'> This field denotes the participant assigned to the task. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>User ID</strong></td>
+          <td class='confluenceTd'> This field represents the ID of the user assigned to the task. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Task </strong></td>
+          <td class='confluenceTd'> Description of the task. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Label</strong></td>
+          <td class='confluenceTd'> The metadata label name of the task.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Create Date</strong></td>
+          <td class='confluenceTd'> Date and time when the task was created. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Assigned Date</strong></td>
+          <td class='confluenceTd'> Date and time when the task was assigned. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Start Date</strong></td>
+          <td class='confluenceTd'> Date and time when the task was started. </td>
+        </tr>
+      </tbody>
+    </table>
+<p><strong>Note</strong>: The first column (before <strong>Due Date</strong>) represents the task's priority.</p>
+<h4>Worklist Control Menu</h4>
+<p>The controls for the worklist manger provide you with the following functionality:</p>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<td class='confluenceTd'><img src="worklist_manager_controls.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'> Menu Item </th>
+<th class='confluenceTh'> Function </th>
+</tr>
+<tr>
+<td class='confluenceTd'> Search </td>
+<td class='confluenceTd'> Searches the database for worklist items based on the   search criteria. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> Task </td>
+<td class='confluenceTd'> Activates a <b>Task</b> dialog    displaying the Order Item associated with the selected task. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> Assign </td>
+<td class='confluenceTd'> Activates a <b>Worklist   Users</b> dialog   displaying a list of users that can be associated with the selected task. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> Modify </td>
+<td class='confluenceTd'> Activates a <b>Modify   Task</b> dialog    allowing the user to modify the due date and priority of the selected task. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> Order </td>
+<td class='confluenceTd'> Activates a dialog displaying the Order associated   with the selected task. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> History </td>
+<td class='confluenceTd'> Activates a <b>Task   History</b> dialog    displaying a log of changes made to the selected task. </td>
+</tr>
+</tbody></table>
+
+<h3>Task</h3>
+<p>The <b>Task</b> dialog is activated from within the Worklist Manager report, and displays the Order and Order Item associated with the selected task.</p>
+
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'> <img src="worklist_manager_taskdialog.png" align="absmiddle" border="0" /> </td>
+</tr>
+</tbody></table>
+
+<h3>Assign</h3>
+<p>The <strong>Assign</strong> dialog is activated from within the Worklist Manager report, and displays the Order and Order Item associated with the selected task.</p>
+
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<td class='confluenceTd'><img src="worklist_manager_assigndialog.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p>The  following information is available:</p>
+<table class='confluenceTable'><tbody>
+<tr>
+<th class='confluenceTh'> Field </th>
+<th class='confluenceTh'> Description </th>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>ID</b> </td>
+<td class='confluenceTd'> ID of the selected worklist user. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Name</b> </td>
+<td class='confluenceTd'> Name of the selected worklist user. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Active</b> </td>
+<td class='confluenceTd'> Indicates whether the selected worklist user is active   or not. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Available</b> </td>
+<td class='confluenceTd'> Indicates whether the selected worklist user is   available or not. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>E-mail</b> </td>
+<td class='confluenceTd'> E-mail of the selected worklist user. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>External ID</b> </td>
+<td class='confluenceTd'> User ID used for purposes outside of the product system. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Minimum Tasks</b> </td>
+<td class='confluenceTd'> Smallest amount of tasks the selected worklist user   can have assigned. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Maximum Tasks</b> </td>
+<td class='confluenceTd'> Largest amount of tasks the selected worklist user can   have assigned. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Current Tasks</b> </td>
+<td class='confluenceTd'> Number of tasks assigned to the user. </td>
+</tr>
+</tbody></table>
+
+<h3>Modify</h3>
+
+<p>The <b>Modify Task</b> dialog, activated from within the Worklist Manager report, allows the user to modify the due date and priority of the selected task.</p>
+
+
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'> <img src="worklist_manager_modifydialog.png" align="absmiddle" border="0" /> </td>
+</tr>
+</tbody></table>
+<p>The  following information is available:</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'> Field </th>
+<th class='confluenceTh'> Description </th>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Due</b> </td>
+<td class='confluenceTd'> Date and time to which the task due date will be   changed. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Priority</b> </td>
+<td class='confluenceTd'> Lists the possible priority settings. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Apply Changes</b> </td>
+<td class='confluenceTd'> Saves the changes indicated in the above fields. </td>
+</tr>
+</tbody></table>
+
+<h3>History</h3>
+
+<p>The <b>Task History</b> dialog, activated from within the Worklist Manager report, displays a log of changes made to the selected task.</p>
+
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'> <img src="worklist_manager_historydialog.png" align="absmiddle" border="0" /> </td>
+</tr>
+</tbody></table>
+<p>The  following information is available:</p>
+<table class='confluenceTable'><tbody>
+<tr>
+<th class='confluenceTh'> Field </th>
+<th class='confluenceTh'> Description </th>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Changed by</b> </td>
+<td class='confluenceTd'> Name of the user who made changes to the task. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Changed on</b> </td>
+<td class='confluenceTd'> Date and time when the change was made. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>User ID</b> </td>
+<td class='confluenceTd'> New task user ID value. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Due</b> </td>
+<td class='confluenceTd'> New task due date value. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Priority</b> </td>
+<td class='confluenceTd'> New task priority value. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Operation</b> </td>
+<td class='confluenceTd'> Description of the change. </td>
+</tr>
+</tbody></table>
+
+<h3>Worklist Users</h3>
+
+<p>The <b>Worklist Users</b> report  displays a list of active users. </p>
+
+
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'><img src="worklist_manager_assigndialog.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody></table>
+<p>The following information is available:</p>
+<table class='confluenceTable'><tbody>
+<tr>
+<th class='confluenceTh'> Field </th>
+<th class='confluenceTh'> Description </th>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Av</b> </td>
+<td class='confluenceTd'> Indicates whether the user is available or not. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>User ID</b> </td>
+<td class='confluenceTd'> ID of the user. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Tasks</b> </td>
+<td class='confluenceTd'> Number of tasks assigned to the user. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Overdue Tasks</b> </td>
+<td class='confluenceTd'> Number of overdue tasks assigned to the user. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Alerts</b> </td>
+<td class='confluenceTd'> Number of alerts assigned to the user. </td>
+</tr>
+</tbody></table>
+<h4>Worklist Users Control Menu</h4>
+<p>The controls for the worklist manger provide you with the following functionality:</p>
+<table class='confluenceTable'><tbody>
+<tr>
+<th class='confluenceTh'> Menu Item </th>
+<th class='confluenceTh'> Function </th>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Search</b> </td>
+<td class='confluenceTd'> Searches the database for users based on the search   criteria. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>User Profile</b> </td>
+<td class='confluenceTd'> Activates a <b>User</b> dialog    displaying information about the selected user. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Tasks</b> </td>
+<td class='confluenceTd'> Activates a <b>User   Worklist</b> dialog    displaying a list of tasks assigned to the selected user. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Available</b> </td>
+<td class='confluenceTd'> Sets the selected user as available for additional   tasks. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Unavailable</b> </td>
+<td class='confluenceTd'> Sets the selected user as unavailable for additional   tasks. </td>
+</tr>
+</tbody></table>
+<p><b>Note:</b> The top two records&nbsp;of the <b>Worklist Users </b>report results display a summary which is not affected by the search criteria entered. The summary always displays the total number of assigned/unassigned tasks under the <b>User ID</b> of <em>&lt;assigned&gt;</em> and <em>&lt;unassigned&gt;</em>.</p>
+
+<h3>User Profile</h3>
+
+<p>The <b>User</b> dialog , activated from within the Worklist Users report, displays information about the selected user.</p>
+
+
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'><img src="worklist_manager_userprofile.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody></table>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'> Field </th>
+<th class='confluenceTh'> Description </th>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>ID</b> </td>
+<td class='confluenceTd'> ID of the selected worklist user. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Name</b> </td>
+<td class='confluenceTd'> Name of the selected worklist user. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Active</b> </td>
+<td class='confluenceTd'> Indicates whether the selected worklist user is active   or not. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Available</b> </td>
+<td class='confluenceTd'> Indicates whether the selected worklist user is   available or not. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>E-mail</b> </td>
+<td class='confluenceTd'> E-mail of the selected worklist user. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>External User</b> </td>
+<td class='confluenceTd'> Indicates if the worklist uses  external systems.</td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Minimum Tasks</b> </td>
+<td class='confluenceTd'> Smallest amount of tasks the selected worklist user   can have assigned. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Maximum Tasks</b> </td>
+<td class='confluenceTd'> Largest amount of tasks the selected worklist user can   have assigned. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Current Tasks</b></td>
+  <td class='confluenceTd'>Number of tasks assigned to the user. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Position</b> </td>
+<td class='confluenceTd'> Select a position from the drop-down list.</td>
+</tr>
+</tbody></table>
+
+<h4>Groups</h4>
+<p>The Groups dialog displays the group to which  the user belongs. </p>
+<ol>
+  <li>From the Worklist page, click a <strong>User ID</strong>. </li>
+  <li>Next click <strong>User Profile</strong> button. </li>
+  <li>Click the <strong>Groups</strong> tab.</li>
+  <li>Use the button functionality to modify the group.</li>
+</ol>
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'><img src="worklist_manager_groupdialog.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody></table>
+<h4>Tasks</h4>
+
+<p>The <b>User Worklist</b> dialog, activated from within the Worklist Users report, displays a list of tasks assigned to the selected user.</p>
+
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'> <img src="worklist_runtime.png" align="absmiddle" border="0" /> </td>
+</tr>
+</tbody></table>
+
+<table class='confluenceTable'><tbody>
+<tr>
+<th class='confluenceTh'> Field </th>
+<th class='confluenceTh'> Description </th>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Due</b> </td>
+<td class='confluenceTd'> Date and time when the worklist item is due. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Task</b> </td>
+<td class='confluenceTd'> Description of the worklist item. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Details</b> </td>
+<td class='confluenceTd'> Order details for the worklist item. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Assigned</b> </td>
+<td class='confluenceTd'> Date and time when the worklist item was assigned. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Started</b> </td>
+<td class='confluenceTd'> Date and time when the worklist item was started. </td>
+</tr>
+</tbody></table>
+
+<h3>Participants</h3>
+
+<p>The <b>Participants</b> report  displays a list of participants with pending tasks. In the<strong> Profile Administration</strong>, under <strong>Worklist</strong>, the Participants menu item launches the Participants page.</p>
+
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'> <img src="worklist_manager_participant.png" align="absmiddle" border="0" /> </td>
+</tr>
+</tbody></table>
+
+<table class='confluenceTable'><tbody>
+<tr>
+<th class='confluenceTh'> Field </th>
+<th class='confluenceTh'> Description </th>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Participant</b> </td>
+<td class='confluenceTd'> Name of participant. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Tasks</b> </td>
+<td class='confluenceTd'> Number of worklist items assigned to the participant. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Overdue</b> </td>
+<td class='confluenceTd'> Number of overdue worklist items assigned to the   participant. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Unassigned</b> </td>
+<td class='confluenceTd'> Number of worklist items assigned to the participant   but not assigned to any users. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Alerts</b> </td>
+<td class='confluenceTd'> Number of alerts assigned to the participant. </td>
+</tr>
+</tbody></table>
+<h4>Participant Control Menu</h4>
+<table class='confluenceTable'><tbody>
+<tr>
+<th class='confluenceTh'> Menu Item </th>
+<th class='confluenceTh'> Function </th>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Search</b> </td>
+<td class='confluenceTd'> Searches the database   for participants. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Users</b> </td>
+<td class='confluenceTd'> Activates a <b>Worklist Users</b> dialog    displaying a list of users associated with the selected participant. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Tasks</b> </td>
+<td class='confluenceTd'> Activates a <b>Worklist Manager</b> dialog    displaying a list of worklist items associated with the selected participant. </td>
+</tr>
+</tbody></table></td>
+</tr>
+</table>
+</body>
+</html>

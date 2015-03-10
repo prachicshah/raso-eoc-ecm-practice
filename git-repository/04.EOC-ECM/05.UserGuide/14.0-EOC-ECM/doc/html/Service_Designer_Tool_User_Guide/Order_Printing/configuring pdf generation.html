@@ -1,0 +1,356 @@
+﻿<html>
+<head>
+<title>Configuring PDF Generation</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="ConfiguringPDFGeneration"></a>Configuring PDF Generation</h2>
+<p>For every order using this feature, there are four steps:</p>
+<ol>
+<li>Generate an XML view of the order using the product UI.</li>
+<li>Use the XML view to generate an XSD (schema definition).</li>
+<li>Use the XSD to design an XSL-FO library.</li>
+<li>Define the XSL-FO as a CW system resource.</li>
+</ol>
+<p>There are several XML-designing and style-sheet designing tools available to create the XSD and XSL-FO. However, for the remainder of this document, we will refer to Altova XMLSpy and Altova StyleVision (<a href="http://www.altova.com/">http://www.altova.com/</a>).</p>
+<p><strong>Note:</strong> Currently, the  XSLT 1.0 standard is supported.</p>
+<h3><a name="CapturingXMLOrderData"></a>Capturing XML Order Data</h3>
+<p>The XML order view generated from CW UI is the base of this operation.&#160;The easiest method to capture this raw XML data for an order is to create a <em>&lt;script&gt;</em> menu in the UI for that order:</p>
+<ol>
+<li>In Velocity Studio, create a menu of category &lt;<em>object menu&gt;</em> with the order as the object.</li>
+<li>Create a sub-menu of type <em>&lt;script&gt;</em> with the following script:
+  <div class="preformatted">
+<div class="preformattedContent">
+<pre>
+var currentOrder = menuOwner;
+var xmlData = currentOrder ? currentOrder.toXML() : null;
+if (xmlData) {
+    Global._showModelessDialog(xmlData, 60, 30, 'text/xml');
+}
+</pre></div>
+</div>
+</li>
+</ol>
+<p>See Velocity Studio  User Guide's section on Menus for more information. Activate the metadata and use the UI to save the XML order data.&#160;</p>
+<h3><a name="CreatingXSDSchema"></a>Creating XSD Schema</h3>
+<p>The XML data saved in the previous step will provide a basis for the XSD.&#160; The XSD is a skeleton document which gives the set of rules which validate an XML document. XMLSpy has a feature to auto-generate the XSD for any XML document.&#160;</p>
+<ol>
+<li>Open XMLSpy and load the XML order data.&#160;</li>
+<li>Choose DTD/Schema &gt; Generate DTD/Schema, and agree with the default options.&#160;</li>
+<li>The XSD will auto-generate; save it to disk.</li>
+<li>Select yes when asked to apply the XSD to the working XML file, save it as well.</li>
+</ol>
+<h3><a name="DesigningXSLFOtemplate"></a>Designing XSL-FO library</h3>
+<p>The XSD generated in the previous step will provide the basis for our XSL-FO library.&#160;The XSL-FO library will extract and apply formatting rules to the XML order data. When applying these rules, however, the XSL-FO relies on the general skeletal structure of the XML document, as defined by the XSD.</p>
+<p>For example, an order can list 2 <em>Node</em> instances while another order lists 5.&#160;Rather than basing the XSL-FO on a hard-coded XML indicating either of 2 or 5 instances, we base it on the less rigid XSD.&#160;This allows us to handle all instances of <em>Node</em> the same way, no matter the number.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td><img src="image003.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Launch StyleVision and open the XSD.</li>
+<li><em>Optional:</em> To preview the PDF in StyleVision, an XML data file and FOP must be assigned.&#160; FOP can be downloaded from any of the mirrors found at <a href="http://www.apache.org/dyn/closer.cgi/xmlgraphics/fop.">http://www.apache.org/dyn/closer.cgi/xmlgraphics/fop.</a>
+<ul>
+<li>Select <strong>File</strong> &gt; <strong>Assign working XML file</strong> and load the XML order data.</li>
+<li>Select <strong>Tools</strong> &gt; <strong>Options</strong> &gt; <strong>XSL-FO</strong> &gt; <strong>FO Processor</strong> and browse to fop.bat.</li>
+</ul>
+</li>
+<li>Design the style sheet.&#160; (For full details please refer to the Altova documentation).
+<ul>
+<li>Drag nodes from the schema tree pane (left) into the content pane (right).</li>
+<li>Upon drop you will be asked what type of field you want to create, input field will suffice, as it will be treated as static text when the PDF is compiled.</li>
+<li>In the right pane, you can organize fields into tables, add static text labels, and insert images.&#160; There are also options for check boxes, drop down lists and expressions.</li>
+<li><em>Images:</em> The CW framework will require images to be loaded as resources, and not fixed references.&#160; For now when inserting images, enable the <em>Absolute Path</em> option and in a later step, we will manually indicate the framework URL.</li>
+<li>If you have performed the FOP configuration step, you can preview the output using the PDF Preview tab.</li>
+</ul>
+</li>
+<li>Export the XSL-FO library: Select <strong>File &gt; Save Generated Files &gt; Save Generated XSL-FO File</strong>.</li>
+</ol>
+<p>After creating the XSL-FO file, a <b>manual edit</b> must be made to the document header to ensure full browser and Web server compatibility. Change:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+&lt;xsl:output version="1.0" method="html" encoding="UTF-8" indent="no" /&gt;
+</pre></div>
+</div>
+<p>to:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+&lt;xsl:output version="1.0" encoding="UTF-8" indent="no" omit-xml-declaration="no" media-type="text/html" /&gt;
+</pre></div>
+</div>
+<p>where:</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><b>Version</b></td>
+<td class='confluenceTd'>specifies the version of the output method</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Encoding</b></td>
+<td class='confluenceTd'>specifies the preferred character encoding that the XSLT processor should use to encode sequences of characters as sequences of bytes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Indent</b> (boolean)</td>
+<td class='confluenceTd'>specifies whether the XSLT processor may add additional whitespace when outputting the result tree</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Omit-xml-declaration</b> (boolean)</td>
+<td class='confluenceTd'>specifies whether the XSLT processor should output an XML declaration</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Media-type</b></td>
+<td class='confluenceTd'>specifies the media type (MIME content type) of the data that results from outputting</td>
+</tr>
+</tbody>
+</table>
+<p>The XSL-FO file is now ready for PDF generation.</p>
+<h3><a name="SpecialHandlingforImages"></a>Special Handling for Images</h3>
+<p><b>Note:</b> For displaying images inside the PDF file, the the <b>HTTP port</b> attribute must match the Application Server port (for example, Tomcat 8080 or WebLogic 7001). This attribute is set in the Configuration application, under <b>System</b> &gt;<b>System Parameters</b>. </p>
+
+<p>In the previous step, we indicated images with an absolute path, but this will not suffice for the runtime environment.&#160;Thus, we manually edit the XSL-FO to get images as resources from the CW framework.</p>
+<p>Look for all instances of the <em>&lt;fo:external-graphic&gt;</em> tag, and change the image references to follow this format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+cwf:///&lt;subfolder&gt;/filename.ext
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+&lt;fo:external-graphic&gt;
+      &lt;xsl:attribute name="src"&gt;url('&lt;xsl:text disable-output-escaping="yes"&gt;file:///C:\fop_demo\banner.gif&lt;/xsl:text&gt;')
+      &lt;/xsl:attribute&gt;
+&lt;/fo:external-graphic&gt;
+</pre></div>
+</div>
+<p>Should be changed to:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+&lt;fo:external-graphic&gt;
+      &lt;xsl:attribute name="src"&gt;url('&lt;xsl:text disable-output-escaping="yes"&gt;cwf:///docdemo/banner.gif&lt;/xsl:text&gt;')
+      &lt;/xsl:attribute&gt;
+&lt;/fo:external-graphic&gt;
+</pre></div>
+</div>
+<p>Where:</p>
+<ul>
+<li><b>banner.gif</b> is the image defined as a resource (that is, in the Resources tab of Velocity Studio)</li>
+<li><b>cwf://</b> is the CW protocol for resolving images</li>
+<li><b>/docdemo</b> is the /&lt;subfolder&gt;, if such a subfolder has been defined</li>
+</ul>
+<p><b>Note:</b> <b><em>cwf</em></b> is the default name for the path. It can be renamed during system deployment. So check with the system administrator to get the WAR file name in your configuration.</p>
+<h3><a name="FontCustomization"></a>XSL-FO Font Customization</h3>
+<p>Custom fonts are described in an XML file named <em>userconfig.xml</em> which is loaded as an /FOP/ resource in Velocity Studio. This file is a master font configuration for all applications in an environment.&#160; That is, only one <em>userconfig.xml</em> file is required for all applications in that environment.</p>
+<p><b>Important:</b> The font and font-metrics files (mentioned below) must reside on the Web server machine.&#160;On the Windows platform, all fonts must go in the <em>\Windows\fonts</em> folder.&#160;</p>
+<p>In the case of multiple Web servers, the font-metrics file must be in the same file path as mentioned in <em>userconfig.xml</em>.&#160; For example, if <em>userconfig.xml</em> points to <em>D:\proj\fonts\FONTXML\HelveticaLT53Extended.xml</em>, this file must exist in this fixed path on all Web server machines.</p>
+<p><b><ins>STEP 1:</ins></b> The <em>file userconfig.xml</em> uses the containment structure shown in the figure below. The table below describes the function of each XML tag.</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>&lt;!--&lt;!DOCTYPE configuration SYSTEM "config.dtd"\&gt;--&gt;<br clear="all" />&lt;configuration&gt;
+&#160;&#160;&lt;fonts&gt;
+&#160;&#160;&#160;&#160;&#160;&lt;font metrics-file="<em>d:\proj\fonts\FONTXML\HelveticaLT53Extended.xml</em>" embed-file="<em>C:\WINDOWS\Fonts\lte50699.ttf</em>" kerning="<em>yes</em>"&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;font-triplet name="<em>HLT53Ext</em>" style="<em>normal</em>" weight="<em>normal</em>"/&gt;
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;font-triplet name="<em>HLT53Ext</em>" style="<em>normal</em>" weight="<em>bold</em>"/&gt;
+&#160;&#160;&#160;&#160;&#160;&lt;/font&gt;
+&#160;&#160;&lt;/fonts&gt;
+&lt;/configuration&gt;</pre></div>
+</div>
+
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>XML Tag</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Parameters</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>configuration</b></td>
+<td class='confluenceTd'>Bounds the font configuration file.</td>
+<td class='confluenceTd'>None</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>fonts</b></td>
+<td class='confluenceTd'>Bounds all fonts.</td>
+<td class='confluenceTd'>None</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>font</b></td>
+<td class='confluenceTd'>One tag required for each font group.</td>
+<td class='confluenceTd'><b>metrics-file</b> - points to XML file defined by FOP. See FOP spec &#160;for more details (URL provided below)<br clear="all" />
+<b>embed-file</b> - points to location of .TTF font file.<br clear="all" />
+<b>kerning</b> - enables font kerning (even spacing).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>font-triplet</b></td>
+<td class='confluenceTd'>One tag required for each font variant.&#160; See FOP spec for more details (URL provided below).</td>
+<td class='confluenceTd'><b>name</b> - name by which font will be referenced in XSL-FO stylesheet.<br clear="all" />
+<b>style</b> - font style (<em>normal, italic, oblique</em>).&#160; See CSS or HTML spec for more details.<br clear="all" />
+<b>weight</b> - font weight (<em>normal, bold, bolder, lighter</em>).&#160; See CSS or HTML spec for details.</td>
+</tr>
+</tbody>
+</table>
+<p><b>Note:</b> More information on the font-metrics file can be found at <a href="http://xmlgraphics.apache.org/fop/faq.html">http://xmlgraphics.apache.org/fop/faq.html</a>.</p>
+
+<h4>Change the Configuration File and the XSL File</strong></h4>
+<p>Since the FOP library was updated, changes must also be performed in the configuration and XSL file.</p>
+
+<p><strong>Configuration File</strong></p>
+<p>In the configuration file, you can either install your .ttf file under the windows/fonts  folder or an arbitrary folder on your computer, and then specify the location of  the .ttf file with directory tag in userconfig.xml, as shown in the following example: 
+  <br>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  &lt;?xml  version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+  &lt;fop  version=&quot;1.0&quot;&gt;
+   &nbsp;&nbsp;&lt;renderers&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;renderer mime=&quot;application/pdf&quot;&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fonts&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>&lt;directory&gt;C:\MyFonts1&lt;/directory&gt;</em></strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fonts&gt;
+  &nbsp;&nbsp;&nbsp;&nbsp;&lt;/renderer&gt;
+  &lt;/renderers&gt;
+  &lt;/fop&gt;</pre>
+</div>
+</div>
+  
+<p><strong>XSL File</strong></p>
+<p>In the XSL file, the Font-family attribute must be defined for the content that contains foreign characters that cannot be displayed properly. Additionally, the value of that attribute must be the font name that appears after having installed it under windows/fonts.</p>
+<p><strong>Example:</strong> With a font file called TIMES.tff, after it is installed in our operating system, the name of that font is Times New Roman (TrueType).</p>
+<p>In the XSL file, the XML is as follows:</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+&lt;fo:inline <strong><em>font-family=&quot;Times  New Roman&quot;</em></strong> font-size=&quot;10pt&quot;  font-style=&quot;normal&quot; font-weight=&quot;normal&quot;&gt;
+&nbsp;&nbsp;&lt;xsl:text&gt;SaygÄ±larÄ±mÄ±zla.&lt;/xsl:text&gt;
+&lt;/fo:inline&gt;
+</pre>
+</div>
+</div>
+
+<p>Then, see the steps in the configuration file. 
+
+
+<p><b><ins>STEP 2:</ins></b> Once the file <em>userconfig.xml</em> has been defined, it must be loaded as a resource in Velocity Studio.&#160;</p>
+
+
+<p><b><ins>STEP 3:</ins></b> The XSL-FO references the custom fonts using the nameparameter from the font-triplettag in <em>userconfig.xml</em>. An example follows below. The figure below shows the end result of the custom font after PDF compilation.</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+&lt;fo:inline font-family="HLT53Ext"&gt;This is HelveticaNeueLT53Ex font 11 &lt;/fo:inline&gt;
+  &lt;fo:block&gt;
+    &lt;fo:leader leader-pattern="space"/&gt;
+  &lt;/fo:block&gt; 
+</pre></div>
+</div>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td><img src="image002.jpg" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h3><a name="LoadingXSLFOintheConceptWaveConfigurationTool"></a>Loading XSL-FO</h3>
+<p>To load the XSL-FO, complete these steps:</p>
+<ol>
+  <li>For internalization, rename the XSL to order-<em>en</em>-xx.xsl. <b><br>
+    <br>
+    Note:</b> For multiple language support, replace <em>en</em> with the appropriate ISO 639 language code (for example,  order-it-xx.xsl for Italian).<br>
+    <br>
+  </li>
+  <li>To add a new language resource, copy the XSL file to your &lt;<em>root_metadata_directory</em>&gt;\languages folder. You can then view your file in the <strong>Resources</strong> folder of Velocity Studio.<br>
+  </li>
+  </ol>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>If the resource name or its path is incorrect,  it will not be found at runtime. </li>
+  <li>When a language resource is not found  with either an expected or appropriate language code suffix, a default file is used. </li>
+  <li>You can use the order.generatePDF() method to call your Order object. The following is an example:<br>
+    <br>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>Order.generatePDF("/XSL-DO/gpipPq.xslt", xmlData);</pre>
+</div>
+</div>
+<br>
+    <strong>Note:</strong> Order is a data order object.<br>
+  </li>
+  <li>Depending on the current language (for example, fr-ca, de-xx, etc.), the   PDF is automatically generated using the existing file (that is, gpipPq-fr-ca.xslt,   gpipPq-de-xx.xslt, etc.), respectively, and gpipPq.xslt by default.</li>
+  <li>There is also multilanguage support for Global.getResource() and Global.generatePdfFile() methods.</li>
+</ul>
+<h3><a name="LoadingImagesintheConceptWaveConfigurationTool"></a>Loading Images in Velocity Studio</h3>
+<p>You can load images in Velocity Studio by copying your image files to your &lt;<em>root_metadata_directory</em>&gt;\languages folder. You can then view your file in the <strong>Resources</strong> folder of Velocity Studio. Refer to the Resources pane section of the Velocity Studio User Guide for more information.</p>
+<h3>Specifying Path for Block Background Images</h3>
+<p>You can specify both absolute and relative paths for a block background image in your .fo file. </p>
+<p>The following is an example of using an absolute path to your block background image:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>&lt;fo:block border="0.5pt solid silver"
+  background-image="url('cwf:///images/block_logo_128x26.gif')"&gt;<BR>  Absolute path to image works<BR>&lt; /fo:block&gt;</pre>
+    </div>
+</div>
+
+<p>Similarly, you can specify a relative path to your block background image:<BR>
+<div class="preformatted">
+    <div class="preformattedContent">
+    <pre>&lt;fo:block border="0.5pt solid silver"
+  background-image="url('images/block_logo_128x26.gif')"&gt;<BR>  Relative path to image works
+&lt; /fo:block&gt;</pre></div>
+</div>
+<H3><A name="supportRelativeFontPath"></A>Support for Relative Font Path for userconfig.xml</H3>
+<p>You can use relative font paths in your userconfig.xml file. The font paths are relative to your metadata's resources folder.</p>
+<p>The following is an example of using absolute paths in your userconfig.xml file:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>
+&lt;font metrics-url="file:///C:/ordering/resources/fonts/msgothic.xml" kerning="yes" embed-url="file:///C:/ordering/resources/fonts/msgothic.ttc"&gt;<A href="file:///C:/tt/ConceptWave/Ordering/resources/fonts/msgothic.ttc'>" target="_blank"></A><BR>    &lt;font-triplet name="MS Gothic" style="normal" weight="normal"/&gt;<BR>&lt;/font&gt;</pre>
+    </div>
+</div>
+<p>You can use relative paths as follows:</p>
+
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>
+&lt;font metrics-url="file:///fonts/msgothic.xml" kerning="yes" embed-url="file:///fonts/msgothic.ttc"&gt;<A href="file:///C:/tt/ConceptWave/Ordering/resources/fonts/msgothic.ttc'>" target="_blank"></A><BR>    &lt;font-triplet name="MS Gothic" style="normal" weight="normal"/&gt;<BR>&lt;/font&gt;</pre>
+    </div>
+</div>
+<H3><a name="MemoryConsiderations"></a>Memory Considerations</H3>
+<p>To successfully generate your PDF, it is recommended that you increase the memory size on your application server. The following is an example of increasing the amount of memory required on a Tomcat server to successfully generate a PDF:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>
+CATALINA_OPTS=-Xms1024m -Xmx1024m -XX:+UseParNewGC -XX:+CMSPermGenSweepingEnabled -Djava.awt.headless=true
+</pre>
+    </div>
+</div>
+<p><strong>Notes</strong>:</strong> </p>
+<ul>
+  <li>It is recommended that you add the <tt>-Djava.awt.headless=true</tt> JVM option  manually to the process engine script. This option allows you to run the process engine in headless mode to perform Abstract Windowing Toolkit (AWT) operations.
+    
+  </li>
+  <li>The default <a href="../../Configuration_Tool_User_Guide/Log Levels.html">log level</a> for FOP/XMLGraphic is ERROR. Changing this log level may render PDF generation slower than expected.</li>
+</ul>
+<p>&nbsp;</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

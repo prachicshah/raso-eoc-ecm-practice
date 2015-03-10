@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Document Notes</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Document Notes</h3>
+<p> Document notes are stored in a separate  CWDOCNOTE table. To have notes in a document, you must add two variables added to the document metadata:</p>
+<ul>
+  <li>A  variable of type cwf_oe.sysNoteField to enter new notes<br>
+    This variable is used to store the value into the CWDOCNOTE table. Once the value is  saved (that is, a new row is inserted into CWDOCNOTE), the variable is cleared.</li>
+  <li>A  variable of type cwf_oe.sysNoteList to view early entered notes, which is read-only <br>
+    On accessing the variable, it used to load all notes from the table and combined  them into one string separated with ‘\n’. </li>
+</ul>
+<p>Because storing occurs using the cwf_oe.sysNoteField data type and loading takes place using the cwf_oe.sysNoteList data types, metadata that uses document notes  should still work without any changes.</p>
+<p>Two system events support these data types:</p>
+<ul>
+  <li>The cwLoadValue  method is called when you first access a document variable of the data  type. The method loads and returns the value.</li>
+  <li>The cwStoreValue method is called when you store a document to the database, to store the variable value.</li>
+  </ul>
+<h4>cwLoadValue and cwStoreValue methods</h4>
+<p>These methods add more  flexibility to the loading and storing processes of document variables. A data type  can have only one of those methods or both at the same time.</p>
+<p>The cwLoadValue script loads the initial value for the variable:</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>function cwLoadValue(parent, leaf) {
+  // The script is called when accessing the variable for the first time
+  // The 'parent' parameter is the parent object
+  // The 'leaf' parameter is the name of the variable
+  // The script returns the loaded value
+  return value;
+  }</pre>
+</div>
+</div>
+
+<p>The cwStoreValue script is called on saving the document into the database to store the variable value:</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>function cwStoreValue(parent, leaf, value) {
+  // The script is called on storing the object
+  // The 'parent' parameter is the target object
+  // The 'leaf' parameter is the name of the variable
+  // The 'value' parameter is the data to store
+  ...
+  }</pre>
+</div>
+</div>
+
+<p><br>
+The cwLoadValue method is called when  accessing the document variable  of that data type for the first time. Document notes are loaded only when accessing a variable (for example, displaying it in  a user interface or retrieving a variable (leaf) value in scripts). The value is  stored in memory into the document data array. Next time, when accessing the variable, it retrieves the already loaded value.</p>
+<p>The cwStoreValue scripts is called on  saving the document, right after all database mapped values arestored to the database.</p>
+<p><strong>Notes: </strong></p>
+<ul>
+  <li>The store script for the variable is called only if it  has a <em>changed</em> state.</li>
+  <li>    If none of the document variables are changed  (that is, neither the database mapped variables, nor script variables), calling save() skips storing, does not update the document in the database, and does not call any scripts.</li>
+  <li>    If  a variable with the store script was changed, either through the user interface  or  scripts, it update thes document in the database <em>and</em> calls the script even if  none of database mapped variables have changed.</li>
+</ul>
+<p>After the document is saved, it also clears all  loaded states for variables with the cwLoadValue scripts defined, so that they are  reloaded next time when accessing the value. This clearing is performed due to possible  value cross-changes in the cwStoreValue script.</p></td>
+</tr>
+</table>
+</body>
+</html>

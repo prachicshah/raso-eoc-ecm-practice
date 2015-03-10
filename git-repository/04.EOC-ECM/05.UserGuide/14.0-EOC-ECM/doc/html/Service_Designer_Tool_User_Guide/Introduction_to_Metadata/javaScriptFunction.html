@@ -1,0 +1,381 @@
+<html>
+<head>
+<title>Javascript Functions</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+  <h2>Javascript Functions</h2>
+  <p>This page provides the information about the Javascript Functions:</p>
+  <h3>Function  Name</h3>
+<p>Use the exact name of the function itself for the JavaScript function name.  The function label includes the function parameters as well. In addition, functions starts with comment block, describing the functionality, the  input parameters, their type, short description, and the return value.</p>
+Example for function:    <tt>myFunction()</tt>
+<br>
+&nbsp; &nbsp; &nbsp;&nbsp;  Metadata Name:  <tt> myFunction</tt><br>
+   &nbsp; &nbsp;  &nbsp;&nbsp; Metadata Label :    <tt>myFunction(param1,param2,param3)</tt></p>
+    <h3>Parameters </h3>
+    <p>All parameters correspond to <strong>Parameters</strong> section.<br>
+    Define parameters type  as specific as possible. If there is a data type specified for the parameter, then it is used rather than a type <strong>string</strong>.</p>
+  <table class="confluenceTable"border="1" cellspacing="0" cellpadding="0">
+    <tr>
+      <th class="confluenceTh" width="225" valign="top"><strong>Name</strong></th>
+      <th class="confluenceTh" width="375" valign="top"><p><strong>Type</strong></p></th>
+      <th class="confluenceTh" width="144" valign="top"><p><strong>Mandatory</strong></p></th>
+    </tr>
+    <tr>
+      <td width="225" valign="top"><p>ord</p></td>
+      <td width="375" valign="top"><p>object</p></td>
+      <td width="144" valign="top"><p>√</p></td>
+    </tr>
+    <tr>
+      <td width="225" valign="top"><p>accessId</p></td>
+      <td width="375" valign="top"><p>Document ID (cwf system)</p></td>
+      <td width="144" valign="top"><p>√</p></td>
+    </tr>
+    <tr>
+      <td width="225" valign="top"><p>scope</p></td>
+      <td width="375" valign="top"><p>Offer Scope (VT PC Extension)</p></td>
+      <td width="144" valign="top"><p>√</p></td>
+    </tr>
+  </table><br>
+  <h3>Function  Body</h3>
+  <br>
+  Start each function   beginning with comments, with information about the function. Organize the comments   with following tags, so a complete set of documentation can be  generated using a tool like JSDOC.(<a href="http://code.google.com/p/jsdoc-toolkit/w/list" target="_blank">http://code.google.com/p/jsdoc-toolkit/w/list</a>)<br>
+  <div class="preformatted">
+    <div class="preformattedContent">
+    <pre>/** 
+  &nbsp;* @description 
+  &nbsp;* @param&nbsp;&nbsp;&nbsp; {paramType}&nbsp; paramName This is a string parameter 
+  &nbsp;* @throws&nbsp;&nbsp; ExceptionType  This is the label text 
+  &nbsp;* @returns  {returnType}  Description 
+  &nbsp;* @author&nbsp;&nbsp; authorName 
+  &nbsp;* @since &nbsp;&nbsp; date of  first release of MD version first release 
+  &nbsp;* @version&nbsp; release version and  date for modifications
+  &nbsp;*/</pre> 
+  </div>
+</div>
+  <h3> Line Length </h3>
+  <br>
+ Avoid lines longer than 80 characters.  With current monitor  resolutions, this requirement is not that strict.
+  <h3>Wrapping Lines </h3>
+  <br>
+    If an  expression dose not fit on a single line, break it according to these general  principles:
+     <ul>
+    <li>Break after a comma.</li>
+    <li>Break before  an operator.</li>
+    <li>Prefer higher-level breaks to lower-level breaks.</li>
+    <li>Align the new line with the beginning of the  expression at the same level on the previous line.</li>
+    <li>If the above rules lead to confusing code or to  code that is squished up against the right margin, just indent 8 spaces instead.</li>
+  </ul>
+  
+  <p>Here are some  examples of breaking method calls:<br>
+  <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>function(longExpression1,longExpression2,
+         longExpression4,longExpression5);
+var = function1(longExpression1,
+                function2(longExpression2,
+                          longExpression3));</pre> 
+      </div>
+</div>  
+   
+  <p>The following are  two examples of breaking an arithmetic expression. The first is preferred,  since the break occurs outside the parenthesized expression, which is at a  higher level.</p>
+ <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>longName1 = longName2 * (longName3 + longName4 - longName5)
+            + 4 * longname6; // PREFER
+
+longName1 = longName2 * (longName3 + longName4
+ 	               - longName5) + 4 * longname6; // AVOID
+ </pre> 
+  </div>
+</div>
+ 
+  <p> The following  are examples of line wrapping  for<strong> if</strong> statements:</p>
+
+  <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>//DON'T USE THIS INDENTATION
+if ((condition1 && condition2)
+    || (condition3 && condition4)
+    ||!(condition5 && condition6)) { //BAD WRAPS
+    doSomethingAboutIt(); //MAKE THIS LINE EASY TO MISS
+}
+
+//USE THIS INDENTATION INSTEAD
+if ((condition1 && condition2)
+        || (condition3 && condition4)
+        ||!(condition5 && condition6)) {
+    doSomethingAboutIt();
+}
+
+//OR USE THIS
+if ((condition1 && condition2) || (condition3 && condition4)
+        ||!(condition5 && condition6)) {
+    doSomethingAboutIt();
+}</pre> 
+  </div>
+</div>
+
+    <p>Here are three acceptable ways to format ternary expressions:</p>
+    <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>alpha = (aLongBooleanExpression) ? beta : gamma;
+alpha = (aLongBooleanExpression) ? beta
+: gamma;
+alpha = (aLongBooleanExpression)
+? beta
+: gamma;</pre> 
+  </div>
+</div>
+    <h3>Comments</h3>
+    <br>
+  
+  Be generous with comments. It is useful to leave information  that can be read at a later time by people  who  need  to understand what you have done. The comments needs to be well-written and  clear, just like the code they are annotating.
+    It is important to keep the comments up-to-date. Erroneous  comments can make programs even harder to read and understand.
+    Make comments meaningful. Focus on what is not immediately  visible. Do not waste the reader's time with a comment like: 
+  </p>
+  <pre> i = 0; // Set i to zero.</pre>
+  <p>Generally use line comments. Save block comments for formal  documentation and for commenting out.</p>
+  <h3> Variable Declarations</h3>
+  <br>    
+  Declare all  variables  before use, although JavaScript does not require the declaration.
+     Preferably, give each variable  its own line and comment.  List them in alphabetical order. <br>
+    <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>var  currentEntry;  // currently selected table entry
+var  level;        // indentation level
+var  size;         // size of table    </pre>
+  </div>
+</div>
+    <p>Put declarations  only at the beginning of blocks. A block is any code surrounded by curly  braces<strong> { </strong>and <strong>}</strong>. Do not wait to declare variables until their first use. It  can confuse the programmer and hamper code portability within the scope.</p>
+    <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>void MyMethod() {
+      int int1; // beginning of method block
+      if (condition) {
+            int int2; // beginning of &quot;if&quot; block
+            ...
+      }
+}</pre>
+  </div>
+</div>
+  
+<p>The one  exception to the rule is indexes of <strong> for</strong> loops, which in Java can be declared in the <strong>for</strong> statement:</p>
+   <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>for (int i = 0; i  &lt; maxLoops; i++) { ...</pre>
+  </div>
+</div>
+
+  <p>  Avoid local  declarations that hide declarations at higher levels. For example, do not  declare the same variable name in an inner block:</p>
+  <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+     <pre>int  count;
+...
+func() {
+       if (condition) {
+             int count; // AVOID!
+             ...
+       }
+}</pre>    
+  </div>
+</div> 
+<p>Try to  initialize local variables where they are declared. The only reason not to  initialize a variable where it is declared is if the initial value depends on  some computation occurring first. </p>
+  <h3>Simple Statements</h3> 
+  <br>
+  Each line   contains at most one statement. Put a&nbsp;<strong>;</strong>&nbsp;(semicolon)&nbsp;at the end of every simple statement.<br>
+  <br>
+    <h3>Compound Statement </h3>
+    <br>
+    Compound statements are statements that contain lists of  statements enclosed 
+    in<strong>&nbsp;{ }&nbsp;</strong>(curly braces). 
+    <ul>
+    <li>The enclosed statements are indented four more spaces. </li>
+    <li>The&nbsp;<strong>{</strong>&nbsp;(left curly brace)&nbsp;remains at the end of the line  that begins the compound statement. </li>
+    <li>The&nbsp;<strong>}</strong>&nbsp;(right curly brace)&nbsp;starts a line and is indented  to align with the beginning of the line containing the matching&nbsp;<strong>{</strong>&nbsp;(left curly brace). </li>
+    <li>Braces are used around all  statements, even single statements, when they are part of a control structure,  such as an&nbsp;<strong>if</strong>&nbsp;or&nbsp;<strong>for</strong>&nbsp;statement. This makes it  easier to add statements without accidentally introducing bugs. </li>
+  </ul>
+    <h3>Return Statement</h3>
+    <br>
+  Avoide use of parentheses in a <strong>   return</strong> statement with a value unless they make the return value more obvious in some way.  <br>
+  <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>return;
+return  myDisk.size();
+return  (size ? size : defaultSize);
+    </pre>   </div> </div>
+  <h3>For Statement</h3>
+  <br>
+     
+A<strong>&nbsp;for&nbsp;</strong>class of  statements can have the following form:
+  <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>for (initialization;&nbsp;condition;&nbsp;update) {
+    &nbsp;     statements
+}
+    
+for (variable&nbsp;in&nbsp;object) {
+    if (filter) {
+    &nbsp;  statements
+    }&nbsp;
+}</pre> 
+  </div>
+</div>  
+    The first form is used with arrays and with loops of a pre-determinable  number of iterations.<br>
+    The second form is used with objects. Be aware that members  that are added to the prototype of the<i>&nbsp;object</i>&nbsp; are included in the enumeration.  It is wise to program defensively by using the<em> hasOwnProperty </em>  method to distinguish the true members  of the<i>&nbsp;object</i>.<br>
+    <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>for (variable&nbsp;in&nbsp;object) {
+    if&nbsp;(object.hasOwnProperty(variable))&nbsp;{
+        statements
+    }
+}    </pre>
+      </div>
+      </div>
+    <h3>If, If-Else, If-Else If Statements</h3>
+    <br>
+  <p>The&nbsp;<strong>if</strong>&nbsp;class of  statements can have the following form:</p>
+  <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>if (condition) {
+    statements
+}
+    &nbsp;&nbsp;&nbsp;&nbsp;
+if (condition) {
+&nbsp;&nbsp;&nbsp;&nbsp;statements
+} else {
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statements
+}
+    &nbsp;&nbsp;&nbsp;&nbsp;
+if (condition) {
+    statements
+} else if (condition) {
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;statements
+} else {
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statements
+}</pre>
+ 
+  </div>
+
+</div>
+
+  <h3>While Statement </h3>
+  <br>
+      
+  <p>A&nbsp;<strong>while</strong>&nbsp;statement  can have the following form: </p>
+  <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>while (condition) {
+&nbsp;&nbsp;  statements
+}</pre>
+ 
+  </div>
+
+</div>
+
+  <h3> Do Statement </h3>
+  <br>
+      
+    A <strong>do</strong>&nbsp;statement can have the  following form:
+    <div class="preformatted">
+ 
+  <div class="preformattedContent">   
+    <pre>do {
+    statement
+} while (condition);</pre>
+  </div>
+</div>  
+   
+Unlike the other  compound statements, the&nbsp;do&nbsp;statement always ends with a<strong> &nbsp;;&nbsp;</strong>&nbsp;(semicolon).
+
+  <h3>Switch Statement </h3>
+  <br>
+     
+ A&nbsp;<strong>switch</strong>&nbsp;statement  can have the following form: <br>
+ <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>switch (expression) {
+      case&nbsp;expression:
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statements
+  &nbsp;&nbsp;&nbsp;&nbsp;default:
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statements
+} </pre>    
+  </div>
+</div>
+ <br>
+    Each&nbsp;<strong>case</strong>&nbsp;is aligned with the&nbsp;<strong>switch</strong>.   Switch avoids over-indentation. <br>
+    Each group of&nbsp;statements,&nbsp;except the&nbsp;default,   ends with&nbsp;<strong>break</strong>,&nbsp;<strong>return</strong>,  or&nbsp;<strong>throw</strong>.  Do not fall through.</p>
+    <h3>Try-Catch Statement </h3>
+    <br>
+      
+  The&nbsp;<strong>try</strong>&nbsp;class of  statements can have the following form: 
+  <div class="preformatted">
+ 
+  <div class="preformattedContent">
+
+    <pre>try {
+    statements
+} catch (variable) {
+    statements
+}
+
+try {
+    statements
+} catch (variable) {
+    statements
+} finally {
+    statements
+}</pre>
+  </div>
+</div>
+  <h3>Whitespaces</h3>   
+  <br>    
+  Blank lines improve readability by setting off sections of  code that are logically related. <br>
+    Use blank spaces in the following circumstances: </p>
+    <ul>
+    <li>Seperate the keyword followed by&nbsp;<strong>(</strong>&nbsp;(left parenthesis)&nbsp; by a space.</li>
+  </ul>
+  <ul>
+    <li>Use a blank space  between a function value and its&nbsp;<strong>(</strong>&nbsp;(left  parenthesis).  A blank space helps to distinguish between keywords and function  invocations.</li>
+    <li>Seperate all binary operators except&nbsp;<strong>.</strong>&nbsp;(period)&nbsp;and&nbsp;<strong>(</strong>&nbsp;(left  parenthesis)&nbsp;and&nbsp;<strong>[</strong>&nbsp;(left  bracket)&nbsp; from their operands by a space.</li>
+    <li> Do not use a space to separate a unary  operator and its operand except when the operator is a word such as&nbsp;<strong>typeof</strong>.</li>
+    <li> Use a space after each <strong>;</strong>&nbsp;(semicolon)&nbsp;in the control part of  a&nbsp;for&nbsp;statement.</li>
+    <li>Ensure that  every <strong>,</strong>&nbsp;( comma) is followed by a whitespace.</li>
+  </ul></td>
+</tr>
+</table>
+</body>
+</html>

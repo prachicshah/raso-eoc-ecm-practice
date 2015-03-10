@@ -1,0 +1,162 @@
+<html>
+<head>
+<title>Finder Pagination</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Finder Pagination</h2>
+
+<p>Finder pagination allows you to display the amount of data you want on your page, such as setting the page size in the application.</p>
+<h3>Finder User Interface Methods </h3>
+<p>The following are finder user interface methods that you can use to control the amount of data on a page:</p>
+<table class="confluenceTable" border cellpadding="1">
+  <tr>
+    <th class="confluenceTh" width="201">Method</th>
+    <th class="confluenceTh" width="436">Description</th>
+  </tr>
+  <tr>
+    <td class="confluenceTd">fetchNextPage</td>
+    <td class="confluenceTd">If the finder user interface's result variable currently has a value and there is more data to be displayed, use this method to increase the page count.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">fetchPreviousPage</td>
+    <td class="confluenceTd">If the finder user interface's result variable currently has a value and there is previous data to be displayed, use this method to decrease the page count.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">getCurrentEndRow</td>
+    <td class="confluenceTd">This method gets an index value of its last row on the current page.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">getCurrentStartRow</td>
+    <td class="confluenceTd">The method gets an index value of its first row on the current page.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">getDataPageSize</td>
+    <td class="confluenceTd"><p>This method gets the size of the current page.</p>
+      <p><strong>Note:</strong> To set the page size, call the following finder user interface method (not result):        </p>
+      <p><tt>finderUI.setDataPageSize(number)</tt></p></td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">hasNextPage</td>
+    <td class="confluenceTd"><p>If   this.cwDataPageSize is set, this permission can be used determine whether to   disable or enable the <strong>Next</strong> button. When a next page exists, the <strong>Next</strong> button's disabled property is set to false. If a next page does not exist, the <strong>Next</strong> button's disabled property is set to true.</p>
+      <p><strong>Note:</strong> To   determine the true value of hasNextPage(), use this.result.hasNextPage() in   a separate script. </p></td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">hasPreviousPage</td>
+    <td class="confluenceTd"><p>If this.cwDataPageSize is set, this permission can be used   determine whether to disable or enable the <strong>Previous</strong> button.When a previous page exists, the <strong>Previous</strong> button's disabled property is set to false. 
+        If a previous page does not exist, the <strong>Previous</strong> button's disabled property is set   to true.<BR>
+        <BR>
+        <strong>Note:</strong> To determine the true value of hasPreviousPage(), use   this.result.hasPreviousPage() in a separate script.
+      </p></td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">next</td>
+    <td class="confluenceTd">This method advances to the next page.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">previous</td>
+    <td class="confluenceTd">This method goes to the previous page.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">setDataPageSize(int size)</td>
+    <td class="confluenceTd">This method sets the amount of data to be displayed in the user interface at any given time. When this method is called, the finder table data list refreshes to show the new data size.</td>
+  </tr>
+</table>
+<h3>DataObjectList Methods </h3>
+<p>The following are finder DataObjectList methods for finder pagination:</p>
+<table class="confluenceTable" border cellpadding="1">
+  <tr>
+    <th class="confluenceTh"  width="201">Method</th>
+    <th class="confluenceTh" width="436">Description</th>
+  </tr>
+  <tr>
+    <td class="confluenceTd">fetchNext</td>
+    <td class="confluenceTd">The fetchNextPage method usually calls this method to increase the current page number to be displayed in the user interface.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">fetchPrevious</td>
+    <td class="confluenceTd">The fetchPreviousPage method usually calls this method to decrease the current page number.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">firstPage</td>
+    <td class="confluenceTd">This method goes to the first page.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">getCurrentPage</td>
+    <td class="confluenceTd">This method returns the current page number.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">getTotalPages</td>
+    <td class="confluenceTd">This method returns the total number of pages.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">hasNext</td>
+    <td class="confluenceTd">This method checks whether there is enough data for a next page.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">hasPrevious</td>
+    <td class="confluenceTd">This method checks whether there is previous data to be displayed.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">lastPage</td>
+    <td class="confluenceTd">This method advances to the last page.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">setCurrentPage(number)</td>
+    <td class="confluenceTd"><p>This method sets the current page number. If the number is greater than the total number of pages, this method sets total - 1.</p>
+      <p><strong>Note:</strong> The current page number starts at 0.</p></td>
+  </tr>
+</table>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>The fetchNext and fetchPrevious methods only work if cwDataPageSize has been set. Otherwise, the finder works with the product configuration (that is, normal paging).</li>
+  <li>Once cwDataPageSize is set, clicking the <strong>Search</strong> button of a finder uses its value.</li>
+  <li>At all times, if the setDataPageSize method is called, the result on the user interface updates to show the new maximum data count. Setting cwDataPageSize does not refresh the table.</li>
+  <li>Calling the fetchNext method automatically calls searchAction if the result variable does not already have a value.</li>
+  <li>Calling the fetchNext and fetchPrevious methods when there is no data to show keeps the current page viewed on the user interface (for example, the table does not display as being empty when there is no data left to show).</li>
+  <li>For finders with paging capabilities, the ability to sort the entire set of results, and not just the results visible on the page, is available.</li>
+  </ul>
+<h3>Application of Methods</h3>
+<p>This section shows how to use both finder user interface and DataObjectList methods for finder pagination.</p>
+<p><strong>Example 1</strong>: Create two buttons and set the dataPageSize </p>
+<ol>
+  <li>In Velocity Studio, create a finder with two buttons:  </li>
+  <ul>
+    <li>Previous</li>
+    <li>Next</li>
+  </ul>
+  <li>In the finder's <strong>UserInterface</strong>, locate the onInit method and set the dataPageSize (for example, 10).</li>
+  <li>Verify that the number of rows returned is correct.</li>
+</ol>
+<p><strong>Example 2:</strong> Create menus that change the amount of data displayed </p>
+<ol>
+  <li>In Velocity Studio, create a finder with two buttons:</li>
+  <ul>
+    <li><strong>Previous</strong></li>
+    <li><strong>Next</strong></li>
+  </ul>
+  <li>In the finder's <strong>UserInterface</strong>, create three menus with the following labels:  </li>
+  <ul>
+    <li>&lt;u&gt;10&lt;/u&gt;</li>
+    <li>&lt;u&gt;20&lt;/u&gt;</li>
+    <li>&lt;u&gt;30&lt;/u&gt;</li>
+  </ul>
+  <li>Create click methods for each of these menus. As an example, the menu with the &lt;u&gt;10&lt;/u&gt; label has a click method of this.setDataPageSize(10).</li>
+  <li>Check that each menu changes the amount of data shown on the screen.</li>
+  </ol>
+<p><strong>Example 3:</strong> Set the <strong>Disabled</strong> property to the hasPrevious and hasNext methods for the <strong>Previous</strong> and <strong>Next</strong> buttons, respectively</p>
+<ol>
+  <li>In Velocity Studio, for the <strong>Previous</strong> and <strong>Next</strong> buttons, set the <strong>Disabled</strong> property for each button to <strong>hasPrevious</strong> and <strong>hasNext</strong>, respectively.</li>
+  <li>Verify that when there is no data to show after the current data has displayed, that the <strong>Next</strong> button is disabled.</li>
+  <li>Check that on the user interface's first load, that the <strong>Previous</strong> button is disabled.</li>
+</ol>
+<p>&nbsp;</p></tr>
+</table>
+</body>
+</html>

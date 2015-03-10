@@ -1,0 +1,163 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>System Limits</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>System Limits</h2>
+<p>The following table lists the system limit descriptions, current and recommended limit values, and possible error or warning log messages:</p>
+<table width="1350" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="386" class='confluenceTh'>Constructor</th>
+      <th width="188" class='confluenceTh'>Description</th>
+      <th width="85" class='confluenceTh'>Current limit value</th>
+      <th width="214" class='confluenceTh'>Recommended limit  value if increased</th>
+      <th width="453" class='confluenceTh'> Error/Warning log message  for exceeding the limit</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>CwpProcessManager,<br>
+        constant<br>
+        CwpMAX_PROC_LIMIT</td>
+      <td class='confluenceTd'>Maximum number of processes.</td>
+      <td class='confluenceTd'>5 000 000</td>
+      <td class='confluenceTd'>No set limit (up to 2 G). Limited by the available memory. Large values may result in reduced speed.<BR></td>
+      <td class='confluenceTd'>  DE0131 in CwpGlobalProcesses Constructor and initializePE in CwpProcessManager.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>CwfMetadataElement. ORA_IDENTIFIER_MAX_LEN</td>
+      <td class='confluenceTd'><p>Maximum string length for table names.</p></td>
+      <td class='confluenceTd'>30</td>
+      <td class='confluenceTd'>Limit value cannot be increased.<BR></td>
+      <td class='confluenceTd'>  DE4200 in CwfLeaf validate() &amp;&amp; DE4201 in CwfDBColumnBasedItem validate().</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>CwfConstants.CWF_CT_REF_LEVEL_LIMIT</td>
+      <td class='confluenceTd'>Number  of levels to which code tables can refer to other code tables.</td>
+      <td class='confluenceTd'>3</td>
+      <td class='confluenceTd'>Unknown.</td>
+      <td class='confluenceTd'>  DE6421 logged from CwfCTStringArray.readCT() method.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>CwfEventHandler. MAX_EVENT_ID_LENGTH</td>
+      <td class='confluenceTd'>Number of characters in the Event ID.</td>
+      <td class='confluenceTd'>128</td>
+      <td class='confluenceTd'>Limit value can be increased to accomodate operation for large clients or shared tenant/managed services.<BR></td>
+      <td class='confluenceTd'>No error or warning message. It only limits the results to 2500. CwfSQLFilter.runSelect()  uses this limit to fetch 2500 records each time until it gets all records. Also, the CwfDataObjectList.isResultComplete method checks if the result is complete or partial.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>CwpGlobalProcesses. GP_DEFINITIONS_LIMIT</td>
+      <td class='confluenceTd'>Maximum number of Global Process definitions.</td>
+      <td class='confluenceTd'>1000</td>
+      <td class='confluenceTd'>Limit value can be increased but is not recommended.</td>
+      <td class='confluenceTd'> DE0079 in  CwpGlobalProcesses constructor.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>CwfMetadataRTRule. executeRule() method</td>
+      <td class='confluenceTd'>Maximum  number of results returned by RTRules.</td>
+      <td class='confluenceTd'>2500</td>
+      <td class='confluenceTd'>Limit value can  be increased but is not recommended.</td>
+      <td class='confluenceTd'>No error or warning message. It merely limits the results to 2500. CwfSQLFilter.runSelect() uses this limit to fetch 2500 records each time until it gets all records. Also the CwfDataObjectList.isResultComplete method  checks if the result is complete or partial.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>CwcInfoTable.setCell()  method</td>
+      <td class='confluenceTd'>Maximum number of rows in InfoTable.</td>
+      <td class='confluenceTd'>32 766</td>
+      <td class='confluenceTd'>Limit value cannot be increased. Values above 10,000 are  not recommended.</td>
+      <td class='confluenceTd'>DE0906 in CwcInfoTable.setCell()</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>CwfMetadataFinder. MAX_ROWS_LIMIT</td>
+      <td class='confluenceTd'>Maximum number of Finder rows.</td>
+      <td class='confluenceTd'>9999</td>
+      <td class='confluenceTd'>Limit value can  be increased but is not recommended.</td>
+      <td class='confluenceTd'> DE4176 in CwfFinder.validate()</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>CwfMetadataFinder. MIN_ROWS_LIMIT</td>
+      <td class='confluenceTd'>Minimum  number for maximum number of Finder rows.</td>
+      <td class='confluenceTd'>100</td>
+      <td class='confluenceTd'>Unknown.</td>
+      <td class='confluenceTd'> DE4176 in CwfFinder.validate()</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>CwfMetadataFinder. CWF_VOLATILITY_MAX</td>
+      <td class='confluenceTd'>Maximum  volatility for Finders, in minutes.</td>
+      <td class='confluenceTd'>9999</td>
+      <td class='confluenceTd'>Limit value can  be increased but is not recommended.</td>
+      <td class='confluenceTd'> DE4177 in CwfFinder.validate()</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>CwfProcessBase.MAX_ACTIVITIES_IN_PROCESS</td>
+      <td class='confluenceTd'>Maximum  number of activities in a process definition.</td>
+      <td class='confluenceTd'>4000</td>
+      <td class='confluenceTd'>Limit value can  be increased but is not recommended.</td>
+      <td class='confluenceTd'><p> DE0096 in CwfProcessBase.validate()</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p>ProviderFactory Constant</p>
+        <p>MAX_CACHE_SIZE</p></td>
+      <td class='confluenceTd'><p>Service provider cache limit. </p>
+        Single cache holds client session related objects. For example,   JMS session  object or HTTP cookie.</td>
+      <td class='confluenceTd'>10 000</td>
+      <td class='confluenceTd'>Unknown.</td>
+      <td class='confluenceTd'><p>No error or warning message. If full, objects are not placed in cache.</p>
+        <p>          Existing objects are cleaned if unused for the cache expiry period.</p>
+        <p>          ProviderFactory.getObject() is cleaning unused cache.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Defined in the configuration model (com.conceptwave.config.model.defaults)  for each type of port but not exposed in the UI</td>
+      <td class='confluenceTd'>Service provider cache expiry.</td>
+      <td class='confluenceTd'>1 hour</td>
+      <td class='confluenceTd'>Limit value can be decreased.</td>
+      <td class='confluenceTd'><p>No error or warning message. Cache objects are removed.</p>
+(ProviderFactory.getObject()  is cleaning unused cache.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ListenerHandler.RECONNECT_ATTEMPT_PERIOD</td>
+      <td class='confluenceTd'><p>Queue listener reconnect  period. </p>
+        Time after which a JMS/MQ listener thread  attempts to reconnect to a  queue after failing to connect.</td>
+      <td class='confluenceTd'>10 seconds</td>
+      <td class='confluenceTd'>Unknown</td>
+      <td class='confluenceTd'>N/A</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ListenerHandler.DISTRIBUTED_RECONNECT_PERIOD</td>
+      <td class='confluenceTd'><p>Queue Listener Distributed  Reconnect Period. </p>
+        Time after which an existing listener queue connection is closed.&nbsp;  Used in the distributed queue environment.</td>
+      <td class='confluenceTd'>5 minutes</td>
+      <td class='confluenceTd'>Unknown</td>
+      <td class='confluenceTd'>N/A</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ProviderFactory.invoke()</td>
+      <td class='confluenceTd'><p>Service Provider Cache Based  Retry Limit. </p>
+        Number of times the interface invocation tries if an exception occurs and the provider used an object from the cache.</td>
+      <td class='confluenceTd'>1</td>
+      <td class='confluenceTd'>Limit can be exposed in the configuration.</td>
+      <td class='confluenceTd'>Throws original exception from the invoke  method.</td>
+    </tr>
+    <!--<tr>
+<td class='confluenceTd'><b>Import Node Configuration</b></td>
+<td class='confluenceTd'><i>-config -import</i></td>
+<td class='confluenceTd'>Import configuration from file.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Export Node Configuration</b></td>
+<td class='confluenceTd'><i>-config -export</i></td>
+<td class='confluenceTd'>Import configuration from file.</td>
+</tr>-->
+  </tbody>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿<html>
+<head>
+<title>Database Maps - Audit Mapped Data Structures</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Audit Mapped Data Structures</h2>
+<p>You can track changes to mapped data structures by selecting an <strong>Audit</strong> checkbox. There are three checkboxes available:</p>
+<ul>
+  <li>The global <strong><a href="../../../Configuration_Tool_User_Guide/Configure/System/System/general.html">Enable Audit</a></strong> checkbox in the System Configuration application</li>
+  <li>The <strong><a href="databaseMapGeneralTab.html">Audit Trail</a></strong> checkbox from the database map's General tab</li>
+  <li>The database map item's <strong>Audit</strong> checkbox from the database map's Mapping tab  </li>
+  </ul>
+<p>To enable auditing for a specific map item, all three checkboxes must be checked.<BR>
+  <BR>
+  <strong>Notes:</strong></p>
+<ul>
+  <li>An object map with either an ID or foreign key mapping does not show the <strong>Audit</strong> checkbox. An audit can be enabled on either the default or selected map. </li>
+  <li>An object map with either XML or JSON contains the audit feature and it creates an audit record for each variable.</li>
+  <li>For event handling, you must create a new event handler for the <a href="../../../Metadata Deployment Guide/auditLogging.html#avmAuditEvents">SYSTEM_AUDIT_TRAIL event</a>.<BR>
+  </li>
+</ul></td>
+</tr>
+</table>
+</body>
+</html>

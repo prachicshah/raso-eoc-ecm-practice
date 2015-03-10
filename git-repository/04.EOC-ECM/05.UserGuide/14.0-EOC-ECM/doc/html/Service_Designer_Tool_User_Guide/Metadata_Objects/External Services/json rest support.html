@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>JSON and REST Support</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+  <td valign="top" class="pagebody"><table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+    <tr>
+      <td valign="top" class="pagebody"><h3>JSON and REST Support</h3>
+        <p><strong>JavaScript Object Notation (JSON)</strong> is a lightweight data serialization format based on a subset of JavaScript. A Representational State Transfer (REST) interface is one that  conforms to the constraints and characteristics of the <a href="http://www.ics.uci.edu/%7Efielding/pubs/dissertation/rest_arch_style.htm" target="_blank">REST architectural style</a> for distributed hypermedia systems.</p>
+        <p>The following support is available:</p>
+        <ul>
+          <li>JSON for both the HTTP service provider and HTTP listener</li>
+          <li> REST for the HTTP service provider</li>
+        </ul>
+        <p>You can select <strong>JSON</strong> from the <strong>Encoding Style</strong> field for HTTP messages:</p>
+        <p><img src="jsonEncodingStyle.png"  alt="Select JSON from Encoding Style field" border="1"></p>
+        <p>The <strong>Encoding Style</strong> field specifies how message data is formatted when performing a request. The system performs an automatic conversion between JSON and the metadata object. As a result, the metadata object's attributes must match the property names of the JSON object.</p>
+        <p>For example, suppose your JSON object is the following:</p>
+        <div class="preformatted">
+          <div class="preformattedContent">
+            <pre>
+{
+  "loginName" : "email/ phone number",
+  "password" : "<value>",
+  ...
+} </pre>
+          </div>
+        </div>
+        <p> To use the  auto-conversion, the BusinessPartner metadata document needs to have leaves named <em>loginName</em> and <em>password</em>.</p>
+        <p>The <strong>HTTP Method</strong> attribute appears in the HTTP Service Provider operation level, and has the following options to send out requests:</p>
+        <ul>
+          <li><strong>POST</strong> (create)</li>
+          <li><strong>GET</strong> (read)</li>
+          <li><strong>PUT</strong> (update or create)</li>
+          <li><strong>DELETE</strong> (delete)</li>
+          <li><strong>HEAD</strong> ( to read header information only)</li>
+        </ul>
+        <p><img src="jsonHttpMethod.png" alt="HTTP Method attribute" border="1"></p>
+        <p>This attribute is used as HttpURLConnection's property to send out a request, such as the following:</p>
+        <div class="preformatted">
+          <div class="preformattedContent">
+            <pre>
+connection.setRequestMethod("POST");</pre>
+          </div>
+        </div>
+        <p>If there is no <strong>HTTP Method</strong> attribute specified, use the following:</p>
+        <ul>
+          <li>Use <strong>POST</strong> for the following <strong>Encoding Style</strong> values:
+            <ul>
+              <li><strong>XML</strong></li>
+              <li><strong>Form</strong></li>
+              <li><strong>Text</strong></li>
+              <li><strong>Json</strong></li>
+            </ul>
+          </li>
+          <li>Use <strong>GET</strong> for the following <strong>Encoding Style</strong> values:
+            <ul>
+              <li>UrlReplacement</li>
+              <li>UrlEncoded</li>
+            </ul>
+          </li>
+        </ul>
+        <h4> APIs</h4>
+        <p>The following APIs are available:</p>
+        <ul>
+          <li>Global.getItemsFromJson(), which converts a JSON string into a list of data objects.</li>
+          <li>These methods in DataObject (implemented in both DataStructure and DataDocument):
+            <ul>
+              <li>fromJson, which performs a conversion from a JSON object to a data object.</li>
+              <li>toJson, which converts a dataObject to a JSON string. </li>
+            </ul>
+          </li>
+          <li>DataStructure.toText(), which must be overridden.</li>
+          <li>DataStructure.fromText, which must be overridden.</li>
+        </ul>
+        <p>Velocity Studio exposes these methods, which allows you to override them:</p>
+        <table class='confluenceTable' border cellpadding="1">
+          <tbody>
+            <tr>
+              <th width="145" class='confluenceTh'>API Method</th>
+              <th width="277" class='confluenceTh'>Velocity Studio Method</th>
+            </tr>
+            <tr>
+              <td class='confluenceTd'>fromJson</td>
+              <td class='confluenceTd'>cwFromJson</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'>toJson</td>
+              <td class='confluenceTd'>cwToJson</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'>toText</td>
+              <td class='confluenceTd'>cwToText</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'>fromText</td>
+              <td class='confluenceTd'>cwFromText</td>
+            </tr>
+          </tbody>
+        </table>
+        <p><strong>Notes:</strong></p>
+        <ul>
+          <li>toJson can have the excludeHeader flag, which  is false by default. You can set it to true using toJson(true) to exclude either the datastructure or document name in the JSON string.</li>
+          <li> toJson ignores elements that have the <strong>Exclude</strong> property set.</li>
+          <li>XML rules that you define at the object level (for example, document, datastructure, or order) are invalid for the toJson method. </li>
+          <li>You can exclude the header from a JSON string by using the  fromJson method's excludeHeader parameter, which takes a Boolean value. This method uses the metadata setting if this parameter is missing. The method first does matching with the XML name for backward compatibility, then the JSON name, and then the local name. This method throws an error when the JSON header is expected, but the given string does not contain a header.</li>
+          <li>To detect whether a data structure has been changed after a fromJson(call), use the isLeafSet("name") method.</li>
+          <li>You can use the cleanLeafSetFlag("name") and cleanLeavesSetFlag() methods to clean the SET flag on a variable and on all variables, respectively. <BR>
+          </li>
+        </ul>
+        <h4><span id="internal-source-marker_0.3">Placeholders in the URL to Support REST Service</span></h4>
+        <p> The URL for the httpservice location has placeholders, such as http://url/api/v3/clients/{<em>client_id</em>}/{<em>client_variant_id</em>}/businessPartners. The <em>client_id</em> and <em>client_variant_id</em> placeholders are the leaf names in either the document or data structure.</p>
+        <p>At runtime, these placeholders are populated with the values from the document or data structure to get the actual URL location for the interface service.<br>
+          <br>
+          For example, if the incoming document has <em>client_id</em> containing a value=2012, and <em> client_variant_id</em> with a value=0102, the URL becomes http://url/api/v3/clients/2012/0102/businessPartners.</p>
+        <h4><span id="internal-source-marker_0.4">MessageLog Finder</span></h4>
+        To support displaying JSON or text in sent or receive receive data, only XML is allowed. You can also resend a JSON text. <br>
+        <h4>JSON Date and Time Format</h4>
+        <p>Support is available for a flexible JSON date format using the <strong>JSON Format</strong> field, which includes support for the /Date(milliseconds) format and any valid Java date, such as <em>yyyy-mm-dd</em>.</p>
+        <p><img src="jsonFormatField.png" alt="JSON format field"></p>
+        <p><strong>Parsing from JSON</strong><br>
+          Parsing from JSON supports /Date(). If no format is specified, assuming and it is a datetime type, the ISO-8601 standard is assumed, and either <em>YYYY-MM-DDTHH:mm:ss.SSSZ</em> or <em>yyyy-MM-dd'T'HH:mm:ss.SSS</em> format is assumed. You can choose whether the time should be in UTC (for example, 2012-06-01T03:04:05.123Z) or in a specific timezone (for example, 2012-06-01T03:04:05.123+0200). For a date type, the ISO-8601 standard is assumed and takes the <em>yyyy-MM-dd</em> format.</p>
+        <p><strong>Parsing to JSON</strong><br>
+          If no format is specified, the GMT or UTC time in is converted in ISO-8601 format <em>YYYY-MM-DDTHH:mm:ss.SSSZ</em> (for example, 2012-06-01T03:04:05.123Z). If the format is /Date, it would be converted into /Date(milliseconds). Otherwise, the system performs regular Java date formatting.</p>
+        <p>If there is no JSON format specified, and it is a datetime type, ISO-8601 standard format, <em>yyyy-MM-ddTHH:mm:ss.SSSZ</em> or <em>yyyy-MM-dd'T'HH:mm:ss.SSS</em>, is assumed. For a date type, the ISO-8601 standard format, <em>yyyy-MM-dd</em>, is assumed. For example, if you have a date string, 2012-02-02, and its type is Date and no JSON format specified, parsing occurs to get the value.</p>
+        <h4>Support to Get Request URL in Listeners</h4>
+        <p>Support is available for REST over HTTP, which allows you to get the request URL (parameter or value) in listeners.</p>
+        <p>The existing UserProfile.getRequestParamNames() and UserProfile.getRequestParam() methods can be used in HTTP listener scripts to access URL parameters. This feature is for URL parameters that can exist in a POST, GET, and so on.</p>
+        <p><strong>Note:</strong> This feature is not for HTTP headers.</p>
+        <h4>Access to Response BODY and HTTP Header</h4>
+        <p>When an error message appears in the BODY of the HTTP response, you have access to this error message when using HTTP and REST service providers. </p>
+        <p>To access this error message, verify the following:</p>
+        <ul>
+          <li>Select the <strong>Message on fault</strong> option for this HTTP <a href="defining a port.html">port</a>.</li>
+          <li>Ensure that the fault data element for the specified operation matches the incoming response body.</li>
+        </ul>
+        <p>An array containing the fault data object is returned as a result of this interface call. The response body is also logged as received data in the message log. Additionally, the response header information is logged as received properties in the message log, which is also available using UserProfile.getHttpResponseHeaderMap().</p>
+        <h4>Support for REST HTTP Verbs</h4>
+        <p>The UserProfile.getHttpMethod() allows the access to the REST http verb used in the request. </p>
+        <p>The UserProfile.getRequestPath() can be used to work  with the URL paths. HTTP Listener URL paths  contain namespace, interface and the operation information. URL information beyond  the standard HTTP Listener URL pattern is considered URL path and can be used  to develop resource based REST services. </p>
+        <h4>URL Path Support for REST</h4>
+        <p>The getRequestPath() method enhances the REST functionality by allowing you to work with URL paths. Currently, HTTP listener URL paths contain namespace, interface, and operation information: </p>
+        <div class="preformatted">
+          <div class="preformattedContent">
+            <pre>http://<em>host</em>:<em>port</em>/cwf/api/&lt;<em>namespaceName</em>&gt;-&lt;<em>interfaceName</em>&gt;/&lt;<em>operationName</em>&gt;</pre>
+          </div>
+        </div>
+        <p>URL information beyond the standard HTTP listener URL pattern is considered to be a URL path and can be used to develop resource-based REST services. The following is a sample URL path:</p>
+        <div class="preformatted">
+          <div class="preformattedContent">
+            <pre>http://www.server.com/cwf/api/server-OrderInterface/ResponseRequest/resource_category/resource/resource_id</pre>
+          </div>
+        </div>
+        <p>You can access a custom URL path by completing these steps:</p>
+        <ol>
+          <li>In the Configuration application, click <strong>Services</strong> &gt; <strong>Binding</strong> and click the operation that you want.</li>
+          <li>In the operation's <strong>Location</strong> field, add a custom path.<br>
+            <br>
+            <img src="restBindingLocationURLcustomPath.png" alt="REST support for custom URL in Location field" border="1"><br>
+            <br>
+            The internal URL parser considers any path element after the operation (that is, first element) to be customized. As a result, it is made available in the script. <br>
+          </li>
+          <li>In the listener script, use the  UserProfile.getRequestPath() method to get an array of strings that represents the URL path:<br>
+            <br>
+            <div class="preformatted">
+              <div class="preformattedContent">
+                <pre>Global.logDebug("Request URI "+UserProfile.getRequestPath());</pre>
+              </div>
+            </div>
+          </li>
+        </ol>
+        <strong>Note:</strong> If you do not specify an operation in the URL path, it defaults to the first interface operation.<br></td>
+    </tr>
+  </table></td>
+</tr>
+</table>
+</body>
+</html>

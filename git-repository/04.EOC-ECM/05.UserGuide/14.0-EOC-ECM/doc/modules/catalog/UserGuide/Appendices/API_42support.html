@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Supported Version 4.2 function APIs in Catalog 5.x</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<h2>Supported Version 4.2 function APIs in Catalog 5.x</h2>
+<p>The following table shows  Catalog version 4.2 functions, what their corresponding Catalog version 5.x functions are, and descriptions of the version 5.x functions.</p>
+<table width="1147" border cellpadding=1 class='confluenceTable'>
+  <tbody>
+<tr>
+  <th width="233" class='confluenceTh'>Version 4.2 API Name</th>
+  <th width="268" class='confluenceTh'>Corresponding Version 5.x API </th>
+  <th width="709" class='confluenceTh'>Description</th>
+</tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>Catalog.setGlobalContext()</td>
+    <td class='confluenceTd' VALIGN=TOP>Catalog.getGlobalContext() </td>
+    <td class='confluenceTd' VALIGN=TOP>You can create a family   of variables using the Context object. Once the context is set as <em>opened</em>, the   variables can be set or accessed using   theContext. </td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>Catalog.getCurrentCatalogDate()</td>
+    <td class='confluenceTd' VALIGN=TOP>getCatalogTime()</td>
+    <td class='confluenceTd' VALIGN=TOP>Use the getCatalogTime() method   from the Catalog class.</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>Catalog.getImageURL()</td>
+    <td class='confluenceTd' VALIGN=TOP>getImageURL() </td>
+    <td class='confluenceTd' VALIGN=TOP>Use the getImageURL() method from   the Catalog class.</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>Catalog._getAttachmentURL()</td>
+    <td class='confluenceTd' VALIGN=TOP>getAttachmentURL()</td>
+    <td class='confluenceTd' VALIGN=TOP><BR>
+  Use the getAttachmentURL() method   from the Catalog class.<BR></td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>Catalog.__getCatalogImageSize()</td>
+    <td class='confluenceTd' VALIGN=TOP>getImageHeight(), getImageWidth()</td>
+    <td class='confluenceTd' VALIGN=TOP>Use the getImageHeight() and   getImageWidth() methods from the Catalog class.</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>Catalog.extendsDocument()</td>
+    <td class='confluenceTd' VALIGN=TOP> isBasedOn()    </td>
+    <td class='confluenceTd' VALIGN=TOP>Use the isBasedOn() method from the CwObject class.</td>
+    
+</tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>Catalog.getCTCodes()</td>
+    <td class='confluenceTd' VALIGN=TOP>getCTCodesAndDescriptions()</td>
+    <td class='confluenceTd' VALIGN=TOP><BR>
+  Use the getCTCodesAndDescriptions()   method from the Global class.</td>
+  </tr>
+</table>
+<p>The following is the  current list of version 4.2 APIs that are supported in this release:</p>
+<ul>
+  <li>    Catalog.getCurrentComponent()</li>
+  <li>    Catalog.getCurrentOffer()</li>
+  <li>    Catalog.getCurrentOrder()</li>
+  <li>    Catalog.getCurrentPriceItem()</li>
+  <li>    Catalog.getCurrentProduct()</li>
+  <li>    Catalog.setCurrentComponent()</li>
+  <li>    Catalog.setCurrentOffer()</li>
+  <li>    Catalog.setCurrentOrder()</li>
+  <li>    Catalog.setCurrentPriceItem()</li>
+  <li>    Catalog.setCurrentProduct()</li>
+</ul>
+<p>4.2   Catalog mode has to be set for the API to be   recognized:</p>
+<ul>
+  <li>    Global.set42CatalogMode()<BR>
+  </li>
+</ul>
+</body>
+</html>

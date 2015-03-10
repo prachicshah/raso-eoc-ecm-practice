@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>Rule Sets</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Rule Sets</h2>
+<p>Rule Sets  are used for data initialization, validation, and permissions. A Rule Set  defines a set of rules that can be evaluated against a source data object  (Document, Data Structure, or Top- Level User Interfaces) and its extensions. Individual rules are defined per data object  node. Depending on type, rules can be defined on the top node or its immediate  data type child nodes. </p>
+<h3>Rule Sets Types</h3>
+
+<p>There are three types of the rule set. </p>
+<ul>
+  <li><a href="./Initialization Rule Set.html">Initialization Rule Set</a></li>
+  <li><a href="./Validation Rule Set.html">Validation Rule Set</a></li>
+  <li><a href="./Permission Rule Set.html">Perrmission Rule Set</a></li>   
+</ul><br>
+
+<h3>Create a Rule Set</h3>
+<p>To create a new Rule Set, do one of the following options:</p>
+In the<strong> Metadata</strong> tab of<strong> Navigation pane</strong>, either:  
+<ol>
+   <li>Right-click a Namespace and select 
+      <strong> New</strong>.</li>
+   <li><strong>New Metadata Object</strong> wizard       appears as a popup. Expand <strong> Data       Dictionaries</strong>, select<strong> Rule       Set</strong>, and then click the<strong>       Next</strong> button.</li>
+   <li>Step two of the wizard appears. Enter the      <strong> Name </strong> of the Rule Set. Enter      the<strong> Label</strong> for the Rule Set.      Select<strong> Type  </strong>and <strong> Source      </strong> for the Rule Set, which are      mandatory fields. Then, click the<strong> Finish</strong> button.
+</ol>
+  
+<strong>OR </strong>
+
+<ol>
+  <li>Right-click the <b>Data Dictionaries</b>     folder in a Namespace, if it is present. Select     <b>New Rule Set</b>.</li>
+  <li>Follow step 3 from the previous procedure.</li>
+</ol><br>
+<p><img src="createRuleset.png" alt="Create a Rule Set" border="1" align="absmiddle" /></p>
+
+  <h3>Order  of Application of Rule Sets to a Data Object</h3>
+  <p>When  multiple rule sets are applied to an object,  applied order of rule sets is not defined or guaranteed to be consistent for those rule sets  defined specifically for the source object type. In the case of object extension, rule sets defined for base  types are applied before the rules defined on extended types. However, this is on a variable-by-variable basis. In other words, all application rule sets are applied to the  first variable, then the next variable, and so.</p>
+  <h3>Data Object Traversal</h3>
+  <p>Traversal order of data object nodes and sub-nodes is not guaranteed or defined.</p>
+  <h3>Definition and Application of Rule Sets to Child Nodes </h3>
+  <p>Rules can not be defined and applied depending on the rule set type and child node type. See the following  chart:</p>
+  <table  class="confluenceTable" border cellpadding="1">
+    <tr>
+      <th class="confluenceTh" width="100" valign="top"><p><strong>&nbsp;Node Type</strong></p></th>
+      <th class="confluenceTh" colspan="2" valign="top"><p><strong>Initialization</strong></p></th>
+      <th class="confluenceTh" colspan="2" valign="top"><p><strong>Validation</strong></p></th>
+      <th class="confluenceTh" colspan="2" valign="top"><p><strong>Permission</strong></p></th>
+    </tr>
+    <tr>
+      <td width="100" valign="top"><p><strong>&nbsp;</strong></p></td>
+      <td width="99" valign="top"><p><strong>Can Define Rule</strong></p></td>
+      <td width="160" valign="top"><p><strong>Node&rsquo;s Base Type Rule Set Applied</strong></p></td>
+      <td width="106" valign="top"><p><strong>Can Define Rule</strong></p></td>
+      <td width="160" valign="top"><p><strong>Node&rsquo;s Base Type Rule Set Applied</strong></p></td>
+      <td width="99" valign="top"><p><strong>Can Define Rule</strong></p></td>
+      <td width="160" valign="top"><p><strong>Node&rsquo;s Base Type Rule Set Applied</strong></p></td>
+    </tr>
+    <tr>
+      <td width="100" valign="top"><p><strong>Top Node</strong></p></td>
+      <td width="99" valign="top"><p>No</p></td>
+      <td width="160" valign="top"><p>Yes</p></td>
+      <td width="106" valign="top"><p>Yes</p></td>
+      <td width="160" valign="top"><p>Yes</p></td>
+      <td width="99" valign="top"><p>Yes</p></td>
+      <td width="160" valign="top"><p>Yes</p></td>
+    </tr>
+    <tr>
+      <td width="100" valign="top"><p><strong>Data Type Node</strong></p></td>
+      <td width="99" valign="top"><p>Yes</p></td>
+      <td width="160" valign="top"><p>N/A</p></td>
+      <td width="106" valign="top"><p>Yes</p></td>
+      <td width="160" valign="top"><p>N/A</p></td>
+      <td width="99" valign="top"><p>Yes</p></td>
+      <td width="160" valign="top"><p>N/A</p></td>
+    </tr>
+    <tr>
+      <td width="100" valign="top"><p><strong>Container Node</strong></p></td>
+      <td width="99" valign="top"><p>NO<sup>1</sup></p></td>
+      <td width="160" valign="top"><p>NO<sup>1,2</sup></p></td>
+      <td width="106" valign="top"><p>NO<sup>1</sup></p></td>
+      <td width="160" valign="top"><p>NO<sup>1</sup></p></td>
+      <td width="99" valign="top"><p>NO<sup>1</sup></p></td>
+      <td width="160" valign="top"><p>NO<sup>1</sup></p></td>
+    </tr>
+    <tr>
+      <td width="100" valign="top"><p><strong>Element Node<sup>3</sup></strong></p></td>
+      <td width="99" valign="top"><p>NO</p></td>
+      <td width="160" valign="top"><p>NO<sup>4</sup><br>
+        YES<sup>5</sup></p></td>
+      <td width="106" valign="top"><p>Yes</p></td>
+      <td width="160" valign="top"><p>Yes</p></td>
+      <td width="99" valign="top"><p>NO</p></td>
+      <td width="160" valign="top"><p>YES</p></td>
+    </tr>
+    <tr>
+      <td width="100" valign="top"><p><strong>Array Node</strong></p></td>
+      <td width="99" valign="top"><p>NO</p></td>
+      <td width="160" valign="top"><p>Same as non-array node type </p></td>
+      <td width="106" valign="top"><p>NO</p></td>
+      <td width="160" valign="top"><p>Same as non-array node type </p></td>
+      <td width="99" valign="top"><p>NO</p></td>
+      <td width="160" valign="top"><p>Same as non-array node type </p></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+<ol>
+   <li>
+     In the container node, definition of rules or application of  rule sets is not allowed. It is a good practice to define top-level data object  for all sub-structures. It results in improving the extensibility and reuse since anonymous  container types cannot be extended, and they can be used meaningfully out  of context of the parent.structure.
+   </li>
+  <li>Even if a  container node extends a top-level      data structure, when container node are  created,      the framework currently does  not run the             top-level object initialization routine.  It is      not a good practice to apply rule sets from the      top-level type  either.</li>
+  <li>Element  nodes are data structure child nodes that are     defined with the element field referencing  a      top-level data object. These top-level objects do <em>not</em> have to be marked       as <em>elements</em>.</li>
+  <li>When the parent node is created, container or       element nodeds are not created automatically, so      there is no node to apply the rule set to.</li>
+  <li>When  referenced (for example,       TopNode.ElementNode.Value1 = …), element nodes are      automatically  instantiated and their       initialization routines are executed.</li>
+</ol>
+  
+</td>
+ </tr>
+  </table>
+   </body>
+    </html>

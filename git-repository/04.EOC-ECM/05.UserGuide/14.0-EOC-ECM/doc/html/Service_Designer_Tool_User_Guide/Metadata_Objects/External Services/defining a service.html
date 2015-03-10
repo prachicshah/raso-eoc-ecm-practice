@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>Defining a Service</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>Defining a Service</h3>
+<p>A Service represents a collection of related Ports.</p>
+
+<p>To create a new Service, do one of the following:</p>
+In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:
+<ol>
+<li>Right-click a Namespace and select <b>New ...</b></li>
+<li><b>New Metadata Object</b> wizard appears as a popup. Expand <b>External Services</b>, select <b>External Service</b>, and then click the <b>Next</b> button.</li>
+<li>Step two of the wizard appears. Enter the name of Service (must conform to JavaScript naming conventions), and populate other fields, as necessary. Then, click the <b>Finish</b> button.</li>
+</ol>
+<i>OR</i>
+<ol>
+<li>Right-click the <b>External Services</b> folder in a Namespace, if it is present. Select <b>New External Service</b>.</li>
+<li>Follow step 3 from the previous procedure.</li>
+</ol>
+</ul>
+
+<p>After the Service is created, the icon will be added under the <b>External Services</b> folder.</p>
+
+<p><img src="newServiceNode.png" align="absmiddle" border="1" alt="New Service Node" /></p>
+
+<h4>Service General Properties</h4>
+<p>The general Service properties are defined on the <b>General</b> tab (see figure below). The table below describes the fields.</p>
+<p><em>General tab of the Service properties.</em></p>
+<p><img src="Service.png" align="absmiddle" border="1" alt="Service General Properties" /></p>
+<p><ins>Description of fields in the General tab of the Service properties.</ins></p>
+<table class='confluenceTable'border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory. Name of the Service within the namespace.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Deprecated</b></td>
+<td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Mandatory. Label to identify the Service.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the Service for documentation purposes.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>WSDL Type</b></td>
+<td class='confluenceTd'>Choose between <b>WSDL 1.1</b> and <b>WSDL 2.0</b>. This selection is only relevant for SOAP bindings -- that is, when any Port of this service has a Binding that uses the SOAP service provider.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

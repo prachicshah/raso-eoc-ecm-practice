@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Clean-up and Restart the Process Engine</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Clean up and Restart the Process Engine</h1>
+<p>The <strong>Automatic restart on fatal error</strong> checkbox in <a href="../Configuration_Tool_User_Guide/System Parameters.html">System Parameters</a> defaults to  being checked (that is, its value is set to true). Setting this option to true indicates that when severe errors in the Process Engine occur, the Process Engine automatically shuts itself down and then restarts itself. The Process Engine shuts down and restarts for all fatal errors, except for the following:</p>
+
+<ul>
+  <li>Invalid metadata on initial startup</li>
+  <li>Not enough memory, according to memory calculations, to run the specified number (in the configuration) of processes</li>
+  <li>A database error during the first update of the Process Engine record, which registers that the Process Engine has started</li>
+  <li>A changed Process Engine record found by the heartbeat, which means that another Process Engine has taken over the workload</li>
+</ul>
+<p>The Process Engine's cleanup and restart process consists of the following steps:</p>
+<ol>
+  <li>Call the shutdown function to stop all running threads, except the heartbeat and clock threads.</li>
+  <li>Close all database connections and release the connection pool.</li>
+  <li>Shut down the Catalog, if applicable.</li>
+  <li>Delete all memory objects, threads, and cache, except the metadata and Config objects.</li>
+  <li>Recreate all memory objects and threads as in a normal Process Engine startup using the cache settings of the initial startup.</li>
+  <li>Reconnect to the database and then create a database connection pool.</li>
+  <li>Start the Catalog, if required.</li>
+  <li>Restart the workload as in a normal Process Engine start.</li>
+  </ol>
+<p>The cleanup and start event then writes a warning message in the Process Engine event log.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

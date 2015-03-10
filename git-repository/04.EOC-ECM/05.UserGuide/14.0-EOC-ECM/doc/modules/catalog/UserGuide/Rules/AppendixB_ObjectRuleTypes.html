@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Appendix B: Object Rule Types and Predefined Parameters</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2><a name="ObjectRuleTypes"></a>Appendix B: Object Rule Types and Predefined Parameters</h2>
+
+<p>The object rules work with predefined parameters. The rule types, their return values, and the populated, predefined parameters are given in the following table:</p>
+
+<table border="1" cellspacing="0" cellpadding="0">
+  <tr>
+    <th width="85" valign="top" class='confluenceTh'><p><strong>Rule type</strong></p></th>
+    <th width="66" valign="top" class='confluenceTh'><p><strong>Return value</strong></p></th>
+    <th width="150" valign="top" class='confluenceTh'><p><strong>Description</strong></p></th>
+    <th width="66" valign="top" class='confluenceTh'><p><strong>theItem</strong></p></th>
+    <th width="78" valign="top" class='confluenceTh'><p><strong>theBasket</strong></p></th>
+    <th width="96" valign="top" class='confluenceTh'><p><strong>theInventory</strong></p></th>
+    <th width="84" valign="top" class='confluenceTh'><p><strong>theContext</strong></p></th>
+  </tr>
+  <tr>
+    <td width="85" valign="top"><p>Condition</p></td>
+    <td width="66" valign="top"><p>Boolean</p></td>
+    <td width="150" valign="top"><p>Checks if the item is available for given customer    contexts. The item is not part of the basket.</p></td>
+    <td width="66" valign="top"><p>Yes</p></td>
+    <td width="78" valign="top"><p>No</p></td>
+    <td width="96" valign="top"><p>No</p></td>
+    <td width="84" valign="top"><p>Yes</p></td>
+  </tr>
+  <tr>
+    <td width="85" valign="top"><p>Charge </p></td>
+    <td width="66" valign="top"><p>Number </p></td>
+    <td width="150" valign="top"><p>Returns the item price for this charge type. </p></td>
+    <td width="66" valign="top"><p>N/A</p></td>
+    <td width="78" valign="top"><p>Yes</p></td>
+    <td width="96" valign="top"><p>Yes</p></td>
+    <td width="84" valign="top"><p>Yes</p></td>
+  </tr>
+  <tr>
+    <td width="85" valign="top"><p>Quantity</p></td>
+    <td width="66" valign="top"><p>Number</p></td>
+    <td width="150" valign="top"><p>Returns the quantity for the price calculation - the    number of items that  are to be priced.</p></td>
+    <td width="66" valign="top"><p>N/A</p></td>
+    <td width="78" valign="top"><p>Yes</p></td>
+    <td width="96" valign="top"><p>Yes</p></td>
+    <td width="84" valign="top"><p>Yes</p></td>
+  </tr>
+  <tr>
+    <td width="85" valign="top"><p>Ranking</p></td>
+    <td width="66" valign="top"><p>Number</p></td>
+    <td width="150" valign="top"><p>Returns the ranking of the item. Determines the item    ordering in the browser result.</p></td>
+    <td width="66" valign="top"><p>N/A</p></td>
+    <td width="78" valign="top"><p>No</p></td>
+    <td width="96" valign="top"><p>No</p></td>
+    <td width="84" valign="top"><p>Yes</p></td>
+  </tr>
+</table>
+<br>
+<p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

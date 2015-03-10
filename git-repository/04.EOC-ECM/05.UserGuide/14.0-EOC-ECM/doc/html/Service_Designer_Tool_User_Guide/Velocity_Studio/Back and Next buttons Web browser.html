@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>Enable Back and Next Buttons in a Web Browser</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name=""></a>Enable Back and Next Buttons in a Web Browser</h2>
+<p>You can enable your Web browser's standard <strong>Back</strong> and <strong>Next</strong> buttons for navigation between pages.</p>
+
+<p>Web browsers consider the history of pages visited as a set of page  URLs with page titles and data submitted on a form, provided that the previous request was completed by submitting a form. When you click the Web browser's <strong>Back</strong> button, the browser gets to the most current history record (a previous page URL) and resubmits the data, if applicable. When you click the <strong>Next</strong> button, the browser returns to the page URL that the <strong>Back</strong> button had left. Some Web browsers also allow you to click a down arrow located next to either the <strong>Back</strong> or <strong>Next</strong> button, which shows a short history of recent pages you have visited, and to navigate to any of them listed.</p>
+<p><img src="History drop-down.png" alt="Click the drop-down menu to view and visit pages recently visited" width="298" height="213" border="1"><BR>
+  <BR>
+  A new history record is automatically created when you switch between application URLs. For example, if you have arrived at the http://localhost:8080/cwf/admin application from the http://localhost:8080/cwf/selectApp page,   clicking the <strong>Back</strong> button shows the Select Application page. </p>
+<p><strong>Note:</strong> If the application does not   have its own URL map and the current application URL remains as http://localhost:8080/cwf/selectApp, clicking   the <strong>Back</strong> button shows the login page instead (that is, http://localhost:8080/cwf/).</p>
+<h3>Add a History Record</h3>
+To create a new history record in browser, call the setCurrentHistoryID method of the global   History object. The following are examples:<br>
+<pre>
+   History.setCurrentHistoryID(&quot;startPage&quot;); 
+
+   //   with custom title:
+   History.setCurrentHistoryID(&quot;startPage&quot;, &quot;Start Application Page&quot;); 
+
+   //   with custom title and user data
+   History.setCurrentHistoryID(&quot;startPage&quot;, &quot;Start Application Page&quot;, userData); </pre>
+ <p>where   the first parameter is a unique identifier for the current page of the application.<br>
+  <br>
+   After   adding a history record in the browser, the application URL in your Web browser's address bar   should change to the following:</p>
+
+   <pre>    .../cwf/app#startPage</pre>
+
+ <p><strong>Note:</strong> It is recommended that you assign a URL for the Application UI to ensure that the <strong>Back</strong> and <strong>Next</strong> buttons work properly.<br>
+   <br>
+   To   get the current history record, call this method:</p>
+ <pre>
+    String currentID = History.getCurrentHistoryID();</pre>
+ Each time the current history ID gets changed, the History   object backs up the current ID, which can be retrieved by calling the following method:<br>
+ <pre>    String previousID = History.getPreviousHistoryID();  </pre>
+
+<h4>Restore Page on a History Event</h4>
+<p>When you click either the <strong>Back</strong> or <strong>Next</strong> button in your browser to go to the   previously visited or next page, respectively, the History object fires the callback notification, and   then passes the history ID associated with that page and the user data object to the   listener.
+ </p>
+<p>The callback method is fired in the following cases: </p>
+<OL>
+  <LI>When   you click either the <strong>Back</strong> or <strong>Next</strong> button in the Web browser. The method navigates to the previous or next history token that was previously added by the History.setCurrentHistoryID() method.</LI>
+  <LI>When you navigate back from one  Application UI (URL) to the last   history token of the previous Application UI.</LI>
+  <LI>When you navigate to the page by using a stored bookmark or a link with a history token (that is, .../cwf/app#historyID).</LI>
+</OL>
+<p>In cases 2 and 3, the history token may not have been added to the current application session. You can verify that the token has been added by calling the History.hasHistoryRecord(historyID) method.<BR>
+  <BR>
+  The Application UI is automatically added as a listener for history notifications when it   becomes current, and is removed on switching to another application or when logging out. To restore the page by its history ID, override the onHistoryCallback method: </p>
+<pre>function onHistoryCallback(historyID, userData) {
+    switch (historyID) {
+    case &quot;startPage&quot;:
+         // restore start page content...
+         break;
+    case   ...
+    }
+}</pre>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>If the callback function returns either true or nothing, the historyID parameter becomes current. If the callback function returns false, it stays on the current History record and    History.getCurrentHistoryID() still returns the old one.</li>
+  <li>When   navigating away from the current application, all history data is cleared on the server, although created records remain in the browser history.
+  </li>
+</ul>
+
+<h4>Add a Custom Listener</h4>
+<p>You can also register your own history listeners. For example, the <a href="Navigation Bar.htm">navigation bar   object</a> can be added as a listener. Sometimes, it may be more convenient to   handle the <strong>Back</strong> and <strong>Next</strong> button functionality at the navigation bar level:</p>
+
+  <pre>&nbsp;&nbsp;&nbsp;History.registerCallback(navBar, "onHistoryCallback");</pre>
+
+<p>where   the first parameter can be any UI object (for example, top-level or Document UI, Navigation   Bar, Navigation Tree, Order UI, and so on) and the second parameter is the name of the   callback method.<BR>
+  <BR>
+  <strong>Notes:</strong></p>
+<ul>
+  <li> All custom listeners are being removed automatically on leaving the application, but it is recommended that you unregister the history listener manually when the object is not in use anymore by using this method:</li>
+
+    <pre>&nbsp;&nbsp;&nbsp;History.unregisterCallback(navBar);</pre>
+
+  <li>The order of callback method invocations is not guaranteed. For example, navigation bar's   method can be called first and only then can the onHistoryCallback method of the application   be called, or vice versa. It is recommended that you do not split the logic to handle the same history ID in different objects. Every listener should handle its own unique history IDs.</li>
+</ul>
+<h3>History Class API</h3>
+<p>The following methods are available from the History API:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th width="387" class='confluenceTh'>Method</th>
+<th width="957" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><pre>setCurrentHistoryID(historyID, title, data)</pre></td>
+<td class='confluenceTd'><ul>
+  <li>If the <em>historyID</em> parameter is specified, it is different from the current one. Instead, a new record is created in  the browser history.</li>
+  <li>The 
+    <em>title</em> parameter is the custom   title for the history record. If the parameter is either null or unspecified, it takes the current   window title.</li>
+  <li>The <em>data</em> parameter is an optional user data object, which is stored for each current application   session. When the callback function is invoked, it is passed as a second   parameter.</li>
+</ul></td>
+</tr>
+<tr>
+<td class='confluenceTd'><pre>getCurrentHistoryID()</pre></td>
+<td class='confluenceTd'>Returns   the current history ID, which is either set by the setCurrentHistoryMethod or after the history   callback.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><pre>getPreviousHistoryID()</pre></td>
+<td class='confluenceTd'>Returns   the previous history ID.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><pre>getHistoryData(historyID)</pre></td>
+<td class='confluenceTd'>Returns   the user data object stored by the history ID. The object is stored only while   working with the current application.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><pre>hasHistoryRecord(historyID) </pre></td>
+<td class='confluenceTd'>Returns   true if the specified history ID has been added within the current application   session.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><pre>registerCallback(listener, method)  </pre></td>
+  <td class='confluenceTd'>Registers the custom listener for the history callback notification.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><pre>unregisterCallback(listener) </pre></td>
+  <td class='confluenceTd'>Removes the custom listener for the history callback notification.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><pre>unregisterCallbackByMetadataName(metadataName)</pre></td>
+<td class='confluenceTd'>Removes   all listener instances, except for the  Application UI, of (or extends) the specified   metadata.</td>
+</tr>
+
+</tbody>
+</table>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

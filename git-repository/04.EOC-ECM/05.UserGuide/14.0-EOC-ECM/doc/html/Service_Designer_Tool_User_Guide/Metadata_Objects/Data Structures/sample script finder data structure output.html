@@ -1,0 +1,131 @@
+﻿<html>
+<head>
+<title>Sample: Script Finder with Data Structure Output</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Sample: Script Finder with Data Structure Output</h2>
+<p>  This sample shows how to create a script finder (finder.SimpleDsFinder) that returns a list of data structures as output and displays it in the result table.  </p>
+<ol>
+  <li>Create a new namespace called <strong>ds</strong>.</li>
+  <li>Create a simple data structure, <strong>ds.TableDS</strong>, with different data type items: </li>
+  <ul>
+    <li><strong>sid</strong>: cwf.String64 (this item will be a data structure ID) </li>
+    <li><strong>string</strong>: cwf.String64</li>
+    <li><strong>number</strong>: com.conceptwave.system.Decimal</li>
+    <li><strong>date</strong>: com.conceptwave.system.Date</li>
+    <li><strong> checkbox</strong>: com.conceptwave.system.Boolean</li>
+    <li><strong> select</strong>: cwf.severity<br>
+    </li>
+  </ul>
+  <li>Right-click the data structure's <strong>UserInterface</strong> and select  the <strong>Generate Form</strong> option. This form, GenForm, serves as a detail form in the finder.<br>
+    <br>
+    <strong>Note:</strong> You can use the Default form that displays the data structure as a tree. Since the ds.TableDS data structure is a simple one, a tree is not necessary.<br>
+    <br>
+    <img src="sample script finder tree.png" alt="Display data structure as tree" width="785" height="391" border="1"><br>
+    <br>
+  </li>
+  <li>To use the data structure in a script finder, it requires implementing cwGetStructId, which provides a unique identifier for the data structure in the result table. Click the <strong>Methods</strong> tab of the data structure's property panel. Proceed by right-clicking  the <strong>TableDS</strong> root and adding the following to the cwGetStructId method:<br>
+    <br>
+    <tt>return this.sid;</tt><br>
+    <br>
+    <strong>Note:</strong> The data structure has a pair of methods, cwGetStructId and cwSetStructId, for the ID. For this finder, we only need the former method. The setter is required when a data structure is used in a reference finder's <strong>Get Input</strong> parameter for the GET operation See the <a href="sample reference finder data structure.html">Reference finder sample</a> for details.</li>
+  <li>Create a simple data structure called ds.SearchDS, which will be used as search input. Add data type elements for search criteria, including the following:  </li>
+  <ul>
+    <li><strong>sid</strong>: cwf.String64 (Search the data structure by ID)</li>
+  </ul>
+  <li>Generate a form for ds.SearchDS and call it <strong>SearchForm</strong>.</li>
+  </ol>
+<h3>Create a Script Finder</h3>
+<p>The following sample shows how to create a script finder. Perform these steps:</p>
+<ol>
+  <li> Create a new namespace called <strong>finder</strong>.</li>
+  <li> Create a script finder called <strong>finder.SimpleDsFinder</strong> with the following parameters:  </li>
+  <ul>
+    <li><strong>Select Input</strong>: ds.SearchDS</li>
+    <li> <strong>Select Output</strong>: ds.TableDS</li>
+    </ul>
+ 
+    <p><strong>Note:</strong> You can use a document for the search input. The reverse also holds true, where  you can use the data structure as a search object and return documents as a result.</p>
+
+  <li>Click the <strong>View</strong> tab and change the SimpleDsFinderView default view:  </li>
+  <ul>
+    <li><strong>Search Form</strong>: ds.SearchDS.UserInterface.Forms.SearchForm</li>
+    <li><strong> Show search form</strong>: yes.<br>
+    </li>
+  </ul>
+  <li>Click the <strong>Advanced</strong> tab. For the <strong>Detail Form</strong>, select <strong>ds.TableDS.UserInterface.Forms.GenForm</strong>.</li>
+  <li> Implement the cwOnFinderSel method of the script finder to return a list of data structures matching the search criteria: <br>
+    <br>
+    <div class="code"><div class="codeContent">
+	<pre class="code-java">
+// searchData parameter is the search input: 
+// ds.SearchDS data structure 
+var searchById = searchData != null &amp;&amp; searchData.sid != null &amp;&amp; searchData.sid != &quot;&quot;; 
+var list = new DataObjectList(); 
+var ds; 
+
+if (!searchById || searchData.sid == &quot;101&quot;) { 
+    ds = new DataStructure(&quot;ds:TableDS&quot;); 
+    ds.sid = &quot;101&quot;; 
+    ds.string = &quot;Str value 1&quot;; 
+    ds.number = 1; 
+    ds.date = new Date(); 
+    ds.checkbox = true; 
+    ds.select = &quot;1&quot;; 
+    list.addLast(ds); 
+} 
+
+if (!searchById || searchData.sid == &quot;102&quot;) { 
+    ds = new DataStructure(&quot;ds:TableDS&quot;); 
+    ds.sid = &quot;102&quot;; 
+    ds.string = &quot;Str value 2&quot;; 
+    ds.number = 2; 
+    ds.date = new Date(); 
+    ds.checkbox = false; 
+    ds.select = &quot;2&quot;; 
+    list.addLast(ds); 
+} 
+
+if (!searchById || searchData.sid == &quot;103&quot;) { 
+    ds = new DataStructure(&quot;ds:TableDS&quot;); 
+    ds.sid = &quot;103&quot;; 
+    ds.string = &quot;Str value 3&quot;; 
+    ds.number = 3; 
+    ds.select = &quot;3&quot;; 
+    list.addLast(ds); 
+} 
+
+return list;</pre></div>
+	</div>
+  </li>
+</ol>
+<h3>Create an Application User Interface for the Sample Finder</h3>
+<p>To create an application user interface for the finder in this sample, complete these steps:</p>
+<ol>
+  <li> Add a new UserInterface called <strong>finder.app</strong> that extends the <strong>com.conceptwave.system.Application</strong> interface.</li>
+  <li> Create a new User Action method called <strong>SimpleDsFinder</strong>, and set these properties:  </li>
+  <ul>
+    <li><strong>Object</strong>: finder.SimpleDsFinder</li>
+    <li><strong> Form</strong>: Default</li>
+  </ul>
+  <li> Override the <strong>Menu</strong> form of the application UI.</li>
+  <li>Add a new Menu Item called <strong>SimpleDsFinder</strong> and set its <strong>Click method</strong> property to the <strong>SimpleDsFinder</strong> user action.<br>
+  </li>
+  </ol>
+<p>At runtime, the result table for finder.SimpleDsFinder is as follows:</p>
+<p><img src="sample script finder result table.png" alt="Result table at runtime for finder.SimpleDsFinder" width="852" height="429" border="1"></p>
+<p>The detail form for finder.SimpleDsFinder looks like the following:</p>
+<p><img src="sample script finder detail form.png" alt="Detail form for finder.SimpleDsFinder" width="875" height="439" border="1"></p>
+<p><br>
+  <br>
+</p></td>
+</tr>
+</table>
+</body>
+</html>

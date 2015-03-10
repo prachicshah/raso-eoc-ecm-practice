@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Clean All Process Revisions</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Clean All Process Revisions</h2>
+
+<p>All Process Revisions of all Process metadata in the project can be removed using the <b>Runtime &gt; Clean All Process Revisions</b> menu command.</p>
+
+<table cellpadding='5' width='85%' cellspacing='8px' class='noteMacro' border="0" align='center'>
+<colgroup>
+<col width='24' />
+<col /></colgroup>
+<tr>
+<td><b class="strong">Important Note</b><br />
+Do not use this command if there are process instances in target deployment (for example, production systems) that use any of these process revisions and yet to be completed! These process instances will no longer be able to be processed by the Process Engine. Only use this command when you are sure that it is safe to do so.
+</td>
+</tr>
+</table>
+
+<p>Upon clicking the command, the following prompt is displayed to warn you of the potential consequence of incorrect use:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="MDCleanRev.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+<p>Click the <b>Yes</b> button to proceed, which purges all Process Revisions of all Processes. All the Process Revision metadata files in the application metadata of the project are deleted. The Revision Number in the Process metadata remains unchanged; they are not reset.</p>
+
+<p>Otherwise, click the <b>No</b> button to cancel the command.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Processes - Purge</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Purge</h2>
+
+<p>Clicking  <strong>Processes</strong> &gt;<strong> Purge </strong>allows you to specify purging options. The process consists of  deleting information from system and order tables.</p>
+<p><img src="purge.png" alt="Processes - Purge tab" border="1"></p>
+<p>To move data, you need to  create delete triggers on the deleted tables. The following system tables are deleted:</p>
+<ul>
+  <li>cwprocess</li>
+  <li>cwpDynamicParticipant</li>
+  <li> cwpActivity</li>
+  <li>cwpParticipant</li>
+  <li>cwProcessHistory</li>
+  <li>cwpActivityArc</li>
+  <li>cwpWorkListAudit</li>
+  <li>cwpWorklist</li>
+  <li> cwMilestone</li>
+  <li> cwpWorkListArchive</li>
+  <li>cwProcessEventLog</li>
+  <li>cwMessageLog</li>
+</ul>
+<p>Based on your metadata implementation, orders are  deleted. You must override archiveOrderRule, archiveExtension, and archiveOrder to decide how to delete your orders. Your application must also create the triggers, which move  whatever fields that are needed. </p>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>It is recommended that you partition your database instead of archiving. Moving partitions from a production environment to an archive one is much faster and easier than deleting data from your production environment and inserting it into your archive system.</li>
+  <li>It is lso recommended that you partition all order tables using the cwOrderCreationDataSystem field. The product uses the partition key to speed up database operations when the <strong><a href="../System/general.html#partitioning">Partitioning interval (months</a>)</strong> field has a value other than 0.<br>
+  </li>
+</ul>
+<h3>Configure Purging Parameters</h3>
+<p>To configure your purging parameters, do the following: </p>
+<ol>
+  <li>Edit the pertinent parameters that you want.</li>
+  <li>When you have finished making your changes, click the <strong>Save</strong> button.</li>
+</ol>
+<p>This page contains the following fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Field</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Enable</strong></td>
+      <td class='confluenceTd'>If checked, this parameter allows you to specify purging parameters. By default, this field is  unchecked, meaning that the purging parameters on the Purge tab are disabled and ignored.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Milestones</strong></td>
+      <td class='confluenceTd'>The records in the milestones archive table, older than the specified number of days, are deleted. The parameter's default value is 60 days.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Completed Processes</strong></td>
+      <td class='confluenceTd'>The records in the completed processes table, older than the specified number of days, are deleted. The parameter's default value is 7 days.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Worklist Archive</strong></td>
+      <td class='confluenceTd'>The records in the worklist table, older than the specified number of days, are deleted. The parameter's default value is 60 days.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Events Log</strong></td>
+      <td class='confluenceTd'>The records in the event log table, older than the specified number of days, are deleted. The parameter's default value is 60 days.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Message Log</strong></td>
+      <td class='confluenceTd'>The records in the message log table, older than the specified number of days, are deleted. The parameter's default value is 7 days.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Loop Delay</strong></td>
+      <td class='confluenceTd'>This parameter specifies the wait period between each purging loop or interval.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Max Orders / Loop</strong></td>
+      <td class='confluenceTd'>This parameter indicates the number of orders to process during each interval.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Schedule</strong></td>
+      <td class='confluenceTd'><p>This parameter allows you to specify the schedule for the purging process (that is, when the purging process  starts). Implementing the purging process may vary and depends on the particular application (refer to the Velocity Studio User Guide, under <strong>Business Process Metadata &gt; Process Activity Properties</strong> - <strong>Schedule Tab</strong> for more information). Click the drop-down menu and select from one of the following options: </p>
+        <ul>
+          <li><b>Daily</b></li>
+          <li><b>Weekly</b></li>
+          <li><b>Monthly</b></li>
+        </ul></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Run at</strong></td>
+      <td class='confluenceTd'>You can specify the hour and minute (from midnight) in the <strong>Hour</strong> and <strong>Min</strong> fields, respectively, to start the purging process when scheduling is to run purging for that day.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Purge Delay</strong></td>
+      <td class='confluenceTd'>You can specify  the interval for the purging process (that is, for how long the purging process runs). Indicate the number of days, hours, and minutes in the <strong>Day</strong>, <strong>Hour</strong>, and <strong>Min</strong> fields, respectively.</td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

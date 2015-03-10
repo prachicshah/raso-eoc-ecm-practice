@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Support for Existing Licence Model</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h3>Support for Existing Licence Model</h3>
+
+<p>The licence model implemented with Sentinel RMS fully supports the existing licencing approach for these areas:</p>
+<ul>
+  <li>Fingerprinted by machine</li>
+  <li>Module-based licence</li>
+  <li>Development licence</li>
+  </ul>
+<h4>Fingerprinted by Machine</h4>
+<p>Currently, the AVM supports its own licence file format, which contains a set of modules (that is, features). The file is fingerprinted with the MAC address so that the licence is generated for each machine or server. The capacity is unsupported. The number of subscribers is controlled manually by limiting the number of licence files to <em>n</em>.</p>
+<h4>Module-based Licence</h4>
+<p>Both Ericsson Order Care and Ericsson Catalog Manager require licences for different product types (for example, Product Catalog, Service Registry, and so on). To install the product and start the application, you must have a valid licence file (that is, the base AVM licence at a minimum).</p>
+<h4>Development Licence</h4>
+<p>The Velocity Studio development tool requires a valid licence file with the VelocityStudio feature included. When installing Velocity Studio, it checks that the licence is valid, and then copies only the licenced modules. To run the application through Velocity Studio or a command line, you need a valid licence for all modules to be used.</p>
+<h4>Special Cases with Licences</h4>
+<p>There are two special cases when it comes to licences:</p>
+<ul>
+  <li><a href="#scenario1">Your system running Velocity Studio fails or you forget to return a key</a></li>
+  <li><a href="#scenario2">You add incremental Velocity Studio users</a></li>
+</ul>
+<p><a name="scenario1"></a><strong>Scenario 1:</strong> Your system running Velocity Studio fails or you forget to return a key.</p>
+<p>If you system that has Velocity Studio fails or if you forget to return a key, follow these steps:</p>
+<ol>
+  <li>Have all Velocity Studio users return their keys.</li>
+  <li>Run a cleanup script on the licence server.</li>
+  <li>Send a new fingerprint to Sweden, asking for a new file.</li>
+  <li>Install this file on the licence server. Velocity Studio users are down at this stage.</li>
+  </ol>
+<p><a name="scenario2"></a><strong>Scenario 2:</strong> Add incremental Velocity Studio users</p>
+<p>If you need to add more Velocity Studio users (for example, you buy five licences and, at a later date, you add five more), do the following:</p>
+<ol>
+  <li>Have all users return their Velocity Studio keys.</li>
+  <li>Delete the Velocity Studio component from the licence file.</li>
+  <li>Add the new licence file (five + five licences) to the licence server.<br>
+    <br>
+    <strong>Note:</strong> This step can be done in a maintenance window, provided that Sweden recevies this new file. <BR>
+</li>
+</ol>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

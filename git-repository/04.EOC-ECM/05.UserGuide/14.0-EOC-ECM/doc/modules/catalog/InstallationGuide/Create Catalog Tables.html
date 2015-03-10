@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Create Catalog Database Tables</title>
+<link rel="stylesheet" href="../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td>
+<h2>Create Catalog Database Tables</h2>
+		<p>To create Catalog-specific  database tables, you must run the Catalog-specific DDL file that is included in  the product installation. Use any SQL program, such as SQL Plus, to run the  file. The following are the steps to run the DDL file:</p>
+<ol>
+  <li>Open the  SQL program and log in to the same user associated with your catalog node  cluster (for example, <em>cw</em>/<em>cw</em>).</li>
+  <li>Select the  DDL file from <strong>&lt;<em>product_installation_folder</em>&gt;</strong><strong>\modules\catalog\DLL\catalog.sql</strong>.</li>
+  <li>Run this  file.<br>
+    </li>
+</ol>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>It is recommended that you copy all the SQL  files (that is, code_table.sql, defaults.sql, models.sql, privileges.sql,  and procedures.sql), including catalog.sql, in the same local directory, as  catalog.sql file has statements to call all other SQL files.</li>
+  <li>If you are running a non-enterprise Oracle edition and want to use Catalog, you must edit the   \modules\catalog\DDL\models.sql script before running these files.
+    <p>When editing the models.sql script, locate the following command: </p>
+    <div class="code">
+      <div class="codeContent">
+        <pre class="code-java">define DEFAULT_ORACLE_EDITION = 'ENTERPRISE';</pre>
+      </div>
+    </div>
+    <p>If you are running Oracle Standard Edition, change this command to the following:</p>
+    <div class="code">
+      <div class="codeContent">
+        <pre class="code-java">define DEFAULT_ORACLE_EDITION = 'STANDARD';</pre>
+      </div>
+    </div>
+    <p>Similarly, when running Oracle Express Edition, change this command to the following:</p>
+    <div class="code">
+      <div class="codeContent">
+        <pre class="code-java">define DEFAULT_ORACLE_EDITION = 'EXPRESS';</pre>
+      </div>
+    </div>
+  </li>
+</ul>
+<p>&nbsp;</p> 
+
+</td>
+</tr>
+</table>      
+</body>
+</html>

@@ -1,0 +1,184 @@
+<html>
+<head>
+<title>Connect to the Database</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Connect to the Database</h2>
+
+<p>In Velocity Studio, you can connect your current project to  the database by clicking <b>Database &gt; Connect</b> from the menu bar. Once connected, other actions that require a database connection no longer prompt for database login in Velocity Studio.</p>
+
+<p>The Database Login dialog appears to prompt for connecting to a database.</p>
+
+<img src="dbLogin.png" align="absmiddle" border="0" alt="Database Login dialog" />
+
+<p>If your project does not have a previously configured database connection, there is no connection available when you click the <b>Database</b> field's drop-down menu. Click the <b>New</b> button to create settings for a new database connection. For an existing and selected database connection in this dialog, you can click the <strong>Edit</strong> icon or <strong>Remove</strong> icon to edit the properties or remove the connection settings, respectively. </p>
+
+<p>The database connection settings are persisted in the project directory (in <a href="../Introduction_to_Metadata/Understanding Your Metadata Files.html"><i>.settings</i> in directory root</a>), and are remembered even after you close and re-open the project in Velocity Studio. </p>
+<p><b>Notes</b>: </p>
+<ul>
+  <li>In a team development environment, this file may be in revision control. As a result, changes to database connections <i>could be</i> propagated to other team members.</li>
+  <li>This database connection is the <i>bootstrap</i> connection to load the project's configuration that is in the database. This bootstrap connection is not related to <a href="../../Configuration_Tool_User_Guide/Configure/System/Databases/physicalConnection.html">physical connections</a> and <a href="../../Configuration_Tool_User_Guide/Configure/System/Databases/logicalConnection.html">logical connections</a> configured within the Configuration application (even though they can, and likely, share the same parameters), which is the database connection for running metadata (for example, using database tables that corresponds to Document's database mapping).</li>
+</ul>
+<p>Once you have set up the database connection, ensure that you have entered the <b>Password</b>, and then click the <b>OK</b> button to connect to database. The Database Login dialog contains the following fields and buttons:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Database</b></td>
+<td class='confluenceTd'>Click the drop-down menu to see a list of database connections that has been previously created in the project.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Password</b></td>
+<td class='confluenceTd'>Enter the login password for the selected database.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconProperties.png" align="absmiddle" border="0" alt="" /> <b>Properties</b></td>
+<td class='confluenceTd'>Click this button to open the <a href="#ConnectionProperties">Connection Properties dialog</a>, which displays the selected database connection's properties in the <b>Database</b> field. You can update these properties,  if necessary.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconRemove.png" align="absmiddle" border="0" alt="" /> <b>Remove</b></td>
+<td class='confluenceTd'>Click this button to remove the selected database connection in the <b>Database</b> field from <i>.settings</i> file in the project directory.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>OK</b></td>
+<td class='confluenceTd'>Click this button to connect to the database according to the database connection setting and password.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>New</b></td>
+<td class='confluenceTd'>Click this button to open the <a href="#ConnectionProperties">Connection Properties dialog</a> to add a new database connection setting. After it has connected successfully, the new entry is added to <i>.settings</i> file and shown in the <strong>Database</strong> drop-down field.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Cancel</b></td>
+<td class='confluenceTd'>Click this button to cancel the operation.</td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="ConnectionProperties">Connection Properties</a></h4>
+
+<p>The Connection Properties dialog opens if you either click the <b>New</b> or <b>Properties</b> <img src="iconProperties.png" align="absmiddle" border="0" alt="" /> button from the Database Login dialog.</p>
+
+<img src="dbConnectProp.png" align="absmiddle" border="0" alt="Connection Properties" />
+
+<p>The Connection Properties dialog contains the following fields and buttons:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>This field is mandatory. It denotes the user-defined name that displays in the Database Login dialog's <strong>Database</strong> drop-down field.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>User</b></td>
+<td class='confluenceTd'>This field is mandatory. It represents the database user name.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Driver</b></td>
+<td class='confluenceTd'>This field is mandatory. A combo box containing a list of available database drivers.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>New</b></td>
+<td class='confluenceTd'>Click this button to opens the Driver Properties dialog to add a new database driver.
+
+The new entry appears in the <b>Driver</b> field's drop-down menu.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Properties</b></td>
+<td class='confluenceTd'><p>Click this button to open the Driver Properties dialog to edit the selected database driver's properties.<br>
+  <br/>
+  <img src="dbConnectDriver.png" align="absmiddle" border="0" alt="Driver Properties dialog" /></p>
+  <p>The following fields appears: </p>
+  <table class='confluenceTable'>
+    <tbody>
+	<tr>
+	<th class='confluenceTh'>Field</th>
+	<th class='confluenceTh'>Description</th>
+	</tr>
+	<tr>
+	<td class='confluenceTd'><b>Driver Type</b></td>
+	<td class='confluenceTd'>This field is mandatory. Click this field's drop-down menu to view a list of database driver types that you can use to establish a database connection. The following selections are available:
+	  <ul>
+		<li><strong>Oracle Thin</strong>: Oracle database thin driver (pure Java). It is recommended that you select this option for all Oracle database connections.</li>
+		<li><strong>Oracle OCI</strong>: Oracle database OCI driver.</li>
+		<li><strong>JDBC - Any</strong>: Generic JDBC driver.</li>
+        <!--
+		<li><strong>Cassandra</strong>: Apache Cassandra JDBC driver.</li>-->
+	  </ul>
+	</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'><b>Driver Attributes</b></td>
+	<td class='confluenceTd'>This field is mandatory. This section contains a set of fields that change depending on the driver selection in the <b>Driver type</b> field. The attributes for each <b>Driver type</b> are as follows:
+	<ul>
+	<ul>
+	  <li><strong>Oracle Thin</strong>: 
+	    <ul>
+	      <li><b>Host</b> (for example, <tt>localhost</tt>)</li>
+	      <li><b>Port</b> (<tt>1521</tt> is the default for an  Oracle database)</li>
+	      <li><b>Service</b> (for example, <tt>localdb</tt>)</li>
+	      </ul>
+	    </li>
+	  <li><strong>Oracle OCI</strong>: 
+	    <ul>
+	      <li><b>TNS Name</b></li>
+	      </ul>
+	    </li>
+	  <li><strong>JDBC - Any</strong>: 
+	    <ul>
+	      <li><b>Class Name</b> (for example, <tt>oracle.jdbc.driver.OracleDriver</tt>)<br/>
+	        </li>
+	      <li><b>Driver URL</b> (for example, <tt>jdbc:oracle:thin:@(DESCRIPTION=(enable=broken)(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=localdb)))</tt></li>
+	      </ul>
+	  </li>
+      <!--
+	  <li><strong>Cassandra</strong>:
+<ul>
+	      <li><strong>Host</strong> (for example, <tt>localhost</tt>)</li>
+	      <li><strong>Port</strong> (for example, <tt>9140</tt> is the default port for the Cassandra native binary protocol)</li>
+	      <li><strong>Keyspace</strong> (for example, <tt>demoKeyspace</tt>)</li>
+	      </ul>
+	    </li>-->
+	  </ul>
+    </td>
+	</tr>
+	</tbody>
+	</table>
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Test</b></td>
+<td class='confluenceTd'><p>Click this button to test the database connection. The Connection Test dialog  opens, prompting you to enter the database user password.<br>
+  <br/>
+  <img src="dbConnectTest.png" align="absmiddle" border="0" alt="" /></p>
+  <p>Click the <strong>OK</strong> button to attempt to connect to the database using the defined properties.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>OK</b></td>
+<td class='confluenceTd'>Click this button to save the new or edited connection properties, and return to the Database Login dialog.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Cancel</b></td>
+<td class='confluenceTd'>Click this button to cancel the operation.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

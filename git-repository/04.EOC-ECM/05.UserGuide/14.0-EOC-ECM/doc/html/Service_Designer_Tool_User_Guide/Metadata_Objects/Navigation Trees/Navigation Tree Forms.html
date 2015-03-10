@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>Navigation Tree Forms</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Navigation Tree Forms</h2>
+
+<p>Except for Recursive node, each node type in Navigation Tree is inherited as User Interface metadata object which may have Forms. They can be found under the <b>Forms</b> folder in Velocity Studio's <b>Navigation Pane</b>.</p>
+
+<img src="navTreeFormNodes.png" align="absmiddle" border="1" alt="Navigation tree forms" />
+
+<p>Below is an overview of all Forms provided by default among the various node types in Navigation Tree. See <a href="Navigation Trees at Runtime.html">Navigation Trees at Runtime</a> on how some of these Forms may be modified to customize some common runtime features of the Navigation Tree. Also, see the <a href="../../Velocity_Studio/Element - Tree.html">Tree Form Element</a> to examine how this Form Element may be customized to serve your Navigation Tree presentation needs.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Node Type</th>
+<th class='confluenceTh'>Form</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd' rowspan='2'>Tree Node</td>
+<td class='confluenceTd'><b>Default</b></td>
+<td class='confluenceTd'>An empty default Form. You can override this Form to present the tree node's model specifically for this Navigation Tree, and assign it to the node by choosing &lt;NONE&gt; in <b>Detail UI</b> and this Form in the <b>Form</b> properties in <b>General</b> tab of the node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Menu</b></td>
+<td class='confluenceTd'>The generic menu Form that presents the tree node model's Menu Form.</td>
+</tr>
+<tr>
+<td class='confluenceTd' rowspan='2'>Finder Node</td>
+<td class='confluenceTd'><b>Default</b></td>
+<td class='confluenceTd'>An empty default Form. You can override this Form to design the Finder's search Form specifically for this Navigation Tree, and assign it to the node by choosing &lt;NONE&gt; in <b>Detail UI</b> and this Form in the <b>Form</b> properties in <b>General</b> tab of the node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Menu</b></td>
+<td class='confluenceTd'>The generic menu Form that presents the Finder's Menu Form.</td>
+</tr>
+<tr>
+<td class='confluenceTd' rowspan='2'>Finder Child Node</td>
+<td class='confluenceTd'><b>Default</b></td>
+<td class='confluenceTd'>An empty default Form. You can override this Form to present the Finder's output document specifically for this Navigation Tree, and assign it to the node by choosing &lt;NONE&gt; in <b>Detail UI</b> and this Form in the <b>Form</b> properties in <b>General</b> tab of the node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Menu</b></td>
+<td class='confluenceTd'>The generic menu Form that presents the Finder output document's Menu Form.</td>
+</tr>
+<tr>
+<td class='confluenceTd' rowspan='2'>Root Node</td>
+<td class='confluenceTd'><b>Default</b></td>
+<td class='confluenceTd'>The default Form that displays the overall Navigation Tree, which includes:<ul>
+<li><i>Tree Form Element</i> - located at the left side of the Form, displays the structure of the Navigation Tree as a browsable tree. The user can expand or collapse tree nodes in this Form Element as well as view details of the tree node's model by clicking the node</li>
+<li><i>Detail Pane</i> - located at the right side of the Form, is a Form Frame that displays the details of the tree node's model when the node is clicked.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Menu</b></td>
+<td class='confluenceTd'>The generic menu Form that presents the tree node model's Menu Form.</td>
+</tr>
+<tr>
+<td class='confluenceTd' rowspan='4'>Root Node with Tab</td>
+<td class='confluenceTd'><b>Default</b></td>
+<td class='confluenceTd'>The default Form that displays the overall Navigation Tree with Tabs. This is the same as the Navigation Tree's <b>Default</b> Form, except that the detail Form Frame may show <b>Single</b> Form or <b>Tabs</b> Form depending on Variable <i>currentForm</i>.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Menu</b></td>
+<td class='confluenceTd'>The generic menu Form that presents the tree node model's Menu Form.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Single</b></td>
+<td class='confluenceTd'>The non-tab version of detail Form that can be displayed in the detail pane.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Tabs</b></td>
+<td class='confluenceTd'>The tabset version of detail Form that can be displayed in the detail pane. The Form is implemented by the use of Iterator Form Element on array UI Variable <i>tabs</i> to display child nodes' model as Tab Frames in the Tabset.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Note:</strong> Velocity Studio features require a separate license key that is activated in Velocity Studio. </p></td>
+</tr>
+</table>
+</body>
+</html>

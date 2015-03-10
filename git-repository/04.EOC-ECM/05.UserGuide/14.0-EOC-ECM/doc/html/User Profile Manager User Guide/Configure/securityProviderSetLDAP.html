@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>Set up an LDAP Provider</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <h3>Set up an LDAP Provider</h3>
+<p>To set up an LDAP security provider, complete the following steps:</p>
+<ol>
+  <li>Open your Web browser and go to <a href="http://localhost:8080/cwf/admin">http://<em>hostname:port</em>/cwf/securityManagement</a> to open the User Profile Management application.</li>
+  <li>Log in to the application by entering <tt>upadmin</tt> as both your <strong>Username</strong> and <strong>Password</strong>.</li>
+  <li>From the User Profile Management's menu bar, click <strong>Configure &gt; Security Providers</strong>, and then click the <strong>New</strong> button to <a href="securityProviders.html#createSecurityProvider">create a security provider</a>.</li>
+<p><img src="securityProviderNewSecurityConfiguration.png" alt="New Security Configuration page" border="1"></p>
+  <li>For the <strong>Security Type</strong> field, select <strong>LDAP</strong> from the list.</li>
+  <li>Fill in the <strong>Security Data</strong> field of the Security Provider section, which consists of entering the URL and Principal:
+    <ol type="a">
+      <li>The URL has the following syntax:<br>
+        <strong><em>ldap</em>://&lt;<em>hostname</em>&gt;&lt;:<em>port</em>&gt;</strong><br>
+        <br>
+      Where:      </li>
+      <ul>
+        <li><em>ldap</em> is the protocol.</li>
+        <li><em>hostname</em> is either the name or IP address of the LDAP server to which you want to connect.</li>
+        <li><em>port</em> is the port number on which the server is running. The default port number is 389 for non-secure servers.</li>
+      </ul> 
+    
+      <p><strong>Example:</strong> ldap://neptune:389
+      </p>
+  
+      <li>The principal has the following syntax:<br>
+        <em>CN</em>=&lt;Users&gt;, <em>DC</em>=&lt;domain&gt;, <em>DC</em>=&lt;top-level domain&gt;<br>
+        <br>
+      Where: </li>
+      <ul>
+        <li><em>CN</em> represents the common name.</li>
+        <li><em>DC</em> represents the domain component.</li>
+      </ul>
+      <p><strong>Example:</strong> CN=Users, DC=conceptwave, DC=com
+      </p>
+      <li>
+        <p>In the <strong>Security Data</strong> field of the Security Provider section, enter the URL and Principal.<br>
+          <br>
+          <strong>Example:</strong> ldap://neptune:389; DC=my-domain, DC=com</p>
+</li>
+    </ol>
+</li>
+  <li>Click the <strong>Save</strong> button to continue.</li>
+  <li>Create a user as part of the User Profile Administrators group, which allows you to log in with these credentials in the User Profile Administration application.</li>
+  <li>Create as many users are you require, following the syntax in the LDAP provider.<br>
+    <br>
+    <strong>Note:</strong> The user ID must reflect the exact user ID found in the LDAP list of users. These user IDs and relevant information must be provided by the client's IT staff.<br>
+  </li>
+  <li>With the User Profile Management application still opened, open a new Web browser and go to <a href="http://hostname:port/cwf/config/index.html">http://<em>hostname:port</em>/cwf/config/index.html</a> or <a href="http://hostname:port/cwf/config">http://<em>hostname:port</em>/cwf/config/</a> to log in to the Configuration application.</li>
+  <li>After logging in to the Configuration application, add a configuration variable.  The following steps are optional and are only needed  if you want to either create new user or change the password on the LDAP server:
+    <ol type="a">
+      <li>Click the <strong>System</strong> tab and then click the <strong>Config variables</strong> tab. </li>
+      <li>Click the <strong>Add</strong> button to add a new configuration variable.</li>
+      <li>For the <strong>Name</strong> field, enter <tt>ldap_superuser_id</tt>. For its value, enter <tt>Manager</tt>.<br>
+        <br>
+        <img src="providerLDAPconfigVariable.png" alt="ldap_superuser_id configuration variable" border="1"><br>
+        <br>
+      </li>
+      <li>Continue creating the following configuration variables:
+        <ul>
+          <li><strong>ldap_superuser_id</strong> represents the LDAP user  account that has permission to add or change a user on the LDAP server. </li>
+          <li><strong>ldap_superuser_password</strong> is the  password for the ldap_superuser_id  ldap account.</li>
+          <li><strong> ldap_user_attribute</strong> denotes the user attribute on LDAP server. The default is <strong>CN</strong>.</li>
+          <li><strong> ldap_password_attribute</strong>&nbsp; represents  the password attribute on the LDAP server. The default is <strong>userPassword</strong>.</li>
+          <li><strong> ldap_password_encrypt_algorithm</strong> is the encrypt_algorithm password on the LDAP server. The default is <strong>MD5</strong>. <br>
+            <br>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>Start the LDAP server. In this example, to start the LDAP server on the Neptune computer, use the following:  </li>
+  <blockquote>
+    <tt>c:\openldap\.\slapd -d 1</tt>
+  </blockquote>
+  <li>Start the framework.</li>
+  <li>Log in to the runtime application by using the <strong>Username</strong> and <strong>Password</strong> for the LDAP user.</li>
+</ol>
+<p>For a list of security providers that you can use in conjunction with the User Profile Management application, see the <a href="securityProviderCharacteristics.html">Security Provider Characteristics</a> section.</p>
+</body>
+</html>

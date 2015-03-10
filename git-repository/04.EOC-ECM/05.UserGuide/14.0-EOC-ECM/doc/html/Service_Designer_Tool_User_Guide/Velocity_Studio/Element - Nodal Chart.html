@@ -1,0 +1,248 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Nodal Chart</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td height="2665" valign="top" class="pagebody">
+<h2>Nodal Chart</h2>
+
+<p>The  nodal chart element allows you to build visual diagrams, such as  network diagrams and   organizational charts. The nodal chart element enables you to configure the overall look and feel of the chart  display at runtime.  The nodal chart exists under a finder user interface, relying on its result variable of type document array. Each document in the array represents a new node item. </p>
+
+<img src="nodal_chart_UI.png" alt="Nodal chart element in user interface" border="1">
+
+<p>Velocity Studio contains the NodalChartDocument system variable, which  includes twelve variables that form a template structure for your nodal chart. The following table shows the required columns that comprise your document:</p>
+<table class='confluenceTable' border cellpadding=1>
+  <tr>
+    <th width="150" align="left" class='referenceTh' scope="col">Name</th>
+    <th width="148" align="left" class='referenceTh' scope="col">Type</th>
+    <th width="379" align="left" class='referenceTh' scope="col">Description</th>
+    </tr>
+  <tr>
+    <td align="left">xCoordinate</td>
+    <td align="left">int; mandatory</td>
+    <td align="left">The x-coordinate of the node item.</td>
+    </tr>
+  <tr>
+    <td align="left">yCoordinate</td>
+    <td align="left">int; mandatory</td>
+    <td align="left">The y-coordinate of the node item.</td>
+    </tr>
+  <tr>
+    <td align="left">width</td>
+    <td align="left">int</td>
+    <td align="left">The overall width of the node item, including space for labels.</td>
+    </tr>
+  <tr>
+    <td align="left">height</td>
+    <td align="left">int</td>
+    <td align="left">The overall height of the node item, including space for labels.</td>
+    </tr>
+  <tr>
+    <td align="left">id</td>
+    <td align="left">string; mandatory</td>
+    <td align="left">The unique ID for each node item to use with connectors.</td>
+    </tr>
+  <tr>
+    <td align="left">color</td>
+    <td align="left">string</td>
+    <td align="left">The colour of the node item's shape if an imageURL is not provided.</td>
+    </tr>
+  <tr>
+    <td align="left">imageURL</td>
+    <td align="left">string</td>
+    <td align="left">The resource location of the image to use for this node item.</td>
+  </tr>
+  <tr>
+    <td align="left">shape</td>
+    <td align="left">int</td>
+    <td align="left"><p>The shape index to use for the node item, which can be one of the following:</p>
+      <ul>
+        <li>Circle</li>
+        <li>Polygon</li>
+        <li>Rectangle (default shape if a shape is not specified)</li>
+      </ul></td>
+  </tr>
+  <tr>
+    <td align="left">label</td>
+    <td align="left">string</td>
+    <td align="left">The label to show for the node item</td>
+  </tr>
+  <tr>
+    <td align="left">trendName</td>
+    <td align="left">string</td>
+    <td align="left">The trend that this node item belongs to</td>
+  </tr>
+  <tr>
+    <td align="left">connectTo</td>
+    <td align="left">string</td>
+    <td align="left">The node item's ID, which is used to connect  this node item to another node item.</td>
+  </tr>
+  <tr>
+    <td align="left">connectorLabel</td>
+    <td align="left">string</td>
+    <td align="left">The colour to fill the completed part of the task</td>
+    </tr>
+</table>
+<p>The following is an example of a nodal chart at runtime:</p>
+<img src="nodal_chart_example.png" alt="Nodal chart example">
+
+<p>The sample nodal chart shows the following:</p>
+
+<ol>
+  <li>Node item with a specified colour and label.</li>
+  <li>Node item with an image URL specified.</li>
+  <li>Node item with shape specified as 1 (circle).</li>
+  <li>Connector with no label specified for the node item. Arrows may be removed by changing the node chart element's <strong>Show Arrow at End</strong> and <strong>Show Arrow at Start</strong> properties. </li>
+  <li>Node item with label and its connector specified (defaults to rectangular shape).</li>
+  <li>Trends or groupings. When shown at the bottom of the nodal chart, the x-coordinate range for each trend is calculated based on the minimum and maximum x value out of all node items that have each trend specified under trendName. The trend position can be changed by updating the nodal chart's <strong>Trend At Bottom</strong> property.</li>
+  <li>Node item label. The label's position can be changed using the <strong>Label Align</strong> nodal chart property. Label alignment is always centered if an image is not being used for the node item.</li>
+  <li>Nodal chart caption.</li>
+</ol>
+
+<h3>Display Multiple Charts at Runtime</h3>
+<p>You can display multiple charts in a Form by creating multiple  Form Frame Form elements and then referring the variable of each element to the Finder User Interface Chart Form that contains the chart that you want to display. Refer to <a href="Element - Chart.htm#DisplayMultipleChartsRuntime">Displaying multiple charts at runtime</a> for details. </p>
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th width="163" class='referenceTh'>references Variable</th>
+<td width="52" class='referenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form</th>
+<td class='referenceTd'>No</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+<p>The following are the properties for the nodal chart element:</p>
+
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+  <th width="170" class='referenceTh'>Property</th>
+  <th width="145" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+  <th width="1298" class='referenceTh'>Comment</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Name</b></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>The nodal chart name.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Variable</b></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>Finder result form for the nodal chart. <span class="referenceTd">Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</span></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Caption</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The title (label) of the nodal chart.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Click Method</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>When you specify this property, chart elements are  clickable. Clicking these elements invokes the method.  The method  receives two parameters:</p>
+    <ul>
+      <li>The data object that the chart node represents</li>
+      <li>The variable name, if applicable, that the chart node represents</li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Connector Thickness (max 10)</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>The line thickness that connects two nodes in the nodal chart. The higher the number, the thicker the connection line is between nodes.  This property's default value is 2.</p>
+    <p><strong>Note:</strong> If you enter a number that exceeds 10, the Velocity Studio automatically overrides this value and sets this field to 10. </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Dynamic Height</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property allows you to dynamically assign a variable or a script to the <strong>Dynamic Height</strong> property.  For a variable, the data type must be  either an integer or string. For the script, only the script action can be used and its return  type must be defined as either integer or string.</p>
+    <p> At runtime, by default, the regular  width and height are used. However, if <strong>Dynamic Width</strong> and <strong>Dynamic Height</strong> are defined, they replace the regular width and height, and the values are calculated based on either the variable or script.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Dynamic Width</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property allows you to dynamically assign a variable or a script to the <strong>Dynamic Width</strong> property.  For a variable, the data type must be  either an integer or string. For the script, only the script action can be used and its return  type must be defined as either integer or string.</p>
+    <p> At runtime, by default, the regular  width and height are used. However, if <strong>Dynamic Width</strong> and <strong>Dynamic Height</strong> are defined, they replace the regular width and height, and the values are calculated based on either the variable or script.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Height</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>The height of the nodal chart. Click the <strong>Value</strong> field, and then select whether you want the height represented in pixels or a percentage using the drop-down menu.</p>
+    <p><strong>Note:</strong> Although the Height property does not have a maximum limit, specifying a large pixel or percentage in this field may show a black screen during runtime. As a result, it is recommended that you select an appropriate height value for your nodal chart.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Label Align</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The position of the label. The label's position defaults to centre.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Show Connector Arrow at End</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Select this checkbox to show the connector arrow at the end of the line.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Show Connector Arrow at Start</b></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Select this checkbox to display the connector arrow at the start of the line.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Show Node Labels</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Select this checkbox to display the node labels in the nodal chart.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Show Trend Label</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Select this checkbox to show the trend name in the nodal  chart.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Show Validation</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This boolean property has values of either <em>True</em> or <em>False</em>, which  determines whether a validation warning message displays at runtime. By default, this property is unchecked, meaning that validation errors do not appear under the chart at runtime and supports backward compatibility. Otherwise, selecting this property allows validation errors to appear under the chart at runtime.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> Style</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Choose from styles within the selected stylesheet (located in the Velocity Studio toolbar), which defines the styling of the Grid Layout such as positioning and   color. Default is NONE.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Trend At Bottom</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Select this checkbox to display the trend (grouping) at the bottom of the nodal chart.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Visible</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><span class="referenceTd">This field defines the user permissions assigned to this layout. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a>, such as addPerm, attachPerm, deletePerm, editablePerm, and visiblePerm can be assigned as well as Object Permissions. This field defaults to NONE, which means that no permissions are assigned.</span></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Width</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The width of the chart. Click the <strong>Value</strong> field, and then select whether you want the width represented in pixels or a percentage using the drop-down menu.</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>To view charts, Adobe Flash Player 8.0 or higher must be installed for the Firefox browser. Adobe Flash Player 8.0 or higher as an Active X object must be installed for Internet Explorer. Adobe Flash Player can be downloaded from Adobe's Web site at <a href="http://get.adobe.com/flashplayer/" target="_blank">www.adobe.com</a>. </li>
+  <li>To view JavaScript-based charts, FusionCharts  automatically renders them on computers that do not  have a Flash player installed. The only client-side requirement is a  browser that supports JavaScript.</li>
+</ul></td>
+</table>
+</body>
+</html>

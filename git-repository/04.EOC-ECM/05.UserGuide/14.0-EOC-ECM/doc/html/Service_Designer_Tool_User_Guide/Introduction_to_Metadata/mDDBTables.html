@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Database Tables Naming Conventions</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Database (DB) Tables Naming Conventions</h2>
+<p>The following are  description of  standard naming conventions for Oracle schema objects including  table, index and column naming       standards.</p>
+ &nbsp; <strong>Note: </strong><br>
+  &nbsp;&nbsp;If a table name, column name or an index name exceeds 30 characters, reduce  the size of the table name in this order:
+    
+  <ol>      
+      <li>From the left of the table name, remove  vowels from each word in the table name except for the first vowel of each  word. </li>
+      <li> If  the table name is still greater than 30 characters, use standardized shorthand  indicators. Record this standard for         consistent use. </li>
+  </ol>  
+<h2>Table  Naming</h2><br>
+  <ul>
+    <li>Use full table names  whenever possible.</li>
+    <li>If table name consists of two or more words; do  not separate them with underscore (Oracle naming conventions point the          opposite, but all existing tables used by Order Care product are without  underscores).</li>
+<li>When document  mapped to the DB is part of an order, use document name as prefix in DB table name.</li>
+  </ul>
+<p>For example:<br>
+    <strong>VTOrder</strong><br>
+    <strong>            Summary</strong><br>
+    <strong>            Offer</strong><br>
+    <strong>            TV Configuration</strong><br>
+    <strong>            …</strong></p>
+  <p>DB tables should be named:<br>
+    <strong>            VTO_Summary</strong><br>
+    <strong>            VTO_Offer</strong><br>
+    <strong>            VTO_TV Configuration</strong><br>
+    <strong>            …</strong></p>
+<h2>Column Naming </h2><br>
+  <ul>
+    <li>Spell out column names whenever  possible.</li>
+    <li>If column name consists of two or more words; do  not separate them with underscore (Oracle naming conventions point the          opposite, but all existing tables used by Order Care product are without  underscores).</li>    
+  </ul>
+<h2>Index Naming Convention </h2>
+<p>
+  For index names  follow this standard:<br>
+  
+  <strong>IDX_<em>ttttt</em>_<em>nn</em></strong>
+  </p>   
+<p>Where<br>
+  <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IDX</strong>&nbsp;&nbsp;&nbsp;&nbsp; Index<br>      
+  <strong><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ttttt </em></strong>&nbsp;  &nbsp;Table name the  index is builton.<br>              
+  <strong><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nn</em></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Numeric value that makes                     each table index unique.</p></td>
+</tr>
+</table>
+</body>
+</html>

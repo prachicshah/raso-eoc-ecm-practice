@@ -1,0 +1,104 @@
+﻿
+
+
+<html>
+<head>
+<title>Finder Advanced Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td height="566" valign="top" class="pagebody">
+<h2>Finder Advanced Properties</h2>
+<p>Additional Finder properties are defined on the <b>Advanced</b> tab and enable you to customize the Finder configuration.</p>
+<p><img src="finderAdvanced.png" border="0" alt="Finder - Advanced tab" /></p>
+<br>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Help</b></td>
+<td class='confluenceTd'>Ability to configure context sensitive user help that is available at runtime.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Max rows</b></td>
+  <td class='confluenceTd'><p>Maximum number of rows to fetch (refer to <a href="../../Business_Process_Metadata/user tasks at runtime.html#customizeWorklists">Customizing the Worklist</a> for Worklist Finder search behaviour). The range of  this field is from 100 to 9999. If this  field is not set (by default) or the number set is smaller than 100, 100 is taken as the maximum number of rows to fetch.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>UI query timeout (seconds)</b></td>
+<td class='confluenceTd'>Maximum number of seconds to wait for the Finder query to return results. The default is 90 seconds.</td>
+</tr>
+<!--
+<tr>
+<td class='confluenceTd'><b>Row Style</b></td>
+<td class='confluenceTd'>JavaScript expression that specifies the stylesheet parameters to be used for rendering result rows in the UI. Table 4-54 contains a description of styles built into the system.</td>
+</tr>
+-->
+<tr>
+  <td class='confluenceTd'><b>Detail Form</b></td>
+  <td class='confluenceTd'>Specifies the Form of the output Document to display when a result Detail is to be shown. Choose one of the User Interfaces available in <b>Select Output</b> Document in General tab (or choose <i>&lt;NONE&gt;</i>).<br/>
+    <br/>
+    <b>Note</b>: Make sure that you do have overridden or local Forms in your output Document. Otherwise, only the generic base Forms inherited from the base Document of your output Document are available here (for example, <i>com.conceptwave.system.DocumentUserInterface.Forms.Default</i>). </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>NLS_COMP</strong></td>
+  <td class='confluenceTd'><p>This property supports Oracle linguistic sorting (for example, sorting customer names that are written in both uppercase and lowercase letters, and require being sorted in a list on the UI) and specifies the collation behaviour of the database session. An example of Oracle linguistic sorting is as follows:</p>
+    
+    <div class="preformatted">
+      <div class="preformattedContent">
+  <pre>
+<SPAN id="internal-source-marker_0.24239530097167772">ALTER SESSION SET NLS_COMP=</SPAN>LINGUISTIC;</pre>
+      </div>
+</div>
+
+    <p>This property is available for SQL, document, and order finders. Click the drop-down menu and select from one of the following values:</p>
+    <ul>
+      <li><strong>BINARY<br>
+        </strong>Comparisons in the WHERE clause and in SQL blocks are binary unless you specify the <strong>NLS_SORT</strong> parameter.<strong><br>
+        </strong></li>
+      <li><strong>LINGUISTIC</strong><br>
+        Comparisons for all SQL operations in the WHERE clause and SQL blocks should use the linguistic sort specified in the <strong>NLS_SORT</strong> parameter.</li>
+      <li><strong>ANSI<br>
+      </strong>This setting is for backwards compatibility. It general, this property is set to  <strong>LINGUISTIC</strong>.</li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>NLS_SORT</strong></td>
+  <td class='confluenceTd'><p>This property supports Oracle linguistic sorting (for example, sorting customer names that are written in both uppercase and lowercase letters, and require being sorted in a list on the UI). This property denotes the original value of the Oracle database collating sequence for ORDER BY queries (for example, BINARY_CI). An example of Oracle linguistic sorting is as follows:</p>
+    <div class="preformatted">
+      <div class="preformattedContent">
+        <pre>
+<SPAN id="internal-source-marker_0.">ALTER SESSION SET NLS_SORT=</SPAN>BINARY;</pre>
+      </div>
+    </div>
+    <p><strong>Notes:</strong></p>
+    <ul>
+      <LI>
+        If the value is BINARY,  the collating sequence for ORDER BY queries is based on the numeric value of characters (that is, a binary sort that requires less system overhead).
+      </LI>
+      <LI>If the value is a named linguistic sort, sorting is based on the order of the defined linguistic sort. Most languages supported by the NLS_LANGUAGE parameter also support a linguistic sort with the same name.</LI>
+      <LI>Setting NLS_SORT to anything other than BINARY causes a sort to use a full table scan, regardless of the path chosen by the optimizer. BINARY is the exception because indexes are built according to a binary order of keys. </LI>
+      <LI>For a document finder, linguistic sorting from the database works. </LI>
+      <LI>The linguistic sorting on the UI (in a browser), when you click a column or define a custom view, is  based on  the values selected in the Nls_Comp  and Nls_Sort properties. </LI>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><p><strong>Auto-map values from parent when used in a reference field</strong></p>
+    <p>&nbsp;</p></td>
+  <td class='confluenceTd'>This checkbox serves as a flag within a finder that allows control over whether automatic mapping of   the finder search document data is done in a reference finder. By default, this property  is checked. When this checkbox is selected, reference finders  have   their search document value filled with the parent finder's search document value if 1.   They are the same type of document 2. A conversion map exists for the two types   of documents.<BR>
+    <BR></td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

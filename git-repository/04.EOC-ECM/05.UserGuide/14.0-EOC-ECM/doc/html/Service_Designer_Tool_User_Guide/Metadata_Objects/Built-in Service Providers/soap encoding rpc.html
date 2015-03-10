@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>SOAP Encoding and RPC Import Support</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>SOAP Encoding and RPC Import Support</h3>
+
+<p>The SOAP Service Provider provides SOAP (Simple Object Access Protocol) encoding and basic RPC import support, which does the following:</p>
+<ul>
+  <li>Prevents you from experiencing unnecessary errors or file changes when importing WSDL or XSD due to either the WSDL or XSD containing types that make use of SOAP-encoded arrays, or RPC-style bindings or operations</li>
+  <li>Provides runtime support for XML formatting of arrays in SOAP-encoded messages when creating SOAP messages</li>
+  </ul>
+
+<h4>Import a SOAP-encoding Schema</h4>
+<p> If a WSDL or XSD imports the SOAP-encoding schema (<A href="http://schemas.xmlsoap.org/soap/encoding/),">http://schemas.xmlsoap.org/soap/encoding/),</A> it is no longer necessary for you to change the WSDL or XSD file   to specify the schemaLocation attribute for schema if and only if the WSDL or XSD makes use of SOAP-encoded arrays. In this case, all types are imported without error and no <a href="../Namespace/Namespaces.html">namespace</a> is created for the SOAP-encoding schema.</p>
+<p>If the WSDL or XSD makes use of SOAP encoding other than for arrays, inclusion of the schemaLocation attribute is required. If the WSDL or XSD already has the schemaLocation attribute, importing that schema proceeds as normal, with errors occurring for schema resolution and for unsupported content. Additionally, a namespace appears in the metadata for that schema.</p>
+
+<h4>Data Structures with SOAP-encoded Array Elements</h4>
+<p>Data structures that are created from complex types with SOAP-encoded array elements are formatted to match the expected XML output   structure in a SOAP message.</p>
+
+<h4>Use Property in Metadata Bindings</h4>
+<p> The <strong>use</strong> property of operation messages in the metadata bindings is set to <strong>encoded</strong> for SOAP-encoded messages. If the <strong>use</strong> property is set to <strong>encoded</strong> in the metadata bindings for an operation message, any arrays in a SOAP message have the arrayType attribute dynamically added, specifying the XSD type of the array instances and indicating how many array instances there are. The following is an example:
+
+<div class="code">
+<div class="codeContent">
+
+<pre class="code-java">&lt;BODY&gt;
+  &lt;ArrayOfOrders soapenc:arrayType="cwf:Order[2]"&gt;<BR>  &lt;cwf:Order&gt;....&lt;/cwf:Order&gt;<BR>  &lt;cwf:Order&gt;....&lt;/cwf:Order&gt;<BR>  &lt;/ArrayOfOrders&gt;<BR>&lt;/BODY&gt;</p>
+</pre>
+</div>
+</div>
+<h4>Messages with RPC-style Operations or Bindings</h4>
+<p>In WSDLs, messages used by operations or bindings whose style is RPC have data structures created for the operations that more closely match the expected structure in a SOAP request.</p>
+<h4><strong>Notes</strong></h4>
+<p>SOAP-encoding multi-references are not supported.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

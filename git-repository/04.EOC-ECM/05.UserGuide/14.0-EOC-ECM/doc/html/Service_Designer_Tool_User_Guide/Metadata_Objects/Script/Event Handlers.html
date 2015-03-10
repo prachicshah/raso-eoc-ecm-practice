@@ -1,0 +1,154 @@
+﻿<html>
+<head>
+<title>Event Handlers</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h3>Event Handlers</h3>
+<p>Velocity Studio  allows defining new types of metadata elements called <strong>event handlers</strong>, which are global  scripts that automatically subscribe for the <a href="Events.html">event</a> that they specify and do not  require calling the subscribeForEvent API. The event handler metadata object captures the logic that is  required to perform the expected functionality set out by the event.</p>
+<p>A lightweight, <a href="Publish Subscribe to Events.html">publish-subscribe</a> mechanism is available that allows you to publish an event to which many different  global scripts may subscribe. The event metadata object serves as the signature definition  for any event handler metadata object that will handle such an event. To create an event handler, do  the following:</p>
+In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:
+  <ol>
+    <li>Right-click a Namespace. Select <b>New ...</b></li>
+    <li><b>New Metadata Object</b> wizard appears. Expand the <b>Global Scripts</b> node, select <b>Event Handler</b>, and then click the <b>Next</b> button.</li>
+    <li>Enter the name of event handler in the <strong>Name</strong> field (must conform to JavaScript naming conventions), which is the default name for event handler. You can also specify other parameters.       </li><li>Click the <b>Finish </b>button.</li>
+  </ol>
+<i>OR</i>
+
+  <ol>
+    <li>Right-click the <b>Event Handlers</b> folder or the <b>Global Scripts </b>folder in a Namespace, if it is present. Select <b>New Event</b><strong> Handler</strong>.</li>
+    <li>Follow step 2 mentioned previously.</li>
+    </ol>
+
+<p>Your newly created event handler appears under the <b>Event Handlers</b> folder.</p>
+<p><img src="EventHandler.png" alt="Event Handler properties" border="1"></p>
+<p>An event handler contains the following property fields:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="118" class='confluenceTh'>Field</th>
+      <th width="1542" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Name</b></td>
+      <td class='confluenceTd'>The name of the event metadata object (must conform to JavaScript naming conventions). The field is read-only after creation. To change it, use the <b>Rename</b> command in pop-up menu by right-clicking the metadata object.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Label</b></td>
+      <td class='confluenceTd'>This field represents the display label of your metadata object display label.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Description</b></td>
+      <td class='confluenceTd'>A description of the event metadata object for documentation.</td>
+    </tr>
+    <tr>
+      <td height="30" class='confluenceTd'><strong>Event ID</strong></td>
+      <td class='confluenceTd'><p>The unique identifier that denotes the event handler.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Parameters</b></td>
+      <td class='confluenceTd'>Table to define a list of parameters that event handlers are expected to receive.</td>
+    </tr>
+    <tr>
+      <td height="21" class='confluenceTd'><strong>Event</strong></td>
+      <td class='confluenceTd'>The event type for which this event  handler handles.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Script</strong></td>
+      <td class='confluenceTd'>The logic that  perform the  expected functionality.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Return</b></td>
+      <td class='confluenceTd'>The metadata object type for which  event handlers are expected to return. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Feature Restriction</strong></td>
+      <td class='confluenceTd'>This field allows you to specify <a href="../Metadata Root/Metadata Root Feature Management.html">features that you want to restrict</a>. Click the field's <strong>Checkbox</strong> button (<img src="../Metadata Root/MDrootFeatureManagementCheckboxButton.png" alt="Restricted By field - Checkbox button">) to launch the Select Feature dialog. You can select all features that you want to restrict and then click the <strong>Save</strong> button.</td>
+    </tr>
+  </tbody>
+</table>
+<p>From the application, an event is published as follows:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>publishEvent(event, mode, this object, parameters, ...)</pre>
+  </div>
+</div>
+<p>Where:</p>
+<ul>
+  <li><tt>event</tt> corresponds to the event type as  specified in the event. Event handlers that handle this event type are processed in some sequence by the product.</li>
+  <li><tt>mode</tt> allows you to specify one of the following modes, with its expected behaviour:</li>
+  <ul>
+    <li><strong>FIRST_ONE</strong> - processes each event handler until  the first event handler returns a non-null value.</li>
+    <li><strong>SYNCH</strong> - processes each event handler  synchronously.</li>
+    <li><strong>ASYNCH</strong> - processes each event handler  asynchronously.</li>
+    <li><strong>Event ID</strong> - processes a specific event handler for  given Event ID synchronously.</li>
+    <li><strong>PROPAGATE</strong> - passes the result of the previous event handler as the  first parameter for the next event handler.<br>
+            Because event handlers do not run in the same  order,  this mode accumulates data without relying on the order of the data.
+      You must  define at least one parameter in the event script. If publishEvent() API passes  a value for the <em>parameters</em> parameter, that value is used for the  first event handler. Then the subsequent event handlers receive the result of  the previous event handler as their first parameter. See this <a href="#PROPAGATE Mode Example"> example</a> for more information.</li>
+  </ul>
+  <li><tt>thisObject</tt> is an object that can be accessed with <tt>this</tt> in the event handler.</li>
+  <li><tt>parameters</tt> is a sequential list of parameters  corresponding to the list defined in the event.</li>
+</ul>
+<p>For example, to publish the event as defined previously  from the  application, use the following:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>var cardNumber = &quot;4520124122532652&quot;;<br>publishEvent(&quot;ENCRYPT_NUMBER&quot;, FIRST_ONE, null, &quot;CREDIT_CARD&quot;, cardNumber)</pre>
+  </div>
+</div>
+<p>With the event and event handler mechanism, applications can have two event handlers for one event, as shown in this example:</p>
+<p><img src="EventHandlerTwoForEvent.png" alt="Two event handlers for one event" border="1"></p>
+<p>In this example, the output from the ENCRYPT_NUMBER event  varies, depending on the parameter type.</p>
+<h4>Get Information about Subscribed Event Handlers</h4>
+<p>The following global script functions are available for getting information about subscribed event handlers:</p>
+<ul>
+  <li>getEventHandlers</li>
+  <li>getEventIds</li>
+  <li>hasEvent</li>
+  <li> hasEventId</li>
+  </ul>
+<p>See the JavaScript documentation for details.</p>
+<p>To invoke methods, you do not need to use any prefix, as shown in the following example:<BR>
+</p>
+  
+  <div class="preformatted">
+  <div class="preformattedContent">
+    <pre>var events = getEventIds(eventName); </pre>
+  </div>
+</div>
+  <h4><a name="PROPAGATE Mode Example">PROPAGATE Mode Example</a></h4>
+<p>This example illustrate how the PROPAGATE mode  of the publishEvent() API works. If you have two event handlers as follows:</p>
+  First event handler:
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>function EH1(data) {
+  if(data == null)
+  data = &quot;&quot;;
+  return data + &quot; World&quot;;
+  } </pre>
+  </div>
+</div>
+  Second event handler:<br>
+  <div class="preformatted">
+  <div class="preformattedContent">
+    <pre>function EH2(data) {
+  if(data == null)
+  data = &quot;&quot;;
+  return data + &quot; Hello&quot;;
+  }</pre>
+  </div>
+</div>
+  And the actual script is as follows:<br>
+  <div class="preformatted">
+  <div class="preformattedContent">
+    <pre>var result = publishEvent(&quot;SOME_EVENT&quot;, PROPAGATE, null, {&quot;Example&quot;}); </pre>
+  </div>
+</div>
+  The result is either <em>Example Hello World</em> or <em>Example  World Hello</em>,  depending on which event handler,  EH1 or  EH2, is invoked first.</td>
+</tr>
+</table>
+</body>
+</html>

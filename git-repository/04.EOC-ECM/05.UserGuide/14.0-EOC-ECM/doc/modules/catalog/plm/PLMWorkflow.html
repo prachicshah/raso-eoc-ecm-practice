@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Workflow Stages</title>
+<link rel="StyleSheet" href="../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script><script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h3>Workflow Stages</h3>
+<p>The PLD workflow can be configured for each project to include six different stages.  The product manager can configure the change request through a user interface to implement all stages or just one stage of the workflow process.   These stages include:
+<ul>
+<li><a href="#Conception">Conception</a></li> 
+<li><a href="#Evaluation">Evaluation</a></li>
+<li><a href="#Definition">Definition</a></li> 
+<li><a href="#Build">Build</a></li> 
+<li><a href="#Testing">Testing</a></li> 
+<li><a href="#LaunchProduct">Launch Product</a></li>
+</ul> 
+<p>The PLD uses the <b>mainFlow_Complex</b> workflow defined in the <b>plmDev</b> library files.  This workflow takes the information that is created in the change request to initiate and process the tasks.
+  <table class='confluenceTable'>
+</p>
+
+<img src="PLMWorkflowCmp.png" alt="PLD Workflow">
+      
+      </p>
+      <p>This section describes the workflow process for each stage.  The last step in each workflow process is approval. If the users defined to execute the approval request a <em>change</em>, then the workflow process repeats the existing stage until it is <em>approved</em> or <em>rejected</em>.  If the defined users<em> reject </em>that stage's task, then the workflow stops. Otherwise, the workflow will proceed to the next workflow stage once the previous stage has been approved. </p>
+      <h4><a name="Conception">Conception</a></h4>
+      <p>The Conception stage is the first step in the PLD process that outlines the business case for the change request.  </p>
+      <table class='confluenceTable'>
+        <tbody>
+          <tr>
+            <td width="1016" class='confluenceTd'><img src="ConceptionMicroflowCmp.png" alt="Conception Workflow"></td>
+            </tr>
+          </tbody>
+        </table>
+      <p>The marketing and finance departments define the business case for implementing a product change or  a new product launch.  The IT and Support departments are involved in this stage to analyze the feasibility of the change. The workflow process sends a <i>create</i> change request to the <i>Product Manager</i> user.  A product manager is assigned to the change request and once that product manager has approved the request, three change requests are sent in parallel to the <i>Pricing and Economics</i>, <i>IT/Support,</i> and <i>Marketing Manager</i> users (for example, users with the associated privileges).  Once all the work has been started and completed on the three tasks, then an approval task is sent to the user defined in the project change request configuration.  </p>
+      <h4><a name="Evaluation">Evaluation</a></h4>
+      <p>In the Evaluation stage, the business analyst and IT departments develop and confirm business requirements. </p>
+      <table class='confluenceTable'>
+        <tbody>
+          <tr>
+            <td width="1016" class='confluenceTd'><img src="EvaluationMicroFlowCmp.png" alt="Evaluation Workflow"></td>
+            </tr>
+          </tbody>
+        </table>
+      <p>A <em>create</em>
+        task is created for the business analyst to create the business requirements documentation. Once the business analyst has <em>completed</em> this task, the workflow engine sends a task to the IT department to review the requirements. Upon completion of the requirements review, the users defined in the project configuration are required to <em>approve</em>.  
+        <h4><a name="Definition">Definition</a></h4>
+      <p>In the Definition stage, the product details and rollout plan are defined.</p>
+      <table class='confluenceTable'>
+        <tbody>
+          <tr>
+            <td width="1016" class='confluenceTd'><img src="DefinitionMicroflowCmp.png" alt="Definition Workflow"></td>
+            </tr>
+          </tbody>
+        </table>
+      <p>A task is sent to the Product Manager to create a project plan.  Once the project plan is completed, the product modeller receives a task to define or design the product.  Lastly, the users defined in the project configuration will be sent an approval task to approve the rollout plan and product definition. </p>
+      
+      <h4><a name="Build">Build</a></h4>
+      <p>During the build stage, the product is built in the system.</p>
+      <table class='confluenceTable'>
+        <tbody>
+          <tr>
+            <td width="1016" class='confluenceTd'><img src="ImplementationMicroflowCmp.png" alt="Build Workflow"></td>
+            </tr>
+          </tbody>
+        </table>
+      <p>The IT department is sent a task to start the technical configuration and once completed, a task is sent to the Product Modeler to configure the product in the system. The approver defined in the project configuration approves the built product. </p>
+      
+      <h4><a name="Testing">Testing</a></h4>
+      <p>In the testing stage, the product is released to testing.</p>  
+      <table class='confluenceTable'>
+        <tbody>
+          <tr>
+            <td width="1016" class='confluenceTd'><img src="TestingMicroflowCmp.png" alt="Testing Workflow"></td>
+            </tr>
+          </tbody>
+        </table>
+      <p>The workflow sends the first task to the Product Manager to release the product for testing.  Once testing begins, three simultaneous tasks are sent to IT, Network Operations and Marketing Managers for testing.  Once all three departments have completed their testing tasks, an approval task is sent to the users defined in the project configuration for this stage.</p>
+      
+      <h4><a name="LaunchProduct">Launch Product</a></h4>
+      <p>The last stage of the product lifecycle is to execute the rollout plan and launch the product.</p>  
+      <table class='confluenceTable'>
+        <tbody>
+          <tr>
+            <td width="1016" class='confluenceTd'><img src="LaunchProductMicroflowCmp.png" alt="Launch Product Workflow"></td>
+            </tr>
+          </tbody>
+        </table>
+      <p>A task is sent to the Product Manager to execute the rollout plan.  Once the Product Manager has completed the task, two simultaneous tasks are sent to the IT and Network Operations departments to launch the product.   Once those two departments have completed their tasks, an approval task is sent to the users defined in the project configuration for the launch product stage. </p>
+      
+      
+      
+</body>
+</html>

@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Dynamic Table</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Dynamic Table</h2>
+
+<p>The Dynamic Table element allows data columns to be created dynamically at runtime.  The dynamic table element is used in conjunction with the Catalog Designer's Info Table object, to work with dynamic tables at runtime. You can use the <em>DynamicTable</em> object and related methods   to add, edit, or remove rows in the dynamic table without any need of Catalog Designer’s Info Table. Refer to <a href="../../JavaScripting in Order Care/overview-summary.html">JavaScript Documentation</a> for  more details.</p>
+Dynamic table element uses proper UI controls for the columns when editing. For example, if catalog Info table has a column of type code table, dynamic table element displays the drop-down list with the options  described in code table.
+<p><img src="exampleDynamicTable.png" alt="Dynamic Table" border="1" /></p>
+
+<p>The following table describes the properties of dynamic table:</p>
+<table class='confluenceTable' border cellpadding=1>
+  <tbody>
+<tr>
+  <th width="93" class='confluenceTh'>Property</th>
+  <th width="138" class='confluenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+  <th width="1382" class='confluenceTh'>Comment</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Name</strong></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>Name of the Dynamic Table element.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Editable</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property determines whether user input is enable or disabled at runtime. The values for this property are either <em>True</em> (enabled), <em>False</em> (disabled) or a <em>Permissions</em> method (for example, depending on the user, editing the table will be enabled or disabled).</p>
+    <p><strong>Note:</strong> If a field contains  an editable permission that is either coming from the form field itself, or inherited  from the variable or data type, it takes precedence. Otherwise, the user  interface's editablePerm permission takes over. If this method is not  overwritten, the model's editablePerm permission is used. User interfaces  displayed under another user interface with editablePerm are also be inherited  if the embedded user interfaces do not have their own editablePerm permission. </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Header Height</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This property is of type Integer. This value is written as part of the binding since table creation is on demand. Additionally, the text in the table's header row wraps automatically, if needed. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Height</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>Height to be taken up by the Table area; can be an integer which is in pixels, or in percentage (for example, "50%") of page height or parent element.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Include in Tab Order</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property allows you to optionally suppress tabbing to any or all form elements. The <strong>Include in Tab Order</strong> property overrides the <a href="../../Configuration_Tool_User_Guide/Configure/System/UI/UItabbing.html">suppress tabbing</a> configuration setting and can take the following values:</p>
+    <ul>
+      <li>When set to <strong>&lt;Default&gt;</strong>, the element is included in tab order according to global rules and its focusable state.</li>
+      <li>If the property is set to <strong>Exclude</strong>, the element is excluded from tabbing even if the element is focusable.</li>
+      <li>If the property is set to <strong>Include</strong>, the element is included <em>only if it is focusable</em>, even if all items of that type are excluded through the Suppress Tabbing variable.</li>
+    </ul>
+    <p><strong>Note:</strong> For menu items and images, the <strong>Can Focus</strong> property affects including the element in the tab order. To ensure that an element is in the tabbing order, select this property.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Variable</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Choose from the list of<em> </em>Variables available in the User Interface to bind to this Table. Default is not assigned. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Visible</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Determines whether the Dynamic Table is visible or not. Choose true (visible) or false (not visible) or from the list of Permission Methods available in the User Interface to bind to the Field.  This property defines the user permissions assigned to this field. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and visiblePerm can be assigned as well as Object Permissions. Defaults to NONE or True, which means no permissions assigned and field is visible.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Width</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Width to be taken up by the Dynamic Table; can be in integer which is in pixels, or in percentage (for example,  "30%") of page width or parent Element. </td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<html>
+<head>
+<title>Process Exceptions</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Process Exceptions</h2>
+<p>The Process Management product defines the handling of unexpected events (jeopardy situations) in business processes. An exception event can be a timeout or an <a href="process activities types.html"><em>exception</em> activity</a>. This handling is defined through a special <a href="process activities types.html"><em>On Exception</em> activity</a> that is invoked by the Process Management framework, in response to an unexpected event.</p>
+<p>An <em>On Exception</em> activity can handle either one specific exception type or any exception type (exception type omitted in the <em>On Exception</em> activity properties). An <em>On Exception</em> activity specifies activities that should be executed when this exception type (specified in the <em>On Exception</em> activity properties) occurs.</p>
+<p>An <em>On Exception</em> activity can be only assigned to a <em>complex</em> activity. Multiple <em>On Exception</em> activities within the same <em>complex</em> activity may be used to handle different exception codes. A set of <em>On Exception</em> activities must use unique exception codes, and at most one activity may omit the exception code attribute.</p>
+<p>An <em>On Exception</em> activity also specifies how to handle execution of the activities once the exception has occurred. The activities' execution can be either proceed normally (in this case, the <em>On Exception</em> handler can notify or escalate the problem) or terminate execution of all activities of the <em>complex</em> activity to which the <em>On Exception</em> activity belongs (in this case, the <em>On Exception</em> handler can perform an alternate flow, or even terminate the process.)</p>
+
+<h4><a name="new">Create New Exception</a></h4>
+
+<p>To create a new Exception, follow these steps:</p>
+<ul>
+<li>In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:</li>
+<ol>
+<li>Right-click  a Namespace and select <b>New ...</b></li>
+<li><b>New Metadata Object</b> wizard appears as a popup. Expand <b>Business Processes</b>, select <b>Exception</b>, and then click the <b>Next</b> button.</li>
+<li>Step two of the wizard appears. Enter  the name of Exception (must conform to JavaScript naming conventions), and populate other fields, as necessary. Then, click the <b>Finish</b> button.</li>
+</ol>
+<li><i>OR</i></li>
+<ol>
+<li>Right-click the <b>Exceptions</b> folder or the <b>Business Processes</b> folder in a Namespace, if it is present. Select <b>New Exception</b>.</li>
+<li>Follow step 3 from the previous procedure.</li>
+</ol>
+</ul>
+
+<p>The newly created Exception appears under the <b>Exceptions</b> folder.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="newExceptionNode.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+<h4>Exception Properties</h4>
+<p>The Exception element's properties appear on the General tab.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="exceptionProperties.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p>The General tab contains the following fields:</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th width="131" class='confluenceTh'>Field</th>
+<th width="969" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory. Name of the Exception within the namespace.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Deprecated</b></td>
+<td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Label</b></td>
+  <td class='confluenceTd'>Mandatory. Label to identify the Exception.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Description</b></td>
+  <td class='confluenceTd'>Description of the Exception for documentation purposes.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Default Handler</strong></td>
+  <td class='confluenceTd'><p>    Use this field to define the default exception handler. When an exception happens and the process engine cannot find an appropriate exception handler, it runs the default handler as it is defined for the root or first activity of the process. See Default External Exception Hand<br>
+  <br>
+  <strong>Notes:</strong> </p>
+    <ul>
+      <li>This handler does not appear in the process flow diagram.</li>
+      <li>If no exception handler is found, the process goes into error state.<br>
+      </li>
+    </ul></td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+<h4>Default External Exception Handlers</h4>
+<p>When an exception occurs and the process does not have an exception handler for the given exception type, it processes a default external exception handler, if specified. Default external exception handlers are external exception handler processes that are specified in the corresponding exception metadata elements. <BR>
+  <BR>
+The Exception metadata element can specify the name of exception handler process either statically or dynamically. For a statically defined handler, select the handling process from the <strong>Default Handler</strong> field's drop-down menu. Otherwise, select <strong>&lt;Dynamic Exception Handler&gt;</strong> from the <strong>Default Handler</strong> field and return the handler's name in the cwOnExceptionInit() script. This script is processed at runtime when the exception is generated. </p>
+<p>For the process to be a legitimate handler, it must use a document that has two fields: </p>
+<ul>
+  <li>cwf_pm:cwResumeIndicator</li>
+  <li> cwf_pm:cwRollbackCode</li>
+</ul>
+<p>These fields are used to pass resume and rollback details, respectively, to the process containing the exeption node. The process document can extend the template's document cwf_pm:ExternalExceptionHandlerDoc containing these two fields. Only legitimate handler processes are available in the Exception's <strong>Default Handler</strong> field's selection list.</p>
+<p>The AVM processes the exception as follows:</p>
+<ol>
+  <li>It creates an empty process document for the default handler and then maps the parent process document to it using a default conversion map, if any.</li>
+  <li>It processes the external exception handler sub-process synchronously. If the process has an unprocessed exception, it is returned to the parent process. <br>
+    <br>
+  <strong>Note:</strong> Default exception handlers are processed in the external exception handler sub-process.</li>
+  <li> Maps the external exception handler sub-process document to the parent process document using a default conversion map, if any.</li>
+  <li>Processes the rollback and resume actions as specified by the external exception handler process document. If an exception happens in the default exception handler, it may process another default exception handler. If no exception handler is found, the exception is  returned to the parent process. </li>
+</ol>
+</body>
+</html>

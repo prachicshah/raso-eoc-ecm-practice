@@ -1,0 +1,245 @@
+<html>
+<head>
+<title>Preferences</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Preferences</h3>
+<p>The Designer Preferences page allows you to define a number of Velocity Studio settings. Click any of the following sections in the left menu to change your Velocity Studio settings:</p>
+<ul>
+  <li><strong><a href="#runtime">Runtime</a></strong></li>
+  <li><strong><a href="#appearance">Appearance &gt; View</a></strong></li>
+  <li><strong><a href="#project">Project</a></strong></li>
+  <li><strong><a href="#export">Export</a></strong></li>
+  <li><strong><a href="#setting">Setting</a></strong></li>
+  <li><strong><a href="#testcase">Test Case</a></strong></li>
+</ul>
+
+<h4><a name="runtime"></a>Runtime</h4>
+<p>The <b>Runtime</b> preferences specify how Velocity Studio shall execute at runtime:</p><table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>HTTP Port</b></a></td>
+<td class='confluenceTd'>The Port number to use to serve Web application when the project is <a href="Metadata Run.html">run within Velocity Studio</a>. Default is 8080.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Help Port</b></a></td>
+<td class='confluenceTd'>The Port number to use to serve Help pages in Velocity Studio. Default is 8081.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Preview Port</b></a></td>
+<td class='confluenceTd'>The Port number to use to display the preview pane when <a href="../Velocity_Studio/Form.htm">managing Forms</a> in Velocity Studio. Default is 8082.</td>
+</tr>
+</tbody>
+</table>
+<p>For any Port settings, if the port number is already in use by the machine, the runtime attempts to bind to the next available incremental port number. In this case, this information appears in the <a href="../Service_Designer_User_Interface/Console Pane.html">console</a>.</p>
+
+<h4><a name="appearance"></a>Appearance &gt; View</h4>
+<p>This section allows you to defines the view preferences within Velocity Studio when navigating metadata:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Tree node labels</b></a></td>
+  <td class='confluenceTd'>Specifies how the text of the nodes in the metadata tree of <a href="../Service_Designer_User_Interface/navigation pane - Metadata.html">Navigation Pane</a> is displayed. It can be one of the following:
+    <ul>
+      <li><b>Name Only</b> - only name of metadata object is displayed</li>
+      <li><b>Label Only</b> - only label of metadata object is displayed</li>
+      <li><b>Name (Label)</b> - name of metadata object is displayed, appended with its label in brackets if label is different from name. This is the default.</li>
+      <li><b>Label (Name)</b> - label of metadata object is displayed, appended with its name in brackets if name is different from label.</li>
+      </ul>
+  </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Element node labels</strong></td>
+  <td class='confluenceTd'><p>Allows you to specify how the text of element nodes is displayed in the element tree. It can be one of the following options:</p>
+    <ul>
+      <li><b>Name Only</b> - only the element's name is displayed</li>
+      <li><b>Label Only</b> - only the element's label is displayed</li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Form Preview - Enable Preview</strong></td>
+  <td class='confluenceTd'>By default, the preview area is enabled. Deselecting this setting disables all settings in the Form Preview section and <a href="../Service_Designer_User_Interface/Disable preview area.html">disables the preview area</a> when you are developing your metadata.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Form Preview - Auto Refresh Browser</b></a></td>
+  <td class='confluenceTd'>Specifies whether to automatically refresh the preview pane when you click a different form element in the <a href="../Velocity_Studio/Form.htm">Form</a> design in Velocity Studio.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Form Preview - Minimize Preview</b></a></td>
+  <td class='confluenceTd'>Allows you to <a href="../Service_Designer_User_Interface/Minimize preview area.html">minimize the preview area</a> when you are developing your metadata in the design area,  providing you with a full design area.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Form Preview - Auto Expand Element Tree</strong></td>
+  <td class='confluenceTd'> Allows you to view multiple levels of children (for example, submenus) on a form. By default, this setting is checked.</td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="project"></a>Project</h4>
+<p>This section allows you to define your project preferences:</p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="218" class='confluenceTh'>Field</th>
+<th width="1198" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Filtered resources</b></a></td>
+<td class='confluenceTd'>When Velocity Studio manages the Project Directory (that is, source files of the project), any folders and files with the specified name in this field are  ignored and left alone in the directory. This setting defaults to <i>.svn</i> to allow version control on Project Directory using <a href="http://subversion.tigris.org/">subversion</a>.</td> 
+</tr>
+<tr>
+  <td height="40" class='confluenceTd'><b>Filtered in war</b></td>
+  <td class='confluenceTd'> This field allows you to specify file  names  that are separated with a comma (,). When you create a WAR file using metadata, the files specified in this field are ignored. This setting defaults to <strong>.bak</strong> to filter out all the backup files. The <a href="Metadata Build WAR.html">Build Deployment WAR</a> function uses this field.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Webapp library folder</b></a></td>
+  <td class='confluenceTd'>Specify the folder that contains extra JAR files, which will be packaged to <i>WEB-INF/lib</i> folder upon <a href="Metadata Build WAR.html">packaging</a>.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b><a name="compressSmartClientResources"></a>Compress SmartClient Resources</b></td>
+  <td class='confluenceTd'><p>By default, this setting is checked. When this setting is unchecked, upon packaging, the generated WAR file contains <em>servlet.compress: false</em>.</p>
+    <p><strong>Note:</strong> See the <strong><a href="../../Metadata Deployment Guide/Packaging in Command Line Interface.html#disableSmartClientCompression">Disabling SmartClient compression</a></strong> section on how this parameter in your startup script works with the <strong>Compress SmartClient Resources</strong> checkbox.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>SmartClient Resources Expiry Time (hours)</b></td>
+  <td class='confluenceTd'><p>By default, this setting defaults to one hour. This setting allows you to set the expiration time for SmartClient resources.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Folders to look in for template files</strong></td>
+  <td class='confluenceTd'><p>This property allows you to specify either a relative or absolute directory where Velocity Studio will search for template JAR files. This search is performed in addition to searching the templates folder of your metadata. To specify more than one relative or absolute directory, separate them with a semicolon (;).</p>
+    <p><strong>Notes:</strong></p>
+    <ul>
+      <li>If a folder has the same file as another folder, the template   JAR file is read from the templates folder first, and then from left to right of the specified folders.</li>
+      <li>When you add a new template library file to   the metadata header, a prompt appears, asking whether you want to copy the file   into the templates folder of your metadata. Clicking the <strong>Yes</strong> button copies the files to the template folder. Otherwise, clicking the <strong>No</strong> button adds the path to the project settings property, if it does not already exist.</li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Runtime Test Features</strong></td>
+  <td class='confluenceTd'><p>This field's drop-down menu shows features that are currently defined and activated for testing using the test handler to open any  protected template. This field allows you to turn these features on and off.</p></td>
+</tr>
+</tbody>
+</table>
+<h4><a name="export"></a>Export</h4>
+<p>This section allows you to define preferences in export commands:</p><table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+  <th width="180" class='confluenceTh'>Field</th>
+  <th width="642" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Export Schema inside WSDL</b></td>
+  <td class='confluenceTd'>If checked, any Data Types or Data Structures that are referenced by the SOAP elements are included in <i>&lt;schema&gt;</i> element at the top of the WSDL file when Exporting WSDL, akin to the content of an XSD file.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Export Referenced Types Only</strong></td>
+  <td class='confluenceTd'><p>For WSDLs, if you select this setting, only types referenced by the services and any types that they depend on are exported.</p>
+    <p>For XSDs, the following occurs if you select this setting:</p>
+    <ul>
+      <li>For the selected namespace, all types are exported.</li>
+      <li>        For referenced namespaces, only types required by the selected namespace are exported instead of the complete set of types for all referenced namespaces.</li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Resolve Override Types</strong></td>
+  <td class='confluenceTd'>This setting allows you to indicate whether overrides are used in the WSDL (that is, references to a base object are replaced with references to an overriding object). If you want to use overrides, ensure that you make the WSDL or XSD consistent with your business needs, as overriding is not a supported feature in XSD. This setting is off by default, meaning that overrides are not resolved.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Export Template JAR Folder</strong></td>
+  <td class='confluenceTd'><p>This field allows you to set the default path for building the template JAR file by clicking the <strong>Browse</strong> button and selecting the folder that you want. If the path is either empty or does not exist, a popup appears, prompting you to select a file editor. Otherwise, the default path is used to build the template JAR file.</p>
+    <p>This setting is a project preference, and not a Velocity Studio preference, as indicated in the following example:</p>
+    <ol>
+      <li>Open a project (project A) and define the <strong>Export Template JAR Folder</strong> as Y.</li>
+      <li>Proceed to export the file by clicking <strong>Runtime</strong> &gt; <strong>Build Library JAR</strong> from the menu bar. Ensure that the JAR has been exported to folder Y.</li>
+      <li>        Open another project (project  B)  and define the <strong>Export Template JAR Folder</strong> as  folder X.</li>
+      <li>Export the file by clicking <strong>Runtime</strong> &gt; <strong>Build Library JAR</strong> from the menu bar. Ensure that the JAR has been exported to folder X.</li>
+      <li>        Reopen project A. When you click <strong>Runtime</strong> &gt; <strong>Build Library JAR</strong> from the menu bar, the JAR is still exported to folder Y. </li>
+    </ol></td>
+</tr>
+</tbody>
+</table>
+<h4><a name="setting"></a>Setting</h4>
+<p>This section allows you to define the following setting preferences:</p><table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="262" class='confluenceTh'>Field</th>
+      <th width="1154" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Auto Save Metadata</strong></td>
+      <td class='confluenceTd'>By default, this field is set to <strong>Never</strong>. You can specify how often Velocity Studio automatically saves your metadata by clicking the drop-down menu and selecting the number of minutes from the list.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Prompt for Confirmation on Method Deletion</strong></td>
+      <td class='confluenceTd'>By default, when you delete a method, you do not see a confirmation message. Selecting this field allows you to see this confirmation dialog before you delete any method.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Show Finder Type Folder</strong></td>
+      <td class='confluenceTd'>By default, this field shows the finder type folder in the Metadata tree.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Show Library Warning</b></td>
+      <td class='confluenceTd'>By default, this field shows all library warnings received in Velocity Studio.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Show Metadata Label in recent project list</strong></td>
+      <td class='confluenceTd'>Select this checkbox to display the metadata label in the recent project list (that is, clicking <strong>File</strong> from the menu bar) and its file path.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a name="generateUpgradeSQL"></a>Generate upgrade SQL in one output file </strong> </td>
+      <td class='confluenceTd'>By default, this setting generates one upgrade.sql file when you select <strong>Database</strong> &gt; <strong><a href="Upgrading System.html">Upgrade System</a></strong> from the menu bar. When you uncheck this setting,  Velocity Studio generates separate SQL script files for each logical schema.</td>
+    </tr>
+    
+    <tr>
+      <td class='confluenceTd'><strong>Generate verbose message in console </strong></td>
+      <td class='confluenceTd'><p>When selected, this setting&nbsp;generates verbose messages in console of Velocity Studio. Such as, information  about the calls on the system,&nbsp;like&nbsp;notices, warnings, and errors etc.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a name="propagateSubflowRevision"></a><strong>Prompt to propagate subflow revision</strong></td>
+      <td class='confluenceTd'><p>By default, this field is selected, meaning that each time a subflow generates a new revision, a dialog with a list of processing using this subflow appears. You can then select processes that need to have their subflows re-adjusted to use the latest subflow revision. When you click the <strong>OK</strong> button, the selected process references are automatically re-adjusted.</p>
+        <p>When this field is unchecked, generating a new subflow revision no longer prompts to re-adjust subflow references.</p></td>
+    </tr>
+  </tbody>
+</table>
+<h4><a name="testcase"></a>Test Case</h4>
+<p>The <b>Test Case</b> preference provides the ability to configure predefined scripts for test cases:</p>
+
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Field</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td height="43" class='confluenceTd'><strong>Show TestCase Template</strong></a></td>
+      <td class='confluenceTd'>By default, this field is unchecked and all three input fields are display only.  Check this field to enable the three input fields and to indicate that the predefined script will be used when creating a new test case  or test function.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Setup Script, Teardown Script, Script  Template</strong></td>
+      <td class='confluenceTd'><p> By default, these three input fields are display only unless the  <strong>Show TestCase Template </strong>checkbox field is checked. These fields are text areas that can be used to define a script for a  test case and a test function.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Default Script </strong></td>
+      <td class='confluenceTd'>If modifications have  been made to the predefined script via the three input fields, this button provides a means to view, in a dialog, the default predefined script (that is, before changes).</td>
+    </tr>
+  </tbody>
+</table>
+<br></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,514 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Form Elements Overview</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">
+<!--
+Hilary {
+	color: #F00;
+}
+.Hilary {
+	color: #F00;
+}
+-->
+</style>
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Form Elements Overview</h2>
+
+<p>A  comprehensive set of  form elements is available to construct rich, user-intuitive Web pages.  Elements are categorized into four sections:  </p>
+<ul>
+  <li><strong><a href="#layouts">Layouts</a></strong><br>
+    Layout elements determine the layout directives of the user interface such as Vertical, Horizontal, Grid, Tabs, or Sections.  </li>
+  <li><strong> <a href="#inputElements">Input Elements</a></strong><br>
+    Input elements consist of field-level elements that at runtime require user input.  </li>
+  <li> <strong><a href="#structures">Structures</a></strong><br>
+    Structure elements consist of Tables, Charts, Trees, and more.  </li>
+  <li><strong><a href="#miscControls">Misc Controls</a></strong><br>
+    Miscellaneous controls include other elements such as buttons, labels, images, etc.</li>
+</ul>
+<p>Form element types can be found in the Element tree pane of a product application metadata (for example, within the navigation pane, navigate to &lt;namespace&gt;\Presentation\User Interfaces).  The following is a summary of some of the available form element types:</p>
+
+<img src="FormElementTypes.png" alt="Element Types"  />
+                  
+<p><a name="mandatoryProperty"></a>Each element contains a set of properties that you can configure. Properties that are mandatory have their property names highlighted in blue font as shown in the following example for the Date Field element:</p>
+<p><img src="elementMandatoryProperties.png" alt="Elements - Mandatory properties"></p>
+<p>Element properties that refer to a method have an <strong>Independent</strong> checkbox. Selecting this checkbox indicates that multiple elements referencing the same   method will receive individual values. </p>
+<p>To share a method between multiple elements, the method must contain at least one string parameter. This string parameter represents the name of the element. When it comes to permissions, the first parameter is always $psCondition, which is the boolean result of the privilege or state condition. </p>
+<p>When you set a property as a shared method, the <strong>Independent</strong> checkbox appears next to the property in Velocity Studio appears. By default, the checkbox is set to false. To allow Velocity Studio to know when to send the name of the element currently being processed, select this checkbox.<BR>
+  <strong><BR>
+  Notes:</strong> </p>
+<ul>
+  <li>By default,  properties are set to dependent so that the product does not make unnecessary method calls. Once a method is called and a value is returned, this value remains the same until the next server request. This behaviour can only be overwritten if the property is set to <strong>Independent</strong>. </li>
+  <li>The <strong>Independent</strong> checkbox only works at the Form level.</li>
+</ul>
+<p><img src="elementIndependentProperty.png" alt="Independent property"></p>
+<p>Some examples of properties that have the <strong>independent</strong> checkbox include the following:</p>
+<ul>
+  <li><strong>Dynamic Label</strong></li>
+  <li><strong>Dynamic Label Style</strong></li>
+  <li><strong>Dynamic Tooltip</strong></li>
+  <li><strong>Dynamic Tooltip Style</strong></li>
+  <li><strong>Editable</strong></li>
+  </ul>
+<p>The following is an example of using the <strong>Independent</strong> checkbox in a permission script to return the UI element name in FinderUserInterface:</p>
+<ol>
+  <li>Create a permission script with a string parameter called <em>elementName</em>.</li>
+  <li>Assign the permission to the <strong>Visible</strong> property of a column in a finder result table.</li>
+  <li>After assigning the permission, select the <strong>Independent</strong> checkbox.</li>
+  <li>Run the debugger and check the permission script. The elementName parameter returns the UI element name.</li>
+  </ol>
+<p><strong>Note:</strong> If you assign this permission script to the <strong>Optional</strong> property of a variable in a document, the variable may not have any elements bound to it. As a result, the element name is not returned. The element name is only returned when the method is used as an element property.</p>
+<h3><a name="layouts"></a>Layouts</h3>
+<table class='confluenceTable' width="800">
+<tbody>
+<tr>
+<th class='confluenceTh' width="100">Element Type</th>
+<th class='confluenceTh' width="200">Sample</th>
+<th class='confluenceTh' width="320">Description</th>
+<th class='confluenceTh' width="60">contain child Element?</th>
+<th class='confluenceTh' width="60">has Variable?</th>
+<th class='confluenceTh' width="60">has Form?</th>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Grid Layout.htm">Grid Layout</a></td>
+<td class='confluenceTd' align='center'><img src="GridLayout.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'><p>The form elements are displayed in a grid layout. The user specifies the number of columns and the system displays the elements sequentially as show in the diagram containing 6 columns. </p></td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Horizontal Layout.htm">Horizontal Layout</a></td>
+<td class='confluenceTd' align='center'><img src="tinyHL.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>The graphical user interface displays the form elements in a horizontal fashion. Each sequential element is place adjacent to each other.</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Section Stack.html">Section Stack</a></td>
+<td class='confluenceTd' align='center'><img src="overviewSectionStack.png" alt="" width="269" height="140" border="1" align="absmiddle" /></td>
+<td class='confluenceTd'>A Section Stack is a grouping of Sections that share the same &quot;real estate&quot; and can be collapsed or expanded at runtime. The Section Stack element parents the Section and Section Header elements.</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Tabset.htm">Tabset</a></td>
+<td class='confluenceTd' align='center'><img src="tinyTabset.png" alt="" width="170" height="165" border="1" align="absmiddle" /></td>
+<td class='confluenceTd'>A Tabset consists of a set of Tab Frames or tabs.</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Vertical Layout.htm">Vertical Layout</a></td>
+<td class='confluenceTd' align='center'><img src="tinyVL.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>The graphical user interface is presented in a vertical layout.  All form elements are aligned vertically with respect to each other. </td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="inputElements"></a>Input Elements</h3>
+<table class='confluenceTable' width="800">
+<tbody>
+<tr>
+<th class='confluenceTh' width="100">Element Type</th>
+<th class='confluenceTh' width="200">Sample</th>
+<th class='confluenceTh' width="320">Description</th>
+<th class='confluenceTh' width="60">contain child Element?</th>
+<th class='confluenceTh' width="60">has Variable?</th>
+<th class='confluenceTh' width="60">has Form?</th>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Checkbox.htm">Checkbox</a></td>
+<td class='confluenceTd' align='center'><img src="tinyCheckbox.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a checkbox whose value is assigned at runtime. </td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Date Field.htm">Date Field</a></td>
+<td class='confluenceTd' align='center'><img src="tinyDateField.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a Date and Time Field.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Date Time.html">Date Time</a></td>
+<td class='confluenceTd' align='center'><img src="overviewTimedate.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a Date Field with a seconds text box. </td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - HTML Content.html">HTML Content</a></td>
+<td class='confluenceTd' align='center'><img src="overviewHTMLContent.png" alt="HTML content" align="absmiddle" /></td>
+<td class='confluenceTd'>Allows HTML content to be created within the Velocity Studio Framework</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Hyperlink.htm">Hyperlink</a></td>
+<td class='confluenceTd' align='center'><img src="tinyHyperlink.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a Hyperlink.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Large Text.htm">Large Text</a></td>
+<td class='confluenceTd' align='center'><img src="tinylarge_text.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>A text field which allows for a single line of preview text.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Large Text Area.html">Large Text Area</a></td>
+<td class='confluenceTd' align='center'><img src="tinylarge_textArea.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>A  text text field which allows for multiple lines of preview text.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Password Field.htm">Password Field</a></td>
+<td class='confluenceTd' align='center'><img src="tinyPassword.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a textfield that masks the entry text and is ideal for passwords.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Radio Button Group.htm">Radio Button</a></td>
+<td class='confluenceTd' align='center'><img src="tinyRadioButtonGroup.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a set of radio buttons.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Reference.html">Reference Field</a></td>
+<td class='confluenceTd' align='center'><img src="tinyReference.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates Reference field that displays a finder.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Rich Text Editor.html">Rich Text Editor</a></td>
+  <td class='confluenceTd' align='center'><img src="tinyRichTextEditor.png" width="342" height="68" alt="Rich Text Editor"></td>
+  <td class='confluenceTd'>Create an area to perform rich text editing, such as making changes to your text's font, colour, size, alignment, and more.</td>
+  <td class='confluenceTd'>No</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Select Field.htm">Select Field</a></td>
+<td class='confluenceTd' align='center'><img src="tinySelectField.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a listbox or a drop-down list of enumerated values.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Slider.html">Slider</a></td>
+<td class='confluenceTd' align='center'><img src="tinySlider.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a slider widget for numeric value selection.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Spinner.html">Spinner</a></td>
+<td class='confluenceTd' align='center'><img src="tinySpinner.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a numeric selector within a text box.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Text Area.html">Text Area</a></td>
+<td class='confluenceTd' align='center'><img src="tinyTextArea.png" alt="Text Area" align="absmiddle" border="0" /></td>
+<td class='confluenceTd'>Creates a large text field with a label and icon.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Textfield.htm">Text Field</a></td>
+<td class='confluenceTd' align='center'><img src="tinyTextField.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a text field with a label and icon</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Translation.html">Translation Field</a></td>
+<td class='confluenceTd' align='center'><img src="tinytranslation.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a Translation field that displays a finder.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Upload File.html">Upload File</a></td>
+<td class='confluenceTd' align='center'><img src="tinyUploadFile.png" alt="Upload File" /></td>
+<td class='confluenceTd'>Enables the ability to upload  a document at runtime. </td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Variable.htm">Variable</a></td>
+<td class='confluenceTd' align='center'>N/A</td>
+<td class='confluenceTd'>A shortcut for creating an appropriate Element based on a chosen Variable.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="structures"></a>Structures</h3>
+<table class='confluenceTable' width="800">
+<tbody>
+<th class='confluenceTh' width="100">Element Type</th>
+<th class='confluenceTh' width="200">Sample</th>
+<th class='confluenceTh' width="320">Description</th>
+<th class='confluenceTh' width="60">contain child Element?</th>
+<th class='confluenceTh' width="60">has Variable?</th>
+<th class='confluenceTh' width="60">has Form?</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Chart.htm">Chart</a></td>
+  <td class='confluenceTd' align='center'><img src="tinychart_donut.png" width="56" height="35" alt="Chart Image"></td>
+  <td class='confluenceTd'>Creates a Chart for Finder result.</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>No</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Gantt Chart.html">Gantt Chart</a></td>
+  <td class='confluenceTd' align='center'><img src="gantt_chart_example.png" width="126" height="64" alt="Gantt chart"></td>
+  <td class='confluenceTd'>Creates a Gantt Chart for Finder result.</td>
+  <td class='confluenceTd'>No</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>No</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Nodal Chart.html">Nodal Chart</a></td>
+  <td class='confluenceTd' align='center'><img src="nodal_chart_example.png" width="128" height="60" alt="Nodal chart"></td>
+  <td class='confluenceTd'>Creates a Nodal Chart for Finder result.</td>
+  <td class='confluenceTd'>No</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>No</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Dynamic Document.html">Dynamic Document</a></td>
+  <td class='confluenceTd' align='center'>N/A</td>
+  <td class='confluenceTd'>Enables the dynamic creation of a document leafs at runtime.</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>No</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Dynamic Table.html">Dynamic Table</a></td>
+  <td class='confluenceTd' align='center'>N/A</td>
+  <td class='confluenceTd'>Enables the creation of tables dynamically at runtime</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>No</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Iterator.htm">Iterator</a></td>
+  <td class='confluenceTd' align='center'><img src="tinyIterator.png" alt="iterator" /></td>
+  <td class='confluenceTd'>Enables repeated configuration of the User Interface using an array.</td>
+  <td class='confluenceTd'>No</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Table.html">Table</a></td>
+<td class='confluenceTd' align='center'><img src="tinyTable.png" width="114" height="49" alt="tiny Table"></td>
+<td class='confluenceTd'>Creates a Table for Finder result.</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Tree.html">Tree</a></td>
+  <td class='confluenceTd' align='center'><img src="tinyTree.png" width="165" height="144" alt="Tree Example"></td>
+  <td class='confluenceTd'>Creates a Tree to enable navigation of hierarchical dataset.</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>Yes</td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="miscControls"></a>Misc Controls</h3>
+<table class='confluenceTable' >
+<tbody>
+<tr>
+<th class='confluenceTh' width="100">Element Type</th>
+<th class='confluenceTh' width="200">Sample</th>
+<th class='confluenceTh' width="320">Description</th>
+<th class='confluenceTh' width="60">contain child Element?</th>
+<th class='confluenceTh' width="60">has Variable?</th>
+<th class='confluenceTh' width="60">has Form?</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Button.html">Bread Crumb</a></td>
+  <td class='confluenceTd' align='center'>&nbsp;</td>
+  <td class='confluenceTd'>This element provides a navigation control that accumulates the history of navigation in a delimited set of links, which allows easy navigation to previously visited pages</td>
+  <td class='confluenceTd'>No</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>No</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Button.html">Button</a></td>
+  <td class='confluenceTd' align='center'><img src="tinyButton.png" align="absmiddle" border="0" alt="" /></td>
+  <td class='confluenceTd'>Creates a button.</td>
+  <td class='confluenceTd'>No</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Cell Spacer.html">Cell Spacer</a></td>
+<td class='confluenceTd' align='center'><img src="CellSpacer.png" width="153" height="101" alt="Cell Spacer"></td>
+<td class='confluenceTd'>Add empty empty space(s) in a Grid Layout that spans columns. The example shows a cell spacer that spans four (4) columns.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Dialog.htm">Dialog</a></td>
+  <td class='confluenceTd' align='center'><img src="tinydialogbox.png" width="37" height="42" alt="Dialog Box"></td>
+  <td class='confluenceTd'>Creates  a  dialog box that can be configured to display  a warning message and  user action button.</td>
+  <td class='confluenceTd'>No</td>
+  <td class='confluenceTd'>Yes</td>
+  <td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Form Frame.htm">Form Frame</a></td>
+<td class='confluenceTd' align="center">N/A</td>
+<td class='confluenceTd'>References a form within a web page that can dynamically change at runtime based on methods and variables.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Group.html">Group</a></td>
+<td class='confluenceTd' align='center'><img src="tinyGroup.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Group element behaves like a Section Stack element but is parented by the Grid Layout and contains only one header and one stack.</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Header.htm">Header</a></td>
+  <td class='confluenceTd' align='center'><img src="tinyHeader.png" align="absmiddle" border="0" alt="" /></td>
+  <td class='confluenceTd'>Creates a header within a layout on a Web page.</td>
+  <td class='confluenceTd'>No</td>
+  <td class='confluenceTd'>No</td>
+  <td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Image.htm">Image</a></td>
+<td class='confluenceTd' align='center'><img src="tinyImage.png" align="absmiddle" border="0" alt="Image" /></td>
+<td class='confluenceTd'>Attaches an Image to a Web page. </td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Label.htm">Label</a></td>
+<td class='confluenceTd' align='center'><img src="tinyLabel.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a label.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Layout Spacer.htm">Layout Spacer</a></td>
+<td class='confluenceTd' align='center'><img src="tinyLSpacer.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Add empty space in the Vertical and Horizontal Layouts. </td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Menu.htm">Menu</a></td>
+<td class='confluenceTd' align='center'><img src="tinyMenu.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a Menu item.</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Row Spacer.htm">Row Spacer</a></td>
+<td class='confluenceTd' align='center'><img src="tinyRSpacer.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Add empty row(s) space between rows in a Grid Layout. The example shows a row spacer between field elements A and C.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Section.htm">Section</a></td>
+<td class='confluenceTd' align='center'><img src="tinySections.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>A section contained within a Section Stack.  Used to divide logical blocks of data that share the same "real estate"</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Section Header.htm">Section Header</a></td>
+<td class='confluenceTd' align='center'><img src="tinySectionHeader.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>The header of a Section element that has limited functionality other than to be used to display a banner and used to expand or collapse a Section.</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Separator.htm">Separator</a></td>
+<td class='confluenceTd' align='center'><img src="tinySeparator.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>The Separator is a static element that is used to place a separator (space/line) between elements.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Tab Frame.htm">Tab Frame</a></td>
+<td class='confluenceTd' align='center'><img src="tinyTabFrame.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'>Creates a tab within the Tabset.  The contents of the tab is that of a referenced Form.</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+</tbody>
+</table>
+</tbody>
+</table>
+
+<h4>&nbsp;</h4></td>
+</tr>
+</table>
+</body>
+</html>

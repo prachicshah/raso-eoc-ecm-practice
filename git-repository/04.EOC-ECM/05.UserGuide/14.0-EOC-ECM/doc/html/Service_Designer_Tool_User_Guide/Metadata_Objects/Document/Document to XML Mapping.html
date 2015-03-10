@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Document to XML Mapping</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Mapping Tab: Document to XML Mapping</h3>
+<p>The <b>XML</b> <b>Map</b> sub-tab in the <b>Mapping</b> tab specifies how to export/import Documents to/from XML format. Table below contains a description of the fields in this tab.</p>
+<p><img src="DocumentMappingXML.png" align="absmiddle" border="1" alt="Document Mapping - XML" /></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>XML Name</b></td>
+<td class='confluenceTd'>XML tag name for this element. Default value is the element name.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Length</b></td>
+<td class='confluenceTd'>Visible for Variable elements only. Data length.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Format</b></td>
+<td class='confluenceTd'>Visible for Variable elements only. Data format.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Exclude</b></td>
+<td class='confluenceTd'>When checked for Variable elements, this Variable will be excluded when generating the XML.<br clear="all" />
+When checked for branch elements, when generating the XML this element's XML tag will not be generated, but the XML tags for the children elements will be.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Exclude children</b></td>
+<td class='confluenceTd'>Visible for branch elements only. When checked, this element, and all of its children, will be excluded when generating the XML.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Include namespace</b></td>
+<td class='confluenceTd'>Visible for a Document root only. When checked, the <em>xmlns</em> attribute will be generated with the namespace value of the namespace this Document belongs to.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Attribute</b></td>
+<td class='confluenceTd'>Visible for Variable elements only.&#160; When checked, the data will be generated as an attribute of the Document tag when generating the XML.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>CDATA</b></td>
+<td class='confluenceTd'>When checked, CDATA will be generated when generating the XML.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Update</b></td>
+<td class='confluenceTd'>Must be clicked for the data entered on the screen to be stored in the metadata as a XML mapping for the selected Variable.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Remove</b></td>
+<td class='confluenceTd'>Cleans the screen and removes the XML mapping for the selected Variable.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

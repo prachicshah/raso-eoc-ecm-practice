@@ -1,0 +1,41 @@
+﻿<html>
+<head>
+<title>Database Maps - Driver Parameters properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Database Maps Driver Parameters Properties</h2>
+<p>The database map's Driver Parameters tab allows you to define its schema, and driver read and write parameter  properties. </p>
+<p><img src="databaseMapDriverParametersTab.png" alt="Database Maps - Driver Parameters properties" border="1"></p>
+<p>The following table describes  the common fields for the database map's Driver Parameters tab:</p>
+<table class='confluenceTable' border cellpadding="1"
+>
+<tr>
+      <th width="87" class='confluenceTh'>Field</th>
+      <th width="533" class='confluenceTh'>Description</th>
+    </tr>
+    <td class='confluenceTd'><b>Schema</b></td>
+      <td class='confluenceTd'>This field is of String type and denotes the database schema's name. Click the drop-down menu and select a schema from the list, and then click the <strong>Connect</strong> button to connect to the database. This field can only be changed when Velocity Studio has a database connection.</td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'><strong>Driver Read Parameters</strong></td>
+    <td class='confluenceTd'><p>This field represents the JDBC connection properties for read operations, which is shown as a list of name-value pairs for the specified JDBC database driver. The list of property names comes from the database driver, based on the selected schema. Validation occurs at runtime, to ensure that the read parameters are valid for the driver. These parameters can be inherited from the base map.</p>
+      <p>These parameters are set using a prepare statement before processing. <!-- As an example, Cassandra has a consistencyLevel property (that is, ANY,ONE,QUORUM) and can be set using these properties.--></p></td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>Driver Write Parameters</strong></td>
+    <td class='confluenceTd'><p>This field represents the JDBC connection properties for write operations, which is shown as a list of name-value pairs for the specified JDBC database driver. The list of property names comes from the database driver, based on the selected schema. Validation occurs at runtime, to ensure that the write parameters are valid for the driver. These parameters can be inherited from the base map.</p>
+      <p>These parameters are set using a prepare statement before processing. <!--As an example, Cassandra has a consistencyLevel property (that is, ANY,ONE,QUORUM) and can be set using these properties.--></p></td>
+  </tr>
+</table>
+<p>&nbsp; </p>
+</td>
+</tr>
+</table>
+</body>
+</html>

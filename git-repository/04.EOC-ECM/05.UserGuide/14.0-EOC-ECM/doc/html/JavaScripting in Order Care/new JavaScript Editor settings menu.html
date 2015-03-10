@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>JavaScript Editor - Settings Menu</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h3>JavaScript Editor - Settings Menu</h3>
+
+<p>The JavaScript Editor allows you to change a number of settings within the editor, including the following:</p>
+<ul>
+  <li><a href="#changeFont">Change the font type and size</a> used to code within the JavaScript Editor</li>
+  <li><a href="#showLineNumbers">Show or hide line numbers</a> in the left margin of the editor</li>
+  <li><a href="#mapObjects">Map objects</a> as fixed types</li>
+  <li><a href="#changeTabSize">Change the tab size</a> when indenting your code</li>
+  </ul>
+<p>You can also find a <a href="#keyMap">key map</a> that describes the commands available in the JavaScript Editor and their respective keyboard shortcuts.</p>
+<p>To change your editor settings and launch the Preferences dialog, right-click and select <strong>Settings &gt; Preferences</strong> from the menu.</p>
+<p><img src="newJSEditorSettingsMenu.png" alt="Preferences option in new JavaScript Editor"></p>
+
+<h4><a name="changeFont"></a>Change Font Style and Size</h4>
+<p>You can change the font family and size used to edit your script in the JavaScript Editor by completing these steps:</p>
+<ol>
+  <li>In the left pane of the Preference dialog, click the <strong>Fonts</strong> option.<br>
+    <br>
+    <img src="newJSEditorSettingsPreferencesFont.png" alt="Preferences dialog - Font"><br>
+    <br>
+  </li>
+  <li>To change the font style, click the <strong>Font family</strong> drop-down menu and select the font style that you want.<br>
+    <br>
+    <img src="newJSEditorSettingsPreferencesFontFamily.png" alt="Font - Font family field" border="1"><br>
+    <br>
+  </li>
+  <li>To change the <strong>Font size</strong>, you can either use the up or down arrows, or enter the size in the field provided.<br>
+    <br>
+    <strong>Note:</strong> Changes to either the <strong>Font family</strong> or <strong>Font size</strong> fields can be previewed in the <strong>Sample</strong> area.<br>
+    <br>
+  </li>
+  <li>Click the <strong>OK</strong> button to save your changes.</li>
+</ol>
+<h4><a name="showLineNumbers"></a>Show or Hide Line Numbers in the Editor's Left Margin</h4>
+<p>To change whether you see line number in the JavaScript Editor's left margin, complete these steps:</p>
+<ol>
+  <li>In the left pane of the Preference dialog, click the <strong>Editor</strong> option.
+    <br>
+        <br>
+      </li>
+  <li>To display the line numbers in the JavaScript Editor, select the <strong>Show line numbers</strong> option and then click the <strong>OK</strong> button. <br>
+    <br>
+    <img src="newJSEditorSettingsPreferencesEditorLineNumbers.png" alt="Preferences dialog - Show line numbers option"><br>
+    <br>
+  </li>
+  <li>In the JavaScript Editor, line numbers appear in the left margin.<br>
+    <br>
+    <img src="newJSEditorSettingsPreferencesLineNumbersEditor.png" alt="Line numbers in new JavaScript Editor" border="1"></li>
+  </ol>
+<p><strong>Note:</strong> You can also enable the line numbers to appear in the left margin by right-clicking the main editor area, and selecting the <strong>View &gt; Row number</strong> checkbox.</p>
+
+<h4><a name="mapObjects"></a>Map Objects as Fixed Types</h4>
+<p>You can define your variables as fixed types from the Object Mapping pane. In the left pane of the Preference dialog, click the <strong>Editor</strong> &gt; <strong>Object Mapping</strong> option to access the Object Mapping pane. </p>
+<p>The following are predefined objects in the JavaScript editor: </p>
+<ul>
+  <li>theAVM instance has AVM as its fixed type</li>
+  <li> theCatalog instance has Catalog as its fixed type</li>
+  <li>theItem instance has Catalog item as its fixed type</li>
+  <li> theBasket instance has Basket as its fixed type</li>
+  <li>theContext instance has Context as its fixed type<br>
+    <BR>
+  </li>
+</ul>
+<p><img src="newJSEditorSettingsPreferencesObjectMapping.png" alt="Settings - Object mapping - predefined objects"></p>
+<p>A column of action icons appears to  the right of the table. The following table describes the functionality of each action icon.</p>
+<table width="914" class='confluenceTable'>
+  <tbody>
+<tr>
+<th width="167" class='confluenceTh'>Icon</th>
+<th width="735" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="../Service_Designer_Tool_User_Guide/Service_Designer_User_Interface/iconMoveUp.png" align="absmiddle" border="0" alt="" /> <b>Move Up</b></td>
+<td class='confluenceTd'>Move the selected variable up one row in the table.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="../Service_Designer_Tool_User_Guide/Service_Designer_User_Interface/iconMoveDown.png" align="absmiddle" border="0" alt="" /> <b>Move Down</b></td>
+<td class='confluenceTd'>Move the selected variable down one row in the table.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="../Service_Designer_Tool_User_Guide/Service_Designer_User_Interface/iconAdd.png" align="absmiddle" border="0" alt="" /> <b>Add Element</b></td>
+<td class='confluenceTd'><p>Add a variable to the table by doing the following: </p>
+  <ol>
+    <li>Enter the variable name in the <strong>Instance Name</strong> field. </li>
+    <li>Click the <strong>Object</strong> drop-down menu and select the object type from the list. </li>
+    <li>Click the <strong>OK</strong> button to save your changes. </li>
+  </ol></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><img src="../Service_Designer_Tool_User_Guide/Service_Designer_User_Interface/iconRemove.png" align="absmiddle" border="0" alt="" /> <b>Remove Element</b></td>
+  <td class='confluenceTd'>Delete the selected variable from the table.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><img src="../Service_Designer_Tool_User_Guide/Service_Designer_User_Interface/iconProperties.png" align="absmiddle" border="0" alt="" /> <b>Properties</b></td>
+  <td class='confluenceTd'>Show the properties of the selected variable in a Dialog box. You can edit the <strong>Instance Name</strong> field, if required. Click the <strong>OK</strong> button to save your changes.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><img src="../Service_Designer_Tool_User_Guide/Service_Designer_User_Interface/iconSort.png" align="absmiddle" border="0" alt="" /> <b>Sort</b></td>
+  <td class='confluenceTd'>Sort the variables in the table in alphabetical order.</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h4><a name="changeTabSize"></a>Change the Tab Size When Indenting Code</h4>
+<p>You can change the tab indentation size, complete these steps:</p>
+<ol>
+  <li>In the left pane of the Preference dialog, click <strong>Editor</strong> &gt; <strong>Formatting</strong>. 
+<br>
+    <br>
+  </li>
+  <li>    The <strong>Tab indent size</strong> field defaults to 4 character spaces. To change this setting, either use the up or down arrows, or enter the size in the field provided.<br>
+    <br>
+    <img src="newJSEditorSettingsPreferencesEditorFormatting.png" alt="Preferences dialog - Editor &gt; Formatting"><br>
+<br>
+  </li>
+  <li>Click the <strong>OK</strong> button to save your changes.</li>
+  </ol>
+  
+<h4><a name="keyMap"></a>Key Map of All Shortcuts in the JavaScript Editor</h4>
+<p>The key map allows you to view keyboard shortcuts that you can use while working with your script in the JavaScript Editor. To view the key map, in the left pane of the Preference dialog, click <strong>Editor &gt; Key Assist</strong>.  </p>
+<p><img src="newJSEditorSettingsPreferencesEditorKeyAssist.png" alt="Preferences dialog - Key Map"></p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

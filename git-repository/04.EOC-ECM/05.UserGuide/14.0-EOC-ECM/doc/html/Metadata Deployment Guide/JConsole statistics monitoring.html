@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>Statistics Monitoring in JConsole</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Statistics Monitoring in JConsole</h1>
+<p>Statistics monitoring is based on JMX attributes. The SM Monitor attribute allows you to turn statistics monitoring on or off. You can also view pertinent information about this attribute, including its description, whether it is readable or writeable, and its data type.</p>
+<img src="JConsole verbose attributes SM monitor.png" width="899" height="749" alt="JConsole Verbose - SM Monitor attributes">
+<p>When you hover your mouse pointer over the <strong>Refresh</strong> button, a tooltip indicates the action that occurs after you click the button. In this example, clicking the <strong>Refresh</strong> button refreshes the attribute. The <strong>Value</strong> field is blue, which allows you to edit this field and then refresh the attribute.</p>
+<p><strong>Note:</strong> The com.conceptwave.statistics logging category must be set to <strong>DEBUG</strong> for these statistics to be logged properly.</p>
+<h2>SM specification</h2>
+<p>Statistics monitoring (SM) controls the statistical data output of the application and AVM in a log file at a frequency that you define.  The statistical data can be any JMX attribute whose description ends with the  statistics attribute name in square brackets.</p>
+<p>As an example, each cache has a JMX attribute named  <strong>Element count</strong>. The description of this JMX attribute is <tt>Current number of  objects in the cache [getCacheElementsCount]</tt>. </p>
+<p>The statistics monitoring mechanism writes  a single text line in the log file that depends on the SM specification. This line takes the following format:</p>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java">
+    YYYY-MM-DD hh:mm &lt;<em>SM data</em>&gt;
+</pre></div>
+</div>
+
+<p>where <tt>&lt;<em>SM data</em>&gt;</tt> is defined in the SM specification.</p>
+<p>The SM specification is a text line that  may contain any text (that is, does not include the <em>%</em> and <em>^</em> characters) and SM  data placeholders. The placeholder format is as follows:</p>
+<div class="code">
+  <div class="codeContent">
+<pre class="code-java">^&lt;<em>JMX object name</em>&gt;|&lt;<em>Statistics attribute name</em>&gt;^</pre>
+    </div>
+</div>
+
+<p>where:</p>
+<ul>
+  <li><tt><em>&lt;JMX object name</em></tt>&gt; is the name of the JMX  object as it appears in the JMX console (that is, the leaf names in the JMX domain  tree).</li>
+  <li><tt><em>&lt;Statistics attribute name</em></tt>&gt; is the name in brackets at the end of the JMX attribute description.</li>
+</ul>
+<p><strong>Note:</strong> The new line and carriage return  characters in the SM specification are ignored.</p>
+<p><strong>Example:</strong> SM specification with cache sizes</p>
+<p>Suppose you have the following SM specification:</p>
+
+<div class="code">
+  <div class="codeContent">
+<pre class="code-java"><strong>Cache sizes: Orders=^Order Cache|getCacheElementsCount^, Documents=^Document Cache|getCacheElementsCount^</strong></pre>
+    </div>
+</div>
+<p>If called with a five-minute frequency, the SM specification generates lines similar to the following:</p>
+
+<div class="code">
+  <div class="codeContent">
+<pre class="code-java"><strong>2011-03-11 11:33 Cache sizes: Orders=5678,Documents=15874</strong><br><strong>2011-03-11 11:38 Cache sizes: Orders=6017,Documents=20468</strong><br><strong>2011-03-11 11:43 Cache sizes: Orders=6101,Documents=19389</strong></pre>
+    </div>
+</div>
+
+<p><strong>Note:</strong> The SM specification may contain incorrect attribute names or the corresponding JMX objects may not be found.  At runtime, such invalid SM data placeholders are replaced by two minus signs.</p>
+<p>Running JConsole allows you to look at the parameters available , and then create your SM specification based on your needs. The SM specification is a way of automatically logging values that are published   through the JMX. </p>
+<p>See the <a href="../Configuration_Tool_User_Guide/Configure/System/Performance/statisticMonitoring.html">Performance - Statistic Monitoring</a> section for more information on using the Configuration application with the statistics monitoring specification. </p>
+<h2><a name="startStopSM"></a>Start and Stop the Statistics Monitor</h2>
+<p>The SM specifications are stored in the  Configuration data. The following attributes of the com.conceptwave.AVM.Verbose JMX domain control the statistics monitor:</p>
+<table width="947" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="154" class='confluenceTh'>Attribute</th>
+
+      <th width="851" class='confluenceTh'>Function</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>SM frequency (min)</td>
+      <td class='confluenceTd'><p>Specifies the frequency of the output in       the SM log file in minutes. The default is 5. This attribute can take values from 1 to 99.</p>
+        <p><img src="JConsole verbose attributes SM frequency small.png" alt="SM frequency (min)" width="606" height="267" border="1"></p></td>
+
+    </tr>
+    <tr>
+      <td class='confluenceTd'>SM monitor</td>
+      <td class='confluenceTd'> <p>Starts and stops the statistics monitoring. This attribute's possible values are as follows:</p>
+        <ul>
+          <li><tt>ON/&lt;<em>SM spec name</em>&gt;</tt> <br>
+            Starts statistics monitoring. The &lt;<em>SM spec name</em>&gt; is a name of a SM specification in the Configuration        application.</li>
+          <li><tt>OFF</tt> <br>
+            Stops statistics monitoring.</li>
+          </ul>
+        <p><img src="JConsole verbose attributes SM monitor small.png" alt="SM monitor" width="606" height="262" border="1"></p></td>
+
+    </tr>
+    <tr>
+      <td class='confluenceTd'>SM specification</td>
+      <td class='confluenceTd'><p>Open a previously saved, favourite record that  opens the corresponding Finder on the screen.</p>
+        <p><img src="JConsole verbose attributes SM specification small.png" alt="SM specification" width="606" height="271" border="1"></p></td>
+    </tr>
+  </tbody>
+</table>
+<h2>Migration issues</h2>
+<p>AVM 5.x and higher does not support any  user  performance counters. However, benchmarking capabilities (for example, the benchmark object) have been extended to allow registering benchmark counters as JMX objects in the  com.conceptwave.AVM.Benchmark domain. This extension gives more flexibility:</p>
+<ul>
+  <li>You  can create as many JMX benchmark       counters as needed with proper names</li>
+  <li>The benchmark counters are exposed as JMX statistics monitoring attributes</li>
+</ul>
+<h2>Script Access to SM Attribute Values</h2>
+<p>The JMX attribute values can be accessed by  either the Global.getJMXValue(JMX object name, JMX statistics attribute name) API or as  cw$JMX&lt;<tt>JMX statistics attribute name</tt>&gt; getters on the corresponding  script object.</p>
+<p><strong>Example:</strong> Access the number of elements in the  order cache in two ways:</p>
+<div class="code">
+  <div class="codeContent">
+<pre class="code-java"><strong>var orderCount = </strong><strong>Global.getJMXValue(&quot;Order Cache&quot;, “getCacheElementsCount�?);</strong></pre>
+    </div>
+</div>
+
+<p>or</p>
+<div class="code">
+  <div class="codeContent">
+<pre class="code-java"><strong>var orderCount = theAPI.getCache(“Order�?).cw$JMXgetCacheElementsCount; </strong></pre>
+    </div>
+</div>
+
+<h2><a name="specifyLogFile"></a>Specify Log File in JConsole</h2>
+<p>You can specify the log file in JConsole by using the following JVM command:</p>
+
+<div class="code">
+  <div class="codeContent">
+  <pre class="code-java">-Dcom.conceptwave.verbose.file=<em>path_name</em> <em>parameter</em></pre>
+    </div>
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>MQ Service Provider</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+		<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+ padding-right: 0px; padding-bottom: 0px;" valign="top">
+			 
+			<h3>MQ Service Provider</h3>
+		<p>The MQ Service Provider allows interactions with 
+		 other systems through the IBM MQ Series Server. The MQ Service Provider supports connection queues only 
+		 (no topics) for sending and receiving messages. A MQ Service Provider 
+		 uses <em>Client MQ TCPIP</em> transport when communicating with 
+		 a MQ Series Server.</p>
+
+<p>Note that the required MQ libraries must be made available to your application server (and Process Engine, if the Process Engine is issuing a response); see <a href="../../../Metadata Deployment Guide/J2EE Application Server Installation.html">Application Server Configuration</a> in Deployment Guide for details. For example, the library files of MQ can be added to the CLASSPATH of application server (or Process Engine) by </p>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java">set MQ=C:\lib\com.ibm.mq.jar;C:\lib\com.ibm.mq.jmqi.jar;C:\lib\com.ibm.mqjms.jar;C:\lib\dhbcore.jar
+set JAVAX=C:\lib\connector.jar;C:\lib\jms.jar;C:\lib\jta.jar
+set CLASSPATH=%MQ%;%JAVAX%;....
+</pre>
+</div></div>
+ 
+<p>Lastly, note that <em>com.ibm.mq.jmqi.jar</em> is only required for MQ 7.0.</p>
+
+<table cellpadding='5' width='85%' cellspacing='8px' class='noteMacro' border="0" align='center'>
+<tr>
+<td><p><b class="strong">Important Note</b><br />
+MQ .jar files are not provided with the product.  It is important to use the MQ7 jar files as they are backward compatible with MQ6.</p>
+</td>
+</tr>
+</table>
+
+<h4>Invoking MQ Operations </h4>
+<p>When an MQ interface operation is invoked, a logical connection is initiated to a specific location. When completed, the connection is cached. If it is not used again within one hour (the time is not configurable), the connection is closed.
+  The connection is not shared between threads. So, if interface operations are invoked with the same location simultaneously by different threads, extra connections are created and remain open for one hour, if they are not used.
+  Additionally, if an error or exception occurs during the invocation of an operation, the connection is closed and is not cached. </p>
+<h4>MQ Listeners</h4>
+<p> MQ listeners have a single logical connection created for each number of threads that are configured.
+  During normal operation, that connection is open for the listener's lifetime.
+  In the configuration, at the operation level, there is a <strong>Distributed</strong> flag. If this flag is set to true, the connection is shut down and an attempt is made to reconnect approximately every five minutes (the time is not configurable).
+  The time is approximate, and depends on how long the listener has been waiting for a message and how many threads are defined. If multiple listener threads are defined, the time is staggered between them by 10 seconds so that not all threads are shut down at once.
+  
+  If any kind of error occurs in between establishing a connection and trying to receive a message, the connection is shut down after 600 attempts (the number of attempts is not configurable) and attempts to get a new connection.
+  
+  If an error occurs trying to obtain a connection, the listener waits for ten seconds (time is not configurable) before it tries again. These attempts  continue indefinitely.</p>
+<p><strong>Note:</strong> MQ  listeners  are port based.&nbsp; That is, a port needs  to be defined for each listener. Port settings for MQ listeners allow the choice of an  operation meaning it  can support multiple operations, however each MQ  listener is tied to a specific operation. By  default, the operation is the first operation in the interfaces operation list. </p>
+<h4>MQ Attributes in Velocity Studio</h4>
+
+<p>The following table describes the attributes that are exposed in Velocity Studio specifically for the MQ service provider.</p>
+
+<p>These attributes are found at <b><a href="../External Services/defining a binding.html">Binding</a></b> metadata object in Velocity Studio. When an Interface, Operation or message element is selected in the <b>Interface element</b> tree, the attributes for the element appears in the <b>Element definitions</b> table where values can be provided.</p>
+
+<p><ins>Attributes in Velocity Studio for the MQ Service Provider</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">Correlate</b></td>
+	<td class="confluenceTd">Gives options to <b>Correlate</b> 
+	 request-response messages. If a selection is made here, 
+	 there is no need to specify a <b>CorrelateProperty</b> 
+	 (that is, the system automatically generates a sequence/key). 
+	 <ul>
+		<li><b style="font-weight: bold;">msgID</b> - unique 
+		 ID assigned by bus</li>
+		<li><b style="font-weight: bold;">sequence</b> - unique 
+		 ID assigned by system</li>
+		<li><b style="font-weight: bold;">no</b> - no correlation (default value)<br>
+		  <br>
+        </li>
+	</ul></td>
+	<td class="confluenceTd">Output Message <img src="iconMessage.png" 
+ alt="" width="16" 
+ height="16" 
+ border="0" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">CorrelateProperty</b></td>
+	<td class="confluenceTd">User-specified <b>Correlate</b> 
+	 property (for example, <em>msg.jms.correlationPropertyId = orderid)</em></td>
+	<td class="confluenceTd">Message <img src="iconMessage.png" 
+		 alt="" width="16" 
+		 height="16" border="0" /></td>
+</tbody>
+</table>
+
+
+
+<h4>MQ Attributes in Configuration Application</h4>
+
+<p>The following table describes the attributes that are exposed in Configuration application specifically for the  MQ Service Provider.</p>
+
+<p>These attributes are found in <a href="../../../Configuration_Tool_User_Guide/Configure/System/Services/services.html" title="Services"><strong>Services</strong></a> tab in Configuration application. When clicking  a Port, Binding, Operation or message node in the <b>Service Port tree</b>, the Configuration attributes for the node appears at the <b>Configuration</b> section at the right where values can be provided.</p>
+
+<p><ins>Attributes in Configuration application for the MQ Service Provider.</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">Location</b></td>
+	<td class="confluenceTd">Specifies the location of the 
+	 MQ Series Server.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">QueueManager</b></td>
+	<td class="confluenceTd">Specifies the name of the queue 
+	 manager.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">Channel</b></td>
+	<td class="confluenceTd">Specifies the channel to use. 
+	 The default value is <em>none</em>.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">Port</b></td>
+	<td class="confluenceTd">Specifies the port to use. The 
+	 default value is 1414.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">cipherSuite</b></td>
+	<td class="confluenceTd">Specifies the cipher suite algorithm to be used by MQ SSL. 
+	This parameter is sent to activate the connection factory.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">cacheSize</b></td>
+	<td class="confluenceTd">The number of connections to be cached for the Service Provider. 100 is the default, and also capped to 100.</td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">User</b></td>
+	<td class="confluenceTd">Specifies the user name if the 
+	 MQ Series Server requires authentication.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">PasswordKey</b></td>
+	<td class="confluenceTd">Specifies the password key to 
+	 use for retrieving the password. The password key/value 
+	 pairs are created in the Configuration application.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class="confluenceTd"><b style="font-weight: bold;">Transactional</b></td>
+<td class="confluenceTd"><b style="font-weight: bold;">Yes/No</b> 
+ - Request message will stay in queue until after receiving 
+ a confirmation response from receiving end. Only relevant for listeners and servers, and not clients. Please see note below.</td>
+<td class="confluenceTd">Operation <img src="iconOperation.png" 
+		 alt="" width="12" 
+		 height="15" border="0" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">ExpiryTime</b></td>
+	<td class="confluenceTd">The duration, in seconds, that 
+	 the message is in queue before expiry.</td>
+	<td class="confluenceTd">Operation <img src="iconOperation.png" 
+		 alt="" width="12" 
+		 height="15" border="0" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">Priority</b></td>
+	<td class="confluenceTd">A&#160;10 level priority value 
+	 with 0 as the lowest and 9 as the highest. Clients should 
+	 consider 0-4 as gradients of normal priority and 5-9 as 
+	 gradients of expedited priority. Priority is set to 4, 
+	 by default.</td>
+	<td class="confluenceTd">Operation <img src="iconOperation.png" 
+		 alt="" width="12" 
+		 height="15" border="0" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">ReplyTo</b></td>
+	<td class="confluenceTd">Set where a reply to this message 
+	 should be sent.</td>
+	<td class="confluenceTd">Operation <img src="iconOperation.png" 
+		 alt="" width="12" height="15" border="0" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">Queue</b></td>
+	<td class="confluenceTd"><p>Specifies queue name where messages 
+	  are put into or retrieved from. </p>
+	  <p><b>Notes:</b> </p>
+	  <ul>
+	    <li>For asynchronous 
+	      messages that must come back to a specific queue, the 
+	      value of Queue specified for the Output message is 
+	      automatically appended into the input message header in 
+	      the field <em>JMSReplyTo</em>. This action ensures the response 
+	      comes back to the correct Queue.</li>
+	    <li>For listeners, if the inbound message has the ReplyToQ parameter, it is used by the product to post the response. Otherwise, if the message does not contain ReplyToQ, the product uses the output's <strong>Queue</strong> value from the configuration to post the response. The <strong>ReplyTo</strong> setting is never used for a listener.</li>
+	    </ul></td>
+	<td class="confluenceTd">Message <img src="iconMessage.png" 
+		 alt="" width="16" 
+		 height="16" border="0" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">Timeout</b></td>
+	<td class="confluenceTd">Number of seconds to wait when 
+	 retrieving a message from the queue. Default is 1 second. 
+	 If the <b>Timeout</b> is set at a value of 0 (zero), wait 
+	 will be indefinite. Applies to output messages only.</td>
+	<td class="confluenceTd">Output Message <img src="iconMessage.png" 
+ alt="" width="16" 
+ height="16" 
+ border="0" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">Properties</b></td>
+	<td class="confluenceTd">Name of a global script that is 
+	 invoked with the input data object. For sending messages,  it returns a data 
+	 object (Document, Order or Data Structure) the names and 
+	 values of the data leaves of the returned objects are 
+	 added as properties to the message. The Data Structure 
+	 returned by the global script may contain specific child 
+	 elements which will be used as properties for the message 
+	 header. Specifically: 
+	  <ul>
+		<li><b style="font-weight: bold;">time_to_live</b> 
+		 - indicates the message expiry duration (in ms)</li>
+		<li><b style="font-weight: bold;">JMSPriority</b> - 
+		  a value from 0 to 9 indicating priority (0 = lowest, 
+		  9 = highest)</li>
+		<li><STRONG>JMSDeliveryMode</STRONG> - value of 1 or 2 (1 = NON_PERSISTENT, 2 = PERSISTENT)</li>
+		</ul>
+	<p>For receiving messages (that is, for both client and listener), this field contains the Global function that  returns a String expression. This expression's syntax is based on a subset of the SQL92 conditional expression syntax, such as <tt>NewsType = 'Sports' OR NewsType = 'Opinion'</tt>. Refer to JMS Message Selectors in the JavaScript documentation for details.</p>
+	<p><strong>Note:</strong> By default, a JMS message is set to PERSISTENT.</p></td>
+	<td class="confluenceTd">Message <img src="iconMessage.png" 
+	 alt="" width="16" 
+		 height="16" border="0" /></td>
+</tr>
+<tr>
+	<td class="confluenceTd"><b style="font-weight: bold;">JMSClient</b></td>
+	<td class="confluenceTd">This property indicates whether  the remote application supports JMS. By default, this field defaults to <em>No</em>, which tells the 
+	 MQ server that it should format the message for a non-JMS 
+	 client. Set this property to <em>Yes</em> for input and output objects with the <strong> Queue or Topic</strong> field specified. </td>
+	<td class="confluenceTd">Message <img src="iconMessage.png" 
+		 alt="" width="16" 
+		 height="16" border="0" /></td>
+</tr>
+
+
+</tbody>
+</table>
+
+		<h4>MQ Message Transaction Control (read)</h4>
+		<p>Transaction support is available only when an interface is used 
+		 by the listener&#160;(incoming messages). This option, when set 
+		 to yes, allows the listener perform message processing in transaction 
+		 manner: If message processing encounters any errors (usually in 
+		 script processing module), message will be put back on the queue 
+		 for reprocessing. Message reprocessing parameters (that is, message 
+		 reprocessing attempt, priority, delay, and so on are usually controlled 
+		 by MQ Server configuration).</p>
+		<p><strong>Note:</strong> For MQ, messages can be either plain text or XML.</p>
+		<h4>&nbsp;</h4></td>
+	</tr>
+</table>
+</body>
+</html>

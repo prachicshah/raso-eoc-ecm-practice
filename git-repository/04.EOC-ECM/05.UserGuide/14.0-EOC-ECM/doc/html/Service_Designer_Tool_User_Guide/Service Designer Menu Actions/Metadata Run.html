@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>Run</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Run</h2>
+
+<p>Clicking <b>Runtime </b>&gt;<b> Run</b> allows you to run the project's metadata in Velocity Studio. The following are the steps to run the metadata: </p>
+<ol>
+  <li>Click <strong>Runtime</strong> &gt; <strong>Run</strong> from the menu bar. </li>
+  <li>Login to the database associated with your project . If the project is not connected to  the database, a <b>Database Login</b>  dialog appears prompting you to login to the database. Refer to <a href="Database Connect.html">connecting to database</a> for details.</li>
+
+
+  <p><img src="dbLogin.png" border="0" alt="Database login dialog" /></p>
+  <li>The <a href="runtimeSelectApplication.html">Select Application</a> dialog appears. Select the application's name,version and the node. While the metadata is interpreted by AVM to start running, the metadata popup appears, and then disappears when startup has finished loading. </li>
+</li>
+  <li>The console displays information on starting runtime. It displays the node, database, and the port information at which the Web server runs the application.</li>
+
+<p><img src="runMetadataConsole.png" border="1" alt="Console pane" /></p>
+
+<li>The application starts in the configuration mode; login to the System Configuration application and set up the <a href="../../../html/Installer_User_Guide/order care tools configuration.htm"> database connection configuration</a>. </li>
+<li>When done with configuration, restart the runtime in Velocity Studio.</li>
+<li> Upon successful start of runtime in Velocity Studio, you can access the started Web application with your Web browser. By default, the URL to access the application is:</li>
+  <b>http://<i>hostname</i>:<i>port</i>/cwf/</b> (for example, http://localhost:8080/cwf/) 
+  where <i>hostname</i> is the hostname or IP address of the machine and <i>port</i> is the HTTP Port of the runtime AVM.
+ </li><p>
+ <strong>Notes: </strong>
+ <ul>
+   <li>In runtime, the <strong>Back</strong> and <strong>Forward</strong> buttons are enabled, allowing you to switch between objects. Additionally, you can perform sorting functions in runtime. </li>
+   <li>Refer to <a href="../../../html/Installer_User_Guide/Introduction.html">installation user guide</a> for more information.</li>
+ </ul>
+</ol>
+<h4><a name="URL">Port and URL Configurations</a></h4>
+
+<p>The HTTP Port number can be changed at <a href="Preferences.html">preferences</a>. Furthermore, if the port number is already in use by the machine, the runtime will attempt to bind to the next available incremental port number. The port-binding attempts will be shown in console.</p>
+
+<img src="runMetadataConsole2.png" border="0" alt="Console pane - port numbers" />
+
+<p><strong>Note:</strong> <i>User Interface</i> metadata objects in the application can be mapped into a relative URL path using <a href="../Metadata_Objects/Metadata Root/Metadata Root URL Mapping.html">URL Mapping</a> in the top-level application metadata node. For example, the default path "<i>/</i>" is defaulted to map to the default application login page <i>cwf_oe.login.UserInterface</i>. While you cannot change system URL mappings, you can add mappings to expose Page objects of your application as relative URLs.</p>
+
+<h4><a name="NoError">Metadata must have no validation errors</a></h4>
+
+<p><b>Note</b>: This menu command is only enabled when a project has been opened and no <a href="../Service_Designer_User_Interface/Error Pane.html">validation errors</a> exist in the metadata. Otherwise, the Run menu is disabled (that is, greyed out). You must fix all errors in the metadata before being able to run the project.</p>
+<img src="runMetadatawError.png" border="0" alt="Fix metadata errors to see Run option in menu" />
+<h4><a name="NodeID">Node ID Selection</a></h4>
+
+<p>The application metadata is run with a runtime configuration that is set in <a href="../../Configuration_Tool_User_Guide/Introduction.html">Configuration application</a>. By default, the <a href="../../../html/Service_Designer_Tool_User_Guide/Metadata_Objects/Metadata Root/Metadata Internal Version.html"> internal name</a> of the application is used as the base node name. You can change that node preference to run the metadata with a specific node configuration from the select application dialog.  Refer to <a href="../../../html/Configuration_Tool_User_Guide/Configure/System/systemConfigurationUserInterface.html">node menu</a> for more information.</p>
+
+<h4><a name="CONFIGmode">Failure to start metadata: CONFIG mode</a></h4>
+
+<p>If there are unforeseen errors during running of the metadata, the AVM stop running metadata but continue to start the Web server in <b>CONFIG mode</b>. This means neither the application metadata or library metadata are started (for example, http://localhost:8080/cwf/ does not respond, which results in the <a href="../../System_Administration_Application_User_Guide/Introduction.html">system administration application</a> being unavailable), but you can access the System Configuration application (http://localhost:8080/cwf/config).</p>
+
+<p>Often, the error occurs because of mis-configuration (or the lack of configuration, initially). You can login to the System Configuration application to change any necessary runtime configurations, and can also change the Node ID of the configuration to apply to running the metadata (see above). Then, re-run the metadata.</p>
+
+<h4><a name="license">License</a></h4>
+<p>The Run command, which can be found  in <b>&lt;<em>installation_directory</em>&gt;\designer\env</b>, must be accompanied by a valid license file.</p>
+
+<h4>Stop Running Metadata</h4>
+<p>Once the metadata is running, in either RUN mode or CONFIG mode (can be seen in <a href="../Service_Designer_User_Interface/Console Pane.html">console</a>), the Velocity Studio disallows any metadata changes. Most menu commands are disabled, and metadata objects become read-only in the Detail Pane.</p>
+
+<p>To change the metadata again, you must stop running the metadata by selecting <strong>Runtime</strong> &gt; <a href="Metadata Stop.html"><strong>Stop</strong></a> from the menu bar.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

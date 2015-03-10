@@ -1,0 +1,87 @@
+﻿<html>
+<head>
+<title>Publishing and Subscribing to Events</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Publishing and Subscribing to Events</h3>
+<p>The AVM implements a lightweight, publish-subscribe mechanism that allows you to publish an event to which many different  global scripts may subscribe. The event is a user-defined string, which is unique for the  application.</p>
+<p>  The following API controls the publish-subscribe script mechanism:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>subscribeForEvent(script, event, id)</pre></div>
+</div>
+
+
+Where:
+  </p>
+  <ul>
+  <li><tt>script</tt> is a fully qualified metadata global script element name</li>
+  <li><tt>event</tt> is a user-defined, application-wide, unique name</li>
+  <li><tt>id</tt> is an optional name, which is unique for  the given event</li>
+</ul>
+<p><strong>Note: </strong>The AVM allows you to specify full  metadata element names using a period (.) as a delimiter between the namespace and element  name (for example, <em>ns:name</em> is equivalent to <em>ns.name</em>). It is recommended that you use the period notation instead of the semicolon notation. </p>
+<p>The API registers a global script as a  subscriber for the specified event. If the <tt>id</tt> parameter is not specified or null, the script is added as a subscriber for the event, unless it is already  subscribed for the event. In the latter case, the  subscribe operation is  silently ignored. If the <tt>id</tt> parameter is not null, the script is added as a subscriber for the event (unless it is already a subscriber) and replaces the subscriber with the same <tt>id</tt>, if it exists.  The subscriber, which is defined  later, can override the subscriber that was defined earlier.</p>
+<p>Velocity Studio  allows defining new types of metadata elements called <strong>event handlers</strong>, which are global  scripts that automatically subscribe for the event that they specify and do not  require calling the subscribeForEvent API. Velocity Studio comes with a predefined list  of AVM events and all modules define their own event lists.  These events can be used in the application metadata. The application can also add new  events and use them as needed.</p>
+<p><strong>Note:</strong> The publish-subscribe script  mechanism does not need event handlers  to work. However, using them  simplifies creating and maintaining the applications.</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>publishEvent(event, mode, this object, parameter, ...)</pre>
+  </div>
+</div>
+
+<p>Where</p>
+<ul>
+  <li> <tt>mode</tt> is either the ID of a subscriber script or one of the following predefined  constants:
+    <ul>
+      <li>SYNCH </li>
+      <li>ASYNCH</li>
+      <li>FIRST_ONE</li>
+    </ul>
+  </li>
+  <li><tt>this parameter</tt> is an object that is used as <tt>this</tt> object in the script and can be null</li>
+  <li><tt>parameter</tt> specifies zero, one, or more parameters. The same parameters are used for every subscriber script for the event.</li>
+</ul>
+<p>The publishEvent API processes the subscribers for the  event, depending on the mode, as follows:</p>
+<ul>
+  <li><strong>Synchronous mode (SYNCH)</strong><br>
+    All subscribed  scripts are processed synchronously one after another in the order that they subscribe to the event. The API  does not return any value. The values returned by the individual scripts are  ignored. If one script generates an exception, the remaining scripts are not  processed. The individual scripts may change some environment values, but should be done with care as the processing order of these scripts is unknown.</li>
+  <li><strong>Asynchronous mode (ASYNCH)</strong><br>
+    All  subscribed scripts are processed in parallel in separate threads. The order in  which the treads start is the order that they have subscribed for the event. The order in which they finish is random. The API does not return any value.  The values returned by the individual scripts are ignored. If a particular  script generates an exception, its processing is terminated; however, the rest of the  scripts continue to run. The individual scripts should not change the environment values.</li>
+  <li><strong>First one mode (FIRST_ONE)</strong><br>
+    The subscribed  scripts are processed synchronously one after another until one of them returns  a not null value or all of them are processed. The API returns the not null value returned  from the script or null if all scripts return null. If a particular script  generates an exception, the remaining scripts are not processed. The individual  scripts may change the parameters values; however, in this mode, it likely will not</li>
+  <li><strong>Subscriber ID</strong><br>
+    The script with a given ID, if any, is performed in synchronous mode. The script's result is returned and no other subscribed script is run.</li>
+</ul>
+<p>If there are no subscribers for a given  event, the API completes immediately and returns null. For synchronous and asynchronous modes, the API returns the Boolean value of true if there is at least one script to run.</p>
+<p>  The subscriber scripts are global metadata  scripts that must have the same parameters as the parameters at the end of the publishEvent() API call.</p>
+<p>  The publish-subscribe mechanism is  especially useful when customizing templates. An example is the  customer template that must read and store the customer data distributed in  one or more external systems. One of these operations is the store operation.</p>
+<p>The traditional solution for this problem  is to include an empty global script (for example, storeExtCustomer) in the  customer template. This empty global script is called at a particular place in the store  customer logic of the template, which works with one data store only. If the  customer data is distributed in several external stores, the application overrides the storeExtCustomer script, introducing the proper logic to store  customer in the additional data stores. While this solution is correct, it has a small drawback concerning the introduction of an empty  script that will not be used in the majority of cases. There is also a big limitation, as the application will not be able to include two different templates that  override the storeExtCustomer script.</p>
+<p>The publish-subscribe mechanism, however,  solves the multiple overriding problem well. Each template subscribes to  the StoreCustomer event and the customer template logic publishes the event when there is a need to store customer data. The solution is outlined as follows:</p>
+<ul>
+  <li>In the customer template logic for storing  the customer:<br>
+    <div class="preformatted">
+  <div class="preformattedContent">
+<pre>publishEvent(&quot;StoreCustomer&quot;, SYNC, theCustomerObject);</pre></div>
+</div>
+    <br>
+    </li>
+  <li>In the corresponding template  initialization scripts:<br>
+    <div class="preformatted">
+  <div class="preformattedContent">
+<pre>subscribeForEvent(&quot;tns.tscript&quot;, &quot;StoreCustomer&quot;);  </pre>
+  </div>
+    </div>
+  </li>
+  </ul>
+<p>The corresponding tns.tscript method with  theCustomerObject as the <tt>this</tt> object will store its portions of the customer  object in the corresponding data stores.</p>
+<p>It is recommended that you avoid script-overriding. The publish-subscribe mechanism is available everywhere in  the metadata products (templates), which eliminates the need to override scripts.  However, overriding data structures will still be needed.</p></td>
+</tr>
+</table>
+</body>
+</html>

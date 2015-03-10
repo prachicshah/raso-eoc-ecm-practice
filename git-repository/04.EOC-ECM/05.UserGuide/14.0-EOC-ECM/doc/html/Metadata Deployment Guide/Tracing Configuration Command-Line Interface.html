@@ -1,0 +1,163 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Tracing Configuration Command-Line Interface</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Tracing Configuration Command-Line Interface</h3>
+<p>The  tracing configuration command-line interface allows you to define local trace  jobs for a specific application instance running on an AVM. The format and  command set of both the command-line interface scripts and interface need to be  finalized and synchronized across domains. Support for all command-line  interface features is in the form of a simple Java client and JMX API that can  be used by both the command-line interface scripts and interface to delegate  the work. </p>
+<h4>Sample AVMTraceConfigClient Utility</h4>
+<p>AVMTraceConfigClient is a sample JMX client application for AVM  trace&nbsp; configuration. It allows you to update the trace configuration in the AVM.</p>
+<p>  To run the utility, do the following:</p>
+<ol>
+  <li>Right-click the <a href="AVMTraceConfigClient.java">AVMTraceConfigClient.java</a> hyperlink and save the file to your computer.</li>
+  <li>Compile the Java program using the <tt>javac</tt> command in the Java Development Kit (download it if you do not have it), and then run the following command:
+    <br>
+    <div class="code">
+	<div class="codeContent">
+	<pre class="code-java">java AVMTraceConfigClient &lt;AVM HOST&gt; &lt;AVM JMX Port&gt;  &lt;Operation Name&gt; &nbsp;&lt;Operation Param1&gt; &lt;Operation Param2&gt;...</pre>
+	</div>
+    </div>
+  </li>
+</ol>
+<p>The following is a list of supported operations, required operation parameters, and expected result values:</p>
+<table width="1153" border cellpadding=1 class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="189" class='referenceTh'>Operation</th>
+      <th width="341" class='referenceTh'>Description</th>
+      <th width="373" class='referenceTh'>Parameters</th>
+      <th width="257" class='referenceTh'>Returns</th>
+    </tr>
+    <tr>
+      <td class='referenceTd'>AddTraceInterface</td>
+      <td class='referenceTd'>Activate an interface.</td>
+      <td class='referenceTd'><ul>
+        <li>String traceInterface</li>
+      </ul></td>
+      <td class='referenceTd'>Void</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'><p>AddTraceObject</p></td>
+      <td class='referenceTd'> Add a trace object to a trace job.</td>
+      <td class='referenceTd'><ul>
+        <li>String traceID</li>
+        <li> String traceType</li>
+        <li> String traceValue</li>
+        <li> String matchType</li>
+      </ul>
+        <p><strong>Note:</strong> The matchType parameter takes these values:</p>
+        <ul>
+          <li>STARTS_WITH</li>
+          <li> ENDS_WITH</li>
+          <li> EQUALS</li>
+          <li> CONTAINS</li>
+        </ul></td>
+      <td class='referenceTd'><p>Boolean success</p></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'><p> CreateTraceJob</p></td>
+      <td class='referenceTd'><p>Create a new trace job.</p>
+        <p><strong>Note</strong>: The Date format is  <em>dd/MM/yyyy-HH:mm:ss</em>.</p></td>
+      <td class='referenceTd'><ul>
+        <li>String interface
+          <br>
+          </li>
+        <li>Date startDate
+          <br>
+          </li>
+        <li>Date endDate
+          <br>
+          </li>
+        <li>String coverage</li>
+        </ul></td>
+      <td class='referenceTd'>String traceID</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'> <p>DeleteTraceJob</p></td>
+      <td class='referenceTd'>Delete a trace job.<br></td>
+      <td class='referenceTd'><ul>
+        <li>String traceID</li>
+        </ul></td>
+      <td class='referenceTd'><p>Boolean success</p></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>ListTraceInterface</td>
+      <td class='referenceTd'>List all activated interfaces.</td>
+      <td class='referenceTd'><ul>
+        <li>None</li>
+      </ul></td>
+      <td class='referenceTd'>String[] list of active interfaces </td>
+    </tr>
+    <tr>
+      <td class='referenceTd'> ListTraceJobs</td>
+      <td class='referenceTd'>List all existing trace jobs.</td>
+      <td class='referenceTd'><ul>
+        <li>None</li>
+        </ul></td>
+      <td class='referenceTd'>String[] list of trace jobs</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>ListTraceObjects</td>
+      <td class='referenceTd'><p>List all trace objects.</p>
+        <p><strong>Note:</strong> This operation impacts MBeanOperationInfo.INFO.</p></td>
+      <td class='referenceTd'><ul>
+        <li>String traceID</li>
+      </ul></td>
+      <td class='referenceTd'><p>String[] list of trace objects</p></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>RemoveTraceInterface</td>
+      <td class='referenceTd'>Remove an active interface.</td>
+      <td class='referenceTd'><ul>
+        <li>String traceInterface</li>
+        </ul></td>
+      <td class='referenceTd'><p>Boolean success</p></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>RemoveTraceObject</td>
+      <td class='referenceTd'>Remove a trace object from a trace job.</td>
+      <td class='referenceTd'><ul>
+        <li>String traceID</li>
+        <li>String traceType</li>
+        </ul></td>
+      <td class='referenceTd'><p>Boolean success</p></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>UpdateTraceJob</td>
+      <td class='referenceTd'>Updates a list of trace job objects for an existing trace job.</td>
+      <td class='referenceTd'><ul>
+        <li>String traceID        </li>
+        <li>String interface
+          <br>
+          </li>
+        <li>Date startDate <br>
+          </li>
+        <li>Date endDate <br>
+          </li>
+        <li>String coverage</li>
+        </ul></td>
+      <td class='referenceTd'>If the trace job cannot be found by its trace ID, this operation does not perform any action. If the trace job is found, the corresponding trace objects that belong to this trace jobs are removed.</td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Note:</strong> See the <a href="Tracing Configuration JMX API.html">Tracing configuration JMX API</a> section for more information.</p>
+<h4>Example 1: Create a new trace job</h4>
+<p>The following example shows how to create a new trace job from the command line:</p>
+<p><img src="Trace Create New Trace Job Operation.png" alt="Create a new trace job from command line" border="1"></p>
+<h4>Example 2: List existing trace jobs</h4>
+<p>The following example shows how to list existing trace jobs from the command line:</p>
+<p><img src="Trace List Trace Jobs Operation.png" alt="List trace jobs from command line" border="1"></p>
+<h4>Tracing Command-Line Interface and Configuration  Persistence</h4>
+<p><strong>Note:</strong> Configuration settings cannot be persisted within the existing AVM  configuration model in the AVM&rsquo;s configuration database since that model is not  instance-specific. If required, these settings can either be saved in a simple  flat file or in a simple database table, and read and applied at startup time.</p></td>
+</tr>
+</table>
+</body>
+</html>

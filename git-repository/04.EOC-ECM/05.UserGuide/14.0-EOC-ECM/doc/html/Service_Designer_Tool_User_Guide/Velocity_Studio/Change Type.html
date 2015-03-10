@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Change Type</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">
+<!--
+Hilary {
+	color: #F00;
+}
+.Hilary {
+	color: #F00;
+}
+-->
+</style>
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Change Type</h2>
+
+<p>The change type function allows you to change between control types. This change includes replacing the control that is in place, and copying over any pertinent settings such as the label, onClick method, column span, and so on. This function copies all common properties from the old element (that is, the changing-from element) to the new changing-to element. You  can manually remove unexpected properties after changing the type.	Where the new control does not support a setting, the setting is ignored. Where a method or action is not supported, a warning message appears, allowing you to choose whether to proceed.</p>
+<p>The following example shows how to use the change type feature to change the Grid Layout element:</p>
+<ol>
+  <li>Right-click the <strong>GridLayout</strong> element and select <strong>Change Type</strong> from the menu.<br>
+    <br>
+    <img src="changeTypeMenu.png" width="874" height="238" alt="Change Type - right-click menu">  <br>
+    <br>
+  </li>
+  <li>The Change Element Type dialog appears. Click the drop-down menu and select an element from the list. You can also click the icon and enter the element name in the field provided. In this example, the <strong>Horizontal Layout</strong> element will be used instead of the <strong>Grid Layout</strong> element.<br>
+    <br>
+    <img src="changeTypeChangeElementType.png" alt="Change Element Type dialog">  <br>
+    <br>
+    Click the <strong>OK</strong> button to continue. <br>
+    <br>
+  </li>
+  <li>The Grid Layout element has changed to the Horzontal Layout element. The old properties of the Grid Layout element are copied to the Horizontal Layout element (for example, the <strong>Name</strong> field continues to be called <strong>GridLayout</strong>).<br>
+    <br>
+    <img src="changeTypeChangedLayoutElement.png" width="874" height="241" alt="Changed layout element - from Grid Layout to Horizontal Layout"><br>
+    <br>
+  </li>
+  <li>Save your metadata.</li>
+  </ol>
+<p>The list of applicable change types depends on the element's parent, overlay, and type:</p>
+<ul>
+  <li> If the element's variable is   null, the <strong>Variable</strong> type is not shown.</li>
+  <li>When copying the old element's properties to the new one, if the value is the variable path, a check is performed to determine whether this variable is applicable. If there is no supported value, a warning message appears, asking whether you want to proceed with the change.</li>
+  <li>If the size of the applicable change type list is   one (that is, itself), the Change Element Type dialog is not shown.</li>
+  <li>A <a href="Form Elements Overview.htm#layouts">layout</a> element can only be changed to another layout element. Note the following details pertaining to layout elements:
+<ul>
+      <li>A <a href="Element - Grid Layout.htm">Grid Layout</a> element can be changed to other layouts. However, other layouts that have layout or data source container children cannot be changed to the Grid Layout element.</li>
+      <li>A <a href="Element - Section Stack.html">Section Stack</a> element that has children cannot be changed to other layouts. Other layouts that have children cannot be changed to a Section Stack element.</li>
+    </ul>
+  </li>
+  <li>A data source container element    can only be changed to a data source   container element. Note the following details:
+    <ul>
+      <li>A <a href="Element - Dynamic Table.html">Dynamic Table</a> cannot be changed to another container. However, other containers can be changed to a dynamic table.</li>
+      <li>An <a href="Element - Iterator.htm">Iterator</a> cannot be changed.</li>
+    </ul>
+  </li>
+  <li>A <a href="Element - Menu.htm">Menu Item</a> element that has children cannot be changed to another control type.</li>
+  <li>For all other control types that have children, these types cannot be changed to other types.</li>
+  <li>For all other control types that do not have children, they can be changed to other types, depending the element's parent and overlay.</li>
+</ul>
+<p>&nbsp;</p>
+</table>
+
+<h4>&nbsp;</h4></td>
+</tr>
+</table>
+</body>
+</html>

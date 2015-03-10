@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>TIBCO Service Provider</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3><a name="4.16.12TIBCOServiceProvider-4.16.12%26nbsp%3BTIBCOServiceProvider"></a>TIBCO Service Provider</h3>
+<p>The TIBCO Service Provider allows interactions with other systems through TIBCO Rendezvous™ Server. The TIBCO Service Provider sends all messages as a XML string and expects incoming data to be a XML string as well.</p>
+<p><strong>Notes: </strong></p>
+<ul>
+  <li>The required Tibco libraries must be made available to your application server (and Process Engine, if the Process Engine is issuing a response); see <a href="../../../Metadata Deployment Guide/J2EE Application Server Installation.html">Application Server Configuration</a> in Deployment Guide for details. For example, the library files of Tibco can be added to the CLASSPATH of application server (or Process Engine) by </li>
+
+<div class="code"><div class="codeContent">
+  <pre class="code-java">set TIBCO=C:\lib\tibrvj.jar;C:\lib\tibrvjsd.jar;C:\lib\tibrvtxj.jar;
+set CLASSPATH=%TIBCO%;....</pre>
+</div></div>
+
+  <li>The Rendezvous version (for example, 7.2 or 7.4) is decided by the version of tibrvj.jar that is used. </li>
+  <li>When using TIBCO with JMS, the jms.jar file is delivered with TIBCO client libraries and should be used.<BR>
+  </li>
+</ul>
+
+
+<h4>TIBCO Attributes in Velocity Studio</h4>
+
+<p>The table below describes the attributes that are exposed in Velocity Studio specifically for the TIBCO Service Provider.</p>
+
+<p>These attributes are found at <b><a href="../External Services/defining a binding.html">Binding</a></b> metadata object in Velocity Studio. When an Interface, Operation or message element is selected in the <b>Interface element</b> tree, the attributes for the element appears in the <b>Element definitions</b> table where values can be provided.</p>
+
+<p><ins>Attributes in Velocity Studio for the TIBCO Service Provider.</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<!--<tr>
+<td class='confluenceTd'><b>Debug</b></td>
+<td class='confluenceTd'>Outputs debug information to the console.</td>
+<td class='confluenceTd'>Interface <img src="iconInterface.png" align="absmiddle" border="0" alt="" /></td>
+</tr>-->
+<tr>
+<td class='confluenceTd'><b>Subject</b></td>
+<td class='confluenceTd'>Specifies the subject name for sending/receiving messages.</td>
+<td class='confluenceTd'>Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>TimeOut</b></td>
+<td class='confluenceTd'>Specifies the time out interval when waiting for a response (in seconds). The default wait is indefinite.</td>
+<td class='confluenceTd'>Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Fieldname</b></td>
+<td class='confluenceTd'>Specifies the name of the field where the message data (XML string) is stored.</td>
+<td class='confluenceTd'>Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Message</b> </td>
+<td class='confluenceTd'> <b>yes/no</b> - If yes, the message is in Tibco Rendezvous format, also known as (Active Enterprise) AE 3.0. </td>
+<td class='confluenceTd'> Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h4>TIBCO Attributes in Configuration Application</h4>
+
+<p>The table below describes the attributes that are exposed in Configuration application specifically for the TIBCO Service Provider.</p>
+
+<p>These attributes are found in <b><a href="../../../Configuration_Tool_User_Guide/Services Services.html">Services</a></b> tab in Configuration application. When clicking a Port, Binding, Operation or message node in the <b>Service Port tree</b>, the Configuration attributes for the node appears at the <b>Configuration</b> section at the right where values can be provided.</p>
+
+<p><ins>Attributes in Configuration application for the TIBCO Service Provider.</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Service</b></td>
+<td class='confluenceTd'>Specifies the TIBCO Server service.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Network</b></td>
+<td class='confluenceTd'>Specifies the TIBCO Server network.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Daemon</b></td>
+<td class='confluenceTd'>Specifies the TIBCO Server daemon.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>User</b></td>
+<td class='confluenceTd'>Specifies the user name if the TIBCO Server requires authentication.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>PasswordKey</b></td>
+<td class='confluenceTd'>Specifies the password key to use for retrieving the password. The password key/value pairs are created in the Configuration application.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Transactional</b></td>
+<td class='confluenceTd'>Specifies if the Rendezvous™ TX service is used that provides message persistence.</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

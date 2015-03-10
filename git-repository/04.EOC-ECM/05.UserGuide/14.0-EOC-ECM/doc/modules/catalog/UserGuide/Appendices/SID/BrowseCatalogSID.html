@@ -1,0 +1,184 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>BrowseCatalog SID Interface</title>
+<link rel="StyleSheet" href="../../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<h2>BrowseCatalog SID Interface</h2>
+<p>The BrowseCatalog interface browses the Catalog for all available items for a given search  criteria and it returns a list of items.  The BrowseCatalog  interface is available in the Library files of Velocity Studio, and contains input, output, and fault data structures defined as follows:</p>
+<img src="BrowseCatalog.png" alt="BrowseCatalog" />
+
+
+<h3>Input</h3>
+The input file contains the following elements and data types defined in Velocity Studio's data dictionary's cwt_pcsid.browseCatalogRequest data structure: <br>
+<br>
+<table class='confluenceTable'width="774" border cellpadding="1">
+  <tbody>
+<tr>
+ <th width="151" class='confluenceTh'>Input</th>
+ <th width="159" class='confluenceTh'>DataType</th>
+  <th width="159" class='confluenceTh'>Element</th> 
+ <th width="630" class='confluenceTh'>Notes</th>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>hierarchyCode</td>
+    <td class='confluenceTd'>String<br>
+      <br></td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>depth</td>
+    <td class='confluenceTd'>Integer</td>
+     <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>date</td>
+    <td class='confluenceTd'>DateTime</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>    
+     <td class='confluenceTd' VALIGN=TOP>Refer to Velocity Studio's documentation for more details on the DateTime format.</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>language</td>
+    <td class='confluenceTd'>String</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>    
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>searchCriteria[]</td>
+    <td class='confluenceTd' VALIGN=TOP>array</td>
+    <td class='confluenceTd' VALIGN=TOP>cwt_pcsid.searchCriteria</td>    
+     <td class='confluenceTd' VALIGN=TOP>Contains the following elements:
+       <ul>
+      <li>key (<i>string</i>)</li>
+      <li>operation (<i>string</i>)</li>
+      <li>value (<i>string</i>)</li></ul></td>
+</tr>
+<tr>
+    <td class='confluenceTd' VALIGN=TOP>context[]</td>
+    <td class='confluenceTd' VALIGN=TOP>array</td>
+    <td class='confluenceTd' VALIGN=TOP>cwt_pcsid.context</td>     
+    <td class='confluenceTd' VALIGN=TOP><p>Contains the following elements:
+      <ul>
+        <li>code (<i>string</i>)</li>
+        <li>attributes(<i>array</i>)</li>
+        <ul>
+          <li>nameValuePair</li>
+          <ul>
+            <li>name (<i>string</i>)</li>
+            <li>value (<i>string</i>)</li>
+          </ul>
+        </ul>
+        <li>label (<i>string</i>)</li>
+      </ul></td>
+</tr>
+<tr>
+    <td class='confluenceTd' VALIGN=TOP>inventory</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd' VALIGN=TOP>cwt_pcsid.inventory</td> 
+    <td class='confluenceTd' VALIGN=TOP><p>Contains the following element:<ul>
+        <li>id (<i>string</i>)</li>
+      </ul></td>
+</tr>  
+  
+</table>
+
+<h3>Output</h3>
+The output file contains the following elements and data types defined in the cwt_psid data structure (queryResult).<br>
+<br>
+<table class='confluenceTable' border cellpadding="1" width="774">
+  <tbody>
+<tr>
+ <th width="151" class='confluenceTh'>Output</th>
+ <th width="159" class='confluenceTh'>DataType</th>
+  <th width="159" class='confluenceTh'>Element</th> 
+ <th width="630" class='confluenceTh'>Notes</th>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>resultTime</td>
+    <td class='confluenceTd'>Date<br>
+      <br></td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>       
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>queryType</td>
+    <td class='confluenceTd'>Integer</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>      
+     <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>fromNode</td>
+    <td class='confluenceTd'>String</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>      
+     <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>hasPartialResults</td>
+    <td class='confluenceTd'>Boolean</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>      
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>hasErrors</td>
+    <td class='confluenceTd' VALIGN=TOP>Boolean</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>       
+</tr>
+<tr>
+    <td class='confluenceTd' VALIGN=TOP>errors</td>
+    <td class='confluenceTd' VALIGN=TOP><p>Array / String</p></td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>  
+</tr>
+<tr>
+    <td class='confluenceTd' VALIGN=TOP>hierarchyNodes</td>
+    <td class='confluenceTd'VALIGN=TOP>Array</td>
+    <td class='confluenceTd' VALIGN=TOP>pcsid.hierarchyNode</td>      
+    <td class='confluenceTd' VALIGN=TOP><p>Contains the following elements:
+      <ul>
+        <li>code (<i>string</i>)</li>
+        <li>items</li>
+        <ul>
+          <li>browseResponseItems </li>
+          <ul><li>browseResponseItem</li>
+            <ul><li>code (<i>string</i>)</li>
+            <li>label (<i>string</i>)</li></ul>
+          </ul>  
+        </ul>
+        <li>hierarchyNodes (<i>array</i>)</li>
+         <ul>
+          <li>code (<i>string</i>)</li>
+          <li>items (<i>array</i>)</li>
+          <li>hierarchyNodes (<i>array</i>)</li>
+         </ul>
+      <li>label (<i>string</i>)</li>
+  </ul></td>
+</tr>  
+</table>
+
+<h3>Input and Output File Examples</h3>
+<p>These input and output files are examples using  a SoapUI tool.</p>
+
+<b>InputXML:</b>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;<br>   &lt;soapenv:Header/&gt;<br>   &lt;soapenv:Body&gt;<br>      &lt;browseCatalogRequest&gt;<br>         &lt;!--Optional:--&gt;<br>         &lt;!--Optional:--&gt;<br>         &lt;hierarchyCode&gt;virtualdesktop&lt;/hierarchyCode&gt;<br>         &lt;!--Optional:--&gt;<br>         &lt;depth&gt;1&lt;/depth&gt;&lt;date&gt;2011-04-11T00:00:00.000-04:00&lt;/date&gt;<br>         &lt;!--Optional:--&gt;<br>         &lt;language&gt;?&lt;/language&gt;<br>         &lt;!--Zero or more repetitions:--&gt;<br>         &lt;searchCriteria&gt;<br>            &lt;!--Optional:--&gt;<br>            &lt;!--Optional:--&gt;<br>            &lt;key&gt;cpu&lt;/key&gt;<br>            &lt;!--Optional:--&gt;<br>            &lt;operation&gt;==&lt;/operation&gt;&lt;value&gt;Single Core&lt;/value&gt;<br>         &lt;/searchCriteria&gt;<br>         &lt;!--Optional:--&gt;<br>         &lt;context&gt;<br>            &lt;!--Optional:--&gt;<br>            &lt;code&gt;?&lt;/code&gt;<br>            &lt;!--Zero or more repetitions:--&gt;<br>            &lt;attributes&gt;<br>               &lt;!--Optional:--&gt;<br>               &lt;name&gt;?&lt;/name&gt;<br>               &lt;!--Optional:--&gt;<br>               &lt;value&gt;?&lt;/value&gt;<br>            &lt;/attributes&gt;<br>            &lt;!--Optional:--&gt;<br>            &lt;label&gt;?&lt;/label&gt;<br>         &lt;/context&gt;<br>         &lt;!--Optional:--&gt;<br>         &lt;inventory&gt;<br>            &lt;!--Optional:--&gt;<br>            &lt;id&gt;?&lt;/id&gt;<br>         &lt;/inventory&gt;<br>      &lt;/browseCatalogRequest&gt;<br>   &lt;/soapenv:Body&gt;<br>&lt;/soapenv:Envelope&gt;</pre></div>
+</div>
+
+<b>Output XML:</b>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;<br>   &lt;soapenv:Body&gt;<br>      &lt;queryResult&gt;<br>         &lt;resultTime&gt;2011-04-18T13:52:40-04:00&lt;/resultTime&gt;<br>         &lt;queryType&gt;3&lt;/queryType&gt;<br>         &lt;fromNode&gt;virtualdesktop&lt;/fromNode&gt;<br>         &lt;hasPartialResults&gt;0&lt;/hasPartialResults&gt;<br>         &lt;hierarchyNode&gt;<br>            &lt;code&gt;virtualdesktop&lt;/code&gt;<br>            &lt;browseResponseItems&gt;<br>               &lt;browseResponseItem&gt;<br>                  &lt;code&gt;basicdesktop&lt;/code&gt;<br>                  &lt;label&gt;Basic Desktop&lt;/label&gt;<br>               &lt;/browseResponseItem&gt;<br>            &lt;/browseResponseItems&gt;<br>         &lt;/hierarchyNode&gt;<br>      &lt;/queryResult&gt;<br>   &lt;/soapenv:Body&gt;<br>&lt;/soapenv:Envelope&gt;</pre>
+</div>
+</div>
+</body>
+</html>

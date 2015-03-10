@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>Associate an Action with a Logging Actiong</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Associate an Action with a Logging Action</h3>
+<p>Before you complete the procedure to associate an action with a logging action, you need to create the following:</p>
+<ul>
+  <li><a href="#CreateSystemDocument">Create a system document</a></li>
+  <li><a href="#CreateSystemDocument">Create a system global script</a></li>
+  </ul>
+
+<h4><a name="CreateSystemDocument"></a>Create a System Document</h4>
+<p>To create a system document, do the following:</p>
+<ol>
+  <li>Right-click the namespace and select <strong>New</strong> from the menu.</li>
+  <li>On the <strong>Choose a metadata type</strong> page, expand the <strong>Data Dictionaries</strong> node, select <strong>Document</strong>, and then click the <strong>Next</strong> button.</li>
+  <li>On the New Document page, do the following:
+    <ol type=a>
+      <li>Fill in the <strong>Name</strong> and <strong>Label</strong> fields of your new system document.</li>
+      <li>For the <strong>Extends</strong> field, click the drop-down menu, select <strong><SPAN id="internal-source-marker_0.23923216888163778">cwf.actionAuditDoc</SPAN>,</strong> and then click the <strong>Finish</strong> button.</li>
+    </ol>
+  </li>
+</ol>
+
+<h4>Create a System Global Script</h4>
+<p>To create a system global script, complete these steps:</p>
+<ol>
+  <li>Right-click the namespace and select <strong>New</strong> from the menu.</li>
+  <li>On the <strong>Choose a metadata type</strong> page, expand the <strong>Global Scripts</strong> node, select <strong>Action Auditor</strong>, and then click the <strong>Next</strong> button.</li>
+  <li>On the New Action Auditor page, fill in the <strong>Name</strong> and <strong>Label</strong> fields of your new system global script, and then click the <strong>Finish</strong> button.</li>
+</ol>
+<p>To associate an action with a logging action, complete these steps:</p>
+<ol>
+  <li>Use your Web browser to access the  Configuration application. Once you are logged in, click the <strong>System</strong> vertical tab, and then click the <strong>Logging</strong> vertical tab. </li>
+  <li>On the <a href="../../../Configuration_Tool_User_Guide/Log Levels.html">Logging</a> page, select the <strong>Enable action logging</strong> parameter, and then click the <strong>Save</strong> button.</li>
+  <li>In Velocity Studio, create an Action Validator object in your metadata by doing the following:
+    <ol type=a>
+      <li>Right-click the namespace and select <strong>New </strong>from the menu.</li>
+      <li>On the <strong>Choose a metadata type</strong> page, expand the <strong>Global Scripts</strong> node, select <strong>Action Auditor</strong>, and then click the <strong>Next</strong> button. On the New Action Auditor page, you can specify the following fields:<br>
+        <br>
+      </li>
+    </ol>
+    <table width="779" class='confluenceTable'border cellpadding="1">
+      <tbody>
+        <tr>
+          <th width="184" class='confluenceTh'>Field</th>
+          <th width="623" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Name</b></td>
+          <td class='confluenceTd'>The name of your Action Validator object.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Label</b></td>
+          <td class='confluenceTd'>The label name of your Action Validator object.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Description</strong></td>
+          <td class='confluenceTd'>A brief description on the Action Validator object.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Category</b></td>
+          <td class='confluenceTd'>The category that the Action Validator object belongs to.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Action Name</strong></td>
+          <td class='confluenceTd'>The unique name of the Action.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Audit Script</b></td>
+          <td class='confluenceTd'>Click the drop-down to select an audit script from the list provided. Alternatively, you can click the <strong>Globe</strong> icon to find a script within your metadata.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>Create a User Interface with a <a href="../../Velocity_Studio/Element - Menu.htm">Menu</a>, <a href="../../Velocity_Studio/Element - Button.html">Button</a>, or <a href="../../Velocity_Studio/Element - Image.htm">Image</a> element.</li>
+  <li>Click the element (the following screenshot uses the Button element), and then click the <strong>Action Auditor</strong>'s drop-down menu to select the <strong>Action Validator</strong> object.<br>
+    <br>
+    <img src="ActionAuditorButton.png" border="1" alt="Button element's Action Validator property"><br>
+    <br>
+  </li>
+  <li>Start runtime by clicking <strong>Runtime</strong> &gt; <strong>Run</strong> from the menu bar.</li>
+  <li>In runtime, click the Menu, Button, or Image element. Proceed to check the database for the document recreated by the Action Validator.</li>
+</ol>
+
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>You can use the Global.enableActionLogging() API to either turn action logging on or off. This API sets a flag in the AVM that takes precedence over the flag set by the Configuration application. When the API is running, if an element with an action validator is activated and the action validation is enabled by both the Configuration application and the AVM, the action validator's script is run after the original action. When enable.ActionLogging is set to false, no documents are saved in the database. Otherwise, when the API is set to true, documents are created. The finder that shows user action information is cwf.userActionFinder.</li>
+  <li>You can also create an <a href="../Script/Event Handlers.html">event handler</a> using the ACTION_AUDIT_LOG event, which <SPAN id="internal-source-marker_0.2">creates an auditLog document, and then runs the specified audit script. </SPAN>    This event <SPAN id="internal-source-marker_0."> takes the following mandatory parameters:</SPAN>
+    <ul>
+      <li><SPAN>ScriptName</SPAN></li>
+      <li>        category</li>
+      <li>        actionName<BR>
+      </li>
+    </ul>
+  </li>
+  </ul></td>
+</tr>
+</table>
+</body>
+</html>

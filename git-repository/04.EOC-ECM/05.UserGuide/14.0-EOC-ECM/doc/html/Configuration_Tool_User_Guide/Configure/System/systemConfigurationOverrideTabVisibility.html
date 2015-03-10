@@ -1,0 +1,121 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>System Configuration - Override Visibility of Configuration Tabs for Certain Users</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Override Visibility of Configuration Tabs for Certain Users</h2>
+
+<p>You can override what configuration tabs are available for certain users. By default, the following configuration tabs for each catagory are available, depending on whether you have the root node selected.</p>
+<table width="796" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="98" class='confluenceTh'>Category</th>
+      <th width="682" class='confluenceTh'>Configuration Tab</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="System/system.html">System</a></strong></td>
+      <td class='confluenceTd'>
+        <li>General </li>
+        <li>          SMTP Server (available at the root level only)</li>
+        <li>          Config Variables</li>
+        <li>          Logging</li>
+        <li>          Events (available at the root level only)</li>
+        <li>          Compatibility (available at the root level only)
+        </li>
+      </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="Databases/databases.html">Database</a></strong></td>
+      <td class='confluenceTd'>
+        <li>Logical</li>
+        <li>Physical</li>
+      </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="Processes/processes.html">Process</a></strong></td>
+      <td class='confluenceTd'>
+        <li>General</li>
+        <li>          PE Processes</li>
+        <li>          PE Queues</li>
+        <li>          Alert Addresses (available at the root level only)</li>
+        <li>          Alert Assignment (available at the root level only)</li>
+        <li>          Archive (available at the root level only)</li>
+        <li>      Delete Messages (available at the root level only) </li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="UI/UI.html">UI</a></strong> (available at the root level only)</td>
+      <td class='confluenceTd'>
+        <li>General</li>
+        <li>Tabbing</li>
+      </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="Services/services.html">Service</a></strong></td>
+      <td class='confluenceTd'>
+        <li>Services (available at the root level only) </li>
+        <li>          Binding (available at the root level only) </li>
+        <li>          Listeners</li>
+        <li>      Queues (available at the root level only) </li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="Catalog/catalog.html">Catalog</a></strong></td>
+      <td class='confluenceTd'><li>Catalog External Server</li>
+        <li>      Catalog (available at the node level only)</li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="Performance/performance.html">Performance</a></strong></td>
+      <td class='confluenceTd'><li>AVM Cache</li>
+        <li>          Catalog Cache</li>
+        <li>          Statistic Monitoring (available at the root level only) </li>
+      <li>      Action Categories (available at the root level only) </li></td>
+    </tr>
+  </tbody>
+</table>
+<p><br>
+To override the tab visibility for a specific user, you must create a new rule set that reduces the existing rule set for the tab component, and then override the init script for any isTab<em>Xxxx</em>Visible variable. To view the configuration tabs in Velocity Studio, click the Library tab, and then click <strong>CWA - Config</strong> &gt; <strong>cwa_config</strong> &gt; <strong>configUI</strong> &gt; <strong>rules</strong> &gt; <strong>rule sets</strong>.</p>
+<p>The following steps shows how to hid the Processes tab and the <strong>System</strong> &gt; <strong>Logging</strong> sub-tab when logged in to the System Configuration application with the testConfigUser username:</p>
+<ol>
+  <li>In your metadata, create a <a href="../../../Service_Designer_Tool_User_Guide/Metadata_Objects/Rule Sets/Rule set.html">new rule set</a>:</li>
+  <ol type=a>
+  <li>For the <strong>Reduces</strong> field, specify <strong>cwa_config.configTreeInit</strong>.</li>
+  <li>In the rule set, select any of the isTabXxxx variables (for example,  <strong>isTabProcessesVisible</strong>).</li>
+  <li>For the base script, uncheck the <strong>Enable</strong> field.</li>
+  <li>Add the following new script:<br>
+    <div class="preformatted">
+  <div class="preformattedContent">
+  <pre>return Global.getUserId() != "testConfigUser";</pre>
+  </div>
+      </div>
+  </li>
+  </ol>
+  <li>Similary, for sub-tabs, create a new rule set:
+    <ol type=a>
+      <li>For the <strong>Reduces</strong> field, specify <strong>cwa_config.systemTabbedInit</strong>.</li>
+      <li>In the rule set, select any of the isTabXxxx variables (for example,
+      <strong>isTabLoggingVisible</strong>).</li>
+      <li>For the base script, uncheck the <strong>Enable</strong> field.</li>
+      <li>Add the following new script:<br>
+        <div class="preformatted">
+          <div class="preformattedContent">
+            <pre>return Global.getUserId() != "testConfigUser";</pre>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </li>
+  <li>Save your metadata and then run your application.</li>
+  <li>Log in to the User Profile Manager application and create a new user, testConfigUser, belonging to the User Profile Administrator group. Proceed to log out of the application.</li>
+  <li>Log in as testConfigUser, and then open the System Configuration application. The Processes tab and the <strong>System</strong> &gt; <strong>Logging</strong> sub-tab are not visible for the logged-in user.</li>
+</ol>
+<p><strong>Note:</strong> For <span class="bugnote-note-public">the Export and Import menu items, you must reduce the cwa_config.systemConfigurationInit rule set, and then change the scripts for both  isMenuImpConfigExportVisible() and  isMenuImpConfigImportVisible() to return false for your user with restrictions. </span></p>
+<ol>
+  <p><BR>
+  </p>
+</ol>
+</body>
+</html>

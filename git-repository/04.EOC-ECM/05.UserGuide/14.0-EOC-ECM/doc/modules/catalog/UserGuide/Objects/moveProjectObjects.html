@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Move a List of Catalog Objects</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top"><h4><a name="api"></a>Move a List of Catalog Objects or Associations from one Project to Another Using the moveProjectObjects Method</h4>
+      <p>You can move a list of catalog objects or associations from one project to another project by using the projectMaintenance API's moveProjectObjects  method, which is a part of the maintenance API.</p>
+      <div class="preformatted">
+        <div class="preformattedContent">
+          <pre>
+void moveProjectObjects(moveProjectAssignmentsDS moveProjectAssignments)</pre>
+        </div>
+      </div>
+      <p>The moveProjectObject's input parameters are as follows:</p>
+      <tt>moveProjectAssignmentsDS</tt>:
+      <ul>
+        <li><tt>projectAssignmentIdList</tt>: array of strings </li>
+        <li><tt>newProjectCode:</tt>string</li>
+      </ul>
+      <p>This API allows you to move a list of catalog objects or associations from one project to another project if the following conditions hold true:</p>
+      <ul>
+        <li>None of the objects in the list are active.</li>
+        <li>The new parent project is not active.</li>
+      </ul>
+      <p>The following is an example of moving a list of catalog associations from one project, testProjectA, to another project, testProjectB, using the moveProjectObjects  operation:</p>
+      <div class="preformatted">
+        <div class="preformattedContent">
+          <pre>
+//Create project  
+var response;  
+var ds = new DataStructure("cwt_pcmaintapi:MoveProjectAssignmentsDS");  
+ds.newProjectCode = "testProjectB";    
+
+for(var i=0; i&lt; projectAssignmentIdLists.length; i++){     
+    ds.projectAssignmentIdList[i]= projectAssignmentIdLists[i];  
+}    
+
+var list = Global.invokeInterface("cwt_pcmaintapi:ProjectMaintenance", "MoveProjectObjects", ds);  
+assertNotNull(list, "response is not found as return value is null.");    
+
+var response = list[0];  
+assertTrue(response.message.trim() == "All Project Assignments successfully updated.", "Project Assignments have not been updated successfully: "+ response.message.trim());  </pre>
+        </div>
+      </div>
+      <p>The following table lists the exceptions that can be thrown under specific conditions:</p>
+      <table class='confluenceTable' border cellpadding="1">
+        <tbody>
+          <tr>
+            <th width="180" class='confluenceTh'>Exception</th>
+            <th width="533" class='confluenceTh'>Description</th>
+          </tr>
+          <tr>
+            <td class='confluenceTd'>Missing input parameter</td>
+            <td class='confluenceTd'>This exception displays if either the new project code or the project assignment list is null.</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'>Data not found</td>
+            <td class='confluenceTd'>This exception appears when either the new project does not exist or none of the project assignments to be changed exist in the database.</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'>New project cannot be active</td>
+            <td class='confluenceTd'>This exception occurs when the <strong>Status</strong> field of the new project is <strong>Active</strong>.</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'>Active data found</td>
+            <td class='confluenceTd'>This exception appears if one or more project assignments to be changed are active.</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'>Internal exception</td>
+            <td class='confluenceTd'>This exception indicates that an unexpected internal error has    occurred. </td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>Note: </strong> The associated project only changes for those objects matching the input criteria. The change does not propagate to any referenced objects of those objects. As an example, if the input criteria matches an item, only the associated project of the item only changes. The associated project for the item associations remains unchanged.</p></td>
+  </tr>
+</table>
+</body>
+</html>

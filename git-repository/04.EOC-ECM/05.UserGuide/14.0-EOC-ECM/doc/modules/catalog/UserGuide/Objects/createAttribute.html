@@ -1,0 +1,144 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Create an Attribute Type</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Create an Attribute Type </h2>
+<p>To create a new attribute type, complete these steps<strong>: </strong></p>
+<p><strong>Note: </strong>A project must be opened to create a new attribute type.</p>
+<ol>
+  <li>From the menu bar, click <strong>Designer</strong> &gt; <b>Attribute Types</b>.</li>
+  <li>Click the <strong>Add </strong> button on the <strong>Attribute Types</strong> page.</li>
+  <p><img src="AttributeTypeSearch.png"  alt="Attribute Types"></p>
+<li>The <strong>Attribute Type Detail</strong> form  displays; enter the following information  in the fields:</li>
+<p><table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="100" class='confluenceTh'>Field</th>
+<th width="1028" class='confluenceTh'>Description</th>
+<th width="126" class='confluenceTh'>Rules</th>
+</tr>
+<tr>
+<td height="44" class='confluenceTd'><strong>Code</strong></td>
+<td class='confluenceTd'>This field denotes the code that is  used to identify the attribute type.  This code is not restricted to alphanumeric characters; it  can also contain a combination of spaces, hyphens, etc. Strings can be up to 32  characters long.</td>
+<td class='confluenceTd'>Mandatory, Unique</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Status</strong></td>
+<td class='confluenceTd'>This field indicates a list of available <a href="States.html">status</a> for the attribute (for example, <strong>Definition</strong> and<strong> Active</strong>).</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+
+<tr>
+<td class='confluenceTd'><strong>Name</strong></td>
+<td class='confluenceTd'>This field denotes a<span class="confluenceTd"> unique name for </span> the attribute.</td>
+<td class='confluenceTd'>Mandatory, Unique</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Start Date</strong></td>
+<td class='confluenceTd'>This field indicates the effective date of the attribute. Refer to <a href="StartEnd_Dates.html">Start and End dates</a> for details.</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>End Date</strong></td>
+<td class='confluenceTd'><p>This field indicates the end date of the attribute that  represents the date when this attribute is no longer effective. Refer to <a href="StartEnd_Dates.html">Start and End dates</a> for details.</p></td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Type</strong></td>
+<td class='confluenceTd'>Some types may have  a mandatory restriction. Click the drop-down menu and select one of the following:
+  <p> <table width="548" border cellpadding="1" class='confluenceTable'>
+  <tbody>
+<tr>
+<th width="70" class='confluenceTh'>Type</th>
+<th width="194" class='confluenceTh'>Restriction</th>
+<th width="196" class='confluenceTh'>Valid Values</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Number</strong></td>
+<td class='confluenceTd'>TotalDigits</td>
+<td class='confluenceTd'>Whole digits (.) decimal digits</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>String</strong></td>
+<td class='confluenceTd'>MaxLength</td>
+<td class='confluenceTd'></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Boolean</strong></td>
+<td class='confluenceTd'>No restriction</td>
+<td class='confluenceTd'>0 or 1</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Date</strong></td>
+<td class='confluenceTd'>No restriction</td>
+<td class='confluenceTd'>yyyy-mm-dd</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Code Table</strong></td>
+<td class='confluenceTd'>Select from available code tables</td>
+<td class='confluenceTd'></td>
+</tr>
+
+
+</tbody>
+</table></p>
+</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Length</strong></td>
+<td class='confluenceTd'><p>This field represents the  decimal value indicating  the maximum length or expected digits. The system defaults to a value of zero (0). For Strings, the length can be a value from 1 to 4000. For Numbers, total number of digits can be 1 to 15. This field is visible when the type is string or number.</p></td>
+<td class='confluenceTd'><p>Optional</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Label</strong></td>
+<td class='confluenceTd'>This field denotes the  visual label used  for the attribute. The value can be a non-internationalized string up to 128 characters long.  This field is a translational string that supports language translations (refer to Velocity Studio's Translation Element for more details).</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Description</strong></td>
+<td class='confluenceTd'>This field denotes the  description of the attribute.</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Project</strong></td>
+<td class='confluenceTd'>Each object is assigned to a project. The value of this filed defaults to the active or opened project when the attribute is first created.</td>
+<td class='confluenceTd'>Default</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Owner</strong></td>
+<td class='confluenceTd'>This field represents the owner of the attribute. The value defaults to the the opened project's owner.</td>
+<td class='confluenceTd'>Default</td>
+</tr>
+<td class='confluenceTd'><strong>Precision</strong></td>
+<td class='confluenceTd'>This field indicates the  number of digits after the decimal. The value of this field must be equal to or less than the value of length field. This field is visible when type is number.</td>
+<td class='confluenceTd'><p>Optional</p>
+  </td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Code Table</strong></td>
+<td class='confluenceTd'>This field denotes a list of code cables  available to the application used for enumeration. This field is visible when type is code table.</td>
+<td class='confluenceTd'><p>Optional</p>
+  </td>
+</tr>
+</table></p>
+  <li>Click the <strong>Save</strong> button.</li>
+  <p><img src="AttributeTypeDetail.png" alt="Attribute Type Detail"></p>
+</ol>
+<p>&nbsp;</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>
+

@@ -1,0 +1,30 @@
+﻿<html>
+<head>
+<title>Remove and Copy Data Structure Types</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Remove and Copy Data Structure Types</h2>
+<p>The following sections describe how to remove and copy data structure types.</p>
+<h3>Remove a Data Structure</h3>
+<p>Suppose that you have the following structure:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>&lt;data&gt;&lt;fieldA&gt;valueA&lt;/fieldA&gt;&lt;/data&gt;</pre>
+  </div>
+</div>
+
+<p>When setting a data structure field to null (for example, <tt>date.fieldA = null</tt>), it removes the field from memory and the element is not created in the XML. When you set a data structure field to an empty string, it leaves the field in memory and creates an empty element in the XML.</p>
+<h3>Copy a Data Structure</h3>
+<p>To copy a data structure, use the mapToStructure API in DataStructure to make a duplicate data structure and set the  conversion map parameter to null. <BR>
+</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Change URL Mappings, Stylesheets, and Skins</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Change URL Mappings, Stylesheets, and  Skins </h2>
+<p>There are several settings in Velocity Studio that enable you to modify the overall  look and feel of the interface during design-time:</p>
+<ul>
+  <li>URL Mapping </li>
+  <li>Stylesheet</li>
+  <li> Skins</li>
+</ul>
+<h3>Configuring URL Mapping</h3>
+<p>The Application Page tab is found at the metadata root node of your project. Setting up this information enables you to display   User Interface objects (for example, Form, Page) to Web  clients by assigning them to a relative URL path that is relative to the following:</p>
+<blockquote>
+  <p><em>http://&lt;hostname&gt;:&lt;port&gt;/cwf/&lt;XX&gt;</em></p>
+</blockquote>
+<p>  where <em>XX</em> refers to the name of the Form or Page that you want displayed in the Web browser.  For more information, see the <a href="../Metadata_Objects/Metadata Root/Metadata Root Application Page.html">Metadata Root Application Page</a>.</p>
+<p><img src="../Metadata_Objects/Metadata Root/MetadataApplicationPage.png" alt="Application page - URL field"></p>
+
+<p>For applications that have a URL mapping, the stylesheet and skins properties are available at the Page object level of that application. </p>
+<p>To set up the URL mapping, do the following<em>:</em></p>
+<ol>
+  <li>In the top-level application controller, specify the relative URL path in the <strong><a href="../Metadata_Objects/Metadata Root/Metadata Root Application Page.html#urlMapping">URL Mapping</a></strong> field. </li>
+  <li>In the left pane, click the <strong>root node</strong>.</li>
+  <li>Click the <strong>Application Page</strong> tab.</li>
+  <li>Configure a mapping for the menu of your application by clicking the <strong>URL</strong> drop-down field of your application and ensuring that the relative path that you created in the <strong>URL Mapping</strong> field appears in the <strong>URL</strong> field.</li>
+  <li>In your application metadata, navigate to the <strong>User Interface</strong> node of the<strong> Presentation</strong> folder.</li>
+  <li>Navigate to the <strong>Page</strong> form.</li>
+  <li>Right-click and override the <strong>Page</strong> form. The Page properties appear.</li>
+  <li>Set the <strong>Stylesheet</strong> property to the stylesheet that you want to display.</li>
+  <li>From the main menu, click <strong>File</strong> &gt; <strong>Save</strong>.</li>
+</ol>
+<h3>Changing the Stylesheet</h3>
+<p>The Velocity Studio system stylesheet controls the appearance of the Page design of the runtime metadata. Upon opening Velocity Studio, the <strong>Stylesheet</strong> list box  displays the default stylesheet (cwf.css [/cwf/css/cwf.css]), which cannot be edited. </p>
+
+<img src="stylesheet.png" align="absmiddle" border="1" alt="Stylesheet drop-down field" />
+
+<p>To customize the Page design, do the following:</p>
+<ol>
+  <li>In Windows Explorer, add a new CSS  into the <strong>Resources</strong> folder of  your project directory.</li>
+  <li>In Velocity Studio, open the project that contains the new CSS. Opening the project automatically loads all stylesheets.</li>
+  <li>From the toolbar, click the <strong>Stylesheet</strong> list box and select your new CSS.</li>
+  </ol>
+<p>The stylesheet  is used for rendering the preview pane.  Changing  a stylesheet allows for look-and-feel changes at the form level. To change the overall application's look and feel, you  would change the <a href="#skin">Skin</a>.</p>
+<p> If you have set the User Interface object using the<strong> Extends</strong> parameter <em>com.conceptwave.system.UserInterface</em>, the stylesheet is available from the properties page of that Page. If you have set the User Interface object using the<strong> Extends</strong> parameter <em>com.conceptwave.system.application</em>, the stylesheet is available from the properties page of that Page providing that you have extended the Page. For more information about stylesheets, see <a href="../Service_Designer_User_Interface/Navigation Pane - Resource.html">Navigation Pane - Resource</a>.</p> 
+
+<img src="URL_mapping_page.png" align="absmiddle" border="1" alt="Page - properties" />
+
+<h4>Parse Stylesheets</h4>
+<p>You can use the CwfCssRuleSet.getTermsByPropertyName(String propertyName) method to parse your stylesheets. The method allows you to get the following values from your stylesheets:</p>
+<ul>
+  <li>    Any font properties, such as font weight, font style, font family, and font size</li>
+  <li>    Colour</li>
+  <li>    Width</li>
+  <li>    Height</li>
+</ul>
+<h3><a name="skin"></a>Skin</h3>
+<p>The default Skins directory is built into Velocity Studio.   The skins directory  contains in general a stylesheet and image files that controls the overall look and feel of the  application. The Menu Bar provides a drop-down list of Skins that are available  while configuring the application. Customizing the files in the Skins directory allow you to  customize areas such as backgrounds, title bars, buttons, and other graphical interface elements. Skin customization allows for the overall control of the look and feel of the application including the ability to change ALL element styling including the images that are used to render the elements (for example, table or button). To customize the look and feel of a specific form, it is recommended that a customized stylesheet be used.</p>
+<p>To customize a skin, the user would select the <a href="#CustSkin">Customize Skin</a> option from the File Menu. This would create a new Skins directory in the metadata and copy all the skins files and folders, including the CSS which can be modified as necessary.</p>
+<p>There are three different ways to access the Skins:</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Skin Type (accessed from)</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Example</th>
+</tr>
+<tr>
+<td class='confluenceTd'>Page Form</td>
+<td class='confluenceTd'><p>From the Details pane, set the Skin for the Page to be viewed at runtime.</p>
+  <p><strong>Note:</strong> Since an application must have a URL mapping, the application skin that is defined  at the Page Form is  applied. This may result in some template applications to look different.</p></td>
+<td class='confluenceTd'><img src="pageskin.png" align="middle" border="0" alt="Page - Skin field" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'>File menu</td>
+<td class='confluenceTd'><p>The <strong><a name="CustSkin"></a>Customize Skin</strong> menu item allows you to copy an  existing  Skin and rename it to a new  name in the application metadata under the <em>skins</em>/ folder (that is, C:\&lt;metadata home&gt;\skins\). The new Skin automatically saves and is available from the Page, toolbar or File menu. You can change the js/image files and then use this Skin for preview or runtime.</p>
+  <p><strong>Note:</strong> If your customized skin is set on the page, this skin's stylesheet takes   precedence, then the specified stylesheet on the page, followed by the system   stylesheet.</p></td>
+<td class='confluenceTd'><img src="skincustomized.png" align="middle" border="1" alt="Menu bar - File > Customize Skin" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'>From the toolbar</td>
+<td class='confluenceTd'>From the Toolbar, it is possible to change the Stylesheet and the Skin.  However, this feature only provides a &quot;preview&quot; of the stylesheet and skin change. It does not actually set the Skin or Stylesheet for the form. To &quot;permanently&quot; set the Stylesheet and Skin for the application, the Skin and Stylesheet option is available  at the Page level. </td>
+<td class='confluenceTd'><img src="skindropdown.png" align="middle" border="1" alt="Toolbar - Skin field" /></td>
+</tr>
+
+</tbody>
+</table>
+
+<h3><a name="changeLookPositionActionInProgressBar"></a>Example: Change the Look and Position of Action in Progress Bar Using a Stylesheet</h3>
+<p>In normal applications, an Action in Progress  bar appears in the top right corner when an action is taking longer than a few  seconds to complete.&nbsp;If you want to change the look and positioning of this  message, you can override them in your stylesheets as follows:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+/* Operation In Progress message */<br>  .CwActionInProgress {<br>  color:black;<br>  background-color: white;<br>  background-image: url(&quot;../images/spinner.gif&quot;) ;<br>  background-repeat: no-repeat;<br>  background-position: 4px;<br>  padding: 15px 60px 15px 60px;<br>  font-family:Arial,Helvetica,sans-serif;<br>  font-size:16px;<br>  font-style:normal;<br>  font-weight:bold;<br>  overflow:visible;<br>  position:absolute;<br>  left:50%;<br>  margin-left: -140px;<br>  width: 220px;<br>  top:100px;<br>  white-space: nowrap;<br>  border: 1px solid gray;<br>  opacity: 1.0; /* Safari, Opera */<br>  -moz-opacity:1.0; /* FireFox */<br>  filter: alpha(opacity=100); /* IE */<br>  }<br>  <br>  .CwActionInProgressBackground {<br>  background-color: black;<br>  opacity: 0.7; /* Safari, Opera */<br>  -moz-opacity:0.70; /* FireFox */<br>  filter: alpha(opacity=70); /* IE */<br>  }</pre>
+</div>
+</div>
+<p>These styles allow the message to appear as a full window  screen. The message displays in the middle of the window.</p>
+<h3>Example: Customize Popup Dialogs  Using a Stylesheet</h3>
+<p>You can customize runtime  popup dialogs using a stylesheet. The skin_styles.css file controls the style of a popup dialog.</p>
+<p>  For popup dialogs such as  warning messages, you can update the following:</p>
+<ul>
+  <li>    dialog.styleName - dialogBackground</li>
+  <li>    dialog.bodyStyle - dialogBody</li>
+  <li>    dialog.headerStyle - dialogHeader</li>
+  <li>    dialog.hiliteHeaderStyle - dialogHeaderHilite</li>
+  <li>    dialog.headerLabelDefaults.styleName - dialogHeaderText<BR>
+  </li>
+</ul>
+<p>For popup windows, you can customize the following:</p>
+<ul>
+  <li>    window.styleName - windowBackground</li>
+  <li>    window.bodyStyle - windowBody</li>
+  <li>    window.headerStyle - windowHeader</li>
+  <li>    window.hiliteHeaderStyle - windowHeaderHilite</li>
+  <li>    window.headerLabelDefaults.styleName - windowHeaderText</li>
+  <li>    window.statusBarDefaults.styleName - windowStatusBar <br>
+  </li>
+</ul>
+<p>The image in a warning dialog can be  changed by substituting the sign_warning.png file in Velocity Studio's Resources tab. </p>
+<p><img src="stylesheetPopup.png" alt="Change image in a warning popup"></p>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>Performing this change  substitutes all occurrences of the original sign_warning.png image. Changing the icon in a specific warning dialog is not supported.</li>
+  <li>    Changing styles for an individual warning message in a popup dialog is not supported. The global warning message style can be changed by changing the <tt>normal</tt> style in the skin_styles.css file. Note that the <tt>normal</tt> style is  the default style for all text in the product. Changing it may cause significant appearance changes. </li>
+  <li>Setting styles, such as windowBody or   dialogBody, only take effects on a pure window object, such as  the warning   dialog. If you have some vertical layouts or a canvas on top of the dialog background, the dialog   background ends up being covered and is not going to be shown as expected. If you   want to change the background colour in this case, you must change the   style for the containing layout.<br>
+  </li>
+</ul>
+</td>
+</tr>
+</table>
+</body>
+</html>

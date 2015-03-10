@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Tracing Configuration Java Model</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h3>Tracing Configuration Java Model </h3>
+  <p>The tracing configuration model is a part of the AVM  configuration model, but is only available through the command-line interface.  The tracing configuration model appears as a field to the CwfSystemConfigModel  class.    </p>
+  <p>The following  table shows the model classes, their fields, and their descriptions:</p>
+  <table class='confluenceTable' border cellpadding=1>
+    <tbody>
+    <tr>
+      <th width="111" class='referenceTh'>Model Class</th>
+      <th width="354" class='referenceTh'>Field</th>
+      <th width="675" class='referenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td rowspan="3" class='referenceTd'>CwfTraceModel</td>
+      <td class='referenceTd'>traceFileLocation</td>
+      <td class='referenceTd'>A String that represents the physical path for  trace files.</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>traceJobs </td>
+      <td class='referenceTd'>List of CwfTraceJobModel</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>activatedInterfaces</td>
+      <td class='referenceTd'><ul>
+        <li>List of String that represents the names of  activated interfaces.</li>
+        <li>The interface name is not equal to metadata  interfaces since applications can define trace points anywhere.</li>
+        <li>For an  interface where trace ID activation is allowed, if it is not included in this  list, it is assumed that trace ID activation is disallowed for the given  interface. Public-facing interfaces are likely to be configured to not allow  tracing. Internal interfaces are likely configured to allow trace ID  activation.</li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td rowspan="6" class='referenceTd'>CwfTraceJobModel</td>
+      <td class='referenceTd'>ida</td>
+      <td class='referenceTd'><p>System-generated ID.</p></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>interface</td>
+      <td class='referenceTd'>A String that is domain-specific.</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>coverage</td>
+      <td class='referenceTd'>This field takes either LOCAL or GLOBAL as values.</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>start</td>
+      <td class='referenceTd'>DateTime</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>end</td>
+      <td class='referenceTd'>DateTime</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>traceObjects</td>
+      <td class='referenceTd'>List of CwfTraceObjectModel</td>
+    </tr>
+    <tr>
+      <td rowspan="2" class='referenceTd'>CwfTraceObjectModel</td>
+      <td class='referenceTd'>traceType</td>
+      <td class='referenceTd'>A String, which represents the trace type and is  domain-specific.</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>matchType</td>
+      <td class='referenceTd'>This field takes one of the following values:
+            <ul>
+              <li>BEGINS_WITH</li>
+              <li>ENDS_WITH</li>
+              <li>CONTAINS</li>
+              <li>EQUAL</li>
+            </ul></td>
+    </tr>
+  </tbody>
+</table>
+<p>For more information, see the <a href="../JavaScripting in Order Care/index.html">JavaScript documentation</a>.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

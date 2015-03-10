@@ -1,0 +1,1344 @@
+<html>
+<head>
+<title>Order User Interface and Forms</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>Order User Interface and Forms</h3>
+
+<p>Order Forms cohere to the User Interface generalization among metadata objects; that is, the Order contains a <a href="../../Velocity_Studio/Configuring User Interface Object Overview.html">User Interface</a>, where <a href="../../Velocity_Studio/Form.htm">Forms</a> are contained within the User Interface. See <a href="../../Velocity_Studio/User_Interface_Design_with_VS.htm">User Interface Modelling</a> on how you should use the User Interface object as <i>Controller</i> to connect the Order as <i>Model</i> to present Order Forms as <i>View</i> to users, adhering to the MVC architectural pattern.</p>
+
+<p>However, because Order is a metadata object that is hierarchical, the Order User Interface is essentially a <a href="../Navigation Trees/navigation trees.html">Navigation Tree</a> metadata object, which is a derived User Interface object. Specifically, the system-base Order User Interface <i>com.conceptwave.system.OrderUserInterface</i> is extended from Navigation Tree (with Tabs).</p>
+
+<p>The Order User Interface node sits beneath the root-level Order, and with its nature in Navigation Tree, the root Order User Interface node may have its children Tree nodes.</p>
+
+<img src="OrderUInode.png" align="absmiddle" border="1" alt="Order User Interface Node" />
+
+<p>Thus, presentation of the Order is heavily based on the mechanics of the Navigation Tree metadata and its corresponding <a href="../Navigation Trees/Navigation Trees at Runtime.html">runtime behaviour</a>. You are expected to be familiar with Navigation Tree, or you should closely consult its documentation; this article only addresses the additional properties of Order User Interface and Form from their equivalent in Navigation Tree.</p>
+
+<p>By right-clicking the root Order node or the root Order User Interface node, you may command the <img src="iconSyncNode.png" align="absmiddle" border="0" alt="" /> <b>Sync Navigation Tree</b>. The command creates the User Interface nodes hierarchy matching the order model structure. For example, when adding a new document to an order, the Order User Interface must be synchronized with the order model to include the new document's User Interface. Otherwise, the new document is not included in the Order User Interface. In the previous diagram, the Order User Interface is a Navigation Tree with nodes that mirror the order's structure.</p>
+<p>Note that, as discussed in <a href="../Navigation Trees/navigation trees.html">Navigation Tree</a> documentation, the Order User Interface does not necessarily have to present the Order to user as defined by the structure of the Order model. While using the <b>Sync Navigation Tree</b> command provides the mirror structure of the Order model, you may add or delete any nodes in the Order User Interface tree, or alter properties in nodes, to present Order that may be more intuitive.</p>
+<h3>Order User Interface</h3>
+
+<p>Extended from Navigation Tree metadata, Order User Interface has the <a href="../Navigation Trees/Navigation Tree General Properties.html">General</a>, <a href="../Navigation Trees/Navigation Tree Variables.html">Variables</a>, <a href="../Navigation Trees/Navigation Tree Node Items.html">Tree Items</a> and <a href="../Navigation Trees/Navigation Tree Methods.html">Methods</a> tabs; please see the respective section for details.</p>
+
+<p>Specific to Order User Interface, however, is the additional User Interface Variables and Methods defined on top of its base User Interface object <i>com.conceptwave.system.NavigationTreeWithTabs</i>.</p>
+
+<p><i><u>Additional properties in <b>General</b> tab of root-level Order User Interface</u></i></p>
+
+<p>There are no additional properties compared to the Root Node of Navigation Tree with Tabs.</p>
+
+<p><i><u>Pre-defined Variables of Order User Interface</u></i></p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Variable</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>hoverMessages</b></td>
+<td class='confluenceTd'><i>User Interface</i></td>
+<td class='confluenceTd'>An array of User Interfaces for presenting hover messages, which shows the Validation Errors.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>confirmTab</b></td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>Stores the selected tab for <em>continue</em> confirmation dialog.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>confirmSelection</b></td>
+<td class='confluenceTd'><i>Tree Node</i></td>
+<td class='confluenceTd'>Array of Tree Nodes to store selected tree nodes for <em>continue</em> confirmation dialog.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>confirmMethod</b></td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>Stores the method to be invoked on <em>OK</em> of the confirmation dialog.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>validationErrorList</b></td>
+<td class='confluenceTd'><i>Object</i></td>
+<td class='confluenceTd'>An array that stores the list of validation errors.</td>
+</tr>
+</tbody>
+</table>
+
+<p>You are strongly encouraged to read <a href="../../Velocity_Studio/Scripting in Velocity Studio.htm">Scripting</a> on how to use User Interface Variables.</p>
+
+<p><i><u>Pre-defined Methods of Order User Interface</u></i></p>
+
+<p>Most methods implement functionality on action Menu items such as <b>Add</b>, <b>Attach</b>, <b>Copy</b>, <b>Delete</b>, <b>Validate</b>, <b>Tasks</b>, <b>Task History</b>, etc.</p>
+
+<p><strong>Note:</strong> When library methods are overridden, it is recommended that the <em>super method</em> is invoked first and a custom script is written after the super call. If the super method is not invoked the Finder may not work as it is expected.</p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Method</th>
+<th class='confluenceTh'>Return</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>addAction</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>Invoked when user clicks the Add menu. 
+    The top-level UI, ui_common.selectOptionalItemUI, is used and is displayed in the dialog.</p>
+<p>function addAction(dialog) { // Metadata type method. Can be called by scripts.</p>
+    <p>var selNode = this.getSingleSelection();<br>
+      if (selNode == null)<br>
+return null;<br>
+var addGroup = this.getAddGroup(selNode.model);<br>
+if (addGroup == null || !(addGroup instanceof OrderGroup) || !addGroup.isAllowed(&quot;Add&quot;))<br>
+return null;<br>
+if (addGroup.hasOptionalItems()){<br>
+var selectOptionalUI;<br>
+var uiVers = this.getCompatibleVersion();<br>
+if (uiVers == 0)<br>
+return null;<br>
+else if (uiVers &gt;= 6) {<br>
+if (CwMetadataObject.getMetadataObject(&quot;ui_common.selectOptionalItemUI&quot;) == null)<br>
+return null; // UI-Common template is not loaded<br>
+if (dialog)<br>
+dialog.dialogWidth = 520;<br>
+selectOptionalUI = new com.conceptwave.system.UserInterface(&quot;ui_common.selectOptionalItemUI&quot;,addGroup,this);<br>
+return selectOptionalUI;<br>
+}<br>
+else {<br>
+var doc = new Document(&quot;cwf_oe:OptionalItemSelect&quot;);<br>
+doc.parent = addGroup;<br>
+selectOptionalUI = new doc.UserInterface(doc, this);<br>
+}<br>
+selectOptionalUI.owner = this;<br>
+return selectOptionalUI;<br>
+}<br>
+else if (addGroup.isCollection) {<br>
+var newItem = addGroup.newInstance();<br>
+if (newItem != null) {<br>
+if (newItem.isSingleDocCollectionInstance &amp;&amp; newItem[0] != null) {<br>
+newItem = newItem[0]; // select first document of the collection instance<br>
+}<br>
+var nodeToSelect = selNode.findNodeByModel(newItem);<br>
+if (nodeToSelect != null) {<br>
+this.displayNode(nodeToSelect);<br>
+}<br>
+}<br>
+}<br>
+return null;<br>
+}</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>addTab</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>Adds the <em>node</em> as a tab at the end of the <em>tabsArray</em>.</p>
+    <p>function addTab(tabsArray,node) { // Metadata type method. Can be called by scripts.</p>
+    <p>var tabUI = node.onNodeTab();<br>
+      if (tabUI != null) {<br>
+tabUI.parent = this;<br>
+tabsArray[tabsArray.length] = tabUI;<br>
+}</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>addVisible</strong></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+<td class='confluenceTd'><p>function addVisible($psCondition) { // Runs every time the permission is evaluated<br>
+var permissionObject = this;</p>
+  <p>if (!$psCondition)<br>
+return false;<br>
+var selNode = this.getSingleSelection();<br>
+return selNode != null &amp;&amp; this.getAddGroup(selNode.model) != null;<br>
+}
+  </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong> applySearchMap</strong></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+<td class='confluenceTd'><p>This function applies the assigned <strong>Search Conversion Map</strong> in General tab   to populate the search Input Document value. Only applicable for Order Child   node.</p>
+  <p>function applySearchMap() { // Metadata type method. Can be called by scripts.</p>
+  <p>var searchMap = this.metadata.getSearchConversionMapName();<br>
+    if (searchMap != null &amp;&amp; this.parentNode != null &amp;&amp; this.parentNode.model != null &amp;&amp; this.model != null) {<br>
+this.metadata.applyConversionMap(this.parentNode.model, this.model, searchMap);<br>
+}</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong> applyTableDocMap</strong></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+<td class='confluenceTd'><p>This function applies the assigned <strong>Table Conversion Map</strong> in General tab to   translate the Tree Node model to the Table Document.</p>
+  <p>function applyTableDocMap() { // Metadata type method. Can be called by scripts.</p>
+  <p>var tableDocMap = this.metadata.getTableDocConversionMapName();<br>
+    if (this.model != null &amp;&amp; this.tableDoc != null &amp;&amp; tableDocMap != null) {<br>
+var nodeID = this.tableDoc.id;<br>
+var parentNodeID = this.tableDoc.parentId;<br>
+this.metadata.applyConversionMap(this.model, this.tableDoc, tableDocMap);<br>
+// restore IDs: node ID and parent node ID cannot be changed<br>
+if (nodeID != null) {<br>
+this.tableDoc.id = nodeID;<br>
+}<br>
+this.tableDoc.parentId = parentNodeID;<br>
+}</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong> attachAction</strong></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+<td class='confluenceTd'><p>This function publishes a UI_GET_ATTACHMENT_FINDER event, which passes the order item as the event parameter, and then displays the event result in a popup.</p>
+  <p dir="ltr">The default event handler located in UI Common returns an instance of ui_common.attachmentFinder.</p>
+  <p>function attachAction(dialog){</p>
+  <p>var selNode = this.getSingleSelection();<br>
+    if (selNode == null || !(selNode.model instanceof OrderItem) ||<br>
+    !selNode.model.attachments || !selNode.model.isAllowed(&quot;Attach&quot;)) {<br>
+    return null;<br>
+    }<br>
+    if (dialog != null) {<br>
+    dialog.title = Global.translateText(&quot;UU0008&quot;, null, [selNode.model.visualKey]);<br>
+    }<br>
+    var vers = this.getCompatibleVersion();<br>
+    if (vers != 0 &amp;&amp; vers &lt; 6) {<br>
+    // display attachment finder<br>
+    var attachmentFinder = new Finder(&quot;cwf_oe:AttachmentFinder&quot;);<br>
+    var finderUI = new attachmentFinder.UserInterface(attachmentFinder, this);<br>
+    finderUI.ownerItem = selNode.model;<br>
+    finderUI.initSearchDoc();<br>
+    finderUI.searchAction();<br>
+    return finderUI;<br>
+    }<br>
+    else<br>
+    return publishEvent(&quot;UI_GET_ATTACHMENT_FINDER&quot;, FIRST_ONE, null, [selNode.model,this]);</p>
+  <p>}</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> attachVisible</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+  <td class='confluenceTd'><p>function attachVisible($psCondition) { // Runs every time the permission is evaluated<br>
+var permissionObject = this;</p>
+    <p>if (!$psCondition)<br>
+return false;<br>
+var selNode = this.getSingleSelection();<br>
+if (selNode != null &amp;&amp; selNode.isOrderItem()) {<br>
+return selNode.model.attachments &amp;&amp; selNode.model.isAllowed(&quot;Attach&quot;);<br>
+}<br>
+return false;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> confirmTabSelection</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>function confirmTabSelection() { // Metadata type method. Can be called by scripts.</p>
+    <p>if (this.confirmSelection != null) {<br>
+this.treeSel = this.confirmSelection;<br>
+this.confirmSelection = null;<br>
+this.showDetailAction();<br>
+}<br>
+}
+    </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>confirmTreeSelection</strong></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+<td class='confluenceTd'><p>function confirmTreeSelection() { // Metadata type method. Can be called by scripts.<br>
+    <br>
+if (this.confirmSelection != null) {<br>
+this.treeSel = this.confirmSelection;<br>
+this.confirmSelection = null;<br>
+this.showDetailAction();<br>
+}<br>
+}
+</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>continueConfirmation</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>function continueConfirmation() { // Metadata type method. Can be called by scripts.</p>
+    <p>if (this.confirmMethod != null) {<br>
+this[this.confirmMethod]();<br>
+}<br>
+return null;<br>
+}</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>continueConfirmation_message</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.String</i></td>
+  <td class='confluenceTd'><p>function continueConfirmation_message() { // Metadata type method. Can be called by scripts.<br>
+    return &quot;UU0256:YN&quot;;<br>
+    }</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>copyAction</strong></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+<td class='confluenceTd'><p>Order's with editable tables calls the <EM>searchAction()</EM> method in cases   when this Order is currently no displaying any data. A table element is   notified to open the new row in edit mode.</p>
+  <p>function copyAction() { // Metadata type method. Can be called by scripts.</p>
+  <p>var selNode = this.getSingleSelection();<br>
+    if (selNode == null)<br>
+return null;<br>
+var copyItem = this.getCopyItem(selNode.model);<br>
+if (copyItem != null  &amp;&amp; this.getAddGroup(copyItem.parent) != null) {<br>
+var newItem = copyItem.copySubtree(null, true);<br>
+if (newItem != null) {<br>
+if (newItem.isSingleDocCollectionInstance &amp;&amp; newItem[0] != null) {<br>
+newItem = newItem[0]; // select first document of the collection instance<br>
+}<br>
+var nodeToSelect = this.getRoot().findNodeByModel(newItem);<br>
+if (nodeToSelect != null) {<br>
+this.displayNode(nodeToSelect);<br>
+}<br>
+}<br>
+}<br>
+}
+  </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> copyVisible</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+  <td class='confluenceTd'><p>function copyVisible($psCondition) { // Runs every time the permission is evaluated<br>
+var permissionObject = this;</p>
+    <p>var selNode = this.getSingleSelection();<br>
+      if (!$psCondition || selNode == null)<br>
+return false;<br>
+var orderItem = this.getCopyItem(selNode.model);<br>
+return orderItem != null &amp;&amp; this.getAddGroup(orderItem.parent) != null;<br>
+}
+    </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>cwLeafInitAction$CurrentForm</strong></td>
+<td class='confluenceTd'><i>com.conceptwave.system.NavigationTreeWithTabs.currentForm (String)</i></td>
+<td class='confluenceTd'><p>The initialization method of Variable <em>currentForm</em> that specifies the Form   to display in the detail Form Frame, which defaults to Form <em>Single</em>.</p>
+  <p>function cwLeafInitAction(document) { // Leaf initialization rule. Used to generate script</p>
+  <p>return &quot;Single&quot;;<br>
+    }
+  </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>deleteAction</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>Invoked when the user clicks on the delete menu.</p>
+    <p>function deleteAction() { // Metadata type method. Can be called by scripts.</p>
+    <p>var selNode = this.getSingleSelection();<br>
+      if (selNode == null)<br>
+return null;<br>
+var nextSel = selNode.parentNode;<br>
+while (nextSel != null &amp;&amp; nextSel.tableDoc.excluded) {<br>
+nextSel = nextSel.parentNode;<br>
+}<br>
+var objectToDelete = this.getDeleteItem(selNode.model);<br>
+if (objectToDelete == null)<br>
+return null;<br>
+var treeSelMode = this.treeSel[0];<br>
+if (treeSelMode == selNode) {<br>
+this.treeSel = new Array();<br>
+this.hideDetailAction();<br>
+}<br>
+else if (this.tabs != null &amp;&amp; this.selectedTab != null) {<br>
+if (this.tabs.length == 1) {<br>
+this.tabs = null;<br>
+}<br>
+else if (this.selectedTab == (&quot;&quot; + (this.tabs.length - 1))) {<br>
+this.selectedTab = &quot;&quot; + this.tabs.length - 2;<br>
+}<br>
+}<br>
+var nextItem = objectToDelete.deleteItem();<br>
+if (nextItem != null) {<br>
+selNode = this.findNodeByModel(nextItem);<br>
+if (selNode != null) {<br>
+nextSel = selNode;<br>
+}<br>
+}<br>
+if (nextSel != null) {<br>
+this.displayNode(nextSel);<br>
+}</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>deleteAction_Confirmation</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.String</i></td>
+  <td class='confluenceTd'><p>function deleteAction_Confirmation() { // Metadata type method. Can be called by scripts.</p>
+    <p>return &quot;UU0172:YN&quot;;<br>
+      }
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>deleteVisible</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+  <td class='confluenceTd'><p>function deleteVisible($psCondition) { // Runs every time the permission is evaluated<br>
+var permissionObject = this;</p>
+    <p>if (!$psCondition)<br>
+return false;<br>
+var selNode = this.getSingleSelection();<br>
+return selNode != null &amp;&amp; this.getDeleteItem(selNode.model) != null;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>displayNode</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>function displayNode(node) { // Metadata type method. Can be called by scripts.</p>
+    <p>var root = this.getRoot();<br>
+      var selected = this.getSingleSelection();<br>
+      if (node != null &amp;&amp; selected != node) {<br>
+      var treeNode = this.getClosestTreeNode(node);<br>
+      if (treeNode != null) {<br>
+      root.setSelection(treeNode);<br>
+      if (node.metadata.getDisplayInParent()) {<br>
+      root.selectedTab = this.getTabByNode(node);<br>
+      }<br>
+      }<br>
+      }<br>
+      }
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>excludePerm</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>Exclude Permission that specifies whether the treee node is to be displayed   (false) or be hidden (true) such that the node's children will be displayed   directly under the node's parent</p>
+    <p>function excludePerm($psCondition) { // Runs every time the permission is evaluated<br>
+      var permissionObject = this;</p>
+    <p>if(this.metadata.getExclude())<br>
+return true;<br>
+// Exclude single document collection instance node: only if it has the child document<br>
+return this.model instanceof OrderItem &amp;&amp; this.model.isSingleDocCollectionInstance &amp;&amp; this.model[0] != null;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>expandAll</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>function expandAll() { // Metadata type method. Can be called by scripts.</p>
+    <p>// Helper method: expands the node and all children<br>
+      this.metadata.doExpandAll(this);<br>
+      }
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>formatMessage</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Message  </i></td>
+  <td class='confluenceTd'><p>function formatMessage(message) { // Metadata type method. Can be called by scripts.</p>
+    <p>// Adds node visual key to the text messages of the child nodes<br>
+      var text = message.text == null ? &quot;&quot; : message.text;<br>
+      if (message.owner != this &amp;&amp; message.owner instanceof com.conceptwave.system.TreeNode) {<br>
+text = &quot;&lt;b&gt;&quot; + message.owner.onNodeVisualKey() + &quot;: &lt;/b&gt;&quot; + text;<br>
+}<br>
+message.text = &quot;&lt;span style='white-space:nowrap;'&gt;&quot; + text + &quot;&lt;/span&gt;&quot;;<br>
+return message;</p>
+    <p>}</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>getNodeMessage</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Object  </i></td>
+  <td class='confluenceTd'><p>Retrieves and returns an array of Validation Error messages for the node. If   boolean parameter <em>includeChildren</em> is true, recursively retrieves node   messages from descendant nodes.</p>
+    <p>function getNodeMessages(messagesArray,includeChildren) { // Metadata type method. Can be called by scripts.</p>
+    <p>if (messagesArray == null) {<br>
+messagesArray = new Array();<br>
+}<br>
+if (this.errorList != null) {<br>
+// ValidationErrorList.toMessageArray() method returns<br>
+// an array of com.conceptwave.system.Message objects<br>
+var errorMessages = this.errorList.toMessageArray();<br>
+for (var i = 0; i &lt; errorMessages.length; i++) {<br>
+errorMessages[i].owner = this;<br>
+messagesArray[messagesArray.length] = errorMessages[i];<br>
+}<br>
+}<br>
+if (includeChildren == null || includeChildren){<br>
+if (this.loaded &amp;&amp; this.childNodes != null) {<br>
+for (var i = 0; i &lt; this.childNodes.length; i++) {<br>
+this.childNodes[i].getNodeMessages(messagesArray, true);<br>
+}<br>
+}<br>
+}<br>
+return messagesArray;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>getSingleSelection</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.TreeNode</i></td>
+  <td class='confluenceTd'><p>The method to return a single selection of tree node, in the event where   multiple nodes are selected in the Navigation Tree.</p>
+    <p>function getSingleSelection() { // Metadata type method. Can be called by scripts.</p>
+    <p>// Gets single node selection:<br>
+      // tree selection or selected tab<br>
+      var root = this.getRoot();<br>
+      if (root.tabs != null &amp;&amp; root.tabs.length &gt; 0 &amp;&amp;<br>
+      root.selectedTab != null &amp;&amp; root.tabs[root.selectedTab] != null) {<br>
+      return root.tabs[root.selectedTab].owner;<br>
+      }<br>
+      if (root.treeSel != null &amp;&amp; root.treeSel.length &gt; 0) {<br>
+      return root.treeSel[0];<br>
+      }<br>
+      return null;<br>
+      }    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> hideDetailAction</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>The method that hides the detail pane in the Navigation Tree.</p>
+    <p>function hideDetailAction() { // Metadata type method. Can be called by scripts.</p>
+    <p>var root = this.getRoot();<br>
+      root.detail = null;<br>
+      root.detailForm = null;<br>
+      root.detailMenu = null;<br>
+      root.tabs = null;<br>
+      root.selectedTab = null;<br>
+      root.currentForm = &quot;Single&quot;;<br>
+      root.detailNode = null;<br>
+      }
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> initNode </strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>Implementation function that initializes the tree node.</p>
+    <p>function initNode() { // Metadata type method. Can be called by scripts.return this.cw$super_initNode();</p>
+    <p>this.loaded = false;<br>
+      this.dirty = true;<br>
+      // init model<br>
+      if (this.model != null) {<br>
+// add listener to the model<br>
+Notifier.register(this.model, this, &quot;onModelEvent&quot;);<br>
+}<br>
+this.applySearchMap();<br>
+// init table document<br>
+this.tableDoc = new Document(this.metadata.getTableDocType());<br>
+this.tableDoc.id = this.onNodeID();<br>
+if (this.parentNode != null)<br>
+this.tableDoc.parentId = this.parentNode.tableDoc.id;<br>
+this.tableDoc.isFolder = this.metadata.isFolder();<br>
+this.updateTableDoc();<br>
+// refresh privileges<br>
+this.refreshPrivileges();<br>
+if (this.metadata.getAutoExpand())<br>
+this.expand();<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> isDisplaying</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+  <td class='confluenceTd'><p>The method that determines if the node is being displayed or not.</p>
+    <p>function isDisplaying(node) { // Metadata type method. Can be called by scripts.</p>
+    <p>if (!node.tableDoc.visible) {<br>
+return false;<br>
+}<br>
+var sel = this.getTreeSelection();<br>
+if(sel != null &amp;&amp; sel.length &gt; 0 &amp;&amp; sel[0] == node) {<br>
+return true;<br>
+}<br>
+if (node.metadata.getDisplayInParent() &amp;&amp; node.parentNode != null) {<br>
+return this.isDisplaying(node.parentNode);<br>
+}<br>
+if (node.tableDoc.excluded) {<br>
+var displayInParentNodes = this.getDisplayInParentNodes(node);<br>
+if (displayInParentNodes != null &amp;&amp; displayInParentNodes.length &gt; 0 &amp;&amp; node.parentNode != null) {<br>
+return this.isDisplaying(node.parentNode);<br>
+}<br>
+}<br>
+return false;<br>
+}</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> isNodeSelected </strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>The method that determines if the node is being selected or not</p>
+    <p>function isNodeSelected(node) { // Metadata type method. Can be called by scripts.</p>
+    <p>var sel = this.getTreeSelection();<br>
+      if (sel != null) {<br>
+for (var i in sel) {<br>
+if (sel[i] == node) {<br>
+return true;<br>
+}<br>
+}<br>
+}<br>
+return false;<br>
+}</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>onAutoSave</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+  <td class='confluenceTd'><p>function onAutoSave() { // Metadata type method. Can be called by scripts.</p>
+    <p>var canContinue = true;<br>
+      if (this.detailNode != null &amp;&amp; this.detailNode != this) {<br>
+// save selected node<br>
+canContinue = this.detailNode.onAutoSave();<br>
+}<br>
+// save order if &quot;Auto save&quot; set for the root<br>
+if (canContinue &amp;&amp; this.metadata.isAutoSave()) {<br>
+canContinue = this.saveNode(this, true, false);<br>
+}<br>
+return canContinue;<br>
+}</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> onClick</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'>function onClick() { // Metadata type method. Can be called by scripts.<br>
+    }</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>onHover</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>function onHover() { // Metadata type method. Can be called by scripts.</p>
+    <p>var root = this.getRoot();<br>
+      var hoverNode = root.navTree.hover;<br>
+      root.hoverMessages = null;<br>
+      if (hoverNode != null) {<br>
+var messages = new Array();<br>
+hoverNode.getNodeMessages(messages, true);<br>
+if (messages.length &gt; 0) {<br>
+for (var i = 0; i &lt; messages.length; i++) {<br>
+this.formatMessage(messages[i]);<br>
+}<br>
+root.hoverMessages = messages;<br>
+}<br>
+}<br>
+root.cwShowHover = root.hoverMessages != null;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>onInit</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>Invoked from the <SPAN name="resultofMatch"><SPAN name="resultofMatch">onInit</SPAN></SPAN>() method of the   Order.</p>
+    <p>function onInit() { // Metadata type method. Can be called by scripts.</p>
+    <p>this.initNode();<br>
+      var docNode = this.findFirstDocumentNode(this);<br>
+      if (docNode == null) {<br>
+docNode = this.findFirstNonExcludedNode(this);<br>
+}<br>
+if (docNode != null) {<br>
+this.displayNode(docNode);<br>
+}<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>onModelEvent</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>The system method that is triggered when an action event occurs at the node's   model, such as user updating the model in the Form.
+    This event handling is   enabled at node's initialization by registering to the model's notification   service.</p>
+    <p>function onModelEvent(event) { // Metadata type method. Can be called by scripts.</p>
+    <p>var action = event.type;<br>
+      if ((action == &quot;updateState&quot; || action == &quot;updateStatus&quot; || action == &quot;update&quot;) &amp;&amp;<br>
+!this.metadata.isFinderNode()) {<br>
+this.updateTableDoc();<br>
+this.markDirty();<br>
+}<br>
+else if (action == &quot;validationErrors&quot;) {<br>
+// Validation notify: parameter is a list of validation errors<br>
+if (event.params != null &amp;&amp; event.params.length &gt; 0 &amp;&amp; event.params[0] instanceof ValidationErrorList) {<br>
+this.setValidationErrors(event.params[0]);<br>
+}<br>
+}<br>
+else if (this.enableEvents) {<br>
+// disable model events temporarily to avoid looping<br>
+this.enableEvents = false;<br>
+this.onNodeUpdate(this, action, event.source, event.params);<br>
+this.enableEvents = true;<br>
+}<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>onNodeDetail </strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.UserInterface</i></td>
+  <td class='confluenceTd'><p>The system method that is triggered when the node is selected in the tree, to   return the detail User Interface of the model object.</p>
+    <p>function onNodeDetail() { // Metadata type method. Can be called by scripts.</p>
+    <p>// Returns the detail user interface that is displayed<br>
+      // when the node is selected in the tree<br>
+      if (this.modelUI == null) {<br>
+this.modelUI = this.metadata.createModelUI(this, this.model);<br>
+}<br>
+return this.modelUI;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>onNodeDetailForm </strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.String</i></td>
+  <td class='confluenceTd'><p>The system method that is triggered when the node is selected in the tree, to   return the name of the detail Form of the model object to display to the user.</p>
+    <p>function onNodeDetailForm() { // Metadata type method. Can be called by scripts.</p>
+    <p>// Returns the form name of the detail user interface<br>
+      // that is displayed when the node is selected in the tree<br>
+      return this.metadata.getDetailForm();<br>
+      }
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>onNodeEdited</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>The system method that is triggered when the row that represents the node in   Tree Form Element, the model of which is the Table Document presented as Table   Tree, is editable and updated by user. Typically, logic may be inserted to   update the node's model based on the updated Table Document.</p>
+    <p>function onNodeEdited(event) { // Metadata type method. Can be called by scripts.</p>
+    <p>// Table document has been edited in browser<br>
+      // Insert logic here: apply changes to the model<br>
+      }
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> onNodeId</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.String</i></td>
+  <td class='confluenceTd'><p>The system method that calculates the node identifier string.</p>
+    <p>function onNodeID() { // Metadata type method. Can be called by scripts.</p>
+    <p>// The method is called on node initialization to get an unique node ID<br>
+      // By default the node ID is a node path in the tree<br>
+      // WARNING: the node ID cannot be null, must be unique in the tree<br>
+      // and cannot be changed after<br>
+      var id = this.generateNodeID();<br>
+      if (this.parentNode != null) {<br>
+id = this.parentNode.tableDoc.id + &quot;/&quot; + id;<br>
+}<br>
+return id;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> onNodeIcon</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.String</i></td>
+  <td class='confluenceTd'><p>The system method that calculates the resource path of the tree node icon image.   It can have overlay images, similar to those in Navigation Pane of Velocity Studio itself such as a <em>pencil</em> overlay for dirty marking, or <em>green arrow</em>   overlay for overridded objects. To overlay an image, simply return a list of   images separated by comma in this method. As an example, <em>return   this.cw$super_onNodeIcon() + ",/cwf/add.gif(top-right)";</em> returns all icon   images with the "add" icon overlay embedded at top-right.</p>
+    <p>function onNodeIcon() { // Metadata type method. Can be called by scripts.</p>
+    <p>var image = this.metadata.getDefaultImage();<br>
+      if (this.isOrderItem()) {<br>
+if (image == null || image.length == 0) {<br>
+image = this.model.isDocument ?<br>
+&quot;/cwf/TreeDocUnknown.gif&quot; : &quot;/cwf/TreeFolderUnknown.gif&quot;;<br>
+}<br>
+if (this.model.hasAttachment) {<br>
+image += &quot;,/cwf/TreeAttach.gif(top-right)&quot;;<br>
+}<br>
+if (this.model.hasValidStatus) {<br>
+image += &quot;,/cwf/ov/ok.png(bottom-right)&quot;;<br>
+}<br>
+else if (this.model.hasErrorStatus) {<br>
+image += &quot;,/cwf/ov/error.png(bottom-right)&quot;;<br>
+}<br>
+if (this.model.dirty) {<br>
+image += &quot;,/cwfv/edit.png&quot;;<br>
+}<br>
+}<br>
+return image;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> onNodeTab</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.UserInterface</i></td>
+  <td class='confluenceTd'><p>function onNodeTab() { // Metadata type method. Can be called by scripts.</p>
+    <p>var detailUI = this.onNodeDetail();<br>
+      var detailForm = this.onNodeDetailForm();<br>
+      if (detailUI != null &amp;&amp; detailForm != null) {<br>
+var tab = this.tabUI;<br>
+if (tab == null) {<br>
+tab = new com.conceptwave.system.TabUserInterface();<br>
+tab.owner = this;<br>
+}<br>
+tab.model = this.tableDoc;<br>
+tab.id = this.tableDoc.id;<br>
+tab.label = this.tableDoc.label;<br>
+if (this.metadata.getShowCount()) {<br>
+tab.label += ' (' + this.metadata.countVisibleChildren(this) + ')';<br>
+}<br>
+tab.image = this.tableDoc.image;<br>
+tab.detail = detailUI;<br>
+tab.detail.parent = tab;<br>
+tab.detailForm = detailForm;<br>
+this.tabUI = tab;<br>
+}<br>
+else {<br>
+this.tabUI = null;<br>
+}<br>
+return this.tabUI;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>onNodeUpdate</strong></td>
+  <td class='confluenceTd'>&nbsp;</td>
+  <td class='confluenceTd'><p>The system method that is invoked to update the node as well as the overall   Navigation Tree based on an action event; invokes by <em>onModelEvent</em> method.</p>
+    <p>function onNodeUpdate(node,action,param1,param2) { // Metadata type method. Can be called by scripts.</p>
+    <p>ar isSelect = action == &quot;select&quot;;<br>
+      var reload = isSelect;<br>
+      if (param2 != null &amp;&amp; param2.length &gt; 0) {<br>
+param2 = param2[0];<br>
+}<br>
+if (param2 instanceof OrderItem) {<br>
+if (action == &quot;add&quot;) {<br>
+node.metadata.addNode(node, param2);<br>
+}<br>
+else if (action == &quot;delete&quot; || action == &quot;deleteOp&quot;){<br>
+node.metadata.removeNode(node, param2);<br>
+}<br>
+}<br>
+node.updateNode(true, isSelect, true);<br>
+if (isSelect) {<br>
+node.expand();<br>
+}<br>
+node.refreshPrivileges();<br>
+node.markDirty();<br>
+var navTree = this.getRoot();<br>
+if (navTree != null &amp;&amp; navTree.isDisplaying(this)) {<br>
+navTree.showDetailAction();<br>
+}<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>onNodeVisualKey</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.String</i></td>
+  <td class='confluenceTd'><p>The system method that computes the node's Visual Key (that is, label of the node).</p>
+    <p>function onNodeVisualKey() { // Metadata type method. Can be called by scripts.</p>
+    <p>var label = null;<br>
+      if (this.model instanceof Order) {<br>
+if (this.model.hasMethod(&quot;cwOnOrdVisualKey&quot;)) {<br>
+label = this.model.cwOnOrdVisualKey();<br>
+}<br>
+}<br>
+if (label == null &amp;&amp; this.model instanceof OrderItem) {<br>
+var visKey = this.model.getVisualKeyDocument();<br>
+if (visKey != null &amp;&amp; visKey.hasMethod(&quot;cwOnDocVisualKey&quot;)) {<br>
+label = visKey.cwOnDocVisualKey();<br>
+}<br>
+}<br>
+if (label == null) {<br>
+label = this.metadata.getDefaultLabel();<br>
+}<br>
+return label;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> onSelChange </strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>Invoked when the user makes a selection on this Order table.</p>
+<p>function onSelChanged() { // Metadata type method. Can be called by scripts.</p>
+    <p>var newSelNode = this.getSingleSelection();<br>
+      if (this.detailNode != null &amp;&amp; newSelNode != this.detailNode) {<br>
+this.confirmSelection = new Array();<br>
+if(this.treeSel != null) {<br>
+for (var i = 0; i &lt; this.treeSel.length; i++) {<br>
+this.confirmSelection[i] = this.treeSel[i];<br>
+}<br>
+}<br>
+this.confirmMethod = &quot;confirmTreeSelection&quot;;<br>
+if (!this.validateCurrentNode()) {<br>
+return;<br>
+}<br>
+this.detailNode.onAutoSave();<br>
+}<br>
+this.confirmSelection = null;<br>
+this.confirmMethod = null;<br>
+this.showDetailAction();<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>onTabChange</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>The method that is triggered when tab selection is changed among Tabset in the   detail pane.</p>
+    <p>function onTabChanged() { // Metadata type method. Can be called by scripts.</p>
+    <p>var newSelNode = this.getSingleSelection();<br>
+      if (this.detailNode != null &amp;&amp; newSelNode != this.detailNode) {<br>
+this.confirmTab = this.selectedTab;<br>
+this.confirmMethod = &quot;confirmTabSelection&quot;;<br>
+if (this.validateCurrentNode()) {<br>
+this.detailNode.onAutoSave();<br>
+this.confirmTab = null;<br>
+this.confirmMethod = null;<br>
+this.confirmTabSelection();<br>
+}<br>
+}<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> onTimer </strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>Generic timer method that is periodically invoked.</p>
+    <p>function onTimer() { // Metadata type method. Can be called by scripts.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>onValidate</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>The system method that is triggered when validation happens: </p>
+    <UL>
+      <LI>On User Action method invocation, if its <strong>validate</strong> checkbox is   selected   
+      <LI>On selection changed in the navigation tree   
+      <LI>On tabs selection changed. </LI>
+    </UL>
+    By default, validation executes all   validation methods for all Variables in the User Interface as well as validation   methods on the model (if exists).
+<p>function onValidate() { // Metadata type method. Can be called by scripts.</p>
+    <p>if (this.detailNode == this) {<br>
+this.cw$super_onValidate();<br>
+}<br>
+else if(this.detailNode != null) {<br>
+this.detailNode.onValidate();<br>
+}<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> pdfAction</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>function pdfAction() { // Metadata type method. Can be called by scripts.</p>
+    <p>if (this.model instanceof Order) {<br>
+var download = new com.conceptwave.system.DownloadPdf(null, this);<br>
+download.fileName = &quot;/cwf/order&quot; + this.model.id + &quot;.pdf&quot;;<br>
+download.xml = this.model.toXML();<br>
+download.xsl = this.model.getXslFileName();<br>
+if (download.xsl == null || download.xsl == &quot;&quot;) {<br>
+Global.throwException(&quot;UE0307&quot;);<br>
+}<br>
+download.mimeType = &quot;application/pdf&quot;;<br>
+Global.doDownload(download);<br>
+}</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> pdfVisible</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+  <td class='confluenceTd'><p>function pdfVisible($psCondition) { // Runs every time the permission is evaluated<br>
+    var permissionObject = this;</p>
+    <p>return this.model instanceof Order &amp;&amp; this.model.getXslFileName() != null &amp;&amp; this.model.getXslFileName().length &gt; 0;<br>
+      }
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> refreshNode</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>function refreshNode(reloadChildren,keepExpanded) { // Metadata type method. Can be called by scripts.</p>
+    <p>// Helper method: forces to refresh the node and its children<br>
+      // if reloadChildren is true, children of the node will be recreated<br>
+      // Set keepExpanded to true to re-expande node's children<br>
+      // that was expanded before refreshing<br>
+      this.updateNode(false, reloadChildren, keepExpanded);<br>
+      this.refreshPrivileges();<br>
+      }
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> refreshPrivleges</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>function refreshPrivileges() { // Metadata type method. Can be called by scripts.</p>
+    <p>// Helper method: refreshes visible and exclude privileges<br>
+      // for the node and its children recursively.<br>
+      // Calls visiblePerm and excudePerm for each node.<br>
+      var visible = this.visiblePerm();<br>
+      if (visible == null) {<br>
+visible = true;<br>
+}<br>
+var excluded = this.excludePerm();<br>
+if (excluded == null) {<br>
+excluded = this.metadata.getExclude();<br>
+}<br>
+if (visible != this.tableDoc.visible || excluded != this.tableDoc.excluded) {<br>
+this.tableDoc.visible = visible;<br>
+this.tableDoc.excluded = excluded;<br>
+this.markDirty();<br>
+}<br>
+var children = this.childNodes;<br>
+if (children != null) {<br>
+for (var i = 0; i &lt; children.length; i++) {<br>
+children[i].refreshPrivileges();<br>
+}<br>
+}<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong> saveAllAction</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>function saveAllAction() { // Metadata type method. Can be called by scripts.</p>
+    <p>if (!this.saveNode(this, true, true)) {<br>
+Global.showUserMessage(&quot;UE0118&quot;);<br>
+}<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>saveAllVisible</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+  <td class='confluenceTd'><p>function saveAllVisible($psCondition) { // Runs every time the permission is evaluated<br>
+    var permissionObject = this;</p>
+    <p>return true;<br>
+      }
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>saveNode</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+  <td class='confluenceTd'><p>function saveNode(startNode,validate,recursively) { // Metadata type method. Can be called by scripts.</p>
+    <p>var diffModelUI = startNode.modelUI != null &amp;&amp; startNode.model != startNode.modelUI.model;<br>
+      if (validate &amp;&amp; !this.validateTheNode()) {<br>
+return false;<br>
+}<br>
+if (recursively &amp;&amp; startNode.loaded &amp;&amp; startNode.childNodes != null) {<br>
+var len = startNode.childNodes.length;<br>
+for (var i = 0; i &lt; len; i++) {<br>
+if(!this.saveNode(startNode.childNodes[i], validate, true)) {<br>
+return false;<br>
+}<br>
+}<br>
+}<br>
+if (diffModelUI) {<br>
+startNode.modelUI.onAutoSave();<br>
+}<br>
+if (startNode.model instanceof OrderItem &amp;&amp;<br>
+(startNode.model.isDocument || startNode.model.isTop)) {<br>
+startNode.model.save();<br>
+}<br>
+return true;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>selectTab</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>The method that sets a tab selection based on <em>index</em>.</p>
+    <p>function selectTab(index) { // Metadata type method. Can be called by scripts.</p>
+    <p>var root = this.getRoot();<br>
+      var selectedIndex = &quot;&quot; + index;<br>
+      if (index != null &amp;&amp; root.tabs != null &amp;&amp; root.tabs[selectedIndex] != null) {<br>
+root.selectedTab = selectedIndex;<br>
+}<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>setNodeSelected</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>The method that includes a particular <em>node</em> as a selected node at the Order Element.</p>
+    <p>function setNodeSelected(node,state) { // Metadata type method. Can be called by scripts.</p>
+    <p>var newSelection = new Array();<br>
+      var found =  false;<br>
+      var root = this.getRoot();<br>
+      if (root.treeSel != null) {<br>
+for (var i in root.treeSel) {<br>
+if (root.treeSel[i] == node) {<br>
+found = true;<br>
+if (state) break;<br>
+else continue;<br>
+}<br>
+newSelection[newSelection.length] = root.treeSel[i];<br>
+}<br>
+}<br>
+if (state &amp;&amp; !found)<br>
+newSelection[newSelection.length] = node;<br>
+if ((state &amp;&amp; !found) || (!state &amp;&amp; found))<br>
+root.setSelection(newSelection);<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>setSelected</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>The method that sets an array of <em>nodes</em> as the list of selected nodes at   the Order Element, changing Root Node Variable <em>treeSel</em>. Method <em>onSelChanged</em> is invoked if parameter <em>fireEvent</em> is true or missing.</p>
+    <p>function setSelection(nodes,fireEvent) { // Metadata type method. Can be called by scripts.</p>
+    <p>if (nodes == null) {<br>
+nodes = new Array();<br>
+}<br>
+else if (nodes instanceof com.conceptwave.system.TreeNode) {<br>
+var sel = new Array();<br>
+sel[0] = nodes;<br>
+nodes = sel;<br>
+}<br>
+var root = this.getRoot();<br>
+root.treeSel = nodes;<br>
+// expand paths<br>
+if (nodes != null) {<br>
+for (var i = 0; i &lt; nodes.length; i++) {<br>
+var parentN = nodes[i].parentNode;<br>
+while (parentN != null) {<br>
+parentN.expanded = true;<br>
+parentN = parentN.parentNode;<br>
+}<br>
+}<br>
+}<br>
+if (fireEvent == null || fireEvent) {<br>
+root.onSelChanged();<br>
+}<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>setValidationError</strong></td>
+  <td class='confluenceTd'>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>Populates validation error list Variable <em>errorList</em> from parameter <em>validationErrorList</em>.</p>
+    <p>function setValidationErrors(validationErrorList) { // Metadata type method. Can be called by scripts.</p>
+    <p>if (validationErrorList instanceof ValidationErrorList) {<br>
+// Use ValidationErrorList.getSubList() to get a subset of error messages<br>
+// that belong to the data object<br>
+// Parameters: 1 - data object(passing null returns all messages),<br>
+// 2 - true to include child objects messages<br>
+// 3 - true to include field errors<br>
+this.errorList = validationErrorList.getSubList(this.model, false, false);<br>
+}<br>
+else if (errorList == null) {<br>
+this.messages = null;<br>
+}<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>showDetailAction</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>This method is triggered when the detail pane is to be displayed based on the   node selection.</p>
+    <p>function showDetailAction() { // Metadata type method. Can be called by scripts.</p>
+    <p>if (!this.isRoot()) {<br>
+// this is nested navigation tree - show detail action on the root level<br>
+this.getRoot().showDetailAction();<br>
+return;<br>
+}<br>
+this.hideDetailAction(); // clear detail variables<br>
+if (this.treeSel != null &amp;&amp; this.treeSel.length &gt; 0) {<br>
+var selNode = this.treeSel[0];<br>
+var displayTabs = false;<br>
+var tabsArray = new Array();<br>
+var tabNodes = this.getDisplayInParentNodes(selNode);<br>
+if ((tabNodes != null &amp;&amp; tabNodes.length &gt; 0) || selNode.metadata.getShowTabsAlways()) {<br>
+// display selected tree node as at the first tab<br>
+this.addTab(tabsArray,selNode);<br>
+// add &quot;display in parent&quot; children<br>
+if (tabNodes != null) {<br>
+var len = tabNodes.length;<br>
+for (var i = 0; i &lt; len; i++) {<br>
+this.addTab(tabsArray, tabNodes[i]);<br>
+}<br>
+}<br>
+if (tabsArray.length &gt; 0) {<br>
+this.detailNode = tabsArray[0].owner;<br>
+this.detailMenu = tabsArray[0].owner.isRoot() ? tabsArray[0].detail : tabsArray[0].owner;<br>
+displayTabs = tabsArray.length &gt; 1 || selNode.metadata.getShowTabsAlways();<br>
+if (!displayTabs) {<br>
+// display single detail form if only 1 tab<br>
+this.detail = tabsArray[0].detail;<br>
+this.detailForm = tabsArray[0].detailForm;<br>
+}<br>
+}<br>
+}<br>
+else {<br>
+this.detailNode = selNode;<br>
+this.detail = selNode.onNodeDetail();<br>
+this.detailForm = selNode.onNodeDetailForm();<br>
+this.detailMenu = selNode.isRoot() ? this.detail : selNode;<br>
+}<br>
+if (displayTabs) {<br>
+this.currentForm = &quot;Tabs&quot;;<br>
+this.tabs = tabsArray;<br>
+this.selectedTab = &quot;0&quot;;<br>
+}<br>
+else {<br>
+this.currentForm = &quot;Single&quot;;<br>
+if (this.detail != null) {<br>
+this.detail.parent = this;<br>
+}<br>
+}<br>
+if (this.detailMenu != null) {<br>
+this.detailMenu.parent = this;<br>
+}<br>
+}</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>taskAction</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>function tasksAction() { // Metadata type method. Can be called by scripts.</p>
+    <p>var vers = this.getCompatibleVersion();<br>
+      if (vers != 0 &amp;&amp; vers &lt; 6) {<br>
+// display finder<br>
+var selectedItems = this.getSelectedOrderItems();<br>
+if (selectedItems == null || selectedItems.length == 0) {<br>
+Global.throwException(&quot;UU0115&quot;);<br>
+}<br>
+var f = new Finder(&quot;cwf_pm:OrderItemWorklist&quot;);<br>
+if (selectedItems[0].isTop) {<br>
+f.searchDocument.OrderId = selectedItems[0].id;<br>
+}<br>
+else {<br>
+var ids = cwf_oe.getSelectedOrderIDs(selectedItems);<br>
+if (!ids) {<br>
+Global.throwException(&quot;UU0115&quot;);<br>
+}<br>
+f.searchDocument.orderIDs = ids;<br>
+}<br>
+f.search();<br>
+return f;<br>
+}<br>
+else<br>
+return publishEvent(&quot;WORKLIST_TASK_FINDER&quot;, FIRST_ONE, null, [null, this.model.id]);<br>
+}</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>taskHistoryAction</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>function tasksHistoryAction() { // Metadata type method. Can be called by scripts.</p>
+    <p>var vers = this.getCompatibleVersion();<br>
+      if (vers != 0 &amp;&amp; vers &lt; 6) {<br>
+var selectedItems = this.getSelectedOrderItems();<br>
+if (selectedItems == null || selectedItems.length == 0) {<br>
+Global.throwException(&quot;UU0115&quot;);<br>
+}<br>
+var f = new Finder(&quot;cwf_pm:WorklistArchiveFinder&quot;);<br>
+if (selectedItems[0].isTop) {<br>
+f.searchDocument.OrderId = selectedItems[0].id;<br>
+}<br>
+else {<br>
+var ids = cwf_oe.getSelectedOrderIDs(selectedItems);<br>
+if (!ids) {<br>
+Global.throwException(&quot;UU0115&quot;);<br>
+}<br>
+f.searchDocument.orderIDs = ids;<br>
+}<br>
+f.search();<br>
+return f;<br>
+}<br>
+else<br>
+return publishEvent(&quot;WORKLIST_ARCHIVE_FINDER&quot;, FIRST_ONE, null, [null, this.model.id]);<br>
+}</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>updateNode</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>Helper method to update the node in the Navigation Tree such as to update Table   Document, reload children nodes, and keeping expanded states of the node and its   children at refresh, if the corresponding boolean parameter is enabled.</p>
+    <p>function updateNode(updateTableDocument,reloadChildren,keepExpanded) { // Metadata type method. Can be called by scripts.</p>
+    <p>var expandedStates = {};<br>
+      if (keepExpanded == null || keepExpanded)<br>
+this.getExpandedStates(expandedStates);<br>
+else<br>
+expandedStates[this.tableDoc.id] = this.tableDoc.expanded;</p>
+    <p>if (updateTableDocument) {<br>
+      this.updateTableDoc();<br>
+      }<br>
+      if ((reloadChildren == null || reloadChildren) &amp;&amp; this.isLoaded()) {<br>
+      // reload children<br>
+      this.loadChildren();<br>
+      }<br>
+      this.setExpandedStates(expandedStates);<br>
+      this.markDirty();<br>
+      }
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>updateTableDoc</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>The helper method that implements the Table Document update. Invokes <em>applyTableDocMap()</em>.</p>
+    <p>function updateTableDoc() { // Metadata type method. Can be called by scripts.</p>
+    <p>this.applyTableDocMap();<br>
+      this.tableDoc.label = this.onNodeVisualKey();<br>
+      this.tableDoc.image = this.onNodeIcon();<br>
+      if (this.tabUI != null) {<br>
+// refresh tab label and image<br>
+this.tabUI.label = this.tableDoc.label;<br>
+if (this.metadata.getShowCount()) {<br>
+this.tabUI.label += ' (' + this.metadata.countVisibleChildren(this) + ')';<br>
+}<br>
+this.tabUI.image = this.tableDoc.image;<br>
+}<br>
+}</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>validateAction</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'><p>function validateAction() { // Metadata type method. Can be called by scripts.</p>
+    <p>if (this.model != null &amp;&amp; this.model instanceof Order) {<br>
+// Validate order (max errors per order)<br>
+this.model.validate(5, false, false);<br>
+}<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>validateCurrentNode</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+  <td class='confluenceTd'><p>function validateCurrentNode() { // Metadata type method. Can be called by scripts.</p>
+    <p>if (this.detailNode != null &amp;&amp; (!this.detailNode.validateTheNode() || !this.validateTabs())){<br>
+// restore selection<br>
+var sel = new Array();<br>
+sel[0] = this.getClosestTreeNode(this.detailNode);<br>
+this.setSelection(sel, false);<br>
+var tab = this.getTabByNode(this.detailNode);<br>
+if (tab != null) {<br>
+this.selectedTab = tab;<br>
+}<br>
+// display continue conformation<br>
+this.continueConfirmation();<br>
+return false;<br>
+}<br>
+return true;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>validateTab</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+  <td class='confluenceTd'><p>function validateTabs() { // Metadata type method. Can be called by scripts.</p>
+    <p>if (this.tabs != null) {<br>
+var tab;<br>
+for (var i = 0; i &lt; this.tabs.length; i++) {<br>
+tab = this.tabs[i];<br>
+if (tab.owner != null) {<br>
+if(!tab.owner.validateTheNode())<br>
+return false;<br>
+}<br>
+}<br>
+}<br>
+return true;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>validateTheNode</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+  <td class='confluenceTd'><p>function validateTheNode() { // Metadata type method. Can be called by scripts.</p>
+    <p>var diffModelUI = this.modelUI != null &amp;&amp; this.model != this.modelUI.model;<br>
+      if (this.modelUI != null) {<br>
+if (this.modelUI == this) {<br>
+this.cw$super_onValidate();<br>
+}<br>
+else {<br>
+this.modelUI.onValidate();<br>
+}<br>
+if (!this.modelUI.isValid)<br>
+return false;<br>
+}<br>
+if ((diffModelUI || this.modelUI == null) &amp;&amp; this.model instanceof OrderItem){<br>
+var err = this.model.validate(5,true,false);<br>
+if (err != null) {<br>
+return false;<br>
+}<br>
+}<br>
+return true;<br>
+}
+    </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>visiblePerm</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+  <td class='confluenceTd'><p>function visiblePerm($psCondition) { // Runs every time the permission is evaluated<br>
+    var permissionObject = this;</p>
+    <p>if (this.model instanceof CwObject &amp;&amp; this.model.hasMethod(&quot;visiblePerm&quot;)) {<br>
+return this.model.visiblePerm();<br>
+}<br>
+return true;<br>
+}
+    </p></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>Order Forms</h3>
+
+<p>Order Forms are similar to the Forms in <a href="../Navigation Trees/Navigation Trees at Runtime.html#Tabs">Navigation Tree with Tabs</a>, with the following added metadata to implement Order presentation:
+<ul>
+<li>In <b>Default</b> Form, the Tree Form Element for navigation remains, but is altered to show Validation Errors upon Hover at the Tree Form Element.</li>
+<li>In <b>Menu</b> Form, action menu items (Add, Attach, Copy, Delete, Validate, SaveAll, PDF, Tasks, Task History) are attached added to allow such management to the Order.</li>
+<li>Added <b>Messages</b> Form to show the Validation Errors upon Hover.</li>
+</ul>
+</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

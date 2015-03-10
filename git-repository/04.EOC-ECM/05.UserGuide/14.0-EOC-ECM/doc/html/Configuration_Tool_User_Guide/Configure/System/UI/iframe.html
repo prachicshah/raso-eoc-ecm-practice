@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>iFrame</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h3>iFrame</h3>
+<p>This page describes how to perform various tasks in iFrame and what user interface settings are needed to perform them.</p>
+
+<h4>Set Opacity for a Popup to Gray Out Browser When Page is in iFrame</h4>
+<p>To set the opacity for a popup to gray out the browser when the page is in iFrame, complete these steps:</p>
+<ol>
+  <li>Set the <strong><a href="UIgeneral.html#differentDomain">Different Domain</a></strong> setting to false. The iFrame must be in the same domain.</li>
+  <li>The main HTML body requires the following:
+    <ul>
+      <li> One div to represent the mask:<br>
+        <div class="code">
+          <div class="codeContent">
+            <pre class="code-java">&lt;div id=&quot;cwShadow&quot; class=&quot;opaqueLayer&quot;&gt; &lt;/div&gt;</pre>
+          </div>
+        </div>
+      </li>
+      <li>The other is the iFrame that actually displays the application:<br>
+        <div class="code">
+          <div class="codeContent">
+            <pre class="code-java">&lt;iframe class=&quot;appLayer&quot; src=&quot;http://localhost:8080/cwf&quot; width=&quot;1500&quot; height=&quot;700&quot; scroll=&quot;auto&quot;&gt;&lt;/iframe&gt;</pre>
+          </div>
+        </div>
+      </li>
+    </ul>
+    Both HTML elements have a class property specified, which is used to set zIndex using the css stylename.<br>
+    <div class="code">
+      <div class="codeContent">
+        <pre class="code-java">.opaqueLayer <BR>        { <BR>            z-index:1;<BR>            display:none; <BR>            position:absolute; <BR>            top:0px; <BR>            left:0px; <BR>            opacity:0.6; <BR>            filter:alpha(opacity=60); <BR>            background-color: #000000; <BR>        } <BR>        <BR> .appLayer <BR>            { <BR>                position:absolute; <BR>                z-Index:1001; <BR>            } </pre>
+      </div>
+    </div>
+    <strong>Note:</strong> By default, the application has opacity set to 0. Set this property to the opacity that you want to use for the user action. </li>
+</ol>
+<h4>Custom Dialog Components</h4>
+<p>User messages can be replaced by custom dialog components by extending com.conceptwave.system.Dialog. You can control how to show your user messages by creating this object in your script and populating dialog.content. </p>
+<h4>Centering in iFrame</h4>
+<p>Centering based on the size of the root layout of your application does not always work. For example, if your application is 1000 px in height and 500 px in width, but your Web browser is only 500 px in height and 500 px in width, centering the popup would render it outside of the browser view, making it unusable. As such, whatever you are showing as a popup can be guaranteed to be visible at all times.</p>
+<p><strong>Dynamically Change the External Site Source</strong></p>
+<p>To dynamically change the source (src) of   external sites in iFrame, you can use the <a href="../../../../Service_Designer_Tool_User_Guide/Velocity_Studio/Element - HTML Content.html">HTML Content</a> element by doing the following:</p>
+<ol>
+  <li>Assign a script with a return type of String to the variable of the HTML   content element. </li>
+  <li> Have the script return an external site, such as <tt>&lt;iframe src="http://www.ericsson.com" width="100%" height="100%" border="0"&gt;</tt>. </li>
+  <li>Include  statements in the   script to determine which external URL  to return.</li>
+</ol>
+<p><br>
+</p>
+</body>
+</html>

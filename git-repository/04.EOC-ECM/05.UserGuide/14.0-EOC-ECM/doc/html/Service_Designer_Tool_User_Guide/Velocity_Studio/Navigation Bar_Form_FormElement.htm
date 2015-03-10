@@ -1,0 +1,28 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Navigation Bar Form and Form Elements</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Navigation Bar Form and Form Elements</h2>
+<p>Under the top-level Navigation Bar node, several default Forms are created, two of which control the orientation of the Navigation Bar. The <strong>HLayoutForm</strong> Form controls the  horizontal layout  and the <strong>VLayoutForm</strong> Form controls the  vertical layout. Each Form also control how the  clickable images of the  Navigation Bar are controlled. In each of the  Forms, two elements appear by default, the Iterator element and the Image element. The Iterator element iterates through the Navigation Bar items (defined and listed in the <a href="#configtab">Configuration Tab</a>) using the <em>NavigationItems</em> variable, see <a href="#navbarvar">Navigation Bar Variables</a>. For each navigation  item, an instance of the image element (the base element used for each navigation item) found under the Iterator is created using the properties of the NavigationItem.</p>
+<p><strong>Caution:</strong> Do not delete the Iterator and Image elements from the HLayoutForm or VLayoutForm Forms or the Navigation Bar will not display at runtime.</p>
+
+<img src="navigationbar_layout.png" align="absmiddle" border="1" alt="Layout forms for navigation bar" />
+
+<h4><a name="#UIDisplay"></a>Displaying Navigation Bar Data  Using Form Frames</h4>
+<p>To display data in runtime, you must create a User Interface object and configure  its Form using a Form Frame object. In this example, the <strong>FormFrame</strong> displays the Navigation Bar while the<strong> FormFrame1</strong> displays any of the Navigation Bar  objects that are returned when an image is clicked.</p>
+<p><strong>Note:</strong> You must create a Form Frame to be able to display data. This is <em>not</em> already configured in the Navigation Bar Item</p>
+
+<img src="navigationbar_fframe.png" align="absmiddle" border="1" alt="Create a form frame to display navigation bar data" />
+</tr>
+</table>
+</body>
+</html>

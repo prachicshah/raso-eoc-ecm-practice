@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>Access the System Configuration</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Access the System Configuration</h2>
+<p>By default, the  System Configuration application is available to the <em>User Profile Administrator</em> user with the <em>Runtime Administrator</em> privilege. With this privilege, you can log in to the application by completing these steps:</p>
+<ol>
+  <li>In Velocity Studio, open your metadata project, and click <strong>Runtime</strong> &gt; <strong>Run</strong> to start your application.</li>
+  <li>In your Web browser, access the System Configuration application by entering <tt>http://localhost:8080/cwf/configApp</tt> as the URL.<br>
+    <strong>Note:</strong> Directly entering <tt>/cwf/config/</tt> in the URL does not map to the System Configuration application due to the extra "/" at the end of the URL.</li>
+  <li>Enter <tt>upadmin</tt> as both your <strong>Username</strong> and <strong>Password</strong>, and then press the <em>Enter</em> key.
+  <br>
+  </li>
+</ol>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>The login screen differs, depending on whether you have selected the <a href="../../Service_Designer_Tool_User_Guide/Metadata_Objects/Metadata Root/Metadata Root Classic Icon Application Page.html">classic Select Application page</a> or have opted to use the icon version of this page instead.</li>
+  <li>The System Configuration application is available to be used as the AVM is run. Using the System Configuration application requires a connection to database since the configuration data is there.<br>
+  </li>
+</ul>
+<p>There are other ways in which to start the System Configuration application:</p>
+<ul>
+  <li>If you do not want to run the metadata, but only want to configure against it, use the <a href="../../Metadata Deployment Guide/Activation in Command Line Interface.html">command line -runconfig option</a> to start the AVM and the System Configuration application without running the metadata.</li>
+  <li>In your deployment environment, you can <a href="../../Metadata Deployment Guide/Deploying Application.html">deploy the WAR file</a> to start the System Configuration application.</li>
+  <li>If you do not want to run the metadata in deployment environment, you can add VM argument <i>-Dcom.conceptwave.configMode=true</i> to your application server when <a href="../../Metadata Deployment Guide/Deploy in J2EE Application Server.html">starting the WAR file</a>.</li>
+  </ul>
+<h3><a name="-config">Start Configuration Application in Command Line Interface</a></h3>
+<p>You can start the System Configuration application without running any application metadata, using <a href="../Service_Designer_Tool_User_Guide/Introduction_to_Metadata/Command Line Options of Designer.html">command line of <i>Designer.jar</i></a>, with parameter <i>-runconfig</i>. The following describes the syntax of the command-line interface and the available arguments. A shortcut command can be found in <b><strong>&lt;<em>installation_folder</em>&gt;</strong>\designer\env\runConfig.cmd</b>, and shown as follows. You can use the shortcut as is, or copy the .cmd file and edit it accordingly to create your own configuration-only start script.</p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">
+@echo off<br>if &quot;&quot;%1&quot;&quot;==&quot;&quot;&quot;&quot; goto echoSyntax<br>if &quot;&quot;%2&quot;&quot;==&quot;&quot;&quot;&quot; goto echoSyntax<br>if &quot;&quot;%3&quot;&quot;==&quot;&quot;&quot;&quot; goto echoSyntax<br>if &quot;&quot;%4&quot;&quot;==&quot;&quot;&quot;&quot; goto echoSyntax<br>IF &quot;&quot;%1&quot;&quot;==&quot;&quot;-logFile&quot;&quot; (<br>set LOG_FILE=%2<br>set JDBC_URL=%3<br>set APP_NAME=%4<br>set APP_VERSION=%5<br>set CONFIG_NODE=%6<br>set META_DIR=%7<br>set CONFIG_PORT=%8<br>) ELSE (<br>set JDBC_URL=%1<br>set APP_NAME=%2<br>set APP_VERSION=%3<br>set CONFIG_NODE=%4<br>set META_DIR=%5<br>set CONFIG_PORT=%6<br>)
+
+set CWOC_CLASSPATH=C:\6\264<br>set CLASSPATH=%CWOC_CLASSPATH%\designer\Designer.jar;^<br>%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^<br>%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^<br>%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^<br>%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^<br>%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^<br>%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^<br>%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^<br>%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^<br>%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^<br>%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^<br>%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;
+
+set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m<br>IF &quot;&quot;%1&quot;&quot;==&quot;&quot;-logFile&quot;&quot; (<br>&quot;C:\java\jdk1.6.0_16\bin\java&quot; %JAVA_OPTS% -cp &quot;%CLASSPATH%&quot; com.conceptwave.servicedesigner.ServiceDesigner -run -logFile %LOG_FILE% -jdbc=%JDBC_URL% -app_name=%APP_NAME% -app_version=%APP_VERSION% -config_node=%CONFIG_NODE% -metadata_dir=%META_DIR% -port=%CONFIG_PORT%<br>) ELSE (<br>&quot;C:\java\jdk1.6.0_16\bin\java&quot; %JAVA_OPTS% -cp &quot;%CLASSPATH%&quot; com.conceptwave.servicedesigner.ServiceDesigner -run -jdbc=%JDBC_URL% -app_name=%APP_NAME% -app_version=%APP_VERSION% -config_node=%CONFIG_NODE% -metadata_dir=%META_DIR% -port=%CONFIG_PORT%<br>)<br>goto end<br>:echoSyntaxecho -----------------------------------------------------------------------------<br>echo Syntax: <br>echo runConfig [-logFile logFile] JDBC_URL application_name application_version node metadata_path port<br>echo JDBC_URL could be user@host:port:sid,user@host:port/service_name or any jdbc url<br>echo Example: <br>echo runConfig cw@localhost:1521:orcl ON V1 node c:\metadata\ON 9000<br>echo runConfig &quot;cw@oracle.jdbc.driver.OracleDriver;jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=on)(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl))) ON V1 node c:\metadata\ON 9000&quot;<br>echo (refer to documentation for details.)<br>echo ------------------------------------------------------------------------------<br>:end</pre>
+  </div>
+</div>
+<p><strong>Pass the Build Version as a Parameter When Redirecting Console Output</strong></p>
+<p>You can pass the build version as a parameter when you redirect your console output to a file by using the runConfig command:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>sh runConfig.sh username/password@host:port:SID path/cwf.war active > test3.log</pre>
+  </div>
+</div>
+<h4>JVM parameters</h4>
+<p>See the <a href="../../Service_Designer_Tool_User_Guide/Introduction_to_Metadata/Command Line Options of Designer.html#JVMparameters">JVM parameters</a> section for a list of mandatory and optional JVM arguments. </p>
+<h4>Designer.jar parameters</h4>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Parameter</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>-runconfig</td>
+      <td class='confluenceTd'>Mandatory parameter for running AVM with the Configuration application only.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>-jdbc=&lt;<i>username</i>&gt;@&lt;<i>host</i>&gt;:&lt;<i>port</i>&gt;:&lt;<i>database</i>&gt;</td>
+      <td class='confluenceTd'>Mandatory. JBDC settings for connecting to database. <i>username</i>&gt;, &lt;<i>host</i>&gt;, &lt;<i>port</i>&gt; and &lt;<i>database</i>&gt; are of the same values of parameters you would specify for <a href="../../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Database Connect.html#ConnectionProperties">database driver in Velocity Studio  GUI</a> (for example, CW@devdb:1521:localdb).</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>&lt;<i>WAR file path</i>&gt;</td>
+      <td class='confluenceTd'>Mandatory. Path of the WAR file of which application configuration is applicable using the Configuration application.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>[active] | [inactive]</td>
+      <td class='confluenceTd'>Mandatory. Choose between the active or inactive configuration version to edit. The <i>active</i> configuration version is the configuration that is employed when running application metadata. The <i>inactive</i> configuration version is the configuration that is copied into active configuration version, only when WAR file is activated with <i>inactive</i> argument during deployment. See <a href="../Configure/System/introduction.html#fast-swapping">configuration fast-swapping</a> for details. Unless you intend to setup for configuration fast-swapping, use <i>active</i> argument.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Port</td>
+      <td class='confluenceTd'>Optional. Enter the port number on which you want to run the configuration (for example, runConfig  cw@localhost:1521:orcl c:\cwf.war active 9000). If you do not specify the Port parameter, the default port number is 8080.</td>
+    </tr>
+  </tbody>
+</table>
+<p>The Designer arguments must appear after the class (for example, <i>com.conceptwave.servicedesigner.ServiceDesigner</i>) in the command.</p>
+<p>After running the command, the command-line interface prompts you for the database password:<br>
+  <br/>
+
+<img src="accessSystemConfigurationRunConfigDBPrompt.png" border="0" alt="Enter database password at the prompt" />
+</p>
+<p>Enter the database password and press the <i>Enter</i> key to connect to the database to start the Configuration application.
+</p>
+<p><br clear="all" />
+</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

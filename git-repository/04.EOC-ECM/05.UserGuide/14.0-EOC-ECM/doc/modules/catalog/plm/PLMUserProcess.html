@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>User Process</title>
+<link rel="StyleSheet" href="..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../highlight.js"></script><script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h3>User Process</h3>
+<p>This section describes the User Interface flow in the PLD process. Below are the steps for configuring the change request project, completing and approving tasks within the workflow.</p>
+<ol>
+  <li>Create a Project.  Click the <strong><img align="bottom" src="AddProjectButton.png" alt="Add Project button"></strong>button from the  home page.  This<b> </b>button is unique to the change request process.  If this button is not visible, then check your privileges (refer to the <a href="PLMSetup.html">PLD Setup</a> for more details).
+    <table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="PLMCreateProject.png" alt="Project Details"></td>
+</tr>
+</tbody>
+</table>
+</li><br>
+<li>A Change Request for the newly created Project is initiated.   Enter the Project details such as <strong>Project Code</strong>, <strong>Name</strong> and <strong>Effective Date</strong> (refer to the section on <a href="../Project.html">Projects</a> for more details).
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="PLMChangeRequest.png" alt="Project Change Request"></td>
+</tr>
+</tbody>
+</table>
+</li><br>
+<li>Configure the change request process.  Within the Configuration table of the Project page, select the required steps in the change request process (for example, <strong>Conception</strong>, <strong>Evaluation</strong>, <strong>Definition</strong>, <strong>Build</strong>, <strong>Testing</strong> and <strong>Launch Product</strong>).  Tabs will appear with each selected change request phase.  The example below shows the three available change request tabs representing the three phases selected: <b>Definition</b>, <b>Testing</b> and <b>Launch Product</b>.
+  <table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="PLMChangeRequestPhase.png" alt="Project Change Request Phase"></td>
+</tr>
+</tbody>
+</table>
+</li><br>
+<li>Click the <b>Save</b> button to save the change request configuration.  The system prompts for a <b>Config Name</b> that will save this configuration as a template to be used for another project.
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="PLMSaveCR.png" alt="Save Change Request"></td>
+</tr>
+</tbody>
+</table>
+</li><br>
+<li> Define the approval tasks.  Click  each change request tab and assign the user that will approve each change request step and the approval due date.
+  <table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="PLMCRroles.png" alt="CR roles"></td>
+</tr>
+</tbody>
+</table>
+
+<p>For each change request step, a user can be selected to approve the change request.  The Product Manager can configure which departments are required to approve the stage, the due date that they must approve by and they can specify a particular user to perform the approval.  The configuration form above contains the various departments, a due date and a drop down list of users. The drop down list of users that appear are the users that have the associated privilege assigned to them.  </p>
+
+<p>In the example above for the Definition stage, the Business Analyst, Marketing and Pricing & Economics departments have been selected to approve the <strong>Definition</strong> stage.  Once the Definition tasks have been completed, an approval  task is created for each user selected in this Configuration form. For the <b>Business Analyst</b> approval, the <b>analyst</b> user has been assigned to approve this change request and only this specific user can approve this task. The Marketing department has not specified a user, which means that any user with <em>Marketing Manager</em> privileges can approve the Definition stage. The workflow approval task will appear in each specified user's task list and will appear red when past due (that is, the <b>Due Date</b> entered here is in the past). </p>
+</li><br>
+<li> Once the Change Request process has been defined, <b>Submit</b> the Project.
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="PLMChangeRequestSubmit.png" alt="Project Change Request"></td>
+</tr>
+</tbody>
+</table>
+</li><br>
+
+<li>Assign a task in the Worklist Manager. Navigate to the Worklist Manager by clicking <strong> Tools</strong> &gt; <strong>Worklist Manager</strong>.  Within the Worklist Manager, enter  appropriate search criteria and click the <strong>Search</strong> button.
+  <table class='confluenceTable'>
+  <tbody>
+  <tr>
+  <td class='confluenceTd'><img src="NavWorklistMgr.png" alt="Worklist Manager"></td>
+  </tr>
+  </tbody>
+  </table>
+  From the example above, the first stage is the Definition stage. Within this stage, the first task is sent to the project manager to create the project plan.  Assign a project manager to the task by selecting the task and clicking the <strong>Assign</strong> button.
+  <table class='confluenceTable'>
+  <tbody>
+  <tr>
+  <td class='confluenceTd'><img src="AssignTask.png" alt="Assign Task"></td>
+  </tr>
+  </tbody>
+  </table>
+  The Worklist Users dialog box appears with a list of all users with their associated privileged.  Select a user.  A task should now appear in that user's task list. 
+  <br>
+  <br>
+  <strong>Notes:</strong>
+<ul>
+  <li>The participant types are different for all the create tasks. In this example, this  user has all the participant privileges. As a result, all tasks for all privileges appear. Ideally, the privileges are divided among many users.   So, users with the businessAnalyst privilege would only see their own create tasks.   All create tasks for that user would have the same meaning. </li>
+  <li>The   screenshot shows the default worklist view. You  can create a   custom view that is more meaningful for your PLD process.</li>
+  <li>The  PLD   that uses the  Orchestration Framework (OF) allows you  to define custom processes, participants, and   operations. You have the flexibility of giving the operations more meaningful   names.<br>
+  </li>
+  </ul>
+</li>
+<br>
+<li>Click <strong>Start &gt; Complete</strong> the task.  The user assigned to a task will find their task in the My Tasks list in their home box. From the task list, click the task hyperlink.
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="TaskList.png" alt="Task List"></td>
+</tr>
+</tbody>
+</table>
+<p>The task details are displayed. Click  <b>Task</b> &gt; <b>Start</b> or <b>Actions</b> &gt; <b>Complete</b> to complete the task.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="CompleteTask.png" alt="Complete Task"></td>
+</tr>
+</tbody>
+</table>
+</li> <br>
+<li>The Worklist Manager will send the next task to the appropriate user defined in the workflow. The last task in the workflow for each stage is  the approval task. The workflow will end at the approval task of the last stage defined in the project configuration.</li>
+
+</ol>
+
+<p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

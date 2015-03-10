@@ -1,0 +1,87 @@
+﻿<html>
+<head>
+<title>Data Type Methods</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Data Type Methods</h2>
+<p>Use the <b>Methods</b> tab in Data Type to create data validation methods. The validation methods are user-defined JavaScript script that determine the validity of runtime data values. The result of the script execution determines the state of the Document that contains the Data Type. At runtime the user will be presented with the messages specified for the validation scripts that have fired. Further, the user will be able to navigate to the associated data element.</p>
+
+<p><b>Notes:</b>
+<ul>
+  <li>Methods defined in derived types override the base type Methods.</li>
+  <li>See <span class="confluenceTd">the <a href="../../../Configuration_Tool_User_Guide/Configure/System/System/configVariables.html#phasedValidation">phasedValidation configuration variable</a> for validating all variables and document rule scripts even when there are errors for mandatory fields or at the data type level.<br>
+    <br>
+  </span></li>
+</ul>
+
+<p><img src="dataTypeMethod.png" align="absmiddle" border="1" alt="" /></p>
+<p>In the above example at runtime, if data entered into an element of the above Data Type is greater than the date June 1, 2008 (the script itemData &gt; new Date(2008, 6, 1) will evaluate to true) the method will fire and the error message "Invalid date Entered." will be presented to the user.</p>
+<p>A new method is added by right-clicking the Data Type root object in the Methods pane, and then click <b>New Validation</b>. The <b>New Validation Method</b> wizard appears; type in the method name there and click <b>Finish</b>.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="dataTypeMethodNew1.png" align="absmiddle" border="1" alt="" />
+
+<p><img src="dataTypeMethodNew2.png" align="absmiddle" border="0" alt="" /></p></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>Below is a description of properties in the Validation Method:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory. Name of the method. Must be unique for all methods defined for this type.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the method for documentation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Script</b></td>
+<td class='confluenceTd'>Mandatory. The validation JavaScript script: The data value is passed into the script via the <em>itemData</em> parameter. The script may be in one of the following forms:
+<ul>
+<li>An expression that evaluates to true to indicate that the <b>Message</b> specified is to be displayed. Otherwise it must evaluate to false.</li>
+<li>A script that returns true to indicate that the <b>Message</b> specified is to be displayed. Otherwise it must return false.</li>
+<li>A script that returns a resource identifier string or list of identifiers separated by semicolons to indicate the resource message(s) to be displayed. For example: AW0155 or AW0155;AE0156. The first character must be A and the second indicates the type: I=information, W=warning, and E=error.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Return</b></td>
+<td class='confluenceTd'>The Object type to be returned by the script.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Severity</b></td>
+<td class='confluenceTd'>Indicates the severity of the method: information, warning or error.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Message</b></td>
+<td class='confluenceTd'>Defines the error message to display to the user when this method fires. It is mandatory that one of either the <b>Message</b> or <b>Message Code</b> fields are specified. If both the <b>Message</b> and <b>Message Code</b> fields are specified, the <b>Message Code</b> will be ignored.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Message Code</b></td>
+<td class='confluenceTd'>Defines the message code of the message to retrieve, from Resources, to display to the user. It is mandatory that one of either the <b>Message</b> or <b>Message Code</b> fields are specified. If both the <b>Message</b> and <b>Message Code</b> fields are specified, the <b>Message Code</b> will be ignored.</td>
+</tr>
+</tbody>
+</table>
+
+<p>To delete a Method, click the node representing the method, then click the <b>Delete</b> button.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

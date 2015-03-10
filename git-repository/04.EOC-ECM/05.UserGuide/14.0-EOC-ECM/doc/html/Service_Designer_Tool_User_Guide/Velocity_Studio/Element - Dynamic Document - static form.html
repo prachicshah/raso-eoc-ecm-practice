@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Dynamic Document with a Static Form Layout</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Dynamic Document with a Static Form Layout</h2>
+
+<p><a href="../Metadata_Objects/Document/Dynamic Document.html">Dynamic documents</a> can be viewed in a form with either a predefined, static layout or a completely dynamic layout. A predefined layout means that a form can be designed the same way as a regular document. The dynamic document element accepts child elements that can be bound to a dynamic leaf.
+
+<p>For child elements to be bound to a dynamic leaf, the created document needs to either have variables of type Any or cwf.dynamicDatasource. Each variable must have the same name as a dynamic leaf found in the dynamic document's database table. Without this name lookup, the value will not be shown at runtime.
+
+<p>To create a dynamic document with a predefined layout, complete these steps:</p>
+<ol>
+  <li>Create a new document and select the <strong> Dynamic Document</strong> checkbox. For the <strong>Dynamic table name</strong> field, enter the database table that you want to use at runtime.<br>
+    <br>
+  </li>
+  <li>Click the document's <strong>Variables</strong> tab and add variables of type Any with the same names as those found in the database tables. If the type has already been determined, set the proper type that extends cwf.dynamicDatasource.<br>
+    <br>
+    <img src="dynamicDocStaticForm.png" alt="Add variables to dynamic document" border="1"><br>
+    <br>
+  </li>
+  <li>Create a new top-level user interface and add a variable for your dynamic document.<br>
+    <br>
+  </li>
+  <li>Override the onInit() method and initialize your variable.<br>
+    <strong>Example:</strong> <code>this.dynamicDocNew = new DynamicDocument(&quot;DynamicDoc.dynDocNew2&quot;,testTable,&quot;test5&quot;,false,false); <br>
+    <br>
+    </code></li>
+  <li>Navigate to the Default form, right-click it, and then select <strong>Override</strong>. Proceed to add a <strong>Vertical Stack Layout</strong> to the form.<br>
+    <br>
+  </li>
+  <li>Under this layout, add a Dynamic Document element.<br>
+    <br>
+  </li>
+  <li>Right-click the Dynamic Document element and add the input elements that you want.<br>
+    <br>
+    <strong>Note:</strong> These elements must match the variable name and the dynamic leaf.<br>
+    <br>
+  </li>
+  <li>You may choose to display other elements under the dynamic document, such as images or buttons, that are not associated with the dynamic document.<br>
+    <br>
+  </li>
+  <li>Continue to design the form as required.<br>
+    <br>
+  </li>
+  <li>Save your changes and then run your metadata. </li>
+</ol>
+<h3>Display Static Variables with a Dynamic Document</h3>
+<p>To display static variables with a dynamic document, complete the following steps:</p>
+<ol>
+  <li>Using the application that you have created in the previous example, navigate to the document that you created in step 1.</li>
+  <li>In the Variables tab, add the necessary static variables. Ensure that you map the document. The static part of this document requires a separate table in the database.</li>
+  <li>Navigate to the user interface Default form that you created in step 5 of the previous section.</li>
+  <li>Right-click the Vertical Stack and add the static fields either through clicking <strong>Input Elements</strong> &gt; <strong>Variables</strong> from the Select Form Element Type dialog, or by selecting the form element and then specifying the variable to use with it.<br>
+    <br>
+    <img src="dynamicDocStaticSelectFormElement.png" alt="Select Variable from Select Form Element Type" width="614" height="471" border="1"><br>
+    <br>
+  </li>
+  <li>Save and run your metadata. In runtime, both dynamic and static variables are present. When you have saved your metadata, all input is present in the databases in the corresponding tables.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

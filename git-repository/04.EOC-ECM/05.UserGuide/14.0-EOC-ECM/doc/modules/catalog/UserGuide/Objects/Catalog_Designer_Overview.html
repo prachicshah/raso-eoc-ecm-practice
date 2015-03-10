@@ -1,0 +1,48 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Catalog Elements Overview</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h1>Catalog Designer Overview</h1>
+<p>The Catalog Designer menu allows you to define, control, and maintain Catalog objects, which have properties and attributes associated with them. The menu contains the following options:</p>
+<ul>
+  <li><a href="Attributes.html">Attribute Types</a> – definition of the data types used as attributes of different objects</li>
+  <li><a href="Catalog_Rules.html">Catalog Rules</a> - definition of object and catalog business rules used</li>
+  <li><a href="Taxes.html">Taxes</a> – definition of tax types</li>
+  <li> <a href="Tax Models.html">Tax Models</a> – ordered sets of tax types and discounts</li>
+  <li><a href="ChargeType.html">Charge Types</a> – definition of prices and discounts</li>
+  <li><a href="InfoModels.html">Info Models</a> – definition of tabular data structures</li>
+  <li><a href="VersionCodeTables.html">Version Code Tables</a> - definition of codes within code tables</li>
+  <li> <a href="Contexts.html">Contexts</a> – definition of the sets of attribute types that hold request specific data at runtime</li>
+  <li> <a href="Associations.html">Association Types</a> – definition of the associations</li>
+  <li><a href="CatalogHierarchies.html">Catalog Hierarchies</a> - definition of the directory structure used to organize products and offers</li>
+  <li><a href="Project.html">Projects</a> - mechanism to  control changes to the Catalog definition, including releasing   changes to a live production environment in a controlled manner </li>
+  <li><a href="Items.html">Items</a> – definitions of products and services</li>
+  <li><a href="../Configuration/Catalog_Domains.html">Domains</a> - ability to limit data access</li>
+  <li><a href="PLM/PLMUserProcess.html">Add Project</a> - ability to use the  Product Lifecycle Designer (PLD) feature to enable change   requests for catalog items to be processed into the live production environment</li>
+  </ul>
+<p>With the exception of Projects, the Catalog Designer&#174; maintains the aforementioned Catalog objects. Additionally, Catalog Designer&#174; maintains the <a href="InfoTable.html">Info Tables</a> object, which contains the content of tabular data structures defined by the Info Models.</p>
+<p> The Catalog items (or simply items) occupy central place among the Catalog objects. Items and their associations usually account for 90% of the Catalog elements. The items represent the products and services that the company offers. The other Catalog objects serve to define some aspects of the items' structure, price, and business rules.</p>
+<p>Catalog Objects properties consist of  data that is defined, entered, and maintained by the Catalog maintenance application or the API on the Catalog Server. The properties are immutable data for the Catalog client applications. Attributes consist of  data that is defined by the Catalog maintenance application or the API on the Catalog server, but is entered and maintained by the Catalog client applications. The values of the object attributes are stored in the shopping basket and service inventory are used in the Catalog rules and Catalog client applications.</p>
+
+<h2>Catalog Elements</h2>
+<p>Conceptually, the Catalog can be presented in an entity-relationship model in which the entities represent the Catalog objects and relationships represent the Catalog associations. The entities and relationships of the Catalog are called <strong>Catalog elements</strong>.</p>
+
+<p>Catalog elements are versioned or non-versioned. Non-versioned elements exist in one instance only while the versioned elements may have many instances.</p>
+
+<p>All elements have a life span (for example, they have start and end dates). The elements in a production state have mandatory start date, but may not have end date. In this case,  their life span is not limited in the future.
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Oracle WebLogic Installation</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+
+
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onload="highlight();">
+<h2><a name="WebLogic">Oracle WebLogic</a> Configuration</h2>
+This section describes the procedural process necessary to install Oracle's WebLogic. 
+
+<ol>
+  <li>Install Oracle WebLogic Server (<a href="http://www.oracle.com/technology/software/products/middleware/index.html">quick link</a>) and ensure the version is certified under <a href="../Installer_User_Guide/Installation Planning.html#CertificationMatrix">certification matrix</a>.</li>
+  <li>Add Oracle drivers, <i>orai18n.jar</i>, <i>ojdbc6.jar</i> and <i>orai18n-mapping.jar</i>  from <b>\CWOrderCare\lib\oracle</b><strong>.</strong></li>
+  <li>Add <i>xercesImpl-2.9.1.jar, xalan-2.7.0.jar and serializer-2.7.0.jar</i> from <b>\CWOrderCare\lib\xml</b><strong>.</strong></li>
+  <li>Configure the database connection with WebLogic Administrative Console.</li>
+  <li>Configure data sources.</li>
+  <li>Add any shared libraries required by the service provider of your application, such as Axis (for example, <strong>\CWOrderCare\lib\axis2</strong>).</li>
+</ol>
+<h3>Deployment on WebLogic 10.3.4</h3>
+
+  <p>To deploy WebLogic 10.3.4, complete these steps:</p>
+<ol>
+    <li>Edit startWebLogic.sh in the bin directory of the domain that you have created (for example,  /home/appserv/AppServ/WL/WL103/user_projects/domains/&lt;<em>domain_name</em>&gt;/bin). Proceed to add the following parameters where WebLogic is being started:<br />
+          <br />
+          <strong> -Dcom.conceptwave.nodeId=&lt;<em>nodeid</em>&gt; \<br />
+-Dcom.conceptwave.licenseDir&lt;<em>Lic_Dir_Path</em>&gt; \ <br />
+-Dcom.sun.management.jmxremote  \<br />
+-Dcom.sun.management.jmxremote.port=10008  \<br />
+-Dcom.sun.management.jmxremote.authenticate=false  \<br />
+-Dcom.sun.management.jmxremote.ssl=false </strong><strong> \</strong><br />
+<br />
+The following is an example:
+      <div class="code">
+        <div class="codeContent">
+          <pre class="code-java">
+${JAVA_HOME}/bin/java ${JAVA_VM} ${MEM_ARGS} -Dweblogic.Name=${SERVER_NAME} \
+ -Dcom.conceptwave.nodeId=N_FF_Both \
+ -Dcom.conceptwave.licenseDir=/home/appserv/cwlic \
+ -Dcom.sun.management.jmxremote.port=10018 \                                
+ -Dcom.sun.management.jmxremote.authenticate=false \
+ -Dcom.sun.management.jmxremote.ssl=false \<br /> -Djava.security.policy=${WL_HOME}/server/lib/weblogic.policy ${JAVA_OPTIONS} ${PROXY_SETTINGS} ${SERVER_CLASS}   </pre>
+        </div>
+      </div></li>
+    <li>In  setDomainEnv.sh, change MEM_ARGS to indicate JVM memory allocation pool parameters as appropriate. It is recommended to set -Xms and -Xmx parameters to equal values. For example, Xms1024m -Xmx1024m -XX:MaxPermSize=128m <br />
+      <br />
+    </li>
+      
+    <li>Upload the .war file to be  deployed on the Unix machine on which WebLogic is installed, and then start WebLogic by running  the startweblogic.sh command in the bin directory in the user domain:
+      <blockquote>
+        /home/appserv/AppServ/WL/WL103/user_projects/domains/&lt;<em>domain_name</em>&gt;/bin/startWeblogic.sh</blockquote></li>
+    <li>Configure the database by logging in to the WebLogic console. Locate the <strong>Domain  Structure</strong> section and select <strong>&lt;<em>domain_name</em>&gt;</strong> &gt;<strong>Services</strong> &gt; <strong>JDBC</strong> &gt; <strong>Data Sources</strong>.<br />
+      <img src="Weblogic1a.png" width="257" height="314" alt="Domain Structure dialog" /><br />
+      <br />
+    </li>
+    <li>On the Summary of JDBC Data Sources page, click the <b>New</b> button to continue.<br />
+      <br />
+      <span class="confluenceTd"><img src="WebLogic1.png" alt="Install Applications" border="0" /></span>
+      <p>&nbsp;</p>
+      
+    </li>
+  <li>On the Create New JDBC Data Source page, fill in the following fields:
+    <ol type="a">
+    	<li>Enter the data source name in the <strong>Name</strong> field.</li>
+    	<li>For the <strong>JNDI Name</strong>, enter <strong>ConceptWaveConfig</strong>.</li>
+    	<li>For the <strong>Database Type</strong>, click the drop-down menu and select <strong>Oracle</strong>.</li>
+   	  <li>Click the drop-down menu for <strong>Database Driver</strong> and select <strong>Oracle's Driver (Thin) Versions: 9.0.1,9.2.0,10,11</strong>.<br />
+   	    <br /></li>
+      <p><span class="confluenceTd"><img src="WebLogic2.png" alt="Install Applications" border="0" /></span></p>
+   	    <p>If you are using 
+   	      SCAN as your host, your connection pool settings are different. The following is an example of SCAN VIP as a host.
+   	      <br />
+   	      <br />
+   	      <img src="WebLogic2_5.png" alt="Weblogic connection pool - SCAN VIP" border="1" /><br />
+   	      <br />
+   	      <strong>Note:</strong> If you have activated your application metadata using the double forward slash (//) syntax, in the Weblogic JDBC <strong>URL</strong> field, you must use // instead of /. The following is an example of using the activation command that contains two forward slashes: <br />
+</p>
+
+<div class="preformatted">
+    <div class="preformattedContent">
+      <pre>runActivate Vuno@racnode-cluster-scan:1521//racdb.conceptwave.com cwf.war Test_MA active</pre>
+    </div>
+  </div>
+  <p>See <a href="Activation in Command Line Interface.html#activationSCANvip">Activation syntax using SCAN VIP</a> for details. </p>
+    </ol>
+    
+    <p>Click the <strong>Next</strong> button to continue.</p>
+  </li>
+    
+    <li>The Transaction Options page appears. Click the <strong>Next</strong> button to continue.<br />
+      <br />
+      <span class="confluenceTd"><img src="WebLogic3.png" alt="Install Applications" /></span><p> </p>
+    </li>
+    <li>The Connection Properties page appears. Complete the relevant connection properties according to your database settings and then click the <strong>Next</strong> button.<br />
+      <br />
+      <span class="confluenceTd"><img src="WebLogic4.png" alt="Install Applications" /></span><p> </p>
+    </li>
+    <li>On the Test Database Connection page, click the <strong>Finish</strong> button. <p></p> 
+      <span class="confluenceTd"><img src="WebLogic5.png" alt="Install Applications" /></span><p> </p>
+    </li>
+    <li>The Summary of JDBC Data Sources page appears. Click the <strong>oracle-ds-jdbc</strong> link. 
+      <p> </p>
+      <span class="confluenceTd"><img src="WebLogic6.png" alt="Install Applications" /></span><span class="confluenceTd">
+    </span><p> </p></li>
+    
+    <li>On the Settings for oracle-ds-jdbc page, click the <strong>Save</strong> button. <p> </p>
+      <span class="confluenceTd"><img src="WebLogic7.png" alt="Install Applications" /></span><p> </p>
+    </li>
+   
+    <li>Click the <strong>Targets</strong> tab, select the <strong>Admin Server</strong> checkbox, and then click the <strong>Save</strong> button.<br />
+      <br />
+      <span class="confluenceTd"><img src="WebLogic8.png" alt="Install Applications" /></span><p> </p>
+    </li>
+    <li>Click the <strong>Connection Pool</strong> tab, click the <strong>Advanced</strong> link, and then select the <strong>Test Connections on Reserve</strong> checkbox.<br />
+      <br />
+      <span class="confluenceTd"><img src="WebLogic9.png" alt="Install Applications" /></span><br />
+    Click the <strong>Save</strong> button to continue. <br />
+    <br />
+    </li>
+    <li>Click the <strong>Monitoring</strong> tab, select the <strong>Admin Server</strong>, and click the <strong>Test Data Source</strong> button. If the test fails, restart WebLogic and recheck for any errors.
+      <br />
+      <br />
+      <span class="confluenceTd"><img src="WebLogic11.png" alt="Install Applications" /></span><br /><p> </p>
+    </li>
+    <li>On the Summary of Deployments page, click <strong>&lt;<em>domain_name</em>&gt;</strong> &gt; <strong>Deployments</strong>. Proceed to click the <strong>Install</strong> button.<br />
+      <br />
+      <span class="confluenceTd"><img src="WebLogic12.png" alt="Install Applications" /></span><br /><p> </p>
+    </li>
+    
+    <li>On the Locate deployment to install and prepare for deployment screen, select the cwf.war file for installation and then click the <strong>Next</strong> button.<p> </p>
+      <span class="confluenceTd"><img src="WebLogic13.png" alt="Install Applications" /></span><br /><p> </p>
+    </li>
+    <li>On the Choose targeting style page, select <strong>Install this deployment as an application</strong>, and then click the <strong>Next</strong> button. <br />
+      <br />
+      <span class="confluenceTd"><img src="WebLogic14.png" alt="Install Applications" /></span><br /><p> </p>
+    </li>
+    <li>Under <strong>Source accessibility</strong>, select <strong>I will make the deployment accessible from the following location</strong>, and then click the <strong>Next</strong> button.<p> </p>
+      <span class="confluenceTd"><img src="WebLogic15.png" alt="Install Applications" /></span><br /><p> </p>
+    </li>
+    <li>On the Review your choices and click Finish screen, click the <strong>Finish</strong> button. <br />
+      <br />
+      <span class="confluenceTd"><img src="WebLogic16.png" alt="Install Applications" /></span><br /><p> </p>
+    </li>
+    <li>Restart WebLogic, if required. Then, perform these steps:
+      <ol type="a">
+        <li>Click <strong>&lt;<em>domain_name</em>&gt;</strong> &gt; <strong>Deployments</strong>.</li>
+        <li>Select <strong>cwf</strong> and then click <strong>Start &gt; Servicing all requests</strong>.<br />
+          <br />
+          
+        </li>
+        
+      </ol>
+      <span class="confluenceTd"><img src="WebLogic17.png" alt="Install Applications" /></span><br />
+    </li>
+</ol>
+</body>
+</html>

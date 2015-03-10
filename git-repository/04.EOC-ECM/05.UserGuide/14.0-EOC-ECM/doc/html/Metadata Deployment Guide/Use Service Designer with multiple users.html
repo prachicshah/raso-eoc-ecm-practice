@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>Use Velocity Studio with multiple users</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Use Velocity Studio with multiple users</h2>
+<p>You can test your application with multiple users (for example, users &gt; 1000) by adding the following option to your Velocity Studio startup script:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>-Dcom.conceptwave.dontCheckForXSRF=true</pre>
+</div>
+</div>
+ <p>If you do not use this option, the following error occurs:</p>
+ 
+ <div class="preformatted">
+  <div class="preformattedContent">
+    <pre>ERROR /cwf - Exception while dispatching  incoming RPC call java.lang.SecurityException:  Blocked request without GWT permutation header (XSRF attack?)</pre>
+</div>
+</div>
+ <p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

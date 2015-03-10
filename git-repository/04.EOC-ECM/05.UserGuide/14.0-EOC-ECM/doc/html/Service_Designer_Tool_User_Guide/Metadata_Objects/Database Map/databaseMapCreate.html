@@ -1,0 +1,40 @@
+﻿<html>
+<head>
+<title>Create a Database Map</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Create a Database Map</h2>
+<p>To create a new database map, complete these steps:</p>
+<ol>
+  <li>Right-click a namespace and select <strong> New</strong>.</li>
+  <li>The <strong>New Metadata Object</strong> wizard       appears as a popup. Expand <strong> Data       Dictionaries</strong>, select<strong> Database Map</strong>, and then click the<strong> Next</strong> button.</li>
+  <li>Step two of the wizard appears. Enter the <strong> Name </strong> of the database map. </li>
+  <li>You must enter a value in either the <strong>Extends</strong> or <strong>Target</strong> fields for your database map, as they both cannot be set to none. Then, click the<strong> Finish</strong> button. </li>
+</ol>
+<strong>OR </strong>
+<ol>
+  <li>Right-click the <strong>Data Dictionaries</strong> folder in a namespace, if it is present. Select <strong>New Database Map</strong>.</li>
+  <li>Follow step 3 from the previous procedure.</li>
+</ol>
+<p>After creating your database map, the  icon representing your newly created database map appears under the <b>Data Structures</b> folder:</p>
+<p><img src="databaseMapDataDictionaries.png" alt="Database Map under Data Dictionaries folder" border="1"></p>
+<p>A database map has the following tabs in Velocity Studio:</p>
+<ul>
+  <li><a href="databaseMapGeneralTab.html">General</a></li>
+  <li><a href="databaseMapMappingTab.html">Mapping</a></li>
+  <li><a href="databaseMapDriverParametersTab.html">Driver Parameters</a></li>
+  </ul>
+<!--
+<p>To set up your connection to your Cassandra database, see <a href="../../Service Designer Menu Actions/Database Connect.html">Connect to the Database</a> for details.</p>-->
+<h3>Create SQL Script for a Database Map</h3>
+<p>Support for DDL (Data Description Language) is available for each physical connection based on the defined mapping. You can generate an SQL script for a database map by right-clicking the database map that you want from the left menu, and then selecting <strong>Create SQL</strong> from the right-click menu. You are then prompted to connect to your database before specifying the name and where you want to save your SQL script.</p></td>
+</tr>
+</table>
+</body>
+</html>

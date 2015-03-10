@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>Virtual Field</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<h2><strong>Virtual Field </strong></h2>
+Metadata objects and methods can be marked as <strong>Virtual</strong>. On the General   tab, of a metadata object a <strong>Virtual</strong> field appears as <img src="./virtualField.png"/>.  If  checked, it provides the ability to create methods in template metadata that  does not have an implementation, but can be used in a template script and be bound  to user interface elements. The implementation is done in user metadata. 
+<h3>Top-Level  Virtual Objects</h3>
+<p>The following  metadata objects can  be virtual: 
+</p>
+<table width="491" class='confluenceTable' border cellpadding="1">
+  <tbody>
+<tr>
+<th width="177" class='confluenceTh'>Root Metadata Object</th>
+<th width="330" class='confluenceTh'>Metadata Objects</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Data Dictionaries</strong></td>
+<td class='confluenceTd'>
+ <li>Data Structures</li>  
+<li>Documents</li></td>
+</tr>
+<tr>
+<td height="104" class='confluenceTd'><strong>Finders</strong></td>
+<td class='confluenceTd'>
+  <li>Document Finder</li>
+  <li>Interface Finder</li>
+  <li>Order Finder</li> 
+  <li>Rule Finder</li>
+  <li>Script Finder</li> 
+  <li>SQL Finder</li></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Global Scripts</strong></td>
+<td class='confluenceTd'>Scripts</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Orders</strong></td>
+<td class='confluenceTd'>Orders</td>
+</tr>
+<tr>
+<td height="42" class='confluenceTd'><strong>Presentation </strong></td>
+<td class='confluenceTd'>
+<li>User Interface Contributor</li>
+<li>User Interface</li></td>
+</tr>
+<tr>
+<td height="24" class='confluenceTd'><strong>Security</strong></td>
+<td class='confluenceTd'> Permission</td>
+</tr>
+</tbody>
+</table><br>
+
+<p>Top-level  virtual metadata elements that belong to templates must be overridden by  another metadata element, or be in the metadata header&rsquo;s replacement map,  otherwise  a Velocity Studio validation error occurs. Top-level  virtual metadata elements cannot be instantiated at runtime through script. An  error is thrown if it is attempted. Virtual  objects cannot be <strong>Final</strong> or <strong>Private</strong>. </p>
+<p>Metadata  objects that are not top-level automatically inherit the virtual property of  their parent and cannot specify their own virtual property. If the parent object  is virtual, then the child object is also virtual. If the parent object is not virtual, then the child object is also not virtual.</p>
+<h3><strong>Virtual  Methods</strong></h3>
+<p><strong>Virtual</strong> methods  must exist under virtual top-level metadata elements. If a non-virtual  top-level metadata element contains a virtual method, it results in a Velocity Studio  validation error.  If a  non-virtual metadata element extends a virtual metadata element, then it must override  those virtual methods that are defined in  virtual metadata but  has not been overridden in  the chain of inheritance. For example:
+</p>
+<ul>
+  <li> A virtual Data Structure <em>Person</em> contains two virtual  <em>getName</em> and<em> setName methods</em>.</li>
+  <li>A virtual Data Structure <em>ReadPerson</em> extends <em>Person</em> and override  <em>getName method</em>.</li>
+  <li> If a non-virtual Data Structure<em> UpdatePerson </em>extends<em> ReadPerson</em>, then Data Structure<em> UpdatePerson</em> only has to override the  <em>setName</em> <em>method</em> since <em>getName method</em> has already been overridden.</li>
+</ul>
+<p>Any virtual method that has not been overridden produces a   validation error. Virtual  methods cannot be invoked through the <em>Super</em> call in the overriding method. It  results in a <em>method not found</em> error. </p>
+<p>Virtual  Methods include all types of object methods including script methods,  permissions, user action methods, etc. Virtual  methods do not have scripts. In the case of permission scripts, the states  and privileges, virtual methods cannot be <strong>Final</strong> or <strong>Private</strong>. </p>
+</body>
+</html>
+

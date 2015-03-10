@@ -1,0 +1,631 @@
+<html>
+<head>
+<title>JConsole MBeans Reference</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>JConsole MBeans Reference</h1>
+<p>The following is a reference for JConsole MBeans. This page contains a description of each MBean, its attributes, operations, and rates, if applicable.</p>
+----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;PE Working thread&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes:</strong>
+  <ul>
+    <li>@CwJMXAttribute(name = &quot;Total activities&quot;, description = &quot;Number of activities processed by the thread from the PE start&quot;, getterOnly = true)</li>
+    <li>@CwJMXAttribute(name = &quot;Total commands&quot;, description = &quot;Number of commands processed by the tread from the PE start&quot;, getterOnly = true) </li>
+    <li>@CwJMXAttribute(name = &quot;Longest activity (ms)&quot;, description = &quot;Duration of longest activity in milliseconds&quot;, getterOnly = true) </li>
+    <li>@CwJMXAttribute(name = &quot;Shortest activity (ms)&quot;, description = &quot;Duration of shortest activity in milliseconds&quot;, getterOnly = true) </li>
+    <li>@CwJMXAttribute(name = &quot;Longest activity name&quot;, description = &quot;Name and index of longest activity&quot;, getterOnly = true) </li>
+    <li>@CwJMXAttribute(name = &quot;Average (ms)&quot;, description = &quot;Average duration of activities and commands in milliseconds&quot;, getterOnly = true) </li>
+    <li>@CwJMXAttribute(name = &quot;Total working time (s)&quot;, description = &quot;Total activity processing time for the thread in seconds&quot;, getterOnly = true) </li>
+    <li>@CwJMXAttribute(name = &quot;Total waiting time (s)&quot;, description = &quot;Total time in seconds that thread waited for activity&quot;, getterOnly = true) </li>
+    <li>@CwJMXAttribute(name = &quot;Current activity name&quot;, description = &quot;Name of currently running activity or command&quot;, getterOnly = true) </li>
+    <li>@CwJMXAttribute(name = &quot;Current duration (ms)&quot;, description = &quot;Elapsed time from the start of the current activity or command in milliseconds&quot;, getterOnly = true)</li>
+    </ul>
+  <p><strong>Rates:</strong>    
+  <ul>
+    <li>@CwJMXRate(name = &quot;Activities per min&quot;, description = &quot;Average number of activity per minute&quot;, 
+      smName = &quot;activitiesPerMin&quot;, interval = 60) </li>
+    <li>@CwJMXRate(name = &quot;Commands per min&quot;, description = &quot;Average number of commands per minute&quot;, 
+      smName = &quot;commandsPerMin&quot;, interval = 60) </li>
+    <li>@CwJMXRate(name = &quot;Total per min&quot;, description = &quot;Average number of commands and activities per minute&quot;, 
+      smName = &quot;totalPerMin&quot;, interval = 60) </li>
+  </ul></p>
+  <p>----------------------------------------------------------------------------------------------<br>
+    <strong>@CwJMXMBean(description = &quot;Server request thread&quot;)</strong><br>
+    ----------------------------------------------------------------------------------------------<br>
+    <strong>Attributes:</strong></p>
+  <ul>
+    <li>@CwJMXAttribute(name = &quot;Total requests&quot;, 
+      description = &quot;Number of requests processed by the thread until now&quot;, 
+      getterOnly = true) </li>
+    <li> @CwJMXAttribute(name = &quot;Longest request (ms)&quot;, description = &quot;Duration of longest request in milliseconds&quot;, getterOnly = true) </li>
+    <li> @CwJMXAttribute(name = &quot;Shortest request (ms)&quot;, description = &quot;Duration of shortest request in milliseconds&quot;, getterOnly = true) </li>
+    <li> @CwJMXAttribute(name = &quot;Average request duration (ms)&quot;, 
+      description = &quot;Average request duration in milliseconds&quot;, getterOnly = true)</li>
+      </ul>
+      <p><strong>Rates:</strong></p>
+      <ul>
+        <li> @CwJMXRate(name = &quot;Requests per min&quot;, description = &quot;Average number of requests per minute&quot;, 
+          smName = &quot;catalogRequestsPerMin&quot;, interval = 60)
+        </li>
+      </ul>
+  </ul>
+<p>-------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(notifications = { &quot;Lost connectivity&quot;, &quot;DB or network is down&quot;,  &quot;com.conceptwave.AVMNTFCN.LostConnectivity&quot; })</strong><br>
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li>@CwJMXAttribute(name = &quot;Port number (JMX)&quot;, description = &quot;Port number used by JMX&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Write to log verbose trace&quot;, description = &quot;Writes to log verbose trace&quot;, setterName = &quot;setVerbosInfoToLog&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;Memory - used (MB)&quot;, description = &quot;Currently used memory (MB&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Memory - free (MB)&quot;, description = &quot;Currently free memory (MB)&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Category Printing&quot;, description = &quot;Shows and sets category printing&quot;, setterName = &quot;setCategoryPrinting&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;Script calls&quot;, description = &quot;Total number of script calls from the AVM start&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;DB reads&quot;, description = &quot;Total number of DB reads from the AVM start&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;DB writes&quot;, description = &quot;Total number of DB reads from the AVM start&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;DB operations&quot;, description = &quot;Total number of DB operations from the AVM start&quot;, getterOnly = true)</li>
+</ul>
+<p><strong>Rates:</strong></p>
+<ul>
+  <li> @CwJMXRate(name = &quot;Script call rate per min&quot;, description = &quot;The number of script calls per minute&quot;,
+    smName = &quot;callsPerMin&quot;, interval = 60) </li>
+  <li> @CwJMXRate(name = &quot;DB reads per min&quot;, description = &quot;The number of DB reads per minute&quot;,
+    smName = &quot;dbReadsPerMin&quot;, interval = 60) </li>
+  <li> @CwJMXRate(name = &quot;DB writes per min&quot;, description = &quot;The number of DB reads per minute&quot;,
+    smName = &quot;dbWritesPerMin&quot;, interval = 60) </li>
+  <li> @CwJMXRate(name = &quot;DB operations per min&quot;, description = &quot;The number of DB operations per minute&quot;,
+    smName = &quot;dbOperationsPerMin&quot;, interval = 60)</li>
+</ul>
+<p><br>
+  <strong>Operations:</strong></p>
+<ul>
+  <li> @CwJMXOperation(name = &quot;Get cache statistics&quot;, description = &quot;Returns the basic health statistics of all system caches in CSV format&quot;,
+    impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;Get Config variable&quot;, description = &quot;Returns the value of the specified configuration variable&quot;, parameters = {    &quot;Name&quot;, &quot;Name of Variable&quot; }, impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;List print category users&quot;, description = &quot;List all users that have permission to print in this category&quot;, parameters = {    &quot;Category&quot;, &quot;Category for a list&quot; }, impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;Add print categories&quot;, description = &quot;Gives permission to given user to use the given print categories&quot;, parameters = {    &quot;Category&quot;, &quot;Category for a list&quot;, &quot;ID&quot;, &quot;User ID&quot; }, impact = MBeanOperationInfo.ACTION) </li>
+  <li> @CwJMXOperation(name = &quot;Remove print categories&quot;, description = &quot;Removes one or more print categories for one or more users&quot;, parameters = { &quot;Category&quot;, &quot;Category for a list&quot;, &quot;ID&quot;, &quot;User ID&quot; }, impact = MBeanOperationInfo.ACTION)</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Order Cache Interface&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li> @CwJMXAttribute(name = &quot;Lock hit percent&quot;, description = &quot;Attempts to access locked order as part of all requests&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;DB read percent&quot;, description = &quot;Number of order DB reads as part from all requests&quot;, getterOnly = true)</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog Server&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li> @CwJMXAttribute(name = &quot;Request queue size&quot;, 
+    description = &quot;Number of pending client requests&quot;, smName = &quot;pendingRequests&quot;, getterOnly = true ) </li>
+  <li> @CwJMXAttribute(name = &quot;Used threads&quot;, 
+    description = &quot;Number of used threads&quot;, smName = &quot;usedThreads&quot;, 
+    getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Connection pool size&quot;, 
+    description = &quot;Number of connection threads&quot;, smName = &quot;poolSize&quot;, getterOnly = true ) </li>
+  <li> @CwJMXAttribute(name = &quot;Connection pool capacity&quot;, 
+    description = &quot;Maximum number of connection threads&quot;, smName = &quot;poolCapacity&quot;, 
+    setterName = &quot;setConnectionPoolCapacity&quot;)</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Standard wait and process thread&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li> @CwJMXAttribute(name = &quot;Waiting interval (s)&quot;, description = &quot;Shows/sets the waiting interval between the iterations in seconds (1 to 999)&quot;, setterName = &quot;setWaitIntervalInSec&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;Queue capacity&quot;, description = &quot;Shows/sets the maximum allowed number of elements in the queue&quot;, setterName = &quot;setCapacity&quot;)</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Collects and resolves waiting activities&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li> @CwJMXAttribute(name = &quot;Capacity&quot;, description = &quot;Shows/sets the waiting queue capacity&quot;, setterName = &quot;setCapacity&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;Queue size&quot;, description = &quot;Number of waiting activities&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Cache Size&quot;, description = &quot;Number of messages in the cache&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Max message Id&quot;, description = &quot;The starting message id for reading new messages&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Cache Overflowing&quot;, description = &quot;If true the cache is overflowing&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Last Overflow&quot;, description = &quot;The timestamp of the last overflow&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Total Enqueued&quot;, description = &quot;Number of enqueued activities from the PE start time&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Total Resolved&quot;, description = &quot;Number of matched activities from the PE start time&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Total Dequeued&quot;, description = &quot;Number of removed activities removed from the PE start time&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Waiting Time (average)&quot;, description = &quot;Average activity waiting time in milliseconds&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Waiting Time (max)&quot;, description = &quot;The longest activity waiting time in milliseconds&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Waiting Time (min)&quot;, description = &quot;The shortest activity waiting time in milliseconds&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Hits&quot;, description = &quot;Number of direct hits from the PE start time&quot;, getterOnly = true)</li>
+  </ul>
+<p><strong>Rates: </strong></p>
+<ul>
+  <li> @CwJMXRate(name = &quot;Resolutions per min&quot;, description = &quot;Average number of waiting activities resolved per minute&quot;, 
+    smName = &quot;resolutionsPerMin&quot;, interval = 60)</li>
+  </ul>
+<p><strong>Operations: </strong></p>
+<ul>
+  <li> @CwJMXOperation(name = &quot;Messages in DB&quot;, description = &quot;Number of records in the participant table in DB&quot;, impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;Messages in DB (invalid)&quot;, description = &quot;Number of records in the invalid participant messages table in DB&quot;, impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;Invalid consumer types&quot;, description = &quot;Returns invalid consumer type ranges&quot;, impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;Clean the participant cache&quot;, description = &quot;Remove all cached memory messages&quot;, impact = MBeanOperationInfo.ACTION) </li>
+  <li> @CwJMXOperation(name = &quot;Show Waiting Messages&quot;, description = &quot;Returns list of waiting messages for given consumer&quot;, parameters = {    &quot;Consumer Id&quot;, &quot;Consumer process id or process type as number or metadata name&quot;, &quot;Sender id&quot;,    &quot;Sender process id or process type as number or metadata name. Not used if empty&quot; }, impact = MBeanOperationInfo.ACTION) </li>
+  <li> @CwJMXOperation(name = &quot;Show Waiting Activities&quot;, description = &quot;Returns list of waiting activities for given consumer&quot;, parameters = { &quot;Consumer Id&quot;, &quot;Process id or process type as number or metadata name&quot; }, impact = MBeanOperationInfo.INFO)</li>
+</ul>
+<p>-----------------------------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Contains Catalog names, codes, ids and default values&quot;)</strong><br>
+  -----------------------------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li>@CwJMXAttribute(name = &quot;String count&quot;, description = &quot;Number of strings in the cache&quot;, smName = &quot;stringCount&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Hit percentage&quot;, description = &quot;Cache find hit percentage&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Memory size(MB)&quot;, description = &quot;String buffers size in MB&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Name&quot;, description = &quot;The JMX name of the cache&quot;, smName = &quot;name&quot;, getterOnly = true)</li>
+  </ul>
+<p><strong>Rates:</strong></p>
+<ul>
+  <li> @CwJMXRate(name = &quot;Requests per min&quot;, description = &quot;Average number of find requests per minute&quot;, smName = &quot;requestsPerMin&quot;, interval = 60)</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Contains document leaf values&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li> @CwJMXAttribute(name = &quot;Element count&quot;, description = &quot;Current number of strings in the cache&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Hit percentage&quot;, description = &quot;Cache hits percentage&quot;, getterOnly = true)<br>
+  </li>
+</ul>
+
+<p><strong>Rates: </strong></p>
+<ul>
+  <li>    @CwJMXRate(name = &quot;Requests per min&quot;, description = &quot;Average number of requests per minute&quot;, 
+    smName = &quot;requestsPerMin&quot;, interval = 60)</li>
+</ul>
+<p><strong>Operations: </strong></p>
+<ul>
+  <li> @CwJMXOperation(name = &quot;Size(MB)&quot;, 
+    description = &quot;Calculates the size of the cache in MB and compacts the cache&quot;, impact = MBeanOperationInfo.ACTION)</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Verbose controller&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li>    @CwJMXAttribute(name = &quot;SQL statement filter&quot;, 
+    description = &quot;Gets/sets the SQL statement filter. The script call stack will be printed for the matching SQL statements. All other SQL statements are ignored. Bit 0x08 of verbose mask should be set&quot;, 
+    setterName = &quot;setSQLTraceFilter&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;Process filter&quot;, description = &quot;Gets/sets the verbose filter that can be a user process id or a global process type number or name&quot;, setterName = &quot;setVerboseFilter&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;Trace mask&quot;, description = &quot;Gets/sets the bits of trace mask as a hexadecimal number&quot;, setterName = &quot;setMask&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;Apply to all PE&quot;, description = &quot;Gets/sets flag indicating if next command is applied to all running PEs&quot;, setterName = &quot;setApplyToAllAVM&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;Verbose file&quot;, description = &quot;Gets/sets the verbose file name&quot;, setterName = &quot;setFile&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;Profiler mode&quot;, 
+    description = &quot;Controls the profile (case insensitive commands): Start profiling: &quot; + &quot;'ON/profile name' (script names) or 'EXT/profile name' (script stacks); Stop profiling -'OFF'&quot;)</li>
+  <li> @CwJMXAttribute(name = &quot;DB operations threshold (microsec)&quot;, description = &quot;Gets/sets the minimal duration (in microsec) for reporting DB operations. From 0 to 99,999,999&quot;, setterName = &quot;setDBThresholdInMicrosec&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;Script calls threshold (microsec)&quot;, description = &quot;Gets/sets the minimal duration (in microsec) for reporting script calls. From 0 to 999,999&quot;, setterName = &quot;setScriptThresholdInMicrosec&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;SM specification&quot;, description = &quot;The current SM specification&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;SM Monitor&quot;, description = &quot;Enter ON/SM-spec-name to start or OFF to stops the Monitor&quot;, setterName = &quot;setSMMonitor&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;SM frequency (min)&quot;, description = &quot;SM output frequency in min. Number from 1 to 99&quot;, setterName = &quot;setSMFrequency&quot;)</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Delayed Activities Thread Interface&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li> @CwJMXAttribute(name = &quot;Queue size&quot;, description = &quot;Current count of activities in the delayed queue&quot;, getterOnly = true)</li>
+  </ul>
+<p><strong>Operations: </strong></p>
+<ul>
+  <li> @CwJMXOperation(name = &quot;Show activities per level&quot;, description = &quot;Returns the number of activities waiting for the 16 intervals of the delay clock for the specified level (0-6)&quot;, parameters = {&quot;Level&quot;, &quot;level (0-6)&quot; }, impact = MBeanOperationInfo.INFO)</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li>@CwJMXAttribute(name = &quot;Total Catalog memory (MB)&quot;, description = &quot;Memory used by all caches and strings in MB&quot;, 
+    smName = &quot;getCatalogMemory&quot;, getterOnly = true)</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Image Cache&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  See @CwJMXMBean(<a href="#cashEmergencyOverflow">notifications = {  &quot;Cache emergency overflow&quot;,  &quot;The standard overflow procedure cannot reduce sufficiently the cache size&quot;,  &quot;com.conceptwave.AVMNTFCN.Overflow.Cache&quot; }</a>)<br>
+  <br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;External OrderId Cache Interface&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  See @CwJMXMBean(<a href="#cashEmergencyOverflow">notifications = {  &quot;Cache emergency overflow&quot;,  &quot;The standard overflow procedure cannot reduce sufficiently the cache size&quot;,  &quot;com.conceptwave.AVMNTFCN.Overflow.Cache&quot; }</a>)<br>
+  <br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Reference Cache&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  See @CwJMXMBean(<a href="#cashEmergencyOverflow">notifications = {  &quot;Cache emergency overflow&quot;,  &quot;The standard overflow procedure cannot reduce sufficiently the cache size&quot;,  &quot;com.conceptwave.AVMNTFCN.Overflow.Cache&quot; }</a>)<br>
+  <br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Translation Cache&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  See @CwJMXMBean(<a href="#cashEmergencyOverflow">notifications = {  &quot;Cache emergency overflow&quot;,  &quot;The standard overflow procedure cannot reduce sufficiently the cache size&quot;,  &quot;com.conceptwave.AVMNTFCN.Overflow.Cache&quot; }</a>)<br>
+  <br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Document cache&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  See @CwJMXMBean(<a href="#cashEmergencyOverflow">notifications = {  &quot;Cache emergency overflow&quot;,  &quot;The standard overflow procedure cannot reduce sufficiently the cache size&quot;,  &quot;com.conceptwave.AVMNTFCN.Overflow.Cache&quot; }</a>)<br>
+  <br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Resource Cache&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  See @CwJMXMBean(<a href="#cashEmergencyOverflow">notifications = {  &quot;Cache emergency overflow&quot;,  &quot;The standard overflow procedure cannot reduce sufficiently the cache size&quot;,  &quot;com.conceptwave.AVMNTFCN.Overflow.Cache&quot; }</a>)<br>
+  <br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;UserId Cache Interface&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  See @CwJMXMBean(<a href="#cashEmergencyOverflow">notifications = {  &quot;Cache emergency overflow&quot;,  &quot;The standard overflow procedure cannot reduce sufficiently the cache size&quot;,  &quot;com.conceptwave.AVMNTFCN.Overflow.Cache&quot; }</a>) </p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong><a name="cashEmergencyOverflow"></a>@CwJMXMBean(notifications = {  &quot;Cache emergency overflow&quot;,  &quot;The standard overflow procedure cannot reduce sufficiently the cache size&quot;,  &quot;com.conceptwave.AVMNTFCN.Overflow.Cache&quot; })</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li> @CwJMXAttribute(name = &quot;Overflow count&quot;, 
+    description = &quot;Number of times when the cache has reached its capacity&quot;, 
+    smName = &quot;overflows&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Emergency overflow count&quot;, 
+    description = &quot;Number of times the standard overflow mechanism cannot free enough memory in the cache&quot;, 
+    smName = &quot;emergencies&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Size correction count&quot;, 
+    description = &quot;Number of times the cache size has been found incorrect&quot;, 
+    smName = &quot;corrections&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Hash table size&quot;, 
+    description = &quot;Number of entries in the cache hash table&quot;, 
+    smName = &quot;hashSize&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Name&quot;, description = &quot;The JMX name of the cache&quot;, smName = &quot;name&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Size&quot;, description = &quot;Cache size in bytes&quot;, smName = &quot;size&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Size(MB)&quot;, description = &quot;Cache size in MB&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Element count&quot;, description = &quot;Number of objects in the cache&quot;, smName = &quot;count&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Total added count&quot;, description = &quot;Total number of objects added to the cache&quot;, smName = &quot;added&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Average element length&quot;, description = &quot;The size of an average cache element in bytes&quot;, smName = &quot;averageLength&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Hit percent&quot;, description = &quot;Direct hits as a part of all requests&quot;, smName = &quot;hitPercent&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Last overflow&quot;, description = &quot;The time of the last overflow&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Last emergency overflow&quot;, description = &quot;The time of the last emergency overflow&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Cache capacity (MB)&quot;, description = &quot;Maximum cache size in MB&quot;, smName = &quot;capacity&quot;, setterName = &quot;setCacheCapacityInMB&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;Cache refresh schedule&quot;, description = &quot;The moments in the day when the cache will erase its content&quot;, setterName = &quot;setCacheRefreshSchedule&quot;)</li>
+</ul>
+<p><strong><br>
+  Rates: </strong></p>
+<ul>
+  <li> @CwJMXRate(name = &quot;Requests per min&quot;, description = &quot;Average number of requests per minute&quot;, smName = &quot;requestsPerMin&quot;, interval = 60)</li>
+  </ul>
+<p><strong>Operations: </strong></p>
+<ul>
+  <li> @CwJMXOperation(name = &quot;Clean the cache&quot;, 
+    description = &quot;Removes all discardable elements and returns their count&quot;, 
+    impact = MBeanOperationInfo.ACTION)</li>
+  <li> @CwJMXOperation(name = &quot;Recalculate cache size&quot;, description = &quot;Recalculates and corrects the current size if needed. Returns the size correction in bytes&quot;, impact = MBeanOperationInfo.ACTION) </li>
+  <li> @CwJMXOperation(name = &quot;Count removable elements&quot;, 
+    description = &quot;Count the elements that are not locked and can be discarded&quot;, 
+    parameters = {&quot;olderThan&quot;,    &quot;The minimum age of an element 'from the last access' in sec &quot; }, impact = MBeanOperationInfo.INFO)</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;ConceptWave Process Engine&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li> @CwJMXAttribute(name = &quot;Low memory event count&quot;, description = &quot;The number of times the PE has detected and resolved low memory condition&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Restart count&quot;, description = &quot;Number of PE restarting&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Command line&quot;, description = &quot;The current PE command line&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Working thread count&quot;, description = &quot;The current number of activity threads&quot;, setterName = &quot;setNumberOfWorkingThreads&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;Memory - requested (MB)&quot;, description = &quot;The amount of free memory at the start of PE&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;PE id&quot;, description = &quot;The PE id (1-20 if in cluster, 0 - single mode)&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;PE speed&quot;, description = &quot;Defines how often activities are stored in DB&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Bucket span&quot;, description = &quot;The number of PE in the cluster that can run user processes&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Bucket number&quot;, description = &quot;The user processes bucket number for this PE&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Process capacity&quot;, description = &quot;The maximum number of processes that the PE can run. You can only decrease this number&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Processes - total&quot;, description = &quot;The number of processes (user and global) that run in this moment&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Processes - top level&quot;, description = &quot;Number of user processes that are not children of other processes that run in this moment&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Processes - user&quot;, description = &quot;The number of user processes that run in this moment&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Processes - global&quot;, description = &quot;The number of global processes that run in this moment&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Processes - started&quot;, description = &quot;Total number of started user processes&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Processes - completed&quot;, description = &quot;The number of processes (user and global) that have finished successfully or unsuccessfully&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Write to log status changing(for processes)&quot;, description = &quot;Writes to log changing of processes status&quot;, setterName = &quot;setRecordProcessChanedStatus&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;PE status&quot;, description = &quot;The PE runs or is suspended because of user request or lost connectivity&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;PE cluster type&quot;, description = &quot;Symmetrical, Asymmetrical, Single PE mode&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;PE global process serialization mode&quot;, description = &quot;Run only one activity for given message correlation id at a time&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;PE Order serialization mode&quot;, description = &quot;Run only one activity for given order at a time&quot;, getterOnly = true) </li>
+  <li>@CwJMXAttribute(name = &quot;PE Process group serialization&quot;, description = &quot;Run only one activity from a parent and all immediate children at a time&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;PE Process family serialization&quot;, description = &quot;Run only one activity from a process family at a time&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Successfully completed processes&quot;, description = &quot;The number of processes (user and global) that have finished successfully&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Processes in error&quot;, description = &quot;The number of user processes that have gone in error state&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Terminated processes&quot;, description = &quot;The number of user processes that have been terminated&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Suspended processes&quot;, description = &quot;The number of user processes that have been suspended&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Canceled processes&quot;, description = &quot;The number of user processes that have been cancelled&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Started global processes&quot;, description = &quot;The number of  global processes started in this PE&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Activity queue size&quot;, description = &quot;Number of activities waiting for execution&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Delayed activity queue size&quot;, description = &quot;Number of delayed activities waiting to be moved to activity queue&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Waiting activity queue size&quot;, description = &quot;Number of activities waiting for message&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Requests queue size&quot;, description = &quot;Number of pending requests for this PE&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Total performed activities&quot;, description = &quot;Number of performed activities&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Total performed commands&quot;, description = &quot;Number of performed commands&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Busy working threads&quot;, description = &quot;Number of working threads running activities at the moment&quot;, getterOnly = true)</li>
+  </ul>
+<p><strong>Rates: </strong></p>
+<ul>
+  <li> @CwJMXRate(name = &quot;Processes start rate per min&quot;, 
+    description = &quot;The number of new and/or old user processes the PE starts per minute&quot;, 
+    smName = &quot;processStartPerMin&quot;, interval = 60) </li>
+  <li> @CwJMXRate(name = &quot;Activities rate per min&quot;, 
+    description = &quot;The number of activities performed in a minute by all working threads&quot;, 
+    smName = &quot;activitiesPerMin&quot;, interval = 60) </li>
+  <li> @CwJMXRate(name = &quot;Commands rate per min&quot;, 
+    description = &quot;The number of commands performed in a minute by all working threads&quot;, 
+    smName = &quot;commandsPerMin&quot;, interval = 60) </li>
+  <li> @CwJMXRate(name = &quot;Working rate per min&quot;, 
+    description = &quot;The number of commands and activities performed in a minute by all working threads&quot;, 
+    smName = &quot;totalPerMin&quot;, interval = 60)</li>
+  </ul>
+<p><strong>Operations: </strong></p>
+<ul>
+  <li> @CwJMXOperation(name = &quot;Suspend PE&quot;, description = &quot;Temporarily stop the PE. All process information is preserved. Use resume to restart&quot;, impact = MBeanOperationInfo.ACTION) </li>
+  <li> @CwJMXOperation(name = &quot;Resume PE&quot;, description = &quot;Start PE processing immediately. No processes are restarted&quot;, impact = MBeanOperationInfo.ACTION) </li>
+  <li> @CwJMXOperation(name = &quot;Stop PE gracefully&quot;, description = &quot;Stops the PE and changes the status of all running processes. The PE processes cannot be resumed any more.&quot;, impact = MBeanOperationInfo.ACTION) </li>
+  <li> @CwJMXOperation(name = &quot;Show the startup priority script&quot;, description = &quot;Full name of the script that calculates the priority of the 'old' processes at startup time&quot;, impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;Restart PE&quot;,description = &quot;Restarts PE threads&quot;, impact = MBeanOperationInfo.ACTION) </li>
+  <li> @CwJMXOperation(name = &quot;Show working thread status&quot;, description = &quot;Shows graphically the working and idle working threads at the moment&quot;, impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(	name = &quot;Return PE ID&quot;, 
+    description = &quot;Returns PE ID for the current PE&quot;,
+    impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;Check cluster&quot;, description = &quot;Displays report for all duplicated or not covered buckets and missing process engines&quot;, impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;Show buckets&quot;, description = &quot;Displays the bucket specifications for the user and global/interface processes&quot;, impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;PE Info&quot;, description = &quot;Gets basic information about PE&quot;,impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;Participants Info&quot;, description = &quot;Gets information Participants cache&quot;,impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;Order Cache Info&quot;, description = &quot;Returns the order cache statistics&quot;,impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(	name = &quot;Participants Wait Data&quot;, 
+    description = &quot;Gets information about the activities waiting for participants messages&quot;,
+    parameters = {&quot;startFrom&quot;,&quot;message id to start from&quot;, &quot;consumerId&quot;, &quot;Id of message consumer&quot;,&quot;actCount&quot;,&quot;number of messages to return&quot;},
+    impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(	name = &quot;Participants QueueData&quot;, 
+    description = &quot;Provides information of all local participant messages in the local participant cache starting with this msgId will be returned&quot;,
+    parameters = {&quot;consumerId&quot;, &quot;Id of message consumer&quot;,&quot;actCount&quot;,&quot;number of messages to return&quot;},
+    impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(	name = &quot;Activity threads&quot;, 
+    description = &quot;Gets activity threads statistics for the current PE&quot;,
+    impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;List of process activity objects&quot;, 
+    description = &quot;Return all cached process activity objects&quot;, 
+    parameters = {&quot;pid&quot;, &quot;ProcessId&quot;}, 
+    impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;List of all memory processes in current PE&quot;, 
+    description = &quot;Return list of all memory processes running on current PE&quot;, 
+    impact = MBeanOperationInfo.INFO)<br>
+  </li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Thread that can start processes&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong><br>
+  -   @CwJMXAttribute(name = &quot;Processes - total started&quot;, description = &quot;Number of processes started by this tread&quot;, getterOnly = true)</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog Client&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li> @CwJMXAttribute(name = &quot;Used connections&quot;, 
+    description = &quot;Number of used Catalog server connections&quot;, smName = &quot;usedConnections&quot;, 
+    getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Connection pool size&quot;, 
+    description = &quot;Number of Catalog server connections&quot;, smName = &quot;poolSize&quot;, 
+    getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Connection pool capacity&quot;, 
+    description = &quot;Maximum number of Catalog server connections&quot;, smName = &quot;poolCapacity&quot;, 
+    setterName = &quot;setConnectionPoolCapacity&quot;) </li>
+  <li> @CwJMXAttribute(name = &quot;Request queue size&quot;, 
+    description = &quot;Number of pending server requests&quot;, smName = &quot;pendingRequests&quot;, 
+    getterOnly = true )<br>
+  </li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;User-defined performance counter&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li> @CwJMXAttribute(name = &quot;Histogram start&quot;, description = &quot;The time of the earliest histogram data&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Histogram end&quot;, description = &quot;The time of the last histogram data&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Count&quot;, description = &quot;The current value of the counter&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Counter start&quot;, description = &quot;Counting start time&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Counter end&quot;, description = &quot;Counting end time&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Histogram data collection&quot;, description = &quot;Shows if the histogram data collection is on or off&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Max&quot;, description = &quot;The maximum value of the counter since started.&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Min&quot;, description = &quot;The minimum value of the counter since started.&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Average&quot;, description = &quot;The average value of the counter since started.&quot;, getterOnly = true)<br>
+  </li>
+  </ul>
+<p><strong>Operations: </strong></p>
+<ul>
+  <li> @CwJMXOperation(name = &quot;Clean&quot;, description = &quot;Resets the counter&quot;, impact = MBeanOperationInfo.ACTION) </li>
+  <li> @CwJMXOperation(name = &quot;Start histogram&quot;, description = &quot;Starts the histogram data collection&quot;, impact = MBeanOperationInfo.ACTION) </li>
+  <li> @CwJMXOperation(name = &quot;Stop data collection&quot;, description = &quot;Stops the histogram data collection&quot;, impact = MBeanOperationInfo.ACTION) </li>
+  <li> @CwJMXOperation(name = &quot;Show histogram&quot;, 
+    description = &quot;Shows one hour of histogram data ending the specified minutes back from now&quot;, parameters = {    &quot;endingBackInMin&quot;, &quot;The end time of the one hour histogram interval back from this moment in min&quot; }, impact = BeanOperationInfo.INFO)</li>
+</ul>
+<p>-----------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(notifications = { &quot;Process overflow&quot;, &quot;No space for processes&quot;,  &quot;com.conceptwave.AVMNTFCN.Overflow.Proc&quot; })</strong><br>
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+  <strong>Attributes:</strong></p>
+<ul>
+  <li> @CwJMXAttribute(name = &quot;Last batch size&quot;, description = &quot;The number of processes read in the last DB poll&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Queue size&quot;, description = &quot;The remaining number of processes to start from the current batch&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Start from time&quot;, description = &quot;The queue will not pick up processes created before this timestamp&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;End to time&quot;, description = &quot;The queue will not pick up processes created after this timestamp&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Current batch start&quot;, description = &quot;The start timestamp of the current batch&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Current batch end&quot;, description = &quot;The end timestamp of the current batch&quot;, getterOnly = true)</li>
+  </ul>
+<p><strong>Operations: </strong></p>
+<ul>
+  <li> @CwJMXOperation(name = &quot;Restart&quot;, description = &quot;Starts reading the processes again from the queue start time&quot;, impact = MBeanOperationInfo.ACTION)</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Contains activities of the running processes&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------------<br>
+  <strong>Operations: </strong></p>
+<ul>
+  <li> @CwJMXOperation(name = &quot;Show activity statistics&quot;, description = &quot;Shows number of activities by type&quot;, impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;Show process activities&quot;, description = &quot;Shows all cached process activities&quot;, parameters = {    &quot;pid&quot;, &quot;Process ID&quot; }, impact = MBeanOperationInfo.INFO) </li>
+  <li> @CwJMXOperation(name = &quot;Check process&quot;, description = &quot;Checks if the process works&quot;, 
+    parameters = {&quot;pid&quot;, &quot;Process ID&quot; }, impact = MBeanOperationInfo.INFO)</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Request thread&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li> @CwJMXAttribute(name = &quot;Next start id&quot;, description = &quot;Maximum reached ID of a request in DB&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Queue size&quot;, description = &quot;Number of requests in the queue&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Resume count&quot;, description = &quot;Number of process resume commands&quot;, getterOnly = true)</li>
+  </ul>
+<p><strong>Operations:</strong></p>
+<ul>
+  <li> @CwJMXOperation(name = &quot;Restart&quot;, description = &quot;Restarts processing from the beginning of the request table&quot;, impact = MBeanOperationInfo.ACTION)</li>
+</ul>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Listeners on port&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+  <strong>Attributes: </strong></p>
+<ul>
+  <li> @CwJMXAttribute(name = &quot;HOST&quot;, description = &quot;Host of listener&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;AVM ID&quot;, description = &quot;AVM of listener&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Service Provider&quot;, description = &quot;Service Provider&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Listening Port&quot;, description = &quot;Listening Port&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Interface Name&quot;, description = &quot;Interface Name&quot;, getterOnly = true) </li>
+  <li> @CwJMXAttribute(name = &quot;Starting time&quot;, description = &quot;Starting time&quot;, getterOnly = true)<br>
+  </li>
+</ul>
+<p>------------------------------------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Read-write documents, orders, baskets and data structures&quot;)</strong><br>
+  ------------------------------------------------------------------------------------------------------------------------</p>
+<p>---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Reads the old processes from DB backwards from the last start time to the earliest time and restarts them in batches&quot;)</strong><br>
+  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog charge types&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog taxes&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog Hierarchy&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog Type List&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog Purpose Matrix Type List&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog info tables&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog Context Type List&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>-----------------------------------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Read-only documents, orders, baskets and data structures&quot;)</strong><br>
+  -----------------------------------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Collects and resolves validation rules&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Query results&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Contains code tables&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Maintenance thread Interface&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog dynamic rows&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog Association Type List&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>-------------------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Contains the currently running process objects&quot;)</strong><br>
+  -------------------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Contains catalog scripts&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog Translations&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Compiled queries&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>-----------------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Contains senders of the consumed messages&quot;)</strong><br>
+  -----------------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Global Process Thread Interface&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Interface operation&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;TIBCO API&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Soap Api&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;HTTP API&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;JMS API&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;MQ API&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog Info Model Type List&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog Tree Items&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog Attribute Type List&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Task distribution queue&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog associations&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Search list&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Contains process documents&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog items&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Information about the application health and performance&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------------------------------</p>
+<p>------------------------------------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Read-write documents, orders, baskets and data structures&quot;)</strong><br>
+  ------------------------------------------------------------------------------------------------------------------------</p>
+<p>---------------------------------------------------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Periodically polls the DB for processes and starts the batch that is read&quot;)</strong><br>
+  ---------------------------------------------------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog tax models&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------<br>
+  <strong>@CwJMXMBean(description = &quot;Catalog Rule Definitions Type List&quot;)</strong><br>
+  ----------------------------------------------------------------------------------------------<br>
+</p></td>
+</tr>
+</table>
+</body>
+</html>

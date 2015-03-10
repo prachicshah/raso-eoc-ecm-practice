@@ -1,0 +1,180 @@
+<html>
+<head>
+<title>Process Engine  Information</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h2>Process Engines (PE) Information</h2>
+<p>To access the <strong>PE Info</strong> report, do the following:</p>
+<ol>
+  <li>In the AVM search results, select the checkbox next to the PE that you want to view. </li>
+  <li>Click the <b>PE Info</b> button to launch a summary for the selected process engine (applies only to process engines).</li>
+  </ol>
+<p><img src="pe_info.png" border="1" alt="PE Info - General tab" /></p>
+<p>The PE Info page contains the following tabs:</p>
+<ul>
+  <li><a href="#general">General</a></li>
+  <li><a href="#cache">Cache</a></li>
+  <li><a href="#activityThreads">Activity Threads</a></li>
+  <li><a href="#queues">Queues</a></li>
+  <li><a href="#messages">Messages</a></li>
+  </ul>
+<p>To refresh the information on any tab, click the <strong>Refresh</strong> button.</p>
+<h3><a name="general"></a>General</h3>
+<p>The PE Info page's General tab provides information about the number of process, pending process activities, and memory details.</p>
+<p><img src="pe_info.png" border="1" alt="PE Info - General tab" /></p>
+<p>The General tab contains the following field information:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Field</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Total Number of Processes</strong></td>
+      <td class='confluenceTd'>The total number of processes in this PE</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Pending Process Activities</strong></td>
+      <td class='confluenceTd'>Number of process activities in the wait Queue</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Used Memory (KB)</strong></td>
+      <td class='confluenceTd'>Memory currently used by this PE (in megabytes)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Total Memory (KB)</strong></td>
+      <td class='confluenceTd'>Total Memory allocated to this PE (in kilobytes)</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="cache"></a>Cache</h3>
+<p>Clicking the PE Info page's Cache tab provides participant and order cache details.</p>
+<p><img src="pe_info_cache.png" alt="PE Info - Cache tab" border="1"></p>
+<p>The Participate Cache section  contains the following fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Field</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Last DB Read</strong></td>
+      <td class='confluenceTd'>Time of the last database read of Participant messages</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Queue Count</strong></td>
+      <td class='confluenceTd'>Size of the participant messages in PE cache</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Next DB Read</strong></td>
+      <td class='confluenceTd'>Time of the next scheduled database read of Participant messages</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Waiting Message Count</strong></td>
+      <td class='confluenceTd'>Number of process requests waiting for participant messages</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="activityThreads"></a>Activity Threads</h3>
+<p>Clicking the PE Info page's Activity Threads tab provides a summary of <span class="confluenceTd">the activity threads in this process engine</span>.</p>
+<p><img src="pe_info_activity_threads.png" alt="PE Info page - Activity Threads tab" border="1"></p>
+<p>The Activity Threads summary contains the following fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Field</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Threads ID</strong></td>
+      <td class='confluenceTd'>This field denotes the identifier for the activity thread.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Process ID</strong></td>
+      <td class='confluenceTd'>This field contains the process identifier.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Started</strong></td>
+      <td class='confluenceTd'>This field indicates the time and date that the activity thread was started.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Activity</strong></td>
+      <td class='confluenceTd'>This field represents the activity that is to be processes on the activity thread.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Executing</strong></td>
+      <td class='confluenceTd'>This field indicates whether the activity thread is processing an activity.</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="queues"></a>Queues</h3>
+<p>Clicking the PE Info page's Queues tab provides a summary of <span class="confluenceTd">data in the queue</span>.</p>
+<p><img src="pe_info_queues.png" alt="PE Info - Queues tab" border="1"></p>
+<p>The Queues tab contains the following fields:</p>
+<table width="608" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="132" class='confluenceTh'>Field</th>
+      <th width="454" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Message ID</strong></td>
+      <td class='confluenceTd'>This field contains the unique message ID.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Consumer ID</strong></td>
+      <td class='confluenceTd'>This field denotes the consumer ID.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Sender Type</strong></td>
+      <td class='confluenceTd'>This field represents the sender type.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Operation</strong></td>
+      <td class='confluenceTd'>This field contains the operation identifier.</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="messages"></a>Messages</h3>
+<p>Clicking the PE Info page's Messages tab provides a summary of <span class="confluenceTd">queue messages</span>.</p>
+<p><img src="pe_info_messages.png" alt="PE Info - Messages tab" border="1"></p>
+<p>The Messages tab contains the following fields:</p>
+<table width="608" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="132" class='confluenceTh'>Field</th>
+      <th width="454" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Message ID</strong></td>
+      <td class='confluenceTd'>This field contains the unique message ID.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Consumer ID</strong></td>
+      <td class='confluenceTd'>This field denotes the consumer ID.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Sender Type</strong></td>
+      <td class='confluenceTd'>This field represents the sender type.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Operation</strong></td>
+      <td class='confluenceTd'>This field contains the operation identifier.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Activity</strong></td>
+      <td class='confluenceTd'>This field describes the activity to be processed.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Clicking the <strong>Detail</strong> icon to the left of the <strong>Message ID</strong> field provides details about the selected queue message.</p>
+<p><img src="pe_info_queue_message_details.png" alt="Queue messages details" border="1"></p></td>
+</tr>
+</table>
+</body>
+</html>

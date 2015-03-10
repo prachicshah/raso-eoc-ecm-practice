@@ -1,0 +1,191 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Item Attribute Restrictions</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h3>Item Attribute Restrictions</h3>
+<p>Restrictions can be applied on Item Attributes such that at runtime, either an item attribute is assigned a specific value or there is a condition that is applied on the item value.</p>
+<p><b>Create a restriction</b></p>
+<p>To create a restriction, complete these steps:</p>
+<ol>
+<li>Navigate to the Association Types and create an Association with a <strong>Category</strong> of <strong>Restriction</strong>. Click the <strong>Save</strong> button to access the Attributes pane.</li>
+<li>Within the Attributes pane, click the <strong>Add </strong>button to add attributes to the restriction association type.<br>
+  <br>
+<img src="RestrictionAssociation.png" alt="Restriction Association">
+</li></br>
+
+<li>Assign a restricted attribute to an item and enter the restriction details.<br>
+  <br>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<td class='confluenceTd'><img src="RestrictionDetails.png" alt="Restriction Details"></td>
+</tr>
+</tbody>
+</table>
+<br>
+The Restriction Detail tab contains the following fields:<br>
+<br>
+<table class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Field</th>
+      <th class='confluenceTh'>Description</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'>The name of the item attribute restriction  for internal use when designing your catalog model. This field is not supported by language translation. </td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'>A list of available <a href="../Configuration/States.html">Statuses</a> for this restriction (for example, Definition and Active).</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Start Date</strong></td>
+      <td class='confluenceTd'>The effective date of this attribute. Refer to <a href="../Configuration/StartEnd_Dates.html">Start and End dates</a> for details.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>End Date</strong></td>
+      <td class='confluenceTd'>The end date of this attribute represents the date when this attribute is no longer effective. Refer to <a href="../Configuration/StartEnd_Dates.html">Start and End dates</a> for details.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Cancel</strong></td>
+      <td class='confluenceTd'>Objects that are extended have this <strong>Cancel</strong> flag checked. If the flag is checked, then the   extended item does not inherit that association. </td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Sequence</strong></td>
+      <td class='confluenceTd'>Number value used for attribute restriction sorting.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Immutable</strong></td>
+      <td class='confluenceTd'>This flag indicates whether the associated item attribute value can be modified at runtime.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>isNull</strong></td>
+      <td class='confluenceTd'>If checked, a null value is allowed. Otherwise,   a null value is not allowed.  This property is only defined in a restriction object and there is no logic to use it to perform actions in Catalog. Instead, you need to use the script API to get this property value, and  then implement your logic in either an adding or validation action. </td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Association Type</strong></td>
+      <td class='confluenceTd'>This field indicates the restriction association type.</td>
+      </tr>
+    
+    <tr>
+      <td class='confluenceTd'><strong>Project</strong></td>
+      <td class='confluenceTd'>Each object is assigned to a project. This field defaults to the active or opened project when the attribute is first created.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Catalog Rule Def</strong></td>
+      <td class='confluenceTd'>The Default Value can be derived from a condition. This field launches the Catalog Rule Finder. The user is able to select a Catalog Rule that  determines the runtime Default Value for this item attribute.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Default Value</strong></td>
+      <td class='confluenceTd'>The static value that appears in the client application during runtime for this item attribute.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Attribute Value Type</strong></td>
+      <td class='confluenceTd'>Selecting the <strong>Intersection</strong> option returns the codes defined in the restriction. Selecting <strong>Difference</strong> returns the difference between the code table codes and the restriction codes.</td>
+      </tr>
+    </tbody>
+</table>
+</li></br>
+
+<li>To apply a condition for a restriction, click the <strong>Conditions</strong> tab:<br>
+  <br>
+<img src="RestrictionCondition.png" alt="Restriction Condition">
+<br>
+The Rule Detail tab contains the following fields:<br>
+<br>
+<table class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Field</th>
+      <th class='confluenceTh'>Description</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Code</strong></td>
+      <td class='confluenceTd'>The code used to identify the item attribute's conditional restriction.  </td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Rule Name</strong></td>
+      <td class='confluenceTd'>Launches the Catalog Rule finder. The user is able to select from previously defined rules in the Catalog Rule Language.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'>The name of the attribute can be used as a visual label for internal use when designing your catalog model. This field is not supported by language translation. </td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Type</strong></td>
+      <td class='confluenceTd'>Denotes one of the following rule types: Eligibility, Validation, Availability, and Rank.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'>A list of available <a href="../Configuration/States.html">statuses</a> for this condition (for example, Definition and Active).</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Start Date</strong></td>
+      <td class='confluenceTd'>The effective date of this attribute. Refer to <a href="../Configuration/StartEnd_Dates.html">Start and End dates</a> for details.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>End Date</strong></td>
+      <td class='confluenceTd'>The end date of this attribute represents the date when this attribute is no longer effective. Refer to <a href="../Configuration/StartEnd_Dates.html">Start and End dates</a> for details.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Label</strong></td>
+      <td class='confluenceTd'>The visual label used for this condition, which is used in the application user interface. This field is a translational string that supports language translations (refer to Velocity Studio's Translation Element for more details).</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Cancel</strong></td>
+      <td class='confluenceTd'>Objects that are extended have this <strong>Cancel</strong> flag checked. If the flag is checked, then the   extended item does not inherit that association. </td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Message Code</strong></td>
+      <td class='confluenceTd'>Error message code that is invoked when the rule returns  <em>false</em>.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Sequence</strong></td>
+      <td class='confluenceTd'>Number value used for condition sorting.</td>
+      </tr>
+    
+    <tr>
+      <td class='confluenceTd'><strong>Project</strong></td>
+      <td class='confluenceTd'>Each object is assigned to a project. This field defaults to the active or opened project when the attribute is first created.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Language</strong></td>
+      <td class='confluenceTd'>Choose from either Catalog Rule Language or JavaScript.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Script</strong></td>
+      <td class='confluenceTd'> This launches an editor for defining a condition. </td>
+      </tr>
+    </tbody>
+</table>
+
+</li>
+
+</br>
+
+<li>To apply a value to the attribute, click the <strong>Properties</strong> tab.  This tab displays the attributes associated with the restriction association type and the association data type.  Enter the values to be assigned to these attributes.<br>
+  <br>
+<img src="RestrictionProperties.png" alt="Restriction Properties">
+
+</li>
+
+</ol>
+
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>
+

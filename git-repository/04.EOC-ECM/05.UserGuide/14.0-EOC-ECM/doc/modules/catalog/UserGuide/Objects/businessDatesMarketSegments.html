@@ -1,0 +1,267 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Market Segments</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h3>Market Segments</h3>
+<p>In Catalog, a market segment plays an important role in driving the rules and conditions  of defining an item. </p>
+<p>In past releases, you could work with market segment-based rules in two ways:</p>
+<ul>
+  <li> Rules  (that is, availability, eligibility, and conditions) that can be written in either the <a href="../Rules/Rules_Overview.html">Catalog Rule Language</a> or  JavaScript.</li>
+  <li> Another way to define availability of an offer  is associating items to availability trees.</li>
+</ul>
+<p>This release provides a new way of building rules based on market segment.  These  rules can be used for availability or eligibility. The Catalog maintenance user interface provides support to specify these rules for  availability of an offer. In future releases, support can be extended to other  item associations that are conditional. </p>
+<p>According  to TM Forum, a market segment consists of the following:</p>
+<ul>
+  <li>Locations in which an offer is available and  sales channels through which an offer is sold</li>
+  <li>Offers are available for customers of a certain  type or subtype, in a certain age group, with a certain household income, if  residential</li>
+</ul>
+<p>This  model can be extended based on each specific customer requirement. The following market segment rule dimensions can be defined as either availability trees or free form values (that is, either a number or string):</p>
+<ul>
+  <li>salesChannel</li>
+  <li>customerSegment</li>
+  <li>customerType (new, existing, and so on)</li>
+  <li>revenue</li>
+  <li>ageGroup</li>
+  <li>internetUsage</li>
+  <li>population (free form number)</li>
+</ul>
+<h4>Rule Persistence and Its Model</h4>
+<p>The MarketSegmentRuleModel is a type of rule. This model defines the rule's dimensions, which can be of type Tree,  String,or Number. The recommendation is that if the dimension is a list of values, it  needs to be stored as CwAvailabilityTrees. If the list  contains free form string or number  values, it needs to be stored as either a string or number. The model is extendable, but  you cannot delete dimensions once you have defined them.  </p>
+<p>The following  are the entities used to define and store MarketSegmentRuleModel:</p>
+<ul>
+  <li><a href="#marketSegmentDimensions">MarketSegmentDimensions</a></li>
+  <li><a href="#marketSegmentRule">MarketSegmentRule</a></li>
+  <li><a href="#itemMarketSegmentRule">itemMarketSegmentRule</a></li>
+  <li>theMarketSegmentRuleContext (Catalog API predefined  variable)</li>
+  </ul>
+<p>To be able to run this rule, a predefined context variable is required to evaluate these rules, which is theMarketSegmentRuleContext. See the JavaScript documentation for APIs that all you to set this context variable.</p>
+<p><strong>Note:</strong> To associate a market segment to an item, see the <a href="itemsAssociateMarketSegments.html">Associate a market segment</a> page for details.</p>
+<h4><a name="marketSegmentDimensions"></a>MarketSegmentDimensions</h4>
+<p>The MarketSegmentDimensions entity contains the following columns:</p>
+<ul>
+  <li>dimensionCode</li>
+  <li>msRuleContextAttributeCode (it refers to the  rule context attribute code, or it is assumed that the dimensionCode directly maps  to the ruleContextAttributeCode)</li>
+  <li>dimensionType (CwAvailabilityTree, Number,  String)</li>
+  <li>treeCode (it is only used if the dimension type is  CwAvailabilityTree)</li>
+  <li>name</li>
+  <li>label</li>
+  <li>sequence (it drives the column sequence in the  marketSegment column)</li>
+  <li>marketSegmentRuleLeaf (the variable name in  the Market Segment Rule table)</li>
+  </ul>
+<p>You can access market segment dimensions by clicking <strong>Technical Configuration</strong> &gt; <strong>Market Segment Definitions</strong> from the Quick Start menu.</p>
+<p><img src="businessDatesMarketSegmentDimensions.png" alt="Market Segment Dimensions page"></p>
+<p>The Market Segment Dimensions page contains the following fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="133" class='confluenceTh'>Field</th>
+      <th width="736" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Dimension Code</strong></td>
+      <td class='confluenceTd'>This field denotes the code for the market segment dimension.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Dimension Type</strong></td>
+      <td class='confluenceTd'>This field contains the type for the market segment dimension.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'>This field represents the name of the market segment dimension.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Availability Tree Code</strong></td>
+      <td class='confluenceTd'>This field indicates the availability tree code of the market segment dimension.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Leaf Name</strong></td>
+      <td class='confluenceTd'>This field indicates the  variable name associated with the market segment dimension.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'>This field denotes  a list of available <a href="States.html">statuses</a> for the market segment dimension (for example, <strong>Definition</strong> and<strong> Active</strong>).</td>
+    </tr>
+  </tbody>
+</table>
+<p>Double-clicking any <span class="confluenceTd">market segment dimension</span> from the list allows you to view its details:</p>
+<p><img src="businessDatesMarketSegmentDimensionsDetails.png" alt="Market Segment Dimensions page - details"></p>
+<p>The <span class="confluenceTd">Market Segment Dimension</span>s details page contains the following fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="133" class='confluenceTh'>Field</th>
+      <th width="736" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Dimension Code</strong></td>
+      <td class='confluenceTd'>This field denotes the code for the market segment dimension.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Dimension Type</strong></td>
+      <td class='confluenceTd'>This field contains the type for the market segment dimension.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'>This field represents the name of the market segment dimension.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Label</strong></td>
+      <td class='confluenceTd'><p>This field contains the field's visual label displayed at runtime, which is used in the application user interface. </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Availability Tree Code</strong></td>
+      <td class='confluenceTd'>This field indicates the availability tree code of the market segment dimension.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Leaf Name</strong></td>
+      <td class='confluenceTd'>This field indicates the  variable name associated with the market segment dimension.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'>This field denotes  a list of available <a href="States.html">statuses</a> for the market segment dimension (for example, <strong>Definition</strong> and<strong> Active</strong>).</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Sequence</strong></td>
+      <td class='confluenceTd'>This field contains the market segment dimension code's sequence position in the model.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Owner</strong></td>
+      <td class='confluenceTd'>This field represents the position of the user who created the project. Only users with the same position or higher can access the project data.  This value cannot be changed. Refer to <A href="../Configuration/Catalog_Domains.html">Domains</A> for more information. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Project</strong></td>
+      <td class='confluenceTd'>This field indicates with which project  the market segment dimension is associated. Each object is assigned to a <a href="Project.html">project</a>. This field defaults to the active or opened project when the market segment dimension is first created. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Start Date</strong></td>
+      <td class='confluenceTd'>This field represents the start (effective) date that the market segment dimension is available. Refer to <a href="../Objects/StartEnd_Dates.html">Start and End dates</a> for details.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>End Date</strong></td>
+      <td class='confluenceTd'>This field indicates the date when the market segment dimension is no longer effective. Refer to <a href="../Objects/StartEnd_Dates.html">Start and End dates</a> for details.</td>
+    </tr>
+  </tbody>
+</table>
+<h4><a name="marketSegmentRule"></a>MarketSegmentRule</h4>
+<p> The  MarketSegmentRule entity is persisted in the MarketSegmentRule table. The out-of-box  market segment rule has following columns:</p>
+<ul>
+  <li>id</li>
+  <li>locationCode</li>
+  <li>salesChannelCode</li>
+  <li>customerSegment</li>
+  <li>ageGroup</li>
+  <li>revenue</li>
+  <li>treeOperator (Include or Exclude)</li>
+  </ul>
+<p>The  marketSegmentRule document  persistence and read are implemented in such a way that specific  Catalog implementations can extend their model. You cannot delete any  columns, but you can add new columns to this table for more trees. These new  columns require a schema change, so they cannot be added on the fly. </p>
+<p><strong>Include and Exclude operators</strong></p>
+<p>By  default, the operator is Include. The following table describes three different scenarios:</p>
+<ul>
+  <li>If the context is <strong>Location:</strong> Ontario and <strong>Channel:</strong> Ch1, the rule returns true.
+  </li>
+  <li>If the context is<strong> Location: </strong>Toronto  and <strong>Channel:</strong> Ch3, the rule returns false.
+  </li>
+  <li>If the context is <strong>Channel:</strong> Ch3, the rule returns true.
+    <br>
+    <br>
+  </li>
+</ul>
+<table width="44%" border cellpadding="1" class='confluenceTable'>
+  <tr>
+    <th width="114" class='confluenceTh'>Rule Number</th>
+    <th width="99" class='confluenceTh'>Location</th>
+    <th width="101" class='confluenceTh'>Sales Channel</th>
+    <th width="140" class='confluenceTh'>Customer Segment</th>
+    <th width="114" class='confluenceTh'>Age Group</th>
+    <th width="99" class='confluenceTh'>Revenue</th>
+    <th width="86" class='confluenceTh'>Operator</th>
+    </tr>
+  <tr>
+    <td class='confluenceTd'>R1</td>
+    <td class='confluenceTd'>Ontario</td>
+    <td class='confluenceTd'>Ch1</td>
+    <td class='confluenceTd'>Residential</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>Include</td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'>R2</td>
+    <td class='confluenceTd'>Toronto</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>Exclude</td>
+    </tr>
+  <tr>
+    <td class='confluenceTd'>R3</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>Ch3</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>Include</td>
+    </tr>
+</table>
+<h4><a name="itemMarketSegmentRule"></a>itemMarketSegmentRule</h4>
+<p>The  <strong>itemMarketSegmentRule</strong> association has been extended to support the marketSegmentRule type.</p>
+<ul>
+  <li>These rules are only used to define availability rules.</li>
+  <li>These availability rules are an association  between an item, new dates, and the marketSegmentRule.</li>
+  <li>If some items do not use any dates model, the  new dates are  null.</li>
+  </ul>
+<p>The following table depicts the aforementioned itemMarketSegmentRule model and shows the item rule for a typical logger:</p>
+<table width="44%" border cellpadding="1" class='confluenceTable'>
+  <tr>
+    <th width="114" class='confluenceTh'>itemRuleVersionId</th>
+    <th width="99" class='confluenceTh'>itemMarketSegmentRuleCode</th>
+    <th width="101" class='confluenceTh'>itemCode</th>
+    <th width="140" class='confluenceTh'>catalogObjectType</th>
+    <th class='confluenceTh'>catalogObjectCode</th>
+    <th class='confluenceTh'>ruleType</th>
+    <th class='confluenceTh'>marketSegmentRuleDocId</th>
+    <th class='confluenceTh'>startDate</th>
+    <th class='confluenceTh'>endDate</th>
+    </tr>
+  <tr>
+    <td class='confluenceTd'>ID1</td>
+    <td class='confluenceTd'>R1</td>
+    <td class='confluenceTd'>Item2</td>
+    <td class='confluenceTd'>Item</td>
+    <td class='confluenceTd'>null</td>
+    <td class='confluenceTd'>availability</td>
+    <td class='confluenceTd'>MSR1</td>
+    <td class='confluenceTd'>D1</td>
+    <td class='confluenceTd'>null</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>ID2</td>
+    <td class='confluenceTd'>R2</td>
+    <td class='confluenceTd'>Item1</td>
+    <td class='confluenceTd'>Item</td>
+    <td class='confluenceTd'>null</td>
+    <td class='confluenceTd'>availability</td>
+    <td class='confluenceTd'>MSR2</td>
+    <td class='confluenceTd'>D1</td>
+    <td class='confluenceTd'>null</td>
+  </tr>
+</table>
+<h4>Sample data file</h4>
+<p>A sample data file, sampleMarketSegmentsandBusinessDatesModel.zip, is available in the product. This file contains preconfigured data for availability trees, market segment dimensions, and business date models that you can import. This file appears in your &lt;<em>installation_folder</em>&gt;\modules\catalog folder. </p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

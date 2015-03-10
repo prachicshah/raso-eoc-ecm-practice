@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Notes on Scripting</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Notes on Scripting</h2>
+<h3>Using Underscore in Script Names</h3>
+<p>The methods of the AVM scriptable classes such as Document, Order, ReferenceValue, etc. can be called without leading underscore. For example the copy method on a document object can be called as:<br />
+<div class="code"><div class="codeContent">
+<pre>
+doc.copyDocument(...)
+</pre>
+</div>
+</div>
+as well as:<br />
+<div class="code"><div class="codeContent">
+<pre>
+doc._copyDocument(...)
+</pre>
+</div>
+</div>
+</p>
+
+<p>While the legacy scripts may stay as they are we strongly recommend not using underscore as first character of the script name for newly developed scripts. This has performance advantage and is more readable. However the use of leading underscore may be needed in rare cases when an object component name matches the element script name. For example if a document has leaf named <i>reference</i>, the call <i>doc.reference()</i> will give error as it will retrieve the leaf instead the method. In this case, use <i>doc.reference</i> to get the leaf value and <i>doc._ reference()</i> to call the method.</p>
+<p>Using two underscores as prefix in the script names is allowed but strongly discouraged. In the future releases AVM may throw exception if such scripts are called.</p>
+
+<h3>Naming Restriction</h3>
+<p>The new script mechanism put the following restrictions on the metadata names:
+<ul>
+  <li>The names of the user and global scripts must not start with underscore. If this rule is not followed the results may be unpredictable.</li>
+  <li>The names of the metadata objects, object components and scripts must not start with <i>cw$super</i>.</li>
+  <li>For increased performance avoid using dollar sign as third character of the script or component names.</li>
+</ul>
+</p>
+
+<h3>Deprecation Strategy</h3>
+<p>There are three levels of deprecation of the predefined script APIs as follows:</p>
+<ol>
+<li><b>Deprecated method:</b> Shown as <del>scratched</del> in the Designer API list. At runtime, the first three calls of this type of method will generate <em>warning</em> messages in the system log. Developers are strongly advised not use deprecated methods, as it is guaranteed that the deprecated methods will be available in the next major release.</li>
+<li><b>Method marked for removal:</b> Shown as <b><del>bold and scratched</del></b> in the Designer API list. At runtime, the first ten calls of this type of method will generate <em>error</em> messages in the system log, but the API will perform correctly. The method marked for removal may not be available in the next major release. It is not advised to use them.</li>
+<li><b>Removed method:</b> These methods are not shown in the Designer API list, but will appear in the API Javadoc. At runtime, a call of this method will generate immediate <em>exception</em>. Applications using such methods are not operational.</li>
+</ol>
+<p><b>Note:</b> The script API documentation provides alternative methods for deprecated methods in all three levels.</p>
+<h3>Number Representation</h3>
+<p>Internally, the scripting engine represents numbers as doubles. As an example, in a conversion map, when the source has two fields that are null and you define the target as a sum of these fields, the target receives 0.0 (that is, null + null).</p></td>
+</tr>
+</table>
+</body>
+</html>

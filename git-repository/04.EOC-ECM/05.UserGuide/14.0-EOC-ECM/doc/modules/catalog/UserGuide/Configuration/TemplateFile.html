@@ -1,0 +1,1329 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Template File</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Template File</h2>
+<p>The <i>&lt;metadata home&gt;/resources/Excel Template/Template.xml</i> file is used to Import and Export data into the Catalog.  This section contains a listing of the fields used by the system for importing and exporting data. The excel template file has the following sheets containing the fields below. This file is stored as an XML Spreadsheet 2003 (*.xml) format.  This file can also be obtained by using the Catalog export function. The export file can be used to input your data for Catalog Import. </p>
+
+<h3>Summary</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'>Title:</td>
+<td class='confluenceTd'>Template for Bulk upload Catalogue objects to CWPC	</td>
+<td></td>
+</tr>
+<tr>
+<td class='confluenceTd'>Legend:	</td>
+<td class='confluenceTd'>code</td>
+<td class='referemceTd'>These are normal fields, user editable</td>
+</tr>
+<tr>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>mandatory</td>
+<td class='referemceTd'>This color Indicates the field below is mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Steps:</td>
+<td class='confluenceTd'>Populate the Excel file	</td>
+<td>Save in "XML Spreadsheet 2003 (*.xml)" format.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Version:</td>
+<td class='confluenceTd'>2010-08-17	</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h3>cwt_attribute</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>attributeCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>type</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>description</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>length</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>precision</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>codeTableName</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+<h3>cwt_catalogHierarchy</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>hierarchyCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>description</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>parentHierarchyCode</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_catalogRule</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>ruleName</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>ruleType</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>returnType</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>ruleScript</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<h3>cwt_chargeType</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>chargeTypeCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>isDiscount</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>taxModelCode</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>infoModelCode</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>discountTargetCharge</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>chargeFreq</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>description</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>displayOnly</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>stepPricingType	</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>value</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>currency</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>discountType</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>percentage</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startPeriod</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>duration</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>coupon</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>cwt_context</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>contextCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>description</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+<h3>cwt_contextAttribute</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>contextCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>attributeCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>contextVariableName</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>cwt_infoModel</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>infoModelCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>description</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>isDynamic</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>dbTableName</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>expirationInterval</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>cwt_infoModelAttribute</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>infoModelCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>attributeCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>modelAttrName</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>description</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>sequence</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>isNull</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>isSearch</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>descending</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_item</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>itemCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>baseItemCode</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemType</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>orderable</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>cwt_itemAttachment</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>itemCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemAttachmentCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>type</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>cancel</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_itemAttribute</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>catalogObjectType</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemRelationCode</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>attributeCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemAttributeCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>sequence</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>isProperty</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>defaultValue</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>cancel</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_itemCharge</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>catalogObjectType</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemRelationCode</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemGroupCode</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>chargeTypeCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemChargeCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>sequence</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>cancel</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_itemDescription</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>itemCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemDescriptionCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>description</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>type</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>cancel</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_itemGroup</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>itemCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemGroupCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>type</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>minCardinality</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>maxCardinality</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>cancel</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_itemGroupTarget</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>itemCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemGroupCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemRelationCode</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>relationTypeCode</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<h3>cwt_itemHierarchy</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>itemCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>hierarchyCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_itemImage</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>itemCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemImageCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>type</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>imageType</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>imageSize</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>cancel</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_itemRelation</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>itemCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemRelationTarget</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemRelationCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>type</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>sequence</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>minQuantity</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>maxQuantity</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>cancel</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_itemRule</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>itemRuleCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>catalogObjectType</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>catalogObjectCode</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemCode</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>ruleName</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>type</td>
+<td class='confluenceTd'>Optional</td>
+</tr><tr>
+<td class='confluenceTd'>messageCode</td>
+<td class='confluenceTd'>Optional</td>
+</tr><tr>
+<td class='confluenceTd'>itemRuleScript</td>
+<td class='confluenceTd'>Optional</td>
+</tr><tr>
+<td class='confluenceTd'>sequence</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>cancel</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_project</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>projectCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>effectiveDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>description</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>cwt_projectAssignment</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>projectCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>objectType</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>objectCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>objectStartDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>objectAssociationCode</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>objectAdditional</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>objectAdditional2</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_relationType</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>relationTypeCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>category</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>ruleType</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>cwt_relationTypeAttribute</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>relationTypeCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>attributeCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>relationAttrName</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>sequence</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_restriction</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>restrictionName</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>catalogObjectType</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>catalogObjectCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>immutable</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>isNull</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>selected</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>sequence</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>defaultValue</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>attrValueType</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>cancel</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>cwt_ruleParameters</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>ruleName</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>attributeCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>paramName</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>sequence</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_systemIdentifier</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>systemId</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>itemCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>name</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>value</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_tax</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>taxCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'>percentage</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_taxModel</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>taxModelCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>label</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>status</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>startDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>endDate</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<h3>cwt_taxModelItem</h3>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Code</th>
+<th class='confluenceTh'>Optional/Mandatory</th>
+</tr>
+<tr>
+<td class='confluenceTd'>sourceTaxModelCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>sourceTaxModelStartDate</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>taxCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>taxModelCode</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'>sequence</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

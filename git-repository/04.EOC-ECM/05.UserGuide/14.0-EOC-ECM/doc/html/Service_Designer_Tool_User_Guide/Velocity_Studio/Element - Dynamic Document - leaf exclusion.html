@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Dynamic Document with Leaf Exclusion</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Dynamic Document with Leaf Exclusion</h2>
+
+<p><a href="../Metadata_Objects/Document/Dynamic Document.html">Dynamic document</a> elements can be designed so that not all dynamic leaves in the NVP table are displayed at runtime. A script that accepts a parameter type of String and a return type of Boolean may be used to determine which leaves are to be displayed and which should remain hidden.
+
+<p>To create a dynamic document with leaf exclusion, complete these steps:
+<ol>
+  <li>Create the same scenario as described in the <a href="Element - Dynamic Document - dynamic form.html">Dynamic form</a> example, including the saving process, except without the createLeaf calls in the script. <br>
+    <br>
+  </li>
+  <li>Navigate to the <strong>Methods</strong> tab of the user interface and create a new script that returns type Boolean (mandatory to select this script). Proceed to add a parameter of type string to represent the leaf name.
+    <br>
+    <br>
+  </li>
+  <li>Create a sample script that ensures that only some dynamic leaves are displayed at runtime:<br>
+    <br>
+<div class="preformatted">
+<div class="preformattedContent">
+  <pre>if(&quot;testDecLeafName&quot; == leafNameParam ||   &quot;testIntLeafName&quot; == leafNameParam ){
+        return true;
+    }
+    return false;</pre>
+</div>
+</div>
+    The script must return a Boolean value. A true value excludes that leaf; otherwise, an error occurs.
+    <code><br>
+    <br>
+    </code></li>
+  <li>Navigate back to the dynamic document element and set its <strong>Filter method</strong> property to the script you created in step 3.<br>
+    <br>
+  </li>
+  <li> Save your metadata, and click <strong>Runtime &gt; Run</strong> from the menu bar. The output shows three of the five dynamic leaves.<br>
+    <br>
+  </li>
+  <li>Before the dynamic document is loaded during runtime, the script created in step 3 is called for all available leaves in the NVP table. Ensure that this logic is what you need for you application form.</li>
+</ol>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

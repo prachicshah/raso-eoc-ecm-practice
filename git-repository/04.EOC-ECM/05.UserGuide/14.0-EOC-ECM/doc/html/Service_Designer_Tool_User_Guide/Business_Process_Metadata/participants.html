@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Participants</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<h2>Participants</h2>
+<p>A participant of a process is an entity with which the process interacts. A process interacts with its participants by exchanging messages: sending to (producing) or receiving from (consuming) messages.</p>
+
+<p>Three types of participants can be defined in the Process Management product:</p> 
+<ul>
+<li><a href="user participant.html">User Participant</a></li>
+<li><a href="external service participant.html">External Service Participant</a></li>
+<li><a href="global process participant.html">Global Process Participant</a></li>
+</ul>
+
+<p>To allow a process to interact with its participant in a uniform way regardless of the participant type, the Process Management product requires every participant to expose the interfaces that define all the operations (requests or tasks) that this participant supports. Participant interfaces are defined the same way as <a href="../Metadata_Objects/External Services/defining an interface.html">external service interfaces</a>. This way, process definitions always refer to participant operations (interface operation of the participant) and are isolated from the actual implementation of the message exchange.</p>
+
+<h4><a name="new">Create New Participant</a></h4>
+
+<p>To create a new Participant, do one of the following:</p>
+<p>In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:</p>
+<ul>
+<ol>
+  <li>Right-click  a Namespace and select <b>New ...</b></li>
+  <li><b>New Metadata Object</b> wizard appears as a popup. Expand <b>Business Processes</b>, and select <b>Participant</b>, and then click the <b>Next</b> button.</li>
+  <li>Step two of wizard appears. Type in the name of Participant (must conform to JavaScript naming conventions). </li>
+  <li>For  <b>Task Type,</b> select <i>Manual</i> for User Participant, or <i>Automated</i> for External Service Participant or Global Process Participant. </li>
+  <ul>If <strong>Manual</strong> is selected, the Privileges list box appears. Select the privilege for the Participant.
+  </ul>
+  <ul>
+    If <strong>Automated</strong> is selected, the Actor  list box appears. Select the an exiting Participant or None.
+  </ul>
+  <li>Then, click the <b>Finish</b> button.</li>
+</ol>
+<li><i>OR</i></li>
+<ol>
+<li>Right-click the <b>Participants</b> folder or the <b>Business Processes</b> folder in a Namespace, if it is present. Select <b>New Participant</b></li>
+<li>Continue by following step 3 from above.</li>
+</ol>
+</ul>
+
+<p>After the Participant is created by the wizard, you can no longer view or change the Participant Task Type, and different Participant properties are available based on the selected type. The newly created Participant is added under <b>Participants</b> folder.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="newParticipantNode.PNG" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Notes</strong>: </p>
+<ul>
+  <li>The Participant User Interface is of type <em>com.conceptwave.system.WLTaskUserInterface</em>.</li>
+  <li>Each participant that is used to create worklist task must have a UserInterface in metadata (that is, right-click the participant and select <strong>Create UI</strong>). Otherwise, opening and displaying the task results in an exception. </li>
+</ul>
+</body>
+</html>

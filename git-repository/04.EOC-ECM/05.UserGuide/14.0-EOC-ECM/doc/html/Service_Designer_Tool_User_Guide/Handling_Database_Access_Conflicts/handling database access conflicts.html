@@ -1,0 +1,20 @@
+﻿<html>
+<head>
+<title>Handling Database Access Conflicts</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1><a name="HandlingDatabaseAccessConflicts"></a>Handling Simultaneous User Access Conflicts</h1>
+<p>Conflict detection is done in UI mode only. The <em>Document stamp</em> field (part of the Document) is used specifically for conflict detection. The stamp field is a string with number values from 1 to 999,999,999, which makes it practically impossible to miss a conflict.</p>
+<p>A separate <em>Order stamp</em> field handles the conflict detection at the Order level. It is not the stamp field of the Order Document.</p>
+<p>The responsibility of adding these columns is left entirely to the metadata developer who has to include the corresponding fields in the Document. The metadata developer can control (if needed) the names of the columns by deriving user-specific data types from the system data types in the cwf namespace or by changing the column names in the database mapping. Refer to section on Document Leaves for the list of supported system data types.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>Support for MS Excel Spreadsheet Format</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>Support for MS Excel Spreadsheet Format</h3>
+
+<p>Velocity Studio allows you to natively read and write MS Excel 97-2003 and 2010 spreadsheet formats. Support exists for .xls and .xslx (XML-based) files. There is also support for APIs with read and write cell access. </p>
+<p><strong>Note:</strong> This Excel support is not intended to create on-the-fly spreadsheets with complex formatting. Excel spreadsheets with proper layout and styling must be pre-created to allow for cell values to be manipulated.</p>
+<h4>Object Model</h4>
+<p>The following script objects are available:</p>
+<ul>
+  <li>ExcelWorkbook</li>
+  <li>ExcelSheet</li>
+  <li>ExcelRow</li>
+  <li>ExcelCell</li>
+  </ul>
+<p> These script objects are direct wrappers on   top of the Java APIs. Additionally, Global contains an API to load from   an attachment or resource, and an API to save it as an attachment.</p>
+<p><strong>CwfScriptGlobalFunctions API</strong><div class="preformatted">
+      <div class="preformattedContent">
+        <pre>CwfScriptGlobalFunctions { 
+  public ExcelWorkbook loadExcelDocumentFromResource(String path, boolean xslx, CwfContext uc);
+  public ExcelWorkbook loadExcelDocumentFromAttachment(String id, boolean xslx, AvmContext uc);
+  public void saveExcelDocumentToAttachment(ExcelWorkbook book, String id, AvmContext uc);<br>} </p></pre>
+      </div>
+</div>
+
+<p><strong>ExcelWorkbook API</strong></p>
+<div class="preformatted">
+      <div class="preformattedContent">
+        <pre>ExcelWorkbook { <br>  public ExcelSheet[] getSheets(); <br>} </pre>
+      </div>
+</div>
+
+<p><strong>ExcelSheet API</strong></p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>ExcelSheet {<br>  public ExcelRow[] getRows(); 
+} </pre>
+    </div>
+</div>
+
+<p><strong>ExcelRow API</strong></p>
+      
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>ExcelRow { 
+  public ExcelCell[] getCells(); <br>} </pre>
+    </div>
+</div>
+<strong>ExcelCell API</strong>
+      
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>ExcelCell { 
+  public String getValue(); 
+  public void setValue(String value);
+  public void setDateValue(Date value);
+  public void setBooleanValue(Boolean value);
+  public void setDoubleValue(double value); 
+  public void setFormula(String formula); <br>} </pre>
+    </div>
+</div>
+
+<p>The following is a sample script that uses all APIs:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>  //read cell from xlsx document 
+  var wb = Global.loadExcelDocumentFromResource(&quot;Book1.xlsx&quot;, true); 
+  var sheet = wb.getSheets()[1]; 
+  var row = sheet.getRows()[0]; 
+  var cell = row.getCells()[0]; 
+  Global.logDebug(cell.getValue()); </p><p>  //read cell from xls document <br>  var wb = Global.loadExcelDocumentFromResource(&quot;Book1.xls&quot;, false); <br>  var sheet = wb.getSheets()[1]; <br>  var row = sheet.getRows()[0]; <br>  var cell = row.getCells()[0]; 
+  Global.logDebug(cell.getValue()); </p><p>  //change value, save as doc attachment 
+  var docId = &quot;1&quot;; 
+  cell.setValue(&quot;YYY&quot;); 
+  Global.saveExcelDocumentToAttachment(wb, docId);</p><p>  //read cell from xls document ( 
+  var wb = Global.loadExcelDocumentFromAttachment(docId, false); 
+  var sheet = wb.getSheets()[1]; 
+  var row = sheet.getRows()[0]; 
+  var cell = row.getCells()[0]; 
+  Global.logDebug(cell.getValue()); </p><p> //create a dynamic document from all name-value pairs in bulk upload spreadsheet 
+  var dyn = new DynamicDocument(&quot;ns:test&quot;, null, null, false); 
+  wb = Global.loadExcelDocumentFromResource(&quot;BulkUpload.xlsx&quot;, true);
+  var sheet = wb.getSheets()[0]; 
+  var rowNames = sheet.getRows()[0].getCells();
+  var rowValues = sheet.getRows()[1].getCells();
+  for (var i=0; i«rowNames.length; i++) { 
+    var name = rowNames[i].getValue(); 
+  
+    //Note: Names are duplicate in this doc, so do not create leaf again if it exists 
+    if (!dyn.isDynamicLeaf(name)) 
+      dyn.createLeaf(name, name, 3, 0, 4, 0, null); 
+      dyn.putValueByName(name, rowValues[i].getValue(), false); <br>  } <br>  dyn.save();
+  </pre>
+  </div>
+</div>
+  
+  </p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

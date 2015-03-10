@@ -1,0 +1,351 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Button</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Button</h2>
+
+<p>This element creates a button field within the User Interface that can  display a label and icon. Clicking the button can invoke a user-defined method. This button can be enabled or disabled, or hidden or shown at runtime based on user permissions. The folllowing is an example of a button with a save icon and label. </p>
+
+<img src="exampleSave.png" alt="Save Button">
+
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='referenceTh'>references Variable?</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method?</th>
+<td class='referenceTd'>Yes, Click Method and On Enter.</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form?</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>Allowable Child Elements</th>
+<td class='referenceTd'><i>None</i></td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+  <th width="129" class='referenceTh'>Property</th>
+  <th width="141" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+  <th width="1343" class='referenceTh'>Comment</th>
+</tr>
+
+<tr>
+  <th class='referenceTh'>Name</th>
+  <td class='referenceTd'>Mandatory
+    </th>
+    <td class='referenceTd'>Name of the Button.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label</th>
+  <td class='referenceTd'>Mandatory</td>
+  <td class='referenceTd'>Visible label of the Button. If empty, the Button has no label. Default is empty.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Action Auditor</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Specify the Action Validator object for this button's <strong>Action Auditor</strong> property. During runtime, when you click this button, the associated logging action is also invoked, provided that the <strong>Enable action logging</strong> checkbox from the System <a href="../../Configuration_Tool_User_Guide/Log Levels.html"><strong>Logging</strong></a> tab has been selected.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Autofit</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Select this property's checkbox to automatically fit the image's label. By default, the image width is set at 100 px. To have the button fit both the label and icon, set the width to a small value (for example, 10 px) and select the <strong>Autofit</strong> checkbox.</td>
+</tr>
+<tr>
+<th class='referenceTh'>*Cell Alignment</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Controls the horizontal and vertical positioning of the Button in the page or parent Element. Default is undefined, which behaves as if it is top-left.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Cell Column Span</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Only applicable when in a Grid Layout. Specifies the number of columns that the Button occupies in the Grid Layout, to the right of current cell. Default is empty, which occupy one column.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Cell Row Span</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>This property provides more flexibility when building a grid-based user interface, instead of using a combination of horizontal and vertical layouts. This property appears when form elements appear under a Grid Layout element and the form element has a parent element. This property specifies the number of rows that the element occupies in the grid layout.</p>
+    <p>By default, this field is set to 1. All nine positions are made available for the <strong>Cell Alignment</strong> property if the form element is under a Grid Layout element and has a row span greater than 1, so that the form element can be aligned in nine different positions. With rowspan as 1, only the three centre positions are available.</p>
+    <p>To use this property, see the <a href="#cellRowSpanExample">example</a> for details.<BR>
+    </p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Click Method</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Choose from the list of methods available in the User Interface to bind to this Button. The method is invoked when a user clicks  the Button. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Disabled</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'><p>This property controls the user's ability to click  the button to invoke a click method. Choose from <em>True</em>, <em>False</em> or a permissions method. Setting this property to True means that the user is unable to click the button.  The permissions method will determine if the button is enable or disabled at runtime.</p>
+  <p>When this property is set to true and the <strong>Icon</strong> property is set, icon_Disabled must be provided. Otherwise, it appears as a  broken image.</p>
+<p><strong>Note:</strong> This property is only available at runtime. It does not work in the preview pane.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Dynamic Icon</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Use this property to display a dynamic icon on the button, as opposed to a static "icon"   property.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Dynamic Label</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property allows you to provide a dynamic label for a button. See the <a href="#dynamicLabel">Notes</a> section for details.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Dynamic Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Select a dynamic style from the drop-down menu to indicate that the style is applied to the entire button.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Dynamic Tooltip</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Defines a dynamic tooltip text that is displayed in a hover box when the cursor hovers the element.  Set property to a <em>String</em> variable or a script with a Return type <em>String</em>. The static Tooltip property is considered as default until the action returns a value.</p>
+    <p>When this element is  used under the Table element, the <strong> Dynamic Tooltip</strong> property accepts a script, which is called for each result document value bound to a field with a dynamic tooltip set. This script returns the string desired to be shown on the hover. Additionally, the property accepts a variable value belonging to the result document. The value for this variable is then used to display the tooltip.</p></td>
+</tr>
+<tr>
+<th class='referenceTh'>Dynamic Tooltip Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>This property dynamically changes the style of the Dynamic Tooltip.  Set property to a script with a Return type <em>String</em> that is a cascading style sheet (css) name found in the stylesheet used by the application.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Error Icon Gap</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Select this property's checkbox to make a gap for the validation icon. By default, this property is false. </p>
+    <p><strong>Note:</strong> This property is available only for left (or default) error orientation. The gap is calculated according to the /cwfv/error.png icon size. When the image is substituted with a smaller one, the gap is also smaller. </p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Error Icon Orientation</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property allows you to configure how an icon are displayed. This property takes the values left (default) and right.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Height</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Height to be taken up by the Button; can be in integer which is in pixels, or in percentage (for example, "50%") of page height or parent element.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Icon</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Choose an image file to appear as an icon on the button. The default is none.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Icon Orientation</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property determines the orientation of the icon compared to the label on the button. Choose from <em>Top</em>, <em>Left</em> or <em>Right</em>. The default is <em>Left</em>, which means that the icon appears to the left of the label. </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Icon Spacing</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property accepts numerical values in pixels (px), allowing you to customize the gap between the icon and the button label. </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Image Button</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Select this checkbox to render the button using either the <strong>Image: Static</strong> or <strong>Image: Dynamic</strong> background image. The background image refers to the stretch image that is being used for the entire button, which would replace the current grey stretch image  that is used to display a button. To display an actual image on top  of the grey image, use the style for the button and specify an image  button background.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Image: Dynamic</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Use this property to specify the base URL for the image. By default, the image button consists of three image parts: </p>
+    <ul>
+      <li>A start image (displayed   at the top or left)</li>
+      <li>A scalable central image</li>
+      <li>An end image displayed at the   bottom or right</li>
+    </ul>
+    <p>      The images displayed in the image button are derived   from this property in the following way:</p>
+    <ol>
+      <li>When the button is in its   standard state, the <tt>_start</tt>, <tt>_end</tt>, and <tt>_stretch</tt> suffixes are applied to the src (that is, before the file extension). By default, the images displayed are   button_start.gif (sized to be this.capSize by the specified width of the   stretchImgButton), button_stretch.gif (stretched to the necessary width), and   button_end.gif (sized the same as the start image).</li>
+      <li>
+        As the button's   state changes, the images have suffixes appended before the <tt>_start</tt>, <tt>_end</tt>, and <tt>_stretch</tt> suffixes to represent the button state. Possible states are as follows:      </li>
+      <ul>
+        <li><tt>Down</tt></li>
+        <li><tt>Over</tt></li>
+        <li><tt>Focused</tt></li>
+        <li><tt>Disabled</tt></li>
+      </ul>
+    </ol>
+    <blockquote>
+      <p><strong>Note:</strong> <tt>Selected</tt> and <tt>Focused</tt> are compound states that may be applied in addition to <tt>Down</tt>, etc.
+                            </p>
+      </blockquote>
+    <p>As an example, the centre piece of a stretchImgButton with the mouse hovering over it   might have the URL <em>button_Over_stretch.gif</em>.<BR>
+      <BR>
+      <strong>Note:</strong> It is recommended that media be present   for each possible state of the <tt>_start</tt>, <tt>_end</tt>, and <tt>_stretch</tt> images.<BR>
+    </p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Image: Label Padding</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Use this property to specify the right and left padding for the label inside the button.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Image: Static</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Specify a static image from the drop-down menu for this property.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Include in Tab Order</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>This property allows you to optionally suppress tabbing to any or all form elements. The <strong>Include in Tab Order</strong> property overrides the <a href="../../Configuration_Tool_User_Guide/Configure/System/UI/UItabbing.html">suppress tabbing</a> configuration setting and can take the following values:</p>
+    <ul>
+      <li>When set to <strong>&lt;Default&gt;</strong>, the element is included in tab order according to global rules and its focusable state.</li>
+      <li>If the property is set to <strong>Exclude</strong>, the element is excluded from tabbing even if the element is focusable.</li>
+      <li>If the property is set to <strong>Include</strong>, the element is included <em>only if it is focusable</em>, even if all items of that type are excluded through the Suppress Tabbing variable.</li>
+    </ul>
+    <p><strong>Note:</strong> For menu items and images, the <strong>Can Focus</strong> property affects including the element in the tab order. To ensure that an element is in the tabbing order, select this property.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>On Enter</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>The system calls any script defined in this property. This method is invoked when the Button is focused on the Web page and the user presses the <strong>Enter</strong> key.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Remove Label Line</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Select this property's checkbox when the element is in a grid layout and its column span is equal to the grid layout's   number of columns. In other words, if the   field is the only field in that row, this empty line is removed above the element. </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show Down</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Select this property's checkbox to  allow a button to have its style changed when you click the button. See the section following this table that provides an example on how to use this property.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show Focused Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Select this property's checkbox to show the focused style when a button receives   focus. This property only takes effect when the <strong>Style</strong> property is set, and both   the standard style and focused style must be available in the stylesheet   (that is, &lt;<em>StandardStyleName</em>&gt; and &lt;<em>StandardStyleName</em>&gt;Focused). </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show Label</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property determines whether the label is displayed on the button. Choose from <em>True</em> or <em>False</em>. Default is <em>True</em> which means that the label is displayed.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show Rollover Icon</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This setting allows you to change the icon of a button when the mouse pointer hovers over it. The Button element requires that you set the <strong>Icon</strong> property (for example, ensure that image.png and image_Over.png are present in your resource directory), and that you select the <strong>Show Rollover Icon</strong> property. At runtime, hovering your mouse pointer over the button icon shows image_Over.png.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show Upload Button</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property determines whether the Upload button is displayed on the form. Choose from <i>True</i> or <i>False</i>. Default is True which means that the button is displayed.  It is possible to set this property to False and add a Button element.  Associate the Button element with the Upload file by using the Upload Control Name property on the Button element. These properties are only visible when the form exists under an UploadPopup User Interface type.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Start Row</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Applicable only when the parent element is a Grid Layout. If true, the Button appears in a new row of the grid. If false, it is simply placed in the next available cell. Default is <i>False, </i>which means that the Button element does not appear on a new row.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'><p>Choose from styles within the selected stylesheet (located in the Velocity Studio toolbar), which defines the styling of the button such as positioning and color. Default is none.</p>
+  <p><strong>Note:</strong> CSS styles only appear in the property dropdown  if the following have been provided:</p>
+  <ul>
+    <li> styleName</li>
+    <li> styleNameDown</li>
+    <li> styleNameOver</li>
+    <li> styleNameDisabled</li>
+  </ul></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the tooltip text that is displayed in a hover box when the cursor hovers over the Button. Default is empty, which means that a tooltip has not been defined.  </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the tooltip style of the text displayed in the hover box when the cursor hovers over the Button element. The default is empty. Click the <strong>Value</strong> field to select a tooltip style from the list.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip Width (px)</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Allows you to change the width of the tooltip popup window statically. Enter the width in pixels. The default value for this property is 0.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Visible</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the user permissions assigned to this layout. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and visiblePerm can be assigned as well as Object Permissions. Defaults to NONE, which means no permissions assigned.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Width</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Width to be taken up by the Button; can be in integer which is in pixels, or in percentage (for example, "50%") of page width or parent element.</td>
+</tr>
+</tbody>
+</table>
+<p>*If this element is the first element that appears in the Element Tree pane, you can set the cell alignment. If this element has a parent layout, for example vlayout or hlayout with the width/height set, this element uses these values as a base to set its alignment. If the parent layout does not contain a width/height, then this element does not have a base to which it can set its alignment.   If the element has a parent that contains width/height settings, but this form is displayed under another layout with different widths, your form alignment is restricted to the parent's width/height settings. 
+</p>
+<strong>Notes:</strong>
+<ul>
+  <li>Be sure to create and assign a Method to the Button so that the desired action is achieved when the Button is clicked.</li>
+  <li><a name="dynamicLabel"></a>You can provide a dynamic label for a button by following these steps:
+    <ol>
+      <li>Create a new variable of type String and set its initial value. Proceed to create a new method to change this variable's value.</li>
+      <li>In the User Interface, create a new button, set a static label, and then set the <strong>Click Method</strong> property to the method you just created.</li>
+      <li>Set the <strong>Dynamic Label</strong> property to the new String variable you created.</li>
+      <li>When you click this button, it changes to what the method has set its value to be.</li>
+    </ol>
+    </li>
+</ul>
+<h3>Change the Button's Style When Clicked</h3>
+<p>To change a button's style when it is clicked, do the following:</p>
+<ol>
+  <li>Create a style for the button. Ensure you have at the least the following styles:  </li>
+  <ul>
+    <li>Over</li>
+    <li>Down</li>
+    <li>Disabled </li>
+  </ul>
+  <li>Set the Down style to be a different style, such as its background colour such as the following:<BR>
+    <div class="code">
+<div class="codeContent">
+<pre class="code-java">
+.myButton{
+background-color: blue;
+}
+.myButtonDown{ 
+background-color: red;
+}
+.myButtonOver{
+background-color: blue;
+} 
+
+.myButtonDisabled{
+background-color: blue;
+}</pre></div>
+</div>
+  </li>
+  <li>    Select the button element's <strong>Show down</strong> property.</li>
+  <li>At runtime, when you hold the mouse down on the button, it changes style. </li>
+  </ol>
+<h3><a name="cellRowSpanExample"></a>Create a Button and Text Fields on a Grid Layout</h3>
+<p>The following example shows how to create a button using its <strong>Cell Row Span</strong> property and text fields on a grid layout, where the button aligns with the second text field:</p>
+<ol>
+  <li> Create a grid layout with the column number as <strong>2</strong>, and set the values to <strong>Column Width(s)</strong> and <strong>Width</strong> properties.</li>
+  <li> Add a Button element under the grid layout and set the element's <strong>Cell Row Span</strong> property to <strong>3</strong>.</li>
+  <li> Add another three Text Field elements and select the <strong>Start Row</strong> field's checkbox for the second and the third Text Field elements.</li>
+  <li>Save your changes. In both runtime and when you preview your form, the button appears, along with three text fields to its right. The button's position aligns with the second text field.</li>
+</ol>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

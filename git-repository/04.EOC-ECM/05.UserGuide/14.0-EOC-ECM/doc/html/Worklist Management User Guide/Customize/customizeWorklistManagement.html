@@ -1,0 +1,265 @@
+<html>
+<head>
+<title>Customize Worklist Management </title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+ 
+<h2>Customize Worklist Management</h2>
+<p>The Worklist Management application has been  developed to facilitate customizing your  worklist structure, user interface, and look and feel. The following list of  events are specific to the Worklist Management application that can be used or changed to achieve a different worklist appearance and behaviour.</p>
+<p>Use the following guidelines while customizing your application:</p>
+<ol>
+  <li>&nbsp;Publish the event to get the User Interface object to open or display it from any place in your application.</li>
+  <li>Create an event handler for the event (same event and event ID) to implement a new behaviour for the event. As a result, your implementation will be used instead of the original implementation.</li>
+</ol>
+<p>The following tables allow you to customize the Worklist Management application:</p>
+<ul>
+  <li><a href="#userWorklistEvents">User Worklist events</a></li>
+  <li><a href="#worklistManagerEvents">Worklist Manager events</a></li>
+  <li><a href="#styleIcons">Style and icons</a><br>
+  </li>
+</ul>
+<H3><a name="userWorklistEvents"></a>User Worklist events</H3>
+The following table shows a list of User Worklist events, what each event returns, and its description:<br>
+<br>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>User Worklist Event</th>
+      <th class='confluenceTh'> Returns</th>
+      <th class='confluenceTh'> Description </th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>USER_WORKLIST</td>
+      <td class='confluenceTd'>User Interface of the User Worklist Finder</td>
+      <td class='confluenceTd'> <p>If the handler is either not implemented or empty, the User Worklist is not configured to be used for the current application. The <strong>Task(TaskNumber)</strong> application menu is not visible and the User Worklist is not accessible. If you want to use another finder instead of the original User Worklist, implement a new finder and return its User Interface from the event handler.</p>
+      <p> Any finder can behave as a worklist finder given that all proper logic and methods are implemented. </p>
+      <p><strong>Note:</strong> To mark a new finder of type ui_common.baseFinder as a worklist set finder&rsquo;s user interface, set the <strong>isWorklistFinder</strong> flag to true. Otherwise, if your finder is not using ui_common.baseFinder, implement the isWorklist method to return true.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>USER_WORKLIST_RESULT_FORM</td>
+      <td class='confluenceTd'>User Interface that is used as the User Worklist result form</td>
+      <td class='confluenceTd'>To customize the User Worklist Result (for example, to use another subset of the worklist task's fields), create a new form and return it from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>USER_WORKLIST_DETAIL_FORM</td>
+      <td class='confluenceTd'>User Interface to be displayed once you click the task&rsquo;s <strong>Detail</strong> icon from the User Worklist</td>
+      <td class='confluenceTd'>To customize the Detail Form (for example, to use another set of task fields), create a new form and return it from the event handler. By default, both the User Worklist and Worklist Manager use same task Detail form.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_TAKE_TASKS_FINDER</td>
+      <td class='confluenceTd'>User Interface of the Take Tasks finder</td>
+      <td class='confluenceTd'>To use another finder instead of the original Take Tasks, implement a new finder and return its User Interface from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_TAKE_TASKS_SEARCH_FORM</td>
+      <td class='confluenceTd'>User Interface used as a Search Form on the Take Task finder</td>
+      <td class='confluenceTd'><p>To customize, create a new Search Form and return the new form from the event handler.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_TAKE_TASKS_RESULT_FORM</td>
+      <td class='confluenceTd'>User Interface that is used as the Take Tasks result form</td>
+      <td class='confluenceTd'>To customize, create a new Result form and return the new form from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_AVAILABLE_TASKS_FINDER</td>
+      <td class='confluenceTd'>User Interface of the Available Tasks finder</td>
+      <td class='confluenceTd'>To use another finder instead of the original Available Tasks, implement new finder and return its User Interface from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_AVAILABLE_TASKS_SEARCH_FORM</td>
+      <td class='confluenceTd'>User Interface used as a Search Form on the Available Tasks finder</td>
+      <td class='confluenceTd'>To customize, create a new Search Form and return the new form from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_AVAILABLE_TASKS_RESULT_FORM</td>
+      <td class='confluenceTd'>User Interface that is used as the Available Tasks result form</td>
+      <td class='confluenceTd'>To customize, create a new Result form and return the new form from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a name="worklistTaskForm"></a>WORKLIST_TASK_FORM</td>
+      <td class='confluenceTd'>User Interface displayed once you open the task</td>
+      <td class='confluenceTd'><p>By default, the Task Form consists of a three-component view: </p>
+        <ul>
+          <li>Task summary</li>
+          <li>Action menu</li>
+          <li>Task user interface</li>
+        </ul>
+      <p> To customize this three-component view (for example,  show task User Interface only, or change order in which components display), create a new Task Form user interface and return it from the event handler.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a name="taskSummaryForm"></a>TASK_SUMMARY_FORM</td>
+      <td class='confluenceTd'>User Interface displayed as a top component in the Task Form (see <a href="#worklistTaskForm">WORKLIST_TASK_FORM</a> event)</td>
+      <td class='confluenceTd'>To customize it (for example, include a different subset of tasks fields), create a new form and return it from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>TAKEN_TASK</td>
+      <td class='confluenceTd'>User Interface displayed when task of type <em>taken task</em> is opened</td>
+      <td class='confluenceTd'><p>By default, it displays two fields, which provide corresponding details: </p>
+        <ul>
+          <li><strong>Taken By</strong></li>
+          <li><strong>Reason</strong></li>
+        </ul>
+      <p>To customize the form (for example, to include other fields), create a new form and return it from the event handler.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_AUTO_START_WORK</td>
+      <td class='confluenceTd'>None</td>
+      <td class='confluenceTd'>This event defines whether task is to be automatically started once opened. By default, it is set to false, meaning that task does not be automatically started. If you want to start task automatically once it is opened, implement the event handler to return true.</td>
+    </tr>
+  </tbody>
+</table>
+
+<BR>
+<p><strong>Note:</strong> Both the Task Menu and Task User Interface are not customizable via events as opposed to Task Summary (see the <a href="#taskSummaryForm">TASK_SUMMARY_FORM</a> event). Task User Interface comes from task&rsquo;s participant User Interface. User can modify each participant User Interface individually and as required directly in the metadata. Participant User Interface is fully flexible and can be implemented to display anything by making changes to its &ldquo;Default&rdquo; form as well as &ldquo;onInit()&rdquo; script.</p>
+<H3><a name="worklistManagerEvents"></a>Worklist Manager Events</H3>
+<p>The following table shows a list of User Worklist events, what each event returns, and its description: </p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Worklist Manager Event</th>
+      <th class='confluenceTh'> Returns</th>
+      <th class='confluenceTh'> Description </th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_MANAGER</td>
+      <td class='confluenceTd'>User Interface of the Worklist Manager finder</td>
+      <td class='confluenceTd'> If you want to use another finder instead of the original Worklist Manager, implement a new finder and return its User Interface from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_MANAGER_SEARCH_FORM</td>
+      <td class='confluenceTd'> User Interface used as a Search Form for the Worklist Manager finder</td>
+      <td class='confluenceTd'>To customize (for example,  to use a different set of search options), create a new Search Form and return the new form from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_MANAGER_RESULT_FORM</td>
+      <td class='confluenceTd'>User Interface that is used as the User Worklist result form</td>
+      <td class='confluenceTd'>To customize Worklist Manager Result (for example, to use another subset of worklist tasks fields)`, create a new form and return it from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_MANAGER_ENABLED</td>
+      <td class='confluenceTd'>None</td>
+      <td class='confluenceTd'><p>This event indicates whether the Worklist Manager is enabled for the current application. By default, the Worklist Manager is always enabled if the user has one of the following privileges:</p>
+        <ul>
+          <li> Worklist Administrator</li>
+          <li>Process Manager Administrator</li>
+        </ul>
+      <p>You can customize the availability of Worklist Manager by including any condition and returning a result where true means that the Worklist Manager is enabled.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_MANAGER_DETAIL_FORM</td>
+      <td class='confluenceTd'> User Interface to be displayed once you click the task&rsquo;s <strong>Detail</strong> icon from the Worklist Manager</td>
+      <td class='confluenceTd'>To customize the Detail Form (for example,  to use another set of task fields), create a new form and return it from the event handler. By default, both the User Worklist and Worklist Manager use the same task Detail form.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_CHANGE_TASK_DETAIL_FORM</td>
+      <td class='confluenceTd'>User Interface to be displayed to change tasks</td>
+      <td class='confluenceTd'>To customize, create a new form and return it from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_TASK_FINDER</td>
+      <td class='confluenceTd'>User Interface of the Worklist Browser finder</td>
+      <td class='confluenceTd'><p> The finder is used from the Worklist Users finder to display all task belonging to a particular user. It is also used from the default Order User Interface to display worklist tasks for this order. Event parameters are <em>userId</em> and <em>orderId</em>, and indicate the finder's search criteria. If parameters are null, the finder returns an unfiltered result. </p>
+      <p>If you want to use another finder instead of the original Worklist Browser, implement new finder and return its User Interface from the event handler.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p>WORKLIST_BROWSER_RESULT_FORM</p></td>
+      <td class='confluenceTd'>  User Interface that is used as the Worklist Browser result form</td>
+      <td class='confluenceTd'>To customize the Worklist Browser Result (for example, to use another subset of the worklist task&rsquo;s fields), create a new form and return it from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_BROWSER_DETAIL_FORM</td>
+      <td class='confluenceTd'> User Interface to be displayed once you click a task&rsquo;s <strong>Detail</strong> icon from the Worklist Browser</td>
+      <td class='confluenceTd'><p>To customize the Detail Form (for example,  to use another set of task fields), create a new form and return it from the event handler. </p>
+      <p>By default, the Worklist Browser Detail form displays fields: </p>
+      <ul>
+        <li><strong>Priority</strong></li>
+        <li><strong> Due Date</strong></li>
+        <li><strong> Participant</strong></li>
+        <li><strong> Assigned Date</strong></li>
+        <li><strong> Start Date</strong></li>
+        <li><strong> Details</strong></li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p>WORKLIST_ARCHIVE_FINDER</p></td>
+      <td class='confluenceTd'>User Interface of the Worklist Archive finder</td>
+      <td class='confluenceTd'><p> The event's parameters are <em>senderId</em> and <em>orderId</em>, and indicate the finder's search criteria. If the parameters are null, the finder returns unfiltered results. </p>
+      <p>The Worklist Archive finder is used in the System Administration application's Process Manager finder to display the history of worklist tasks related to a particular process. It is also used from the default Order User Interface to display the history of the worklist tasks for this order.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p>WORKLIST_TASK_ARCHIVE_DETAIL_FORM</p></td>
+      <td class='confluenceTd'> User Interface to be displayed once you click the task&rsquo;s <strong>Detail</strong> icon from the Worklist Archive</td>
+      <td class='confluenceTd'> To customize the Detail Form (for example, to use another set of task fields), create a new form and return it from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_TASK_HISTORY_RESULT_FORM</td>
+      <td class='confluenceTd'>User Interface used as the Task History Finder result form</td>
+      <td class='confluenceTd'>To customize the Worklist History Result form (for example, to use another subset of the worklist task&rsquo;s fields), create a new form and return it from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_USERS_SEARCH_FORM</td>
+      <td class='confluenceTd'>User Interface used as a Search Form for the Worklist Users finder</td>
+      <td class='confluenceTd'>To customize (for example, to use a different set of search options), create a new Search Form and return the new form from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_USERS_RESULT_FORM</td>
+      <td class='confluenceTd'> User Interface that is used as the Worklist Users result form</td>
+      <td class='confluenceTd'>To customize the Worklist Users Result (for example,  to use another subset of the worklist task&rsquo;s fields), create a new form and return it from the event handler.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>WORKLIST_USERS_DETAIL_FORM</td>
+      <td class='confluenceTd'> User Interface to be displayed once you click the user&rsquo;s <strong>Detail</strong> icon from the Worklist Users finder.</td>
+      <td class='confluenceTd'><p>To customize the Detail Form (for example, to use another set of task fields), create a new form and return it from the event handler. </p>
+      <p>By default, the Worklist User&rsquo;s Detail form displays the following user properties: </p>
+      <ul>
+        <li>User ID</li>
+        <li>Total number of owned tasks, number of overdue tasks, number of alerts, and whether user is available and active.</li>
+      </ul></td>
+    </tr>
+  </tbody>
+</table>
+
+<H3><a name="styleIcons"></a>Styles and Icons</H3>
+<p>Individual task icons and style properties used to display task records inside all finders are customizable in the application CSS file. </p>
+<p>If the use of styles or icons, or both, need to be changed, or more styles and icons need to be added, change the following scripts:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Script</th>
+      <th class='confluenceTh'> Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>cwa_worklist.cwUserActiveIcon</td>
+      <td class='confluenceTd'>By default, active users are marked by green flags, while inactive users are marked by grey flags.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>cwa_worklist.cwUserAvailabilityIcon</td>
+      <td class='confluenceTd'>By default, available users are marked by green flags, while unavailable users are marked by grey flags.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>cwa_worklist.cwWorklistIcon</td>
+      <td class='confluenceTd'><p>Specifies what icons are used for different task types: </p>
+        <ul>
+          <li>Regular task</li>
+          <li>Alert</li>
+          <li>Taken task</li>
+        </ul>
+      <p>  Both the User Worklist and Worklist Manager use these icons.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>cwa_worklist.cwWorklistStyle</td>
+      <td class='confluenceTd'><p>Specifies styles that are used for task records on the worklist. By default, the follwing tasks have these colours:</p>
+        <ul>
+          <li>Overdue tasks are red</li>
+          <li>Non-started tasks are bold</li>
+          <li>Alerts are blue</li>
+          <li>Taken tasks are greyed out</li>
+        </ul>
+      <p>Both the User Worklist and Worklist Manager use these styles.</p></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+
+  </body>
+</html>

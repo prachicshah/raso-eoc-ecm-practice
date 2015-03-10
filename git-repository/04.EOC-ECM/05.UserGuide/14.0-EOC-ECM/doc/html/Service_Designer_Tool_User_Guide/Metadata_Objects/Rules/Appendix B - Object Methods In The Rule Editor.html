@@ -1,0 +1,170 @@
+﻿<html>
+<head>
+<title>Appendix B - Object Methods in the Rule Editor</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="topic-check-list" content="Ran Smart Index" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="AppendixB-ObjectMethodsintheRuleEditor"></a>Appendix B: Object Methods in the Rule Editor</h2>
+<p>The following object methods are available in the rule instance editor.</p>
+<h3>
+<a name="Stringobjectmethods" id="Stringobjectmethods"></a><em>String object methods</em></h3>
+<h4>
+<a name="contains" id="contains"></a>contains</h4>
+<p>Searches for the first occurrence of the specified substring in the string object.<br />
+<em>Returns</em>: True if the string argument occurs as a substring within the string object.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>value</td>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>Any string.</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>
+<a name="endswith" id="endswith"></a>ends with</h4>
+<p>Tests if the string ends with the specified substring.<br />
+<em>Returns</em>: True if the string object ends with the specifiedstring argument .<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>value</td>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>Any string.</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>
+<a name="startswith" id="startswith"></a>starts with</h4>
+<p>Tests if the string starts with the specified substring.<br />
+<em>Returns</em>: True if the string object starts with the specified string argument.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>value</td>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>Any string.</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h4>
+<a name="match" id="match"></a>match</h4>
+<p>Searches the string for a given pattern and returns true if the match is found.<br />
+<em>Returns</em>: True if a match is found.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>pattern</td>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>The pattern string that may contain the wildcard characters ? (represents any single character) and * (represents any number, including zero, of any characters).</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h3>
+<a name="Stringornumberobjectmethods" id="Stringornumberobjectmethods"></a><em>String or number object methods</em></h3>
+<h4>
+<a name="in" id="in"></a>in</h4>
+<p>Returns true if the string matches one of the specified substrings or array members.<br />
+<em>Returns</em>: True if the entire string matches one of the substrings or array members.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>value(s)</td>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>A string containing comma separated substrings (the substrings must not contain any commas).</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h3>
+<a name="Documentobjectmethods" id="Documentobjectmethods"></a><em>Document object methods</em></h3>
+<h4>
+<a name="parent" id="parent"></a>parent</h4>
+<p>Gets a parent document containing a reference to this document.<br />
+<em>Returns</em>: The parent document.<br />
+<em>Parameters</em>: None.</p>
+<h4>
+<a name="order" id="order"></a>order</h4>
+<p>Gets a top-level order for this document.<br />
+<em>Returns</em>: The order.<br />
+<em>Parameters</em>: None.</p>
+<h3>
+<a name="DateorDateTimeobjectmethods" id="DateorDateTimeobjectmethods"></a><em>Date or DateTime object methods</em></h3>
+<h4>
+<a name="year" id="year"></a>year</h4>
+<p>Extracts a year from the object.<br />
+<em>Returns</em>: A full year number.<br />
+<em>Parameters</em>: None.</p>
+<h4>
+<a name="month" id="month"></a>month</h4>
+<p>Extracts a month from the object.<br />
+<em>Returns</em>: A month number.<br />
+<em>Parameters</em>: None.</p>
+<h4>
+<a name="day" id="day"></a>day</h4>
+<p>Extracts a day from the object.<br />
+<em>Returns</em>: A day number.<br />
+<em>Parameters</em>: None.</p>
+<h3>
+<a name="TimeorDateTimeobjectmethods" id="TimeorDateTimeobjectmethods"></a><em>Time or DateTime object methods</em></h3>
+<h4>
+<a name="hour" id="hour"></a>hour</h4>
+<p>Extracts an hour from the object.<br />
+<em>Returns</em>: An hour number.<br />
+<em>Parameters</em>: None.</p>
+<h4>
+<a name="minutes" id="minutes"></a>minutes</h4>
+<p>Extracts the minutes from the object.<br />
+<em>Returns</em>: Number of minutes.<br />
+<em>Parameters</em>: None.</p>
+<h4>
+<a name="seconds" id="seconds"></a>seconds</h4>
+<p>Extracts the seconds from the object.<br />
+<em>Returns</em>: Number of seconds.<br />
+<em>Parameters</em>: None.</p>
+<p><br clear="all" /></p>
+</td>
+</tr>
+</table>
+</body>
+</html>

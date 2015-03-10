@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Business Dates APIs</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h3>Business Dates APIs</h3>
+<p>The following APIs support business dates:</p>
+<ul>
+  <li><a href="#catalogAPIs">Catalog APIs</a> to support accessing dates</li>
+  <li><a href="#browseAPI">Browse API</a></li>
+  </ul>
+<p>Additionally, the <a href="#availabilityRuleUI">availability rule user interface</a> provides support for business dates.</p>
+<h4><a name="catalogAPIs"></a>Catalog API Support for Accessing Dates</h4>
+<p>The following API at the item level returns item dates by the given market segment information:</p>
+
+<div class="code">
+          <div class="codeContent">
+            <pre class="code-java">datesArray getItemDatesByMarketSegment(String[] dimensionName, String[] dimensionValue)
+</pre>
+          </div>
+      </div>
+<p>In this API, the <tt>dimensionName</tt> parameter is an array of dimension names. The <tt>dimensionValue</tt> parameter is an array of dimension values. For each market segment dimension, only one value is allowed.</p>
+<p>Notes:</p>
+<ul>
+  <li>If the market segment information is null, the MARKET_SEGMENT_DIMENSIONVALUE_GET event is published to ftech this information..</li>
+  <li>If the market segment information from the event is null, return the default dates, which are defined under the item.</li>
+  <li>If there is one eligible market segment rule that matches the given request, return all dates, which are defined under this market segment rule.</li>
+  <li>If there is more than one eligible date value for the same date definition, the more restricted value is returned.</li>
+</ul>
+<p>If the marketSegmentContext is not specified, the marketSegmentContext set at the system  level is used. If that is not set, the default item level dates are returned.  By  default, the item dates are returned for that version. However, if the  flag is set, the dates of the latest version are returned.</p>
+<h4><a name="browseAPI"></a>Browse API</h4>
+<p>The Browse API has the following syntax to handle market segment availability rules:</p>
+<div class="code">
+          <div class="codeContent">
+            <pre class="code-java">select [distinct]
+[from [theCatalog] [hierarchy_node_name] [depth search_depth]]
+[in hierarchy_node_name[,hierarchy_node_name]...]
+[where 
+attribute_name/function operation ?/constant/list and 
+attribute_name/function operation ?/constant/list and...]
+[order[ed] by rank()/attribute_name]
+[Dimension 
+Dimension1Code in Dimension1_hierarchyNodeName [, Dimension2_hierachyNodeName]...
+and Dimension2Code in Dimension2_hierarchyNodeName [, Dimension2_hierachyNodeName]... 
+and Dimension3Code in Dimension3_hierarchyNodeName [, Dimension3_hierachyNodeName]... and...]
+[Dates
+advertisingStartDate [><=] dateValue and
+sellingStartDate [><=] dateValue and...] </pre>
+          </div>
+      </div>
+<p>The following are sample queries using the select statement.</p>
+<p>Example 1:</p>
+
+<div class="code">
+          <div class="codeContent">
+            <pre class="code-java">Select from theCatalog 
+Dimension
+Location in Toronto, Montreal and 
+SalesChannel in selfcare, residential</pre>
+        </div>
+      </div>
+
+<p>Example 2:</p>
+<div class="code">
+          <div class="codeContent">
+            <pre class="code-java">Select from HandSets
+In iphone
+Dimension
+Location in Toronto, Montreal and 
+SalesChannel on selfcare, residential</pre>
+          </div>
+      </div>      
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>The <tt>Dimension</tt> clause supports market segment dimensions.</li>
+  <li>The <tt>Dates</tt> clause allows for results based on a dates comparison</li>
+  <li>This query allows a tree node to not be a mandatory field with the <tt>from</tt> clause.</li>
+  <li>You can use the <tt>theCatalog </tt>keyword instead of specifying a tree node in the <tt>from</tt> clause only when the <tt>Dimension</tt> clause is used.</li>
+  <li>The <tt>from</tt> clause with a tree node is still mandatory for existing in the operator.</li>
+  <li>If the query does not contain the <tt>Dimension</tt> clause and the <tt>theCatalog</tt> keyword is used with <tt>from</tt>, an exception occurs.</li>
+  <li>For each dimension in a request, one dimension value is possible. In this case, a comma (,) means that the dimension is logical. Otherwise, <tt>or</tt> indicates whether either value is true.</li>
+</ul>
+<h4><a name="availabilityRuleUI"></a>Availability Rule User Interface</h4>
+<p>The following image depicts the availability rule using five dimensions:</p>
+<p><img src="businessDatesOfferAvailabilityRule.png" alt="Business dates - Offer availability rule"></p>
+
+  <p>You can tailor the user interface to show only two dimensions if a client application needs to use only two of the five dimensions.<strong></strong> You can also use this user interface to build rules for other associations, such as item relation conditions based on the market segment.</p>
+  <p>For more information about these APIs that support business dates, see the <em>JavaScript Documentation</em>.</p></td>
+</tr>
+</table>
+</body>
+</html>

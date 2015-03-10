@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Rule Sets General Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+  <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+  <td valign="top" class="pagebody">
+  <h2>Rule Sets General Properties</h2>
+  <p>The general rule set properties are on the <strong>General</strong> tab.</p>
+<p><img src= "generalProperties.png" align="absmiddle" border="1" alt="Rule Sets General Properties" /></p>
+
+<p>The following table describes the fields:</p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Name of the metadata object (used in scripts; must conform to JavaScript naming conventions). Read-only after creation. To change it, use the <b>Rename</b> command in the popup menu by right-clicking the metadata object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as product metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as product metadata (that is, library).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Deprecated</b></td>
+  <td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+</tr>
+
+<tr>
+  <td class='confluenceTd'><b>Label</b></td>
+  <td class='confluenceTd'>Metadata object display label.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Description</b></td>
+  <td class='confluenceTd'>Description of the metadata object for documentation.</td>
+</tr>
+
+<tr>
+  <td class='confluenceTd'><strong>Tag</strong></td>
+  <td class='confluenceTd'><p>This field is optional and takes a string value. Either This field must be set or the rule set  must have its <strong>Default</strong> field's checkbox selected. Select this field indicates that this rule set can only be applied to data objects that have  a matching tag set.      Tags  can be set on data objects with either the setRuleSetTag() script method or when  the object is instantiated.  See the  DataObject API documentation for more details.</p></td>
+</tr>
+<tr>
+  <td height="43" class='confluenceTd'><strong>Default</strong></td>
+  <td class='confluenceTd'>This property must be set or a tag must be defined in the <strong>Tag</strong> field.
+    Selecting this field and the condition is evaluated as true, this rule set is used if the metadata does not have a tag associated with it. Otherwise, leaving this field unselected means that this rule set can only be applied to data objects with matching tags.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Reduces</b></td>
+  <td class='confluenceTd'>If selected,  the rules defined in a base Rule Set can be deleted, replaced or reused. </td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Type</b></td>
+<td class='confluenceTd'>Select one out of Initialization, Validation, or Permission.This  field is mandatory.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Source</b></td>
+<td class='confluenceTd'>   Source is a metadata object of the type Document, Data  Structure or Top-Level UI. If source rule set extends another, then it  defaults to the base Rule Set's source.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Condition</b></td>
+<td class='confluenceTd'>By default, the condition returns true. The  condition is evaluated in the context of the data object, which allows the script  to access the data object instance with <strong>this</strong>.</td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+
+
+  
+  
+  
+  
+  </td>
+  </tr>
+  </table>
+</body>
+  </html>

@@ -1,0 +1,258 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Inheritance</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Inherit Items</h2>
+<p>A Catalog item may inherit (derive) from another catalog item called the <em>base item</em>.  Changes in the base item become immediately visible in the derived items. This method of maintaining Catalog information is a  powerful mechanism which reduces the cost of maintaining data.</p>
+<p> The item inheritance is implemented on the association level, which means that the  derived item can add new associations, replace some associations, and remove others. The matching of the associations is performing  by association category, type, and name.</p>
+<p> The inheritance mechanism works in the following ways:</p>
+<ul>
+  <li> The derived item copies all associations (versions) of the base item and treats them as if they are its own associations</li>
+  <li> If the two association versions has the same start date, the base association version is not copied</li>
+</ul>
+<p> The item inheritance mechanism uses the special flag Cancelled (CAN) to indicate that a given association is not needed for the specified period.
+  The following example shows two items – A and B and their attribute associations. The item B is derived from A and has one additional attribute called <em>Power</em>.</p>
+
+<table width="100%" border="1" class='confluenceTable'>
+  <tr>
+    <td><strong>Association Category</strong></td>
+    <td><strong>Item Code</strong></td>
+    <td><strong>Association Name</strong></td>
+    <td><strong>Attribute Type</strong></td>
+    <td><strong>Version (from - to)</strong></td>
+    <td><strong>Status</strong></td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>length</td>
+    <td>Length</td>
+    <td>Jan 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>color</td>
+    <td>Color</td>
+    <td>Jan 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>weight</td>
+    <td>WeightLib</td>
+    <td>Jan 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>B</td>
+    <td>power</td>
+    <td>Power</td>
+    <td>Feb 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+</table>
+<p>A new attribute speed is added to both items.</p>
+
+<table width="100%" border="1">
+  <tr>
+    <td><strong>Association Category</strong></td>
+    <td><strong>Item Code</strong></td>
+    <td><strong>Association Name</strong></td>
+    <td><strong>Attribute Type</strong></td>
+    <td><strong>Version (from - to)</strong></td>
+    <td><strong>Status</strong></td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>length</td>
+    <td>Length</td>
+    <td>Jan 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>color</td>
+    <td>Color</td>
+    <td>Jan 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>weight</td>
+    <td>WeightLib</td>
+    <td>Jan 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>B</td>
+    <td>power</td>
+    <td>Power</td>
+    <td>Feb 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>speed</td>
+    <td>Speed</td>
+    <td>Mar 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+</table>
+
+<p>The item B does not support any more the attribute <em>Length</em>:</p>
+
+<table width="100%" border="1">
+  <tr>
+    <td><strong>Association Category</strong></td>
+    <td><strong>Item Code</strong></td>
+    <td><strong>Association Name</strong></td>
+    <td><strong>Attribute Type</strong></td>
+    <td><strong>Version (from - to)</strong></td>
+    <td><strong>Status</strong></td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>length</td>
+    <td>Length</td>
+    <td>Jan 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>color</td>
+    <td>Color</td>
+    <td>Jan 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>weight</td>
+    <td>WeightLib</td>
+    <td>Jan 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>B</td>
+    <td>power</td>
+    <td>Power</td>
+    <td>Feb 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>speed</td>
+    <td>Speed</td>
+    <td>Mar 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>B</td>
+    <td>length</td>
+    <td>Length</td>
+    <td>Apr 1, 2010 -</td>
+    <td>ACT/CAN</td>
+  </tr>
+</table>
+
+<p>The item B changes the attribute type of the <em>Weight</em> attribute using weight in KG instead of pounds:</p>
+<table width="100%" border="1">
+  <tr>
+    <td><strong>Association Category</strong></td>
+    <td><strong>Item Code</strong></td>
+    <td><strong>Association Name</strong></td>
+    <td><strong>Attribute Type</strong></td>
+    <td><strong>Version (from - to)</strong></td>
+    <td><strong>Status</strong></td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>length</td>
+    <td>Length</td>
+    <td>Jan 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>color</td>
+    <td>Color</td>
+    <td>Jan 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>weight</td>
+    <td>WeightLib</td>
+    <td>Jan 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>B</td>
+    <td>power</td>
+    <td>Power</td>
+    <td>Feb 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>A</td>
+    <td>speed</td>
+    <td>Speed</td>
+    <td>Mar 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>B</td>
+    <td>length</td>
+    <td>Length</td>
+    <td>Apr 1, 2010 -</td>
+    <td>CAN</td>
+  </tr>
+  <tr>
+    <td>Attribute</td>
+    <td>B</td>
+    <td>weight</td>
+    <td>WeightKG</td>
+    <td>May 1, 2010 -</td>
+    <td>ACT</td>
+  </tr>
+</table>
+
+
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Performance - AVM Cache</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>AVM Cache</h2>
+
+<p>Clicking <b>Performance</b> &gt;<b> AVM Cache</b> displays the AVM cache list, which controls all data caching stored in the AVM. </p>
+<p><img src="AVMcache.png" alt="Performance - AVM Cache tab" border="1"></p>
+<p>The cache is a generic mechanism in the AVM that stores in memory data, which can be refreshed or recreated from disk (that is, from a database or files). The caches are not part of the PE wait resolution mechanisms, which are <a href="Processes PE Queues.html">Queues</a>.</p>
+<h3>Types of AVM Cache</h3>
+<p>The following table describes the names, default values, and a short explanation of each cache role.</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="148" class='confluenceTh'>Name</th>
+      <th width="659" class='confluenceTh'>Description</th>
+      <th width="192" class='confluenceTh'>Default</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>CodeTable Cache</strong></td>
+      <td class='confluenceTd'>This cache contains code tables used mainly by the UI server.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 5</li>
+        <li><strong>Refresh Schedule:</strong> 23:59</li>
+        <li><strong>Automatic Reload:</strong> 50</li>
+        <li><strong>Interval:</strong> 24</li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Image Cache</strong></td>
+      <td class='confluenceTd'>This cache contains images. </td>
+      <td class='confluenceTd'><li><strong>Capacity: </strong>5</li>
+        <li><strong>Refresh Schedule:</strong> 06:00        
+        <li><strong>Automatic Reload:</strong> 1        
+        <li><strong>Interval:</strong> 5        </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>InterfaceData Cache</strong></td>
+      <td class='confluenceTd'>This cache has interface data. Its capacity ranges from 5 to 999 MB.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 5</li>
+        <li><strong>Refresh Schedule:</strong> 23:59</li>
+        <li><strong>Automatic Reload:</strong> 0</li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Resource Cache</strong></td>
+      <td class='confluenceTd'>This cache contains different  resource types (mainly text), such as XSLT specs, browser JavaScript programs, and so on.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 5</li>
+        <li><strong>Refresh schedule:</strong> never</li>
+        <li><strong>Automatic Reload:</strong> 50</li>
+        <li><strong>Interval:</strong> 24 </li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Script Cache</strong></td>
+      <td class='confluenceTd'>Contains metadata and catalog scripts.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 5</li>
+        <li><strong>Refresh Schedule:</strong> 6:00</li>
+        <li><strong>Automatic Reload:</strong> 0</li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Translation Cache</strong></td>
+      <td class='confluenceTd'>The cache that contains the language translations of translation data types.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 4</li>
+        <li><strong>Refresh Schedule:</strong> 23:59</li>
+        <li><strong>Automatic Reload:</strong> 50</li>
+        <li><strong>Interval:</strong> 5</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3>Configure AVM Cache</h3>
+<p>To configure the cache, do the following:</p>
+<ol>
+  <li>Double-click any of these parameter fields and making your changes:  
+    <ul>
+      <li><a href="#capacity">Capacity (MB)</a></li>
+      <li><a href="#elementSize">Element Size (KB)</a></li>
+      <li><a href="#refreshSchedule">Refresh Schedule</a></li>
+      <li><a href="#automaticReload">Automatic Reload (%)</a></li>
+      <li><a href="#interval">Interval (Hours)</a><br>
+        <br>
+      </li>
+    </ul>
+    <img src="AVMcacheEdit.png" alt="Performance - AVM Cache tab - edit cache parameters" border="1">
+    <br>
+    <br>
+  </li>
+
+  <li>When you have finished making your changes, click the <strong>Save</strong> button to save your configuration  </li>
+</ol>
+<h4><a name="capacity"></a>Capacity (MB)</h4>
+<p>The cache capacity defines how much memory in MB the cache can take. This field can be any number from 1 to 9999. Because the Java memory calculation features are quite limited, the specified number is approximate. The real physical memory consumption may be up to 25% higher or lower.</p>
+<p>Keep in mind that, given enough time, the cache eventually consumes the whole capacity, even if it is big. This consumption means that increasing the cache capacity may not always have a positive long-term effect on performance. Performance is only affected if, in the long term, this capacity increases the percentage of the direct hits in the cache instead of the database.</p>
+<h4><a name="elementSize"></a>Element Size (KB)</h4>
+<p>The element size is used to calculate the cache object memory. You typically do not need to configure the element size, as the product calculates it. However, if you are using the setScriptObject API to associate objects with cached elements, the  element size must be set. Since there is no easy way to estimate the size,  contact product development for support.</p>
+<h4><a name="refreshSchedule"></a>Refresh Schedule</h4>
+<p>The cache refresh schedule defines one or more points in a 24-hour day when the whole cache content is dropped. The cache then rebuilds itself dynamically as new requests come in. This feature is useful when the cache contains mainly static objects that do not have any particular expiration date, such as standard system database enumerations. It is also useful for the overall health of the AVM because it may flush out stale data that may never be used.</p>
+<p>The refresh schedule parameter is a string with this format:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">
+HH:mm,HH:mm,...
+</pre>
+  </div>
+</div>
+<p>or</p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">
+never
+</pre>
+  </div>
+</div>
+<p>There is no limitation on the number of refresh points as long as they are defined in increasing order (that is, every entry is further in time from the previous). A schedule containing only the word <tt>never</tt> indicates that the cache is  never refreshed.</p>
+<p>All AVM caches are manageable JMX objects that can be manipulated using the Sun JConsole application. For full details, refer to <a href="../../../../Metadata Deployment Guide/Profiling.html">Profiling with JConsole</a> and <a href="../../../../Metadata Deployment Guide/JConsole AVM caches.html">AVM caches</a>.</p>
+<h4><a name="automaticReload"></a>Automatic Reload (%)</h4>
+<p>The automatic reload parameter allows you to specify the percentage of an element that is reloaded. The default value for this parameter is 0. However, you can specify percentages from 0 to 100, inclusive.</p>
+<p>This percentage is used to write part of the cache into the database. For example, if the automatic reload percent is equal to 50, 50% of recent elements in the cache are written to the database, if required.</p>
+<h4><a name="interval"></a>Interval (Hours)</h4>
+<p>The interval refers to the time in hours in which the cache writes its current content to the database. It refers to the next export point for reloading the cache. The default value for this parameter is 12. However, you can specify hours from 1 to 24, inclusive.</p>
+</body>
+</html>

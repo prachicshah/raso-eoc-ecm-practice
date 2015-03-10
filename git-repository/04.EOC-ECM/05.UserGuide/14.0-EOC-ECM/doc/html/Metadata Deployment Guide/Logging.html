@@ -1,0 +1,173 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Logging</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Logging</h2>
+<p>To effectively manage your system, it is necessary      to get feedback about its activity and performance, as well as any problems that may be occurring. </p>
+<p>This section describes the following logging topics:</p>
+<ul>
+  <li><a href="#scriptableLogObject">Scriptable log object</a></li>
+  <li><a href="#logConfiguration">Log configuration</a></li>
+</ul>
+<h3><a name="scriptableLogObject"></a>Scriptable Log Object</h3>
+<p>The AVM contains the com.conceptwave.com.system.CwfLog  class and exposes it as a scriptable object called Log. You can use this object  to append messages to the default appenders (that is, Console and Database),  and the existing configuration model drives the log levels of this object&rsquo;s  categories.</p>
+<p>The following  are the Log object&rsquo;s scriptable methods:</p>
+<table width="1153" border cellpadding=1 class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="368" class='referenceTh'>Scriptable Methods</th>
+      <th width="248" class='referenceTh'>Description</th>
+      <th width="276" class='referenceTh'>Parameters</th>
+      <th width="233" class='referenceTh'>Returns</th>
+    </tr>
+    <tr>
+      <td class='referenceTd'><ul>
+        <li>static void Log.isTraceEnabled()</li>
+        <li>static void Log.isDebugEnabled()</li>
+        <li>static void Log.isInfoEnabled()</li>
+        <li>static void Log.isErrorEnabled()</li>
+        <li>static  void Log.isFatalEnabled()</li>
+      </ul></td>
+      <td class='referenceTd'><p>Determine whether logging at a specified level for  the given category results in a printed log statement. It is not required to be used.  It is recommended to be used only if calculation of  parameters or tagValues would have a performance impact.</p></td>
+      <td class='referenceTd'><ul>
+        <li>code:
+          <ul>
+            <li>Resource code matching an entry  in the system or application resource files (for example, sysRC_en-xx.xml).</li>
+          </ul>
+        </li>
+        <ul>
+          <li>This parameter is optional.</li>
+        </ul>
+      </ul></td>
+      <td class='referenceTd'>TRUE if the corresponding log level is enabled for  the corresponding category.</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'><ul>
+        <li>static void Log.logTrace(String  Code, String [] parameters, String [] tagValues)</li>
+        <li>static void Log.logDebug(String  Code, String [] parameters, String [] tagValues)</li>
+        <li>static void Log.logInfo(String  Code, String [] parameters, String [] tagValues)</li>
+        <li>static void Log.logWarn(String  Code, String [] parameters, String [] tagValues)</li>
+        <li>static void Log.logError(String  Code, String [] parameters, String [] tagValues)</li>
+        <li>static  void Log.logFatal(String  Code, String [] parameters, String [] tagValues)</li>
+      </ul></td>
+      <td class='referenceTd'><p>Append a message if the log level for the category  matches or is greater than the method name. </p>
+        <p>To determine the category, matching the resource entry with the code occurs. See the <a href="#messageResourceEntry">Message Resource Entry</a> section that follows.</p></td>
+      <td class='referenceTd'><ul>
+        <li>code: 
+          <ul>
+            <li>Resource code matching an entry  in the system or application resource files (for example, sysRC_en-xx.xml).</li>
+          </ul>
+        </li>
+        <ul>
+          <li>This parameter is mandatory.</li>
+        </ul>
+        <li>parameters</li>
+        <ul>
+          <li>Array of string parameters to be inserted into  the message text.</li>
+          <li>Replacing parameters depends on position. </li>
+          <li>This parameter is mandatory.</li>
+        </ul>
+        <li>tagValuePairs</li>
+        <ul>
+          <li>Values portion of the tag value  pairs for the log entry.</li>
+          <li>Order of values <em>must</em> correspond  to the order of tags defined in the resource entry. Individual entries in the array can be NULL.</li>
+          <li>Converts to a JSON string and appears in the log  statement between the <em>SLM=</em> and <em>/=SLM</em> delimiters.</li>
+          <li>This parameter is optional.</li>
+        </ul>
+      </ul></td>
+      <td class='referenceTd'>TRUE if the corresponding log level is enabled for  the corresponding category.</td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>See the <a href="Tracing Configuration JMX API.html">Tracing configuration JMX API</a> section for more information.</li>
+  <li>The  existing Global.log<em>xxx</em> methods  delegates to the APIs in the Log object using the com.conceptwave.javascript  category.</li>
+</ul>
+<h4><a name="messageResourceEntry"></a>Message Resource Entry</h4>
+<p>The actual message text is stored in the  AVM resource files (that is, sysRC_en-xx.xml and appRC_en-xx.xml).</p>
+<p>  Support is available for additional elements within  the resource string  elements, which are the following:</p>
+<table width="557" border cellpadding=1 class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="192" class='referenceTh'>Element within Resource String</th>
+      <th width="349" class='referenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='referenceTd'><p>&lt;category/&gt;</p></td>
+      <td class='referenceTd'><ul>
+        <li>String.</li>
+        <li>Actual format is up to the  domain or application.</li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'><p>&lt;tagNames/&gt;</p></td>
+      <td class='referenceTd'><ul>
+        <li>Semi-colon-delimited list of  tags.</li>
+        <li>Format of tags is up to the  domain or application.</li>
+      </ul></td>
+    </tr>
+  </tbody>
+</table>
+<h4>Category&nbsp;and Tag Format</h4>
+<p>As indicated in the previous section, the application is responsible for the format of both the category and tag names. 
+  It is strongly suggested that the domains  using these APIs coordinate the values that they use.</p>
+<h4>Code Example</h4>
+<p>The following is an example of using a number of the Log  scriptable object.</p>
+<p>The resource entry in this example is the following:</p>
+<div class="code">
+	<div class="codeContent">
+	<pre class="code-java">&lt;string&gt;
+    &lt;id&gt;AE1234&lt;/id&gt;
+    &lt;text&gt;Updated {} Order(s).&lt;/text&gt;
+    &lt;category&gt;OM_ORDER_ENTRY&lt;/category&gt;
+    &lt;tags&gt;OM_OrderID;OM_CustomerName;&lt;/tags&gt;
+&lt;/string&gt;
+</pre>
+	</div>
+</div>
+<p>The script is as follows:</p>
+<div class="code">
+	<div class="codeContent">
+	<pre class="code-java">Log.info(&quot;AE1234&quot;,  [5], [order.id, order.customerName]);</pre>
+	</div>
+</div>
+<p>The output is as follows:<br>
+  <br>
+  <tt>2013-12-02T08:26:12.000927-0500  [Thread:2] INFO OM_ORDER_ENTRY SLM={&quot;OM_OrderID&quot;:&quot;1234&quot;,&quot;OM_CustomerName&quot;:&quot;ACME&quot;}/=SLM  Updated 5 Orders(s).</tt></p>
+<h4>Log Message Format</h4>
+<p>Log messages have the following format:</p>
+<blockquote>
+  <p>  [<em>Date Time</em>] [<em>Thread Name</em>]  [<em>Severity Level]</em> [<em>Formatted Tag/Value Pairs</em>] [<em>Message</em>]</p>
+</blockquote>
+<p>  The <em>Date Time</em> takes the following form:</p>
+<blockquote>
+  <p>  <em>yyyy</em>-<em>mm</em>-<em>ddThh:mm:ss.nnn+|-hhmm</em></p>
+</blockquote>
+
+<h3><a name="logConfiguration"></a>Log Configuration</h3>
+<p>Severity levels are read from the existing logging portion  of the AVM&rsquo;s configuration model. A standard logback configuration file, logback-ngee-template.xml, contains the default values for the log file name, log file retention policy,  and maximum size to be loaded. This file is used if the AVM is deployed in an NGEE  environment.</p>
+<p>  The default log filename is as follows:</p>
+<blockquote>
+  <p>  /var/log/ngee/avm.&lt;<em>hostname</em>&gt;.&lt;<em>date</em>&gt;.&lt;<em>index</em>&gt;.log</p>
+</blockquote>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>The default rollover minimum and maximum values  are 1 and 5, respectively.</li>
+  <li>The default maximum file size is 10 MB.</li>
+  <li>It is expected that these values are loaded from  the management server as part of the configuration integration.</li>
+</ul>
+<p>Applications  are expected to refrain from exposing sensitive information in their logs, and  are responsible for the information included in both the log messages and the  tag-value pairs. </p></td>
+</tr>
+</table>
+</body>
+</html>

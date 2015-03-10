@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>Attachments in Documents and Orders</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Attachments in Documents and Orders</h3>
+<p>In product version 5.x, the following metadata objects were used to add, load, and display attachments to document and order items: </p>
+<ul>
+  <li>cwf_oe.AttachmentFinder</li>
+  <li> cwf_oe.CWDOCATTACHMENT</li>
+</ul>
+<p>The following table describes the metadata object pertaining to attachments in the product:</p>
+<table width="1295" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="149" class='confluenceTh'>Metadata Object</th>
+      <th width="1324" class='confluenceTh'> Description </th>
+    </tr>
+    <tr>
+      <td height="40" class='confluenceTd'>cwf.attachmentDoc</td>
+      <td class='confluenceTd'><p>This object replaces the cwf_oe.CWDOCATTACHMENT document. It has the same structure (variable names, variable order, and mapping to database) as the old document to support backward compatibility. The document is located in system metadata and has no child UI. <BR>
+      </p></td>
+    </tr>
+    <tr>
+      <td height="26" class='confluenceTd'>ui_common.attachmentFinder</td>
+      <td class='confluenceTd'>This object denotes the new attachment finder implementation. It has a child UI based on the ui_common.baseFinder user interface.</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'>ui_common.attachmentSearch</td>
+      <td class='confluenceTd'>This object is a search document that replaces cwf_oe.AttachmentSearch. The search document has no default child UI.</td>
+    </tr>
+    <tr>
+      <td height="26" class='confluenceTd'>ui_common.attachmentUI</td>
+      <td class='confluenceTd'>This object represents the top-level UI for the attachment document detail view.</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'>ui_common.attachmentResult</td>
+      <td class='confluenceTd'>This object denotes the top-level UI for the attachment finder's result table.</td>
+    </tr>
+  </tbody>
+</table>
+<h4 dir="ltr">Events</h4>
+<p>The following table describes events pertaining to attachments. Parameters that are bolded signify that they are mandatory:</p>
+<table width="1443" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="214" class='confluenceTh'>Event</th>
+      <th width="352" class='confluenceTh'> Parameters</th>
+      <th width="959" class='confluenceTh'> Description </th>
+    </tr>
+    <tr>
+      <td height="138" class='confluenceTd'>SYSTEM_ATTACHMENT_ADD</td>
+      <td class='confluenceTd'><li>owner (order item)</li>
+        <li>description</li>
+        <li><strong>fileName</strong></li>
+        <li>mimeType</li>
+        <li>note</li>
+        <li><strong>attachmentData</strong></li>
+        <li>attachmentDoc</li>
+        <li><strong>attachmentId</strong></li></td>
+      <td class='confluenceTd'><p>The upload servlet calls this event to store the uploaded file into the attachment document. There are three scenarios to consider:</p>
+        <ul>
+          <li> Only the attachmentId is provided</li>
+          <li>The  attachmentDoc is provided</li>
+          <li>The  attachmentDoc is NOT provided</li>
+        </ul></td>
+    </tr>
+    <tr>
+      <td height="24" class='confluenceTd'>SYSTEM_ATTACHMENT_FILE_GET</td>
+      <td class='confluenceTd'><strong>attachmentId</strong></td>
+      <td class='confluenceTd'><p>This event loads the attachment file by the given attachmentId and returns array [attachmentFile, fileName, mimeType].</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>SYSTEM_ATTACHMENT_QUERY</td>
+      <td class='confluenceTd'><li><strong>ownerId</strong></li>
+        <li>topOrderId</li></td>
+      <td class='confluenceTd'>This event returns a list of cwf.attachmentDocs by the given parameters.</td>
+    </tr>
+    <tr>
+      <td height="59" class='confluenceTd'>SYSTEM_ATTACHMENT_INFO_QUERY</td>
+      <td class='confluenceTd'><strong>ownerId</strong></td>
+      <td class='confluenceTd'>This event returns attachInfoArr. The return information is an array in the following format:
+        <p>[attachmentId_1, attachmentName_1, attachmentMimeType_1, ..., attachmentId_N, attachmentName_N, attachmentMimeType_N ]</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>SYSTEM_ATTACHMENT_REMOVE</td>
+      <td class='confluenceTd'><li><strong>docId</strong></li>
+        <li>topOrderId</li></td>
+      <td class='confluenceTd'>This event deletes all attachments for the given document or order. This event is called when deleting the object from the database.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>UI_GET_ATTACHMENT_FINDER</td>
+      <td class='confluenceTd'><li><strong>ownerItem</strong> (order item)</li>
+        <li>parentUI (for example,  order UI)</li></td>
+      <td class='confluenceTd'>This event creates, initializes, and returns the finder attachment UI for the given ownerItem.</td>
+    </tr>
+  </tbody>
+</table>
+<h4>Get and Display the Attachment Finder UI</h4>
+<p>To get an instance of the attachment finder, the UI_GET_ATTACHMENT_FINDER event should be fired with the following parameters: </p>
+<blockquote>
+  <p>[ownerObject, parentUI]</p>
+</blockquote>
+<p>The following example retrieves an instance of the finder for the document, which can be an action in the document UI:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>var finderUI = publishEvent("UI_GET_ATTACHMENT_FINDER", FIRST_ONE, null, [this.model,this]);
+return finderUI;</pre>
+  </div>
+</div>
+<p>To see an example of this action, see  com.conceptwave.system.OrderUserInterface &gt; attachAction from Velocity Studio's Library tab.</p>
+<h5>Customize the Default Behaviour</h5>
+<p>The UI  Common template provides the default handler for the event to return the ui_common.attachmentFinder implementation.</p>
+<p>In your metadata, your can provide your own handler to return the old attachment implementation (cwf_oe.AttachmentFinder) or any own extended finder.</p>
+<BR>
+<p><BR>
+</p></td>
+</tr>
+</table>
+</body>
+</html>

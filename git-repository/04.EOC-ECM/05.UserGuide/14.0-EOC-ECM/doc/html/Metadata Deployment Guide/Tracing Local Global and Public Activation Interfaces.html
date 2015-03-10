@@ -1,0 +1,26 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Tracing Configuration</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Local versus Global Tracing, and Public  Activation Interfaces</h2>
+<p>Local trace jobs are jobs that only impact tracing in the  local AVM instance. If a message is received that matches a trace job&rsquo;s  criteria, tracing occurs within the application component. However, the trace  ID is not expected to be propagated when the message is forwarded. As a result,  tracing is not triggered in other application components.</p>
+<p>  With global tracing, it is expected that the trace ID is  propagated with messages to other application components and possibly trigger  tracing in them. The management server defines global trace jobs.</p>
+<p>  Public activation interfaces (PAI) are interfaces where  receipt of a message with a trace ID triggers both the message being recorded  and trace ID propagation. These interfaces are intended to be public-facing  interfaces.</p>
+<h3>Trace Log File</h3>
+<p>Each trace job has one log file generated. The log  filename is based on both the trace interface and the trace job ID. </p>
+When  trace jobs are either deleted or created by the command-line interface, the AVM  logback configuration must be reloaded.
+
+<br></td>
+</tr>
+</table>
+</body>
+</html>

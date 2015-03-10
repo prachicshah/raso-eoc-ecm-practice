@@ -1,0 +1,109 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Attributes for an Info Model</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> 
+<tr>
+<td class="pagebody" >
+
+
+<h2>Attributes for an Info Model</h2>
+<p> To create info tables, first you need to add attributes for the info model. The attributes must be <strong>Active</strong> (that is, the <strong>Status</strong> field set to <strong>Active</strong>).</p>
+<h3>Add an Attribute</h3>
+<p>To add attributes to info model, complete these steps:</p>  
+<ol>
+<li>From the menu bar, click<strong> Designer</strong> > <strong>Attributes</strong>, and create <strong>Active</strong> attributes of the type <em>String</em> or <em>Number</em> (for example, Brand, Model, and so on).</li>
+<li> From the menu bar, click  <strong> Designer</strong> > <strong>Info Models,</strong> and <a href="CreateInfoModel.html"> create an Info Model</a>.</li> 
+<p><strong>Note: </strong>Do not change the <strong>Status</strong> to <strong>Active</strong> at this stage.</p>
+<li>Click the <strong>Attributes</strong> tab from Info Model detail page, and click the <strong>Add</strong> button.</li>
+
+<p><img src="InfoModeladdAttributes.png" alt="Add Info Table"></p>
+
+<li>The <strong>Info Model Attribute </strong> dialog appears. Click the <strong>Attribute</strong> field's <strong>Search</strong> button.</li>
+<li>The <strong>Attribute Finder </strong>dialog appears. Click the <strong>Search</strong> button to display all the attributes.</li>
+<li>Select one attribute by double-clicking the row.</li>
+<p>
+  <img src="InfoModel_AttributeDetails.png" alt="Attribute Details "  />  </p>
+<li>The information related to selected attribute appears in the fields of Info Model Attribute dialog. The following table describes the fields for Info Model Attribute:<br>
+  <br>
+  <table class='confluenceTable' border cellpadding="1">
+    <tbody>
+      <tr>
+        <th width="92" class='confluenceTh'>Fields</th>
+        <th width="811" class='confluenceTh'>Description</th>
+        <th width="215" class='confluenceTh'>Rule</th>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Name</strong></td>
+        <td class='confluenceTd'>Unique Name of the Attribute within the Info Table. This field is for internal use when designing your catalog model. This field is not supported by language translation. </td>
+        <td class='confluenceTd'>Mandatory</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Attribute</strong></td>
+        <td class='confluenceTd'>Use the finder to  pick a Catalog Attribute.</td>
+        <td class='confluenceTd'>Mandatory</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Label</strong></td>
+        <td class='confluenceTd'>The visual Label used  for this attribute, which is used in the application user interface.</td>
+        <td class='confluenceTd'>Mandatory</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Is Null</strong></td>
+        <td class='confluenceTd'>If checked, the Info Model Attribute or Column will allow null value. Otherwise, a null value is not allowed. </td>
+        <td class='confluenceTd'>Boolean</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Is Search</strong></td>
+        <td class='confluenceTd'> Enables  searching of Info Model Attributes. If checked, this column attribute can be used as a search key and the system will create an index for the search key. </td>
+        <td class='confluenceTd'>Boolean</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Descending</strong></td>
+        <td class='confluenceTd'>This field determines how the data is displayed in the Catalog Management application. Checking this box, displays the column data in descending order.</td>
+        <td class='confluenceTd'>Boolean. Visible when Sort =  true</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Sequence</strong></td>
+        <td class='confluenceTd'>Number value used for  attribute sorting. </td>
+        <td class='confluenceTd'>Visible when Sort =  true. Up to 4 digits in length</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Project</strong></td>
+        <td class='confluenceTd'>Search for the name of the project.</td>
+        <td class='confluenceTd'>Mandatory</td>
+      </tr>
+    </tbody>
+</table></p>
+
+<li>Click the <strong>Save</strong> button on  Info Model Attribute dialog, the details of added attribute appear under the <strong>Attributes </strong>tab. You can repeat steps 3 to 7 to add more attributes.</li>
+<p><img src="InfoModelAttributes.png" alt="Attributes for Info Model"></p>
+<li>Once you are done adding the attributes, select <strong>Active</strong> from the <strong>Status</strong> field on  <strong>Info Model</strong> <strong>Detail</strong> dialog.</li>
+</ol>
+<p><strong>Note:</strong> You cannot add or delete an attribute once the info model is activated.</p>
+<h3>Delete an Attribute</h3>
+<p>To delete an attribute related to info table, complete these steps:</p>
+<ol>
+  <li>Click <strong>Attributes</strong> tab from <strong>Info Model Detai</strong>l page to display list of added attributes.</li>
+  <li>Select an attribute from the list  and click the <strong>Delete</strong> button.</li>
+  <li>A confirmation dialog appears. Click the  <strong>Yes</strong> button to delete the selected attribute.</li>
+  </ol>
+
+<h3>View details of an Attribute</h3>
+<p>To view details of an attribute related to info table, complete these steps:</p>
+<ol>
+  <li>Click <strong>Attributes</strong> tab from <strong>Info Model Detail</strong> page to display list of added attributes.</li>
+  <li>Select an attribute from the list and click the <strong>Detail</strong> button.</li>
+  <li>The selected attribute's details appear in the<strong> Info Model Attribute </strong>dialog.</li>
+</ol>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

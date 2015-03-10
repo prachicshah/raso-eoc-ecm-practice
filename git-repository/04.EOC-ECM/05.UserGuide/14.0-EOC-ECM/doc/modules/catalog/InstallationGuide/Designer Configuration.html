@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Add Library JAR Files</title>
+<link rel="stylesheet" href="../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td>
+<h2><a name="addCatalogLibraryFiles"></a>Add Library JAR Files</h2>
+<p>The catalog library files contain the metadata that enables the Catalog application to run. The library files are in .jar format and are included in the installation folder<em>. </em>These files must be added to Velocity Studio's library.   To add these files, complete the following steps:</p>
+<ol>
+  <li>Open Velocity Studio and click <strong>File &gt; Open Project</strong> from the menu bar.</li>
+
+  <li>Click the<strong> </strong>root metadata node  (for example,<em> CatalogProj), </em>and then  click the <strong>Library</strong> tab in the right pane.</li>
+  <li>Click the <strong>Add (</strong> <img src="addIcon.png" alt ="Add Jar files" width="13" height="13" />) button. The <strong>Select an template jar</strong> dialog appears.</li>
+    
+  <li>Add the following  catalog JAR files specified in the  table, which are located in the &lt;<em>installation_folder</em>&gt;\module folder:     <br>
+    <br><table width="510" border cellpadding="1" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="170" class='confluenceTh'>Required JAR Files</th>
+      <th width="324" class='confluenceTh'>Recursive JAR Files</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><li>ecm.jar</li></td>
+      <td class='confluenceTd'>
+        <li>catalog.jar  
+        <li>catalogClient.jar
+        <li>cwl_pscm.jar
+        <li> cws_pscm.jar                  
+        <li>pscm.jar            
+        <li>SIDCommon.jar  
+        <li>serviceOrchestrationFramework.jar </li>
+      </td>
+    </tr>
+  </tbody>
+</table>
+    <BR>
+          <p><img src="addLibraryFile.png" alt="Library Root" border="1"/></p> 
+  </li>
+   <li>Click the <strong>Open </strong> button. A Copy File dialog appears; select <strong>Yes</strong> to copy the JAR files to your &lt;project  folder&gt;\templates folder. </li>
+   <li>Click the <strong>Save</strong> button. A dialog appears, prompting whether you  want to reload your project. </li>
+   <li>Click the <strong>Yes</strong> button to confirm.  For the library files to take  effect, you must reload your project</li>
+</ol>
+<p>After you have successfully added all library files, the <strong>Library</strong> tab in the left pane of Velocity Studio contains the appropriate folders for the JAR files.</p>
+
+<p><img src="CatalogLibraryFolder.png" alt="Library Files" border="1"/></p>
+
+</td>
+<tr>
+</table>
+</body>
+</html>

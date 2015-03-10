@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Assign Catalog Privileges</title>
+<link rel="stylesheet" href="../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+<h2>Assign Catalog Privileges</h2>
+<p>Once Velocity Studio, the System Configuration application, and the database have been properly configured,  user privileges must be granted to enable access to the Ericsson Catalog Manager application.   For more details regarding assigning user privileges, refer to the User Profile Management's user guide. The following steps describe the process of assigning the Catalog Management Administration privilege, which allows full access to the catalog application. To limit access to the application, refer to the <a href="..\UserGuide\Configuration\Catalog_Privileges.html">catalog privileges</a> section for more details. </span></p>
+<p><a name="assignPrivilege"></a>To assign the catalog management administration privilege, complete these steps:</p>
+<ol>
+    <li>Run the User Profile Management  application. In your Web browser, access the Application selection page by entering   http://&lt;hostname&gt;:&lt;port&gt;/cwf/selectApp (for example, http://localhost:8080/cwf/selectApp) as the URL,  and log in using username and password credentials: <em>upadmin</em> / <em>upadmin</em>.</li>
+    <li>Select the <strong>User Profile Manager</strong> application; the main Page or this application appears</li>
+    <li>Click the<strong> Manage</strong> &gt; <strong>Groups</strong> from the menu bar. </li>
+    <li>From the Search Group page, click  the <strong>Search</strong> button to get the list of the user groups.</li>
+    <li>Double-click the appropriate user group (for  example, User Profile Administrators).</li>
+    <li>Click the <strong>Privileges</strong> tab.</li>
+    <li>On the Select Privileges page, first click the  Edit button and then click the <strong>Add </strong>button.  </li>
+    <li>The Search Privileges page appears with the available privileges for that  group. </li>
+    <li>Select the catalog related privileges (for example, Catalog Management Administration), and click the <strong>Select </strong>button. </li>
+    <li>&nbsp;A message appears, indicating that you have  successfully added the privileges. </li>
+</ol>
+<h3><strong>Create a Privilege</strong></h3>
+  <p>You can create a privilege specific to a catalog implementation.  For the new privilege to be used by catalog, it has to be created in both the User Profile Management and Velocity Studio applications.  The following example shows the <em>View Project</em> privilege being created in both applications.</p>
+<p> To create a new catalog privilege, follow these steps:</p>
+<ol>
+  <li> In Velocity Studio, right-click the metadata root<strong> </strong>(for example, CatalogProj) and create a namespace.</li>
+  <li> Right-click the namespace and create a new data type by navigating to <strong>Data Dictionaries</strong> &gt; <strong>Data Types.</strong></li>
+  <li> Enter the values for the data type, for the <strong>Extends</strong> field choose <em>cwf.privilege</em>.</li>
+  <p><img src="DesignerPrivilege.png" alt="Create a new Catalog privilege"></p>
+  <li>Run the User Profile Management  application. In your Web browser, access the Application selection page by entering   http://&lt;hostname&gt;:&lt;port&gt;/cwf/selectApp (for example, http://localhost:8080/cwf/selectApp) as the URL,  and log in using username and password credentials: <em>upadmin</em> / <em>upadmin</em>.</li>
+  <li>From the menu bar, click <strong>Manage</strong> &gt; <strong>Privileges</strong>.</li>
+  <li>Click  the <strong>New</strong> button, and enter information in the Name and the Description field. </li>
+  <li>Click  the <strong>Save </strong>button to save the privilege.</li> 
+  <p><img src="AdminPrivilege.png" alt="Add a new privilege" /></p>
+</ol>
+<p><strong>Note:</strong> Ensure that the <strong>Name</strong> field has the same value in the Velocity Studio and the User Profile Management application.</p>
+  <p>To verify if the privilege is successfully created or not, check the privileges listed under the <strong>Privileges</strong> submenu. You can assign the newly created privilege to  the user by following the same steps in <a href="#assignPrivilege">assign privilege</a>.</p>
+  <p>&nbsp;</p>
+  
+</td>
+</tr>
+</table>      
+</body>
+</html>

@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Profiling with JConsole</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Profiling with JConsole</h1>
+<p>JConsole is a JMX-compliant monitoring tool, which is provided as part of Sun's Java SDK. With JConsole, you can monitor JVMs extensively, such as the  runtime deployed in any J2EE container with <a href="J2EE Application Server Installation.html#JMX">JMX arguments enabled</a>.</p>
+<p>To use JConsole to profile the application, complete the following steps:</p>
+<ol>
+  <li>Launch JConsole by running jconsole.exe from your &lt;<em>Java_installation_folder</em>&gt;\bin folder.</li>
+  <li>From the JConsole: New Connection dialog, connect to either a <strong>Local Process</strong> or a <strong>Remote Process</strong>.<br>
+    <br>
+    <img src="JConsole new connection.png" width="413" height="409" alt="JConsole: New Connection screen">  <br>
+    <br>
+    </li>
+  <li>If you are connecting to a remote process, specify the following JMX parameters in your Java startup options:
+    <div class="preformatted">
+      <div class="preformattedContent">
+        <pre>-Dcom.sun.management.jmxremote.port=8001
+-Dcom.sun.management.jmxremote.authenticate=false
+-Dcom.sun.management.jmxremote.ssl=false</pre>
+        </div>
+      </div>
+    These three parameters allow you to use a remote process even when you are running locally. To run a remote process, complete these steps:
+    <ol type="a">
+      <li>From the JConsole: New Connection dialog, select <strong>Remote Process</strong>.</li>
+      <li>Enter the JMX server's address in the form <em>location:port</em> (for example, <tt>localhost:8001</tt>).</li>
+      <li>For the <strong>Username</strong> and <strong>Password</strong> fields, leave them blank.</li>
+      <li>Click the <strong>Connect</strong> button.<br>
+        </li>
+      </ol>
+    <strong>Note:</strong> When you are running your application locally, there are times when either you cannot see the process in JConsole or the process is grayed out. In these cases, follow the remote process steps.<br>
+    <br>
+  </li>
+  <li>Once the Java Monitoring and Management Console screen appears, click the <strong>MBeans</strong> tab. Proceed to click and expand the <strong>com.conceptwave.AVM &gt; Verbose &gt; Verbose&gt; Attributes</strong> nodes.This section allows you to change attributes.<br>
+    <br>
+    <img src="JConsole attributes.png" alt="JConsole attributes" border="1">    <br>
+    <br>
+    </li>
+  <li>The JMX <strong>Profiler mode</strong> property controls the profiling capabilities in the verbose domain. The <strong>Profiler mode</strong> property takes the following values:  </li>
+  <ul>
+    <li>ON</li>
+    <li>EXT</li>
+    <li>SRS</li>
+    <li>OFF</li>
+    </ul>
+  
+  <p>If the property is called with either the ON, EXT, or SRS set as its value, the operation starts profiling if it has not already started. If it is called with the value of OFF, the operation stops profiling if it has not already been stopped. Otherwise, if the property contains any other values when called, the call is ignored.<br>
+    <br>
+    <strong>Note:</strong> The profiler property values are case-insensitive. <br>
+    <br>
+    The profiler works in three different modes:
+    </p>
+  <ul>
+    <li>A basic mode (ON) in which the script call profile includes only the fully qualified script names.</li>
+    <li>In extended mode (EXT), the profiler displays the full script stack trace of the call and treats calls of the same script with different stack traces (called from different locations) as different profiler elements.</li>
+    <li>SRS mode allows you to print out the scripts.<br>
+      </li>
+    </ul>
+  <p>When the profiling status changes from ON, EXT, or SRS to OFF, the profiler writes one table of profiling information for each category of elements in the current verbose file. The verbose file can be specified as local files, such as C:\profiling.log.</p>
+  <p>The AVM can profile the use of the following element categories:</p>
+  <ul>
+    <li>Database operations</li>
+    <li>Scripts</li>
+    <li>Interface operations</li>
+    <li>User interface operations</li>
+    </ul>
+  <p>An example of the profiler output is as follows:</p>
+  <p><img src="JConsole profiler output.png" alt="Profiler output" width="857" height="588" border="1"><br>
+  </p>
+</ol></td>
+</tr>
+</table>
+</body>
+</html>

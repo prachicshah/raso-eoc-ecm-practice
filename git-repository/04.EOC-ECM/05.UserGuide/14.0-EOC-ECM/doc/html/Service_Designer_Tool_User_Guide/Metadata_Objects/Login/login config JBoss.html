@@ -1,0 +1,209 @@
+<html>
+<head>
+<title>Configure JBoss 5.1 Kerberos and Active Directory Single Sign-on Authentication</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2><a name="ConfigJBossAndAD"></a>Configure JBoss 5.1 Kerberos and Active Directory Single Sign-on Authentication</h2>
+
+<p>Before proceeding with configuring JBoss 5.1 Kerberos and Active Directory for single sign-on authentication, you can use the following parameters to help debug:</p>
+
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">-Dsun.security.krb5.debug=true<br>-Dsun.security.spnego.debug=true</pre>
+</div>
+</div>
+
+<p><strong>Note:</strong> After you have performed  the procedure that follows, remove these parameters.</p>
+<p>This procedure consists of six steps:</p>
+<ol>
+  <li><a href="#changeWebXml">Change web.xml inside your cwf.war</a></li>
+  <li><a href="#createKrb5">Create your krb5.conf file and put it into JBoss bin folder</a></li>
+  <li><a href="#changeLogin-Config">Change your login-config.xml file</a></li>
+  <li><a href="#registerSPN">Register a Service Principal Name</a></li>
+  <li><a href="#downloadSpnego">Download spnego.jar and place it into the JBoss library</a></li>
+  <li><a href="#WebBrowserSettings">Configure Web browser settings</a></li>
+</ol>
+<h3><a name="changeWebXml"></a>Step 1:  Change web.xml inside your cwf.war</h3>
+Add the following  XML to  web.xml. You can append it after <tt>&lt;display-name&gt;ConceptWave  Framework&lt;/display-name&gt;.</tt>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">&lt;filter&gt;
+     &lt;filter-name&gt;SpnegoHttpFilter&lt;/filter-name&gt;
+     &lt;filter-class&gt;net.sourceforge.spnego.SpnegoHttpFilter&lt;/filter-class&gt;
+     &lt;init-param&gt;
+         &lt;param-name&gt;spnego.allow.basic&lt;/param-name&gt;
+         &lt;param-value&gt;false&lt;/param-value&gt;
+     &lt;/init-param&gt;    
+     &lt;init-param&gt;
+         &lt;param-name&gt;spnego.allow.localhost&lt;/param-name&gt;
+         &lt;param-value&gt;false&lt;/param-value&gt;
+     &lt;/init-param&gt;    
+     &lt;init-param&gt;
+         &lt;param-name&gt;spnego.allow.unsecure.basic&lt;/param-name&gt;
+         &lt;param-value&gt;true&lt;/param-value&gt;
+     &lt;/init-param&gt;       
+     &lt;init-param&gt;
+         &lt;param-name&gt;spnego.login.client.module&lt;/param-name&gt;
+         &lt;param-value&gt;spnego-client&lt;/param-value&gt;
+     &lt;/init-param&gt;    
+     &lt;init-param&gt;
+         &lt;param-name&gt;spnego.krb5.conf&lt;/param-name&gt;
+         &lt;param-value&gt;krb5.conf&lt;/param-value&gt;
+     &lt;/init-param&gt;    
+     &lt;init-param&gt;
+         &lt;param-name&gt;spnego.login.conf&lt;/param-name&gt;
+         &lt;param-value&gt;login.conf&lt;/param-value&gt;
+     &lt;/init-param&gt;   
+     &lt;init-param&gt;
+         &lt;param-name&gt;spnego.preauth.username&lt;/param-name&gt;
+         &lt;param-value&gt;username&lt;/param-value&gt;
+     &lt;/init-param&gt;    
+     &lt;init-param&gt;
+         &lt;param-name&gt;spnego.preauth.password&lt;/param-name&gt;
+         &lt;param-value&gt;password&lt;/param-value&gt;
+     &lt;/init-param&gt;        
+     &lt;init-param&gt;
+         &lt;param-name&gt;spnego.login.server.module&lt;/param-name&gt;
+         &lt;param-value&gt;spnego-server&lt;/param-value&gt;
+     &lt;/init-param&gt;    
+     &lt;init-param&gt;
+         &lt;param-name&gt;spnego.prompt.ntlm&lt;/param-name&gt;
+         &lt;param-value&gt;false&lt;/param-value&gt;
+     &lt;/init-param&gt;    
+     &lt;init-param&gt;
+         &lt;param-name&gt;spnego.logger.level&lt;/param-name&gt;
+         &lt;param-value&gt;1&lt;/param-value&gt;
+     &lt;/init-param&gt;
+&lt;/filter&gt;    </pre>
+<pre>&lt;filter-mapping&gt;
+    &lt;filter-name&gt;SpnegoHttpFilter&lt;/filter-name&gt;
+      &lt;url-pattern&gt;/*&lt;/url-pattern&gt;   
+&lt;/filter-mapping&gt; <strong>  </strong></pre>
+</div>
+</div>
+<p><strong>Notes: </strong></p>
+<ul>
+  <li>The <tt>spnego.preauth.username</tt> and <tt>spnego.preauth.password</tt> represent the pre-authenticated  username and password, respectively.</li>
+  <li>If you are using keytab to do Kerberos authentication, leave <tt>spnego.preauth.username</tt> and <tt>spnego.preauth.password</tt> empty:
+    <div class="code">
+<div class="codeContent">
+<pre class="code-java">&lt;init-param&gt;
+    &lt;param-name&gt;spnego.preauth.username&lt;/param-name&gt;
+    &lt;param-value&gt;&lt;/param-value&gt;
+&lt;/init-param&gt;        
+&lt;init-param&gt;
+    &lt;param-name&gt;spnego.preauth.password&lt;/param-name&gt;
+    &lt;param-value&gt;&lt;/param-value&gt;
+&lt;/init-param&gt; </pre>
+</div>
+</div>
+  </li>
+</ul>
+
+
+<h3><a name="createKrb5"></a>Step 2: Create your  krb5.conf file and put it into JBoss bin folder</h3>
+<p>The following is a sample krb5.conf file:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+[libdefaults]
+  default_realm  = XXXX.COM
+  default_tkt_enctypes =  aes128-cts rc4-hmac des3-cbc-sha1 des-cbc-md5 des-cbc-crc
+  default_tgs_enctypes  = aes128-cts rc4-hmac des3-cbc-sha1 des-cbc-md5 des-cbc-crc
+  permitted_enctypes  = aes128-cts rc4-hmac des3-cbc-sha1 des-cbc-md5 des-cbc-crc
+
+[realms]
+  XXX.COM   = {
+      kdc  = xxx.xxx.com<br>      default_domain = xxx.COM
+  }<p>[domain_realm]
+  .xxx.com = XXX.COM</p></pre>
+</div>
+</div>
+  
+  <strong>Note: </strong><tt>xxx.xxx.com</tt> represents your domain control  machine.<br>
+<br>
+After you have created your krb5.conf file, copy it to your &lt;<em>JBOSS_HOME</em>&gt;/bin folder (for example, /home/appserv/AppServ/jboss-5.1.0.GA/bin).<br clear="all">
+<h3><a name="changeLogin-Config"></a>Step 3: Change your login-config.xml file</h3>
+<p>The   login-config.xml file is located in &lt;<em>JBOSS_HOME</em>&gt;/server/default/conf (for example,  
+  /home/appserv/AppServ/jboss-5.1.0.GA/server/default/conf/login-config.xml).</p>
+<p>Append the following XML to the file, before the last end-tag named <em>policy</em>:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">&lt;application-policy name=&quot;spnego-client&quot;&gt;
+  &lt;authentication&gt;
+    &lt;login-module code=&quot;com.sun.security.auth.module.Krb5LoginModule&quot; flag=&quot;required&quot; /&gt;<br>  &lt;/authentication&gt;<br>&lt;/application-policy&gt;
+
+&lt;application-policy name=&quot;spnego-server&quot;&gt;<br>  &lt;authentication&gt;<br>    &lt;login-module code=&quot;com.sun.security.auth.module.Krb5LoginModule&quot; flag=&quot;required&quot;&gt;
+      &lt;module-option name=&quot;storeKey&quot;&gt;true&lt;/module-option&gt;
+  &lt;/login-module&gt;
+  &lt;/authentication&gt;<br>&lt;/application-policy&gt;</pre>
+</div>
+</div>
+
+<p>If you are using keytab to do Kerberos authentication, add  the following XML to your login-config.xml file:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">&lt;application-policy name=&quot;spnego-client&quot;&gt;
+  &lt;authentication&gt;
+    &lt;login-module code=&quot;com.sun.security.auth.module.Krb5LoginModule&quot; flag=&quot;required&quot; /&gt;<br>  &lt;/authentication&gt;<br>&lt;/application-policy&gt;
+
+&lt;application-policy name=&quot;spnego-server&quot;&gt;
+  &lt;authentication&gt;<br>    &lt;login-module code=&quot;com.sun.security.auth.module.Krb5LoginModule&quot; flag=&quot;required&quot;&gt;  <br>      &lt;module-option name=&quot;debug&quot;&gt;true&lt;/module-option&gt;  <br>      &lt;module-option name=&quot;principal&quot;&gt;&lt;<strong><em>principal_in_keytab</em>&gt;</strong>&lt;/module-option&gt;  <br>      &lt;module-option name=&quot;storeKey&quot;&gt;true&lt;/module-option&gt;  <br>      &lt;module-option name=&quot;useKeyTab&quot;&gt;true&lt;/module-option&gt;  
+      &lt;module-option name=&quot;doNotPrompt&quot;&gt;true&lt;/module-option&gt;  <br>      &lt;module-option name=&quot;keyTab&quot;&gt;<strong>&lt;<em>location_of_keytab</em>&gt;</strong>&lt;/module-option&gt;  <br>    &lt;/login-module&gt; 
+  &lt;/authentication&gt;
+&lt;/application-policy&gt;</pre>
+</div>
+</div>
+
+<p><strong>Notes:</strong></p>
+<ul>
+  <li><tt>&lt;<em>principal_in_keytab</em>&gt;</tt> is the principal name  inside the keytab, such as HTTP/ pe05.conceptwave.com @CONCEPTWAVE.COM</li>
+  <li><tt>&lt;<em>location_of_keytab</em>&gt;</tt> is the physical file-system  location of the keytab file, such as /home/appserv/abc.keytab.<br clear="all">
+  </li>
+</ul>
+<h3><a name="registerSPN"></a>Step 4: Register  a Service Principal Name</h3>
+<p>The best way to register a Service Principal Name (SPN) is to have your Administration or Operations team perform this task. The registration process consists of using the setspn.exe  utility to register all your SPNs by logging on as Administrator on any  machine that has the support tools installed and run the pertinent commands.</p>
+<p><strong>Warning:</strong> A given SPN can be registered to only one Domain Account. If you decide to register a given SPN, ensure that it is not already  registered to another Windows NT Domain Account. Otherwise, you will have to  de-register or delete the mapping before registering the SPN to the other account.</p>
+<p>The following is an example:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+  setspn.exe -A HTTP/pe05 domainAccount 
+  setspn.exe -A HTTP/pe05.conceptwave.com domainAccount</pre>
+</div>
+</div>
+<p>Where:</p>
+<ul>
+  <li>    <em>pe05</em> is the host machine for JBoss.</li>
+  <li>    <em>domainAccount</em> is the pre-authenticated  account. It can be a regular account that logs you into your domain.</li>
+  <li> This domainAccount and its password would  be used in <tt>spnego.preauth.username</tt>and <tt>spnego.preauth.password</tt> in <a href="#changeWebXml">web.xml</a><strong>.</strong><br>
+  </li>
+</ul>
+<p>If you are using keytab to do Kerberos authentication, ask your Administration or Operations department to create a keytab file:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">ktpass -out c:\temp\b.keytab -princ &lt;principal&gt; -mapUser &lt;account&gt; -mapOp  set -pass &lt;password&gt;</pre>
+</div>
+</div>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li><tt>&lt;principal&gt;</tt>  is the principal in the keytab file, such as <a href="mailto:HTTP/pe05.conceptwave.com@CONCEPTWAVE.COM">HTTP/pe05.conceptwave.com@CONCEPTWAVE.COM</a>. The format is <a href="mailto:HTTP/host.domain@Realm">HTTP/<em>host</em>.<em>domain</em>@<em>Realm</em></a>.</li>
+  <li><tt>&lt;account&gt;</tt>  is the domainAccount.</li>
+  <li><tt>&lt;password&gt;</tt> is the  password for this domain account.<br clear="all">
+  </li>
+</ul>
+<h3><a name="downloadSpnego"></a>Step 5:  Download spnego.jar and place it into the JBoss library</h3>
+<p>The spnego.jar file is available from <a href="http://sourceforge.net/projects/spnego/files/" target="_blank">http://sourceforge.net/projects/spnego/files/</a>. Download  the latest version of the file and place it in &lt;<em>JBOSS_HOME</em>&gt;/server/default/lib (for example,  /home/appserv/AppServ/jboss-5.1.0.GA/server/default/lib).</p>
+<h3><a name="WebBrowserSettings"></a>Step 6:  Configure Web browser settings</h3>
+<p>See the <a href="login config Microsoft clients.html">Configure Microsoft Clients to Use Windows Integrated Authentication</a> section for configuring your Internet Explorer browser settings.</p></td>
+</tr>
+</table>
+</body>
+</html>

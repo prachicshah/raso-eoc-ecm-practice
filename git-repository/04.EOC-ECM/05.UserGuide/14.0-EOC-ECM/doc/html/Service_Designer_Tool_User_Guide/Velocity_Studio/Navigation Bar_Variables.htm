@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Navigation Bar Variables</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3><a name="#navbarvar"></a>Navigation Bar Variables</h3>
+<p>Navigation Bar variables are used for a variety of purposes. For example, you can create a binding to a Permission method that controls the privileges of a Document. When you create a Navigation Bar item, several system-defined variables associated with the Navigation Bar are created. You can use these variables or create new variables that refer to objects in your application.  </p>
+
+<img src="navigationbar_variables.png" align="absmiddle" border="1" alt="Navigation bar - Variables tab" />
+
+<p>The following table describes the system-defined variables for the Navigation Bar.</p>
+<table class='confluenceTable'>
+  <tbody>
+  <tr>
+  <th class='confluenceTh' width='130'>Variable</th>
+  <th class='confluenceTh' width='81'>Type</th>
+  <th width="369" class='confluenceTh'>Description</th>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>cwCurrentClicked</strong></td>
+  <td class='confluenceTd'>String</td>
+  <td class='confluenceTd'>The Method to call. Refers to the name of the navigation item click action.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>currentObject</strong></td>
+  <td class='confluenceTd'>User Interface</td>
+  <td class='confluenceTd'>The current object on the screen.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>previousObject</strong></td>
+  <td class='confluenceTd'>User Interface</td>
+  <td class='confluenceTd'>The previous object on the screen.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>NavigationItems</strong></td>
+  <td class='confluenceTd'>Object</td>
+  <td class='confluenceTd'> The list of Navigation Bar Items in the Configuration tab.</td>
+  </tr>
+  </tbody>
+</table>
+
+<p>Of special note is the  <strong>NavigationItems</strong> variable. This variable is of type Object and refers to  all of the navigation items (children items) created in the Navigation Bar item. By referencing this variable in the Iterator element of the HLayoutForm Form, the variable is bound to the  Navigation Bar children items that reside in the   Navigation Bar.</p>
+
+<img src="navigationbar_variterator.png" align="absmiddle" border="1" alt="NavigationItems variable" />
+</tr>
+</table>
+</body>
+</html>

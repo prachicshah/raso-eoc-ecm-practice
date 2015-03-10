@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>Extend a Form</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3><a name=""></a>Extend a Form</h3>
+
+<p>You can extend any existing Form, referred to as the <i>base Form</i>, to create a new Form under the same User Interface. The new Form contains all the Form Elements of the base Form; you can then add, replace or delete Form Elements to further customize from the base Form.</p>
+
+<p>One of the common uses of the Extend function is to extend from a base Form that is inherited from a base metadata object (that is, a Document is extended from a base Document). This way, you only need to add on Form Elements of additional variables of the extended metadata object, rather than building the Form from scratch.</p>
+
+<p>To extend a Form, do the following:</p>
+<ul>
+<li>In the <b>Metadata tab</b> of <b>Navigation</b> pane, right-click the base Form you wish to extend. The User Interface of the base Form can be a top-level User Interface or an included User Interface. Select <b>Extend</b><strong>.</strong><br>
+  <br>
+</li>
+
+<img src="extendForm.png" align="absmiddle" border="1" alt="Extend a form" /><br>
+<br>
+<li>The new extended Form has the Name of the base Form with appended "Ex"; the icon of the extended Form has a red flower at the top-right corner. The Form is added under the same User Interface of the base Form.<br>
+  <br>
+</li>
+<img src="extendForm2.png" align="absmiddle" border="1" alt="Extended form with icon indicating that is is extended, along with an appended Ex in the extended form's name" />
+    
+</ul>
+
+<p>The extended Form has all the Form Elements of base Form, with "lock" at the top-left corner of their icons to show that they are from the base Form.</p>
+
+
+<img src="extendForm3.png" align="absmiddle" border="1" alt="Extended form with form elements from the base form" />
+
+<p>At the Element Tree Pane, you can:
+<ul>
+<li><b>Add</b> a Form Element to the Form, in the same way as in a regular Form. The added Form Element does not have the lock shown in its icon.</li>
+<li><b>Delete</b> a base Form Element. The deleted Form Element still appears in the Element Tree Pane, with a red cross at the top-left of the icon. However, it is not rendered at Preview pane or when at runtime. You can <i>undelete</i> it by right-click it and select <b>Delete</b>.</li>
+<li><b>Replace</b> a base Form Element with another Form Element. The new Form Element appears in the Element Tree Pane with a green arrow at the top-left of the icon. You can revert the replacement by right-click it and select <b>Delete.</b></li>
+<li><strong>Copy and Replace</strong> a Form (which is the equivalent to editing a base Form element).</li>
+<li><strong>Copy a Form</strong> allows you to copy and then edit an exiting Form.</li>
+<li><strong>Paste a Form</strong> allows you to move an exiting Form to a new location.</li>
+</ul>
+<p>In addition, there is drag and drop functionality which allows you to reorder Forms that appear in the Form Element Tree provided that they are not locked.</p>
+<p>The following are Element Tree pane samples of each action performed to the base Form.</p>
+<table class='confluenceTable' cellpadding="1" border="1">
+<tbody>
+<tr>
+<th class='referenceTh'>Add</th>
+<th class='referenceTh'>Replace</th>
+<th class='referenceTh'>Delete</th>
+<th class='referenceTh'>Copy & Replace</th>
+</tr>
+<tr>
+<td class='referenceTd'><img src="extendFormAddElement.png" align="absmiddle" border="0" alt="" /></td>
+<td class='referenceTd'><img src="extendFormReplaceElement.png" align="absmiddle" border="0" alt="" /></td>
+<td class='referenceTd'><img src="extendFormDeleteElement.png" align="absmiddle" border="0" alt="" /></td>
+<td class='referenceTd'><img src="extendCopyReplace.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+</tr>
+</tbody>
+</table>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

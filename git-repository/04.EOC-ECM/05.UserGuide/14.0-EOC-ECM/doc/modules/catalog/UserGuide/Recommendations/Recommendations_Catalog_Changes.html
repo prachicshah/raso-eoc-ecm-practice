@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Recommendations for Applying Catalog Changes</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+
+<h2>Recommendations for Applying Catalog Changes</h2>
+<h3>General Recommendations</h3>
+<p>The following are general recommendations for applying catalog changes:</p>
+<ol>
+  <li>Work only with  <a href="../Objects/Project.html">projects</a> with <strong>Active</strong> status.</li>
+  <br>
+  The benefit of this recommendation is that you are  not required to restart a server after activating a project. When projects are activated using Catalog Designer, an internal mechanism will automatically refresh the cache. Exceptions may apply to this recommendation where the catalog design is in flux. In this situation, the <em>itemStatusToReadFromDB</em> configuration variable can be used to allow multiple <strong>Active</strong> states. <br></br>
+  <li>Do not back-date catalog structural changes.<br>
+    <br>
+  Back-dating an object may lead to situations that are difficult to audit or diagnose. Also, one may inadvertently change the interpretation of a quote or order that, depending upon the situation, may even be considered illegal. If a situation requires an <em>effective</em> back-date, the recommendation is to change the requestTime on affected basketItems.</li>
+</ol>
+<h3>Assumptions</h3>
+<p>The following assumptions apply to the procedures described on this page:</p>
+<ul>
+  <li>The <em>itemStatusToReadFromDB</em> configuration variable is  used in development.</li>
+  <li><em>All</em> projects previously deployed to production  must have a status of <strong>Active</strong>.</li>
+  <li>All catalog changes to be deployed during development  and testing  will require a server restart. You cannot  depend upon the catalog feature that automatically propagates changes at  runtime.</li>
+  <li>New catalog validation reports are available to  identify catalog data anomalies.</li>
+</ul>
+<h3>Author a Catalog Change in a Local Environment</h3>
+<p>The following is the procedure for authoring a catalog change in the local environment:</p>
+<ol>
+  <li>It is recommended that you maintain the exported project  files in a central repository, such as SVN.</li>
+  <li>Set the timezone of your computer to Coordinated Universal Time (UTC). This will prevent  subtle but unintended changes to start and end times.</li>
+  <li>Import the full catalog from your central repository of  exported project files using the catalog import feature (either through the command line or UI).  If desired, you can  write batch scripts that could be used  to automate the process of importing multiple projects using the command line  import feature. You may choose to drop and re-create the full catalog to ensure  a clean catalog.</li>
+  <li>Open or create projects for the changes you want to make.</li>
+  <li>Apply changes as desired. Always review dates, and it is recommended that you always   pick dates rather than letting it default to the current date and time. </li>
+  <li>During development period, the status can remain as  <strong>Definition</strong>.</li>
+  <li>When changes are complete, export the project.</li>
+  <li>Set the timezone of your computer back to your regular  setting.</li>
+  <li>Check changed projects into the central repository of  exported projects, such as  SVN.</li>
+</ol>
+<h3>Apply Catalog Changes to Development and Testing</h3>
+<p>The following is the procedure for applying catalog changes to the development and testing environments:</p>
+<ol>
+  <li>It is highly recommended to re-establish the catalog  such that it matches the current production catalog.</li>
+  <li>Import all catalog exports for the current release.</li>
+  <li>Run validation scripts identifying data anomalies.</li>
+  <li>Run data scrubbing scripts, as required. It may be  necessary to adjust <em>basketItem.requestTimes</em>, drop <em>basketItem</em> leaves, or  initialize defaults depending upon the changes performed.</li>
+  <li>Restart the server.</li>
+</ol>
+<p><strong>Note:</strong> This approach is required  because project files may change from day to day and importing a project  without removing it first may result in unintended results.  For example, one may initially add an object  and later completely remove it as this is permitted in <strong>Definition</strong> mode. Without  dropping the project first, the object that you intended to remove will  remain. Also,  any adjustment to a start date, intended or otherwise, results in  creating  a new version.</p>
+<h3>Apply Catalog Changes to Production</h3>
+<p>The following is the procedure for applying catalog changes to the production environment:</p>
+<ol>
+  <li>In a staging environment, re-establish the catalog such  that it matches the current production catalog.</li>
+  <li>Import all catalog exports for the current release.</li>
+  <li>For each project in the release, review and adjust all  start and end dates. All dates must be on or after the anticipated deployment  date and time.</li>
+  <li>Set the  project effective time  to the anticipated deployment date and time, and then activate the project.</li>
+  <li>Run validation scripts identifying data anomalies.</li>
+  <li>Run data scrubbing scripts as required. It may be  necessary to adjust <em>basketItem.requestTimes</em>, drop <em>basketItem</em> leaves, or  initialize defaults depending upon the changes performed.</li>
+  <li>Restart the server.</li>
+</ol>
+<p>It is important that you review dates.  This effort can be dramatically simplified by choosing a consistent set of  dates.</p>
+<p>&nbsp;</p>
+</body>
+</html>

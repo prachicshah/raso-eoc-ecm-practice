@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Start and End Dates</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Start and End Dates</h2>
+<p>All catalog objects (versioned and non-versioned) have start and end dates.  The versioned elements can have many instances with different start and end dates, but only the active instances for the current  period are displayed in the user interface. The non-versioned elements (Attribute Types, Context Types and Association Types) can have only one instance with one start date and one end date. The start date and end date govern the availability of the
+  items included in the Project. </p>
+<p>The start and end dates are not only formatted to have a date but also a timestamp. The format of the dates are as follows MM/dd/yyy HH where</p>
+<ul>
+  <li> MM - month in   numbers (1 - 12)</li>
+  <li>    dd - day of the month</li>
+  <li>    yyyy - year</li>
+  <li>    HH - hours in 24 hour format </li>
+  </ul>
+<p>The default catalog time unit is 24 hours, which means that the start date and time is converted to Catalog time based on the catalog time unit that is set. As an example, since the default is 24 hours, the start date of 19 Feb 2013 21:23 is  converted to 19 Feb 2013 00:00. When it comes to the start date of different versions (that is, they have the same date, but different time), these versions are considered to have the same start date and time. As a result, the logic is to order the different versions based on the start date or time, and return the result based on the first version encountered for that Catalog time.</p>
+<p>The catalog time unit is stored in CWPRODUCTPROPERTIES table under the CTLG_TIME_UNIT key. If you do not find an existing key value in the table, you may have to insert a new one, as the default is taken as 24 if this value is not found in database. This key is measured in hours and can only have 1, 2, 3, 4, 6, 12, 24 as valid values. 
+If any other value is set, the Catalog does not start and an error message appears in the application logs.</p>
+<p><strong>Note:</strong> Reducing the value from 24 to another value may prompt some performance impacts.  Before changing the time unit, ensure that all catalog nodes are shut down. </p>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>You <strong>cannot</strong> edit the start and end dates when the status of the element is<strong> Active</strong>. The catalog object changes associated with the project becomes active when the system date is the effective  date of the project. Thus, the start date of the project objects must be after the effective date of the project.</li>
+  <li>By default, the popup calendar for the <strong>End Date</strong> field shows the month of the <strong>Start Date</strong> field, as the end date cannot precede the start date. </li>
+  <li>The <strong>End Date</strong> field is not a mandatory one. If it is specified, it does drive an element's availability in a project.<BR>
+  </li>
+  <li>When importing a spreadsheet, an item's end date is updated, even though the item is in <strong>Active</strong> status. </li>
+  <li>Suppose that you have the following scenario:  </li>
+  <ol>
+    <li>Create Project A and open it.</li>
+    <li>Create Item X and activate it, which has the Project A reference.</li>
+    <li>Create Project B and open it.</li>
+    <li> Select Item X.</li>
+    <li>Click the <strong>Change End Date</strong> icon and provide   an end date.</li>
+    </ol>
+     The end date is reflected once Project B is activated. When the Change End Date pop-up displays, the project of the item (that is, Project A) is   selected by default. You need to change it to point to Project B.
+  </ul>
+<p>See <a href="../Objects/Project.html">Projects</a> for information about project effective  date.</p>
+<h3>Change End Date</h3>
+<p>To change an object's end date, you can click the <strong>End Date</strong> field's button, specify the end date, and then click the <strong>Save</strong> button. to change the end date of a row in a grid. The following is an example of changing the end date for an assocation type.</p>
+
+  <p><img src="changeEndDateButton.png" alt="Change End Date button" border="1"></p>
+  <p><strong>Note:</strong> Some objects require that you click the <strong>Edit </strong>button first before you can make changes to the <strong>End Date</strong> field.</p>
+
+<h3>Change Start Date  of multiple objects</h3>
+<p>To change the start date of multiple objects, follow these steps:</p>
+<ol>
+  <li>Open the project in Catalog Designer, and then click <strong>Edit</strong>.</li>
+  <li>Click  the<strong> Project Assignments</strong> tab, and then click <strong>All Assignments</strong> to display the list of objects.</li>
+  <p><img src="multipleStartDateChange.png" alt="Change the start date for multiple objects"/></p>
+  <li>Select the objects that you want to change their respective start dates, and then click <strong>Modify Start Date</strong>.</li>
+  <li>Enter the <strong>Start Date</strong> in the field. You can also click the <strong>Calendar</strong> button to select a date.</li>
+  <li>Select the <strong>Apply to all objects</strong> checkbox to apply the same date to all selected objects.</li>
+  <li>Click the <strong>Save</strong> button.</li>
+  </ol>
+<p><strong>Note:</strong> Change the <strong>Effective Date</strong>  field to reflect the same  start date for all objects related to a project.</p>
+<h3>Change End date of multiple objects</h3>
+<p>You can change the end date of multiple objects of a project. For example, project <strong>A</strong> has 200 objects and    75  active objects are end dated. When you need to change the end date of all of these active objects to the same date (when you activate the project <strong>A), </strong> you do not need to update the end date for each   object one by one. To change the end date of multiple objects, follow these steps:</p>
+<ol>
+  <li>Open the project in Catalog Designer, and then click <strong>Edit</strong>.</li>
+  <li>Click  the <strong> Assignment</strong> tab, and then click <strong>All Assignments</strong> to display the list of objects.</li>
+  <li>Select two or more objects with end dates from the list, and then click <strong>Modify End Date</strong> to launch the Project Assignment Modification dialog.</li>
+  <p><img src="multipleEndDateChange.png" alt="Change the  start date for multiple objects"/></p>
+  <li>Enter the <strong>End Date</strong> in the field. You can also click the <strong>Calendar</strong> button to select a date.</li>
+  <li>Select the <strong>Apply to all end-dated objects</strong> checkbox to apply the same date to all selected objects with an end date.</li>
+  <li>Click the <strong>Save</strong> button.</li>
+  </ol>
+<p><strong>Note:</strong> The <strong>Modify Start Date</strong> and <strong>Modify End Date</strong> buttons are  available only if the project is open and it is not Active.</p>
+<h3>Effect on Start and End Dates During Project Activation</h3>
+<p>When a project is activated, all start dates of all objects  in the project are moved to be the same as the effective date of the project,  if the start dates are prior to the project effective date. Also, at the time  of activation, the project effective time must be set to at least one hour in  the future.</p>
+<p>As such,  a certain degree of planning is required  as you develop catalog changes. As development for a particular release usually  starts three months prior to deployment, at the time of activation, you should  review all dates in the project and adjust them forward by approximately three  months.</p></td>
+</tr>
+</table>
+</body>
+</html>

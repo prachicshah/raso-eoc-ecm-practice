@@ -1,0 +1,100 @@
+﻿<html>
+<head>
+<title>XML Settings</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>XML Settings</h3>
+<p>XML settings control the conversion of the Data Structure to and from XML. The properties vary depending on the node type.</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Usage</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>XML name</b></td>
+<td class='confluenceTd'>XML tag name for this node. Defaults to <b>Name</b>.</td>
+<td class='confluenceTd'>All.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Length</b></td>
+<td class='confluenceTd'>Data length.</td>
+<td class='confluenceTd'>Data type and array node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Format</b></td>
+<td class='confluenceTd'>Data format.</td>
+<td class='confluenceTd'>Date type and array node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Exclude</b></td>
+<td class='confluenceTd'>Data type node: excludes this node.<br clear="all" />
+Container node: excludes this node but includes the child nodes.</td>
+<td class='confluenceTd'>All.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Exclude children</b></td>
+<td class='confluenceTd'>Excludes this node and all of its children.</td>
+<td class='confluenceTd'>Container and array node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Include always</b></td>
+<td class='confluenceTd'>Includes this node regardless of parent node settings. If this field is checked, the node (its tag) will be included in the XML even if its content is empty. (The default behavior is that the node (its tag) will not be included in the XML if its content is empty).</td>
+<td class='confluenceTd'>Container, data type and array node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Include namespace</b></td>
+<td class='confluenceTd'>Generates xmlns attribute with namespace value.</td>
+<td class='confluenceTd'>Root node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Include nulls</b></td>
+<td class='confluenceTd'>Generates tags for data elements that have no value (null). By default, only data elements with data will appear in the generated XML</td>
+<td class='confluenceTd'>Root node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Group</b></td>
+<td class='confluenceTd'>When checked, the Data Structure will be treated as a XSD model group definition (refer to XML Schema Part 1: Structures Second Edition of W3C Recommendation) on XML import/export if used as reference in the Data Structure node. In this case, when the runtime system generates XML or parses XML data, the node itself will be replaced with child elements of the group Data Structure.</td>
+<td class='confluenceTd'>Root node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Attribute</b></td>
+<td class='confluenceTd'>If checked, the node will be added as an attribute in the parent.</td>
+<td class='confluenceTd'>Data type node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>CDATA</b></td>
+<td class='confluenceTd'>Generates CDATA.</td>
+<td class='confluenceTd'>Data type node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Text</b></td>
+<td class='confluenceTd'>Uses this data type node as a TEXT node of the parent (that is, the value of the node is added directly under the parent node tag). If multiple TEXT nodes are defined under the same parent, the values will be appended with each other.</td>
+<td class='confluenceTd'>Data type node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Include xsi:type</b></td>
+<td class='confluenceTd'>Includes the XML xsi:type for this node.</td>
+<td class='confluenceTd'>Root node, Data type node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Element</b></td>
+<td class='confluenceTd'>Check to specify if node is an element (that is, when doing WSDL import/export).</td>
+<td class='confluenceTd'>Root node, Data type node.</td>
+</tr>
+</tbody>
+</table>
+<p>Elements of an XML-outgoing Data Structure with names that are invalid in XML must define the XML Name field. For example, an invalid XML name may have hats such as &lt;&#94;data&#94;&gt;, or start with a digit such as &lt;1foobar&gt;.</p>
+<p>Conversely, these same elements in an XML-incoming Data Structure does not require XML Names. Instead, the adaptor transforms these names in the messages; for example, the hats character are parsed out (&lt;&#94;data&#94;&gt; become &lt;data&gt;) and underscore is prepended for the digit-starting tags (&lt;1foobar&gt; become &lt;_1foobar&gt;).</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿<html>
+<head>
+<title>Order Hover Feature</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Order Hover</h3>
+
+<p>There are four   properties used to configure the hover option: </p>
+<ul>
+  <li>Form</li>
+  <li>Method</li>
+  <li>Style</li>
+  <li> Variable</li>
+</ul>
+<p>By default, the Order User  Interface has a hover form called Messages, which has an implemented onHover() method. This method computes what needs to be displayed in the hover  form.</p>
+<p>If you require overriding the behaviour of this method, do the following:</p>
+<ol>
+  <li> Override the onHover() method with the required logic.</li>
+  <li> Create a new hover form (for example,  fHover), containing a layout element, and either a Label or HTML Content element.</li>
+  <li><strong>Override</strong> the <strong>Default</strong> form and <strong>Copy and Replace</strong> the tree  element inside, which becomes editable. For the hover form, select your Form  (that is, fHover), Method, Style, and Variable.</li>
+  </ol>
+<p><strong>Note:</strong> The hover action for the order tree sometimes slows down the tree selection and should be invoked, if required. By default, the order onHover() action is only used if the node has state messages, such as error, warning, or info. If the order onHover() action has been overridden, anything can be displayed in hover Form. In this case, the onHover() action is invoked on each mouse hover over the node.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

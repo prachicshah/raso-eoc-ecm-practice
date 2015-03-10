@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Performance - Catalog Cache</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Catalog Cache</h2>
+
+<p>Clicking <b>Performance</b> &gt;<b> Catalog Cache </b>displays the catalog cache list, which controls all data caching stored in the Catalog application.</p>
+<p><img src="catalogCache.png" alt="Performance - Catalog Cache tab" border="1"></p>
+<p>The cache is a generic mechanism in the Catalog application that stores in memory data, which can be refreshed or recreated from disk (that is, from a database or files).</p>
+<h3>Types of Catalog Cache</h3>
+<p>The following table describes the names, default values, and a short explanation of each cache role.</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="169" class='confluenceTh'>Name</th>
+      <th width="603" class='confluenceTh'>Description</th>
+      <th width="172" class='confluenceTh'>Default</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Associations Cache</strong></td>
+      <td class='confluenceTd'>This cache contains associations tables.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 150</li></td>
+    </tr>
+    <tr>
+      <td height="28" class='confluenceTd'><strong>CatalogTranslation Cache</strong></td>
+      <td class='confluenceTd'>This cache contains catalog translations.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 10</li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>ChargeType Cache</strong></td>
+      <td class='confluenceTd'>This cache contains the charge type cache.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 1</li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>CompactString Cache</strong></td>
+      <td class='confluenceTd'>This cache has  catalog names, codes, IDs, and default values. Its capacity ranges from 1 to 999 MB.</td>
+      <td class='confluenceTd'><li><strong>Capacity: </strong>100</li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>CompiledQueries Cache</strong></td>
+      <td class='confluenceTd'>This cache contains compiles query expressions.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 1</li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>DynamicRow Cache</strong></td>
+      <td class='confluenceTd'>This cache has  row data in info tables. Its capacity ranges from 5 to 999 MB.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 5</li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>HierarchyTree Cache</strong></td>
+      <td class='confluenceTd'>This cache contains hierarchical data.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 20</li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>InfoTable Cache</strong></td>
+      <td class='confluenceTd'>This cache has info tables. </td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 10</li></td>
+    </tr>
+    <tr>
+      <td height="46" class='confluenceTd'><strong>Items Cache</strong></td>
+      <td class='confluenceTd'>This cache contains items.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 100</li>
+        <li><strong>Automatic Reload:</strong> 50</li>
+        <li><strong>Interval:</strong> 12</li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>QueryResults Cache</strong></td>
+      <td class='confluenceTd'>This cache has different type of resources (mainly texts), such as XSLT specifications, browser JavaScript programs, and so on.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 40</li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Tax Cache</strong></td>
+      <td class='confluenceTd'>This cache contains tax data.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 1</li></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>TaxModel Cache</strong></td>
+      <td class='confluenceTd'>This cache has tax model data.</td>
+      <td class='confluenceTd'><li><strong>Capacity:</strong> 1</li></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Configure Catalog Cache</h3>
+<p>To configure the cache, do the following:</p>
+<ol>
+  <li>Double-click any of these parameter fields and making your changes:  
+    <ul>
+      <li><a href="#capacity">Capacity (MB)</a></li>
+      <li><a href="#automaticReload">Automatic Reload (%)</a></li>
+      <li><a href="#interval">Interval (Hours)</a><br>
+        <br>
+      </li>
+    </ul>
+    <img src="catalogCacheEdit.png" alt="Performance - Catalog Cache tab - edit cache parameters" border="1">
+    <br>
+    <br>
+  </li>
+
+  <li>When you have finished making your changes, click the <strong>Save</strong> button to save your configuration.</li>
+</ol>
+<h4><a name="capacity"></a>Capacity (MB)</h4>
+<p>The cache capacity defines how much memory in MB the cache can take. This field can be any number from 1 to 99. Because the Java memory calculation features are quite limited, the specified number is approximate. The real physical memory consumption may be up to 25% higher or lower.</p>
+<p>Keep in mind that, given enough time, the cache eventually consumes the whole capacity, even if it is big. This consumption means that increasing the cache capacity may not always have a positive long-term effect on performance. Performance is only affected if, in the long term, this capacity increases the percentage of the direct hits in the cache instead of the database.</p>
+<h4><a name="automaticReload"></a>Automatic Reload (%)</h4>
+<p>The automatic reload parameter allows you to specify the percentage of an element that is reloaded. The default value for this parameter is 0. However, you can specify percentages from 0 to 100, inclusive.</p>
+<p>This percentage is used to write part of the cache into the database. For example, if the automatic reload percent is equal to 50 then 50% of recent elements in the cache will be written to the database if required.</p>
+<h4><a name="interval"></a>Interval (Hours)</h4>
+<p>The interval refers to the time in hours in which the cache writes its current content to the database. It refers to the next export point for reloading the cache. The default value for this parameter is 12. However, you can specify hours from 1 to 24, inclusive.</p>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Reference element</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Reference</h2>
+
+<p>Implementation of Reference Fields is achieved by first creating a data type of type reference. A   finder is then specified under this data type.  A visual label for Reference Fields is determined using the result document's <em>cwOnDocVisualKey</em> method. 
+  If implementation of this method is not provided (the return value is null), the primary key of the document is used. </p>
+
+<img src="reference.jpg" align="absmiddle" border="1" alt="Reference element" />
+
+<p>In addition, the Reference element can be structured inside of a table (see the following properties, Can Sort, Start Row, Cell Row Span, Cell Column Span, Group by In Table).</p>
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='referenceTh'>references Variable</th>
+<td class='referenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method</th>
+<td class='referenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>Allowable Child Elements</th>
+<td class='referenceTd'>None</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+  <th width="125" class='referenceTh'>Property</th>
+  <th width="140" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+  <th width="1348" class='referenceTh'>Comment</th>
+</tr>
+<tr>
+  <th class='referenceTh'>Name</th>
+  <td class='referenceTd'>Mandatory</td>
+  <td class='referenceTd'>Name of the Label.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Visible label of the Label. If empty, there is no Label label. Default is empty.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Can Sort</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Specifies whether the Reference  Field can be sorted (true) or unsorted (false).   The default is set to true. This option is available when the Reference Field appears in a table. </td>
+</tr>
+<tr>
+<th class='referenceTh'>Cell Alignment</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Controls the horizontal and vertical positioning of the Label in the page or parent Element. Default is undefined, which behaves as if it is top-left</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Cell Column Span</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Only applicable when in a Grid Layout. Specifies the number of columns that the Label shall occupy in the Grid Layout, to the right of current cell. Default is empty, which occupy one column.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Cell Row Span</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>This property provides more flexibility when building a grid-based user interface, instead of using a combination of horizontal and vertical layouts. This property appears when form elements appear under a Grid Layout element and the form element has a parent element. This property specifies the number of rows that the element occupies in the grid layout.</p>
+    <p>By default, this field is set to 1. All nine positions are made available for the <strong>Cell Alignment</strong> property if the form element is under a Grid Layout element and has a row span greater than 1, so that the form element can be aligned in nine different positions. With rowspan as 1, only the three centre positions are available.</p>
+    <p>To use this property, see the <a href="Element - Button.html#cellRowSpanExample">example</a> for details.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Data Length</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Specifies the maximum number of characters that can be entered into the text box.   Default is 0, which means no character restrictions.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Editable</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'><p>Specifies whether the Reference  Field is editable (true) or read-only (false).   Default is NONE, which is editable. Setting this property to <em>True</em> enables editing of this element when it appear within a Table. </p>
+  <p><strong>Note:</strong> If a field contains  an editable permission that is either coming from the form field itself, or inherited  from the variable or data type, it takes precedence. Otherwise, the user  interface's editablePerm permission takes over. If this method is not  overwritten, the model's editablePerm permission is used. User interfaces  displayed under another user interface with editablePerm are also be inherited  if the embedded user interfaces do not have their own editablePerm permission. </p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Enumeration Reference</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property provides a list of all data types within the metadata that   have either an enumeration or a reference finder defined. 
+    <p>At runtime, when the form is displayed, the value is   still  retrieved from the <strong>Variable</strong> property. The variable set on the fields can be primitive strictly for storing values. When you click the reference icon, the product uses the enumeration reference data type to find the finder user interface to display in a dialog. </p>
+    <p>See the <a href="#enumerationReferenceExample">example</a> on how to use this property for details.</p></td>
+</tr>
+<tr>
+<th class='referenceTh'>Font Properties</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Specifies the font properties of the label on a pop-up prompt: font-family, font-color and font-size. This overrides the styling assigned, if any, to the label.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Group by In Table</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Displays the Reference Field data in Finder results. The Reference data is displayed in a column with elements that are grouped with the same name.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Height</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Height to be taken up by the Label; can be in integer which is in pixels, or in percentage (for example, "50%") of page height or parent Element.  If this element is nested under a Table element, the width and height properties can be set using either the percentage (%) or pixel (px) measurement. If this element is not nested under a Table element, the width and height properties are only available using the pixel setting.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Icon</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>If an icon is selected, the icon appears in the Label, besides the label. Default is NONE.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Icon Action</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Only applicable when an Icon is specified. Choose from the list of Methods available in the User Interface to bind to the Icon. The Method is invoked when a user clicks on the Icon.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Include Icon in Tab Order</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>The property allows you to optionally exclude the icon button from the tab order.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Include in Tab Order</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>This property allows you to optionally suppress tabbing to any or all form elements. The <strong>Include in Tab Order</strong> property overrides the <a href="../../Configuration_Tool_User_Guide/Configure/System/UI/UItabbing.html">suppress tabbing</a> configuration setting and can take the following values:</p>
+    <ul>
+      <li>When set to <strong>&lt;Default&gt;</strong>, the element is included in tab order according to global rules and its focusable state.</li>
+      <li>If the property is set to <strong>Exclude</strong>, the element is excluded from tabbing even if the element is focusable.</li>
+      <li>If the property is set to <strong>Include</strong>, the element is included <em>only if it is focusable</em>, even if all items of that type are excluded through the Suppress Tabbing variable.</li>
+    </ul>
+    <p><strong>Note:</strong> For menu items and images, the <strong>Can Focus</strong> property affects including the element in the tab order. To ensure that an element is in the tabbing order, select this property.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label Orientation</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Choose the location of the Label. Options include top, left or right.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Label Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Choose from styles in the selected style sheet on the toolbar, which defines the styling of the Label such as font color. Default is NONE.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>On Enter</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>When data in the text box is selected and the user presses ENTER,  the action of the selected Method  is invoked.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Optional</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Error validation occurs when no data is entered in the large text box. </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Remove Label Line</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Select this property's checkbox when the element is in a grid layout and its column span is equal to the grid layout's   number of columns. In other words, if the   field is the only field in that row, this empty line is removed above the element. </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Run Trigger</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>When data is changed in the Reference Field, and the dialog box becomes out-of-focus, the action of the selected Method  is invoked immediately after the reference is selected in the popup finder. This property can be bound to any method of the UserInterface data structure.</p>
+    <p>The trigger of a field fires only if the field has first gained focus,  and then lost focus under these conditions:</p>
+    <ul>
+      <li>You focus on another field through either clicking your mouse or pressing the Tab key.</li>
+      <li>You click a menu.</li>
+      <li>You change your selection in a navigation tree.</li>
+      <li>You click another tab of a tabset.<br>
+        </li>
+      </ul>
+    <p><strong>Notes:</strong></p>
+    <ul>
+      <li>Field triggers do not fire on save. However, document triggers do.&nbsp;</li>
+      <li>As long as the cursor is still inside the field, the trigger  does not fire. Clicking outside  the field into the layout will not trigger  the field as layouts are not focusable by default.</li>
+      <li>The trigger does not fire for editable visual key types when entering a visual key value immediately in the reference text field. </li>
+      </ul></td>
+</tr>
+
+<tr>
+<th class='referenceTh'>Start Row</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Applicable only when parent Element is a Grid Layout. If true, the Label starts in a new row of the grid. If false, it is placed in the current cell as-is. Default is <i>/default</i>, which does not start a new row.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Defines the styling of the Label such as color and font. Default is NONE.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Text Align</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Specifies the alignment of the label; it can be <i>left</i>, <i>center</i>, or <i>right</i>. Default is empty, which is left-aligned.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Textbox Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'><p>Choose from styles in the selected style sheet on the toolbar, which defines the   styling of the text box of the Textfield such as color and font. Default is NONE.</p>
+  <p>To change the default disabled style for text fields, set this property with your own style, and make sure your stylesheet contains a style with the <em>Disabled</em> suffix appended to the assigned style. As example, when assigning the MyStyle style to the <strong>Textbox Style</strong> property, the stylesheet must have MyStyleDisabled to represent the disabled style.</p>
+  <p>To change the disabled style for text fields globally, add the <em>fieldDisabled</em> style to your stylesheet.<BR>
+    <strong>Note:</strong> The <em>fieldDisabled</em> style is  also  applied to any element that has a text field when disabled (for example, the date element or the password element). </p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the tooltip text, which is displayed in a hover box when the cursor hovers over the Label. Default is empty, which means no tooltip for the Label.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the tooltip style of the text displayed in the hover box when the cursor hovers over the label. The default is empty. Click the <strong>Value</strong> field to select a tooltip style from the list.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip Width (px)</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Allows you to change the width of the tooltip popup window statically. Enter the width in pixels. The default value for this property is 0.</td>
+</tr>
+<tr>
+  <th height="61" class='referenceTh'>Variable</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Choose from the list of Variables available in the User Interface to bind to   this Reference Field. Default is not assigned. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</p>
+    <p><strong>Note:</strong> The Reference variable property cannot bind to data types belonging to a user  interface. The data type used must belong to a document.</p></td>
+</tr>
+<tr>
+<th class='referenceTh'>Visible</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'><p>Determines whether the Label is visible or not. Choose true (visible) or false (not visible) or from the list of Methods available in the User Interface to bind to the Field.</p></td>
+</tr>
+<tr>
+<th class='referenceTh'>Width</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Width to be taken up by the Label; can be in integer which is in pixels, or in percentage (for example, "30%") of page width or parent Element.  If this element is nested under a Table element, the width and height properties can be set using either the percentage (%) or pixel (px) measurement. If this element is not nested under a Table element, the width and height properties are only available using the pixel setting.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>If this element is nested under a Table element, the width and height properties can be set using either the percentage (%)  or pixel (px) measurement. If this element is not nested under a Table element, the width and height properties are only available using the pixel setting. </li>
+  <li>If a Reference Form element is being used as a Reference Finder, the <em>showDetailAction</em> method takes the currently selected Document's ID and sets it as this Finder's parent document's variable value.</li>
+  <li>If this element is the first element that appears in the Element Tree pane, you can set the cell alignment. If this element has a parent layout (for example, vlayout or layout with the width or height set), this element uses these values as a base to set its alignment. If the parent layout does not contain a width or height, then this element does not have a base to which it can set its alignment.</li>
+  <li>If the element has a parent that contains width or height settings, but this form is displayed under another layout with different widths, your form alignment is restricted to the parent's width or height settings.</li>
+  <li>When metadata contains a reference field bound to non-reference data types, a warning message occurs in Velocity Studio. If the data type is incorrect, the value is restored from the database or metadata. testcase verifies that a new warning is added in Velocity Studio when metadata contains a reference field bound to non-reference data types. <br>
+  <br>
+  <strong>Note:</strong> The functionality of the reference field, such as the icon click, does not work without a reference data type.</li>
+  <li>If you use a reference or large text field under a finder whose output object does not have a user interface, a validation error occurs.</li>
+  <li>Displaying visual keys for multi-select reference fields does not work with the editable visual key format.</li>
+</ul>
+<h4>Add an Enumeration Type Reference Field in top-level UI</h4>
+<p>You can add an enumeration type Reference Field element in a top-level UI by completing these steps:</p>
+<ol>
+  <li>Select a form in a top-level UI.</li>
+  <li>Right-click the form and select the <strong>Add..</strong> option.</li>
+  <li>From the Add Element dialog, expand the <strong>Input Elements</strong> node, select the <strong>Reference Field</strong> element, and click the <strong>Finish</strong> button.</li>
+  <li>The Reference Field element appears in the top-level UI.</li>
+  </ol>
+<h4><a name="enumerationReferenceExample"></a>Example: Using the Enumeration Reference property</h4>
+<p>The following example shows how to use the <strong>Enumeration Reference</strong> property for both Select Field and  Reference Field elements:</p>
+<ol>
+  <li>Create  a reference data type with a finder property set. Ensure that the finder's output object has a visual key set up either through cwOnDocVisualKey or cwOnStructVisualKey.</li>
+  <li>Create  a document with two variables:
+    <ul>
+      <li>selectFieldVariable of type String</li>
+      <li>refFieldVariable of type String</li></ul>
+  </li>
+<li>Override  the user interface. </li>
+<li>Add a grid layout with Select Field element and a Reference Field element.  Set the <strong>Variable</strong> property to one of the variables in step 2.</li>
+  <li>Set  the <strong>Enumeration Reference</strong> property to the data type created in step 1.</li>
+  </ol>
+<p>At runtime, when you click the reference icon,   a dialog appears, showing  the finder attached to the <strong>Enumeration Reference</strong> data type. The select  drop-down field contains a list  from the finder specified in step 1. The visual key also appears in the user interface.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

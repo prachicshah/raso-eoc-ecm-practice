@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Code Tables in an Editable Table</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td width="1062" valign="top" class="pagebody">
+<h2>Code Tables in an Editable Table</h2>
+<p><SPAN id="internal-source-marker_0.10304065552715297">You can display unique code table lists based on the current result row, which ensures that value maps coming from dynamic code tables and reference finders are unique.</SPAN></p>
+<p>The following is an example of using this feature:</p>
+<ol>
+  <li>Create a finder user interface with an editable table. Have this editable  show the following data types using select fields:  </li>
+  <ul>
+    <li>Reference data type (either nRef or sRef)<BR>
+      Ensure that the drop-down values for the reference data type are unique per result row (for example,  by using conversion maps).</li>
+    <li>Standard database enumeration<BR>
+      For example, this data type can be a country database enumeration.</li>
+    <li>Static enumeration (either string or integer)</li>
+    <li>Dynamic code table
+      <BR>
+      </li>
+    </ul>
+  <li>Save your metadata and then run it.</li>
+  <li>At runtime, the following actions occur:
+    <ul>
+      <li>        The column that displays a select field using the reference data type shows a different list for each row when you enter edit mode.</li>
+      <li>        Standard database enumerations do not change within a session. As a result, the drop-down list for this select field remains the same for each row.</li>
+      <li>        Static enumerations are always the same for each row.</li>
+      <li>As with the reference drop-down column, the column that uses the dynamic code table has a unique drop-down list at runtime.</li></ul></li>
+</ol>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

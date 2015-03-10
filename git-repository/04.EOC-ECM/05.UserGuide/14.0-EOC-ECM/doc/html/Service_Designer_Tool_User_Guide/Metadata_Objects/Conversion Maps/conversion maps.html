@@ -1,0 +1,268 @@
+﻿
+
+
+<html>
+<head>
+<title>Conversion Maps</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script>
+<body onLoad="highlight();">
+
+</head>
+
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+<td valign="top" class="pagebody">
+<h2>Conversion Maps</h2>
+
+<p>The Conversion Map is used to map one Document to another Document or Data Structure or one Data Structure to a Document. A reason why this mapping may be done includes, but is not limited to, sending a set of parameters to an external interface. Conversion Maps are required for definition of the result mapping in the Finder business rules with a result Document (refer to section on Result Map Properties of Finder Rule).</p>
+<p>The following types of mapping are supported:</p>
+<ul>
+<li>Document to Document</li>
+<li>Document to Data Structure</li>
+<li>Data Structure to Document</li>
+<li>Data Structure to Data Structure, including a Data Structure  with container nodes that contain separate top-level Data Structures</li>
+<p><strong>Note</strong>: The <strong>mapToStructure()</strong> method can be used to map the one data structure to another manually through a script. For example: </p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">var targetDs = new   DataStructure("cwl:participantOperationSearch");<BR>this.mapToStructure(targetDs, "cwl:participantToOperationForEsc", false);
+    </pre>
+  </div>
+</div>
+<p> where second parameter <em>cwl:participantToOperationForEsc</em> is the name of the conversion map. This parameter can be null, if <em>this</em> (current  source data structure) is of the same metadata type as <em>targetDs,</em> or there is a default conversion map for <em>this</em>  and <em>targetDs</em>.</p>
+<li>An orders as either a source or target</li>
+<li> An order as an input or output to interface operations</li>
+</ul>
+<p><b>Note:</b> Deep-nested structures are also supported.</p>
+<h3>Creating a Conversion Map</h3>
+<p>In the <b>Navigation</b> pane, <b>Conversion Maps</b> are found in the <b>Data</b> <b>Dictionaries</b> folder in each namespace.</p>
+<p>To create a Conversion Map:</p>
+<ol>
+<li>Right-click the <strong>Namespace</strong> and select <strong>New</strong>.</li>
+<li>From the <strong>New Metadata Objects</strong> dialog, expand the Data Dictionaries folder and select the <strong>Conversion Maps</strong> and click <strong>Next</strong>.</li>
+<li>In the new <strong>Conversion Map</strong> dialog, type a name for the conversion map.</li>
+<li>In the <strong>Source</strong> drop-down select the <span class="confluenceTd"> Source Document or Data Structure </span>from which  you want to convert.</li>
+<li>In the<strong> Target</strong> drop-down select the D<span class="confluenceTd">ocument or Data Structure in the mapping</span> which you want to convert.</li>
+<li>Click <strong>Finish</strong>.</li>
+</ol>
+<p>After the Conversion Map is created, the icon will be added under the <b>Conversion Maps</b> folder.</p>
+<p><img src="nav_map.png" align="absmiddle" alt="" /></p>
+<p>Library examples of the  Conversion Map are available from the cwf_pm (Process Management) node on the <b>Library</b> tab. </p>
+<h3>General Conversion Map Properties </h3>
+<p>The general Conversion Map properties are on the <b>General</b> tab. </p>
+<p><img src="general.png" border="1" alt="Conversion map - General tab" /></p>
+<p>The following table describes the fields:</p>
+<table class='confluenceTable'border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Fields</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Name of the metadata object (used in scripts; must conform to JavaScript naming conventions). </td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Metadata object display label.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the metadata object for documentation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Overrides</b></td>
+<td class='confluenceTd'>Metadata object to override. Used to customize system or library metadata objects.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Extends</b></td>
+<td class='confluenceTd'>Shows the base Conversion Map that is extended by this Conversion Map. Will have the base Conversion Map name as the value when the map was created by the <b>Extend...</b> command. Appears for Document-to-Document maps only.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Tag</b></td>
+  <td class='confluenceTd'>Common name for a group of Conversion Maps.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Private</strong></td>
+  <td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Restricted</strong></td>
+  <td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being   displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Deprecated</strong></td>
+  <td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The   object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Final</strong></td>
+  <td class='confluenceTd'>Metadata elements can be marked as final, which includes any Boolean final property that is available on any metadata element. Additionally, any metadata element that has the <strong>Final</strong> property set to true can neither be extended, nor overridden.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Default</b></td>
+  <td class='confluenceTd'>If checked, defines the default Conversion Map for this pair of objects.</td>
+</tr>
+</tbody>
+</table>
+<p>A derived Document from a library can be used as a source or target in a Conversion Map.</p>
+<p>More than one Conversion Map can be defined between the same pair of objects. If the objects are Documents, one of the Conversion Maps must be defined as a default map by selecting the <b>Default</b> check box on the <b>General</b> tab. This map will be used by the runtime system when the Document-to-Document Conversion Map is not specified.</p>
+<p>Several Conversion Maps can be combined into a group by specifying a common tag name for them in the <b>Tag</b> field. The tag name can be used in JavaScript functions instead of the Conversion Map name.</p>
+<p>Similar to <SPAN name="resultofMatch"><SPAN name="resultofMatch">XSD</SPAN></SPAN>, the WSDL files   are stored as resources once imported into the Velocity Studio, and can be converted   to Interface-related metadata objects.</p>
+<p><strong>Note:</strong> The existence of duplicated conversion map tags are caught at design time, instead of at runtime. Any duplicated conversion map tags appear as errors in the Problems tab of Velocity Studio.</p>
+<h3>Map Item Properties</h3>
+<p>The <b>Source</b> tree in the left area shows the elements in the source object. The <b>Target</b> tree in the right area shows the elements in the target object.  Mapping one source element to multiple target elements is allowed, while mapping multiple source elements to a single target element is not allowed.</p>
+<ul>
+  <li>To map elements in the source and target objects, highlight the element in both fields and click the <b>Map</b> button.</li>
+  <li>The <b>Map</b><b>All</b> button is used to map all elements contained in the <b>Source</b> tree to those elements in the <b>Target</b> tree, provided the elements have identical names. Otherwise, the elements must be mapped one by one.</li>
+  <li>The <b>Unmap</b> button is used to remove mapping between elements.</li>
+  </ul>
+<p>Once the mapping is done, the color of the elements  change to blue. When you extend a conversion map, the map editor displays an asterisk  (*) in front of inherited mapped items from the   base map.  </p>
+
+<p><img src="conversion.png" align="absmiddle" border="1" alt="" /></p>
+<p>The source and destination elements may have different data types, but the types must be compatible, as shown in the table below (<strong>Note:</strong> l=length, p=precision).</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Source/Dest</th>
+<th class='confluenceTh'>String</th>
+<th class='confluenceTh'>Number</th>
+<th class='confluenceTh'>Date</th>
+<th class='confluenceTh'>Time</th>
+<th class='confluenceTh'>Time stamp</th>
+<th class='confluenceTh'>Time Interval</th>
+<th class='confluenceTh'>Money</th>
+<th class='confluenceTh'>Boolean</th>
+<th class='confluenceTh'>Enumeration</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>String</b></td>
+<td class='confluenceTd'>l(d)&gt;= l(s)</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Number</b></td>
+<td class='confluenceTd'>l(d)&gt;= l(s) + 2</td>
+<td class='confluenceTd'>l(d)&gt;= l(s) &amp; p(d) &gt;= p(s)</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Date</b></td>
+<td class='confluenceTd'>l(d)&gt;= 10</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Time</b></td>
+<td class='confluenceTd'>l(d)&gt;= 8</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Time</b> <b>stamp</b></td>
+<td class='confluenceTd'>l(d)&gt;= 18</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Time Interval</b></td>
+<td class='confluenceTd'>l(d)&gt;= 10</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Money</b></td>
+<td class='confluenceTd'>l(d)&gt;= 13</td>
+<td class='confluenceTd'>l(d) &gt;= 12&amp; p(d) &gt;= 4</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Boolean</b></td>
+<td class='confluenceTd'>l(d)&gt;=1</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Yes</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Enumeration</b></td>
+<td class='confluenceTd'>l(d)= l(s)</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>No</td>
+<td class='confluenceTd'>Same type only.</td>
+</tr>
+</tbody>
+</table>
+<h3>Script Option</h3>
+<p>The <b>Script</b> option is used to compose a mapping script in JavaScript to cover additional mapping needs. For example, Element 1 added with value 5 needs to be mapped to Element 2. To create, edit, or remove a script for a selected element, the <b>Script</b> button must be clicked. The <b><a href="../../../JavaScripting in Order Care/new JavaScript Editor.html">JavaScript Editor</a></b>   opens where the script can be composed. Click the <b>OK</b> button when the script is finished to return to the <b>General</b> tab. Elements that has a script attached to it display in magenta colour. The script mapping objects of an overriding conversion map are editable in the script editor.<BR>
+</p>
+<p><img src="script.png" align="absmiddle"  alt="" /></p>
+<p>A variable with a script mapping cannot have a leaf-to-leaf mapping or vice versa. The script is attached to the target leaf and the target leaf value can be calculated based on any or all variables of the source Document. A warning message  appears on attempt to replace one type of mapping with another. </p>
+<p><img src="scriptMapping.png" align="absmiddle" border="" alt="Script Mapping" /></p>
+<h3>Add Methods </h3>
+<p> From the Methods tab, you can  add a document level mapping script.</p>
+<p><strong>Note:</strong> If a Document level mapping script is specified along with the variable-level mapping for a particular source and target Document pair, it is performed after the variable-level mapping is performed.</p>
+<h3>View Properties  of Conversion  Map Objects</h3>
+<p>To view the element properties of conversion map objects, right-click a variable or tree node of a source or target object, and select <strong>Properties</strong>. </p>
+<p><img src="conversionMapObjectProperties.png" alt="Conversion map object properties" border="1"></p>
+<p>The element's Properties dialog appears. These properties are read-only.</p>
+<p><img src="conversionMapObjectPropertiesDialog.png" alt="Conversion map properties dialog"  /></p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

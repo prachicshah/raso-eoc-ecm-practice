@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Browser Configuration</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1><a name="BrowserConfiguration"></a>Browser Configuration</h1>
+<p>Some application features may require special browser configuration. Below are some generic cases. For full instructions, consult the User Guide for your specific application.</p>
+
+<h2><a name="MozillaFirefox"></a>Mozilla Firefox - <a name="RightclicktoAppendavaluetoclipboard."></a>Configure Single Sign-on</h2>
+<p>To configure single sign-on to work with Firefox, complete these steps:</p>
+<OL>
+  <LI>Open a Firefox browser and type <strong>about:config</strong> in the address bar.</LI>
+  <LI>In the <strong>Filter</strong> field, type <strong>network.automatic-ntlm-auth.trusted-uris</strong>.</LI>
+  <LI>Double-click the preference name in the previous step.</LI>
+  <LI>In the <strong>Enter String Value</strong> dialog, enter the site URLs that you want to pass NT LAN Manager (NTLM) authentication information to by using a comma-separated list of URLs in this format:<BR>
+    <A href="http://localhost:8080/cwf,http://cw0086:8080/cwf" rel="nofollow" linktext="http://localhost:8080/cwf,http://cw0086:8080/cwf" linktype="raw">http://localhost:8080/cwf,http://cw0086:8080/cwf<IMG border="0" alt="" align="absMiddle" src="http://wiki/images/icons/linkext7.gif" width="7" height="7"></A> </LI>
+  <LI>Click the <strong>OK</strong> button to save your changes.</LI>
+</OL>
+<p>Refer to Mozilla Firefox for specific setup instructions.</p>
+
+<h2><a name="InternetExplorer"></a>Internet Explorer</h2>
+<p>This release supports two single sign-on technologies:
+<ul>
+  <li><a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Login/login open ID.html">Open ID</a></li>
+  <li><a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Login/login kerberos.html">Kerberos</a></li>
+  </ul>
+<p>For more single sign-on options, see the <em>Velocity Studio User Guide</em> under the <EM>Metadata Objects - Login</EM> section.</p>
+<h3>Configure Single Sign-on for NTLM Authentication</h3>
+<p>In Windows 7, Vista, or Windows 2008, follow these steps to change the   network security setting on your client machine to use NTLM   single sign-on:</p>
+<OL>
+  <LI>Go to the Control Panel, and double-click the <strong>Administrative Application</strong> &gt; <strong>Local Security Policy</strong> icons.   
+  <LI>On the <strong>Local Security Settings</strong> dialog, click <strong>Local   Policies</strong> <strong>&gt; Security Options</strong> in the right pane.   
+  <LI>Locate <strong>Network security: LAN Manager authentication level</strong> and   double-click this policy.   
+  <LI>Click the drop-down menu and select <strong>Send LM &amp; NTLM responses</strong>.   </LI>
+  <LI>Proceed to click the <strong>Apply</strong> button, and then click the <strong>OK</strong> button to save your change. </LI>
+  </OL>
+
+<h2>Browser Cache and the Product</h2>
+<p>All static JavaScript files or resources are postfixed with an internal release number. When a new release of the product is available, there may be new versions of these files, which means that these resources would have a different URL. As long as you use a particular version of product, these resources are only loaded into your Web browser cache.<BR>
+  <BR>
+  All static resources in an   application are cached differently. Since every server restart may require a new   version of metadata, the unique suffix appended to the URL is the server startup   time. As long as the server is not restarted, your Web browser caches these resources.<BR>
+  <BR>
+  As a result, JavaScript compression is not needed,   as it will only benefit the initial loading of your browser cache. </p>
+</td>
+</tr>
+</table>
+</body>
+</html>

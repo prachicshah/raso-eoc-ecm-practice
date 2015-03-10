@@ -1,0 +1,105 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Add an Item</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td class="pagebody" ><h2>Add an Item</h2>
+      <p>To add an Item, follow these steps<strong>:</strong></p>
+      <p><strong>Note:</strong> A project must be opened to create an item attribute.</p>
+      <ol>
+        <li>From the  Overview page, click <strong>Commercial Modeling</strong> &gt;<strong> Items</strong> in the Quick start section.</li>
+        <li>The Item page appears; click  the <strong>New</strong> button available in the results area. </li>
+        <li>The Item page appears with the different tabs; click the<strong> Details</strong> tab.</li>
+        <p><img src="itemsAddNew.png" alt="Add New Items" /></p>
+        <li> Enter or select the information in the following fields:<br>
+          <br>
+        </li>
+        <table class='confluenceTable'  border cellpadding="1">
+          <tbody>
+            <tr>
+              <th width="121" class='confluenceTh'>Field</th>
+              <th width="815" class='confluenceTh'>Description</th>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Item Type</strong></td>
+              <td class='confluenceTd'><p>Select the item type for example,<strong> Component</strong>,<strong> Product</strong>,<strong> or Offer</strong> from the drop-down list. </p>
+             
+              <ul>
+                <li><strong>Components</strong> are entities that  can be selected or priced separately.  </li>
+                <li><strong>Products </strong>are<strong> </strong>collections of Components with their  own Price Model. Products may or may not  be Orderable. </li>
+                <li><strong>Offers</strong> are groupings of Products. They can be thought of as bundles or frequently ordered packages. You can use the Offer object to create a    derivation of Products by applying a different set of restrictions over    the original Product.</li>
+              </ul></td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Status</strong></td>
+              <td class='confluenceTd'>Select a <a href="States.html">status</a> of the item (for example, <strong>Definition</strong> or<strong> Active</strong>) from the drop-down list.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong> Code</strong></td>
+              <td class='confluenceTd'>This field indicates the code that uniquely identifies the item.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Orderable</strong></td>
+              <td class='confluenceTd'>If checked, the item can be ordered. The item will be returned during Catalog browsing.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong> Name</strong></td>
+              <td class='confluenceTd'>This field indicates the unique name of the item.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Label</strong></td>
+              <td class='confluenceTd'><p>The label for the item, which is used in the application user interface. This field is a translational string that supports language translations (refer to Velocity Studio's Translation Element for more details).</p>
+                <p><strong>Note:</strong> This field for an item is not versioned. It is recommended that you use an item association with the item description object. The item description is a versioned object under item and can be used to show item label or description, or both. It also contains the <strong>Description</strong> translated field. You can create many item description objects under an item using a different code for each of them. In runtime, call item.getItemDescriptions(type) to get all item descriptions.</p></td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Description</strong></td>
+              <td class='confluenceTd'>Enter the description for the Item in this field.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Start Date</strong></td>
+              <td class='confluenceTd'>The effective date of this item. Refer to <a href="StartEnd_Dates.html">Start and End dates</a> for details.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>End Date</strong></td>
+              <td class='confluenceTd'>The end date of this item represents the date when this attribute is no longer effective. Refer to <a href="StartEnd_Dates.html">Start and End dates</a> for details.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Base Item</strong></td>
+              <td class='confluenceTd'>Base item is the item extensions</a>.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><p><strong>Owner</strong></p></td>
+              <td class='confluenceTd'>This field  indicates information about the owner of the project.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Enforce Actions</strong></td>
+              <td class='confluenceTd'><p> Select this check box to apply action for the items set through the <strong>Item Actions</strong>. This field takes a Boolean value. The default value is false. You can use this flag during runtime. For  example,  an exception occurs when you set <strong>enforce Action</strong> flag to true while item creation but there is  no action for add type. The <strong>enforce Actions()</strong> in  Item object is used to get the value.</p></td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Project</strong></td>
+              <td class='confluenceTd'>Each object is assigned to a Project. This defaults to the active or opened project when the item is first created.</td>
+            </tr>
+            <tr>
+              <td height="35" class='confluenceTd'><a href="classificationTypes.html"><strong>Classification Types</strong></a></td>
+              <td class='confluenceTd'>Select different classification  types  to identify item under different environments.</td>
+            </tr>
+          </tbody>
+        </table>
+        </p>
+        <li> Click the <strong>Save </strong> button. </li>
+        <li>The item association tabs and the <a href="itemsPalette.html">item  palette</a>  become available. You can add different item associations (for example, attributes, images, and so on) through these options.</li>
+      </ol></td>
+  </tr>
+</table>
+</body>
+</html>

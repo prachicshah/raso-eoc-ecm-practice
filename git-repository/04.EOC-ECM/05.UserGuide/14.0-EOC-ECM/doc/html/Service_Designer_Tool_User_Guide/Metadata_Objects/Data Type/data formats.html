@@ -1,0 +1,516 @@
+﻿
+
+
+<html>
+<head>
+<title>Data Formats (Classic mode - Deprecated)</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Data Formats (Classic mode - Deprecated)</h3>
+<p>Data formats consist of action control codes and formatting masks. Format control codes are preceded by a backslash. Masks consist of formatting characters and inserted characters. The allowed format control codes, formatting and inserted characters depend on the data type, which is set in the <b>Extends</b> field on the <b>General</b> tab, for which the format is defined. These are the basic data types from a formatting prospective:</p>
+<ul>
+<li>Numbers</li>
+<li>Strings</li>
+<li>Booleans</li>
+<li>Dates, Times and Timestamps</li>
+</ul>
+<h4>Format Control Codes</h4>
+<p>Table below provides information for all supported format codes.</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Format</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Data Type</th>
+<th class='confluenceTh'>UI example</th>
+</tr>
+<tr>
+<td class='confluenceTd'>\a</td>
+<td class='confluenceTd'>Display field actual width. The field will only occupy the space required rather than a full column.</td>
+<td class='confluenceTd'>All</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\b</td>
+<td class='confluenceTd'>Multiselect.</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\cf</td>
+<td class='confluenceTd'>Field is to be horizontally centred.</td>
+<td class='confluenceTd'>Image</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\c#</td>
+<td class='confluenceTd'>Number of columns for field (1-10).</td>
+<td class='confluenceTd'>All</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\d</td>
+<td class='confluenceTd'>Pop-up calendar field. Format may include any combination of yy (or yyyy), MM, and dd formats. Default format is yyyy/MM/dd.</td>
+<td class='confluenceTd'>Date, Time and Datetime.</td>
+<td class='confluenceTd'><img src="image021.gif" align="absmiddle" border="0" alt="" /><br clear="all" />
+Date pop-up:<br clear="all" />
+<img src="image022.png" align="absmiddle" border="0" alt="" /><br clear="all" />
+Datetime pop-up:<br clear="all" />
+<img src="image024.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'>\di</td>
+<td class='confluenceTd'>Dynamic image. The field should contain a resource image ID. At runtime it is displayed as an icon.</td>
+<td class='confluenceTd'>String</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\ef</td>
+<td class='confluenceTd'><p>Editable visual key. Allows the visual key to be directly edited.</p>
+  <p><strong>Note:</strong> Displaying visual keys for multi-select reference fields does not work with the editable visual key format.</p></td>
+<td class='confluenceTd'>Reference</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\en</td>
+<td class='confluenceTd'>Non verified.</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\h100%</td>
+<td class='confluenceTd'>Height percent.</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\he</td>
+<td class='confluenceTd'>Hides an empty selection in the select list.</td>
+<td class='confluenceTd'>Enumeration.</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\h#</td>
+<td class='confluenceTd'>Maximum height of the field in lines (1 to 25). For enumerations values &gt; 1, will display field as a select list.</td>
+<td class='confluenceTd'>String or any Enumeration.</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\it</td>
+<td class='confluenceTd'>Immediate trigger. Not implemented.</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\l</td>
+<td class='confluenceTd'>Field label width (1-200).</td>
+<td class='confluenceTd'>All</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\L</td>
+<td class='confluenceTd'>Display reference as a drop-down list instead of a Finder. The reference Finder result list will be displayed in the drop-down list. If the reference Finder has a search Document, the current Document will be mapped to it before the search is performed.<br clear="all" />
+<b>Note:</b> If there is no search form in the reference Finder, the number of DB results can not be restricted (that is, all records present in the DB results will be available in the drop-down list). This may introduce serious performance problems.</td>
+<td class='confluenceTd'>Reference</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\m</td>
+<td class='confluenceTd'>Multi-part field. The format mask defines how the field is divided into parts (for example,  ###-####).</td>
+<td class='confluenceTd'>String</td>
+<td class='confluenceTd'><img src="image026.gif" align="absmiddle" border="0" alt="" /><br clear="all" />
+<em>Format:</em> \m'P1'**'P2'**)</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\n</td>
+<td class='confluenceTd'>No field label displayed in the UI.</td>
+<td class='confluenceTd'>All</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\P</td>
+<td class='confluenceTd'>Display as a password field. Cannot be used on multiline fields.</td>
+<td class='confluenceTd'>String</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\rv</td>
+<td class='confluenceTd'>Vertical radio button.</td>
+<td class='confluenceTd'>String and Enumeration</td>
+<td class='confluenceTd'><img src="rvertical.jpg" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'>\rh</td>
+<td class='confluenceTd'>Horizontal radio button.</td>
+<td class='confluenceTd'>String and Enumeration</td>
+<td class='confluenceTd'><img src="image028.gif" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'>\ro</td>
+<td class='confluenceTd'>Read only field.</td>
+<td class='confluenceTd'>All</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\r</td>
+<td class='confluenceTd'>Horizontal radio button. Deprecated. \rh should be used instead.</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\sl</td>
+<td class='confluenceTd'>Search list always. Clicking the reference field displays the search list with the corresponding reference highlighted.</td>
+<td class='confluenceTd'>Reference</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\s</td>
+<td class='confluenceTd'>Sort drop down list items (Ascending).</td>
+<td class='confluenceTd'>String and Enumeration</td>
+<td class='confluenceTd'>In UI:<br clear="all" />
+<img src="image029.jpg" align="absmiddle" border="0" alt="" /><br />
+In metadata<br clear="all" />
+<img src="image030.jpg" align="absmiddle" border="0" alt="" /><br />
+<em>Format used:</em> \s</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\ss</td>
+<td class='confluenceTd'>Auto-select in a drop down if there is only one item to select.</td>
+<td class='confluenceTd'>String and Enumeration</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\w100%</td>
+<td class='confluenceTd'>Width percent.</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\w#</td>
+<td class='confluenceTd'>Width of the field in characters (1 to 2000). Number of columns that the field occupies will be calculated using this width rather than the Data Type or Element Type width.</td>
+<td class='confluenceTd'>String</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\x</td>
+<td class='confluenceTd'>Display boolean as a checkbox.</td>
+<td class='confluenceTd'>Boolean</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>\z</td>
+<td class='confluenceTd'>Default button.</td>
+<td class='confluenceTd'>Button</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+</tbody>
+</table>
+<h4>Boolean Formatting</h4>
+<p>The UI represents boolean as a check box if the <b>Nullable </b>field is unchecked, otherwise it will be two radio buttons.</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="image033.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'><img src="image034.gif" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p>If \rv is set in the format field, the <b>Yes</b> and <b>No</b> radio buttons will be displayed vertically.</p>
+<p>A default value, 1=true, 0=false, can be assigned to a boolean Data Type in the <b>Default</b> field in the <b>General</b> tab.</p>
+<h4>Number Formatting</h4>
+<p>Numeric formats represent the pattern by which the numbers are displayed. When numbers are entered, these rules are applied:</p>
+<ul>
+<li>Only the following characters are allowed: minus (-), comma (,), dot (.) and digits.</li>
+<li>All leading integer zeroes and trailing fractional zeroes are ignored.</li>
+<li>All commas in the integer part are ignored.</li>
+</ul>
+<p>Numeric formats differ from the other formats in the sense that they do not specify what exact character should be in any position of the field (as the string formats and the fixed date formats do). The format pattern specifies the grouping size and maximum number of fractional digits. The grouping size is a constant number of digits between the grouping characters, such as 3 for 100,000,000 or 4 for 1,0000,0000. If you supply a pattern with multiple grouping characters, the interval between the last one and the end of the integer is the one that is used. For example #,##,###,#### == ######,#### == ##,####,####. Illegal patterns, such as #.#.# or #.###,###, will generate a message that describes the problem.</p>
+<p>Table below summarizes allowable numeric formatting characters.</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Symbol</th>
+<th class='confluenceTh'>Localized</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>0</td>
+<td class='confluenceTd'>Y</td>
+<td class='confluenceTd'>Digit.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>#</td>
+<td class='confluenceTd'>Y</td>
+<td class='confluenceTd'>Digit, zero shows as absent.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>.</td>
+<td class='confluenceTd'>Y</td>
+<td class='confluenceTd'>Decimal separator or monetary decimal separator.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>-</td>
+<td class='confluenceTd'>Y</td>
+<td class='confluenceTd'>Minus sign.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>,</td>
+<td class='confluenceTd'>Y</td>
+<td class='confluenceTd'>Grouping separator.</td>
+</tr>
+</tbody>
+</table>
+<h4>String Formatting</h4>
+<p>Below table summarizes allowable string formatting characters.</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Symbol</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>*</td>
+<td class='confluenceTd'>Any character.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>#</td>
+<td class='confluenceTd'>Digit.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>L</td>
+<td class='confluenceTd'>Uppercase letter.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>l</td>
+<td class='confluenceTd'>Lowercase letter.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>M</td>
+<td class='confluenceTd'>Mixed case letter.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>A</td>
+<td class='confluenceTd'>Uppercase alphanumeric.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>a</td>
+<td class='confluenceTd'>Lowercase alphanumeric.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>N</td>
+<td class='confluenceTd'>Mixed case alphanumeric.</td>
+</tr>
+</tbody>
+</table>
+<p>Any character that does not match the editing characters is considered an inserted character. If one of the formatted characters or the single quote character has to be inserted, they must be put in single quotes. Within the quoted group, the single quote is represented as two quotes.</p>
+<p>For example: format *** '''sharp''' for data ABC will result in ABC sharp</p>
+<h4>Date, Time and Timestamp Formatting</h4>
+<p>Date formats define a set of date/time fields that are either fixed length or variable length. If the format is variable length, it cannot be used for an updateable field.</p>
+<p>To specify the time format, use a time pattern string. In this pattern, all ASCII letters are reserved as pattern letters.</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Symbol</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Presentation</th>
+<th class='confluenceTh'>Example</th>
+<th class='confluenceTh'>Variable length</th>
+</tr>
+<tr>
+<td class='confluenceTd'>T</td>
+<td class='confluenceTd'>Era designator</td>
+<td class='confluenceTd'>Text</td>
+<td class='confluenceTd'>AD</td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'>y</td>
+<td class='confluenceTd'>Year.</td>
+<td class='confluenceTd'>Number</td>
+<td class='confluenceTd'>1996</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'>M</td>
+<td class='confluenceTd'>Month in year</td>
+<td class='confluenceTd'>Text and Number</td>
+<td class='confluenceTd'>July &amp; 07</td>
+<td class='confluenceTd'>Yes if more than 3 M characters</td>
+</tr>
+<tr>
+<td class='confluenceTd'>d</td>
+<td class='confluenceTd'>Day in month</td>
+<td class='confluenceTd'>Number</td>
+<td class='confluenceTd'>10</td>
+<td class='confluenceTd'>Yes if one d character</td>
+</tr>
+<tr>
+<td class='confluenceTd'>h</td>
+<td class='confluenceTd'>Hour in am/pm (1~12)</td>
+<td class='confluenceTd'>Number</td>
+<td class='confluenceTd'>12</td>
+<td class='confluenceTd'>Yes if one h character</td>
+</tr>
+<tr>
+<td class='confluenceTd'>H</td>
+<td class='confluenceTd'>Hour in day (0~23)</td>
+<td class='confluenceTd'>Number</td>
+<td class='confluenceTd'>0</td>
+<td class='confluenceTd'>Yes if one H character</td>
+</tr>
+<tr>
+<td class='confluenceTd'>m</td>
+<td class='confluenceTd'>Minute in hour</td>
+<td class='confluenceTd'>Number</td>
+<td class='confluenceTd'>30</td>
+<td class='confluenceTd'>Yes if one m character</td>
+</tr>
+<tr>
+<td class='confluenceTd'>s</td>
+<td class='confluenceTd'>Second in minute</td>
+<td class='confluenceTd'>Number</td>
+<td class='confluenceTd'>55</td>
+<td class='confluenceTd'>Yes if one s character</td>
+</tr>
+<tr>
+<td class='confluenceTd'>S</td>
+<td class='confluenceTd'>Millisecond</td>
+<td class='confluenceTd'>Number</td>
+<td class='confluenceTd'>978</td>
+<td class='confluenceTd'>Yes if less than 3 S characters</td>
+</tr>
+<tr>
+<td class='confluenceTd'>E</td>
+<td class='confluenceTd'>Day in week</td>
+<td class='confluenceTd'>Text</td>
+<td class='confluenceTd'>Tuesday</td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'>D</td>
+<td class='confluenceTd'>Day in year</td>
+<td class='confluenceTd'>Number</td>
+<td class='confluenceTd'>189</td>
+<td class='confluenceTd'>Yes if less than 3 D characters.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>F</td>
+<td class='confluenceTd'>Day of week in month</td>
+<td class='confluenceTd'>Number.</td>
+<td class='confluenceTd'>2 (2nd Wed in July)</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'>w</td>
+<td class='confluenceTd'>Week in year</td>
+<td class='confluenceTd'>Number</td>
+<td class='confluenceTd'>27</td>
+<td class='confluenceTd'>Yes if less than 2 w characters</td>
+</tr>
+<tr>
+<td class='confluenceTd'>W</td>
+<td class='confluenceTd'>Week in month</td>
+<td class='confluenceTd'>Number</td>
+<td class='confluenceTd'>2</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'>a</td>
+<td class='confluenceTd'>AM/PM marker</td>
+<td class='confluenceTd'>Text</td>
+<td class='confluenceTd'>PM</td>
+<td class='confluenceTd'>Yes if less than 2 a characters</td>
+</tr>
+<tr>
+<td class='confluenceTd'>k</td>
+<td class='confluenceTd'>Hour in day (1~24)</td>
+<td class='confluenceTd'>Number</td>
+<td class='confluenceTd'>24</td>
+<td class='confluenceTd'>Yes if less than 2 k characters</td>
+</tr>
+<tr>
+<td class='confluenceTd'>K</td>
+<td class='confluenceTd'>Hour in am/pm (0~11)</td>
+<td class='confluenceTd'>Number</td>
+<td class='confluenceTd'>0</td>
+<td class='confluenceTd'>Yes if less than 2 K characters</td>
+</tr>
+<tr>
+<td class='confluenceTd'>z</td>
+<td class='confluenceTd'>Time zone</td>
+<td class='confluenceTd'>General time zone</td>
+<td class='confluenceTd'>Pacific Standard Time; PST; GMT-05:00</td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'>'</td>
+<td class='confluenceTd'>Escape for text</td>
+<td class='confluenceTd'>Delimiter</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'>''</td>
+<td class='confluenceTd'>Single quote</td>
+<td class='confluenceTd'>Literal</td>
+<td class='confluenceTd'>'</td>
+<td class='confluenceTd'>No</td>
+</tr>
+</tbody>
+</table>
+<p>The count of pattern letters determines the format. If a format contains values that are out of the range specified in above table, the date/time values will be automatically adjusted by the parser to the closest valid combination. Such a usage may produce an unpredictable result and should be avoided.</p>
+<p>For text with 4 or more pattern letters, use the full form. For less than 4 pattern letters, use the short or abbreviated form.</p>
+<p>For numbers, use the minimum number of digits. Shorter numbers are zero-padded to this amount.</p>
+<p>Year is handled uniquely. For example, if the count of y is 2, the Year will be truncated to 2 digits. When parsing a date string using the abbreviated year pattern (y or yy), the format must interpret the abbreviated year relative to some century. It does this by adjusting dates to be within 80 years before and 20 years after the time the format instance is created. For example, using a pattern of MM/dd/yy and a format instance created on Jan 1, 1997, the string 01/11/12 would be interpreted as Jan 11, 2012 while the string 05/04/64 would be interpreted as May 4, 1964.</p>
+<p>During parsing, only strings consisting of exactly two digits will be parsed into the default century. Any other numeric string, such as a one digit string, a three or more digit string, or a two digit string that is not all digits (for example, -1), is interpreted literally. So 01/02/3 or 01/02/003 are parsed, using the same pattern, as Jan 2, 3 AD. Likewise, 01/02/-3 is parsed as Jan 2, 4 BC. If the year pattern has more than two y characters, the year is interpreted literally, regardless of the number of digits. So, using the pattern MM/dd/yyyy, 01/11/12 parses to Jan 11, 12 A.D.</p>
+<p>For time zones that have no names, use strings GMT+hours:minutes or GMT-hours:minutes. The calendar defines the first day of the week, the first week of the year, whether hours are zero based or not (0 vs 12 or 24) and the time zone.</p>
+<p>For text and numbers of 3 or more use text, otherwise use numbers.</p>
+<p>Any characters in the pattern that are not in the range of ['a'..'z'] and ['A'..'Z'] will be treated as quoted text. For instance, characters like ':', '.', ' ', '#' and '@' will appear in the resulting time text even though they are not embraced within single quotes. A pattern containing any invalid pattern letter will result in a thrown exception during formatting or parsing. Examples of time formatting using the US Locale are shown in table below.</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Format Pattern</th>
+<th class='confluenceTh'>Result</th>
+</tr>
+<tr>
+<td class='confluenceTd'>yyyy.MM.dd T 'at' hh:mm:ss z</td>
+<td class='confluenceTd'>1996.07.10 AD at 15:08:56 PDT</td>
+</tr>
+<tr>
+<td class='confluenceTd'>EEE,MMM d, ''yy</td>
+<td class='confluenceTd'>Wed, July 10, '96</td>
+</tr>
+<tr>
+<td class='confluenceTd'>h:mm a</td>
+<td class='confluenceTd'>12:08 PM</td>
+</tr>
+<tr>
+<td class='confluenceTd'>hh 'oclock' a, zzzz</td>
+<td class='confluenceTd'>12 o'clock PM, Pacific Daylight Time</td>
+</tr>
+<tr>
+<td class='confluenceTd'>K:mm a, z</td>
+<td class='confluenceTd'>0:00 PM, PST</td>
+</tr>
+<tr>
+<td class='confluenceTd'>yyyyy.MMMMM.dd TTT hh:mm aaa</td>
+<td class='confluenceTd'>1996.July.10 AD 12:08 PM</td>
+</tr>
+</tbody>
+</table>
+<h4>Format editing</h4>
+<p>The <b>Format</b> field in the <b>General tab</b> consists of an editable text field and a button beside it. Click the button to open the <b>Format Properties</b> dialog (shown in diagram below), which provides a convenient way to create and modify format control codes.</p>
+<p><img src="image035.jpg" align="absmiddle" border="0" alt="Format Properties" /></p>
+<p>The dialog shows a list of all format codes available for selection for this data type. Individual selection can be made using the check boxes in the <b>Select</b> column. Click the <b>All</b> button to select all format codes in the list. Click the <b>None</b> button to deselect all format codes. Click <b>OK</b> to close the dialog and convert the selected format codes into the format string. The generated string will be added to the <b>Format</b> field at the end of format masks if they exist.</p>
+<p><img src="image036.jpg" align="absmiddle" border="1" alt="Format Field" />
+<p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<html>
+<head>
+<title>External Scripts</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>External Scripts</h2>
+<p>External scripts are all scripts that are not part of the metadata. For example, they can be stored in database tables or fetched through external interfaces, and can change dynamically, at runtime, without the need to stop and restart the application. This section describes how to set up the AVM to execute external scripts. This mechanism may be useful for introducing interpretation of a new rule language, or dynamic generation of scripts based on data in database tables.</p>
+<p> There are two  types of  external scripts:</p>
+<ul>
+  <li>Script       functions that are executable code at every call. The source text of a script function must have the following format:<br>
+    <em>function name(optional parameters) { script logic}</em></li>
+  <li>Script       constants that are Boolean, numeric, or string values that never change.       The script constants require considerably less time to run and       occupy less memory. For example, the script constant <em>false</em> is       considerably faster and more compact that the script function <em>function       f() { return false; }</em>.</li>
+</ul>
+<h3>Definition</h3>
+
+<p>External scripts  are identified by name and search type, which are user-defined strings. Together,  the name and the search type have to be unique in the application. The script  name must be unique within the search type. </p>
+<p><strong>Note:</strong> Using  search types that are one character in length may lead to unpredictable exceptions.</p>
+<p>You can assign search types, which should not match any other search types used in the  same application. In other words, every template must have its distinct search  type (or types) and the application itself must use different search types, not  overlapping any template script search type.</p>
+<p><strong>Note: </strong>Search  types that are two characters in length and start with the lowercase letters a, b, c, and the dollar sign ($) are reserved for the internal AVM. Do not  define script search types starting with these characters in templates and  applications. Breaking this rule may result in unpredictable errors.</p>
+<p>The search type provides information about how to  get the external script from the external source. All  scripts that are coming from the same external source (for example, the same  table of the ORDER database) can use the same search type. However, sometimes the  scripts from the same external source can be given different search types, to allow for future changes or to separate scripts belonging to different  functional units (for example, different templates), and avoid name clashes with  the application external scripts.</p>
+<h3>Running external scripts</h3>
+
+<p>External scripts can be run using either the short  call notation or long API call:
+<ul>
+  <li>The short call takes the following format:<br>
+    <div class="code"><div class="codeContent"><pre class="code-java">search-type$name(parameters)</pre>
+    </div></div>
+    where the search type is a two-character prefix that does not start with the characters a, b, c, and $.<br>
+    <br>
+  </li>
+  <li>The  long API call is done through the following scope function: <br>
+  <div class="code"><div class="codeContent"><pre class="code-java">runscript(name, searchType, thisObject, parameter, ...)</pre>
+    </div></div>
+  where the API parameters are:
+  <ul>
+    <li><i>name</i> – The script id (or name). Can be any string.</li>
+    <li><i>searchType</i> - The search type can have any length.</li>
+    <li><i>thisObject</i> - An object (not a simple data type) that can be referred as <em>this</em> in the external script</li>
+    <li><i>parameter</i> - A parameter passed to the external script.</li></ul></li>
+</ul>
+<p><strong>Notes: </strong></p>
+<ul>
+  <li>The  short call notation supports types that are only two-characters long and are  valid JavaScript identifiers. The script  name may consist only of valid JavaScript identifier characters.</li>
+  <li>Script loaders, including the default system loader, can work with search types  of more than two characters. However, only only long API calls can be used, which  are less readable. </li>
+</ul>
+<p>The  external scripts can be called in three distinct patterns:</p>
+<ul>
+  <li><strong>As scope functions in short format that are not  preceded by a dot</strong><br>
+    The Script registry calls the corresponding type  loader (if any), the default user loader (if any), or  the default system loader. If the loader does not return the script, the AVM  searches for script with the <em>search-type$name</em> name in the system initialization  namespace and all template initialization namespaces, and returns it if it is  found.</li>
+  <li><strong>As a global script short call in  <em>namespace-name. search-type$name</em> format</strong><br>
+    The Script registry calls the corresponding type loader (if any),  the default user loader (if any), or the default  system loader. If the loader does not return the script, the AVM searches for  script with the <em>search-type$name</em> name in the corresponding namespace and returns  it if it is found. The global scripts can be called in long format. However, they will not search for the metadata global script.</li>
+  <li><strong>As an element script short call in  <em>object. search-type$name</em>  format, where the object is a runtime instance of a metadata object (for example,  order or document)</strong><br>
+    The Script registry calls the corresponding  type loader (if any), the default user loader (if any), or the default system loader. If the loader does not return the script,  the AVM searches for element script with the <em>search-type$name</em> name in the corresponding  metadata object and returns it if it is found. The element scripts can be called  in long format. However, they will not search for the metadata  element script.</li>
+</ul>
+<p>The AVM considers any name starting with a two-letter prefix followed by a dollar sign to be an external script name from the corresponding type. As a result, the following calls:
+
+<div class="code"><div class="codeContent">
+  <pre class="code-java">
+var result = runScript("myExtScript",  "IT" , doc, 3, "xyz");
+result += runScript("myCounter",  "IT", null, null, doc);
+</pre></div></div>
+
+<p>can be written as:</p>
+
+<div class="code"><div class="codeContent">
+  <pre class="code-java">
+var result = doc.IT$myExtScript(3, "xyz");
+result += IT$myCounter(doc);
+</pre></div></div>
+
+<p>The aforementioned example shows how the <em>doc</em> object can be passed as the <em>this</em> object in the short call.</p>
+
+<p><b>Note</b>: Calling external scripts using the short call notation is faster and more readable than calling them through the API. As a result, using this approach is recommended when the script name is not a variable. </p>
+
+<h3>Script Loaders</h3>
+
+<p>When the AVM needs to run  a script, it asks  the Script registry to find and run it. If the script is in memory, the  Script registry runs it. Otherwise, the Script registry tries  to load it from the corresponding external store. To load a script, the Script registry  calls a script loader. The loaders are global scripts with user-defined names.</p>
+<p>  The Script registry internally implements a  loader called system script loader. It automatically loads external scripts  based on script name, search type, and validity dates from the CWEXTSCRIPTS system database table. It assumes that the scripts are either written in JavaScript or  are string constants if the IS_CONSTANT column value is 1.</p>
+<p>  There are two types of user-defined script  loaders:</p>
+<ul>
+  <li> The default script loader that works for all search types (one for  application).</li>
+  <li>Script type loaders that work for a particular search type  (one per search type).</li>
+</ul>
+<p>  The default loader is an optional global script  in the cwInit namespace called cwScriptCacheLoader.</p>
+<p>  The script type loaders are global scripts that must  be registered before use with the following Script registry API:  </p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java"><strong>theScriptRegistry.registerLoader(search-type, loader-script-name)</strong><strong> </strong></pre>
+    </div></div>
+
+<p>  where the loader script name is fully  qualified name of a global scripts that contains the loader logic. The same script  may be registered for more than one search types.</p>
+<p><strong>Note:  </strong>Depending of the calling syntax of the external script, the AVM runs the loaders  in different ways.</p>
+<p>The global and   default (event) script loaders have 3   parameters:
+<ol>
+<li>  name - The script name</li>
+<li>  type - The script type</li>
+<li>  cacheElement - The   cache element</li></ol>
+<p>The scriptable object  cache element has the following properties:</p>
+<p><table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="91" class='referenceTh'><strong>Property</strong></th>
+<th width="76" class='referenceTh'>Type</th>
+<th width="821" class='referenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>name</strong></td>
+<td class='confluenceTd'>Read-only</td>
+<td class='confluenceTd'>This property denotes the name of the script.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong> searchType</strong></td>
+<td class='confluenceTd'>Read-only</td>
+<td class='confluenceTd'>This property denotes the script search   type.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>isConstant</strong></td>
+<td class='confluenceTd'>Read, Write</td>
+<td class='confluenceTd'>This property denotes a Boolean  value that indicates whether the script is constant (true) or function (false).  By default, external scripts are considered functions. If this property is set to true, the script is a   constant value.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong> constantValue</strong></td>
+<td class='confluenceTd'>Read, Write</td>
+<td class='confluenceTd'>This property indicates the  constant value that can be   String, Number, Boolean, or Null. When this  property is set to true, <strong>isConstant</strong> property is   set to true automatically.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong> originalSource</strong></td>
+<td class='confluenceTd'>Write-only</td>
+<td class='confluenceTd'> This property refers to the script's source text in the original language to be used during debugging. If it is not set, the AVM uses the JavaScript text returned by the loader. Using the original source  language for debugging is a useful feature. However, it only works if the JavaScript  code that the loader generates exactly matches the source positions in the  original source code and the object names in both languages are the same. Otherwise, do not set this property.</td>
+</tr>
+<tr>
+<td height="51" class='confluenceTd'><strong>startTime</strong></td>
+<td class='confluenceTd'>Write-only</td>
+<td class='confluenceTd'>This property indicates the<em> valid from</em> date. The timestamp  of the moment when the script is stored in the external data store. It is used  to distinguish between different versions of the script in case of an exception. If  this property is not set, the default date of Jan 1, 1970, midnight is used.</td>
+</tr>
+<tr>
+<td height="49" class='confluenceTd'><strong>expirationTime</strong></td>
+<td class='confluenceTd'>Write-only</td>
+<td class='confluenceTd'>This property is a  date object  that defines when the script expires. The default system loader takes the expiration  time automatically from the corresponding record of the system external script  table. The script object default is to never expire.</td>
+</tr>
+</tbody>
+</table></p>
+<p>The script text returned from the loader must be compilable with a function header and body. For example:</p>
+<ul>
+  <div class="code">
+    <div class="codeContent">
+      <pre class="code-java">function myScript() {<BR>
+    //...   script<BR>
+    }</pre>
+      </div>
+  </div>
+</ul>
+  <p><strong>Note:</strong> Creating a script with a short expiration  interval (the difference between the expiration time, and the start time or the moment  the script object is created in the registry) – less than 60 seconds - may  cause visible performance degradation. The usual expiration intervals are in  the range of hours.</p>
+<p>  External scripts do not need to be refreshed periodically. The role of the expiration time is  to make sure that the external scripts, if changed in the external source, will  change simultaneously in the AVM. A typical scenario occurs when the  system behaviour can change only at midnight. In this case, the script loader has  to set the expiration time for the following midnight. The system loader automatically  maintains consistent changes of the scripts using the same mechanism as the  Catalog.</p>
+<p>  The script  loader is called with the corresponding script cache element as a parameter and  the Script registry as the <em>this</em> object. It has to return a constant value, the  JavaScript text of the script a script object (metadata script), or null if the  script is not found. </p>
+<p><strong>Example 1:</strong><br>
+  Suppose that external  scripts are stored in a table with id, type, constantValue,  sourceText, fromDate, and toDate columns. The dates  define the script's life span. A global script, ns:findScript, returns the appropriate script for the current moment. A document, ns:scriptDoc, is mapped to the table. The document leaf names match the column names. The  constant value and the source text are mutually exclusive – only one of them  must exist. The script may change at noon or at midnight. </p>
+<p>  If the M1 search type and the M1LOADER loader type are used, the loader may look  like this:</p>
+  
+  <div class="code">
+    <div class="codeContent"><pre class="code-java"><em>Global script loaderOfTypeM1 with parameter scrobj:</em><br>
+  //  Implement s M1LOADER loader
+  var doc =  ns.findScript(scrobj.name, scrobj.searchType); // Get the appropriate script  object
+  if (doc  == null) return null; // not found
+  var  fullDay = 3600 * 24; // A full day in seconds<br>
+  // Set  the expiration time to the next midnight
+  scrobj.expirationTime  =  new Date((newDate().getMilliseconds()  + fullDay)/fullDay) * fullDay); 
+  if  (doc.constantValue != null) {
+      scrobj.isConstant = true;
+      return doc.constantValue;
+  }
+  return  doc.sourceText;</pre>
+    </div></div>
+  <p><strong>Example 2:</strong><br>
+This example gets an object from the interface cache by loader type and invoking the loader script. The  interface data cache allows using metadata-defined cache loaders to locate objects.</p>
+  <ol>
+    <li>Create a script that returns an object by ID:<br>
+      <div class="code">
+        <div class="codeContent">
+          <pre class="code-java">test.scriptLoader (id, type);
+return new Document("test:myTestDoc", id);</pre>
+        </div>
+      </div>
+    </li>
+    <li> Register the cache loader:<BR>
+      <div class="code">
+        <div class="codeContent">
+          <pre class="code-java">theInterfaceDataCache.registerLoader("TESTLOADER", "test.scriptLoader");</pre>
+        </div>
+      </div>
+    </li>
+    <li>Get the cache object by ID and the loader search type:<BR>
+      <div class="code">
+        <div class="codeContent">
+          <pre class="code-java">var doc = theInterfaceDataCache.getObject(id, "TESTLOADER", true);    </pre>
+        </div>
+      </div>
+    </li>
+    <li>The loader script is invoked with the id and type, and the document is returned.</li>
+  </ol>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>The Script registry does not automatically generate a function  statement for external scripts as it does for the global metadata scripts. As a result, the loader should generate it. The name of the top-level JavaScript function of  the external script is not used for any specific purpose and can be any syntactically  correct name. It should not be used anywhere within the external script  body.</li>
+  <li>For  the standard loader, the external script text in the database should be valid  JavaScript function. </li>
+  <li>It is mandatory that you move cwInit.cwScriptCacheLoader to an <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Script/Events.html">event</a> called   cwScriptCacheLoad, with its own <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Script/Event Handlers.html">event handler</a>.</li>
+  <li>Since there can only be one cwInit namespace for an application, building a module that employs InterfaceDataCache can be difficult. This release contains the following three enhancements:
+    <ul>
+      <li>Metadata-defined caches, including InterfaceDataCache, are defined as a metadata object</li>
+      <li> Loaders are methods on these objects (for example, the script loader for the templates script can be done using theScriptRegistry.registerLoader)</li>
+      <li>These objects are extensible so that their methods can be overridden</li>
+    </ul>
+  </li>
+  </ul>
+<h3>Backward Compatibility with Older Versions</h3>
+<p>In the  previous AVM releases, the Script registry was using the version 4.2 approach, which  requires one user-defined loader per application. This loader was a global  script with a predefined name, which  received two parameters (that is, the script  name and search type), and returned either the script source text or a constant. The Script registry considered every string  that did not contain the <em>function</em> substring to be a string constant, which meant that you could not declare a string constant that contained the <em>function</em> substring. If, for example, the loader returned the string <em>AfunctionB</em>, the Script registry would  consider it to be a function and would generate a compilation error. To  return this constant, you had to create a function, such as <em>function e$(){return \&quot;AfunctionB\�?;}</em>. </p>
+<p>  The version 4.2 external  script loader name was <em>cwInit:cwExternalScriptLoader</em><strong>. </strong>The  following example shows how it implemented the loading of the <em>M1</em> search type.</p>
+
+<div class="code">
+    <div class="codeContent">
+      <pre class="code-java"><strong><em>Global script cwExternalScriptLoader with  parameters id and type </em></strong>
+  <strong><em> ...</em></strong>
+  <strong>if (type == </strong><strong>&quot;M1&quot;</strong><strong>) {</strong>
+  <strong>    var doc = Document.readDoc(“ns:scriptDoc�?,  [name, type]);</strong>
+  <strong>    if (doc == null) return null;</strong>
+  <strong>    return (doc.constantValue != null) ? doc.constantValue  : doc.sourceText ;</strong>
+  <strong>  }</strong>
+  <strong>  ...</strong></pre>
+    </div></div>
+<p>To migrate the version 4.2  default loader, complete these steps: </p>
+<ol>
+  <li>Rename the version 4.2 script loader to <strong><em>cwInit:</em></strong><em><strong> cwScriptCacheLoader</strong>.</em></li>
+  <li>Change the version 4.2 loader to use the script cache element parameter (type Object)  instead of the script name and script type used in version in 4.2. <strong></strong></li>
+  <li>If the loader returns a constant, set the <strong>isConstant</strong> property of the script element  parameter to true.</li>
+</ol>
+<p>To change the version 4.2 loader, the implementation is as follows:</p>
+<div class="code">
+    <div class="codeContent">
+      <pre class="code-java"><em>Global script cwScriptCacheLoader with  parameter scrobj:</em><br>
+      var name = scrobj.name, type = scrobj.searchType;
+        ... 
+        if (type == “M1�?) {
+          var doc = Document.readDoc(“ns:scriptDoc�?,  [name, type]);
+          if (doc == null) return null;
+          if (doc.constantValue != null)  {
+  <em>                scrobj.isConstant  = true;</em>
+                  return doc.constantValue;
+          }
+          return doc.sourceText ;
+      }
+<strong>      ...</strong></pre>
+    </div></div>
+<p>To migrate  an earlier version 5.1 loader as the default loader, perform the  following steps: </p>
+<ol>
+  <li>Change the type loader parameters from two to  one, and from string type to object type. </li>
+  <li>Change the loader to use the script cache  element parameter (type Object) instead of the script name and script type  parameters by using the <strong>name</strong> and <strong>searchType</strong> properties of the script  object. If, for example, the names of the old parameter were <em>id</em> and <em>type</em>, and the new parameter name is <em>so</em>, add in the beginning of the loader script the <tt>var id = so.name, type =  so.searchType;</tt> statement.</li>
+  <li>If the loader returns a constant, set the <strong>isConstant</strong> property of the script element  parameter to true.</li>
+</ol>
+<p>As shown in these example, the version 4.2 and earlier version 5.1 script  loaders are not backward-compatible. They need a few manual changes to run as default system loaders in this release. </p>
+<p><strong>  Note:</strong> Avoid using the user-defined, default system  loader. The built-in standard system loader is more powerful and works faster.  However, you must use type loaders, where necessary. </p>
+<h3>Obtain a Meaningful Script Name</h3>
+
+<p>If an error occurs during the execution of an external script, the Script cache calls the script <i>cwInit:cwExternalScriptName</i> with parameters ID and type to retrieve readable name of the script as string. If there is no such script, or if the return value is not a string, the script name will be <i>&lt;type&gt;$&lt;id&gt;</i>.
+
+
+
+<p>If a script is not found, the system throws exception. As an example, when calling a process script that cannot be found, the exception is caught in the Activity thread and the process goes into an error state.
+<h3>Clear External Script Cache</h3>
+<p>You can clear the external script cache from the application, rather than having to use JMX. The theScriptCache.discardScript() method can be used to remove an external script from cache across all running nodes. See the JavaScript documentation for details.
+<p></td>
+</tr>
+</table>
+</body>
+</html>

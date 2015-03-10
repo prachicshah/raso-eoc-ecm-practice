@@ -1,0 +1,295 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Horizontal Stack Layout</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Horizontal Stack Layout</h2>
+
+<p><strong>Note:</strong> The Horizontal Stack layout is deprecated. Use the <a href="Element - Vertical Layout.htm">Vertical</a> or <a href="Element - Horizontal Layout.htm">Horizontal</a> layout.</p>
+<p>Horizontal Layout and a Horizontal Stack Layout  present child form elements in a horizontal orientation.  Each element is presented adjacent to one another horizontally.   However, for the two horizontal layout directives, the width percentage property of their respective child  elements results in a  different presentation behaviour. The child form elements of the Horizontal Layout takes on the percentage of the available empty space.  Whereas the Horizontal Stack Layout's child elements will present the child elements as a percentage of the parent element. </p>
+<p>Below is an example of both Layouts and child elements.  This example show the area that the parent element (Horizontal Layout and Horizontal Stack Layout) in blue and the child Section Stack element in the yellow area. These two examples shows the Horizontal Layout directives with a child SectionStack element and a LayoutSpacer.  The SectionStack element has a width percentage property value of 50% and a LayoutSpacer width property value of 25px in both layout directives.  For the Horizontal Layout, the SectionStack element (area displayed in yellow) takes on the width of the remaining space of its parent (Horizontal Layout width - the LayoutSpacer width). Whereas for the Horizontal Stack Layout, the child SectionStack width is 50% of the Horizontal Stack Layout width regardless of the LayoutSpacer element's width.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th width="251" class='confluenceTh'>Horizontal Layout</th>
+<th width="215" class='confluenceTh'>Horizontal Layout Element Tree</th>
+<th width="251" class='confluenceTh'>Horizontal Stack Layout</th>
+<th width="279" class='confluenceTh'>Horizontal Stack Layout Element Tree</th>
+</tr>
+<tr>
+<td class='referenceTd'><img src="hlayoutsectionstack.png" alt="Horizontal layout"></td>
+<td class='referenceTd' valign="top"><img src="hlayoutsectionstack_tree.png" alt="Horizontal layout element tree"></td>
+<td class='referenceTd' valign="top"><img src="hstacksectionstack.png" alt="Horizontal stack layout"></td>
+<td class='referenceTd' valign="top"><img src="hstacksectionstack_tree.png" alt="Horizontal stack layout element tree"></td>
+</tr>
+</tbody>
+</table>
+
+<p>The table below shows the property values for the above example: </p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Parent Layout Properties</th>
+<th class='confluenceTh'>Child Layout Spacer Properties</th>
+<th class='confluenceTh'>Child Section Stack Properties</th>
+</tr>
+<tr>
+<td class='referenceTd' valign="top"><img src="hlayoutproperties.png" alt="Parent layout properties"></td>
+<td class='referenceTd' valign="top"><img src="hstacklayoutspacerProperties.png" alt="Child layout spacer properties"></td>
+<td class='referenceTd' valign="top"><img src="hsectionstackProperties.png" alt="Child section stack properties"></td>
+</tr>
+</tbody>
+</table>
+
+<p>Although both layout properties and child element properties have exactly the same values,  the way in which the child elements are displayed differ.   The difference is in the handling of the child sizing percentage.  The Horizontal Layout will adjust its children to fill the available space, whereas the stack layouts will always respect the width/height values of the children. </p>
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+  <tbody>
+<tr>
+<th class='referenceTh'>references Variable?</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method?</th>
+<td class='referenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form?</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>Allowable Child Elements</th>
+<td class='referenceTd'>
+  Button<br>
+  Checkbox<br>
+  Date Field<br>
+  Date Time<br>
+  Dynamic Table<br>
+  Dynamic Document<br>
+  Form Frame<br>
+  Grid Layout<br>
+  Header<br>
+  Horizontal Layout<br>
+  Horizontal Stack Layout<br>
+  HTML Content<br>
+  Hyperlink<br>
+  Image<br>
+  Iterator<br>
+  Label<br>
+  Layout Spacer<br>
+  Menu Item<br>
+  Password Field<br>
+  Radio Button Group<br>
+  Section Stack<br>
+  Select Field<br>
+  Separator<br>
+  Slider<br>
+  Spinner<br>
+  Tabset<br>
+  Text Area<br>
+  Text Field<br>
+  Tree<br>
+  Upload File<br>
+  Variable<br>
+  Vertical Layout<br>
+  Vertical Stack Layout<br>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+  <th width="102" class='referenceTh'>Property</th>
+  <th width="138" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+  <th width="1373" class='referenceTh'>Comment</th>
+</tr>
+<tr>
+  <th class='referenceTh'>Name</th>
+  <td class='referenceTd'>Mandatory</td>
+  <td class='referenceTd'>Name of the Horizontal Stack Layout.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>*Cell Alignment</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>The cell alignment property functions in conjunction with the height/width properties. The values in the height/width properties must be set for the cell alignment property to function.  This property specifies the horizontal and vertical positioning of the children form elements within the Horizontal StackLayout.  An undefined value results in a &quot;top-left&quot; alignment.</p></td>
+</tr>
+<tr>
+<th class='referenceTh'>Dynamic Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'> The value of this property is a method with a Return type <EM>String</EM>.  This method will dynamically change the element's style at runtime based on the instructions returned by the method. The style returned by the method must exist within the current cascading style sheet (css) file that is being used by the application.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Dynamic Tooltip</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Defines a dynamic tooltip text that is displayed in a hover box when the cursor hovers the element.  Set property to a <em>String</em> variable or a script with a Return type <em>String</em>. The static Tooltip property is considered as default until the action returns a value.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Dynamic Tooltip Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property dynamically changes the style of the Dynamic Tooltip.  Set property to a script with a Return type <em>String</em> that is a cascading style sheet (css) name found in the stylesheet used by the application.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Edge</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Select this checkbox to show an edge around a layout element. See the other Edge properties in this table to customize your edged layout.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Edge: Content Offset</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property denotes the amount the contained elements are offset to. The property defaults to <strong>Edge: Size</strong> if the value of the <strong>Edge: Content Offset</strong> is <tt>0</tt>. Set this property to less than <strong>Edge: Size</strong> to allow the contained elements to overlap the edge and corner media.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Edge: Custom Sides</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Use this property to list custom sides for the border, such as <tt>left</tt>, <tt>top</tt>, <tt>bottom</tt>, and <tt>right</tt>. Some examples include the following:</p>
+    <ul>
+      <li><tt>left, top, bottom</tt></li>
+      <li><tt>top, bottom</tt></li>
+    </ul></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Edge: Dynamic Image</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>This property contains either a method or variable that sets the edge image dynamically (starts with a <em>/</em>). If the dynamic image is null, a static image is used for the edge instead.</p>
+    <p><strong>Note:</strong> If neither a dynamic, nor static image is specified, the default <tt>[SKIN]/edge.gif</tt> image is used.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Edge: Fill Center</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Specify whether to show the image background (with the _center extension) in the centre section (that is, behind the decorated layout).</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Edge: Size</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Use this property to define the size in pixels for corners and edges.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Edge: Static Image</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>This property contains the base name of images for edges. Extensions for each corner or edge piece are added to the image URL before its file extension. For example, a default base name of <tt>edge.gif</tt>, the top-left corner images is <tt>edge_TL.gif</tt>.</p>
+    <p>The list of valid extensions is as follows:</p>
+    <ul>
+      <li>_TL (top-left)</li>
+      <li>_TR (top-right)</li>
+      <li>_BL (bottom-left)</li>
+      <li>_BR (bottom-right)</li>
+      <li>_T (top)</li>
+      <li>_L (left)</li>
+      <li>_B (bottom)</li>
+      <li>_R (right)</li>
+      <li>_center (centre)</li>
+    </ul></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Height</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Height used or consumed by the Horizontal Stack Layout. The value is defined as the number of pixels (integer) or as a percentage of page height or of the parent element.  For example, 50% of the page height or 200 pixels. </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Include in Tab Order</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>This property allows you to optionally suppress tabbing to any or all form elements. The <strong>Include in Tab Order</strong> property overrides the <a href="../../Configuration_Tool_User_Guide/Configure/System/UI/UItabbing.html">suppress tabbing</a> configuration setting and can take the following values:</p>
+    <ul>
+      <li>When set to <strong>&lt;Default&gt;</strong>, the element is included in tab order according to global rules and its focusable state.</li>
+      <li>If the property is set to <strong>Exclude</strong>, the element is excluded from tabbing even if the element is focusable.</li>
+      <li>If the property is set to <strong>Include</strong>, the element is included <em>only if it is focusable</em>, even if all items of that type are excluded through the Suppress Tabbing variable.</li>
+      </ul>
+    <p><strong>Note:</strong> For menu items and images, the <strong>Can Focus</strong> property affects including the element in the tab order. To ensure that an element is in the tabbing order, select this property.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Members Margin</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'> Specifies the number of spaces allowed between grid layouts in the layout stack.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Mouse Over Method</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Click this property's <strong>Value</strong> field and select a method to invoke when users hover their mouse over a specified element.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>On Enter</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>The system calls any script defined in this property. The onEnter property is only met if there is an input field (for example, a textfield, selectfield, and so on) that has focus when the <strong>Enter</strong> key is pressed. This onEnter property is invoked only if the input field does not have an OnEnter property set.  This feature can be used with multiple input fields, but only  one onEnter method to fire for all fields. </td>
+</tr>
+<tr>
+<th class='referenceTh'>Overflow</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'><p>Defines how overflow child form elements are displayed based on the height/width of the layout. The default is Auto.</p>
+<p><strong>Auto</strong> - The child elements that do not fit within the height of the layout defined are shown via a scroll bar. The user can scroll across to see the children at runtime. In other words, the layout will scroll if the child members exceeds its specified size.</p>
+  <p><strong>Hidden</strong> - The child elements that do not fit within the height of layout are NOT displayed at runtime.</p>
+  <p><strong>Visible</strong> - If the child field element members size exceeds the specified layout size, the layout will grow to accommodate the child element members. </p></td>
+</tr>
+<tr>
+<th class='referenceTh'>Show Resize Bar</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>If true, a resize bar is created for the horizontal stack layout, that allows the user to resize the horizontal layout by dragging it, and show/hide layout by clicking it. The orientation of the resize bar for the horizontal layout yields an up-and-down resize bar. The length of the resize bar is dictated by the width of the parent.  Specifically, it is the height if either the vertical layout parent or the width of the horizontal layout parent that determines the resize bar's length. Default is <i>default</i>, which does not show the resize bar.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Choose from styles within the selected stylesheet (located in the Velocity Studio toolbar), which defines the styling of the layout directive such as positioning and colour. Default is NONE.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the tooltip text that is displayed in a hover box when the cursor hovers over the Horizontal Stack Layout. Default is empty, which means that a tooltip has not been defined.  During runtime, the tooltip may be difficult to find as it is not the only layout on the screen and may cover a large area.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the tooltip style of the text displayed in the hover box when the cursor hovers over the Horizontal Stack Layout. The default is empty. Click the <strong>Value</strong> field to select a tooltip style from the list.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip Width (px)</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Allows you to change the width of the tooltip popup window statically. Enter the width in pixels. The default value for this property is 0.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Visible</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the user permissions assigned to this layout. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and visiblePerm can be assigned as well as Object Permissions. Defaults to NONE, which means no permissions are assigned.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Width</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Width used or consumed by the Horizontal Stack Layout. The value is defined as the number of pixels (integer) or as a percentage of page width or of the parent element. For example, 30% of the page width or 150 pixels.</td>
+</tr>
+</tbody>
+</table>
+<br>
+*If this element is the first element that appears in the Element Tree pane, you can set the cell alignment. If this element has a parent layout (for example, vlayout or hlayout with the width and height set) this element uses these values as a base to set its alignment. If the parent layout does not contain a width/height, then this element does not have a base to which it can set its alignment.   If the element has a parent that contains width/height settings, but this form is displayed under another layout with different widths, your form alignment is restricted to the parent's width/height settings. 
+<h3>Notes:</h3>
+<ul>
+  <li>If you require drawing a border or box around a label or single form item element, wrap the element with Grid Layout instead of Horizontal Layout, Vertical Layout, Horizontal Stack Layout, or Vertical Stack Layout. The following are examples of drawing a border around a label:
+    <ul>
+      <li>It is recommended that you use a Grid Layout with the <strong>Edge</strong> property selected and a Label element under the layout: <br>
+        <br>
+        <img src="Edged grid layout.png" alt="Edged grid layout" border="1"> <br>
+        <br>
+      </li>
+      <li>It is not recommended that you use a Vertical Layout with the <strong>Edge</strong> property selected and a Label element under the layout:<br>
+        <br>
+        <img src="Edged vertical layout.png" alt="Edged vertical layout" border="1"><br>
+      </li>
+    </ul>
+    <p>The reason for using the Grid Layout is that at runtime, the label and any form element that is not under Grid Layout) is already wrapped with Grid Layout.<br>
+    </p>
+  </li>
+</ul>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

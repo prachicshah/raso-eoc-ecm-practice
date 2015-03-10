@@ -1,0 +1,156 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>System - Config Variables</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Config Variables</h2>
+
+<p>Clicking <b>System</b> &gt;<b> Config Variables</b> displays a list of configuration variables. Configuration variables are system-specific variables that you can define to adjust system settings. </p>
+<p><img src="configVariables.png" alt="System - Config Variables tab" border="1"></p>
+<p>You can perform the following tasks on the Config Variables page:</p>
+<ul>
+  <li><a href="#addConfigVariable">Add</a> a new configuration variable</li>
+  <li><a href="#editConfigVariable">Edit</a> a configuration variable</li>
+  <li><a href="#deleteConfigVariable">Delete</a> a configuration variable</li>
+  <li><a href="#encryptConfigVariable">Encrypt</a> a configuration variable<br>
+  </li>
+</ul>
+<p> <strong>Note</strong>: It is recommended to restart JBoss if you make changes to configuration variables. </p>
+<h3><a name="addConfigVariable"></a>Add a Configuration Variable</h3>
+<p>To add a new configuration variable, follow these steps:</p>
+<ol>
+  <li>Click the <strong>Add</strong> button to add an empty row to the table.<br>
+    <br>
+    <img src="configVariablesAddButton.png" alt="System - Config Variables tab - Add button" border="1"><br>
+    <br>
+  </li>
+  <li>A dialog opens. Enter the <strong>Name</strong> of your configuration variable, its <strong>Value</strong>, and select whether you want to <strong>Encrypt</strong> the value in the fields provided. <br>
+    <br>
+    <img src="configVariablesAddNameValue.png" alt="System - Config Variables tab - Add a new configuration variable" border="1"><br>
+    <br>
+  </li>
+  <li>When you have finished creating your configuration variable, click the <strong>Save</strong> button to save your configuration.</li>
+  <li>The dialog closes and your new configuration variable appears in the list.<br>
+  </li>
+</ol>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>The <b>Name</b> field is mandatory, while the <b>Value</b> field can be left blank.</li>
+  <li>At runtime, values set on this page may be retrieved for specific keys using the Global._getConfigVariable("MsgDir") JavaScript function.</li>
+  <li>See the <a href="#listConfigVariables">list of configuration variables</a> that you can add  to your configuration.</li>
+</ul>
+<h3><a name="editConfigVariable"></a>Edit a Configuration Variable</h3>
+<p>To edit a configuration variable, do the following:</p>
+<ol>
+  <li>Double-click the field within the table cell that you want and make your changes. </li>
+  <li>When you have finished editing your configuration variable, click the <strong>Save</strong> button to save your configuration.</li>
+</ol>
+<h3><a name="deleteConfigVariable"></a>Delete a Configuration Variable</h3>
+<p>To delete a configuration variable, complete these steps:</p>
+<ol>
+  <li>Select the checkbox next to the  configuration variable that you want, and then click the <strong>Delete</strong> button.<br>
+    <br>
+  <img src="configVariablesDeleteButton.png" alt="System - Config Variables tab - Delete a configuration variable" border="1">  <br>
+  <br>
+  </li>
+  <li>A confirmation message appears. Click the <strong>Yes</strong> button to confirm.</li>
+  <li>Your selected configuration variable has been successfully removed from the list.</li>
+</ol>
+<h3><a name="encryptConfigVariable"></a>Encrypt a Configuration Variable</h3>
+<p>To encrypt a configuration variable, complete the following steps:</p>
+<ol>
+  <li>Select the checkbox next to the  configuration variable that you want, and then click the <strong>Encrypt</strong> button.<br>
+    <br>
+    <img src="configVariablesEncryptButton.png" alt="System - Config Variables tab - Encrypt button to encrypt a configuration variable" border="1"><br>
+<br>
+  <strong>Note:</strong> Alternatively, you can click the configuration variable that you want and drag it to the Encrypted Variables section.</li>
+  <li>A confirmation message appears. Click the <strong>Yes</strong> button to confirm.</li>
+  <li>Your selected configuration variable has been successfully encrypted and appears in the Encrypted Variables section.<br>
+    <br>
+  <img src="configVariablesEncryptedVariables.png" alt="System - Config Variables tab - Encrypted configuration variable" border="1">  </li>
+</ol>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>A decryption button is not available due to security reasons. This feature is unavailable to prevent encrypted values from being disclosed. </li>
+  <li>The getConfigPassword and getConfigVariable methods are available, which support this functionality. Refer to the JavaScript documentation for details.</li>
+</ul>
+<h3><a name="listConfigVariables"></a>List of Configuration Variables</h3>
+<p>The following are a list of available configuration variables:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Variable</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>CW_NLS_COMP</td>
+      <td class='confluenceTd'><p>T<SPAN id="internal-source-marker_0.9154562618965862">his configuration variable supports Oracle linguistic sorting (for example, sorting customer names that are written in both uppercase and lowercase letters, and require being sorted in a list on the UI). </SPAN>An example of Oracle linguistic sorting is as follows:</p>
+        <div class="code">
+          <div class="codeContent">
+            <pre class="code-java">
+SELECT * FROM test ORDER BY NLSSORT(name, 'NLS_SORT=german');
+  </pre>
+          </div>
+        </div>
+        <p><SPAN>This variable denotes   the original value of Oracle database collation behaviour. Valid values for this configuration variable are as follows:</SPAN> </p>
+        <ul>
+          <li><strong>BINARY</strong></li>
+          <li><strong>LINGUISTIC</strong></li>
+          <li><strong> ANSI</strong></li>
+        </ul></td>
+    </tr>
+    <tr>
+      <td height="44" class='confluenceTd'>CW_NLS_SORT </td>
+      <td class='confluenceTd'>T<SPAN id="internal-source-marker_0.">his configuration variable supports Oracle linguistic sorting (for example, sorting customer names that are written in both uppercase and lowercase letters, and require being sorted in a list on the UI). This variable denotes</SPAN> the original value of Oracle database collating sequence for ORDER BY queries.<BR></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>cwPreloadCatalogRules</td>
+      <td class='confluenceTd'>When this configuration variable is set to true, Catalog definitons and scripts are loaded at startup.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ignoreNonExistingItemAttributes</td>
+      <td class='confluenceTd'>When this property is set to true, it returns a null value if you access a non-existing item attribute on the basket item. Otherwise, if this property is set to false or is not specified, an exception occurs when you access a non-existing item attribute.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>itemStatusToReadFromDB</td>
+      <td class='confluenceTd'><p>The value of this configuration variable defines what states the objects must be in to be read into the catalog cache. Values can be a single string (for example, ACT) or several strings (one per line, such as ACT DEF, pressing the <strong>Enter</strong> key after ACT, so that ACT and DEF are on two separate lines). If this variable is not set, its default value is ACT.</p>
+        <p><strong>Note:</strong> This variable takes effect after Velocity Studio is restarted.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>KEYSTORE_PATH, KEYSTORE_PASSWORD</td>
+      <td class='confluenceTd'>Keystore-related variable names must be configured when using encryption. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>noReadOnlyIcons</td>
+      <td class='confluenceTd'>A not null value disables the read only icons (they will be displayed as regular icons).</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>peUnconsumedMessagedPeriod</td>
+      <td class='confluenceTd'>The PE shows diagnostic information as output that is related to the participant message cache when messages have not been processed for a specific period for a given PE instance. The <strong>peUnconsumedMessagedPeriod</strong> configuration parameter controls the period in seconds. If this parameter is not specified or set to being less than 1 second, no analysis occurs. If it is set to <em>n</em> and <em>n</em> seconds passes since the last consumed message, the PE produces information showing the participant cache's state. If the <strong>peConsumerId</strong> user configuration parameter is set to a specific consumer, additional information related to that consumer becomes output, which appears in either the console log or in cwprocesseventlog at the error level.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a name="phasedValidation"></a>phasedValidation</td>
+      <td class='confluenceTd'><p>Setting this configuration variable to true indicates that mandatory fields are first checked for validity (that is, where Nullable = false on a data level or Optional = false on a data type or variable level). If all mandatory fields are populated, it verifies the variable value data type, such as length, enumeration code, and so on.</p>
+        <p>If all variables pass data type verification, it then runs custom validation scripts for variables and document-level validation rules.</p>
+        <p><strong>Notes:</strong></p>
+        <ul>
+          <li>The validation runs all variable and document rule scripts even when there are errors for mandatory fields or at the data type level.</li>
+          <li>The default value for this configuration variable is false.</li>
+        </ul></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a name="screenreader"></a>screenreader</td>
+      <td class='confluenceTd'>Set this configuration variable to true to enable screen reader mode. You can also set this mode at the <a href="../../../../Service_Designer_Tool_User_Guide/Velocity_Studio/User Interface Methods.htm#screenReader">application user interface</a> level.</td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<p><br>
+</p>
+</body>
+</html>

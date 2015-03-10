@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Terminology</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+
+
+<h2>Terminology</h2>
+The following table describes the terminology:
+<table  class='confluenceTable' border cellpadding="1">
+  <tr>
+    <th width="171" class="confluenceTh" >Term</th>
+    <th width="790" class="confluenceTh" >Description</th>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Catalog</strong></td>
+    <td class="confluenceTd">The functionality and information provided by the Catalog products.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Catalog Solution pack (template)</strong></td>
+    <td class="confluenceTd">The two Catalog solution packs: Catalog server and Catalog client solution pack.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Catalog maintenance server</strong></td>
+    <td class="confluenceTd">An AVM node that runs the Catalog Server application and allows maintaining the Catalog definitions. There may be Catalog Server nodes that do not allow maintenance. Such nodes are used to increase the scale and reduce the Catalog response time.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Catalog item</strong></td>
+    <td class="confluenceTd">A definition of product, service, etc. Items refer to the <em>things</em> that a company sells to its customers.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Catalog definitions</strong></td>
+    <td class="confluenceTd">The information describing the catalog items and other objects and associations that is stored in the Catalog database. The Catalog definitions are de facto metadata – they describe what information is to be collected at order entry time and what rules have to be applied during creation, modification, deletion and pricing of the user shopping baskets.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Catalog elements</strong></td>
+    <td class="confluenceTd">The atomic components of the Catalog definitions.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Catalog objects</strong></td>
+    <td class="confluenceTd">All Catalog elements which may exist and be changed independently – for example items, attribute types, charge types, etc. The applications using the Catalog perform operations on the Catalog items. The implementation of the operations uses the other objects to fulfill its goals.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Catalog associations</strong></td>
+    <td class="confluenceTd">The links between Catalog objects and other objects and or data.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Shopping basket</strong></td>
+    <td class="confluenceTd">A set of Catalog basket items and their associations that specify the products and services the user wants to get and/or already have. The basket consists of context, items, item associations and prices.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Basket item</strong></td>
+    <td class="confluenceTd">The data representing a runtime instance of a Catalog item definition. It is part of a basket and is implemented as dynamic document.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Order context</strong></td>
+    <td class="confluenceTd">A set of named data elements that are used in the Catalog decision making process. The Catalog order context gives information about the location and consumer of the products and services defined in the Catalog.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Item association</strong></td>
+    <td class="confluenceTd">A link between an item and a property of the item. The property can be another item, attribute, charge formula, rule, image, specification, label, etc.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Basket association</strong></td>
+    <td class="confluenceTd">A runtime instance of an association between two basket items. There is only one association between two items in the basket.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Catalog rules</strong></td>
+    <td class="confluenceTd">User specified units of logic stored in the Catalog database. The rules can be linked to one item only (item rules) or reused in many items (Catalog rules). Rules can be changed dynamically and do not require Catalog shutdown and restart.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Info models</strong></td>
+    <td class="confluenceTd">Definitions of tabular data used by the Catalog for decision making or calculations.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Info tables</strong></td>
+    <td class="confluenceTd">Tabular  data structures that are defined by the Info models and are used in the Catalog rules.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Static Info tables</strong></td>
+    <td class="confluenceTd">Info tables that have static content and may exist in many versions.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Dynamic Info tables</strong></td>
+    <td class="confluenceTd">Info tables that do not have predefined content and which rows are dynamically created (computed) at runtime when requested. These tables provide mechanism for using metadata scripts defined in the Catalog Server application by the Catalog Client rules that do not have access to the server metadata (see the document “Info Models�?).</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Catalog projects</strong></td>
+    <td class="confluenceTd">Mechanism for secure change of the Catalog definitions, controlling the access of the Catalog maintenance teams to the Catalog data.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Code</strong></td>
+    <td class="confluenceTd">A string of characters used to identify uniquely a Catalog object. If used in JavaScript the code is a string variable or constant.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Name</strong></td>
+    <td class="confluenceTd">An identifier that identifies uniquely an item association and can be used in the JavaScript dot expression.</td>
+  </tr>
+
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>

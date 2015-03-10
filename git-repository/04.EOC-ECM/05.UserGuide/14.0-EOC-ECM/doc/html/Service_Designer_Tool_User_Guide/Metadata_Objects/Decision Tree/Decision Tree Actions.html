@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Decision Tree Actions</title>
+	    <link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">	    
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script>    </head>
+
+    <body onLoad="highlight();">
+	    <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+		    <tr>
+			    <td valign="top" class="pagebody">
+
+<h2>Decision Tree Actions</h2>
+
+<p>The <b>Actions</b> tab centralizes Decision Tree actions, which has <em>Initialization script</em> and <em>Completion script</em>.</p><p><img src="dtActions.png" align="absmiddle" border="1" alt="Decision Tree Actions" /></p>
+
+<p>The <b>Actions</b> tab follows Velocity Studio's convention of a <a href="../../../JavaScripting in Order Care/Scripting Interface.html">Scripting Interface</a>, but with no parameters and no return objects.</p>
+
+<p>Notably, the <em>Decision Tree</em> object is accessed by using <i>this</i> keyword in script.</p>
+
+<p><strong>Note:</strong> Refer to the <a href="../../../JavaScripting in Order Care/Com/conceptwave/scripting/Decision Tree.html">JavaScript Extensions HTML documentation: Decision Tree object</a> for reference.</p>
+
+
+<p>There are two system-defined scripts for Decision Tree -- initialization script and completion script. The Decision Tree always performs its initialization script (if any) at the moment it is run (see section <a href="Running Decision Trees.html">Running Decision Tree</a>). After a terminal or "Complete" activity is performed, the Decision Tree runs its completion script (if any).</p>
+
+<table class='confluenceTable' border cellpadding="1"><tbody>
+<tr>
+<th class='confluenceTh'> Action </th>
+<th class='confluenceTh'> Script Name </th>
+<th class='confluenceTh'> Description </th>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Initialization</b> </td>
+<td class='confluenceTd'> <i>cwOnDTInit</i> </td>
+<td class='confluenceTd'> It is run before the first activity is processed. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Completion</b> </td>
+<td class='confluenceTd'> <i>cwOnCompletion</i> </td>
+<td class='confluenceTd'> It is run after a terminal activity or Complete activity (see below) is performed. </td>
+</tr>
+</tbody></table>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

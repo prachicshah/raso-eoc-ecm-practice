@@ -1,0 +1,235 @@
+﻿<html>
+<head>
+<title>Rule Instances</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+<!--
+hilary {
+	color: #906;
+}
+.Hilary {
+	font-size: x-large;
+	color: #93F;
+}
+-->
+</style>
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Rule Instances</h3>
+<p>Rule Instances are created for evaluating particular rules of a given type of business rule. Rule Instances can be created in these ways:</p>
+<ul>
+  <li>In the Velocity Studio application <b>Metadata</b> tab: on the <b><a href="rulesConfigInstancesTab.html">Config Instances</a></b> tab of the Rule properties.</li>
+<li>In the Velocity Studio application <b>Library</b> tab: on the <strong>Config Instances</strong> tab of the Rule properties. <br>
+</li>
+</ul>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>Instances of overridden rules cannot be changed. Overridden rules will have the <b>Save</b> button disabled as any other library object.</li>
+  <li>When specifying a rule instance value for an object that has reference finder values, you must start runtime before any reference finder values can be used in setting up rules.  </li>
+</ul>
+
+<h4>Commands for Rule Instances</h4>
+<p>You can perform the following commands for rule instances:</p>
+<ul>
+  <li><a href="../../Service Designer Menu Actions/Export Rule Instance.html">Export rule instances</a></li>
+  <li><a href="../../Service Designer Menu Actions/Import Rule Instance.html">Import rule instances</a></li>
+  <li><a href="Migrate Rule Instance.html">Migrate rule instances from command line</a></li>
+</ul>
+<p><a name="RuleInstanceProperties"></a>Click the Add button on the ConfigInstance tab  to open the <b>Rule Instance Properties</b> dialog that allows you to view the properties of a selected rule instance. The appearance of this dialog depends on the  rule type (can be either an instance of an Initializer Rule, Finder Rule, or an Action Rule). You can double-click a rule instance to view its properties.</p>
+<p><img src="RuleInstanceProperitesForm.png" align="absmiddle" border="0" alt="Rule Instance Properties" /></p>
+<p>The major element in this dialog is an expression pane that allows the user to specify the conditions of application business logic. Editing expressions is explained in <a href="#ExpressionEditing">Expression Editing</a>.</p>
+<p>The <b>Label</b> and <b>Exclude</b> fields are common to all types of instances. The <b>Label</b> is mandatory. The <b>Exclude</b> check box, when selected, means that the instance will be excluded from the evaluation sequence, but can be invoked from other instances.</p>
+<h4><a name="InstanceofInitializationRule"></a>Instance of Initializer Rule</h4>
+<p>The <b>Rule Instance Properties</b> dialog for an instance of an Initialization Rule contains an expression and an initialization list. When the <b>Condition</b> radio-button is selected the expression is conditional. </p>
+<p><img src="initializerRuleInstanceCondition.png" align="absmiddle" border="0" alt="Initialization Rule Instance with Condition" /></p>
+<p>When the <b>Initialization </b>radio-button is selected  there is no condition.</p>
+<p><img src="initializerRuleInstanceInitialization.png" align="absmiddle" border="0" alt="initializer Rule Instance with Initialization" /></p>
+<p>Each row in the <b>Initialize</b> list shows a Document leaf in the <b>Field</b> column and its value in the <b>Value</b> column. The <strong>Value</strong> can be either an expression, integer, string, etc.. Maintenance of the <b>Initialize</b> list is achieved using the buttons located below the list as  described in the table below:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="66" class='confluenceTh'>Button</th>
+<th width="1216" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Add</strong></td>
+<td class='confluenceTd'>Opens the <b>Add Leaves</b> dialog  so that new leaves can be added by selecting one or more leaves from the list in the dialog.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Update</strong></td>
+<td class='confluenceTd'>Used to change the value in the <b>Initialize</b> list to either the value specified in the <b>Value</b> field located beneath the <b>Initialize</b> list or to <em>&lt;expression&gt;</em> if an expression has been defined in the <b>Expression</b> pane.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Remove</strong></td>
+<td class='confluenceTd'>Removes the selected leaf from the list.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The <strong>Add</strong> button will open the Add Leaves dialog button that allows you to select more variables.</p>
+<p><img src="AddLeaves.png" align="absmiddle" border="0" alt="Add Leave" /></p>
+<p>If the value is an expression, the <b>Expression </b>check box will be checked. The <b>Expression</b> pane will then contain the expression for the selected value.</p>
+<p><strong>Note:</strong> Either the internal or label name is shown in the Rule Instance Properties dialog if they are different in the expression panel.</p>
+<p>If the Value is a value, the <b>Expression</b> check box will be unchecked. The <b>Expression</b> pane becomes disabled and the Document leaf will be initialized by the value specified in the <b>Value</b> field located beneath the <b>Initialize</b> list. The <b>Value</b> field will prompt the user for a value of the same data type as the leaf. The label of the <b>Value</b> field will change according to the data type name. If the leaf data type is overridden in the current metadata, the overriding data type will be shown. The data type location in the metadata hierarchy can be viewed by clicking the button to the right of the <b>Value</b> field. The read-only <b>Data Type</b> dialog  will open.</p>
+<p><img src="DataType.png"  border="1" alt="DataType" /></p>
+
+<h4><a name="InstanceofFinderRule"></a>Instance of Finder Rule</h4>
+<p>The <b>Rule Instance Properties</b> dialog for an instance of a Finder Rule contains radio-buttons for <b>Condition</b> and <b>Filter</b>. These are used to switch between condition and filter expressions. If the input parameter is not marked as optional by selecting the <b>Optional</b> radio-button on the <b>General</b> tab of the <b>Rules</b> properties, the filter expression will not be available (the radio-buttons will not appear and the only expression visible will be the conditional expression). The conditional expression specifies the condition which must be true for all search results. The filter expression specifies an additional condition.</p>
+<p><img src="finderRuleInstanceCondition.png" align="absmiddle" border="0" alt="Finder Rule Instance with Condition" /></p>
+
+<p>The <b>Order by</b> list specifies the order in which the results will be sorted. This list contains one or more Document leaves and a sort order, ascending or descending, for each leaf. The up and down arrow buttons on the right side of the table can be used to change the position of the selected row. Maintenance of the <b>Order by</b> list is achieved using the <strong>Add</strong> and <strong>Remove</strong> buttons located below the list which are described in Table.</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="59" class='confluenceTh'>Button</th>
+<th width="810" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Add</strong></td>
+<td class='confluenceTd'>Opens the <b>Add Leaves</b> dialog  so that new leaves can be added by selecting one or more leaves from the list in the dialog.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Remove</strong></td>
+<td class='confluenceTd'>Removes the selected leaf from the list.</td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="InstanceofActionRule"></a>Instance of Action Rule</h4>
+<p>The <b>Rule Instance Properties</b> dialog for an instance of an Action Rule contains a conditional expression and an action expression. The <b>Condition</b> and <b>Action</b> radio-buttons are used to switch between their expression panes. The action expression specifies one of the global or system predefined scripts that will be executed when the condition is true.</p>
+<p><img src="actionRuleInstanceCondition.png" align="absmiddle" border="0" alt="Rule Instance Action" /></p>
+
+<h4><a name="ExpressionEditing"></a>Expression Editing</h4>
+<p>An expression consists of operands and operations. The operands can be either a function, object, or value. The operations consist of comparison, mathematical and boolean operations and brackets.</p>
+<p>To insert either an operand or an operation, right-click in the <b>Expression</b> pane of the <b>Rule Instance Properties</b> dialog and select an option from the pop-up menu . The values included in the pop-up menu will depend on the whether the next part of the expression should be an operand or an operation. If the <b>Function</b>, <b>Object</b> or <b>Value</b> command is selected, the <b>Insert</b> dialog for inserting an operand will open. If the <b>Operation </b>command is selected, the <b>Insert Operation</b> dialog will open. The <b>Open Bracket</b> and <b>Close Bracket</b> commands will add "(" and ")" respectively to the expression. The <b>Undo</b> and <b>Redo</b> commands can be used for the five most recent changes.</p>
+<table class='confluenceTable' border="1">
+  <tbody>
+  <tr>
+  <td class='confluenceTd'><img src="Expression.png" align="absmiddle" border="0" alt="" /></td>
+  <td class='confluenceTd'><img src="ExpressionPane.png" align="absmiddle" border="0" alt="" /></td>
+  </tr>
+  </tbody>
+</table>
+<p>Another option when editing an expression is to press the spacebar when the focus is in the <b>Expression</b> pane. This will open the dialog for inserting either an operand or an operation depending on which logically comes next in the expression.</p>
+<p>When clicking in the <b>Expression</b> pane, the cursor will automatically be positioned at the beginning or end of the expression element, depending on which one is closer. Selection will also be aligned automatically with the expression element borders. Once the cursor is in position, the user can press the Enter key to insert a line break in the cursor position and the Backspace key to remove the line break. When there is no line break, the Backspace key will delete the last element of the expression proceeding the cursor. One or more elements can also be selected and deleted by pressing the Backspace key. Arrow keys can be used to move cursor from element to element.</p>
+
+<h4><a name="Operands"></a>Operands</h4>
+<p>The operands can be either a function, object or value. The <b>Insert</b> dialog is used to select an operand and insert it in the expression. The user can use this dialog to change the selected operand type&#160;from one to another by selection one of the three radio buttons: <b>Function</b>, <b>Object</b> or <b>Value</b> or by clicking the <b>Null</b> button.</p>
+<p><img src="InsertDialogBox.png" align="absmiddle" border="0" alt="Insert Dialog " /></p>
+<h4><a name="Function"></a>Function</h4>
+<p>If the <b>Function</b> radio button has been selected in the <b>Insert</b> dialog  then the user will be prompted to select from a list of functions. This list contains system predefined functions (refer to <a href="Appendix A - Functions In The Rule Editor.html">Appendix A: Functions in the Rule Editor</a>) and all global script functions that are marked for use in the instance expressions. The list of&#160;functions can be extended by using <a href="../../../JavaScripting in Order Care/JavaScript_Docs.html">global script </a> objects defined in the metadata.</p>
+<p>Once the function is either double-clicked or highlighted and the <b>Insert</b> button is pressed, the function will appear in the <b>Expression</b> pane. The placeholders for the function parameters are shown in the &lt;&gt; brackets. To define the parameters of the function, select the placeholder and either press the spacebar or right-click and select the <b>Properties</b> command from the pop-up menu. The <b>Properties</b> dialog will open. The appearance of this dialog will depend on the parameter type. Once a replacement value is defined, click the <b>Replace</b> button to replace the placeholder in the expression.</p>
+<p><img src="ExpressionFunctionPane.png" align="absmiddle" border="1" alt="Expression Function Pane" /></p>
+<h4><a name="Object"></a>Object</h4>
+<p>If the <b>Object</b> radio button has been selected in the <b>Insert</b> dialog  then the user will be prompted to select an object from the hierarchical list and a method to be applied to this object from the <b>Method</b> combo box. The objects tree will contain the rule document, input documents and variables. Each input document or variable will have a prefix that shows its sequential number in the business rule properties. For example, input parameter 1 will have a prefix 1 (so, doc1 will appear in the UI as 1 - doc1), the first instance variable will have a prefix V1 (so, vardoc1 will appear in the UI as V1 - vardoc1), the first global variable will have a prefix G1 (so, globaldoc1 will appear in the UI as G1 - globaldoc1), then 2, V2, G2, etc.<p><img src="insertObject.png" align="absmiddle" border="0" alt="Insert Object" /></p>
+
+<p>The list in the <b>Method</b> combo box will change depending on the object chosen from the objects tree. If the object is a Document leaf, the method list will be defined by the object data type. If the object is a Document, Order or Order Item, the method list will be defined by the object type. For a list of available object methods refer to <a href="Appendix B - Object Methods In The Rule Editor.html">Appendix B: Object Methods in The Rule Editor</a>. Below is an example of the object and the object method in the expression:</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="ObjectExpression.png" align="absmiddle" border="0" alt="" /></td>
+<td class='confluenceTd'><img src="ObjectExpressionPane.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<!-- <p><p>The user can add more objects to the objects tree using variables. A variable is a Document, Order or Order Item whose appearance depends on a certain condition. When the condition is false, the instance containing the expression with the variable will not be executed.</p>
+<p>To add a variable into the objects tree, right-click the <b>Parameters</b> folder. Select the <a name="Variable"></a><b>Add Variable</b> command from the pop-up menu. The <b>Add Variable</b> dialog  will open.</p>
+<p><img src="VariablePopupMenu.png" align="absmiddle" border="0" alt="" /><img src="AddVariable.png" align="absmiddle" border="0" alt="AddVariable" /></p>
+The <b>Object</b> tree in the dialog shows the Documents, Orders and Order Items available for selection. The <b>Definition</b> pane is used to specify an expression that defines the selected object and should be either a Document, Order, Order Item or User Profile function. The function parameter can contain a single item or any kind of expression. When creating a variable expression, you cannot insert another variable into the expression.</p>
+<p>Click the <b>OK</b> button to add the created variable to the tree. It will be added to the tree in the <b>Insert</b> dialog with a prefix which contains a letter "V"&#160; followed by a sequential number. If the <b>Close</b> button is now used to close the <b>Insert</b> dialog, without clicking the <b>Insert</b> button, the new variable will still remain in the tree.</p>
+<p>Maintenance of the user defined variable in the objects tree is achieved by right-clicking the variable. A pop-up menu will open.</p> 
+
+<p>Select the <b>Properties</b> command to modify the variable properties. Select the <b>Remove Variable</b> command to remove the variable from the objects tree.</p>-->
+<p><b>Note:</b> Global variables are additional parameters that can be used in the rule instance expressions the same way as rule instance variables are used. They will appear in the objects tree with the prefix "G" followed by their sequential number and variable label. These global variables are defined in the <b>Global</b> <b>Variables</b> dialog by clicking the <b>Variables</b> button on the <b>Instances</b> tab of the <b>Rules</b> properties.</p>
+<h4><a name="Value"></a>Value</h4>
+<p>If the <b>Value</b> radio button has been selected in the <b>Insert</b> dialog then the user will be prompted to enter a value with a data type matching the data type of the object that proceeds the value in the expression. If a match cannot be found, the user will be prompted for a string value by default. The <b>Data type</b> area below the value field shows the location of the data type object in the metadata hierarchy and will allow the user to select an alternative data type. The alternative data type can be selected from the <b>Quick Pick</b> combo box or from the objects tree. The <b>Quick Pick</b> combo box contains a list of data types that are used in the leaves of the business rule Documents. The objects tree contains all data types available in the metadata. Press the <b>Set</b> button to make the change. This will also add the data type to the <b>Quick Pick</b> combo box. The <b>Restore</b> button will appear next to the <b>Set</b> button in the <b>Insert</b> dialog and it is used to restore the initial data type.</p>
+
+<p><img src="InsertValue.png" align="absmiddle" border="0" alt="Insert Value" /></p>
+<p><b>Null</b></p>
+<p>The "null" value can be added at any place in the expression that requires either an object or string by clicking the <b>Null</b> button. The dialog will be closed and "null"will be added to the expression.</p>
+<h4><a name="3.8Rules%28RuleInstances%29-Operations"></a>Operations</h4>
+<p>The <b>Insert Operation</b><b></b> dialog is used to select an operation and insert it in the expression.</p>
+<p><img src="InsertOperation.png" align="absmiddle" border="0" alt="Insert Operation" /></p>
+
+<p> The operations shown in the dialog are supported. When inserted in an expression, the verbal equivalent of the operator is shown for the comparison operators (=, !=, &lt;, &lt;=, &gt;, &gt;=):</p>
+<p><img src="OperationInExpression.png" align="absmiddle" border="1" alt="Operation In Expression" /></p>
+
+<p>Operations can also be entered directly from the keyboard. The table below shows  a list of operations and the corresponding keyboard key(s).</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'><b>Operation</b></th>
+<th class='confluenceTh'><b>Key(s)</b></th>
+<th class='confluenceTh'><b>Operation</b></th>
+<th class='confluenceTh'><b>Key(s)</b></th>
+</tr>
+<tr>
+<td class='confluenceTd'>(</td>
+<td class='confluenceTd'>(</td>
+<td class='confluenceTd'>+</td>
+<td class='confluenceTd'>+</td>
+</tr>
+<tr>
+<td class='confluenceTd'>)</td>
+<td class='confluenceTd'>)</td>
+<td class='confluenceTd'>-</td>
+<td class='confluenceTd'>-</td>
+</tr>
+<tr>
+<td class='confluenceTd'>=</td>
+<td class='confluenceTd'>=</td>
+<td class='confluenceTd'>*</td>
+<td class='confluenceTd'>*</td>
+</tr>
+<tr>
+<td class='confluenceTd'>!=</td>
+<td class='confluenceTd'>Ctrl&#160; =</td>
+<td class='confluenceTd'>/</td>
+<td class='confluenceTd'>/</td>
+</tr>
+<tr>
+<td class='confluenceTd'>&lt;</td>
+<td class='confluenceTd'>&lt;</td>
+<td class='confluenceTd'>NOT</td>
+<td class='confluenceTd'>!</td>
+</tr>
+<tr>
+<td class='confluenceTd'>&lt;=</td>
+<td class='confluenceTd'>Ctrl &lt;</td>
+<td class='confluenceTd'>AND</td>
+<td class='confluenceTd'>&amp;</td>
+</tr>
+<tr>
+<td class='confluenceTd'>&gt;</td>
+<td class='confluenceTd'>&gt;</td>
+<td class='confluenceTd'>OR</td>
+<td class='confluenceTd'>|</td>
+</tr>
+<tr>
+<td class='confluenceTd'>&gt;=</td>
+<td class='confluenceTd'>Ctrl &gt;</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+</tbody>
+</table>
+
+
+<h4><a name="ModifyingExpressions"></a>Modifying Expressions</h4>
+
+<p>To modify an element of an existing expression select it with the mouse and press the spacebar. You can also right-click and select the <b>Properties</b> command from the pop-up menu. The <b>Properties</b> or <b>Operation Properties</b> dialog will open, which are very similar to the <b>Insert</b> and <b>Insert Operation</b> dialogs described above.</p>
+<p>You can only replace an operand with another operand and an operation with another operation.</p>
+<h4><a name="ValidatingExpressions"></a>Validating Expressions</h4>
+<p>All expressions will be validated for correct syntax when the <b>OK</b> button is clicked and an instance is saving. If an error occurs, the <b>Validation Error</b> dialog  will open with the error message. The item that caused the error, or the closest item to the cause, will be highlighted in the <b>Expression</b> pane. A full validation of metadata in the Velocity Studio  will also check the integrity of all rule instances to ensure that no deleted elements are used in any expressions. Below is an example of a validation error in an expression:</p>
+<p><img src="ExpressionValidation.png"  border="1" alt="Expression Validation" /></p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

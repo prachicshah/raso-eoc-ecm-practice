@@ -1,0 +1,88 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Console Pane</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+	<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Console Pane</h2>
+
+<p>The Console pane is located at the bottom-right of Velocity Studio as the <b>Console</b> tab, which displays when you have opened a project, or shows system information of issued commands such as <a href="../Service Designer Menu Actions/Metadata Run.html">Run</a> and <a href="../Service Designer Menu Actions/Metadata Debug.html">Debug</a>. </p>
+
+<img src="paneConsole.png" border="0" alt="Console pane" />
+
+<p>If a CSS parsing error occurs, Velocity Studio logs the error with its filepath in the Console pane. The Console pane also displays information about the duration of loading, validating, and starting runtime, and memory usage. </p>
+<p>Velocity Studio has an embedded Web server to support itself as an Integrated Development Environment (IDE). One of the important system information details displayed in the <b>Console</b> is starting and stopping of the Web server in a specific <i>mode</i>, and on a particular port, as shown in the previous screenshot. There are several modes that a Web server port can be binded to:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Mode</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>RUN mode</b></td>
+<td class='confluenceTd'>Indicates the project's metadata is running by AVM at this port. In RUN mode, the <a href="../../Configuration_Tool_User_Guide/Configure/System/introduction.html">Configuration application</a> and <a href="../../System_Administration_Application_User_Guide/Getting Started/introductionSystemAdmin.html">System Administration application</a> are available.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>CONFIG mode</b></td>
+<td class='confluenceTd'>Indicates the Configuration application is running at this port. System Administration App or project's metadata are not available.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>HELP mode</b></td>
+<td class='confluenceTd'>Indicates the <a href="../Service Designer Menu Actions/Help Contents.html">product documentation</a> is running on this port.</td>
+</tr>
+<!--<tr>
+<td class='confluenceTd'><b>DESIGN mode</b></td>
+<td class='confluenceTd'><i>Available for Velocity Studio only</i>. Indicates the port is running to support the <a href="../Velocity_Studio/Form.htm">Form Preview pane</a> in Forms.</td>
+</tr>-->
+</tbody>
+</table>
+
+
+<p>If the Console pane is closed, use the menu <b>Views &gt; Console</b> to reopen the Console pane. 
+
+</p>
+<h3>Console pane buttons</h3>
+<p>The following table describes each <strong>Console pane</strong> button and its action when you click it:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th align="center" class='confluenceTh'>Button</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td align="center" class='confluenceTd'><img src="paneConsoleCopyButton.png" width="21" height="25" alt="Console pane - Copy button"></td>
+      <td class='confluenceTd'>Click the <strong>Copy </strong>button to copy all information in the Console pane. You can then paste the information into an editor, such as Notepad, and save the information as a file.</td>
+    </tr>
+    <tr>
+      <td align="center" class='confluenceTd'><img src="paneConsoleClearAllButton.png" width="24" height="25" alt="Console pane - Clear All button"></td>
+      <td class='confluenceTd'>Click the <strong>Clear All</strong> button to clear all information in the Console pane.</td>
+    </tr>
+    <tr>
+      <td height="21" align="center" class='confluenceTd'><img src="paneConsoleAutoScrollButton.png" width="25" height="25" alt="Console button - Auto-scroll button"></td>
+      <td class='confluenceTd'>Click the <strong>Auto-Scroll</strong> button to have the information in the Console pane automatically scroll whenever new information appears.</td>
+    </tr>
+    <!--<tr>
+<td class='confluenceTd'><b>DESIGN mode</b></td>
+<td class='confluenceTd'><i>Available for Velocity Studio only</i>. Indicates the port is running to support the <a href="../Velocity_Studio/Form.htm">Form Preview pane</a> in Forms.</td>
+</tr>-->
+  </tbody>
+</table>
+<p><strong>Note:</strong> You can also right-click the Console pane area to access these actions. By default, the Auto-Scroll feature is on.</p>
+<p>&nbsp; </p>
+
+    </td>
+</tr>
+</table>
+</body>
+</html>

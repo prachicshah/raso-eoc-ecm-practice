@@ -1,0 +1,306 @@
+<html>
+<head>
+<title>Document Variables</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<h3>Document Variables</h3>
+<p>The <b>Variables</b> tab is used to add Variables into the Document. The <b>Variables list</b> contains one entry for each variable added to the Document.</p>
+<p><strong>Note:</strong> If the Document extends another Document (a result of selecting the <b>Extend...</b> command from the <b>Documents</b> pop-up menu when creating a new Document), the Variables from the base Document will be shown in blue color. Newly added Variables will appear in black color.</p>
+
+<img src="DocumentVariables.png" border="1" alt="Document Variables tab" />
+
+<p>The Document Variable details appear in the detail pane when a Variable entry is highlighted in <b>Variables list</b>. The Document Variable properties can be found in the <a href="#properties">section that follows</a>. Some of the properties appear in the columns of the <b>Variables list</b> table. </p>
+<ul>
+  <li>The <b>Type</b> column is populated with the primitive data type of the Variable's selected Data Type (for example, String), its actual data type (for example, com.conceptwave.system.String), and its length, if it is specified. </li>
+  <li>The <b>Methods</b> checkbox is checked whenever the Document Variable contains one or more Methods. </li>
+  <li>The <b>Vis</b>, <b>Opt</b> and <b>Edit</b> fields denote the <b>Visible</b>, <b>Optional</b>, and <b>Editable</b> Element properties, respectively.</li>
+</ul>
+<p>The rows in the <b>Variables list</b> table can be moved up or down the list using the up and down arrow buttons located beside the table. Highlight an item, then click either the up arrow <img src="DocumentVariableUpArrow.png" align="absmiddle" border="0" alt="" /> or down arrow <img src="DocumentVariableDownArrow.png" align="absmiddle" border="0" alt="" /> button to move it. They can also be sorted alphabetically by clicking the <b>Sort</b> button <img src="DocumentVariableSort.png" align="absmiddle" border="0" alt="" />.</p>
+
+<p>The <strong>Add</strong> button <img src="DocumentVariableAddButton.png" align="absmiddle" border="0" alt="" /> is used to add a Data Type as a Document Variable in the <b>Variables list</b>. When the user clicks the <strong>Add</strong> button, the <b>Add Element</b> dialog will open.</p>
+
+<img src="DocumentVariableAdd.png" align="absmiddle" border="0" alt="Add Element dialog" />
+
+<p> The dialog contains a list of Data Types under all namespaces in the metadata. To add Variables, highlight the elements, and click the <b>Save</b> button. The dialog closes and the selected elements are added as Variables in the <b>Variables list</b>.</p>
+
+<p>There are also several system-defined fields in the cwf namespace that can be added to the Document as Variables. Each system-defined field can exist in only one instance in the Document. The AVM automatically makes them read-only and assigns values to them. To add one or more system-defined fields to the Document, click the Add Sys button <img src="DocumentVariableAddSysButton.png" align="absmiddle" border="0" alt="" />. The <b>Add system Variable</b> dialog will open.</p>
+
+<img src="DocumentVariableAddSys.png" border="0" alt="Add system datatype dialog" />
+
+<p>Click the <b>Select Order</b> button to select the set of system-defined Variables required for a Document that is used in Orders. Alternatively, select the individual Variables from the list and click the <b>Save</b> button. The dialog will close and the Variables will be added to the <b>Variables list</b>. The list of system-defined fields are described below.</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>System Field</th>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Document ID</b></td>
+<td class='confluenceTd'><em>cwf.cwDocId</em></td>
+<td class='confluenceTd'>System-generated unique Document key.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Document ID 64 bit</strong></td>
+  <td class='confluenceTd'><em>cwf.cwDocId64</em></td>
+  <td class='confluenceTd'>System-generated unique Document key for 64 bit system.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Document order ID</b></td>
+<td class='confluenceTd'><em>cwf.cwOrderId</em></td>
+<td class='confluenceTd'>ID of the Order if the Document is part of an Order. Applies only to Documents with a system generated key.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Document parent ID</b></td>
+<td class='confluenceTd'><em>cwf.cwParentId</em></td>
+<td class='confluenceTd'>The immediate parent ID of the Document if the Document is part of an Order. Applies only to Documents with a system generated key.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Last update timestamp</b></td>
+<td class='confluenceTd'><em>cwf.lastUpdatedDate</em></td>
+<td class='confluenceTd'>The timestamp of the last update or create operation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Last updated by</b></td>
+<td class='confluenceTd'><em>cwf.updatedBy</em></td>
+<td class='confluenceTd'>The ID of the user who performed the last update or create operation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Created by</b></td>
+<td class='confluenceTd'><em>cwf.cwCreatedBy</em></td>
+<td class='confluenceTd'>The ID of the user who created the Document.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Creation timestamp</b></td>
+<td class='confluenceTd'><em>cwf.cwCreated</em></td>
+<td class='confluenceTd'>Document creation timestamp.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Document type</b></td>
+<td class='confluenceTd'><em>cwf.cwDocType</em></td>
+<td class='confluenceTd'>The fully qualified metadata name of the Document. Useful in the base Document of several derived Document types that are mapped to the same table because it allows the user to search for Documents of this particular type in this table.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Document type number</b></td>
+<td class='confluenceTd'><em>cwf.cwTypeNo</em></td>
+<td class='confluenceTd'>The system number of the metadata Document. Useful in the base Document of several derived Document types that are mapped to the same table because it allows the user to search for Documents of this particular type in this table.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Document stamp</b></td>
+<td class='confluenceTd'><em>cwf.cwDocStamp</em></td>
+<td class='confluenceTd'>The Document stamp used for conflict detection. Should exist if the Document is part of Order.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>System GUID</b></td>
+  <td class='confluenceTd'><em>cwf.sysGuid</em></td>
+  <td class='confluenceTd'>Represents the globally unique identifier (GUID) for this object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>System order creation timestamp</b></td>
+<td class='confluenceTd'><em>cwf.cwOrderCreationDate</em></td>
+<td class='confluenceTd'>The system time on order creation.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>System timestamp</strong></td>
+  <td class='confluenceTd'><em>cwf.cwTimestamp</em></td>
+  <td class='confluenceTd'>The  system field for a timestamp data type, which is based on com.conceptwave.system.Timestamp.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>XSL FO file</b></td>
+<td class='confluenceTd'><em>cwf.xslFo</em></td>
+<td class='confluenceTd'>The XSL-FO file used for this Order in Order PDF Printing.</td>
+</tr>
+</tbody>
+</table>
+
+<p>To remove Variables from the table, highlight one or more rows in the <b>Variables list</b> and click the Remove button <img src="DocumentVariableRemoveButton.png" align="absmiddle" border="0" alt="" />. A Variable that is selected as a system-generated key cannot be removed.</p>
+
+<p>These buttons beside the list follow the <a href="../../Service_Designer_User_Interface/metadata object detail pane.html#ArrayElements">Manage Array Elements</a> presentation convention in Velocity Studio. See this section for details about the aforementioned and additional buttons.</p>
+<p>The CWPRODUCTPROPERTIES table contains the UB64 data value, which allows you to generate the database identifier as a base64 string. This data value can take any number that can ensure a unique AVM. You can use this value to generate a unique sequence ID for translation, a data object, and more.</p>
+
+<!--<p>A sample Document at runtime is shown below. Mandatory fields are shown with a red asterisk. A validation error will result if a user attempts to save when a mandatory field is empty.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src=".png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+-->
+
+<h4><a name="properties">Document Variable Properties</a></h4>
+
+<p>The following describes each property of Document Variable, which is presented in two tabs: <b>General</b> tab and <b>Methods</b> tab.</p>
+
+<i><u>In <b>General</b> tab</u></i><br>
+
+<table class='confluenceTable'  border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Column</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Name</strong></td>
+<td class='confluenceTd'><p>This value is automatically set to the Data Type's original name. It may be overwritten when necessary.</p>
+  <p><strong>Note:</strong> For this field, do not use <em>id</em>, as this name is reserved.</p></td>
+</tr>
+<!--<tr>
+<td class='confluenceTd'>Array</td>
+<td class='confluenceTd'>Specifies that this is an array of this variable.</td>
+</tr>-->
+<tr>
+<td class='confluenceTd'><strong>Constant</strong></td>
+<td class='confluenceTd'>If checked, the property <b>Constant value</b> appears. It becomes a constant variable that has a fixed value specified in the Constant value.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Audit</strong></td>
+<td class='confluenceTd'><p>If checked, the runtime system will log the variable update history in the database if the <b>Audit Trail</b> checkbox for the Document is checked in the <b>General</b> tab and the Configuration application has specified that audit is allowed. Any change made to the variable will be recorded into the system table CWFIELDAUDITTRAIL in the database.</p>
+  <p><strong>Note</strong>: Translation fields are audited.    The old and new values in the CWFIELDAUDITTRAIL table indicate the language of the change, and takes the format &lt;<em>language code</em>&gt;|&lt;<em>translation text</em>&gt; (for example, en-xx|HELLO).<BR>
+  </p></td>
+</tr>
+<!--<tr>
+<td class='confluenceTd'>Label</td>
+<td class='confluenceTd'>This value is automatically set to the Data Type's original label. It may be overwritten when necessary. When this Variable is assigned to a Form Element, Label in the form element is defaulted to this label value, as to be displayed in runtime.</td>
+</tr>-->
+<tr>
+<td class='confluenceTd'><strong>Data Type</strong></td>
+<td class='confluenceTd'>The data type of the Variable.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Type Error Code</strong></td>
+<td class='confluenceTd'>Specifies an error message code that should be in the application resources. If set, the specified error message will be used instead of the default system message when the field contains an invalid value.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Mandatory Error Code</strong></td>
+<td class='confluenceTd'>Specifies an error message code that should be in the application resources. If set, the specified error message will be used instead of the default system message when the field is mandatory and it has no value.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Encrypt</strong></td>
+<td class='confluenceTd'>If checked, the leaf wil be encrypted when saving the document and decrypted when loading the document.  The encrypt option in the data type will be overridden.  If not checked, the encrypt option in the data type will be overridden.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Constant Value</strong></td>
+<td class='confluenceTd'>Appears only when <b>Constant</b> is checked. Specifies the value of the constant variable.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Element</strong></td>
+<td class='confluenceTd'>The type of <a href="../../Velocity_Studio/Form Elements Overview.htm">Form Element</a> that the Data Type shall be defaulted to present. Available choices depend on the base Data Type, and whether enumeration is defined.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Element Properties</strong></td>
+<td class='confluenceTd'>List of properties that any Form Element of this Document Variable shall be defaulted to. These properties can be overriden at lower levels; see <a href="../Permission/Permissions Velocity.html">Permission</a> for details on how the properties are computed at runtime. Available properties to be inherited depend on the selected Element Type; they are:
+
+<ul>
+<ul>
+  <li><b>Display Format</b>: Specifies, in regular expression, the format of how the field Element shall be displayed. The use of this property depends on the Element Type selected. See documentation of the selected Element Type for details.</li>
+  <li><b>Optional</b>: Determines whether the field Element can have empty value (true) or a mandatory field (false). True or false, or None, or assign a Permission Method to determine the boolean result.<br>
+    <br>
+    You cannot override the <strong>Optional</strong> property in the following cases:
+    <ul>
+      <li> If the data structure leaf is <strong>Mandatory</strong> or the variable data type is not <strong>Nullable</strong>, at runtime, the <strong>Optional</strong> property is false.</li>
+      <li> If the data type is overridden and <strong>Nullable</strong> is not checked for the overridden type, at runtime, the <strong>Optional</strong> property is false.</li>
+      <li>If the <strong>Optional</strong> property is set to false in the <strong>Element</strong> property of the data type or at the document variable level, the element's <strong>Optional</strong> property remains set to false.</li>
+      </ul>
+   
+      <p>        In other cases, the element's <strong>Optional</strong> property takes precedence over the <strong>Optional</strong> property defined at the document variable level.</p></li>
+</ul>
+<ul>
+  <li><b>Editable</b>: Determines whether the field Element is editable (true) in UI or read-only (false). True or false, or None, or assign a Permission Method to determine the boolean result.<br>
+    <br>
+    <strong>Note:</strong> If a field contains  an editable permission that is either coming from the form field itself, or inherited  from the variable or data type, it takes precedence. Otherwise, the user  interface's editablePerm permission takes over. If this method is not  overwritten, the model's editablePerm permission is used. User interfaces  displayed under another user interface with editablePerm are also be inherited  if the embedded user interfaces do not have their own editablePerm permission.</li>
+  <li><b>Visible</b>: Determines whether the field Element is visible in UI or not. True or false, or None, or assign a Global or Document Permission Method to determine the boolean result.</li>
+  <li><b>Label</b>: When this Variable is assigned to a Form Element, Label in the Form Element is defaulted to this value, to be displayed in runtime. This value is automatically set to the Data Type's <b>Label</b> value, and may be overwritten as necessary.<br>
+    <br>
+    <strong>Note:</strong> A document that has a variable based on a data type, with element properties set to define a label,  inherits the element properties from the data type. If it is not set, the document inherits the data type's element properties. If it is also not set, the document then inherits data type's label and the default control based on base data type (string, date integer). </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p><i><u>In <b>Methods</b> tab</u></i></p>
+<br>
+
+<p><img src="DocumentVariableMethod.png" align="absmiddle" border="0" alt="Document Variable Method" /></p>
+
+<p>The Methods tab is a <a href="../../../JavaScripting in Order Care/Scripting Interface.html">script management screen</a> in Velocity Studio, which is composed of the <b>Method List pane</b> at the left which lists all scripts of the Document Variable, and <b>Details pane</b> which displays the details of a script when selected at the Method List pane. To create a new Method, or to override an existing Method of its base Document, right-click the Document in the Method List pane. A pop-up menu appears.</p>
+
+<p><img src="DocumentVariableMethodsContextMenu.png" align="absmiddle" border="0" alt="Document Variable Methods Context Menu" /></p>
+
+<p><b>Note</b>: This creates Method at the Document Variable level, impacting only to the Document Variable. To create Methods at the Document level, go to <a href="Document Methods.html">Methods tab in Document</a>.
+
+<p>The table below lists the type of Methods that can be added or overridden at the Document Variable level.</p>
+
+<i><u>New Methods</u></i></br>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh' width='100'>Method Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="DocumentActionsIconValidation.png" align="absmiddle" border="0" alt="" />Validation</td>
+<td class='confluenceTd'>Document Variable validation script that determines the validity of runtime data values of the Document. It is triggered with Document method "<i>.validate</i>", and by default, the generated Document Form's "save" menu button triggers such validation. See <a href="Document Validation Action.html">Document Validation Method</a> and the <a href="../../../Configuration_Tool_User_Guide/Configure/System/System/configVariables.html#phasedValidation">phasedValidation configuration variable</a> for details.</td>
+</tr>
+</tbody>
+</table>
+
+<p><i><u>System-defined Methods that can be defined</u></i></p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="76" class='confluenceTh'>Method Type</th>
+<th width="194" class='confluenceTh'>Script Name</th>
+<th width="74" class='confluenceTh'>Parameters</th>
+<th width="69" class='confluenceTh'>Return Type</th>
+<th width="279" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Initialization</b></td>
+<td class='confluenceTd'><i>cwLeafInitAction$&lt;Variable Name&gt;</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>Document Variable</td>
+<td class='confluenceTd'>Document Variable Initialization script is to set initial values for the Document Variable.<br/>
+It is triggered when the Document is created. This Method is not executed when the Document is read from the database or an external system interface.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Calculate</b></td>
+<td class='confluenceTd'><i>cwLeafCalculateAction$&lt;Variable Name&gt;</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>Document Variable</td>
+<td class='confluenceTd'>Document Variable Calculate script is to compute a value for the calculated Document Variable. A calculated Document Variable is a Variable that is not stored in the database or sourced from external sources, but their values computed based on values of other Document Variables. Variables with calculate Method are read-only fields in the UI at runtime.<br>
+  <br/>
+  <strong>Note:</strong> Because the value of the calculated field is computed every time the field is accessed, it may be accessed many times for different purposes by AVM at runtime. Unwise and excessive use of calculated fields may introduce serious performance problems. It is recommended to limit the Method to simple calculations based on Document Variable values, and not invoke database access operations or external interface calls.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Trigger</b></td>
+<td class='confluenceTd'><i>cwLeafTriggerAction$&lt;Variable Name&gt;</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>Document Variable Trigger script is executed when the content of a Document Form field is changed (and loses focus) at runtime. Trigger execution may come automatically from the UI or can come from a user script at runtime. When a trigger execution request is received, all triggers for Variables that has been changed are executed.<br/>
+  <br>
+  <strong>  Note:</strong> As a Trigger Method is triggered at UI, a server round trip is required to send updates to the client; this is done in AJAX, with only changed variables updated to browser with no page refresh. Regardless, Trigger Methods should be used sparingly to avoid incurring this overhead.</td>
+</tr>
+</tbody>
+</table>
+
+<p>For Method Types that can be created, you can create multiple Methods of the same Method type (for example, Validation 1, Validation 2...), each identifiable by unique Method name. However, for Methods with system-defined names, or to be overridden from base Document, you can only define one Method per base Method. <!--All of the system-defined Methods <i>com.conceptwave.system.Document</i> have empty scripts, which means the default Method is to do nothing.--></p>
+
+<p>For scripts that are already overridden, they appear in the Method List pane and may no longer be available from the right-click context pop-up menu.</p>
+
+<p>The Method created in Method List pane can be right-clicked, with various commands available; see <a href="../../../JavaScripting in Order Care/JavaScripting Extensions/Scripting Interface.html">script management UI</a>  for details.</p>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<html>
+<head>
+<title>Finders</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h1>Finders</h1>
+<p>Finders are used for searching, accessing, adding, updating and deleting data from different data sources such as databases and external systems.  Information that is returned by the Finder object is displayed using the Finder User Interface. Contained within the Finder User Interface are several Forms that enable you to customize the display of the data at runtime. You can customize the default Finder Forms, by <a href="../../Velocity_Studio/Extending a Form.htm">extending</a> or <a href="../../Velocity_Studio/Overriding a Form.htm">overriding</a> them. This enables you to control every aspect of the User Interface presentation, from the layout of the search screen to the object menu of the Finder.</p>
+<p>Before defining a Finder, the user should determine the following:</p>
+<ul>
+  <li>What the user is looking for. This will determine which <a href="#FinderType">Finder type</a> to use.</li>
+<li>What are the criteria, if any, on which to search. This will define the search Document type for the select operation.</li>
+<li>What fields should be included in the search results. This will define the result Document type for the select operation.</li>
+</ul>
+<h2><a name="FinderType">Types of Finders</a></h2>
+<p>The following types of Finders are supported:</p>
+<ul>
+  <li><a href="Finder General Properties.html#documentFinder">Document Finders</a> that allow searching for a single Document type mapped to the database as a single table, set of database tables or database view.</li>
+<li><a href="Finder General Properties.html#orderFinder">Order Finders</a> that allow searching for Orders of one or many types stored in the database.</li>
+<li><a href="Finder General Properties.html#sqlFinder">SQL Finders</a> that allow a database search with user-specified SQL statements.</li>
+<li><a href="Finder General Properties.html#scriptFinder">Script Finders</a> that execute scripts to implement the requested operation.</li>
+<li><a href="Finder General Properties.html#interfaceFinder">Interface Finders</a> that link to external interfaces that implement the Finder operations.</li>
+<li><a href="Finder General Properties.html#ruleFinder">Rule Finders</a> that allow the use of existing business rules for the Finder definition.</li>
+</ul>
+<p>Finders in general perform select, get, add, update and delete operations. Different Finder types support subsets of these operations, but all Finders support the select operation.</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Finder type</th>
+<th class='confluenceTh'>select</th>
+<th class='confluenceTh'>get</th>
+<th class='confluenceTh'>add</th>
+<th class='confluenceTh'>update</th>
+<th class='confluenceTh'>delete</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Document</b></td>
+<td class='confluenceTd'>x</td>
+<td class='confluenceTd'>x</td>
+<td class='confluenceTd'>x</td>
+<td class='confluenceTd'>x</td>
+<td class='confluenceTd'>x</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Order</b></td>
+<td class='confluenceTd'>x</td>
+<td class='confluenceTd'>x</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>SQL</b></td>
+<td class='confluenceTd'>x</td>
+<td class='confluenceTd'>(Optional)</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Script</b></td>
+<td class='confluenceTd'>x</td>
+<td class='confluenceTd'>(Optional)</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Interface</b></td>
+<td class='confluenceTd'>x</td>
+<td class='confluenceTd'>(Optional)</td>
+<td class='confluenceTd'>(Optional)</td>
+<td class='confluenceTd'>(Optional)</td>
+<td class='confluenceTd'>(Optional)</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Rule</b></td>
+<td class='confluenceTd'>x</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>&#160;</td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="new">Creating a New Finder</a></h3>
+<p>To create a new Finder, follow these steps:</p>
+<ol>
+  <li>In the Navigation Tree, right-click the Namespace.</li>
+  <li>Select <strong>New </strong>from the dialog.</li>
+  <li>In the<b> New Metadata Object</b> wizard, expand the <b>Finders </b>node, and select one of the following Finders:
+    <ul>
+      <li><b>Document Finder</b></li>
+      <li><b>Interface Finder</b></li>
+      <li><b>Order Finder</b></li>
+      <li><b>Rule Finder</b></li>
+      <li><b>SQL Finder</b></li>
+      <li><b>Script Finder</b></li>
+    </ul>
+    <li>Click the <strong>Next</strong> button.</li>
+    </ol>
+    <h3>Additional Finder Fields</h3>
+<p> Depending on the type of Finder that you selected, there may be additional fields. </p>
+<ul>
+        <li>All Finder names must conform to JavaScript naming conventions. </li>
+        <li>For the  Base Controller fields, you are recommended to to select the <i>com.conceptwave.system.FinderUserInterface</i>; see <a href="Finder User Interface and Forms.html">Finder User Interface and Forms</a> for details.</li>
+        <li>Continue by configuring the Finder and then click <strong>Finish</strong>.</li></ul>
+        
+        <ul><li><i>Document Finder</i>        </li>
+        
+        <ul>
+          <li><b>Name</b>: Type the  name of Finder.</li>
+          <li><b>Base Controller: </b>Select the data type.</li>
+          <li><b>Select Output</b>: Choose the Output Document property of the Finder, in <b>General tab</b> when the Finder is created.</li>
+        </ul>
+        <li><i>Interface Finder</i>
+          <ul>
+            <li><b>Name</b>: Type the name of Finder.</li>
+            <li><b>Base Controller</b><b>: </b>Select the data type.</li>		
+            <li><b>Interface</b>: Choose the Interface property of the Finder, in <b>General tab</b> when the Finder is created.</li>
+            </ul>
+          </li>
+        <li><i>Order Finder</i>
+          <ul>
+            <li><b>Name</b>: Type the name of Finder.</li>
+            <li><b>Base Controller</b><b>: </b>Select the data type.</li>
+            </ul>
+          </li>
+        <li><i>Rule Finder</i>
+          <ul>
+            <li><b>Name</b>:Type  the name of Finder.</li>
+            <li><b>Base Controller</b><b>: </b>Select the data type.</li>
+            </ul>
+          </li>
+        <li><i>Script Finder</i>
+          <ul>
+            <li><b>Name</b>: Type the name of Finder.</li>
+            <li><b>Base Controller</b><b>: </b>Select the data type.</li>
+            </ul>
+          </li>
+        <li><i>SQL Finder</i>
+          <ul>
+            <li><b>Name</b>: Type the name of Finder.</li>
+            <li><b>Base Controller</b><b>: </b>Select the data type.</li>
+            </ul>
+          </li>
+        </ul>
+    <p>The newly created Finder is added by type under the corresponding Finder folder, which is under the <b>Finders</b> folder.</p>
+
+
+<p><img src="newFinderNode.png" align="absmiddle" border="1" alt="New Finder Node" /></p>
+<p><strong>Note: </strong>The  Finder  displays its Forms  under the Finder User Interface object. You can customize your Finder Form, by <a href="../../Velocity_Studio/Extending a Form.htm">extending</a> or <a href="../../Velocity_Studio/Overriding a Form.htm">overriding</a> the default Finder Forms. You can control  the User Interface presentation for the following Forms: Chart, Default, Menu, ReferenceForm, Result and Search.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

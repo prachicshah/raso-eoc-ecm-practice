@@ -1,0 +1,211 @@
+<html>
+<head>
+<title>SOAP Service Provider</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>SOAP Service Provider</h3>
+
+<p>The SOAP Service Provider allows interactions with other systems through SOAP (Simple Object Access Protocol).</p>
+
+<h4>SOAP Attributes in Velocity Studio</h4>
+
+<p>The following table describes the attributes that are exposed in Velocity Studio specifically for the SOAP Service Provider.</p>
+
+<p>These attributes are found at <b><a href="../External Services/defining a binding.html">Binding</a></b> metadata object in Velocity Studio. When an Interface, Operation or message element is selected in the <b>Interface element</b> tree, the attributes for the element appears in the <b>Element definitions</b> table where values can be provided.</p>
+
+<p><ins>Attributes in Velocity Studio for the SOAP Service Provider</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Style</b></td>
+<td class='confluenceTd'><p>Specifies if messages are RPC-oriented (data passed as parameters) or document-oriented (data passed as a XML document). This attribute can have one of the following values: </p>
+  <ul>
+    <li><em>rpc</em> </li>
+    <li><em>document</em></li>
+    </ul>
+  <p>The default value is <em>document</em>.</p>
+  <p>The choice of style affects WSDL generation and formation of the SOAP message's BODY element in both SOAP requests and responses:</p>
+  <ul>
+    <li>      Use <em>document</em> when operation messages are defined as elements and you want full control in the metadata on constructing the SOAP message's BODY contents.</li>
+    <li>Use <em>rpc</em> when operation messages are defined as types. </li>
+  </ul></td>
+<td class='confluenceTd'>Interface <img src="iconInterface.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>TargetURI</b></td>
+<td class='confluenceTd'>Specifies the target URI of the SOAP Service. Usually the service name.</td>
+<td class='confluenceTd'>Interface <img src="iconInterface.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>SOAPAction</b></td>
+<td class='confluenceTd'><p>Specifies the SOAPAction HTML header for this message. When the value of this header is identical to the Interface Operation, it can be used to create the endpoint URL address as Port <em>location</em> + the Binding <em>SoapAction.</em><br>
+</p></td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Parts</b></td>
+<td class='confluenceTd'>Accepts a single string value, or multiple values separated with by semicolons (";"). If specified, each value in the string will be considered a child tag name of the <em>input</em> data structure and thus extracted from the <em>input</em> data structure and as part of SOAP body element in the SOAP request. If left empty, the whole input data structure will be used in the SOAP body.</td>
+<td class='confluenceTd'>Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Header</b></td>
+<td class='confluenceTd'>Specifies what to set as the header of the SOAP request. Accepts a string value containing the header name and part, separated by a semicolon(for example, <em>hname;hpart</em>).
+  <ul>
+<li>If <em>hname</em> equals the Data Structure name used as the input message, the input Data Structure will be taken as the base object for the header. Otherwise, the passed-in header parameter (that is, when calling invokeInterface()) will be used.</li>
+<li>The <em>hpart</em> value works similarly to the <em>parts</em> setting (above). The product will try to find the child node in the base object whose name equals hpart and this child node will be set into the SOAP header.</li>
+</ul>
+</td>
+<td class='confluenceTd'>Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Use</b></td>
+<td class='confluenceTd'>Specifies encoding rules of the message. Can have the value of <em>literal</em> (mainly for document style messages).</td>
+<td class='confluenceTd'>Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>EncodingStyle</b></td>
+<td class='confluenceTd'>Specifies the encoding style (URI) to use. Optional.</td>
+<td class='confluenceTd'>Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Namespace</b></td>
+<td class='confluenceTd'>Specifies the Namespace to use for encoding. Optional.</td>
+<td class='confluenceTd'>Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+<h4>SOAP Attributes in Configuration Application</h4>
+
+<p>The following table describes the attributes that are exposed in Configuration application specifically for the SOAP Service Provider.</p>
+
+<p>These attributes are found in <b><a href="../../../Configuration_Tool_User_Guide/Services Services.html">Services</a></b> tab in Configuration application. When clicking a Port, Binding, Operation or message node in the <b>Service Port tree</b>, the Configuration attributes for the node appears at the <b>Configuration</b> section at the right where values can be provided.</p>
+
+<p><ins>Attributes in Configuration application for the SOAP Service Provider.</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<td class='confluenceTd'><b>Location</b></td>
+<td class='confluenceTd'>Specifies the location of the SOAP Service. This URL takes the form
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+http:<span class="code-comment">//host:port/cwf/services/&lt;interfaceName&gt;</span>
+</pre></div>
+</div>
+where <em>interfaceName</em> specifies the metadata Interface object implementing this service.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>User</b></td>
+<td class='confluenceTd'>Specifies the user name if the SOAP Server requires authentication.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>PasswordKey</b></td>
+<td class='confluenceTd'>Specifies the password key to use for retrieving the password. The password key/value pairs are created in the Configuration application.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Reuse session</b></td>
+<td class='confluenceTd'>If set to 'no', a new user context is created for each request. Absence of this attribute is defaulted to yes, in which the user context will be reused. Used by listener ports only.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Maintain session</strong></td>
+  <td class='confluenceTd'>Used by client ports only.<br>
+    If set to 'no', client session will not be maintained (that is,  Cookie will not be reused). Absence of this attribute is
+    defaulted to yes, in which the session between clients requests may be maintained.</td>
+  <td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Cache size</b></td>
+<td class='confluenceTd'>The number of connections to be cached for the Service Provider. 100 is the default, and also capped to 100.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Disable Chunked  Encoding</strong></td>
+  <td class='confluenceTd'>This attribute is only valid for SOAP clients, and not listeners. When you select this checkbox, the SOAP request sent when invoking a SOAP interface is not chunked. In the sent properties in the message log, the Content-Length header appears. Otherwise, leaving this checkbox  unchecked indicates that the SOAP request is chunked. In the sent properties in the message log, the Transfer-Encoding header contains the <em>chunked</em> value. </td>
+  <td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Timeout</b></td>
+  <td class='confluenceTd'>Number of second to wait for the response. The default is 60 seconds.</td>
+  <td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>When there is a timeout, the SOAP interface retries connecting exactly one more time.</li>
+  <li>After a SOAP request is complete, the HTTP connection is left in ESTABLISHED state and is  available for reuse by another request to the same host.</li>
+</ul>
+<h4>Deposit SOAP-formatted messages to an MQ Queue</h4>
+<p>You can use the following APIs to deposit messages that have been formatted in SOAP to an MQ queue:</p>
+<ul>
+  <li><tt>Global.generateInterfaceMessage(interfaceName, operationName, params)</tt><br>
+    This   function behaves the same way as Global.invokeInterface(), except that it does not   call the interface. Instead, the function generates the message content and returns it as a   string.<br>
+    <br>
+  </li>
+  <li><tt>Global.sendInterfaceMessage(interfaceName, operationName, stringInput)</tt><br>
+    This function calls the interface with the original string input. <br>
+    <br>
+  </li>
+  <li><tt>Global.sendInterfaceMessageUsePE()</tt><br>
+    This function is similar to and works with Global.sendInterfaceMessageUsePE().  This function spawns from Global.invokeInterfaceUsePE()</li>
+  </ul>
+<h4>SOAP Faults</h4>
+<p>SOAP faults have the following standard fields:</p>
+<ul>
+  <li>faultcode</li>
+  <li>faultstring</li>
+  <li>faultactor</li>
+  <li>detail<BR>
+  </li>
+</ul>
+<p>  The child nodes of the fault <em>detail</em> element must be elements. There can be more than one. The following is an example:<BR>
+  </p>
+  
+  <div class="preformatted">
+  <div class="preformattedContent">
+    <pre>&lt;detail&gt;<BR>  &lt;errorname&gt;...&lt;/errorname&gt;<BR>  &lt;stacktrace&gt;...&lt;/stacktrace&gt;<BR>&lt;/detail&gt;</pre>
+    </div>
+</div>
+
+<p><BR>
+  Previously,   when a SOAP fault was received, an attempt occurred when mapping the first detail element to the fault message structure provided in the operation metadata. As a result, the faultcode, faultstring, and faultfactor information was lost, including any additional detail elements after the first one.<BR>
+  <BR>
+  To access   this information, the fault metadata object specified in the operation must have   the following child nodes:</p>
+<ul>
+  <li>faultcode: String datatype</li>
+  <li>faultstring: String datatype</li>
+  <li>faultactor: String datatype</li>
+  <li>detail: Container (its   children must be elements)<BR>
+  </li>
+</ul>
+<p>  If the fields with the <em>fault</em> prefix are found, the product maps the fault information to the appropriate fields. Otherwise, the product defaults to the previous behaviour.<BR>
+  <BR>
+  <strong>Notes:</strong></p>
+<ul>
+  <li>This feature is only available for SOAP 1.1 messages. </li>
+  <li>Returning fault messages for SOAP listeners is only supported with the Global.throwSoapFaultException() API. Refer to the API document for more information.  </li>
+  </ul>
+<h4>Receiving SOAP Data</h4>
+<p>For the SOAP service provider, when receiving SOAP data as  either a response when invoking a SOAP interface or as a request to a SOAP  listener, the data that is recorded in <strong>message log received</strong> data field  does not always reflect exactly what was actually transmitted to the product.  One common case occurs when the received SOAP requests  contains CDATA sections. In the message log, text nodes that were wrapped  in CDATA have their content escaped with entity references.  From the product's perspective, it makes no difference whether the data  transmitted was wrapped with CDATA or had its text escaped in the actual  request. Sematically, the value of the text is the same and any product script  reading the value from a data structure receives the same value.</p>
+<p><br>
+</p></td>
+</tr>
+</table>
+</body>
+</html>

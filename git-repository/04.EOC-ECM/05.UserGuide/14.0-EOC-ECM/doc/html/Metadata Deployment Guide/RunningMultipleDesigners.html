@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Running Multiple Velocity Studio Instances</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Running multiple Velocity Studio instances on a single machine</h2>
+<p>It is possible to run multiple Velocity Studio instances on a single machine.  However, the implementation is dependent on whether the Process Engine is also implemented.  Each implementation requires changes to be made to the startDesigner.cmd file located in the following directory &lt;installation directory&gt;\designer\env.  The startDesigner.cmd file contains the following default JMX settings: </p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+com.sun.management.jmxremote.port=10008
+com.sun.management.jmxremote.authenticate=false
+com.sun.management.jmxremote.ssl=false</pre>
+</div>
+</div>
+<p>To launch multiple Velocity Studio instances, you must manually change the <tt>JMX_PORT</tt> setting in the startDesigner.cmd file each time. Otherwise, an error displays, indicating that there is a port conflict.</p>
+<h3>With Process Engine</h3>
+<p>If the Process Engine is being implemented within Velocity Studio, then  copies of the starDesigner.cmd file is required for each instance of Velocity Studio to be run.  For each instance of Velocity Studio that is being run,  change the value of the com.sun.management.jmxremote.port parameter such that each instance has a unique port number.</p>
+<h3>Without Process Engine</h3>
+<p>If the Process Engine is not being implemented within Velocity Studio, then simply remove the JMX_OPTS from the startDesigner.cmd file.
+</td>
+</tr>
+</table>
+</body>
+</html>

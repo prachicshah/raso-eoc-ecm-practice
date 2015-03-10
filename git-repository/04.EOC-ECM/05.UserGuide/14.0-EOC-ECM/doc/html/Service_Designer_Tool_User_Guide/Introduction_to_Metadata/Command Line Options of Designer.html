@@ -1,0 +1,229 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Command Line Options of Velocity Studio</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Command Line Options of Velocity Studio</h2>
+<p>In addition to running the Velocity Studio program, you can command Java to run <i>Designer.jar</i> to perform other actions based on parameters in command line. This table  lists the capabilities and the parameters that invoke them.</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="227" class='confluenceTh'>Action</th>
+      <th width="110" class='confluenceTh'>Parameter</th>
+      <th width="1056" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b><a href="../Service Designer Menu Actions/Runtime Analyze Processes.html#analyzeProcessesCommandLine">Analyze Processes</a></b></td>
+      <td class='confluenceTd'>-analyseProcesses</td>
+      <td class='confluenceTd'>Compare local process metadata with deployed process metadata. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b><a href="#StartServiceDesigner">Start Velocity Studio</a></b></td>
+      <td class='confluenceTd'>(no parameter)</td>
+      <td class='confluenceTd'>Start the Velocity Studio program.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a name="migrate services"><a href="../Service Designer Menu Actions/Metadata Build Deployment JAR.html">Build Deployment JAR</a></a></strong></td>
+      <td class='confluenceTd'><em>-buildDeployment</em></td>
+      <td class='confluenceTd'>Creates a deployment JAR file   that contains project metadata and required library JAR files.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="../Service Designer Menu Actions/Metadata Deploy Application.html#deployCommand">Deploy Application</a></strong></td>
+      <td class='confluenceTd'><em>-deploy</em></td>
+      <td class='confluenceTd'>Deploy an application to a database.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="../../Configuration_Tool_User_Guide/Configure/Code Tables/codeTablesExport.html#Run Script">Export Code Tables</a><a href="../../Configuration_Tool_User_Guide/Import/exportConfiguration.html"></a></strong></td>
+      <td class='confluenceTd'><em>-runscript </em></td>
+      <td class='confluenceTd'>Export the code tables without Catalog application.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="../../Configuration_Tool_User_Guide/Import/exportConfiguration.html">Export Configuration</a></strong></td>
+      <td class='confluenceTd'><em>-configExport</em></td>
+      <td class='confluenceTd'>Export the configuration; g<SPAN id="docs-internal-guid-37ee948c-14a2-1bc9-05d1-aa2eccf64296">enerates an XML file representing the system configuration,  without logging into the System Configuration application</SPAN>.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="../Service Designer Menu Actions/Export Rule Instance.html#exportRuleInstanceCommandLine">Export Rule Instances</a></strong></td>
+      <td class='confluenceTd'>(no parameter)</td>
+      <td class='confluenceTd'>Export rule instances to an XML file.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="../Service Designer Menu Actions/Import Rule Instance.html#importRuleInstanceCommandLine">Import rule instances</a></strong></td>
+      <td class='confluenceTd'>(no parameter)</td>
+      <td class='confluenceTd'>Import rule instances from an XML file.</td>
+    </tr>
+        <tr>
+      <td class='confluenceTd'><strong><a href="../../Configuration_Tool_User_Guide/Import/importConfiguration.html">Import Configuration</a></strong></td>
+      <td class='confluenceTd'><em>-configImport</em></td>
+      <td class='confluenceTd'>Import  the configuration including flags and settings required for the full deployment.</td>
+    </tr>
+    
+    <tr>
+      <td class='confluenceTd'><strong><a href="../../Configuration_Tool_User_Guide/Configure/Code Tables/codeTablesImport.html#importFromCommandLine">Import Code Tables</a><a href="../../Configuration_Tool_User_Guide/Import/exportConfiguration.html"></a></strong></td>
+      <td class='confluenceTd'><em>--runscript </em></td>
+      <td class='confluenceTd'>Import the  code tables without Catalog application.</td>
+    </tr>
+    <tr>
+      <td height="26" class='confluenceTd'><b><a name="migrate services"><a href="../../gettingstarted/configServicesMigration.html">Migrate Application</a></a></b></td>
+      <td class='confluenceTd'><i>-migrate5config</i></td>
+      <td class='confluenceTd'>When migrating an application, this command allows you to migrate metadata, database, and configuration settings.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="../Metadata_Objects/Rules/Migrate Rule Instance.html">Migrate rule instances</a></strong></td>
+      <td class='confluenceTd'>(no parameter)</td>
+      <td class='confluenceTd'>Migrate rules instances from version 4.2 to version 5.x metadata, including templates other than CW system templates, and export legacy rule instances to an XML file.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b><a href="../../Metadata Deployment Guide/Packaging in Command Line Interface.html">Package metadata</a></b></td>
+      <td class='confluenceTd'><i>-package</i></td>
+      <td class='confluenceTd'>Package metadata, which is equivalent to <a href="../Service Designer Menu Actions/Metadata Build WAR.html">Runtime &gt;  Build Deployment WAR</a> </strong>command in Velocity Studio.</td>
+    </tr>
+    <tr>
+     <td class='confluenceTd'><b><a href="./MDCommand Line Validation.html">Validate Metadata</a></b></td>
+      <td class='confluenceTd'><i>-runValidate</i></td>
+      <td class='confluenceTd'>Validate the metadata without running or activating.</td>
+    </tr>
+    <tr>    
+    
+      <td class='confluenceTd'><b><a href="../../Configuration_Tool_User_Guide/Getting Started/accessSystemConfiguration.html#-config">Run Configuration application only</a></b></td>
+      <td class='confluenceTd'><i>-runconfig</i></td>
+      <td class='confluenceTd'>Starts Configuration application without running Velocity Studio, and without any metadata.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="../Metadata_Objects/Metadata Root/AVM licencing value pack and feature codes mapping.html#signLicence">Sign Licence</a></strong></td>
+      <td class='confluenceTd'><em>-signLicense</em></td>
+      <td class='confluenceTd'>Signs your licence file, which is used with Sentinel RMS.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a href="../Service Designer Menu Actions/Upgrading System.html">Upgrade System</a></strong></td>
+      <td class='confluenceTd'>(no parameter)</td>
+      <td class='confluenceTd'>Generates the Update System output using a command line.</td>
+    </tr>
+    <!--<tr>
+<td class='confluenceTd'><b>Import Node Configuration</b></td>
+<td class='confluenceTd'><i>-config -import</i></td>
+<td class='confluenceTd'>Import configuration from file.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Export Node Configuration</b></td>
+<td class='confluenceTd'><i>-config -export</i></td>
+<td class='confluenceTd'>Import configuration from file.</td>
+</tr>-->
+  </tbody>
+</table>
+<p>For all command lines, the following points hold true:</p>
+<ul>
+  <li>Any logging messages, warnings, or errors appear in the log file in Velocity Studio (that is, <b><strong>&lt;<em>installation_folder</em>&gt;</strong>\designer\env\</b><strong>log</strong>).</li>
+  <li>The <tt>logFile</tt> parameter, which applies to most  command, allows you to specify the log file for a command line. It is an optional parameter. However, when used, it must be the first parameter.</li>
+  <li>You can run these commands simultaneously (for example, the deploy, upgrade system, and build deployment JAR commands).</li>
+  <li>An exit code appears after you have issued a command, indicating whether running the command was successful. The following exit codes are available:
+    <ul>
+      <li> 0, meaning that the command processed successfully</li>
+      <li>1, meaning that the wrong command was processed</li>
+    </ul>
+  </li>
+  </ul>
+<h3><a name="StartServiceDesigner">Start Velocity Studio by Command Line</a></h3>
+<p>The <b><strong>&lt;<em>installation_folder</em>&gt;</strong>\designer\env\startDesigner.cmd</b> that is invoked in Windows <i>Start</i> menu is of the following:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>
+set CLASSPATH=C:\Program Files\CWOrderCare\designer\Designer.jar;C:\Program Files\CWOrderCare\lib\oracle\ojdbc6.jar;C:\Program Files\CWOrderCare\lib\oracle\orai18n.jar;C:\Program Files\CWOrderCare\lib\oracle\orai18n-mapping.jar;C:\Program Files\CWOrderCare\lib\ilog\sdworkflowmodeler.deployed.jar;C:\Program Files\CWOrderCare\lib\jdic\jdic.jar;
+start "Service Designer" /B "C:\java\jdk1.6.0_12\bin\javaw" -Xms1024m -Xmx1024m -cp "%CLASSPATH%" -Dcom.sun.management.jmxremote.port=10008 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false com.conceptwave.servicedesigner.ServiceDesigner    </pre>
+</div>
+</div>
+<h4><a name="JVMparameters"></a>JVM parameters</h4>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="703" class='confluenceTh'>Parameter</th>
+<th width="1039" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>&#45;Xms&lt;<em>number</em>&gt;m &amp; &#45;Xmx&lt;<em>number</em>&gt;m </td>
+<td class='confluenceTd'>Mandatory. Specify the amount of memory that will be used by PE. It is recommended to set the Xms and Xmx parameters to equal values. Any metadata that is run within Velocity Studio (that is, using <b>Runtime > Run</b>) will use this memory as well.</td>
+</tr>
+<!--<tr>
+<td class='confluenceTd'>-Dcom.conceptwave.preVelocity=1</td>
+<td class='confluenceTd'>Optional. Specify any value enables "Classic mode" in Designer. For example, any new project you create will be in Classic mode.<br>This argument is only applicable if you have Velocity Studio licensed. If this argument is not specified and Order Care is licensed with Velocity Studio, Designer is defaulted to Velocity mode.</td>
+</tr>-->
+<tr>
+<td class='confluenceTd' border c>-Dcom.conceptwave.licenseDir=&lt;<i>licenseDir</i>&gt;</td>
+<td class='confluenceTd'>Optional. Specify the directory of the license file(s). If this argument is not specified, the default is <b>\CWOrderCare\designer\env</b>.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'> -Dcom.sun.management.jmxremote.port=<i>&lt;port number&gt</i></br>
+    -Dcom.sun.management.jmxremote.ssl=false</br>
+    -Dcom.sun.management.jmxremote.authenticate=false</br>
+    -Dcom.sun.management.jmxremote.password.file=<em>&lt;file location&gt;</em></td>
+  <td class='confluenceTd'>Optional. Enable JMX on the Virtual Machine. See section <a href="../../Metadata Deployment Guide/J2EE Application Server Installation.html#JMX">Enabling JMX</a> for details.</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'>-Dcom.conceptwave.verbose=true<BR></td>
+  <td class='confluenceTd'>Optional. Enable any warnings during activation.</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><p>-Dcom.conceptwave.info.printActivitiesOfProcess.name=NAMESPACE:processName</p></td>
+  <td class='confluenceTd'>Optional. When runtime starts, the system  creates a file in the working directory with name  NAMESPACE_processName (replaces the colon (:) with an underscore (_) and 
+    prints a list of all activities for this process with indexes as they appear in the database within the CWPACTIVITY table.</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'>-Dcom.conceptwave.info.printActivitiesOfProcess.fullNames=1</br></td>
+  <td class='confluenceTd'>Optional. When fullNames=1, full  name of the activity is printed, including all parent activities. Otherwise, only the short  name (that is, the activity itself) is printed.</td>
+</tr>
+  
+  <tr>
+    <td class='confluenceTd'>-DstandByPE=true </td>
+    <td class='confluenceTd'>Optional. Specify running a standby process engine.</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><span class="code-java">-Dcom.conceptwave.verbose.file=<em>path_name</em> <em>parameter</em></span></td>
+    <td class='confluenceTd'>Optional. Specify the <a href="../../Metadata Deployment Guide/JConsole statistics monitoring.html#specifyLogFile">log file for a parameter</a> in JConsole.</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>-Djava.awt.headless=true</td>
+    <td class='confluenceTd'>Mandatory for all commands, except for startDesigner.cmd. This option allows you to run the process engine in headless mode to perform Abstract Windowing Toolkit (AWT) operations. See <a href="../Order_Printing/configuring pdf generation.html#MemoryConsiderations">Configuring PDF Generation - Memory Considerations</a> for details.</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>-Djava.net.preferIPv6Addresses=true</td>
+    <td class='confluenceTd'>Optional. Support for Internet Protocol Version 6 (IPv6).</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>-Djava.net.preferIPv4Stack=true</td>
+    <td class='confluenceTd'>Optional. If AVM is installed on JBoss on Windows operating system, this parameter being set to true in standalone.conf.bat file results in a <em>No valid license</em> error if the license is based on the MAC address and the MAC address is disconnected from the LAN. To avoid the error, this parameter should be removed from the standalone.conf.bat file on Windows.</td>
+  </tr>
+</tbody>
+</table>
+
+<p>The JVM arguments must appear before the class (for example, <i>com.conceptwave.servicedesigner.ServiceDesigner</i>) in the command.</p>
+
+<h4>Designer.jar parameters</h4>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Parameter</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>&lt;<i>metadata dir</i>&gt;</td>
+<td class='confluenceTd'>Optional. If supplied, Velocity Studio is started with the project opened as located in &lt;<i>metadata dir</i>&gt;.</td>
+</tr>
+</tbody>
+</table>
+<p>The Designer arguments must appear after the class (for example, <i>com.conceptwave.servicedesigner.ServiceDesigner</i>) in the command.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

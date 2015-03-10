@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Dynamic Variable</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../../highlight.js"></script><script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Dynamic Variable</h2>
+
+<h3>Create a Dynamic Variable</h3>
+
+<p>The createLeaf API of DynamicDocument class can be used to create of a <strong>dynamic variable</strong> (or <strong>dynamic leaf</strong>). The type parameter of createLeaf can be used to specify either an integer leaf data type or a metadata data type name.</p>
+
+<p>The following are examples where an integer leaf data type is passed into createLeaf:</p>
+
+<div class="code"><div class="codeContent">
+<pre>
+var dyn=new DynamicDocument(&quot;ns.DynDocMetadata”);<br>dyn.createLeaf(&quot;decLeaf&quot;,&quot;decLeaf&quot;,0,0,8,2,null);<br>dyn.createLeaf(&quot;intLeaf&quot;,&quot;intLeaf&quot;,1,0,8,0,null);<br>dyn.createLeaf(&quot;codeTableLeaf&quot;,&quot;Code Table&quot;,3,0,0,0,”codeTableName”);
+</pre>
+</div>
+</div>
+
+<p>The following are examples of using the createLeaf API to create a dynamic variable using a metadata data type name:</p>
+
+<div class="code"><div class="codeContent">
+<pre>
+dyn.createLeaf(&quot;strLeaf&quot;,&quot;strLeaf&quot;,”ns.stringDataType”); // overrides the data type label<br>dyn.createLeaf(&quot;strLeaf&quot;, null, ”ns.stringDataType”); // gets label from the data type
+</pre>
+</div>
+</div>
+
+<p>These statements will throw an exception if the data type is not specified or the string type is not found or not a data type.</p>
+<p>Label, length, precision and code table parameters of createLeaf are optional if data type name is used. If these parameters are specified and not null/0, then the parameter value overrides the value from the data type. For example:</p>
+
+<div class="code"><div class="codeContent">
+<pre>
+dyn.createLeaf(&quot;strLeaf&quot;, “Label”, ”ns.stringDataType”); // gets specified label
+</pre>
+</div>
+</div>
+
+<h3>Trigger for a Dynamic Variable</h3>
+
+<p>The last parameter of createLeaf can be used to optionally specify a trigger method name. For example:</p>
+
+<div class="code"><div class="codeContent">
+<pre>
+dyn.createLeaf(&quot;leafName&quot;,&quot;Label&quot;,”leafType”,null,null,null,null, ”triggerMethod”);
+</pre>
+</div>
+</div>
+
+<p>where triggerMathod is the name of the method of the dynamic document. </p>
+
+<p><strong>NOTE:</strong> This method must be defined in the document metadata that is used to create the dynamic document. In the provided example, ns.DynDocMetadata metadata must have a script method triggerMethod. The method should have 1 parameter: leafName.</p>
+
+<div class="code"><div class="codeContent">
+<pre>
+function triggerMethod(leafName) {<br>...<br>}
+</pre>
+</div>
+</div>    
+
+<h3>How Dynamic Variable Triggers Work</h3>
+
+<p>Dynamic variable triggers work very similarly to regular document triggers. 
+    The trigger for a dynamic variable is invoked if the data of that dynamic variable is changed and the runTriggers method is fired for the document. 
+    runTriggers is a native Java method of the document instance and it is fired every time a dynamic form is submitted to the server (e.g., on every user action).
+    <p>If a trigger is specified for a checkbox, radio group or dropdown dynamic field, any change of the field in the UI fires the submission of the form and the running of the document triggers for all the changed dynamic variables.</p>
+  <p>It is also possible to run triggers manually, as shown in the following example:</p>
+
+<div class="code"><div class="codeContent">
+<pre>
+dyn.runTriggers();
+</pre>
+</div>
+</div>
+
+<h3>Data Type Properties Applied to Dynamic Field</h3>
+
+<p>When a data type name is used to create a dynamic variable,  the following properties of the data type (if defined) will apply to the dynamic variable: </p>
+<ul>
+  <li>Label</li>
+  <li>Length</li>
+  <li>Precision</li>
+  <li>Database code table</li>
+  <li>Default value</li>
+  <li>Element properties </li>
+  <li>Reference</li>
+  <li>Display Format</li>
+  <li>Auto Format (adding grouping comma for numbers)</li>
+  <li>Visible: TRUE/FALSE </li>
+  <li>Editable: TRUE/FALSE </li>
+  <li>Mandatory style (!Nullable || Optional=FALSE)  applies bold style and *</li>
+  <li>Hint<br>
+  </li>
+</ul>
+<h3>Supported Element Types</h3>
+<p>The following is a list of element types which are supported by dynamic variables. </p>
+<ul>
+  <li>Text field</li>
+  <li>Text area</li>
+  <li>Select</li>
+  <li>Checkbox</li>
+  <li>Radio Button Group</li>
+  <li>Date</li>
+  <li>Date Time</li>
+  <li>Reference<br>
+  </li>
+</ul>
+<p><strong>Note:</strong> The available element types will depend on the data type being used. Not all of these elements types will be available for all data types.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

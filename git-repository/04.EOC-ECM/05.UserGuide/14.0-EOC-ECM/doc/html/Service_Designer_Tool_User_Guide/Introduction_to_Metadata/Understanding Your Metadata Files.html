@@ -1,0 +1,71 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Understanding Your Metadata Files</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+		<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+			 
+<h2>Understanding Your Metadata Files</h2>
+		<p align="left">Developing or customizing complex metadata requires 
+		 the efforts of more than one developer, and thus would require 
+		 merging of metadata among developers. &#160;A third-party tool, 
+		 typically from revision control system, is expected to merge conflicting 
+		 changes. &#160;The following explains the structure of your project directory and also the format of the contained metadata 
+		 files.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>File or Folder</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconFolder.png" align="absmiddle" border="0" alt="" /> <b>metadata</b></td>
+<td class='confluenceTd'>XML files to persist application metadata, in sub-folders of which the files' namespaces of the same names are contained. See <a href="Metadata Objects Overview.html">Metadata Objects Overview</a> on how XML files of application metadata objects are named in this folder, and <a href="../Service_Designer_User_Interface/navigation pane - Metadata.html">Navigation Pane - Metadata</a> on how actions in Velocity Studio impact files and folders in this directory.<br/>
+<p><b>Note</b>: <b>You must not move, copy or rename metadata files within project directory directly in file system.</b> Use the rename, cut/copy and paste function instead in Velocity Studio. See <a href="../Service_Designer_User_Interface/navigation pane - Metadata.html">Navigation Pane - Metadata</a> for details.</p>
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconFolder.png" align="absmiddle" border="0" alt="" /> <b>languages</b></td>
+<td class='confluenceTd'>XML files to persist the <a href="../Service Designer Menu Actions/Import Translation.html">Translations imported</a>, which are language translations of visible labels, help, messages etc in runtime application for <a href="Internationalization.html">internationalization</a> purposes.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconFolder.png" align="absmiddle" border="0" alt="" /> <b>resources</b></td>
+<td class='confluenceTd'>Resource files stored for the project. These files can be browsed and certain functionalities are provided in the <a href="../Service_Designer_User_Interface/Navigation Pane - Resource.html">Navigation Pane - Resources</a>. The file <b>SystemImagesSub.txt</b> in this folder stores the list of all <a href="../Service_Designer_User_Interface/Navigation Pane - Resource.html#SystemImagesSub">image substitutions</a> that is defined in the Resource tab.
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconFolder.png" align="absmiddle" border="0" alt="" /> <b>templates</b></td>
+<td class='confluenceTd'>Library JAR files to be included into project as libraries. These files can be browsed in the <a href="../Service_Designer_User_Interface/Navigation Pane - Template.html">Navigation Pane - Library</a></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>header_ConceptWaveMetadata.xml</b></td>
+<td class='confluenceTd'><p>The XML file that persists the <a href="../Metadata_Objects/Metadata Root/Metadata Root.html">top-level metadata object</a> in Navigation Pane.</p>
+  <p> <strong>Note: </strong>The updated timestamp has been removed from the header metadata. When existing metadata is saved using a new build, the &lt;updated&gt; tag is removed from header_ConceptWaveMetadata.xml. The Global.getMetadataTimestamp script method is deprecated and it  returns the current timestamp for backward compatibility.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>.settings</b></td>
+<td class='confluenceTd'>Settings and preferences in Velocity Studio concerning this project, such as database connections and configuration <i>Node ID</i> to run the metadata within Velocity Studio. They are not related to any metadata. For revision control, you may or may not check-in this file, depending on the similarity (or not) of your team's development environment setup.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>.cw.inuse.lock</b></td>
+<td class='confluenceTd'>The presence of this file indicates this project is currently opened by an instance of Velocity Studio, locking other instances of Velocity Studio from opening this project. The file contains the timestamp of the locking start. For revision control, <b>do not check-in this file</b>. If, for example, your Velocity Studio crashes, and no longer able to open the project upon restarting Velocity Studio, delete this file to unlock the problem.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

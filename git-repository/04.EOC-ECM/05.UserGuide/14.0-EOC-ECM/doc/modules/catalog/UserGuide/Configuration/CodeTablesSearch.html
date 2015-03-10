@@ -1,0 +1,187 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Search Code Tables</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+</script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Search Code Tables</h2>
+<p>This section describes the following:</p>
+<ul>
+  <li>Search Code Tables</li>
+  <li>Project Finder</li>
+  <li>Change Order of Code Table Items</li>
+  <li>View Code Table Details</li>
+  <li>View Code Details</li>
+</ul>
+<p>Search code tables by a code table name, a code table description or by the name or  description of a code contained inside a code table. The entire  name, description or just part of the name, description can be entered in the query search fields.</p>
+<p>You can perform a code table search by following these steps:</p>
+<ol>
+  <li>Click  <strong>CONFIGURATION &gt; Code Tables</strong> from the menu bar. Upon clicking the <strong>Search</strong> button and without any query fields entered, a list of all version and non-version code tables is displayed in the bottom pane.<br>
+    <br>
+    <table class='confluenceTable'>
+  <tbody>
+  <tr>
+  <td class='confluenceTd'><img src="CodeTableSearch.png" alt="Search Code Tables"></td>
+  </tr>
+  </tbody>
+</table>
+<br>
+  </li>
+  <li>To filter the search, enter the search criteria in any of the following fields:<br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="178" class='confluenceTh'>Field</th>
+          <th width="594" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Code Table Name</strong></td>
+          <td class='confluenceTd'>Enter the full name or part of the name of the code table being searched.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Code Name</strong></td>
+          <td class='confluenceTd'><p>Enter a code that is found inside a code table being searched.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Code Table Description</strong></td>
+          <td class='confluenceTd'>Enter keywords to search within the description field of the code table being searched.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Code Description</strong></td>
+          <td class='confluenceTd'><p>Enter keywords to search within the description field of a code for the code table being searched.</p></td>
+        </tr>
+        <tr>
+          <td height="40" class='confluenceTd'><strong>Project</strong></td>
+          <td class='confluenceTd'><p>Select the search icon at the end of this field to invoke the <strong>Project Finder</strong> (see below).<br>
+            Choose the project of the version code table being searched.</p></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>Click the <strong>Search</strong> button. Your code table results appear in the bottom pane.</li>
+</ol>
+<p><strong>Note:</strong>  The code tables in a table result having the model as a data structure display the description and not the code,  to align with the document as model behaviour.</p>
+<h3>Project Finder</h3>
+<p>In addition to non-version  search options, in version mode it is also possible to search  code tables by projects. Use this finder to search for a code table based on a project. Select the project from the list of existing projects.</p>
+<p><img src="ProjectFinder.png" alt="Project Finder"></p>
+<p>&nbsp;</p></td>
+</tr>
+<h3>Change Order of Code Table Items</h3>
+<p>The order of the code table results can be changed. </p>
+<p> From any column header in the results pane, via the mini down arrow icon, select the<strong> Configure Sort ...</strong> menu option which opens the Sort dialogue. From here, choose the columns and order for the sort.</p>
+<p><img src="ConfigureSort.png" alt="Configure Sort"><br>
+</p>
+<p><strong>Note: </strong>The code table results can also be grouped by the column titles. From any column in the results pane, via the mini down arrow icon, select the<strong> Group by [<em>Column Title</em>]</strong>.</p>
+<h3>&nbsp;</h3>
+<h3>View Code Table Details</h3>
+<p>To  view code table details, click on the <strong>Details</strong> icon (magnifying glass) next to <strong>Name</strong> of the code table or double-click on the code table row. This opens the code table details dialogue in read-only mode.</p>
+<p><img src="CodeTableDetailsReadOnly.png" alt="Code Table Details"></p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="178" class='confluenceTh'>Field</th>
+      <th width="594" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td height="24" class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'>This field is mandatory and it must be a unique identifier of a code table in the current  application context.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Description</strong></td>
+      <td class='confluenceTd'><p>The description of the code table. This field is optional.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Active</strong></td>
+      <td class='confluenceTd'>Defines whether the code table is active. This field is optional and is used by non-version code tables.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Sort Order</strong></td>
+      <td class='confluenceTd'><p>Allows to re-order codes inside the  table.  This field is optional.</p></td>
+    </tr>
+    <tr>
+      <td height="26" class='confluenceTd'><strong>Project</strong></td>
+      <td class='confluenceTd'><p>This field is used by version code tables. It identifies the project associated with the code table.</p></td>
+    </tr>
+    <tr>
+      <td height="40" class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'>This field is used by version code tables and is mandatory. It identifies the status (designated life cycle states) of the code table. <br>
+      It replaces the Active field.</td>
+    </tr>
+    <tr>
+      <td height="40" class='confluenceTd'><strong>Start Date</strong></td>
+      <td class='confluenceTd'>This field is used by version code tables and is mandatory. <br>
+      It identifies the effective date of the code table and must be less than or equal to the End Date.</td>
+    </tr>
+    <tr>
+      <td height="40" class='confluenceTd'><strong>End Date</strong></td>
+      <td class='confluenceTd'>This field is used by version code table, but is optional. <br>
+      It identifies when a code table is no longer effective.</td>
+    </tr>
+  </tbody>
+</table>
+<p><br>
+Below  the details of the code table, a current list of codes that  belong to the  code  table is displayed.</p>
+<p>&nbsp;</p>
+<h3>View Code Details</h3>
+<p>By default, code details are read-only.</p>
+<p>All  code properties (fields) are visible on the Detail page of the code table. Alternatively, to  view code  details, click on the <strong>Details</strong> icon (magnifying glass) next to <strong>Name</strong> of the code  or double-click on the code  row. This invokes the Details dialogue of the code.</p>
+<p><img src="CodeDetails.png" alt="Code Details"></p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="178" class='confluenceTh'>Field</th>
+      <th width="594" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td height="24" class='confluenceTd'><strong>Code</strong></td>
+      <td class='confluenceTd'>This field is mandatory and it must be a unique identifier of the code in the current  code table.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Description</strong></td>
+      <td class='confluenceTd'><p>The description of the code. This field is optional.</p></td>
+    </tr>
+    <tr>
+      <td height="40" class='confluenceTd'><strong>(Sub) Code Table</strong></td>
+      <td class='confluenceTd'>This field is optional. It can be used to reference another code  table, such that all codes from the sub-table are treated as inherited in the  current code table. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Active</strong></td>
+      <td class='confluenceTd'>Defines whether the code  is active. This field is optional. A code can be active if and only if the code table is active.</td>
+    </tr>
+    <tr>
+      <td height="40" class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'>This field is used by version codes and is mandatory. It identifies the status (designated life cycle states) of the code. <br>
+It replaces the Active field.  A code can be active if and only if the code table is active.</td>
+    </tr>
+    <tr>
+      <td height="40" class='confluenceTd'><strong>Start Date</strong></td>
+      <td class='confluenceTd'>This field is used by version codes and is mandatory. <br>
+It identifies the effective date of the code and must be less than or equal to the End Date.</td>
+    </tr>
+    <tr>
+      <td height="40" class='confluenceTd'><strong>End Date</strong></td>
+      <td class='confluenceTd'>This field is used by version codes, but is optional. <br>
+        It identifies when a code  is no longer effective.</td>
+    </tr>
+    <tr>
+      <td height="26" class='confluenceTd'><strong>Project</strong></td>
+      <td class='confluenceTd'><p>This field is used by version codes. It identifies the project associated with the code.</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<p><br>
+</p>
+</body>
+</html>

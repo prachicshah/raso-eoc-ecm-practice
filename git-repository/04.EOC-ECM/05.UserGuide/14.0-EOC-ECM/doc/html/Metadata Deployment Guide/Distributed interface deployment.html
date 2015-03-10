@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Distributed Interface Deployment</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Distributed Interface Deployment</h2>
+
+<p>You can deploy and dedicate your interfaces on different nodes through the Configuration application. </p>
+<p>To do  distributed interface deployment, you need at least two nodes defined in the  Configuration application: </p>
+<ul>
+  <li>One node for the user interface</li>
+  <li>One node for the interface node</li>
+</ul>
+<p>Under the <strong>Services</strong> tab in the configuration UI, do the  following:</p>
+<ol>
+  <li>For the UI node, all interface ports need to be  disabled, and all listener threads are either left blank or set to 0.</li>
+  <li>For the Interface node, interface ports need to be  active and the listener thread numbers must be defined.</li>
+</ol>
+<p><strong>Note:</strong> For product version 5.x and higher, all nodes must be  deployed in a J2EE application server.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

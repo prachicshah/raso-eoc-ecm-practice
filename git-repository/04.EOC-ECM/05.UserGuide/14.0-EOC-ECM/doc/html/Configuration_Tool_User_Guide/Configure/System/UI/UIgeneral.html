@@ -1,0 +1,142 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>UI - General</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>General</h2>
+
+<p>Clicking <b>UI</b> &gt;<b> General</b> displays a list of settings that strictly pertains to the user interface. </p>
+<p><img src="UIgeneral.png" alt="UI - General tab" border="1"></p>
+<p>The following user interface settings are available:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="137" class='confluenceTh'>UI Setting</th>
+      <th width="1275" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td height="34" class='confluenceTd'><strong>Iframe Name</strong></td>
+      <td class='confluenceTd'><p>This property allows you to specify the iframe ID. The default value for this property is cwIFrame. This property must be a single word, with no spaces. Setting this property allows the product to resize the  iframe based on the current content that is being displayed.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Hover Delay </strong></td>
+      <td class='confluenceTd'><p>This property specifies the amount of time to wait for the hover  form to show in the table or tree element when you have the mouse  over the table or tree. By default, hover delay is set to 2000 milliseconds&nbsp;unless  otherwise specified in the configuration.</p>
+        <p>The current allowed range for a table element is from 300 to 4999 milliseconds, and from 500 to 4999 milliseconds for  a tree element. The reason for having the lower bound is that if the hover delay is too small, the hover action may block either the click or double-click action when you attempt to click a row in either the tree or table.<BR>
+        </p></td>
+    </tr>
+    <tr>
+      <td height="45" class='confluenceTd'><strong>HTTP Port</strong></td>
+      <td class='confluenceTd'>The framework uses this property to redirect the client Web browser when redirection is required to or from HTTPS.</td>
+    </tr>
+    <tr>
+      <td height="45" class='confluenceTd'><strong>SSL Port</strong></td>
+      <td class='confluenceTd'>The  framework  uses this property to redirect the client Web browser when redirection is required to or from HTTPS.</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Session Timeout</strong></td>
+      <td class='confluenceTd'>This property sets the client browser session timeout. Its default value is 30 minutes.</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Session Timeout Warning</strong></td>
+      <td class='confluenceTd'><p>This setting allows the application to notify the user that the session will be automatically invalidated. The default value is 0, meaning that no timeout warning is issued. This parameter takes a minimum value of 15 seconds and a maximum value is the current <strong>Session timeout</strong> in seconds.</p>
+      <p>Refer to <a href="../../../../Service_Designer_Tool_User_Guide/Metadata_Objects/Login/session timeout warning.html">Session timeout warning</a> for details on customizing the popup in your metadata.</p></td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Worklist Poll Time</strong></td>
+      <td class='confluenceTd'>This property sets the client browser worklist polling frequency. Default value is 5 minutes. <br>
+        <br>
+      <strong> Note:</strong> Decreasing this value will incur additional framework loading.</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Maximum Query Duration (Seconds)</strong></td>
+      <td class='confluenceTd'>This property specifies the maximum duration  in seconds and limits the duration specified in finder objects within the Velocity Studio. The default value is 90 seconds. This field can range in value from 2 to 250.</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Maximum Attachment Size (KB)</strong></td>
+      <td class='confluenceTd'>This property denotes the maximum attachment size allowed when uploading a file. The default value for this setting is 102400 KB (100 MB).  A condition in the system checks the file size before the file is uploaded to the database.</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Fire Initial Tab Selected</strong></td>
+      <td class='confluenceTd'><p>Set this variable to true if the tabSelected  method defined on the tabset element should be called when it is first shown  on the screen.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Enable Auto Move Focus</strong></td>
+      <td class='confluenceTd'>By default, this property's checkbox is selected. When you have  entered the maximum characters allowed in the field, the next character entered  moves the focus to the next editable field. To disable this functionality,  deselect this property's checkbox. Alternatively, you may set the <strong>Auto-focus to  Next Field</strong> property on the element itself.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Enable Request Parameters</strong></td>
+      <td class='confluenceTd'><p>This configuration variable allows you to enable URL request parameters by selecting the checkbox. For example, if the given URL is http://localhost:8080/cwf?startPage=news, you can retrieve the parameter using the getRequestParam("startPage") method. This configuration variable is disabled by default.<br>
+        <BR>
+        Parameters are kept in a map. Each new request, if it has parameters, replaces parameters of the same name with new values. Request parameters  are cumulative, until cleared using the clearRequestParams() method.</p>
+        <p><strong>Notify application that request parameters have changed</strong><br>
+          When you have changed request parameters within the Web browser address bar, the application needs to be notified that the request parameters have changed. To be notified of page loading, you can either add a new script or the onAppLoading user action method of the application UI. This method is called before the application page loads in the Web browser, including these cases:</p>
+        <ul>
+          <li>When selecting the application (<em>after</em> both the onInit and appSelected methods)</li>
+          <li>When moving from one application URL to another</li>
+          <li>When   entering new URL parameters in the address bar or pressing the <strong>Enter</strong> key in the address   bar (in this case, the page is also being reloaded)</li>
+          <li>When refreshing your Web browser (pressing the <strong>F5</strong> key)</li>
+        </ul>
+        <p><strong>Notes:</strong></p>
+        <ul>
+          <li>Since the onAppLoading method can be invoked many times, you may be introducing a performance issue. As a result, it is recommended that you do not use heavy logic and perform only necessary tasks that require updated URL parameters. </li>
+          <li>To get all parameter names, use the getRequestParamNames(CwfContext uc) method. </li>
+        </ul>
+        <p><strong>URL parameters</strong><br>
+          The following are recognized URL parameters:</p>
+        <table width="1193" border cellpadding="1">
+          <tr>
+            <th width="147" align="left" scope="col">URL parameter</th>
+            <th width="437" align="left" scope="col">Description</th>
+          </tr>
+          <tr>
+            <td>app</td>
+            <td> This parameter allows you to to open a Web browser, select an application, and trigger an init script (for example, http://localhost:8080/cwf/?app=app:mainApp&amp;orderId=225000).</td>
+          </tr>
+          <tr>
+            <td>sessionId</td>
+            <td> The sessionId=&quot;xx&quot; as a URL parameter allows the product to create and maintain a separate pseudo session with its own independent user context and UI context (for example, http://localhost:8080/cwf/TestApp?userID=1234&amp;productID=CCS_CALL_CARDS&amp;lineID=123&amp;action=print&amp;pi=CC&amp;mode=advanced&amp;loginID=TESTUSER&amp;sessionId=print).</td>
+          </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a name="enableActionLogging"></a>Enable Action Logging</strong></td>
+      <td class='confluenceTd'>When an action is invoked, the associated logging action is also invoked when this parameter is selected. The default value for this parameter is false (that is, the checkbox has not been selected).</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a name="differentDomain"></a>Different Domain </strong></td>
+      <td class='confluenceTd'>This property must be set to false if the application is  to run in an iframe. The domain used for the iframe must be the same as the  application; otherwise, dialog centering does not work. iframes that are not in the same domain are unsupported. An example of using this setting follows this table.</td>
+    </tr>
+    <tr>
+      <td height="45" class='confluenceTd'><strong>Enable Partial Update</strong></td>
+      <td class='confluenceTd'><p>This property's checkbox is selected by default, meaning that at runtime, if there    are dialogs in the runtime user interface, the  server and clients    only exchange data in the foremost dialog. This communication reduces server    processing time, client-server communication time, and  client data parsing    time.</p>
+      <p> If you deselect this property's checkbox, server and    client communication involves data for the entire  page. As a result, communication requires more time and can be time-consuming. This checkbox is helpful when working with metadata and attempting to debug while making changes to it.</p></td>
+    </tr>
+    <tr>
+      <td height="45" class='confluenceTd'><strong>Allow to Deselect Radio Button</strong></td>
+      <td class='confluenceTd'> The  default value is false, meaning that a radio button works as expected and cannot be deselected. If this setting is set to true, deselection is allowed. </td>
+    </tr>
+    <tr>
+      <td height="120" class='confluenceTd'><strong><a name="scrollingOnUpdate"></a>Scroll on Update</strong></td>
+      <td class='confluenceTd'><p>This  property controls the scrolling behaviour after a <a href="../../../../Service_Designer_Tool_User_Guide/Velocity_Studio/Element - Table.html#scrollingOnUpdate">table</a> update and takes the following values:</p>
+        <ul>
+          <li><strong> Default</strong><br>
+            The table scrolls to the first selected record. If no record is selected, the table scrolls to the top of the records.</li>
+          <li><strong>Restore position</strong><br>
+            The table scrolls to the position before the update.</li>
+          <li><strong> No scrolling</strong><br>
+            The table always scrolls to the top after an update.</li>
+        </ul>
+        <p>When you define the <strong>Scrolling on Update</strong> property at the table level, it overrides this property that you have defined in the Configuration application.</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<p><br>
+</p>
+</body>
+</html>

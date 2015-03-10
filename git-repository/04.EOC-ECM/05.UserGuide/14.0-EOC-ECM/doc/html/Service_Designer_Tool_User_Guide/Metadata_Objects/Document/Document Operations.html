@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Document Operations</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Document Operations</h3>
+<p>The right-click pop-up menu for an individual Document has several items in addition to the <a href="../../Service_Designer_User_Interface/navigation pane - Metadata.html#PopUpMenu">common right-click menu items</a>.</p>
+<p><img src="DocumentContextMenu.png" align="absmiddle" border="0" alt="Document Context Menu" /></p>
+<p><ins>Description of additional pop-up menu items for a Document.</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Map Documents to DB</b></td>
+<td class='confluenceTd'>Maps the Document to the database, which is similar to <a href="../../Service Designer Menu Actions/Map Documents to DB.html">Map Documents to DB</a> in <b>Database</b> main menu of Velocity Studio, but only limited to the current Document. This item will be disabled if the <b>Skip DB schema generation</b> check box is selected on <b>DB Map</b> sub-tab of the <b>Mapping</b> tab.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Create SQL</b></td>
+<td class='confluenceTd'>Generates a SQL file containing the DDL (Data Definition Language) statements needed to create the tables that the Document is mapped to. This is similar to <a href="../../Service Designer Menu Actions/Upgrading System.html">Upgrade System</a> in <b>Database</b> main menu of Velocity Studio, but only limited to the current Document.This item will be disabled if the <b>Skip DB schema generation</b> check box is selected on <b>DB Map</b> sub-tab of the <b>Mapping</b> tab.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Data</b> <b>Import</b>/<b>Export</b></td>
+<td class='confluenceTd'>Opens a dialog (Figure 4-76) which allows the user to import Document data from a text or XML file, modify it and export it back into a file or to create new data dynamically and export it into a file.</td>
+</tr>
+</tbody>
+</table>
+
+<h4>Create SQL</h4>
+
+<p>The <b>Create SQL</b> menu item is used once the Document Variables are mapped to the database table columns. This can be done by either selecting the <b>Map Documents to DB</b> menu item or on the <b>DB Map</b> sub-tab of the <b>Mapping</b> tab.</p>
+
+<p>When the <b>Create SQL</b> menu item is selected, the <b>Generate SQL</b> dialog will open where the user can specify the file name and location. Once a directory is selected and a file name is entered, click the <b>Save</b> button. A SQL script will be created that contains the DDL (Data Definition Language) statements needed to create the database tables that the Document is mapped to. It is important to note that the SQL script contains DROP and CREATE statements. Therefore, it should not be executed against an existing table that contains data that must be kept. Connect to the appropriate database (use SQLPlus) and execute the SQL.</p>
+<p><strong>Important note</strong>: The generated DDL is intended as a starting point for DBA work, as it does not contain indexes, constraints, triggers, or any advanced DDL clauses.</p>
+
+<h4>Data Import/Export</h4>
+<p>The <b>Data</b> <b>Import/Export</b> menu item is used to import data from a text or XML file, modify it and export it back into a file or to create new data dynamically and export it into a file. When selected, a data import/export dialog will open.</p>
+<p><img src="DocumentImportExport.png" align="absmiddle" border="0" alt="Document Import Export" /></p>
+<p>To import data from a text file, click &#160;the <b>Import</b> <b>Text</b> button. The <b>Import Document from Text</b> dialog will open where the file is selected. Click the <b>Open</b> button and the <b>Import Settings</b> dialog will open where the text file settings can be defined for the fields that are enabled. These settings will determine how the file is processed.</p>
+<p><img src="DocumentImportExportSettings.png" align="absmiddle" border="0" alt="Import Settings" /></p>
+<p>To import data from a XML file click the <b>Import</b> <b>XML</b> button. The <b>Import Document from XML</b> dialog will open where the file is selected.</p>
+<p>Once imported, the data will be displayed in the top pane of the dialog and the values for the first record will be populated in the corresponding fields in the bottom pane.</p>
+<p>The bottom pane of the dialog contains one field for each Document Variable defined in the <b>Variables list</b> of the <b>Variables</b> tab. The field name will correspond to the label specified in the <b>Label</b> column of the <b>Variables list</b>. Those Variables that have the check box selected in the <b>Mandatory</b> column of the* Variables list* will appear in red, denoting a required field. The data entered in the field will be validated against the Variable data type as specified in the <b>Type</b> column of the <b>Variables list</b>.</p>
+<p>Data can either be entered manually in the fields in the bottom pane or a record can be selected from the top pane to edit. To preview the data and file structure before exporting, select the <b>View</b> radio button and click either the <b>Export</b> <b>Text</b> or <b>Export</b> <b>XML</b> button depending on the export format. The <b>Export Data Preview</b> dialog will open.</p>
+<p><img src="DocumentImportExportXML.png" align="absmiddle" border="0" alt="Export Data Preview" />
+<p>Once the user is satisfied with the file structure, select the <b>File</b> radio button and click either the <b>Export</b> <b>Text</b> or <b>Export</b> <b>XML</b> button to export the Document data into a text or XML file.</p>
+<p>Note: Only one record can be exported at a time, each to a separate file.</p>
+<p>The <b>Map to Doc</b> button is currently not supported.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

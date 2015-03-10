@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>Slim AVM</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Slim AVM</h1>
+<p>The standard  AVM product requires an  <a href="database initialization.html">Oracle database</a> connection to  load and save system objects, such as configuration, database sequences, logging,  processes states, user information, and so on. Slim AVM support running without an Oracle database by using other storage sources, such as the <a href="../JavaScripting in Order Care/AVM CIL adapter.html">Common Interface Layer (CIL)</a> adapter, with limited functionality.</p>
+<p>Slim AVM allows you to run AVM-based applications that do the following:</p>
+<ul>
+  <li>Use only the CIL interface for storing data</li>
+  <li>Are Web services-oriented</li>
+  <li>Have limited or no user interface</li>
+  <li>Do not require a process engine</li>
+  <li>Use the catalog client</li>
+  </ul>
+<p>Slim AVM supports the following features:</p>
+<ul>
+  <li>Using CIL, load and store AVM configuration</li>
+  <li>CIL scripting API</li>
+  <li>Catalog client</li>
+  <li>Info tables (read from server)</li>
+  <li>Web services</li>
+  <li>Dynamic document definitions</li>
+  <li>Reference tables</li>
+  <li>Single sign-on security provider</li>
+  <li>UI that does not require database operations</li>
+  <li>Limited version of system configuration and  administration user interfaces</li>
+  <li>JMX monitoring</li>
+  <li>NGEE platform functionality, including tracing, logging,  fault and configuration management, and auditing</li>
+  <li>Caching</li>
+</ul>
+<p>You can use Velocity Studio to start the AVM in slim mode for both <strong>Run</strong> and <strong>Debug</strong> actions.</p>
+<h2>Restrictions</h2>
+<p>The following AVM features <em>are  not</em> supported in slim mode:</p>
+<ul>
+  <li>Process engine</li>
+  <li>Catalog server</li>
+  <li>Standard security provider support (that is, database users,  group, or privileges)</li>
+  <li>Database operations (for example, read, load), orders, and  documents</li>
+  <li>Translations</li>
+  <li>Code tables unless they are in your metadata <br>
+    <br>
+    <strong>Note:</strong> For  catalog client, slim AVM loads code tables from the catalog server.<br>
+    <br>
+  </li>
+  <li>Calendars</li>
+  <li>Attachments</li>
+  <li>Worklist</li>
+  <li>Basket and catalog order support in the Catalog application</li>
+  <li>User interfaces</li>
+  <li>Multiple applications running on the same  schema</li>
+</ul>
+<p>The following metadata objects are<em> not</em> supported:</p>
+<ul>
+  <li>Running SQL, document, or order finders</li>
+  <li>Reference data types that use database enumeration, or  document, sql, or order finders</li>
+  <li>Processes</li>
+  <li>Database conversion maps, including document database  mapping</li>
+  <li>Rules (rule sets are still supported)</li>
+  <li>Dynamic documents mapped to the database</li>
+  <li>External scripts<br>
+  </li>
+</ul>
+<p><strong>Notes:</strong>
+</p>
+<ul>
+  <li>Neither Velocity Studio, nor start up validation errors display if unsupported metadata  objects are present in the metadata. The objects can still compiled, although an  attempt to use unsupported functionality would produce an exception.</li>
+  <li>It  is not recommended to use documents and orders in slim mode. Technically, they can be used as pure memory objects. However, no support is available for reading or saving to the database.</li>
+</ul>
+<h2>Configuration</h2>
+<p>The only type of physical connection supported in slim  mode is the CIL connection. The configuration is stored as a blob and  retrieved through CIL.</p>
+<p>This implementation includes the following:</p>
+<ul>
+  <li>Adding a new type of physical connection in which  CIL includes enhancements to the Configuration application user interface and Velocity Studio</li>
+  <li>Changing configuration-loading by using the common API</li>
+  <li>Implementing different adapters for Oracle and CIL<br>
+  </li>
+</ul>
+<h2>Run Slim AVM</h2>
+<p>
+  If the configuration connection (ORDER schema) is defined as  a CIL connection, the AVM automatically starts in slim mode.</p>
+<p>  <strong>Note:</strong> Only the UI type node can be used to run in slim mode. An  attempt to start using a PE or PE_UI node produces a startup exception.</p>
+<p>  During startup in slim mode, the following  steps are skipped:</p>
+<ul>
+  <li>Product checking of properties</li>
+  <li>Database mapping checks for documents maps or finders</li>
+</ul>
+<h3>Metadata</h3>
+Metadata and resources are stored, deployed, and loaded through CIL. Implementation requires supporting  deployment through the command line interface using the CIL connection.
+<h3>Object ID generation  (cwf.cwDocId data type)</h3>
+  <p>AVM uses Oracle sequences to get the next object ID. </p>
+  <p>    <strong>Note:</strong> Sequences are implemented through the CIL interface.</p>
+  <h3>Calendars</h3>
+  There is no  calendar support. Web services and the catalog client do not require a  default calendar to be defined.
+  <h3>Security and User  Profile</h3>
+  Only the single sign-on security  provider is supported.
+  <h3>Heartbeat Thread</h3>
+  This thread runs in slim mode, although any database operation should  be disabled for slim mode.
+  <h2>System  Templates</h2>
+  <p>A limited version of the System Configuration and Administration applications are available in slim mode. The former application is required to edit the configuration. Changes need to be done in the system metadata for loading and saving the configuration blob.</p>
+  <p><strong>Note:</strong> User Profile and Worklist Management applications are not available in slim mode.  </p>
+  <h2>Logging</h2>
+  <p>Only file and console logging is supported. Auditing, database error, and message logs are disabled.</p>
+  <h2>Cache</h2>
+  <p>The following details pertain to cache:</p>
+  <ul>
+    <li>Reference cache must support reference data types with script finders and  events when no database operations are required.</li>
+    <li>Reload cache threads (objects) from the database are  disabled.</li>
+    <li>Resource manager  (resource cache) has resources read using CIL.</li>
+  </ul>
+<h2>Catalog Client</h2>
+  The Catalog client no longer uses a database connection.
+  <p>The following objects are loaded from the Catalog server:</p>
+  <ul>
+    <li>Database enumerations</li>
+    <li>Info tables<br>
+    </li>
+    </ul>
+  <p><strong>Notes:</strong></p>
+  <ul>
+    <li>Loading the list of catalog servers takes place from the configuration file only. If the list is empty, an exception occurs.</li>
+    <li>Upon Catalog initialization, some parameters that used to be read from the database are read from the server (for example, systemCurrentDate, 
+systemCurrency, and 
+systemCurrencyMarkup). These are read from the server.</li>
+    <li>Basket and catalog orders are not supported.</li>
+  </ul></td>
+</tr>
+</table>
+
+</body>
+</html>

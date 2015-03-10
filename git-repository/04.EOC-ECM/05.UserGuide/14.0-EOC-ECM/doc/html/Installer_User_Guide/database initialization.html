@@ -1,0 +1,96 @@
+﻿<html>
+<head>
+<title>Database Initialization</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="DatabaseInitialization"></a>Database Initialization</h2>
+<h3>Brand New Installation</h3>
+<p>This section details how to set up an Oracle database for the product. It requires Oracle DBA experience.</p>
+<p>The system requires a database user; the DBA is required to create it, then run a script to initialize the database.</p>
+<ol>
+<li>Create a user in Oracle SQL Developer by right-clicking <strong>Other Users</strong> in the left pane and selecting <strong>Create User</strong>. </li>
+<li>Proceed to click the System Privileges tab, and select the <strong>Grant</strong> and <strong>Admin Option</strong> fields for the privileges noted in the following table.<br>
+  <br>
+  <img src="privilegesOracle.png" alt="User Privileges in Oracle SQL Developer"><br>
+  <br>
+  <strong>Note:</strong> The name given in this example (<em>CW</em>) is not significant, but should correspond to the same user in all further steps. The user and password defined in this example is used in the <a href="order care tools configuration.html">Configuration application</a>.  <br>
+  <br>
+  <table class='confluenceTable' border cellpadding="1">
+    <tbody>
+      <tr>
+        <td class='confluenceTd'><b>User:</b></td>
+        <td class='confluenceTd'>CW</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><b>Password:</b></td>
+        <td class='confluenceTd'>CW</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><b>Description:</b></td>
+        <td class='confluenceTd'>Schema user</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><b>DB Roles:</b></td>
+        <td class='confluenceTd'>CONNECT with ADMIN option selected</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><b>DB System Privileges:</b></td>
+        <td class='confluenceTd'><p><b>in Oracle 10g/11g:</b><br />
+          ALTER USER<br>
+          CONNECT<br>
+            CREATE JOB<br clear="all" />
+            CREATE PROCEDURE<br clear="all" />
+            CREATE SEQUENCE<br clear="all" />
+            CREATE TABLE<br clear="all" />
+            CREATE TRIGGER<br clear="all" />
+            CREATE TYPE<br clear="all" />
+            CREATE USER<br clear="all" />
+            CREATE VIEW<br clear="all" />
+            DROP USER*<br clear="all" />
+            UNLIMITED TABLESPACE* (This parameter sets the table size to &quot;unlimited&quot;. To limit the table size, specify a value in the <a href="#DB Quota">DB Quota</a> parameter)</p></td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><b><a name="DB Quota"></a>DB Quota</b></td>
+        <td class='confluenceTd'>Set an appropriate limit for the Default table.</td>
+        </tr>
+      </tbody>
+  </table>
+  <p>* DROP USER should be assigned if the User Profile Administrator wants to be able to delete the corresponding user from the Oracle database automatically when the user account is deleted.</p>
+</li>
+<p>* Adding the UNLIMITED TABLESPACE selection to the DB System Privileges list sets all of DB Quota to uneditable (that is, individual quotas cannot be set per table).
+</p>
+<p><strong>Note:</strong> Alternatively, you can <a href="../FAQ/FAQ.html#q2">run a SQL script to create your database user</a>.</p>
+<li>Click the <strong>Apply</strong> button, and then the <strong>Close</strong> button to save your changes.</li>
+<li>Open and edit the <b>&lt;<em>installation_folder</em>&gt;\DDL\CW.sql</b> file (for example, <em>C:\Program Files\InstallationFolder\DDL\CW.sql</em>)<br clear="all" />
+  <br clear="all" />
+</li>
+<li>Edit the following line to point to your schema, if you did not use <i>CW</i> as the name. Save the changes.
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+define ORDER_SCHEMA = cw;
+</pre></div>
+</div>
+</li>
+<li>If you require national character support in your database, see <a href="appendix e - national character support.html">Appendix E - National Character Support in Database</a> and follow the steps in that procedure. When you are done, proceed to step 5.<br>
+  <br>
+</li>
+<li>Log in to the database in your schema and <b>run</b> the file <b>CW.sql</b>.
+  <br clear="all" />
+</li>
+</ol>
+
+<h3>Upgrading from Previous Product Version</h3>
+<p>If you are upgrading from an existing product release that is version 5.0 or higher, you must make the existing database schema compatible with the new build. To do this upgrade, use the <a href="../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Upgrading System.html">Velocity Studio Upgrade System</a> command to generate a SQL script to update the database schema.</p>
+<p>If you are upgrading from an existing product release that is older than version 5.0 (for example, version 4.2) with existing Oracle database metadata then you must follow the <a href="../gettingstarted/Migrating from 4.2.html">migration procedure</a> to this product release.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

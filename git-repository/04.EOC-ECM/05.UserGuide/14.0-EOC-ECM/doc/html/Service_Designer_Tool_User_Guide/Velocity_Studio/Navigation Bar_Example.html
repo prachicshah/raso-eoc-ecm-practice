@@ -1,0 +1,140 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Navigation Bar Example</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Setting Up a Navigation Bar </h2>
+<p>The following example, explains the steps required to setup a Navigation Bar. This example assumes that you are configuring the Navigation Bar using Documents, Navigation Bar  and User Interface items. You also need to have configured images that display at runtime.</p>
+<h3>Data Type and Documents</h3>
+<p>To create a Data Type and Documents:</p>
+<ol>
+  <li>In Velocity Studio, under the Namespace, add a Data Type object of type String.</li>
+  <li>Under the Data Type, add a Document object. More than one Document may be needed depending upon the complexity of your Navigation Bar procedure.  Each Document contains  Forms that are used to display the User Interface presentation of the Document. You can configure a Form to display information that shows in one of the Navigation Bar  steps (that is, use a Label Form Element to display a title or instruction of a step).</li>
+</ol>
+<h3>Navigation Bar Item</h3>
+<p>The Navigation Bar Item displays as a node in the navigation tree. You can add child Navigation Bar items that nest under the top Navigation Bar node. See <a href="#NBConfig">Navigation Bar Configuration.</a> </p>
+<p>To create a Navigation Bar:</p>
+<ol>
+  <li>Add a Navigation Bar item by  right-clicking the Namespace and then select <strong>New</strong>. The New Metadata Object opens.</li>
+  <li>From the  <strong>New Metadata Object </strong>wizard, expand the <strong>  Presentations </strong>node and select the<strong> Navigation Bar</strong> and then select <strong>Next</strong>. The New Navigation Bar wizard appears.</li>
+  <li>In the New Navigation Bar dialog, type the <strong>Name</strong>,<strong> Label</strong> and <strong>Description</strong> for the Navigation Bar and click <strong>Finish</strong>.</li>
+  <li>In the <strong>Navigation</strong> pane, click the <strong>Navigation Bar</strong> item that you created.</li>
+  <li>Four tabs appear in the Navigation Bar item: <em>General, Variables, Methods, Configuration</em> that are used to configure the Navigation Bar.</li>
+  </ol>
+<h3>Navigation Bar Variables</h3>
+<p> Navigation Bar variables are used  for a variety of purposes. For example, you can create a binding to a Permission method that controls the privileges of a Document.</p>
+<p>To configure Navigation Bar Variables:</p>
+<ol>
+  <li>On the<strong> Variables</strong> tab, click the <strong>Add </strong>toolbar button to create a new variable.</li>
+  <li>In the <strong>Add Element</strong> dialog, locate the  metadata object that you want to add and click <strong>Save</strong>. For our purposes, we are going to focus on the existing <em> NavigationItems</em> variable of type Object appears in the list of variables. This variable controls all of the Navigation Bar child items that appear under the Navigation Bar top-level item.</li>
+</ol>
+<h3>Navigation Bar Methods</h3>
+<p>Methods contain scripts that perform an action. For our example, we are going to add a script that returns the document that we created earlier. </p>
+<p>To create Navigation Bar Methods:</p>
+<ol>
+  <li>On the <strong>Methods</strong> tab, right-click the Navigation Bar item node to view the available  methods. </li>
+  <li>Select the <strong>New User Action  Method</strong>.</li>
+  <li>In the <strong>Name</strong> field, type a name for this new user action method.</li>
+  <li>In the <strong>Script</strong> field, type <em>return new &lt;document_name&gt;(null, this);</em> </li>
+  <li>Continue to configure methods for all of the actions required. The methods are used to configure some of the properties listed on the Configuration Tab. </li>
+  </ol>
+  
+<h3>Creating Permissions</h3>
+<p>Any New Permission methods that are  added are not invoked unless used on the Navigation Bar Configuration tab. For example, the permission can bind to a variable, which then binds to a Document.</p>
+<p>To add permissions:</p>
+<ol>
+  <li>On the <strong>Methods</strong> tab, right-click the Navigation Bar item node and select <strong>New Permissions</strong>.</li>
+  <li>In the <strong>New Permission</strong> dialog, type the name of the permission and click <strong>Finish</strong>. The properties for the permission method appears.</li>
+  <li>In the <strong>script</strong> area, type the script that you want to use. For the purpose of this example, type<em> return this. isdocumentEnabled;</em></li>
+  </ol>
+<h3><strong><a name="#NBConfig"></a>Navigation Bar Configuration</strong></h3>
+<p>The Configuration tab enables you to create Navigation Bar child items and then configure them. You can think of each item as a single step of a procedure.</p>
+<ol>
+  <li>From the <strong>Configuration</strong> tab, right-click the Navigation Bar node and click<strong> New Navigation Bar Item</strong>.</li>
+  <li>In the <strong>New Navigation Bar Item</strong> dialog, type the name of the item an click <strong>Finish</strong>. </li>
+  <li>Click the item to view its properties and then configure  each property.</li>
+  </ol>
+<ul>
+  <li>Name - contains the name of the Navigation Bar child item. </li>
+  <li>Click Action - drop-down list contains a list of methods. This is what  displays in the User Interface when this item is clicked.</li>
+  <li>Editable - a drop-down list containing methods configured using Permissions.</li>
+  <li>Label - a drop-down list containing a list of variables which assigns a value to the NavigationItem label.</li>
+  <li>Style - A drop-down list containing a list of CSS properties.</li>
+  <li>Image URL - a drop-down list containing a list of graphics.</li>
+  <li>Tooltip - a text field in which you can type a tooltip.</li>
+  <li>Visible - a drop-down list contains a list of methods. Determines if the NavigationItem is visible or not.</li>
+</ul>
+  
+<h3>Configuring the Navigation Bar Layout</h3>
+<p>The Navigation Bar item contains  Forms that configure the orientation of the Navigation Bar. You can choose between the horizontal (HLayoutForm) and vertical (VLayoutForm) display. This example uses the HLayoutForm format. Reference this Form in the User Interface Forms that you will be configuring (next step).</p>
+<h3>Creating a User Interface</h3>
+<p>To display the Navigation Bar and related information at runtime, you need to create a User Interface object. This object should contain two Form Frame elements. One Form Frame will contain the Navigation Bar and the second is used to display the data contained in each Navigation Bar item.</p>
+<ol>
+  <li>Add a <strong>User Interface</strong> and a <strong>Navigation Bar </strong>object by  right-clicking the <strong>Presentation</strong> node of your Namespace (using <em>com.conceptwave.system.UserInterface </em>and<em> com.conceptwave.system.NavigationBar</em>).
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="NavBarExample/NavBarPresentation.png" alt="Navigation Bar Presentation" /></td>
+</tr>
+</tbody>
+</table></li>
+  <li>In the User Interface object, create a Navigation Bar variable that points to the Navigation Bar object created above (for this example, the <strong>Data Type</strong> points to <strong>navBar.selfServe</strong>).
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="NavBarExample/NavBarVariable.png" alt="User Interface NavBar Variable" /></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>Within the User Interface, the navigation bar variable must be initialized. One way for initializing the variable is by overriding the onInit method. Click the <strong>Methods</strong> tab and override the <strong>onInit</strong> method to initialize the navigation bar variable.
+  <table class='confluenceTable'>
+  <tbody>
+  <tr>
+  <td class='confluenceTd'><img src="NavBarExample/OnInit.png" alt="Initialize Nav Bar variable" /></td>
+  </tr>
+  </tbody>
+</table>
+The Navigation Bar object can also be initialized via the LeafInitAction method.
+<br>
+<br>
+<img src="NavBarExample/onInit.png" alt="Initialize navigation bar variable" width="1123" height="331" border="1"><br>
+<br>
+</li>
+  <li>To the <strong>Default</strong> form of the User Interface object, add the following Form Elements:
+    <ul><li><b>VerticalLayout</b></li>
+<li><b>FormFrame</b></li>
+<li><b>Separator</b></li>
+<li><b>FormFrame</b></li>
+</ul>
+</li>
+<li> The first Form Frame is where the Navigation Bar displays.  For the first FormFrame Element, first assign the Navigation Bar variable to the <b>Variable</b> property.  Second, depending on the desired horizontal or vertical orientation, assign either the <b>HLayoutForm</b> or <b>VLayoutForm</b> of the Navigation Bar presentation object to the <b>Form</b> property.
+  <table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="NavBarExample/FormFrame1Properties.png" alt="Form Frame Properties" /></td>
+</tr>
+</tbody>
+</table></li>
+<li>For the second FormFrame Element, first assign the currentObject variable of the Navigation Bar object to the variable property. Second, assign the Default form of the Navigation Bar's current object to the Form property.
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="NavBarExample/FormFrame2Properties.png" alt="Form Frame Properties" /></td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Open Quality Report</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Open Quality Report</h2>
+<p>Clicking <strong>Help</strong> &gt; <strong>Open Quality Report</strong> from the menu bar opens that last generated  <a href="Help Quality Centre.html">quality report about your metadata</a> using your default Web browser. This option is only available after you have generated a quality report.</p>
+<p><strong>Note:</strong> This action only opens the last report that you generated. To open previous reports, you must go to the folder where you saved them and open the pertinent HTML file that you want.</p>
+<p><strong>Relocate Quality Report Files to Another Directory</strong></p>
+<p>The quality report location appears in the .setting file of your metadata project. The following is an example:</p>
+
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+<qualityReportPath>
+C:\Users\testuser\Documents\Ericsson Metadata-Quality Report-20140331-0826.html
+</qualityReportPath>
+</pre></div>
+</div>
+<p>
+  When you relocate your quality report files, you must change this property to open the report in Velocity Studio. </p>
+<p>When you generate a quality report, one folder contains all HTML, image and .js files. Additionally, an index.html is created, which links to all necessary files. This HTML file has the same name as the folder. The index.html file with a relative path to the report is generated inside the report folder. As a result, when you relocate your report to other folder locations, you can still access the report without performing any changes to the report. </p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Dialog</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Dialog</h2>
+
+<p>The Dialog element displays a dialog box that can be configured to display  a warning message and  user action buttons. The Dialog element is used in the Default form of the  Confirmation Dialog User Interface. </p>
+<p>The following user action buttons can be configured to display:</p>
+<ul>
+  <li><strong>Yes</strong></li>
+  <li><strong>No</strong></li>
+  <li><strong>OK</strong></li>
+  <li><strong>Cancel</strong></li>
+  </ul>
+<p>Using the Variable property, you can configure the dialog to display different types of confirmation dialogs.</p>
+
+<img src="dialogbox.png" align="absmiddle" border="0" alt="Dialog element">      
+
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='referenceTh'>references Variable</th>
+<td class='referenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method</th>
+<td class='referenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>Allowable Child Elements</th>
+<td class='referenceTd'><i>None</i></td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+  <th width="119" class='referenceTh'>Property</th>
+  <th width="143" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+  <th width="1351" class='referenceTh'>Comment</th>
+</tr>
+
+<tr>
+  <th class='referenceTh'>Name</th>
+  <td class='referenceTd'>Mandatory</td>
+  <td class='referenceTd'>Name of the Dialog.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Variable</th>
+  <td class='referenceTd'>Mandatory</td>
+  <td class='referenceTd'>This property can either be <em>String</em>, <em>Integer</em> or <em>Boolean</em> (for example, String values equal to <em>True</em>, <em>False</em>, <em>1</em> (one) or <em>0</em> (zero), Integer values equal to <em>1</em> (one) or <em>0</em> (zero), and Boolean values equal to <em>True</em> or <em>False</em>. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Auto Expire(s)</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Setting this property indicates that the dialog automatically closes after a certain period in seconds,  without an user action to close it. The default value is 0 seconds.
+  </p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Can Resize</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>The <strong>Can Resize</strong> property is automatically selected by default, indicating that dialog resizing is enabled. To disable dialog resizing, deselect the checkbox.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Can Sort</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property is used when parented by a Table Element and refers to a Finder table column during runtime.  This will allow the user to sort the search results data by ascending or descending order at runtime. Setting this property to <em>False </em>will disable the sorting functionality. By default this functionality is set to <em>True.</em></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Cell Alignment</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Controls the horizontal and vertical positioning of the dialog in the page or parent element. Default is undefined, which behaves as if it is top-left.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Cell Column Span</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Only applicable when in a Grid Layout. Specifies the number of columns that the dialog occupies in the Grid Layout, to the right of current cell. Default is empty, which occupies one column.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Dynamic Height</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property allows the label on the dialog to dynamically change at runtime. The value of this property is a variable of type <em>String </em>or a user action method that returns a <em>String.</em></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Dynamic Tooltip</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Defines a dynamic tooltip text that is displayed in a hover box when the cursor hovers the element.  Set property to a <em>String</em> variable or a script with a Return type <em>String</em>. The static Tooltip property is considered as default until the action returns a value.</p>
+    <p>When this element is  used under the Table element, the <strong> Dynamic Tooltip</strong> property accepts a script, which is called for each result document value bound to a field with a dynamic tooltip set. This script returns the string desired to be shown on the hover. Additionally, the property accepts a variable value belonging to the result document. The value for this variable is then used to display the tooltip.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Dynamic Tooltip Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property dynamically changes the style of the Dynamic Tooltip.  Set property to a script with a Return type <em>String</em> that is a cascading style sheet (css) name found in the stylesheet used by the application.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Dynamic X Coordinate</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>You can enable repositioning of your dialog by setting both the <strong>Dynamic X Coordinate</strong> and <strong>Dynamic Y Coordinate</strong> properties. Click the drop-down menu and select from the list (for example, <strong>dialogX</strong>).</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Dynamic Y Coordinate</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'> You can enable repositioning of your dialog by setting both the <strong>Dynamic X Coordinate</strong> and <strong>Dynamic Y Coordinate</strong> properties. Click the drop-down menu and select from the list (for example, <strong>dialogY</strong>).</td>
+</tr>
+<tr>
+<th class='referenceTh'>Dynamic Width</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>The value of this property is a method with a Return type <em>String</em>. This method  dynamically changes the style of the label at runtime based on the instructions returned by the method.  The label style returned by the method must exist within the current CSS file that is being used by the application.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Editable</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'><p>This property determines whether the checkbox is enable or disabled at runtime. The values for this property are either <em>True</em> (enabled), <em>False</em> (disabled) or a <em>Permissions</em> method (for example, depending on the user this field is enabled or disabled).</p>
+  <p><strong>Note:</strong> If a field contains  an editable permission that is either coming from the form field itself, or inherited  from the variable or data type, it takes precedence. Otherwise, the user  interface's editablePerm permission takes over. If this method is not  overwritten, the model's editablePerm permission is used. User interfaces  displayed under another user interface with editablePerm are also be inherited  if the embedded user interfaces do not have their own editablePerm permission. </p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Height</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Height to be taken up by the dialog area; can be an integer which is in pixels, or in percentage (that is, "50%") of page height or parent element.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label Orientation</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Specifies where the label of the Dialog appears in relation to the checkbox area; can be <i>left</i>, <i>right</i> or <i>top</i> of the checkbox area. The default orientation is <i>right</i>.  However, in a Grid Layout , the default label orientation is defined by the Grid Layout element.  But if a value of this Label Orientation property is specified, than it overrides the Label Orientation property provided by the Grid Layout. </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Choose from styles in the selected stylesheet at the toolbar, which defines the   styling of the Label such   as font color. Default is NONE.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label Variable</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Choose from a list of available <EM>string</EM> variables. This variable can   be used to dynamically to set, change and use the title that is displayed on the   tab bar. Similar to the Image Variable it can be initialized or dynamically   changed by any method within the local user interface. This property is dependent   on the Form property and is only available if the Form property value is given a   value.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Modal</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>If set to <em>True</em>, when displayed, this Window intercepts and blocks events to all other existing components on the page.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>On Enter</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>The system calls any script defined in this property. This method is invoked   when the Grid Layout is focused on the Web page and the user presses the ENTER   key.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show Close Button</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>To remove the close button, deselect this property.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show Header</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property determines whether the header is displayed on the Dialog. Choose   from <em>True</em> or <em>False</em>. Default is True which means that the label is   displayed</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show Label</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property determines whether the label is displayed on the Checkbox. Choose from <i>True</i> or <i>False</i>. Default is True which means that the label is displayed.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show Maximize Button</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>To remove the maximize button, deselect this property.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show Minimize Button</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>To remove the minimize button, deselect the <strong>Show Minimize   Button</strong> checkbox.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Show Modal Mask</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>If set to <em>True</em>, the page behind the dialog is unavailable.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Start Row</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Applicable only when the parent element is a Grid Layout. If true, the dialog appears in a new row of the grid. If <i>False</i>, it is simply placed in the next available cell. Default is <i>False, </i>which means that the Dialog element does not appear on a new row.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Choose from styles within the selected stylesheet (located in the Velocity Studio toolbar), which defines the styling of the button such as positioning and color. Default is none.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the tooltip text that is displayed in a hover box when the cursor hovers over the Dialog. Default is empty, which means that a tooltip has not been defined.  </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the tooltip style of the text displayed in the hover box when the cursor hovers over the dialog. The default is empty. Click the <strong>Value</strong> field to select a tooltip style from the list.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Tooltip Width (px)</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Allows you to change the width of the tooltip popup window statically. Enter the width in pixels. The default value for this property is 0.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Visible</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines the user permissions assigned to this layout. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and visiblePerm can be assigned as well as Object Permissions. Defaults to NONE, which means no permissions assigned.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Width</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Width to be taken up by the Dialog; can be in integer which is in pixels, or in percentage (that is, "50%") of page width or parent Element.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Notes:</h3>
+<ul>
+<li>For the messageDefault Form of the Confirmation Dialog, the properties of the Dialog element are editable when you perform a <em>copy and replace</em> action.</li>
+<li>A Dialog box is restricted to the scope of  its parent window.  The parent window can only have one dialog, but the dialog can have its own dialog and so forth. This ensures a clean UI, restricting multiple browser windows open at once. It is also encouraged to create more complex user interfaces without the use of popups, which can be achieved by using a choice of available dynamic elements.</li>
+</ul>
+
+<h4>Control Dialog Window</h4>
+<p>You can control the built-in dialog window functionality, which includes resizing and moving its location:</p>
+<ol>
+  <li>In Velocity Studio, create a new User Interface. For the <strong>Extends</strong> field, select <strong>com.conceptwave.system.Dialog</strong>.</li>
+  <li>Right-click the <strong>Default</strong> form and select <strong>Override</strong>.</li>
+  <li>Right-click the <strong>dialog</strong> element and select the <strong>Copy &amp; Replace...</strong> option.</li>
+  <li>Navigate to the dialog property panel. You can do the following:
+    <ol type="a">
+      <li>To remove the minimize button, deselect the <strong>Show Minimize   Button</strong> checkbox.</li>
+      <li>The <strong>Can Resize</strong> property is automatically selected by default, indicating that dialog resizing is enabled. To disable dialog resizing, deselect the checkbox.</li>
+      <li> To enable repositioning of dialog, set   both the <strong>Dynamic X Coordinate</strong> and <strong>Dynamic Y Coordinate</strong> properties by selecting <strong>dialogX</strong> and <strong>dialogY </strong>from the drop-down menu, respectively.</li>
+      </ol>
+  </li>
+  <li>In a user interface, create a new method and select the <strong>Show in   popup</strong> checkbox, which displays size properties. To move the popup's location, specify an x- and y-coordinate for the <strong>Dialog X Coordinate</strong> and <strong>Dialog Y Coordinate</strong> fields, respectively.<br>
+    <br>
+    <img src="dialogShowInPopup.png" alt="Dialog element - Show in popup property"><br>
+    <br>
+    <strong>Note:</strong> By default, popups are centered. <BR>
+  </li>
+  <li>To gain   functionality of the dialog that you created in step 1, select it as a <strong>Dialog Object</strong> of the   user action, which will tell the product to use that dialog to display your   object.<br>
+    <br>
+    <img src="dialogObjectField.png" alt="Dialog Object drop-down menu" border="1"><br>
+    <br>
+  </li>
+  <li>To test your dialog, write a script in the method created in step 5 that returns the event log finder. Set the user action as the click method of a menu. In runtime, you can see that the properties you have set have taken effect.</li>
+  </ol>
+<h4>Allow a Reference Finder to Pop Up from a Popup Dialog</h4>
+<p>A menu item pops up as a confirmation dialog, which has a reference finder popup as one of the input fields. If the dialog is presented as the top window, the reference finder pops up fine. If the the dialog is a popup, to also allow the reference to pop up, complete these steps:</p>
+<ol>
+  <li>Create a new User Interface that both extends and overrides com.conceptwave.system.ConfirmDialog.</li>
+  <li> Set the <strong>Variable</strong> property to <strong>dialog</strong>.</li>
+  <li> Set the <strong>Unmanaged</strong> property to <strong>true</strong>.</li>
+  <li> Save and run your metadata, which allows the finder to appear. </li>
+</ol>
+<p><br>
+  <br>
+</p></td>
+</tr>
+</table>
+</body>
+</html>

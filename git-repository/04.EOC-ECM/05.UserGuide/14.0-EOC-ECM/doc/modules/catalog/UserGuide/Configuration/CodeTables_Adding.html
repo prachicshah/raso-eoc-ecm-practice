@@ -1,0 +1,247 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Adding Code Tables</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+
+
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Add, Edit, and Delete  Code Tables</h2>
+<p>This section describes the following:</p>
+<ul>
+  <li><a href="#addCodeTable">Add a new code table</a></li>
+  <li><a href="#editCodeTable">Edit an existing code table</a></li>
+  <li><a href="#addCode">Add a code</a></li>
+  <li><a href="#editCode">Edit a code</a></li>
+  <li><a href="#deleteCode">Delete a code</a></li>
+  <li><a href="#deleteCodeTable">Delete a code table</a></li>
+</ul>
+<h3><a name="addCodeTable"></a>Add a New Code Table</h3>
+<p>To add a code table, complete these steps:</p>
+<ol>
+  <li>From the Code Tables page, click the <strong>New</strong> button.
+    <br>
+    <br>
+    <img src="CodeTableSearchHeader.png" alt="Code Table Search Header"><br>
+    <br>
+  </li>
+  <li>The New Code Table page appears.<br>
+    <br>
+    <img src="CodeTableNew.png" alt="New Code Table">  <br>
+    <br>
+    Enter the following  fields, which vary between versioned and non-versioned code tables:
+    <br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="178" class='confluenceTh'>Field</th>
+          <th width="594" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td height="24" class='confluenceTd'><strong>Name</strong></td>
+          <td class='confluenceTd'>This field is mandatory and it must be a unique identifier of a code table in the current  application context.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Description</strong></td>
+          <td class='confluenceTd'><p>The description of the code table. This field is optional.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Active</strong></td>
+          <td class='confluenceTd'>Defines whether the code table is active. This field is optional and is used by non-version code tables.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Sort Order</strong></td>
+          <td class='confluenceTd'><p>Allows to re-order codes inside the  table.  This field is optional.</p></td>
+        </tr>
+        <tr>
+          <td height="26" class='confluenceTd'><strong>Project</strong></td>
+          <td class='confluenceTd'><p>This field is used by version code tables. It identifies the project associated with the code table.</p></td>
+        </tr>
+        <tr>
+          <td height="40" class='confluenceTd'><strong>Status</strong></td>
+          <td class='confluenceTd'>This field is used by version code tables and is mandatory. It identifies the status (designated life cycle states) of the code table. <br>
+            It replaces the Active field.</td>
+        </tr>
+        <tr>
+          <td height="40" class='confluenceTd'><strong>Start Date</strong></td>
+          <td class='confluenceTd'>This field is used by version code tables and is mandatory. <br>
+            It identifies the effective date of the code table and must be less than or equal to the End Date.</td>
+        </tr>
+        <tr>
+          <td height="40" class='confluenceTd'><strong>End Date</strong></td>
+          <td class='confluenceTd'>This field is used by version code table, but is optional. <br>
+            It identifies when a code table is no longer effective.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <strong>Notes:</strong> </li>
+  <ul>
+    <li>If a project is open, the code table is created as a versioned code table. The <strong>Project</strong> field of the code table is automatically set to the opened project  and cannot be changed. The <strong>Status</strong> field  is set to <strong>Definition</strong> if this status  exists in the status list and the <strong>Start Date</strong> is set to the current date.</li>
+    <li>A  code table is created as either a versioned code table or a  non-versioned code table. Once you have created a code table, the version type cannot be changed.  </li>
+  </ul>
+</ol>
+<h3><a name="editCodeTable"></a>Edit an Existing Code Table</h3>
+<p>To edit an existing code table, follow these steps:</p>
+<ol>
+  <li>From the code table search results, click the <STRONG>Details</STRONG> icon (magnifying glass) next to <STRONG>Name</STRONG> of the code table or double-click on the code table row. By  default, code table details are in read-only mode. </li>
+  <li>From the code details page, click the<strong> Edit</strong> button.
+    <br>
+  </li>
+  <li>Make the pertinent changes to your code table.
+    <br>
+    <br>
+    <strong>Notes:</strong> </li>
+  <ul>
+    <li>Once a code table is created, the <strong>Name</strong> of the code table cannot be changed. All other code table  detail fields  are editable. See the restrictions section that follows.</li>
+    <li>If the <strong>Sort  Order</strong> field is checked, you can re-arrange the order of the code list by selecting  code rows, and then dragging and  dropping them to the desired position.</li>
+    <li>For non-versioned code tables only, in edit mode, the codes  properties can be changed directly in the code row field in the code list. </li>
+  </ul>
+  <li>When you have finished making your changes, click  the <strong>Save</strong> button.
+    <br>
+    <br>
+    <img src="CodeTableDetails.png" alt="Code Details"><br>
+  </li>
+</ol>
+<p>The following are restrictions when editing versioned code tables:</p>
+<ul>
+  <li> The code table <strong>Status</strong> is set to <strong>Active</strong>. In this case, code table details  remain read-only. However, codes can be edited, added, and deleted.</li>
+  <li>The project of the code table is not opened  (that is, either no  project is open or a different project is opened). In this case, only the   <strong>Description</strong> fields of the code table and codes can be changed.<br>
+  </li>
+  <li>A project is open, but it is different from the project of the code table. In this case:
+    <ul>
+      <li>It is allowed to add a new code that is associated  with the currently opened project.</li>
+      <li>Codes belonging to the opened project can be  deleted. All other codes cannot be deleted.</li>
+    </ul>
+  </li>
+  <li>No  project is open. In this case:
+    <ul>
+      <li>Even in edit mode, the <strong>New</strong> code button is invisible. As a result, it is not allowed to add non-versioned codes to a versioned code table.</li>
+      <li>Even in edit mode, the <strong>Delete</strong> code button is invisible. As a result,  it is not allowed to delete codes outside of the code project.</li>
+    </ul>
+  </li>
+  </ul>
+<p>Once your code table  is in edit mode, the following actions can be performed on the codes of the code table:</p>
+<ul>
+  <li><a href="#addCode">Add a code</a></li>
+  <li><a href="#editCode">Edit a code</a></li>
+  <li><a href="#deleteCode">Delete a code</a></li>
+</ul>
+<h3><a name="addCode"></a>Add a Code</h3>
+<p>To add a code, do the following:</p>
+<ol>
+  <li>From the code table's Details page, click the <strong>New</strong> button.</li>
+  <li>Enter the following information in the fields provided:<br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="178" class='confluenceTh'>Field</th>
+          <th width="594" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td height="24" class='confluenceTd'><strong>Code</strong></td>
+          <td class='confluenceTd'>This field is mandatory and it must be a unique identifier of the code in the current  code table.  A code with whitespace is not accepted.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Description</strong></td>
+          <td class='confluenceTd'><p>The description of the code. This field is optional.</p></td>
+        </tr>
+        <tr>
+          <td height="40" class='confluenceTd'><strong>(Sub) Code Table</strong></td>
+          <td class='confluenceTd'>This field is optional. It can be used to reference another code  table, such that all codes from the sub-table are treated as inherited in the  current code table. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Active</strong></td>
+          <td class='confluenceTd'>Defines whether the code  is active. This field is optional. A code can be active if and only if the code table is active.</td>
+        </tr>
+        <tr>
+          <td height="40" class='confluenceTd'><strong>Status</strong></td>
+          <td class='confluenceTd'>This field is used by version codes and is mandatory. It identifies the status (designated life cycle states) of the code. <br>
+            It replaces the Active field.  A code can be active if and only if the code table is active.</td>
+        </tr>
+        <tr>
+          <td height="40" class='confluenceTd'><strong>Start Date</strong></td>
+          <td class='confluenceTd'>This field is used by version codes and is mandatory. <br>
+            It identifies the effective date of the code and must be less than or equal to the End Date.</td>
+        </tr>
+        <tr>
+          <td height="40" class='confluenceTd'><strong>End Date</strong></td>
+          <td class='confluenceTd'>This field is used by version codes, but is optional. <br>
+            It identifies when a code  is no longer effective.</td>
+        </tr>
+        <tr>
+          <td height="26" class='confluenceTd'><strong>Project</strong></td>
+          <td class='confluenceTd'><p>This field is used by version codes. It identifies the project associated with the code.</p></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>After you have entered your code details, click  the <strong>Add</strong> button to add the new code to the code  table, but it does not automatically persist. You can click the <strong>New</strong> button to continue  entering codes or close the dialog to return to code table form.
+  <p><img src="CodeNew.png" alt="Add a new code to the code table"></p>
+  </li>
+</ol>
+
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>All  newly added codes appear in blue font to indicate that they are not yet saved. </li>
+  <li>For versioned code tables, the <strong>New</strong> code button is not available unless a project is open. </li>
+  <li>Versioned code tables cannot contain non-versioned codes and vice-versa.</li>
+</ul>
+<br>
+<h3><a name="editCode"></a>Edit a Code</h3>
+<p>To edit a code, complete these steps:</p>
+<ol>
+  <li>From the code table's Delete page, click the <strong>Edit</strong> button, and proceed to either click  the <STRONG>Details</STRONG> icon (magnifying glass) next to code <STRONG>Name</STRONG> field or double-click the code  row. </li>
+  <li>Make the pertinent changes.<br>
+    <br>
+    <strong>Notes:</strong> </li>
+  <ul>
+    <li>The code  name and project (for version codes) can never be changed.</li>
+    <li>If the code table's <strong>Sort  Order</strong> field is checked, you can    re-arrange the order of the code list by selecting  code rows, and then dragging and  dropping it to the desired position.</li>
+    <li>For non-versioned code tables only, in edit mode, the codes  properties can be changed directly in the code row field in the code list. </li>
+  </ul>
+  <li>Click the <strong>Save</strong> button to save your changes.</li>
+</ol>
+<h3><a name="deleteCode"></a>Delete a Code</h3>
+<p>To delete a code or table, complete these steps:</p>
+<ol>
+  <li>From the code table's Delete page, select the code row that you want to delete, and then click the <strong>Delete</strong> button. <br>
+    <strong>Notes:</strong> </li>
+  <ul>
+    <li>For versioned code tables, the <strong>Delete</strong> code button is not available unless a project is open. </li>
+    <li><strong> </strong>If  some or all selected codes  cannot be deleted,  the delete transaction is  not performed and  no codes are actually deleted. In this case, an exception message displays. Otherwise, all selected codes appear as grey and strike-through records to  indicate that are <em>marked</em> for deletion.<br>
+    </li>
+  </ul>
+  <li>The selected code  has been deleted.</li>
+</ol>
+<h3><a name="deleteCodeTable"></a>Delete a Code Table</h3>
+<p>To delete a code tables, do the following:</p>
+<ol>
+  <li>On the Code Tables page, select  code table rows that you want to delete, and then click the <strong>Delete</strong> button.<br>
+    <br>
+    <strong>Note:</strong> If  some or all selected code tables cannot be deleted, the delete transaction is  not performed and  no code tables are actually deleted. In this case, an exception message displays. Otherwise, all selected code tables are permanently deleted along  with their containing codes.</li>
+  <li>The selected code table has been deleted.</li>
+</ol>
+<p>The following are restrictions when deleting versioned code tables:</p>
+<ul>
+  <li> Only those code tables that belong to the current opened project can be deleted. </li>
+  <li>Only non-active code tables can be deleted.</li>
+</ul>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

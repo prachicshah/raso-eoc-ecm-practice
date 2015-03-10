@@ -1,0 +1,428 @@
+﻿
+
+
+<html>
+<head>
+<title>Appendix A - Functions in the Rule Editor</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2><a name="FunctionsinTheRuleEditor"></a>Appendix A: Functions in The Rule Editor</h2>
+<p>The following system defined functions are available in the rule instance editor.</p>
+<h3>
+<a name="CreateDate" id="CreateDate"></a>Create Date</h3>
+<p>Creates a Date object.<br />
+<em>Returns</em>: A new Date object.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>year</td>
+<td class='confluenceTd'>integer</td>
+<td class='confluenceTd'>A year.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>month</td>
+<td class='confluenceTd'>integer</td>
+<td class='confluenceTd'>A month (0 - 11).</td>
+</tr>
+<tr>
+<td class='confluenceTd'>day</td>
+<td class='confluenceTd'>integer</td>
+<td class='confluenceTd'>A day of the month (1 - 31).</td>
+</tr>
+<tr>
+<td class='confluenceTd'>hour</td>
+<td class='confluenceTd'>integer</td>
+<td class='confluenceTd'>An hour (0 - 23).</td>
+</tr>
+<tr>
+<td class='confluenceTd'>minutes</td>
+<td class='confluenceTd'>integer</td>
+<td class='confluenceTd'>Minutes (0 - 59).</td>
+</tr>
+<tr>
+<td class='confluenceTd'>seconds</td>
+<td class='confluenceTd'>integer</td>
+<td class='confluenceTd'>Seconds (0 - 59).</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a name="CreateTime" id="CreateTime"></a>Create Time</h3>
+<p>Creates a Date object with provided time values.<br />
+<em>Returns</em>: A new Date object.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>hour</td>
+<td class='confluenceTd'>integer</td>
+<td class='confluenceTd'>An hour (0 - 23).</td>
+</tr>
+<tr>
+<td class='confluenceTd'>minutes</td>
+<td class='confluenceTd'>integer</td>
+<td class='confluenceTd'>Minutes (0 - 59).</td>
+</tr>
+<tr>
+<td class='confluenceTd'>seconds</td>
+<td class='confluenceTd'>integer</td>
+<td class='confluenceTd'>Seconds (0 - 59).</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a name="CurrentTime" id="CurrentTime"></a>Current Time</h3>
+<p>Creates a Date object with the current date and time.<br />
+<em>Returns</em>: The created Date object.<br />
+<em>Parameters</em>: None.</p>
+<h3>
+<a name="GetDate" id="GetDate"></a>Get Date</h3>
+<p>Extracts a date from either a Date or DateTime object.Sets the time component of the date to 00:00:00.<br />
+<em>Returns</em>: A Date object.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>date</td>
+<td class='confluenceTd'>date</td>
+<td class='confluenceTd'>A Date or DateTime object.</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a name="GetDays" id="GetDays"></a>Get Days</h3>
+<p>Calculates the number of working days between two dates for a given calendar.<br />
+<em>Returns</em>: The number of working days between the dates.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>calendar</td>
+<td class='confluenceTd'>Calendar</td>
+<td class='confluenceTd'>Metadata name of calendar.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>from</td>
+<td class='confluenceTd'>date</td>
+<td class='confluenceTd'>A Date or DateTime object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>to</td>
+<td class='confluenceTd'>date</td>
+<td class='confluenceTd'>A Date or DateTime object.</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a name="GetDueDate" id="GetDueDate"></a>Get Due Date</h3>
+<p>Calculates the due date by adding a duration to a starting date. Non-working hours are skipped in the calculation.<br />
+<em>Returns</em>: A Date object.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>calendar</td>
+<td class='confluenceTd'>Calendar</td>
+<td class='confluenceTd'>Metadata name of calendar.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>date</td>
+<td class='confluenceTd'>date</td>
+<td class='confluenceTd'>Starting date.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>duration</td>
+<td class='confluenceTd'>integer</td>
+<td class='confluenceTd'>Duration to add to date.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>duration type</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>Type of duration. May be one of: Calendar._DATE_DAY, Calendar._DATE_HOUR, or Calendar._DATE_MINUTE.</td>
+</tr>
+</tbody>
+</table>
+<h3>
+  <a name="GetDuration" id="GetDuration"></a>Get Duration</h3>
+<p>Calculates duration in working seconds between two dates for a given calendar.<br />
+<em>Returns</em>: Duration in seconds.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>calendar</td>
+<td class='confluenceTd'>Calendar</td>
+<td class='confluenceTd'>Metadata name of calendar.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>from</td>
+<td class='confluenceTd'>date</td>
+<td class='confluenceTd'>A Date or DateTime object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>to</td>
+<td class='confluenceTd'>date</td>
+<td class='confluenceTd'>A Date or DateTime object.</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a name="GetUserParticipants" id="GetUserParticipants"></a>Get User Participants</h3>
+<p>Gets a list of participants that a user belongs to.<br />
+<em>Returns</em>: A string containing the list of participants.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>user</td>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>User ID.</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a name="HasPrivilege" id="HasPrivilege"></a>Has Privilege</h3>
+<p>Return true if the user has the specified privilege.<br />
+<em>Returns</em>: True if the user has the privilege.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>user</td>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>User ID.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>privilege</td>
+<td class='confluenceTd'>group</td>
+<td class='confluenceTd'>Privilege name.</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a name="IsAvailable" id="IsAvailable"></a>Is Available</h3>
+<p>Returns true if the user is available for worklist distribution.<br />
+<em>Returns</em>: True if the user is available.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>user</td>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>User ID.</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a name="IsParticipant" id="AppendixA-FunctionsintheRuleEditor-IsParticipant"></a>Is Participant</h3>
+<p>Returns true if the user belongs to the specified participant.<br />
+<em>Returns</em>: True if the user belongs to the participant.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>user</td>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>User ID.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>participant</td>
+<td class='confluenceTd'>participant</td>
+<td class='confluenceTd'>Participant name.</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a name="IsinGroup" id="IsinGroup"></a>Is in Group</h3>
+<p>Returns true if the user is a member of the specified group.<br />
+<em>Returns</em>: True if the user is in the group.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>user</td>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>User ID.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>group</td>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>Group name.</td>
+</tr>
+</tbody>
+</table>
+<h3>
+  <a name="Match" id="Match"></a>Match</h3>
+<p>Searches a string for a given pattern and returns true if the match is found.<br />
+<em>Returns</em>: True if a match is found.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>text</td>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>String to be searched.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>pattern</td>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>The pattern string that may contain the wildcard characters ? (represents any single character) and * (represents any number, including zero, of any characters).</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a name="Rule" id="Rule"></a>Rule</h3>
+<p>Evaluates another instance of the same business rule.<br />
+<em>Returns</em>: A boolean value as a result of instance evaluation.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>rule instance</td>
+<td class='confluenceTd'>Rule instance</td>
+<td class='confluenceTd'>The full name of the rule instance that will be evaluated.</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>The following system functions are available only in the variable <a href="rule instances.html#Object">definition</a>.</p>
+<h3>
+<a name="Document" id="Document"></a>Document</h3>
+<p>Reads a document from the database.<br />
+<em>Returns</em>: A document.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>key</td>
+<td class='confluenceTd'>Document leaf</td>
+<td class='confluenceTd'>Document ID.</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a name="Order" id="Order"></a>Order</h3>
+<p>Reads an order from the database. The business rule document or items from its hierarchy cannot be used as the function parameter.<br />
+<em>Returns</em>: An order.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>key</td>
+<td class='confluenceTd'>Order</td>
+<td class='confluenceTd'>Top level order.</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a name="OrderItem" id="OrderItem"></a>Order Item</h3>
+<p>Reads an order item.<br />
+<em>Returns</em>: An order item.<br />
+<em>Parameters</em>:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Name</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>key</td>
+<td class='confluenceTd'>Order item</td>
+<td class='confluenceTd'>Order item.</td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a name="UserProfile" id="UserProfile"></a>User Profile</h3>
+<p>Gets the current user profile document.<br />
+<em>Returns</em>: A user profile document.<br />
+<em>Parameters</em>: None.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

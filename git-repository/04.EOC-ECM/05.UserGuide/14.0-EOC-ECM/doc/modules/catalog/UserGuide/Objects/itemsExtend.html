@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Extend an Item</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top"><h2>Extend an Item</h2>
+      <p>The Catalog application provides the functionality to extend the items. The extened item is a new  instance of item that  inherits the properties of the base item. To extend an item, follow these steps:</p>
+      <ol>
+        <li>From the  Overview page, click <strong>Commercial Modeling</strong> &gt;<strong> Items</strong>.</li>
+        <li>The Item page appears; click  the<strong> Search </strong>button to search the available items. </li>
+        <li>Select one item from the results list and then click the <strong>Extend</strong> button.</li>
+        <li> The Item page appears; the fields for this page are prepopulated with the item details with the exception of the <strong>Code</strong> field. This field remains empty as it has to be unique. </li>
+        <li>The following fields are available;  change the information according to your preferences.</li>
+       <p> <table class='confluenceTable' border cellpadding=1>
+          <tbody>
+            <tr>
+              <th width="78" class='confluenceTh'>Field</th>
+              <th width="865" class='confluenceTh'>Description</th>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong> Code</strong></td>
+              <td class='confluenceTd'>This field denotes item code that uniquely identifies the item.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Item Type</strong></td>
+              <td class='confluenceTd'>This field indicates the item type. It takes on the value of the extended item.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Status</strong></td>
+              <td class='confluenceTd'>This field denotes the <a href="States.html">status</a> of the extended item.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Label</strong></td>
+              <td class='confluenceTd'>The label for the item, which is used in the application user interface. This field is a translational string that supports language translations (refer to Velocity Studio's Translation Element for more details).</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Start Date</strong></td>
+              <td class='confluenceTd'>This field indicates the start date of the item. Refer to <a href="StartEnd_Dates.html">Start and End dates</a> for details.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>End Date</strong></td>
+              <td class='confluenceTd'>This field denotes the end date of the item which represents the date when this item is no longer effective. Refer to <a href="StartEnd_Dates.html">Start and End dates</a> for details.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Base Item</strong></td>
+              <td class='confluenceTd'>This field denotes the selected item for extension as the  base item.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Orderable</strong></td>
+              <td class='confluenceTd'>If checked, the item can be ordered. </td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Project</strong></td>
+              <td class='confluenceTd'>Each object is assigned to a Project. The value for this field defaults to the project opened  in the Catalog application. </td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Enforce Actions</strong></td>
+              <td class='confluenceTd'><p> Select this check box to apply action for the items set through the <strong>Item Actions</strong>. This field takes a Boolean value. The default value is false. You can use this flag during runtime. For  example,  an exception occurs when you set <strong>enforce Action</strong> flag to true while item creation but there is  no action for add type. The <strong>enforce Actions()</strong> in  Item object is used to get the value.</p></td>
+            </tr>
+            <tr>
+              <td height="35" class='confluenceTd'><a href="classificationTypes.html"><strong>Classification Types</strong></a></td>
+              <td class='confluenceTd'>Select different classification  types  to identify item under different environments.</td>
+            </tr>
+          </tbody>
+        </table></p>
+        <li>Click the <strong>Save</strong> button to save your changes.</li>
+      </ol></td>
+  </tr>
+</table>
+</body>
+</html>

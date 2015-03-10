@@ -1,0 +1,182 @@
+<html>
+<head>
+<title>LDAP Service Provider</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>LDAP Service Provider</h3>
+<p>The LDAP Service Provider allows access to an LDAP Server from within the product framework and supports 5 standard LDAP protocol-defined operations: search, modify, add, delete and modifyRdn.</p>
+
+<h4>LDAP Attributes in Velocity Studio</h4>
+
+<p>The table below describes the attributes that are exposed in Velocity Studio specifically for the LDAP Service Provider.</p>
+
+<p>These attributes are found at <b><a href="../External Services/defining a binding.html">Binding</a></b> metadata object in Velocity Studio. When an Interface, Operation or message element is selected in the <b>Interface element</b> tree, the attributes for the element appears in the <b>Element definitions</b> table where values can be provided.</p>
+
+<p><ins>Attributes in Velocity Studio for the LDAP Service Provider</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Operation</b></td>
+<td class='confluenceTd'>Operation name (see Table below).</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></p>
+<p>Each LDAP operation takes in a fixed product built-in data structure as input and for search operation. Additionally, an output data structure should be specified. These data structures are included in <b>Order Entry Product</b> library (See the Library tab in Velocity Studio). The following table illustrates the data structures required for each operation. These rules will be validated at runtime. <b>Note:</b> Misuse of input data structure will cause interface calls to fail and error messages will be displayed.</p>
+<p><ins>Data Structures required for LDAP operations.</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Operation</th>
+<th class='confluenceTh'>Input</th>
+<th class='confluenceTh'>Output</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>search</td>
+<td class='confluenceTd'>cwf_oe.ldapSearchCriteria</td>
+<td class='confluenceTd'>cwf_oe.ldapEntryArray</td>
+<td class='confluenceTd'>Search for the entries that satisfy the criteria</td>
+</tr>
+<tr>
+<td class='confluenceTd'>modify</td>
+<td class='confluenceTd'>cwf_oe.ldapModificationItemArray</td>
+<td class='confluenceTd'>N/A</td>
+<td class='confluenceTd'>Modify (add, replace, remove) the attributes</td>
+</tr>
+<tr>
+<td class='confluenceTd'>add</td>
+<td class='confluenceTd'>cwf_oe.ldapEntry</td>
+<td class='confluenceTd'>N/A</td>
+<td class='confluenceTd'>Add a new entry</td>
+</tr>
+<tr>
+<td class='confluenceTd'>delete</td>
+<td class='confluenceTd'>cwf_oe.ldapDeleteRequest</td>
+<td class='confluenceTd'>N/A</td>
+<td class='confluenceTd'>Delete an existing entry</td>
+</tr>
+<tr>
+<td class='confluenceTd'>modifyRdn</td>
+<td class='confluenceTd'>cwf_oe.ldapModifyRdnRequest</td>
+<td class='confluenceTd'>N/A</td>
+<td class='confluenceTd'>Rename an entry</td>
+</tr>
+</tbody>
+</table>
+
+<h4>LDAP Attributes in Configuration Application</h4>
+
+<p>The table below describes the attributes that are exposed in Configuration application specifically for the  LDAP Service Provider.</p>
+
+<p>These attributes are found in <b><a href="../../../Configuration_Tool_User_Guide/Services Services.html">Services</a></b> tab in Configuration application. When clicking a Port, Binding, Operation or message node in the <b>Service Port tree</b>, the Configuration attributes for the node appears at the <b>Configuration</b> section at the right where values can be provided.</p>
+
+<p><ins>Attributes in Configuration application for the LDAP Service Provider</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+
+<tr>
+<td class='confluenceTd'><b>ldapURL</b></td>
+<td class='confluenceTd'>Indicates the LDAP URL the interface wants to bind to (for example, <em>ldap://cw0001:389</em>).</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>protocolVersion</b></td>
+<td class='confluenceTd'>Indicates what version of LDAP protocol is adopted on the server to which the interface calls on. When unspecified, the behavior is determined by the server (for example, <em> v3</em>)</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>authentication</b></td>
+<td class='confluenceTd'>Indicates the authentication method that the LDAP server uses. It accepts one of the following values:
+<ul>
+<li><b>simple</b> - uses weak authentication (clear-text password)</li>
+<li>a space-separated list of SASL mechanism names (for example, <em>CRAM-MD5)</em> means to use the CRAM-MD5 SASL mechanism described in RFC 2195 (<a href="http://www.ietf.org/rfc/rfc2195.txt">http://www.ietf.org/rfc/rfc2195.txt</a>)</li>
+<li><b>none</b> (or blank) - indicates no authentication is used (anonymous access)</li>
+</ul>
+</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>principal</b></td>
+<td class='confluenceTd'>User name that is used to connected to the LDAP server. When authentication is unspecified, this setting will be ignored (for example, <em> cn=Directory Manager</em>)<em>.</em></td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>credentials_key</b></td>
+<td class='confluenceTd'>Indicates the password key that is used with principal. When authentication is unspecified, this setting will be ignored. <b>Note:</b> The actual password needs to be set in Configuration application, Passwords, and associated with this key (for example, <em> LDAP_PWD).</em></td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+  <td height="287" class='confluenceTd'><b>cacheSize</b></td>
+  <td class='confluenceTd'><p>The number of connections to be cached for the Service Provider. The default value is 100 and is capped at this value.</p>
+    <p>To disable connection pooling on LDAP, set cacheSize=0. Any value for this attribute that is greater than 0 means that a pool of that specified number of connections is created. For example, cacheSize=6 means that six connection pools are created.</p>
+    <p>For 0  connections, each connection is released after each use. For  cacheSize=0, only one connection is created and used to access the LDAP  server. After accessing the LDAP server, that connection is  released (that is, removed). If the application needs to access the LDAP server again, a new connection is created, access to the LDAP server is available and is released again.</p>
+    <p>LDAP connections are closed  under these conditions:</p>
+    <ul>
+      <li>After one hour of inactivity</li>
+      <li>When the framework stops</li>
+    </ul></td>
+  <td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></p>
+
+<h4>LDAP Connection Pool Settings</h4>
+<p>You can specify the following JVM options as your Web container's JVM system parameters for LDAP connection pooling:</p>
+<ul>
+  <li> com.sun.jndi.ldap.connect.pool.initsize</li>
+  <li> com.sun.jndi.ldap.connect.pool.maxsize</li>
+  <li>    com.sun.jndi.ldap.connect.pool.prefsize</li>
+  <li>    com.sun.jndi.ldap.connect.pool.timeout </li>
+  </ul>
+<p>The following table provides a description of each setting and their valid values:</p>
+<table width="1075" class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="314" class='confluenceTh'>Operation</th>
+      <th width="669" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>com.sun.jndi.ldap.connect.pool.initsize</td>
+      <td class='confluenceTd'>The string representation of an integer that indicates  the number of connections for each connection identity to create when  initially creating a connection for the identity. The default value is 1.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>com.sun.jndi.ldap.connect.pool.maxsize</td>
+      <td class='confluenceTd'>The string representation of an integer that denotes  the maximum number of connections per connection identity that  can be maintained concurrently. The default value is no maximum size that is specified</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>com.sun.jndi.ldap.connect.pool.prefsize</td>
+      <td class='confluenceTd'>The string representation of an integer that indicates  the preferred number of connections for each connection identity that needs to be maintained concurrently. The default value is that there is no preferred size.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>com.sun.jndi.ldap.connect.pool.timeout </td>
+      <td class='confluenceTd'>The string representation of an integer that denotes  the number of milliseconds that an idle connection may remain  in the pool without being closed and removed from the pool. The default value is that there is no timeout.</td>
+    </tr>
+  </tbody>
+</table>
+<p>Examples of setting these parameters from a JVM command line are as follows:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">-Dcom.sun.jndi.ldap.connect.pool.maxsize=20
+-Dcom.sun.jndi.ldap.connect.pool.prefsize=10
+-Dcom.sun.jndi.ldap.connect.pool.timeout=300000</pre>
+</div>
+</div>
+<p><strong>Note:</strong> Each Web  container has different ways to specify JVM options. Consult your Web container documentation for details.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+
+</body>
+</html>

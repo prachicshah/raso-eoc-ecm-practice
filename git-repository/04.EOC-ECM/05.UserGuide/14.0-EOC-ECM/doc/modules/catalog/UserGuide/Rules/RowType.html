@@ -1,0 +1,196 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Catalog Row Types</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+<h4><a name="Row">Row</a></h4>
+<p>The info row object is result of the <a href="../Objects/InfoTable.html">Info table</a> select operation. It is a read-only object that allows access to the  corresponding Info table column values by name using dot notation. The columns are simple String or Number data types. See <a href="../Objects/InfoModels.html">Info models</a> for details.</p>
+<p>The following row operations can be performed:</p>
+<ul>
+  <li><a href="#SelectOneRow">Select one row of an Info table</a></li>
+  <li><a href="#SelectOneValue">Select one value from an Info table</a></li>
+  <li><a href="#SelectRowCount">Select the count of Info table rows that match the search criteria</a></li>
+  <li><a href="#SelectRowsInfoTable">Select many rows of an Info table</a></li>
+  <li><a href="#RowExistence">Check for the existence of a row that matches the search criteria</a></li>
+  <li><a href="#ExpressionsInfoTables">Use expressions with Info tables</a></li>
+</ul>
+
+<h5><a name="SelectOneRow"></a>Select One Row of an Info Table</h5>
+
+The select row operation returns one InfoRow object. If the search criteria results in more than one row, an exception will be thrown. If no rows are found, the operation returns null. The operation has
+
+the following syntax:<br>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+select [single] row from &lt;table name&gt; where  
+  &lt;column name&gt;&lt;search operation&gt; &lt;expression&gt; and ...
+  &lt;column name&gt;&lt;search operation&gt; &lt;attribute expression&gt;
+</pre>
+</div>
+</div>
+
+<p>The following is an example:
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+Variable aRow is Row
+  aRow:= select single row from MyTable where Col1="Toronto" and Col2=5
+</pre>
+</div>
+</div>
+
+<h5><a name="SelectOneValue"></a>Select One Value from an Info Table</h5>
+
+The select column operation returns the value of one column of a row in the Info table that matches the search criteria. The returned value is number of string. If the search criteria result in more than one row, an exception is thrown. If no rows are found, the operation returns null.
+
+The operation has the following syntax:<br>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+select <column name> from &lt;table name&gt; where  
+&lt;column name&gt;&lt;search operation&gt; &lt;expression&gt; and ...
+&lt;column name&gt;&lt;search operation&gt; &lt;expression&gt;
+</pre>
+</div>
+</div>
+
+<p>The following is an example:
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+Rule is: (select distanceFromCO from MyTable where
+ Col1="Toronto" and Col2=5) < 3000
+</pre>
+</div>
+</div>
+
+<h5><a name="SelectRowCount"></a>Select the count of Info table rows that match the criteria</h5>
+
+The select row count operation returns the number of rows in the Info table that matches the search criteria. If no rows are found, the operation returns 0. The operation has the following syntax:
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+select row count from &lt;table name&gt; where  
+  &lt;column name&gt;&lt;search operation&gt; &lt;expression> and ...
+  &lt;column name&gt;&lt;search operation&gt; &lt;attribute expression> 
+</pre>
+</div>
+</div>
+
+<p>The following is an example:
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+Count := select row count from MyTable where Col1 in "Toronto", "Vancouver", "Montreal"
+</pre>
+</div>
+</div>
+
+<h5><a name="SelectRowsInfoTable"></a>Select many rows of an Info table</h5>
+
+The select rows operation returns an array of InfoRow objects or null if no rows match the search criteria. The returned array may be sorted according to the order criteria. The operation has the following syntax:
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+select [many] rows from &lt;table name&gt; [where  
+  &lt;column name&gt;&lt;search operation&gt; &lt;expression&gt; and ...
+  &lt;column name&gt;&lt;search operation&gt; &lt;attribute expression&gt; 
+  [ordered [by] 
+    &lt;column name&gt; [asc[ending]/des[cending]] [,]
+    &lt;column name&gt; [asc[ending]/des[cending]] ...]]
+</pre>
+</div>
+</div>
+
+<p>The optional <tt>ordered by</tt> clause specifies how the result rows are sorted. It may specify one or many columns, as well as the ascending or descending option for each column. If the <strong>no sort</strong> option is specified, the default option is <strong>ascending</strong>.  </p>
+<p>The following is an example:</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+For each row in select rows from MyTable where Col1="Toronto"
+</pre>
+</div>
+</div>
+
+<h5><a name="RowExistence"></a>Check for Existence of a Row that Matches the Criteria</h5>
+
+The exists operation returns true if there is at least one row in the Info table that matches the search criteria. If no rows are found, the operation returns false.
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+exist[s] [a] row in &lt;table name&gt; where  
+&lt;column name&gt;&lt;search operation&gt; &lt;expression&gt; and ...
+&lt;column name&gt;&lt;search operation&gt; &lt;attribute expression&gt; 
+</pre>
+</div>
+</div>
+
+
+<p>The following is an example:
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+if does not exist a row in MyTable where Col1="Toronto" then
+</pre>
+</div>
+</div>
+
+<h5><a name="ExpressionsInfoTables"></a>Use Expressions with Info Tables</h5>
+Some Select operations return values and can be part of expressions. If there are operations to the right side of the Select operation, put the whole operation in parentheses. 
+
+<p>The following is an example:
+
+<p>T1 is an Info table that contains the following data:
+  <p>  
+<table width="112" border="1" cellpadding="1">
+  <tr>
+    <th width="51" align="left" scope="col" class='confluenceTh'>a</th>
+    <th width="51" align="left" scope="col" class='confluenceTh'>c</th>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>7</td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td>28</td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td>42</td>
+  </tr>
+</table>
+
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+b := 5;
+res := (select c from T1 where a = b) + 12; // res is 19
+res :=  select c from T1 where a = b  + 12; // res is 28
+</pre>
+</div>
+</div>
+
+<p>&nbsp;</p>
+
+</td>
+</tr>
+</body>
+</html>

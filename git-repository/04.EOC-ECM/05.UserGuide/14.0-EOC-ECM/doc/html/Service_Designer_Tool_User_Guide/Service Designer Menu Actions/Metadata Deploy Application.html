@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Deploy Application</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td valign="top" class="pagebody"><h2>Deploy Application</h2>
+      <p>To run your metadata from an application server, the metadata needs to be in the database, instead of in the file system. Velocity Studio provides an option to  transfer  application and library metadata, and resources to the  database. Once you have created your metadata, you can deploy it to the database in two ways</p>
+      <h3>Deploy through Velocity Studio </h3>
+      <p> To deploy an application to the database through Velocity Studio, follow these steps:</p>
+      <ol>
+        <li>Click <strong>Runtime</strong> &gt; <strong>Deploy Application </strong>from the menu bar. The Deployment Options dialog  appears.</li>
+        <p><img src="DeploymentOptions.png" width="525" height="171" alt="Deployment Options dialog"></p>
+        <p><strong>Note: </strong>To generate the WSDLs and  to save them in the database, select the <strong>Generate WSDLs</strong> checkbox. If this checkbox is selected, the WSDLs and the schemas are saved in the  CW_METADATA table in the database.</p>
+        <li>Click the <strong>Yes</strong> button. The Deploying Metadata and Resources dialog appears. Once the deployment is complete, the Console pane displays a summary of the number of objects transferred in a certain time.<br>
+          <br>
+          <img src="DeploymentMessage.png" alt="Deployment Message" border=1 /> <br>
+        </li>
+      </ol>
+      <p><strong>Note:</strong> The <strong>Deploy Application</strong> command is  only enabled when a project has been opened and no validation errors exist in the metadata. Otherwise, the command is disabled (that is,  greyed out). </p>
+      <p>Once the application is deployed, you can use the deploy application command  to update the deployed  metadata.  You can make changes,  deletions, or additions in the metadata and then use this command to  synchronize the local metadata  with the deployed metadata.</p>
+      <h3><a name="deployCommand"></a>Deploy through the Command Line</h3>
+      <p>You can deploy your application  using a command line:</p>
+      <ul>
+        <li>In Windows, use <tt>deploy.cmd</tt></li>
+        <li>In Unix or Linux, use <tt>deploy.sh</tt></li>
+      </ul>
+      <p>The following describes the syntax of the command-line interface and the available arguments. A shortcut command can be found in <b><strong>&lt;<em>installation_folder</em>&gt;</strong>\designer\env\deploy.cmd</b>:</p>
+      <div class="code">
+        <div class="codeContent">
+          <pre>
+@echo off
+if ""%1""=="""" goto echoSyntax
+if ""%2""=="""" goto echoSyntax
+if ""%3""=="""" goto echoSyntax
+if ""%4""=="""" goto echoSyntax
+if ""%5""=="""" goto echoSyntax
+if ""%6""=="""" goto echoSyntax
+
+IF ""%1""==""-logFile"" (
+  	set LOG_FILE=%2
+	set JDBC_URL=%3
+	set APP_NAME=%4
+	set APP_VERSION=%5
+	set META_DIR=%6
+	set CREATE_APP=%7
+	set GENERATE_WSDL=%8
+) ELSE (
+	set JDBC_URL=%1
+	set APP_NAME=%2
+	set APP_VERSION=%3
+	set META_DIR=%4
+	set CREATE_APP=%5
+	set GENERATE_WSDL=%6
+)
+
+set CWOC_CLASSPATH=<span class="code-java">C:\14\14441</span>
+set CLASSPATH=%CWOC_CLASSPATH%\designer\Designer.jar;^
+%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^
+%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^
+%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^
+%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^
+%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^
+%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;
+
+set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m -Dcom.conceptwave.licenseDir="%CWOC_CLASSPATH%"\designer\env -Dcom.conceptwave.modules.path="%CWOC_CLASSPATH%"\modules
+
+IF ""%1""==""-logFile"" (
+	"C:\Program Files\Java\jdk1.7.0_51\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -deploy -logFile %LOG_FILE% -jdbc=%JDBC_URL% -app_name=%APP_NAME% -app_version=%APP_VERSION% -create_app=%CREATE_APP% -generate_wsdl=%GENERATE_WSDL% %META_DIR%
+) ELSE (
+	"C:\Program Files\Java\jdk1.7.0_51\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -deploy -jdbc=%JDBC_URL% -app_name=%APP_NAME% -app_version=%APP_VERSION% -create_app=%CREATE_APP% -generate_wsdl=%GENERATE_WSDL% %META_DIR%
+)
+
+goto end
+:echoSyntax
+echo -----------------------------------------------------------------------------
+echo Syntax: 
+echo deploy [-logFile logFile] JDBC_URL application_name application_version metadata_path create_database_application(true/false) generate_wsdl(true/false)
+echo JDBC_URL could be user@host:port:sid,user@host:port/service_name or any jdbc url 
+echo Example: 
+echo deploy  "cw@localhost:1521:orcl ON Version1.0 c:\metadata_path" false false
+echo deploy  "cw@oracle.jdbc.driver.OracleDriver;jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=on)(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl))) ON Version1.0 c:\metadata_path false false"
+echo (refer to documentation for details.)
+echo ------------------------------------------------------------------------------
+:end
+</pre>
+        </div>
+       
+        </div>
+      <p> <strong>Note:</strong> To deploy the application, instead of specifying the metadata project's folder path, you can specify the <a href="Metadata Build Deployment JAR.html">deployment JAR</a> file path  with the <em>metadata_dir</em> argument of this command.</p></td>
+  </tr>
+</table>
+</body>
+</html>

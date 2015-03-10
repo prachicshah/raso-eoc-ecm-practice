@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>External Service Participant</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>External Service Participant</h2>
+<p>The External Service Participant represents the external services that the process needs to interact with. The External Service Participant defines the metadata Interface element which defines all the Operations that can be invoked on the service.</p>
+
+<p>The framework uses an abstract definition (<a href="../Metadata_Objects/External Services/defining an interface.html">Interface</a> and <a href="../Metadata_Objects/External Services/defining an interface operation.html">Operation</a>) when it needs to specify an external service invocation. The Process Manager will automatically select the proper <a href="../Metadata_Objects/External Services/defining a port.html">port</a> where the actual <a href="../Metadata_Objects/External Services/defining a service.html">service</a> is located.</p>
+<p>All invocations of External Service Participant Operations are delegated to the <a href="process types.html">interface process</a> that services this Interface. If any errors occur when invoking the external service operation by the interface process, the interface process will send an <em>External interface error</em> <a href="process exceptions.html">exception</a> to the process that requested this Operation.</p>
+<p>The External Service Participant can be configured to <a href="../../Configuration_Tool_User_Guide/Services Services.html">retry an Interface Operation</a> until it succeeds, instead of returning an exception to the requesting process. This can be useful, for example, when connecting to an external service over a public network (such as the Internet), where occasional network glitches are expected.</p>
+<!--<p><b>Note</b> The interface process that services this External Service Participant's interface must be executed by a process engine that have the approprite libraries (e.g. Axis libraries for SOAP, Tibco Rendezvous libraries for Tibco) included in the <a href="../../Process_Engine_Configuration_Guide/2.0 process engine start script.html">Process Engine Start Script</a>.</p>-->
+
+<h4>External Service Participant General Properties</h4>
+<p>The External Service Participant is <a href="participants.html#new">created with Participant's <b>Task type</b> as <i>Automated</i></a>, and then select an <i>Interface</i> in the <b>Actor</b> property in the <b>General</b> tab as shown below.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="extServiceParticipantGeneral.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+<p>The <b>Return</b> <b>error</b> <b>to</b> <b>process</b> flag should be selected if the process expects to receive an error message when the Operation fails. This flag works in conjunction with an Operation of the type &quot;Request-Response&quot;. Operations of the type <em>Request-Response</em> will wait for a successful response or an error message.</p>
+<p>When the Participant has the <strong>Return error to process</strong> checkbox selected, the 
+  Interface process sends a document about the error to the calling user   process. 
+  In CW templates, the <strong>message</strong> (String) field is available in document.("cwf_pm:processExcpDoc"). 
+  This document is delivered to   appropriate exception handler in the user process.  </p>
+<p>In the <strong>Before</strong> script, extended   information about error may be received by using the following:<BR>
+</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">var errorString = document.message;
+</pre>
+</div>
+</div>
+<p>The <b>Invoke directly</b> flag should be selected to avoid invocation of the Interface through the <a href="../../Configuration_Tool_User_Guide/Processes PE Processes.html">interface process</a> in Process Engine. The default value is false. When this flag is checked, all 'Operation' activities sending message to the current participant will invoke the Interface directly, regardless of the status of the <b>Invoke Directly</b> flag in those <a href="process activity properties.html">activities</a>. (Note: In the process activity <b>Operation</b>, when you choose an External Service Participant as the participant, then option <b>Invoke Directly</b> is also available.)</p>
+<p>The interface process is a system process and is not exposed in the metadata. This process is in charge of converting data message objects from their string format to XML objects, so the actual message being sent is a Java XML object and not a simple string. When you invoke directly, the external service receives the message content as a string (with XML tags), and not as a .xml file/object.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

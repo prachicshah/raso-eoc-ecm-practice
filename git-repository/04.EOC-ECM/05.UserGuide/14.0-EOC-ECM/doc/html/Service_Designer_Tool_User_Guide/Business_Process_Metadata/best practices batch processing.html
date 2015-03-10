@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>Best Practices for Batch Processing</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Best Practices for Batch Processing</h2>
+<p> Batch processing often involves processing  sizable files that can lock system resources for a considerable period. To  guarantee overall system performance is maintained while generating or  processing batch files or both, follow these guidelines:</p>
+  <ul>
+  <li>Avoid generating or processing batch files within the foreground or order-related workflow. Leave the heavy lifting to background processes.</li>
+  <li>Assign a low priority to the background processes.</li>
+  <li>Schedule these background processes so that they perform their work  only as required, rather than continually polling for work.</li>
+  <li>Use asynchronous messaging to avoid locking the foreground processes  that are generating or waiting for transactions, or both.</li>
+  <li>Minimize the number of accesses to the batch file being created to  reduce the probability of locking and exceptions (that is, do not allow one  record to be written at a time by multiple processes or events).</li>
+</ul><br>
+<h3>Generate a  Batch Transaction</h3> 
+ <p> When generating a batch transaction file,  follow these steps:</p>
+ <ul>
+  <li>Model a data structure to represent the message that is to be generated  (a single line in the batch file).</li>
+  <li>Model an interface to represent the external participant that will  be processing the batch file (for example, switch activation).</li>
+  <ul>
+    <li>The interface should contain an  interface, operation, binding, service, and port.</li>
+    <li>The operation should have as  the input message the data structure modelled previously.</li>
+    <li>Bind the interface to JavaScript.</li>
+    <li>Specify the script to be <em><tt>return nameSpace.scriptName(input);</tt> where</em> the <em><tt>nameSpace</tt></em> and <em><tt>scriptName</tt> </em>reflect those assigned in  your metadata.</li>
+  </ul>
+  <li>Model a database table using a document to act as a message queue.</li>
+  <ul>
+    <li>Define a primary key, such as a  System Document ID.</li>
+    <li>Define a lengthy string field to  carry the message, or use the methods to get or set BLOB fields if the length  is indeterminate.</li>
+    <li>Define a field to carry the response.</li>
+    <li>Define a status field, for example,  written, batched, processed, closed, or rejected.</li>
+    <li>Define fields to identify the initiator, such as the  Process ID.</li>
+  </ul>
+  <li>Define the script referred to in the binding:</li>
+  <ul>
+    <li>It should take the data structure  (passed to it as the variable <strong>input</strong>)  and insert a row in a message queue (that is, create the document, set the  fields, and save).</li>
+    <li>If needed, it may return  another data structure indicating success or failure.</li>
+  </ul>
+  <li>Define a global process to generate the batch file:</li>
+  <ul>
+    <li>Define the process as a low  priority process.</li>
+    <li>Schedule the process to iterate  periodically (for example, every hour, or every day at 02:00).</li>
+    <li>The global process would, through  a single script activity:</li>
+    <ul>
+      <li>Create a new file.</li>
+      <li>Write a record for each row in the message queue where the status is <strong>written</strong>.</li>
+      <li>Close the file.</li>
+      <li>Update the status of each row processed to <strong>batched</strong>.</li>
+    </ul>
+  </ul>
+</ul>
+ <h3>Process a Batch  Transaction</h3>
+<p> When processing a batch transaction file, follow  these steps:</p>
+  
+<ul>
+  <li>Define a global process to process the batch file.</li>
+  <ul>
+    <li>Define the process as a low  priority process.</li>
+    <li>Schedule the process to iterate  periodically (for example, every hour, or every day at 02:00).</li>
+    <li>The global process would, through  a single script activity:</li>
+    <ul>
+      <li>Get a directory listing of the files available and iterate through  the files to be processed, if any.</li>
+      <li>For each file, open it.</li>
+      <li>For each record in the file, perform the required action.</li>
+      <li>Close the file.</li>
+    </ul>
+  </ul>
+  <li>Where the batch file processed is a response file to prior requests,  the required action may be one of the  following: </li>
+  <ul>
+    <li>Update the appropriate row in  the message queue with the response.</li>
+    <li>Set the status to <strong>processed</strong>.</li>
+    <li>If required or expected, send  the response message to the initiator (identified by, for example, the Process  ID) using a message such as <em>sendMessageToProcess.</em></li>
+    <li>The initiator, upon receipt of  the message, can set the message queue's status to <strong>closed</strong> (define an archiving process).</li>
+    <li>Where the batch file processed  is a request for service (for example, a new order, status update, and so on), it is  recommended that the actions being performed be decoupled from the processing  the batch file. To accomplish this task, send a message to a participant whose  interface is managed by a global process. See the next section.</li>
+  </ul>
+</ul>
+<h3>Define a Global  Process-Based Message Queue</h3>
+<br>
+<p>To allow parallel processing of batch files  and to better control the resources allocated to batch file processing, define  a system-managed message queue through global processes and an interface.</p>
+  <ul>
+ <li>Define an interface.</li>
+  <li>Define a global process to manage the interface.</li>
+  <ul>
+    <li>Define the global process.</li>
+    <li>Set a priority suitable to the  operation.</li>
+    <li>Specify the defined interface  as the interface in the General tab.</li>
+    <li>Add an operation activity in  the process node where the operation is specified, but the participant is left  blank.</li>
+    <li>Perform the required action (for  example, create an update in the after script of the operation node).</li>
+    <li>Iterate the process with the required  frequency.</li>
+  </ul>
+  <li>Define as many copies of this global process as needed to obtain  required performance. For example, to  process 5 in parallel, define 5 global processes.</li>
+</ul></td>
+</tr>
+</table>
+</body>
+</html>

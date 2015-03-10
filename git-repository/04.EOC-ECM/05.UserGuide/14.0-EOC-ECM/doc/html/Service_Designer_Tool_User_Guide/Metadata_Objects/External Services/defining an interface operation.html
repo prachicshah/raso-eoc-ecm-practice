@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>Defining an Interface Operation</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Defining an Interface Operation</h3>
+<p>An Interface Operation is an abstract description of an action supported by the service. It defines messages that are exchanged between the service provider and AVM runtime. The Interface Operation name is usually served as a function or request name that is invoked on the service provider.</p>
+<p>An Interface Operation can be added directly under an Interface element. </p>
+<p>To add an Interface Operation, do the following:</p>
+<ol>
+  <li>Right-click the <i>Interface</i> node in the <b>Navigation</b> pane of Velocity Studio<b>.</b></li>
+  <li>Select the <b>New Operation</b> command. The <b>New Operation</b> wizard appears as pop-up.</li>
+  <li> Type in the name of Interface Operation (must conform to JavaScript naming conventions), and populate other fields as desired.</li>
+  <li>Click the <b>Finish</b> button.</li>
+</ol>
+<p>After the Interface Operation is created, the icon appears under the Interface icon.</p>
+<p><img src="newInterfaceOperationNode.png" align="absmiddle" border="1" alt="New Interface Operation Node" /></p>
+<h4>Defining Interface Operations for (manual) Participant</h4>
+<p>As a shortcut for creating <a href="../../Business_Process_Metadata/user participant.html">manual participant</a> response choices, multiple common Interface Operations can be created under an Interface using the <b>New Participant Operations</b> in its right-click pop-up menu. Upon clicking the command, a pop-up appears to allow selecting from a list of common responses in manual participant operations:</p>
+
+<img src="InterfaceParticipantOperations.png" border="0" alt="New Operation - Participant operations" />
+
+<p>Select the items from the list and then click the <b>Finish</b> button. For each selected item, an Interface Operation of <b>Notification</b> type is created based on the item name.</p>
+
+<p><img src="InterfaceParticipantOperattionNodes.png" align="absmiddle" border="1" alt="Interface Participant Operattion Nodes" /></p>
+
+<h4>Interface Operation General Properties</h4>
+<p>You can define general Interface Operation properties on the <b>General</b> tab. The following table describes the fields.</p>
+<p><img src="InterfaceOperation.png" align="absmiddle" border="1" alt="Interface Operation General Properties" /></p>
+<p><ins>Description of fields in General tab of the Interface Operation properties.</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Fields</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory. Name of the Interface Operation within the namespace.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Mandatory. Label to identify the Interface Operation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the Interface Operation for documentation purposes.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Input</b></td>
+<td class='confluenceTd'>Message or input parameters that are sent to the service provider.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Output</b></td>
+<td class='confluenceTd'>Message or output parameters that the service provider responds with.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Fault</b></td>
+<td class='confluenceTd'>Message that can be sent by the service provider instead of an <b>Output</b> message, when the service provider wants to respond with a fault (error) condition. Fault messages are supported only by service providers that are capable of sending XML messages (such as SOAP or XML over HTTP).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Operation type</b></td>
+<td class='confluenceTd'><p>The type of message exchange that this Interface Operation supports. The type can be one of the following four options:</p>
+  <table class='confluenceTable' border cellpadding="1">
+    <tbody>
+      <tr>
+        <th width="174" class='confluenceTh'>Operation Type</th>
+        <th width="52" class='confluenceTh'>Icon</th>
+        <th width="1248" class='confluenceTh'>Description</th>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><b>One-way</b></td>
+        <td class='confluenceTd'><b><img src="oneWayIcon.png" width="36" height="36" alt="one-way operation"></b></td>
+        <td class='confluenceTd'>The service receives an input message, but does not generate any output message.</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><b>Request-response</b></td>
+        <td class='confluenceTd'><img src="requestResponseIcon.png" width="36" height="36" alt="Request-response operation"></td>
+        <td class='confluenceTd'>The service receives an input message and sends an output message.</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><b>Solicit-response</b></td>
+        <td class='confluenceTd'><img src="solicitResponse.png" width="36" height="36" alt="Solicit response operation"></td>
+        <td class='confluenceTd'>Opposite of <em>request-response</em>. The service sends an output message and receives an input message. <br>
+          <strong> Note:</strong> This type appears for completeness to the specification, but is currently not implemented in the framework. This type of operation is normally used by subscription-based services.</td>
+        </tr>
+      <tr>
+        <td class='confluenceTd'><b>Notification</b></td>
+        <td class='confluenceTd'><img src="notifcationIcon.png" width="36" height="36" alt="Notification operation"></td>
+        <td class='confluenceTd'>Opposite to <em>one-way</em>. The service sends an output message. This type of operation would normally be used for event listeners. However, it is possible to create an interface call with a notification type.</td>
+        </tr>
+    </tbody>
+  </table>
+  <p><b>Notes:</b> </p>
+  <ul>
+    <li>The Operation names are defined from the viewpoint of the Client (for example,  One-Way is an outgoing message, Notification is an incoming message, Request-Response is a send-wait-receive message).</li>
+    <li>It is recommended that you use ANON_ROBUST_OUT_ONLY_OP to create the SOAP service client when the interface operation is one-way, but has fault defined in the metadata.</li>
+  </ul>
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Privileges</b></td>
+<td class='confluenceTd'>When the button is clicked at the end of the field, the <b>Select Privileges</b> dialog opens, allowing the user to select a combination of user privileges.
+<p>Privileges in an Interface Operation definition specify who can use this Operation. This definition overrides privileges defined in the Interface. If privileges are not defined, the privileges in the Interface definition are used instead. Currently, privileges are enforced only for API users (external systems using the framework's services).</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h4>Testing an Interface Operation</h4>
+<p>An individual Interface Operation with a <em>Request-Response</em> or <em>One-Way</em> <b>Operation type</b> has an <b>Invoke</b> <b>Operation</b> item in its right-click pop-up menu in addition to the common right-click menu items. When selected, this menu item opens the <b>Invoke</b> <b>Operation</b> dialog that allows the Interface Operation to be invoked with specified criteria. This option can be used to test the Interface Operation. </p>
+<p>The following example allows you to fill in the <strong>customerName </strong>field in the Input section. Click the <strong>Invoke</strong> button to see the results in the Output section. In this example, the <strong>successFlag</strong> field contains the correct input data with a confirmation message.</p>
+<p><img src="invokeOperationDialog.png" alt="Invoke Operation dialog"/></p>
+<strong>Notes:
+</strong><ul>
+  <li>Refer to section on Finder Operations for a description of a similar dialog, the <a href="../Finder/Finder Invoke.html"> Invoke Finder</a> dialog.</li>
+  <li>The <em>Global.invokeInterfaceUsePE()</em> can be used to invoke the callback script in interface operations. Refer to <a href="../../../../../Velocity Studio 6.0/html/JavaScripting in Order Care/com/conceptwave/scripting/Global.html">JavaScript documentation</a> for more information.</li>
+  <li>Applications can access certain information defined in participant and participant operations from script. See the MetadataParticipant and MetadataParticipantOperation classes in the JavaScript documentation for details.</li>
+  </ul>
+<p></td>
+</tr>
+</table>
+</body>
+</html>

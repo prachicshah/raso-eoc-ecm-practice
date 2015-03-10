@@ -1,0 +1,194 @@
+<html>
+<head>
+<title>Namespaces</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Namespaces</h2>
+<p>Application metadata in a project is organized into Namespaces. The namespace object organizes its metadata objects by displaying them in a static tree, with each sub-folder in the tree to contain a type of metadata object.</p>
+
+<p>The namespace is the first item you create under the metadata root element. There is no restriction on the number and types of the metadata objects created within the namespace. Objects in one namespace may refer to objects in other namespaces.</p>
+
+<p>Namespaces can be created within another namespace as well, in effect, creating a namespace hierarchy. There is no restriction on the depth of the hierarchy. For example, in the diagram, below, Namespace <i>alpha</i> contains child namespaces <i>one</i>, <i>two</i> and <i>three</i>. Sub-namespace <i>two</i> has further child namespaces <i>I</i>, <i>II</i> and <i>III</i>. In this example, the Document object <i>myDoc</i> in namespace <i>III</i> can be addressed by its full pathname, <i>alpha.two.III.myDoc</i>.</p>
+
+<p><img src="NStree.png" align="absmiddle" border="1" alt="Namespace Hierarchy" /></p>
+
+
+<p>For easy navigation of the project, it is a good practice to have different namespaces to contain metadata of different aspects of the application. For example, you may have a namespace for each external interface-related metadata, or for each functional component/module of your application.</p>
+
+<p><b>Note:</b> All system namespaces are prefixed with <em>cwf</em>. User namespaces should not begin with this prefix.</p>
+
+<h4><a name="new">Create New Namespace</a></h4>
+
+<p>To create a new Namespace, do the following:</p>
+<ol>
+  <li>In the <b>Metadata</b> tab of <b>Navigation</b> pane, right-click  a namespace or the on Metadata Root and select <b>New Namespace</b>.</li>
+  <li>The <b>New Namespace</b> wizard appears. Enter the <strong>Name</strong> of your namespace (must conform to JavaScript naming conventions), and fill in the  other fields, as necessary. </li>
+  <li>Click the <b>Finish</b> button to create your namespace.</li>
+</ol>
+
+<p>After the namespace is created, the namespace node appears under the node in the <b>Metadata</b> tab of the navigation<b> </b>pane.</p>
+
+<h4>Namespace Properties</h4>
+<p>The namespace properties are listed in the table that follows.</p>
+
+<p><img src="NSproperties.png" align="absmiddle" border="0" alt="Namespace Properties" /></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Name of the Namespace (used in scripts; must conform to JavaScript naming conventions).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Deprecated</b></td>
+<td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'><p>Namespace display label.</p>
+  <p><strong>Note:</strong> If you do not specify a label for your namespace, the name of the namespace appears in the Configuration application, under the <strong>Services</strong> &gt; <strong>Services</strong> tab.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the Namespace for documentation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>XSD Namespace</b></td>
+<td class='confluenceTd'><p>Defines a unique URL for this Namespace, for the purpose of defining XSD Namespace when the namespace is exported (for example, <i>http://www.conceptwave.com/template/oe</i>). See the section that follows for more details.</p>
+  <p><strong>Notes:</strong> </p>
+  <ul>
+    <li>Velocity Studio does not allow two different namespaces to have the same XSD name. A validation warning appears under such circumstances.</li>
+    <li>If the <strong>XSD Namespace</strong> field is not defined and you are generating a WSDL, the namespace name is used as the target namespace URL instead. </li>
+  </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>License protection namespace</strong></td>
+  <td class='confluenceTd'>This field is used in the metadata to identify each namespace used for <a href="NamespacesProtection.html">namespace protection using partner licences</a>.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Skip DB schema generation</b></td>
+<td class='confluenceTd'>If selected, skips SQL generation for all Documents from this Namespace.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Qualified</b></td>
+<td class='confluenceTd'><p>When this checkbox is checked, the generated XSD schema for this namespace sets the schema attribute <em>elementFormDefault</em> to <em>qualified</em>. This attribute determines whether all the children element or type in this namespace need to be namespace-qualified, meaning all elements or types in the XML instance should have be prefixed with its namespace.</p>
+  <p>As an example, if you have a namespace, tvNamespace, that has the <strong>Qualified</strong> checkbox selected, the namespace is qualified in the generated XML. To set the XML name for the header child nodes (for example, Version is a child node), you need to include the namespace as a prefix (for example, tvNamespace:Version).</p>
+  <p>To specify an attribute with a namespace qualification, create a  data structure attribute of type &lt;Any&gt;. You can then set its value to the qualified attribute and the value (for example,  ns1:attr1="xyz"). </p></td>
+</tr>
+</tbody>
+</table>
+
+<h4>Namespace Operations</h4>
+<p>The figure below shows the right-click menu for a namespace. The table below contains descriptions of menu items that are unique to namespaces; description of common menu items can be found <a href="../../Service_Designer_User_Interface/navigation pane - Metadata.html#PopUpMenu">here</a>.</p>
+<p><img src="NScontextMenu.png" align="absmiddle" border="1" alt="Namespace Operations" /></p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Menu Item</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>New Group</strong></td>
+  <td class='confluenceTd'><p>You can organize the metadata within your namespace by selecting <strong>New Group</strong> from the right-click menu to create a new group. Nested groups are allowed, as in the following example. Group 1 contains a script called Script2. Group 1 also has a subfolder, Group 1a, which contains a document finder called DocFinder1.</p>
+    <p><img src="NewGroup.png" width="287" height="308" alt="New group"></p>
+    <p><strong>Notes:</strong></p>
+    <ul>
+      <li>You can delete a group node by right-clicking it and selecting <strong>Delete</strong>. However, you cannot copy and paste a group node.</li>
+      <li>The <strong>Copy</strong>, <strong>Cut</strong>, and <strong>Paste</strong> functions are available for metadata under a group node by right-clicking your metadata and selecting the function that you want to perform.</li>
+    </ul></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Export XSD Schema</b></td>
+<td class='confluenceTd'>Exports XSD schema for the namespace. The system will create an XSD by the same name as the namespace in the directory specified.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Export WSDL</b></td>
+<td class='confluenceTd'>Exports WSDL for the namespace. This command is only visible when the namespace has a SOAP interface. The system will create the WSDL in the directory specified. See below section for details.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong><a name="ExportAvroSchema"></a>Export Avro Schema</strong></td>
+  <td class='confluenceTd'><p>Exports Avro schema for the namespace. The system creates Avro schema files (.avsc files) in the specified directory. The file-naming convention for these files is as follows:<br>
+      <em><strong>&lt;namespace&gt;</strong></em><strong>.<em>&lt;data structure name&gt;</em>.avsc</strong></p>
+    <p>To export Avro schema files for <em>only</em> referenced data structures, go to <strong>File</strong> &gt; <strong>Preferences</strong> &gt; <strong>Export</strong> and select the <strong>Export Referenced Types Only</strong> checkbox. If this checkbox is <em>not</em> selected, schema files for other data structures are also exported. You can then select any elements that you want to hide, if needed.</p>
+    <p>For Java namespace CIL serialization, the Avro schema filename conforms to these rules: </p>
+    <ul>
+      <li> If the Java namespace is specified in the data structure, the .avsc file is named as [<em>java_namespace</em>].avsc.<br>
+        <BR>
+        <strong>Note:</strong> You must re-export avsc and restart Velocity Studio to have CIL working.</li>
+      <li>If the Java namespace is not specified, the file is named as the metadata objects's [<em>fullpath</em>].avsc.</li>
+    </ul></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Show Dependency</b><b></b></td>
+<td class='confluenceTd'>Creates a list of dependent namespaces. Select one or multiple namespaces. The system will loop through all the child metadata to find a list of namespace dependencies. It will only return namespace dependencies - not dependencies with library files. Refer to the <a href="NamespaceDependencyExample.html">Namespace Dependency Example</a> for more details.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Create Library</b><b></b></td>
+<td class='confluenceTd'>Creates a library file for the selected namespace. Once the  user enters a name for the library file, the system will check for metadata dependencies across namespaces. If there are metadata dependencies with other namespaces, then the system will them and stop the library creation process. If there are no dependencies across namespaces, then the system will create a library JAR file for the selected namespace metadata and delete the namespace metadata. Refer to the <a href="NamespaceDependencyExample.html">Namespace Dependency Example</a> for more details.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Extract Metadata</b><b></b></td>
+  <td class='confluenceTd'>Creates a copy of the selected namespace metadata and its dependent library files to a new project. The system will check the selected namespace for dependent metadata across namespaces. If a dependent namespace is found, then the metadata is not copied to the new project.  If there are no dependent metadata with other namespaces  (with the exception of the library files), then a new project is created for the selected metadata within the namespace. Refer to the <a href="NamespaceDependencyExample.html">Namespace Dependency Example</a> for more details.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Map</b> <b>Documents</b> <b>to</b> <b>DB</b></td>
+  <td class='confluenceTd'>Creates DB mapping for Documents in the namespace. A Document must have a DB schema assigned to it to be affected by this command. It is equivalent to <a href="../../Service Designer Menu Actions/Map Documents to DB.html">Map Documents to DB</a> in main menu command.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Highlight</strong></td>
+  <td class='confluenceTd'>You can change the way your namespace looks within the tree, including its style (for example, bold, italic) and font colour. The <b>Highlighting Settings</b> dialog appears, allowing you to change the look of your namespace, use the <strong>Default</strong> highlighting, or use the <strong>Last Used</strong> highlighting.<br></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Last Highlight</strong></td>
+  <td class='confluenceTd'>Select this option to use the last highlighting style used on a metadata object within the tree.</td>
+</tr>
+</tbody>
+</table>
+<p><b>Notes:</b> </p>
+<ul>
+  <li>For XSD and WSDL exports, some metadata documents will not be included as not all complex documents and types conform to the XSD and WSDL standards.</li>
+  <li>Validation of generated XML directly against a schema is not available. Instead, the dataObject validate script API can be used to validate data content.</li>
+</ul>
+
+<h4><a name="exportWSDL">Export WSDL</a></h4>
+
+<p>You can export all <a href="../External Services/external services.html">External Services</a> in a namespace whose ports are binded to SOAP Service Provider, with the <b>Export WSDL</b> right-click menu command. All Services and dependent objects such as Binding, PortType, Message, etc are generated into the WSDL file.</p>
+
+<p>The availability of this menu command, and which SOAP service(s) is exported, depends on the currently selected node in the <b>Navigation Pane</b>. If the currently selected node is a metadata object that resides in a namespace that has a SOAP service (specifically, has a Service with at least one Port with a Binding that uses the SOAP service provider), this menu command becomes available. All SOAP services in the Namespace are exported in one WSDL file. Otherwise (for example, selected node has no SOAP service in the Namespace, or the selected node is an organizational-folder node such as "Data Dictionaries", or no node is selected at all), the command is disabled.</p>
+
+<p>You should connect to the Database before invoking this command, so that configurations set for the SOAP service in the Configuration application (for example, address information of Port) is properly exported as well. If the database is not connected when the menu command is invoked, the following prompt appears as a warning:</p>
+
+<p><img src="exportWSDLconnectDB.png" alt="" border="0" /></p>
+
+<p>You can ignore the warning by selecting <b>Yes</b> to export the WSDL, or click <b>No</b> to cancel the operation.</p>
+
+<p>The Export WSDL command opens the <b>Export WSDL</b> dialog. Specify the directory location to export the file as well as the filename. Click the <b>Save</b> button to export the file.</p>
+
+<p><img src="exportWSDL.png" alt="" border="0" /></p>
+
+<p><b>Note</b>: you can choose whether to export schema within the WSDL or not, by selecting such setting in <a href="../../Service Designer Menu Actions/Preferences.html"><b>File &gt; Preferences</b></a> menu.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

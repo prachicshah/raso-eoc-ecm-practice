@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Form Overview</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Form Overview</h2>
+<p>Forms define the presentation fragments of a Web page. Forms are always contained within a <a href="Configuring User Interface Object Overview.html">User Interface</a>  and  typically define the presentation for metadata object included in the User Interface. For example, a Document's Form defines the fields of a Document and how these fields are shown and edited. In contrast, Forms of top-level User Interface, typically construct a  Web page component or section to be included in a Page. Forms cannot be requested by a Web browser directly. </p>
+
+<p> Forms can reference other Forms using a Form Frame (or similar Elements). For example, when configuring a  search Form such as a Finder, this form can reference a Document Form to show search results. </p>
+<h3>Form Editor</h3>
+
+<p>In Velocity Studio, the Form editor has three main components:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th width="139" class='confluenceTh'>Component</th>
+<th width="1100" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Element Tree Pane</b></td>
+<td class='confluenceTd'>Elements assembled in tree structure that determines how the Form is rendered. The root of the tree is the Form name.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Element Properties Pane</b></td>
+<td class='confluenceTd'>Properties of the element selected in the Element Tree can be edited in this Pane.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Preview Pane</b></td>
+<td class='confluenceTd'>Previews the Form as assembled in the Element Tree. Interaction (clicking and inputs) with the Form in the preview pane is available with the  exception of variables and methods that are referenced by Form Elements.</td>
+</tr>
+</tbody>
+</table>
+<br>
+
+<img src="Form.png" align="absmiddle" border="1" alt="Web page as a form " />
+  
+
+<h4>Form Icons</h4>
+<p>Form icons provide information about the state and functionality of a Form.</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="78" class='confluenceTh'>Form Icon</th>
+      <th width="289" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><img src="form_status_new.png" alt="New form icon"/></td>
+      <td class='confluenceTd'>New Form</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><img src="form_status_locked.png" alt="Locked form icon"/></td>
+      <td class='confluenceTd'>Form is locked. The Form is inherited from a base User Interface and is read only.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><img src="form_status_extended.png" alt="Extended form icon"/></td>
+      <td class='confluenceTd'>Form is extended from another Form.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><img src="form_status_override.png" alt="Overridden form icon"/></td>
+      <td class='confluenceTd'>Form is overridden from a locked Form.</td>
+    </tr>
+  </tbody>
+</table>
+<h4>Previewing with Style Sheets and Skins</h4>
+<p>In addition to using the toolbar, you can refresh the Preview Pane with the refresh icon <img src="iconRefresh.png" align="absmiddle" border="0" alt="Refresh icon" />, and also choose <b>a Style sheet</b> and a <b>Skin</b>. You can set the style sheet, by selecting the default system style sheet (cwf.css), or you can customize your own CSS style sheet as per your desired page design, and place the .css file under the <b>Resources</b> folder in your project (reloading project is required).  The Skin option governs the overall appearance of the Page. Choose from a selection in the Skin  list box; they are provided by our AJAX UI technology provider, <em>SmartClient</em>. The selected options in the Style sheet and Skin list box are not assigned to the Form itself. At runtime, style sheet and skin follows the Page that references the Form. </p>
+<p><strong>Note:</strong> You cannot create your own Skin.</p>
+<h4>Changing Language Preferences</h4>
+<p>You can specify the language of the Label property for each Form element by clicking the ellipses. The  Translation Editor opens where you can select the language preference for the label. If the Label property is a child to a parent Form element, the Inherit checkbox option is checked. The Inherit checkbox is checked by default, which means the element inherits the label of the Variable.  If unchecked, then you can specify a local label for the element. The language preference is not available when the Inherit option is active. </p>
+<p>To ensure that you have access to the language of your choice:</p>
+<ul>
+  <li>You need to add the  list of supported languages under the Metadata Header object in the <em>Languages</em> tab.</li>
+  <li>You must have a label for the default language (en-xx) for translations of other languages to work. If you do not specify a label in English, then  other languages will not appear in the list.</li>
+  <li>At runtime, there is a default language for translations. The language is set based on the following section of your metadata:<br>
+  <pre>&lt;locale type=&quot;loc&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;locale&gt;en_CA&lt;/locale&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;rightToLeft&gt;false&lt;/rightToLeft&gt;
+&lt;/locale&gt;</pre>
+  </li>
+</ul>
+
+<h4>Building New Forms</h4>
+<ol>
+  <li>Right-click the top-level User Interface node and click <strong>New Form</strong>. This creates a blank new  Form. </li>
+  <li>Continue by adding Form Elements to the Form and configuring the  properties. For more information about Form Elements, see <a href="Form Elements Overview.htm">Form Element Overview</a>.</li>
+  <li>To expedite Form creation, use the <a href="Element - Variable.htm">Variable</a> Form Element shortcut to create appropriate Form Elements for the User Interface variables.</li></ol>
+ 
+  <p><strong>Note</strong>: Upon creation of the metadata object, many metadata types (such as Finders, Orders, Documents), derived metadata objects and default Forms may already exist under the  User Interface.</p>
+
+<h4>Generated Forms</h4>
+<p>If you are working with a particular metadata object such as   Documents or Orders, Forms can be generated under the Included User Interface using the <i>Generate Form</i> command. By right-clicking the User Interface node, a menu appears where you can select the <strong>Generate Form</strong> action. This action generates a User Interface Form for the Model with some default settings. Use the <strong>Generate Form</strong> command as the starting point for the Form and proceed by  customizing it according to your  needs.</p>
+
+<img src="form_generated.png" align="absmiddle" border="1" alt="Generate Form option" />
+
+<h4>Extend and Override Forms</h4>
+<p>The default Form provides a default User Interface presentation that you can customize. </p>
+
+<p><img src="form_extend_override.png" align="absmiddle" border="1" alt="Customize default user interface presentation by overriding or extending it" /></p>
+<p>You can customize the default User Interface presentation by selecting one of the following right-click menu options:</p>
+<ul>
+  <li>Use the <a href="Extending a Form.htm">Extend</a> function on a Form to retain the Form's current features. You can add, replace and delete Form Elements from the original Form to implement the desired modifications.</li>
+  <li>Use the <a href="Overriding a Form.htm">Override</a> function to completely override the Form's current features. You start building the overridden Form as a blank Form.</li>
+</ul></td>
+</tr>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,652 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Table</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Table</h2>
+<p>The table  element is used to display <a href="../Metadata_Objects/Finder/Finder _Form_Result.html">Finder Results Form </a>metadata in  table format. By default, the Result Form display data that is configured using an array of  documents in the Finder. Variables created for a document are assigned a type  (that is, string, decimal, integer). </p>
+<p><strong>Note: </strong>Velocity Studio features require a separate license key that is activated in Velocity Studio. </p>
+<img src="table_variables.png" alt="Table element - Variables" border="1" /></p>
+<p>The system uses these variables and generates a corresponding Form element under the Table element in the  Finder Result Form. The number of child Form elements that are displayed beneath the Table element (they must be set to visible) determines the number of columns displayed in the table at runtime.</p>
+
+<p><img src="table_result.png" align="absmiddle" border="1" alt="Child form elements determine the number of table columns displayed at runtime" />
+  </p>
+At design time, to locate the Table element, from the <strong>Select Form Element Type</strong> dialog box, expand the  Structures node. Form elements from the <strong>Input Elements</strong> and <strong>Misc Controls</strong> categories can be added beneath the table element. 
+<p> At runtime, if  table element is used with user interface that has any  validation errors, the errors are displayed  at the same time the table list is shown.</p>
+<p>The table element is also important to configure the following options:</p>
+<ul>
+  <li>Hover Forms</li>
+  <li>Editing Table Data</li>
+  <li>Cell Alignment</li>
+</ul>
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding="1" >
+  <tbody>
+    <tr>
+      <td class='confluenceTd'><strong>references Variable</strong></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>references Method</strong></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>references Form</strong></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Allowable Child Elements</strong></td>
+      <td class='confluenceTd'><p>Checkbox<br>
+        Date Field<br>
+        Date Time<br>
+        Hyperlink<br>
+        Large Text<br>
+        Large Text Area<br>
+        Reference Field<br>
+        Select Field<br>
+        Translation<br>
+        Upload File<br>
+        Variable <br>
+        Image<br>
+        Label <br />
+      </p></td>
+    </tr>
+  </tbody>
+</table>
+<p><a name="Properties">The following table describes  the properties of table element:</a></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="111" class='confluenceTh'>Property</th>
+<th width="146" class='confluenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+<th width="1356" class='confluenceTh'>Comment</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Name</strong></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>Name of the Table element.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Variable</strong></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>Choose from the list of Variables available in the User Interface to bind to this Table. Default is not assigned. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Auto Fit Data</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'><p>Set to <em>Vertical</em>, which allows the table to automatically resize to fit the incoming data. The <strong>Height</strong> property must be set  to a  numeric  value and defines the minimum height for the table. The <strong>Auto Fit Max Height </strong>property defines the maximum height for the table. The default value for this property is DEFAULT.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Auto Fit Max Height</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'> Set to a numeric value to automatically resize the table to fit the incoming data up to the defined height. Once this height is reached, a scroll bar  appears  to enable the user to view  all data.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Autosave on Data Change</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'><p><SPAN id="internal-source-marker_0.7914831275068198">By default, this property is set to true, meaning that  documents are automatically saved each time a record is edited. The default setting makes this feature fully backward-compatible. When this property is unchecked, </SPAN>editing rows in editable table are not saved automatically when exiting edit mode. Instead, table records must be saved by explicitly invoking the save method.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Can  Accept Drop</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>This property is used  to specify whether the table can accept a value dropped into it from another  table on the application user interface. Possible values are TRUE, FALSE, or a permission  method.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Can  Drag Out</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>This property is used  to specify whether you can drag a value out of the table to another table on the application user interface.  Possible values are TRUE, FALSE, or a permission method.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Can Re-order</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'><p>This property allows you to specify the sorting o<SPAN id="internal-source-marker_0.2526936889186334">rder of enumerations by dragging and dropping row elements in a table.</SPAN> You can set this property to TRUE, as indicated in this example:</p>
+    <OL id="internal-source-marker_0.">
+      <LI>Create a new finder. In the result form set, the Table element’s <strong>Can Re-order</strong> property to TRUE.</LI>
+      <LI> Add a save menu that is bound to a click method with a script using  this.result.getCurrentSequence().</LI>
+      <LI>Ensure that you have data in the database column for this finder.</LI>
+      <LI>Start runtime, load the finder, drag and drop some records from one row to another, and then click <strong>Save</strong>.</LI>
+      </OL></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Cell Height</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>The default height of each row in pixels.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Cell Width</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>The default width of each row in pixels.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Double Click Method</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>Executed when a row on a table is double-clicked. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong><a name="editable"></a>Editable</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'><p> Specifies whether the Table is editable, <em>True,</em> or read-only <em>False</em>. The property provides a list of   permission-based methods that set the permissions of the table.
+    Setting this property to true enables editing for Large Text, Reference, Translation and Checkbox elements when they appear within a Table. </p>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>For each   checkbox Form element in the Result Form, set the Toggle Edit property to <em>True</em>.   If you have overridden the <em>OnSelChanged</em> method (from the Methods tab of the User   Interface), ensure that the super implementation is called or the toggle edit   functionality will not function properly. Default is NONE, which is editable.</li>
+  <li>If a field contains  an editable permission that is either coming from the form field itself, or inherited  from the variable or data type, it takes precedence. Otherwise, the user  interface's editablePerm permission takes over. If this method is not  overwritten, the model's editablePerm permission is used. User interfaces  displayed under another user interface with editablePerm are also be inherited  if the embedded user interfaces do not have their own editablePerm permission. </li>
+</ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Fast Cell Update</strong></td>
+  <td class='referenceTd' valign=top>Optional</td>
+  <td class='referenceTd'><p>This advanced property improves performance for dynamic styling of grid-renderer cells in Internet Explorer, at the expense of slightly slower initial rendering and some limitations on supported styling options.</p>
+    <p>For finders that have slow scrolling speed, select the <strong>Fast Cell Update</strong> property, clear the <strong>Wrap Cells</strong> property, and then change the image type for all the images to <strong>center</strong>. </p>
+    <p><strong>Note:</strong> This property is only available when using Internet Explorer.</p></td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><strong>Filter Full Data</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>When this property is turned on, filtering, regardless of whether the data is shown per paging, occurs on the entire dataobjectlist. Filter criteria remains the same when you move from one page to another. Filter criteria are only cleared if you clear the data.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Get Drag Data Method</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>If no method is specified for this property, the system calls cwGetDragData as the  default method at  runtime. The cwGetDragData method returns an object. For Finder User Interface, the default implementation of cwGetDragData method will just return the object passed in. The <strong>Get Drag Data Method</strong> property is only available if  the <strong>Can Drag Out</strong> property is set to true or a permission method.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Get Drag Types</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>If no method is specified for this property, the system calls cwGetDragTypes as the  default method at runtime. The  cwGetDragTypes method returns a comma-separated string of metadata type names. For Finder User Interface, the default implementation of cwGetDragTypes  method will gather a list of metadata type names that correspond to the output object’s metadata type, and any objects in the metadata which extends this output type. The <strong>Get Drag Types</strong> property is only available if  the <strong>Can Drag Out</strong> property is set to true or a permission method.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Get Drop Data Method</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>If no method is specified for this property, the system calls cwGetDropData as the default method at runtime. The cwGetDropData method  returns an object. The default implementation will just return the object passed in. This method is called on the target controller near the beginning of cwOnDrop method. The <strong>Get Drop Data Method</strong> property is only available if  the <strong>Can Accept Drop</strong> property is set to true or a permission method.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Get Drop Types</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>If no method is specified for this property, the system calls cwGetDropTypes as the default method at  runtime. The cwGetDropTypes method returns an array of metadata type names. The implementation of cwGetDropTypes is the same as that of cwGetDragTypes.  The <strong>Get Drop Types</strong> property is only available if  the <strong>Can Accept Drop</strong> property is set to true or a permission method.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Group Start Open</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'><p>This property describes the default state of table groups when the table is grouped by values   for a given field or fields. The property can take the following values:</p>
+    <ul>
+      <li><strong>all</strong><br>
+        Open all groups.
+        <br>
+      </li>
+      <li>        <strong>none</strong><BR>
+        Start with all   groups closed.</li>
+      </ul>
+    <p>The default value is <strong>all</strong>.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Head Height</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>    The height of this table's header, in pixels.<BR>
+    <BR></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Header Style</strong></td>
+  <td  class='confluenceTd'  >Optional </td>
+  <td class='confluenceTd'>The CSS style applied to the day-of-week headers. By default this applies to all days of the   week. <BR>
+    <BR></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Height</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property represents the height used or consumed by the table.  The value is defined as the number of pixels (integer), or as a percentage of page height or of the parent element (for example, 30% of the page width or 150 pixels).</p>
+    <p>When the table height is set to 100%, it takes the parent's height. As an example, if you place a table into a form frame or a layout, it takes the height of the parent element. If the height of the parent element is not set, or is set in % and the parent's height is not set, it does  not know what the actual height should be.<BR>
+ <BR>
+The table does not have a minimum height. As a result, if the parent's height is not set properly, the form frame collapses its height to 0. </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Hide Header</strong></td>
+  <td  class='confluenceTd'  >Optional </td>
+  <td class='confluenceTd'><p>Header item for a collapsible section in a Dynamic Form. Each SectionItem is associated with a number of other items in the form, which is shown or hidden as a group when the section is expanded or collapsed. Clicking a SectionItem expands or collapse the section. To make a form where only one section is expanded at a time, set DynamicForm.sectionVisibilityMode to <em>mutex</em>.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Hover Form</strong></td>
+  <td  class='confluenceTd'  >Optional </td>
+  <td class='confluenceTd'>The form to show on hover. This form can be local to the finder user interface, or a form belonging to the hover variable's user interface. Additionally, a local string variable can be used to dynamically change the form to be used at runtime. This string variable should have ONLY the name of the form such as &quot;Default&quot;. Setting this property to a string variable will automatically use the hover variable's user interface to look for the form if it is provided, otherwise it will use the finder user interface for the form lookup.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Hover Method</strong></td>
+  <td  class='confluenceTd'  >Optional </td>
+  <td class='confluenceTd'>Specifies the  method used to display the  contents of the cell over which the user is hovering. The method must contain  a script that sets the cwShowHover variable to <em>True</em>.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Hover Style</strong></td>
+  <td  class='confluenceTd'  >Optional </td>
+  <td class='confluenceTd'>Style to apply to hovers shown over this   table.<BR></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Hover Variable</strong></td>
+  <td  class='confluenceTd'  >Optional </td>
+  <td class='confluenceTd'>Specifies a variable, for any user interface (that is, Document, Order), that displays a form when the user is hovering over a cell. The variable must be instantiated with a value.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Include in Tab Order</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property allows you to optionally suppress tabbing to any or all form elements. The <strong>Include in Tab Order</strong> property overrides the <a href="../../Configuration_Tool_User_Guide/Configure/System/UI/UItabbing.html">suppress tabbing</a> configuration setting and can take the following values:</p>
+    <ul>
+      <li>When set to <strong>&lt;Default&gt;</strong>, the element is included in tab order according to global rules and its focusable state.</li>
+      <li>If the property is set to <strong>Exclude</strong>, the element is excluded from tabbing even if the element is focusable.</li>
+      <li>If the property is set to <strong>Include</strong>, the element is included <em>only if it is focusable</em>, even if all items of that type are excluded through the Suppress Tabbing variable.</li>
+    </ul>
+    <p><strong>Note:</strong> For menu items and images, the <strong>Can Focus</strong> property affects including the element in the tab order. To ensure that an element is in the tabbing order, select this property.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Is Tile Grid</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>By default, this property is set to false. Select this property's checkbox if you want to use the tile grid layout.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Load Data Message</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>Defines the message that displays in the table body at runtime when data is being received from the application server. The default message is <em>Loading data</em>.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>No Items Message</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>Defines the message that displays in the table body when the table is empty. The property is used to suppress the default message <em>No items to show</em>.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>On Drag Method</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This property can  be used to specify a method that the system runs at runtime when a user drags an element from a tree or table in the application user interface. If no method is set for this property, the system uses cwOnDragOut as the default method  at runtime. This property  is only accessible if the <strong>Can  Drag Out</strong> property is set to true or a  permission method.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>On  Drop Method</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This property can  be used to specify a method that the system runs at runtime when a user drops an element (i.e., by releasing the mouse button) into a tree or table in the application user interface. If no method is set for this property, the system uses cwOnDrop as the default method at runtime. The cwOnDrop method will either copy or move the data being dropped. To copy, hold down the CTRL-key while you drag and drop. This property  is only accessible if the <strong>Can  Accept Drop</strong> property is set to true or a  permission method.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>On Enter</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The system will call any script defined in this property (including onInit, onClick and toString). This method is invoked when the form element is focused on the Web page and the user presses the ENTER key.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>On Filter Callback</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>During filtering, the table selection gets updated based on the filtered list. This property allows you to specify a callback method. During the filtering, the selection list on the dataobject list is updated so that the only selection that is tracked is currently selected in the filtered list. Once filtering has been performed and the results are returned to the browser, the method specified in the property is then called.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong><a name="scrollingOnUpdate"></a>Scrolling on Update</strong></td>
+  <td class='referenceTd' valign=top>Optional</td>
+  <td class='referenceTd'><p>This  property controls the scrolling behaviour after a table update and takes the following values:</p>
+    <ul>
+      <li><strong> Default</strong><br>
+        The table scrolls to the first selected record. If no record is selected, the table scrolls to the top of the records.</li>
+      <li><strong>Restore position</strong><br>
+        The table scrolls to the position before the update.</li>
+      <li><strong> No scrolling</strong><br>
+        The table always scrolls to the top after an update.</li>
+      </ul>
+    <p>See the Configuration user guide's <strong><a href="../../Configuration_Tool_User_Guide/Configure/System/UI/UIgeneral.html#scrollingOnUpdate">Scrolling on Update</a></strong> property for more information.</p></td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><strong>Select on View</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>There are instances where you want your application to  allow the user to double-click a row  to see its details and then come back to the table with previous selections still intact. To achieve this functionality, select this property's checkbox. See the example that follows on how to use this property.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong><span class="referenceTd">Selection Appearance</span></strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'><p>This property contains two options:</p>
+    <ul>
+      <li>simple</li>
+      <li>checkbox</li>
+      </ul>
+    <p> When <strong>checkbox</strong> is selected, the first column of  table contains a checkbox for each row. This checkbox allows you to select  a row in the table. Clicking the row itself neither selects the row, nor fires the <strong>Selection Changed Method</strong>. The <strong>Double Click Method</strong> is still applicable when this property is set to <strong>checkbox</strong>. See the example that follows on how to use this property.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Selection Changed Method</strong></td>
+  <td  class='confluenceTd'  >Optional </td>
+  <td class='confluenceTd'>This method is invoked when a selection is made in the Finder table.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Selection Type</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'><p>This property allows the table element's selection type to be configured at a form level.
+    Click this property's drop-down field and select from one of the following options:</p>
+    <ul>
+      <li><strong>DEFAULT</strong><br>
+        Other properties determine this selection type. See the note that follows.</li>
+      <li><strong>single</strong><br>
+        Select only one item at a time.<br>
+      </li>
+      <li><strong>multiple</strong><br>
+        Select one or more items by holding the <em>Ctrl</em> or <em>Shift</em> key.<BR>
+      </li>
+      </ul>
+    <p><strong>      Note:</strong> The following rules determine the table selection type:</p>
+    <ol>
+      <li>If the UserInterface-level cwTableSelection  variable is set, use it to ensure backward compatibility.</li>
+      <li> Otherwise, if the <strong>Selection Type</strong> form-level property  is set, use it.</li>
+      <li> If nothing has been set in the previous steps, the table element's <strong>Selection Appearance</strong> property determines the selection type.</li>
+      <li>If the <strong>Selection Appearance</strong> property is <strong>DEFAULT</strong> or <strong>simple</strong>,  the selection type is <strong>multiple</strong>.</li>
+      <li>        If the <strong>Selection Appearance</strong> property is <strong>checkbox</strong>, the selection type is to select one or more items as a toggle, so you do not need to hold down control keys to select more than one object.</li>
+    </ol></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Show Detail Column</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'> Specifies whether the Table's detail columns display (<em>True</em>) or hide (<em>False</em>). Default is true. At runtime, the user must click the icon to display or hide the column's data.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong><a name="showFilter"></a>Show Filter</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'> Specifies whether the Table can be filtered (<em>True</em>) or no filtered (<em>False</em>). Default is False.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Status Icon Left Coordinate</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This property allows you to control the left coordinate of the status icon for tile table layouts (see the <strong>Is Tile Grid</strong> property). This property's default value is 5.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Status Icon Top Coordinate</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property allows you to control the top coordinate of the status icon for tile table layouts (see the <strong>Is Tile Grid</strong> property). This property's default value is 70.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Style</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Choose from styles within the selected stylesheet (located in the Velocity Studio toolbar), which defines the styling of the Table such as positioning and color. Default is NONE.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong><a name="summaryRowStyle"></a>Summary Row Style</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>Specifies the style of your summary row. Click the drop-down menu under <strong>Values</strong> and select from the styles available.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tile Label Align</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'><p>This property indicates the alignment of each tile label. Click the drop-down menu and select from one of the following options:</p>
+    <ul>
+      <li><strong>Left</strong></li>
+      <li><strong>Right</strong></li>
+      </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tile Count</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>This property allows you to specify how many tiles to display per row. By default, this property is set to 0.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tile Size</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>This property determines both the width and height in pixels. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tile Style</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>This property determines the style of each tile. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tooltip</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'> Defines the tooltip text, which is displayed in a hover box when the cursor hovers over the Label. Default is empty, which means no tooltip for the Label.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Visible</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'><p>Defines the user permissions assigned to this layout. Pre-defined system Permissions such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and visiblePerm can be assigned as well as Object Permissions. Defaults to NONE, which means no permissions assigned. Setting the property to TRUE shows the table at runtime; otherwise, its value set to FALSE hides the table at runtime.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Width</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>Width used or consumed by the Table. The value is defined as the number of pixels (integer) or as a percentage of page width or of the parent element. For example, 30% of the page width or 150 pixels.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong><a name="wrapCells"></a>Wrap Cells</strong></td>
+  <td  class='confluenceTd'  >Optional</td>
+  <td class='confluenceTd'>If <em>True</em>, column contents can wrap. If <em>False</em>, all   the content  appears on a single line. <br>
+    <br>
+    <strong>Note:</strong> The text contained in the column must contain spaces or the system will not wrap the text.<BR></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:  </strong></p>
+<ul>
+  <li>For information about table functionality at runtime, see <a href="../Metadata_Objects/Finder/Finders at Runtime.html">Finders at Runtime</a>.</li>
+  <li>Radio button Form elements are not allowed in the Table. Instead  add  a Select element to the table.</li>
+  <li>You can resize the columns of your finder table based on the percentage for input fields. If the width is not specified, the product uses a default <strong>Width</strong> of 100 px.</li>
+  <li>The column height cannot be configured separately in tables. Instead, use the Table element's <strong>Cell Height</strong> property and set the <strong>Wrap Cells</strong> set to true, which changes the height of every column. Scroll bars for cells in read-only mode are not supported.</li>
+  <li> Adding a table in a hover form is not supported.</li>
+  </ul>
+<p>The following Finder User Interface methods are invoked for a table element. For more information see <a href="../Metadata_Objects/Finder/Finder User Interface Methods.html">Finder User Interface Methods</a>.</p>
+
+<table class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <th width="111" class='referenceTh'><strong>Method</strong></th>
+      <th width="111" class='referenceTh'><strong>Description</strong></th>
+  <tr>
+  
+  <td class='confluenceTd'><strong>onSelChanged</strong></td>
+  <td class='confluenceTd'>If the Finder's table is editable (<em>True</em>), this method checks if the current column that the user has clicked has specified the toggle functionality to be turned on. </td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>copyAction</strong></td>
+    <td class='confluenceTd'>Finder's with editable tables calls the <em>searchAction()</em> method in cases when this Finder is currently no displaying any data. A table element is notified to open the new row in edit mode.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>showDetailAction</strong></td>
+  <td class='confluenceTd'><p>When the Finder's table has the <em>Show Detail Column</em> property set to <em>True</em>, this method is invoke when the detail column is clicked.<br />
+    </p></td>
+  
+  
+</table>
+
+<h4>Editing Table Data</h4>
+<p>You can edit data in the table when the Table element Editable property is set to <em>True</em>. Setting the Editable property  to <em>True</em> enables you to edit the fields of the table at runtime. To edit table data at runtime, double-click the row that contains the data that you want to edit. For more information, see <a href="../Metadata_Objects/Finder/Finders at Runtime.html">Finders at Runtime</a>.</p>
+
+<h4>Drag and Drop Table Elements</h4>
+<p>On the application user interface, you can drag and drop a table element from one table to another. To enable drag and drop, the  <strong>Can Drag Out</strong> and <strong>Can Accept Drop</strong> properties must be set to true or a permission method. By default, you can only drag and drop table elements if both tables have the same object type.</p>
+<p>To create a copy of the element being dragged and dropped (instead of removing it from the original location), <span class="confluenceTd">hold down the CTRL-key while you drag and drop.</span></p>
+To allow drag and drop between tables of different data types, write a new method or override the cwGetDropTypes method, which  returns a comma-separated list of metadata full names to accept. Also, you will need to implement the  cwGetDropData method to support other data types. As Data Object Lists and Data Structures only accept one type per list, cwGetDropData should  provide a way to convert this type to the one actually accepted by the data  source. The following shows an example of the implementation for the situation where  Finder 1 accepts doc1, doc2.
+<p>Implementation for cwGetDropData:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+  <pre>
+  var newObjects = new  Array(object.length);
+  for(var i = 0; i &lt; object.length; i++){
+    if(object[i].metadataTypeName == &quot;DragAndDrop.doc2&quot;){
+      var doc =  new DragAndDrop.doc1();
+      doc.name  = object[i].name;
+      newObjects[i] = doc;
+    }
+  }
+  return newObjects;
+
+  </pre>
+  </div>
+</div>
+<p>Implementation for cwGetDropTypes:  </p>
+
+<div class="preformatted">
+  <div class="preformattedContent">
+  <pre>return “DragAndDrop.doc2,”+  this.cw$super_cwGetDropTypes();
+</pre>
+  </div>
+</div>
+
+<p>To provide a different list of data to give to the target element, implement cwGetDragData.</p>
+<h4>Create a Table Cell Alignment Property</h4>
+<p>When you add new Form elements under an existing Table element, you can configure  the Table element  to display with a cell alignment property. The cell alignment property allows you to format how the data displays in the cell of the table at runtime.</p>
+<p>To configure the cell alignment property, do the following:</p>
+<ol>
+  <li>Navigate to the Result Form of a Finder.</li>
+  <li>From the <strong>Select Form Element</strong> <strong>Type</strong> dialog, select an element from the list.</li>
+  <li>Click the <strong>Next</strong> button.</li>
+  <li>In the <strong>Select Variable</strong> dialog, select a variable for this element.</li>
+  <li>Click <strong>Finish</strong>.</li>
+  <li>Click the Form element that you added to the Table element.</li>
+  <li>Click the <strong>Cell Alignment</strong> property and select from the chart the type of alignment that you want to display at runtime.</li>
+  </ol>
+<p>*If this element is the first element that appears in the Element Tree pane, you can set the cell alignment. If this element has a parent layout, for example vlayout or hlayout with the width/height set, this element uses these values as a base to set its alignment. If the parent layout does not contain a width/height, then this element does not have a base to which it can set its alignment.
+If the element has a parent that contains width/height settings, but this form is displayed under another layout with different widths, your form alignment is restricted to the parent's width/height settings.</p>
+<h4>Hover Form</h4>
+<p>By configuring the hover properties of the table, you can display a pop-up form as a result of a hover on a Finder result. There are four properties used to configure the hover option: Form, Method, Style and Variable. At runtime, when you hover a row, the form displays beside the cursor. See the <a href="#Properties">Properties</a> section. The <em>cwShowHover</em> variable in the Finder User Interface is of  type Boolean. It must be set to<em> True</em> when the Hover Method is called.
+    The value of this variable, once sent back to the   browser, is set to null.</p>
+<p>There are several ways in which to configure a hover form:</p>
+<p><a name="hoverForm"></a>To configure a hover form using an local   form, follow these steps:</p>
+<ol>
+  <li>In a <strong>Finder User Interface</strong>, right-click the User Interface node and select <strong>New Form</strong>.</li>
+  <li>In the <strong>Element pane</strong>, customize the new Form by adding Form elements and configuring their properties.</li>
+  <li>In the User Interface <strong>Method</strong> tab, create a method (New User Action) and create a script. </li>
+  <li>Set the <em>cwShowHover</em> variable to true.</li>
+  <li>Run the metadata.</li>
+  <li>In the Web browser, navigate to the Finder.</li>
+  <li>Place your cursor in the row of the data; the Form appears as a hover.</li>
+</ol>
+<p>The following example shows how to implement the finder hover:</p>
+<ol>
+  <li> Create a string variable on   the <strong>Finder User Interface</strong> (for example, ToolTipText).</li>
+  <li> Create a form in the Finder User Interface and call it ToolTipForm.
+    <ol type="a">
+      <li>On this form, include a <strong>Label</strong> element.</li>
+      <li>Bind the <strong>Label</strong> element to the ToolTipText string variable.</li>
+    </ol>
+  </li>
+  <li> Create a UI method   and call it onToolTip.
+    <div class="code">
+  <div class="codeContent">
+    <pre>this.ToolTipText = null;
+this.cwShowHover = false;    
+
+var list = this.model.list; // Note: this.model.list.hover finds the hovered row <BR>
+if (list != null) {
+    var overRow = list.hover; // an instance of resultDocument<BR>    if (overRow != null) {<BR>        this.ToolTipText = overRow.toolTipText; <BR>        this.cwShowHover = true; // setting value to true results in tooltip form being displayed<BR>    }<BR>}</pre>
+    </div>
+</div>
+  </li><br>
+  <li> On the <strong>Table</strong> element, set the <strong>Hover Form</strong> and <strong>Hover Method</strong> properties.</li>
+</ol>
+
+<p><a name="hoverVariable"></a>To configure a hover form with a variable, complete these steps:</p>
+<ol>
+  <li>In a <strong>Finder User Interface</strong>, create a variable for the document that you want to display as a hover form.</li>
+  <li>Right-click the <strong>Default</strong> Form and select <strong>Override</strong>. </li>
+  <li>To the  Default Form  add a <strong>Form Frame</strong> Form element.</li>
+  <li>In the Form Frame <strong>Variable</strong> property, select the document user interface variable previously created (step 1).</li>
+  <li>Set the Form property using the Variable that refers to the document that you want displayed as the hover form.</li>
+  <li>Customize the Form by adding elements and configuring their properties.</li>
+  <li>Run the metadata.</li>
+  <li>In the Web browser, navigate to the Finder.</li>
+  <li>Place your cursor in the row of the data; the Form appears as a hover.</li>
+  </ol>
+<h4>Add Dynamic Editable Property in Finder</h4>
+<p>To support a dynamic editable property on a result form field (that is, the field is editable only if specific conditions are met), do the following:</p>
+<ol>
+  <li>Create a finder and set the table element's <a href="#editable"><strong>Editable</strong></a> property to <strong>TRUE</strong>.</li>
+  <li>Add bound fields under the table.</li>
+  <li>Create a new permission   script method under the finder user interface. Proceed to add a parameter of type   com.conceptwave.system.Document called <tt>doc</tt>.</li>
+  <li>Write a script that returns   either true or false depending on doc's variable value, such as the following samples:<BR>
+    <div class="code">
+    <div class="codeContent">
+    <pre>
+    return doc.boo_CB;
+</pre>
+    </div>
+    </div>
+    <br>
+    
+    or
+<div class="code">
+    <div class="codeContent">
+    <pre>
+    if(doc.str_TF == null)
+        return true;<BR>    else<BR>        return false;</pre>
+    </div>
+    </div>
+    </li>
+  <li> Set this permission method as the <strong>Editable</strong> property of one of the table   fields.</li>
+  <li>Run the framework, load the finder, and conduct a  search. </li>
+  <li>Proceed to click a row. If the   permission is to return true, the table field (column) is in editable mode. Otherwise, the table field (column)'s appearance does not change. </li>
+</ol>
+<p><strong>Note:</strong> There is a short delay (2 seconds) between the time the cursor is set on a row and the display of the form. This value may be overridden by adding a variable called <strong><a href="../../Configuration_Tool_User_Guide/Configure/System/UI/UIgeneral.html">Hover Delay</a></strong> into your design time configuration. Acceptable values for this  variable are between 100 and 5000 milliseconds. Any numbers above or below this range are ignored and the default 2000 (2 seconds) is used.</p>
+<h4>Display a Hyperlink in a Finder with a URL Dependent on the Result Document</h4>
+<p>To support a dynamic URL in a finder, do the following:</p>
+<ol>
+  <li>Create a script method that returns a string. The following is an example of the script:
+    <div class="code"><div class="codeContent">
+    <pre>return "&lt;a href='http://www.google.ca'&gt;TEST&lt;/a&gt;";</pre>
+    </div>
+    </div>
+  </li>
+  <li>In   your table, add a <a href="Element - Label.htm">Label</a> element and bind it to the script that you have created. </li>
+  <li>Set the   Label element's <strong>HTML Escape</strong> property to false. </li>
+  <li>Ensure that the <strong>Editable</strong> permission on the link column is set to false.</li>
+  <li>Save your metadata and run. </li>
+  </ol>
+<h4>Use Visible Permissions with Table Columns Under a Top-level User Interface</h4>
+<p>In previous releases, table columns relied heavily on the presence of finder user interfaces. You can set visible permissions to work with table columns that are under a top-level user interface. The following is an example.</p>
+<ol>
+  <li>Create a new <a href="Creating UI Objects.html">User Interface</a> object.</li>
+  <li>In your user interface, create a Boolean variable and call it <strong>hideCol</strong>.</li>
+  <li>In the <strong>Methods</strong> tab, right-click your user interface and select <strong>New Permission</strong>. Create a new permission called <strong>hideColPermission</strong>.</li>
+  <li>In your hideColPermission script, add the following code:<br>
+    <div class="code">
+      <div class="codeContent">
+    <pre>return this.hideCol;</pre>
+    </div>
+    </div>
+  </li>
+  <li>Create a table containing two columns:  </li>
+  <ul>
+    <li>Employee</li>
+    <li>Department</li>
+  </ul>
+  <li>For the Department column, set its <strong>Visible</strong> property to <strong>hideColPermission</strong>.</li>
+  <li>Create a button called <strong>disableColumnButton</strong>.</li>
+  <li>Create a script called <strong>disableColumn</strong> that contains the following code:<br>
+    <div class="code">
+      <div class="codeContent">
+    <pre>this.hideCol = false;</pre>
+    </div>
+    </div>
+  </li>
+  <li>For the disableColumnButton's <strong>On Click</strong> property, call the disableColumn script.</li>
+  <li>For the user interface's OnInit method, add the following code:<br>
+    <div class="code">
+      <div class="codeContent">
+    <pre>this.hideCol = true;</pre>
+    </div>
+    </div>
+  </li>
+  <li>Save your metadata and then run your application. The table appears, which shows both columns.</li>
+  <li>Click the <strong>disableColumnButton</strong> button. The Employee column appears and the Department column does not display.</li>
+  </ol>
+<h4><strong>Use Selection Appearance and Select on View properties in a Finder</strong></h4>
+<p>The following example shows how to use the <strong>Selection Appearance</strong> and <strong>Select on View</strong> properties:</p>
+<ol>
+  <li>Create a Finder user interface with an output document. In the result form, set the following table element properties:  </li>
+  <ul>
+    <li>      <strong>Selection Appearance</strong> set to <strong>checkbox</strong></li>
+    <li><strong>      Select on View</strong> set to <strong>true</strong></li>
+  </ul>
+  <li>    Write a method that calls this.result.getObjectToView(). Proceed to set this method to the table's <strong>Double Click Method</strong> property. </li>
+  <li>At runtime, select few rows using the selection checkbox. Once you have selected these rows, double-click a row. Ensure that this.result.getObjectToView() is the row clicked and that this.row.selected contains only the rows that are selected.</li>
+  </ol>
+<h4>Multi-level paths for Variable field</h4>
+<p>When defining a result row in a finder, if you have a number of nested data structures, you can specify a multi-level path in the <strong>Variable</strong> field, such as 
+  result.party.primaryPartyName.firstName. For a multi-level path, you must first create a column field under the table, and then set the <strong>Variable</strong> field. </p>
+<p><BR>
+</p>
+<p><BR>
+</p></td>
+</tr>
+<tr>
+  <td valign="top" class="pagebody">&nbsp;</td>
+</tr>
+</table>
+</body>
+</html>

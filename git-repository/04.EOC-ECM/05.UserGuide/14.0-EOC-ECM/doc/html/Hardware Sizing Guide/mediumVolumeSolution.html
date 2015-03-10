@@ -1,0 +1,196 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Medium Volume Solution</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h3><a name="Medium Volume Solution">Medium Volume Solution</a></h3>
+<p>The hardware configuration  metrics  described on this page are for a  medium volume solution system with characteristics  similar to the following:</p>
+<table border cellpadding="1" class="confluenceTable">
+  <tr>
+    <th width="216" class="confluenceTh">Metrics Type</th>
+    <th width="79" class="confluenceTh">Value</th>
+    <th width="530" class="confluenceTh">Description </th>
+  </tr>
+  <tr>
+    <td class="confluenceTd" >Number of services or orders    created, modified, or deleted per month</td>
+    <td class="confluenceTd">500000 </td>
+    <td class="confluenceTd" > Average or standard number of services that are created, modified, or deleted.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd" >Order storage period in years</td>
+    <td class="confluenceTd">1 </td>
+    <td class="confluenceTd" >Period over which the orders are stored    for later retrieval.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd" >Peak concurrent users</td>
+    <td class="confluenceTd">500 </td>
+    <td class="confluenceTd" >Maximum number of concurrent users expected at a particular time.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd" >External systems</td>
+    <td class="confluenceTd">15 </td>
+    <td class="confluenceTd" >Number of external    systems that system     interacts with.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd" >Working hours or days</td>
+    <td class="confluenceTd">8 </td>
+    <td class="confluenceTd" >Standard number of hours for order creation, deletion, and modification.</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd" >Peak adjustment rate</td>
+    <td class="confluenceTd">1.5 </td>
+    <td class="confluenceTd" >Adjustment factor    used to calculate a peak    rate for services creation, deletion, and modification.</td>
+  </tr>
+</table>
+
+<h4>Development Environment</h4>
+<p>The following  system hardware configuration  metrics  describes the hardware requirements for a  medium volume system in the development environment.</p>
+<table class="confluenceTable"  border cellpadding="1">
+  <tr>
+    <th class="confluenceTh" >Server Type</th>
+    <th class="confluenceTh" >#Servers</th>
+    <th class="confluenceTh" >CPU Cores</th>
+    <th class="confluenceTh" >Memory</th>
+    <th class="confluenceTh" >API</th>
+    <th class="confluenceTh" >UI</th>
+    <th class="confluenceTh" >PE</th>
+    <th class="confluenceTh" >Catalog</th>
+    <th class="confluenceTh" >Disk Storage</th>
+  </tr>
+    <td class="confluenceTd">UI Server</td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">PE Server</td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">DB Server</td>
+    <td class="confluenceTd">1 </td>
+    <td class="confluenceTd">8 </td>
+    <td class="confluenceTd">16GB </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">100GB </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">Combo Server</td>
+    <td class="confluenceTd">1 </td>
+    <td class="confluenceTd">4 </td>
+    <td class="confluenceTd">16GB </td>
+    <td class="confluenceTd">X </td>
+    <td class="confluenceTd">X </td>
+    <td class="confluenceTd">X </td>
+    <td class="confluenceTd">C/S </td>
+    <td class="confluenceTd">200GB </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">API Server</td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+  </tr>
+</table>
+<h4>Testing and Production Environment</h4>
+<p>The following  system hardware configuration  metrics  describes the hardware requirements for a  medium volume system in the testing and production environment.</p>
+<table class="confluenceTable"  border cellpadding="1">
+  <tr>
+    <th class="confluenceTh" >Server Type</th>
+    <th class="confluenceTh" >#Servers</th>
+    <th class="confluenceTh" >CPU Cores</th>
+    <th class="confluenceTh" >Memory</th>
+    <th class="confluenceTh" >API</th>
+    <th class="confluenceTh" >UI</th>
+    <th class="confluenceTh" >PE</th>
+    <th class="confluenceTh" >Catalog</th>
+    <th class="confluenceTh" >Disk Storage</th>
+  </tr>
+  <tr>
+    <td class="confluenceTd">UI Server</td>
+    <td class="confluenceTd">3 </td>
+    <td class="confluenceTd">8 </td>
+    <td class="confluenceTd">16GB </td>
+    <td class="confluenceTd">X </td>
+    <td class="confluenceTd">X </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">S </td>
+    <td class="confluenceTd">100GB </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">PE Server</td>
+    <td class="confluenceTd">2 </td>
+    <td class="confluenceTd">8 </td>
+    <td class="confluenceTd">16GB </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">X </td>
+    <td class="confluenceTd">C </td>
+    <td class="confluenceTd">100GB </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">DB Server</td>
+    <td class="confluenceTd">2 </td>
+    <td class="confluenceTd">16 </td>
+    <td class="confluenceTd">32GB </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">200GB </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">Combo Server</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">API Server</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+    <td class="confluenceTd">&nbsp; </td>
+  </tr>
+</table>
+<p><strong>Note:</strong> There is no data available for the empty cells.</p>
+<p>The production environment system hardware for a medium volume solution   includes three UI servers, two DB servers, and two PE servers. Each UI  server runs an instance of the application server that provides UI and API  services. Each DB server  provides common and aggregate DB services. Each PE  server  runs an instance of process engine services which also run the Catalog  server.</p>
+<p><img src="mediumVolumeProductionSystemHardwareConfiguration.png" alt="Medium Volume Production System Hardware Configuration" /></p>
+
+<p>&nbsp;</p>
+</body>
+</html>

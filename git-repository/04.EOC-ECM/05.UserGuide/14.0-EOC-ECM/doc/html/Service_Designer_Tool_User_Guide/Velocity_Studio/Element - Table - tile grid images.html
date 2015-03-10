@@ -1,0 +1,138 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Tile Grid Images</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td width="1062" valign="top" class="pagebody">
+<h2>Tile Grid Images</h2>
+<p>You can add images at the bottom of a tile in a tile grid (table element).</p>
+<p>The following is an example of using this feature:</p>
+<ol>
+  <li>In Velocity Studio, add a table element to your form.</li>
+  <li>Select the table element's <strong>Is Tile Grid</strong> property checkbox. </li>
+  <li>Set the table element's <strong>Variable</strong> property.</li>
+  <li>Add data-specific columns (that is, input fields).</li>
+  <li>Proceed to add a horizontal layout and set the following properties:<br>
+    <br>
+    <table class='confluenceTable' border cellpadding=1>
+      <tbody>
+        <th width="111" class='referenceTh'><strong>Property</strong></th>
+        <th width="111" class='referenceTh'><strong>Description</strong></th>
+            <tr>
+              <td class='confluenceTd'><strong>Height</strong></td>
+              <td class='confluenceTd'>Set  the horizontal layout's height to be shown at the tile's button.  Ensure that the tile size is large enough to accommodate for this size.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Members  Margin</strong></td>
+              <td class='confluenceTd'>Set the amount of space to use between each image under the layout.</td>
+            <tr>
+              <td class='confluenceTd'><strong>Style</strong></td>
+              <td class='confluenceTd'>Select the  style to use for the layout.</td>
+            
+      <tr>
+        <td class='confluenceTd'><strong>Visible</strong></td>
+        <td class='confluenceTd'>Select the permission to be called for each tile in the tile grid. It is recommended that you add this permission&rsquo;s  second parameter to represent the data object being passed in.</td>
+      <tr>
+        <td class='confluenceTd'><strong>Width</strong></td>
+        <td class='confluenceTd'><p>By default, the width has a value of <strong>100%</strong>.</p></td>
+      </table>
+<BR>
+      </li>
+<li>Under the horizontal layout, you can add images. These images have a limited set of  properties that can be used:<br>
+  <br>
+  <table class='confluenceTable' border cellpadding=1>
+    <tbody>
+      <th width="111" class='referenceTh'><strong>Property</strong></th>
+      <th width="111" class='referenceTh'><strong>Description</strong></th>
+        <tr>
+          <td class='confluenceTd'><p><strong>Click Method</strong></p></td>
+          <td class='confluenceTd'>This property denotes the click  method for this image. To get the current tile, use this.result.selected[0].</td>
+        </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Disabled</strong></td>
+      <td class='confluenceTd'>Set this   permission method to  be called for each tile in the tile grid. It is recommended that you add this permission&rsquo;s  second parameter to represent the data object being passed in.</td>
+    <tr>
+      <td class='confluenceTd'><strong>Height</strong></td>
+      <td class='confluenceTd'>This property contains the image's height.</td>
+    <tr>
+      <td class='confluenceTd'><strong>Image Type</strong></td>
+      <td class='confluenceTd'>Specify the image's type in case the height or width in the properties does not match the  actual size.</td>
+    <tr>
+      <td class='confluenceTd'><strong>Image URL</strong></td>
+      <td class='confluenceTd'>This property represents the static  image to use for this tile.</td>
+    <tr>
+      <td class='confluenceTd'><strong>Visible</strong></td>
+      <td class='confluenceTd'>Select the permission to be called for each tile in the tile grid. It is recommended that you add this permission&rsquo;s  second parameter to represent the data object being passed in.</td>
+    <tr>
+      <td class='confluenceTd'><strong>Width</strong></td>
+      <td class='confluenceTd'><p>This property denotes the image's width.</p></td>
+    </table>
+  <br>
+</li>
+  <li>Save your metadata.</li>
+  </ol>
+<p>To use this functionality in UI Common, do the following:</p>
+<ol>
+  <li>
+    Create a  finder user interface and set the <strong>Extends</strong> field to <strong>ui_common.baseFinder</strong>.
+  </li>
+  <li>Right-click <strong>ResultTileGrid</strong> and select <strong> Override</strong>.</li>
+  <li>Right-click the  table and select <strong>Extend</strong>. Proceed to add the data needed to be shown in the tile.</li>
+  <li>To add new images in the  horizontal layout, right-click the layout and select <strong>Add</strong>. <br>
+    <br>
+    By default, the ResultTileGrid form includes the  following icons: <br>
+    <br>
+    <table width="1332" border cellpadding=1 class='confluenceTable'>
+      <tbody>
+      <tr>
+        <th width="184" class='referenceTh'>Icon Name</th>
+        <th width="353" class='referenceTh'>Visibility</th>  
+        <th width="320" class='referenceTh'><strong>Disable</strong></th>
+        <th width="480" class='referenceTh'><strong>Functionality</strong></th>
+            <tr>
+              <td class='confluenceTd'>tileActionIcons  (layout with the icons)</td>
+              <td class='confluenceTd'>isShowTileActions  – returns isTileActionButtonsVisible</td>
+              <td class='confluenceTd'>None</td>
+              <td class='confluenceTd'>None</td>
+            </tr>
+      <tr>
+        <td class='confluenceTd'>editIcon</td>
+        <td class='confluenceTd'>isShowTileEdit  – returns isTileEditVisible</td>
+        <td class='confluenceTd'>isDisableTileEdit, which returns isTileEditDisabled</td>
+        <td class='confluenceTd'>Defaults  to call onShowDetail method</td>
+      <tr>
+        <td class='confluenceTd'>deleteIcon</td>
+        <td class='confluenceTd'>isShowTileDelete  – returns isTileDeleteVisible</td>
+        <td class='confluenceTd'>isDisableTileDelete, which returns isTileDeleteDisabled</td>
+        <td class='confluenceTd'>Defaults  to call onDelete</td>
+      <tr>
+        <td class='confluenceTd'>copyIcon</td>
+        <td class='confluenceTd'>isShowTileCopy  – return isTileCopyVisible and is set to false by default</td>
+        <td class='confluenceTd'>isDisableTileCopy, which returns isTileCopyDisabled</td>
+        <td class='confluenceTd'>Defaults  to call onCopyAction – this method is empty. Override it to provide the functionality.</td>
+      <tr>
+        <td class='confluenceTd'>folderIcon</td>
+        <td class='confluenceTd'>isShowTileFolder  -  returns isTileFolderVisible and is set to  false by default</td>
+        <td class='confluenceTd'>isDisableTileFolder, which returns isTileFolderDisabled</td>
+        <td class='confluenceTd'>Defaults  to call onFolderAction – this method is empty. Override it to provide the  functionality</td>
+      <tr>
+        <td class='confluenceTd'>faveIcon</td>
+        <td class='confluenceTd'>isShowTileFavourite  – returns isTileFavouriteVisible and is set to false by default</td>
+        <td class='confluenceTd'>onFavouriteAction, which returns isTileFavouriteDisabled</td>
+        <td class='confluenceTd'>Defaults  to call onFavouriteAction – this method is empty. Override to provide the  functionality</td>
+      </table>
+  </li>
+</ol>
+
+<p><strong>Note:</strong> Image clicks do not function if the tile grid contains a Selection Change  method. Instead, the double-click method has been added to accommodate this  restriction.</p></td>
+</tr>
+</table>
+</body>
+</html>

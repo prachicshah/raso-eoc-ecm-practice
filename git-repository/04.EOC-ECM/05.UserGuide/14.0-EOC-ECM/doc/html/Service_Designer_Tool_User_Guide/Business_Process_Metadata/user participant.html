@@ -1,0 +1,257 @@
+<html>
+<head>
+<title>User Participant</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>User Participant</h2>
+<p>The User Participant represents a person who performs manual tasks within a process. When a process flow reaches a manual task, the process sends a request to the user to perform this manual activity. The user notifies the process when he is finished the task. To allow interactions between process and user, the User Participant defines the interface such that the requests that a process sends to the user are <em>one-way</em> <a href="../Metadata_Objects/External Services/defining an interface operation.html">operations</a>. The replies that the user sends to the process are <em>notification</em> operations.</p>
+<p>For example, a User Participant <em>Approver</em> can be defined that has an interface with three Operations:</p>
+<ul>
+<li><em>credit check</em>: one-way</li>
+</ul>
+<ul>
+<li><em>approved</em>: notification</li>
+</ul>
+<ul>
+<li><em>rejected</em>: notification</li>
+</ul>
+<p>This interface definition allows the process to send only <em>credit</em><em>check</em> requests to the User Participant, and allows the User Participant to reply with either an <em>approved</em> or <em>rejected</em> message.</p>
+<p>Unlike message exchanges performed when invoking external service interfaces, interaction with a User Participant do not involve data exchange, but rather an indication of what operation to perform, through the use of an operation name. In the example above, when the process sends a <em>credit</em><em>check</em> request, it does not send any data with the request. The process data (Process Order and Process Document) is available for any user task that this process requests.</p>
+
+<p>Process Management implements user tasks through a worklist queue. The product User Interface (order management system) displays all current user tasks in a list, allowing the user to select tasks to work on. Every task in the list has an operation column that indicates the kind of task it is (such as <em>credit</em> <em>check</em> in the example above). When the user opens a particular task to work on, all <em>notification</em> type operations (for this task participant type, in our example <em>approved</em> and <em>rejected</em>) are automatically made available to the users through an action menu.</p>
+<h3>User Participant Privilege</h3>
+<p>To allow certain manual tasks to be performed only by specific users, the Process Management product assigns user privileges to User Participants. User privileges are a user right, assigned to a user, specifying allowable actions in the system. User privileges are defined and assigned to the user in the <a href="../../User Profile Manager User Guide/Create/user.html">User Profile Management</a> application.</p>
+<p>For example, we can define a <em>credit approval</em> privilege for the participant in the above example, allowing only users with this privilege to perform the <em>credit</em> <em>check</em> tasks.</p>
+<p>Since users can have a number of user privileges assigned to them, users can perform any user participant task (operation) according to the privileges that the user possesses.</p>
+<h3>Task Effort</h3>
+<p>Every manual task should be assigned with an effort metric in the <b>Effort</b> field on the <b>General</b> tab. This metric is used to calculate the current load for each user (the sum of all efforts for the currently assigned tasks). The system distribution type uses effort metrics to decide to whom to assign tasks.</p>
+<h3><a name="distribution"></a>User Participant Tasks Distribution</h3>
+<p>When a process sends a task to a User Participant (invoking one of the <em>one-way</em> operations of the participant interface), these tasks are added to the global worklist queue, but not assigned to any specific user. The User Participant properties have a distribution type attribute which specifies how manual tasks should be assigned to users. This is defined by the <b>Distribution type</b> field on the <b>General</b> tab.</p>
+<p>The Process Management product supports the following distribution types:</p>
+<ul>
+<li><em>Manual</em><b>:</b> The worklist manager assigns these tasks to each user manually. The worklist manager is a user with the <em>Worklist Administrator</em> <a href="../../User Profile Manager User Guide/Create/privilege.html">privilege</a>.</li>
+</ul>
+<ul>
+<li><em>Shared</em><b>:</b> Users with the appropriate privilege can get new tasks by clicking the <b>Get Task</b> button on the user interface. The tasks with the highest priority will be selected first.</li>
+</ul>
+<ul>
+<li><em>System</em><b>:</b> The Process Management product automatically assigns tasks to users with the appropriate privilege. This method of distribution uses effort metrics to decide which user gets the next task. The system automatically assigns the next task to the user with the lesser load (sum of all efforts for the currently assigned tasks) that does not exceed the user's maximum effort defined in the <a href="../../User Profile Manager User Guide/Create/user.html">User Profile Manager</a>. The user must log in at least once to start receiving tasks. When a user logs in or completes a task and this user's current load becomes less than a minimum effort defined in User Profile Manager, the system automatically assigns the next task to the user.</li>
+</ul>
+<h3>User Participant Task Duration</h3>
+<p>The User Participant definition includes duration values for every task that the User Participant can perform (<em>one-way</em> operations), and duration values used for calculating task due dates. These values are defined in the <b>Duration</b> section of the <b>General</b> tab.</p>
+<p>Due date calculation is based on the <a href="../../User Profile Manager User Guide/Create/calendar.html">calendar</a> specified in the User Profile Manager that is applied to the User Participant. Calendars specify working hours in 15 minutes increments; this allows weekends and holidays to be taken into account for due date calculations. For example, a task that is assigned on Friday afternoon with a duration of 8 hours would have a due date of Monday afternoon (assuming that Saturday and Sunday are a non-working weekend).</p>
+<p>The User Interface shows tasks sorted by due dates (with the closest dates on top), and  overdue tasks display in red.</p>
+<h3>User Participant General Properties</h3>
+<p>The general User Participant properties are defined on the <b>General</b> tab. </p>
+
+<p><img src="userParticipantGeneral.png" align="absmiddle" border="1" alt="User participant - General tab" /></p>
+<p>The following table describes the fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory. Name of the User Participant within the namespace.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Deprecated</b></td>
+<td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Mandatory. Label to identify the User Participant.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the User Participant for documentation purposes.</td>
+</tr>
+<!--<tr>
+<td class='confluenceTd'><b>Task Type</b></td>
+<td class='confluenceTd'>In order to create a User Participant <b>Manual</b> must be selected.</td>
+</tr> -->
+<tr>
+  <td class='confluenceTd'><strong>Task type</strong></td>
+  <td class='confluenceTd'>Refers to the way in which tasks are delegated to participants. The selection is made in the setup Wizard (automated (external service participant) or manual (user processes)).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Distribution type</b></td>
+<td class='confluenceTd'>User participant task distribution type. See above for details.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Effort</b></td>
+<td class='confluenceTd'>Metric used to calculate current load for each user. See above for details.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Privilege</b></td>
+<td class='confluenceTd'>User participant privilege. See above for details.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Remove taken tasks</b></td>
+<td class='confluenceTd'>If checked, does not generate an alert when a task is taken from the user.</td>
+</tr>
+<!--<tr>
+<td class='confluenceTd'><b>Menu</b></td>
+<td class='confluenceTd'>The action menu item where the associated <em>notification</em> Operations are added when the user opens a particular task to work on.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Worklist script</b></td>
+<td class='confluenceTd'>Script to initialize the Worklist Document.</td>
+</tr> -->
+<tr>
+<td class='confluenceTd'><b>Duration</b></td>
+<td class='confluenceTd'>Sets default task duration by either defining the duration time in <b>Days</b>, <b>Hours</b>, and <b>Minutes</b> or by writing a JavaScript script in the <b>Script</b> field. The duration can only be expressed by one of the two ways. When a duration attribute specifies a script for duration value calculation, this script can return either the number of seconds (maximum amount of time in which the activity should complete) or a specific date (date by which activity should complete).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Important</strong>: If you configured the User Participant for Automated processes, the General tab appearance is different than if the User Participant was set for manual. In addition, the Interface, Orders and Methods tab does not appear for that User Participant configuration.</p>
+
+<h3>User Participant Interface Tab</h3>
+<p>The <b>Interface</b> tab of the User Participant is used to define an Interface for interaction between a process and a user. For example,  the tasks that can be assigned to the user and all the actions the user can perform on the assigned tasks.</p>
+
+<img src="userParticipantInterface.png" align="absmiddle" border="1" alt="User participant - Interface tab" />
+
+<p>The Interface can be selected from the <b>Interface</b> list box, which lists pre-existing Interfaces. Once the Interface is defined for this User Participant, the <em>notification</em> Operations (those with an <b>Operation type</b> of <em>Notification</em> in <a href="../Metadata_Objects/External Services/defining an interface operation.html">Interface Operation</a>) will be listed in the <b>Operations and conditions</b> tree. For the selected Operation in the tree, the Operation condition properties are displayed on the right.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>States</b></td>
+<td class='confluenceTd'>Assigns the Order states the Operation is allowed under. Shows the list of all Order states. Disabled if no Order states are specified in the metadata.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Tasks</b></td>
+<td class='confluenceTd'>List of tasks that this Operation is applicable to. When this list is empty, this Operation is available for every User Participant task. When the button at the end of the field is clicked, the <b>Select Tasks</b> dialog opens.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Image</b></td>
+<td class='confluenceTd'>Image to use in the Action menu for this Operation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Allow invalid order</b></td>
+<td class='confluenceTd'>If checked, this Operation can be used regardless of the Order validity.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>No process reply</b></td>
+<td class='confluenceTd'>If checked, a reply message will not be sent to the process on Operation completion.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Keep task open</b></td>
+<td class='confluenceTd'>If checked, the task will not be removed from the worklist on Operation completion.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Bulk complete</b></td>
+<td class='confluenceTd'>Allows this operation to be complete in bulk at runtime, allowing several tasks of this type to be selected and completed at once. Operations of this type can be multi-selected at runtime by the user and completed at once as a single action (when there is no data entry required). It is only allowed when all operations are of the same type.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Condition</b></td>
+<td class='confluenceTd'><p>The Condition script, cwOnPartOpCond($psCondition), is invoked when  a worklist task is selected and determines whether this Participant operation is  allowed. The script sets up a condition for the operation to be shown under the Action menu at runtime.</p>
+  <p> The return values are either true or false. If the script returns true, the operation is allowed for the given task and is visible in  the list of available task operations. If it returns false, the operation is removed  from the list of available task operations.</p>
+  <p> <strong>Example of use:</strong> If you we need to prevent performing an operation on the  task (for example, the user is not authorized or the task is not ready for this operation).
+  </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Confirmation</b></td>
+<td class='confluenceTd'><p>The Confirmation script, cwOnPartOpConf(document, order, selectList, finder,  menuOwner, menuObject, confirmObject, uploadFile, orderList), is invoked when user selected an operation on the worklist task, right before the <strong>Action</strong> script is run. The Confirmation script may ask for user confirmation before the <b>Action</b> script is run.</p>
+<p>If the script returns true, the worklist <strong>Action</strong> script is processed;  otherwise, the action is cancelled.</p>
+  <p>The script takes the following parameters:</p>
+  <ul>
+    <li>    document - If a single worklist task is selected, the document corresponds to  the selected worklist task (in other words, the worklist task on which the action  is to be performed).</li>
+    <li>      order - If a single worklist task is selected, it is the order associated with  the current worklist task.</li>
+    <li>      selectList - If multiple worklist tasks are selected, selectList is a list of  all selected tasks.</li>
+    <li>      finder - Not in use</li>
+    <li>      menuOwner - Not in use</li>
+    <li>      menuObject - Not in use</li>
+    <li>      confirmObject - Not in use</li>
+    <li>      uploadFile - Not in use</li>
+    <li>      orderList - If multiple worklist tasks are selected, orderList is a list of  all corresponding tasks orders.</li>
+  </ul>
+<p><strong>Return values:</strong> true or false, or string or object to display in the confirmation  message box.</p>
+  <p><strong>Example of use:</strong> If there is a need to explicitly get user confirmation that the operation on this  task is to be performed. </p></td>
+</tr>
+<tr>
+<td height="21" class='confluenceTd'><b>Action</b></td>
+<td class='confluenceTd'><p>  The Action script, cwOnParticipantOpAct(confirmObject), is invoked when actions are to be performed on the current worklist task. The 
+confirmObject parameter represent an object returned from the <strong>Confirmation</strong> script. The Action script does not have any return values.</p>
+  <p><strong>Example of use:</strong> Change the  order state, create another worklist task, or notify other users of  the processed action.</p></td>
+</tr>
+</tbody>
+</table>
+
+<strong><br>
+Note:</strong> You can set breakpoints in User Participant interface operation methods, such as Condition, Confirmation, and Action.
+<h3><a name="orders"></a>User Participant Orders Tab</h3>
+<p>The <b>Orders</b> tab of the User Participant may define details of how the particular Order types are processed.  It is not mandatory to add any Orders to this tab.</p>
+
+<img src="userParticipantOrders.png" align="absmiddle" border="1" alt="User participant - Orders tab" />
+
+<p>The <b>Orders</b> table contains a list of all the the Orders that have had properties defined for the User Participant.</p>
+<p>When the <b>Add</b> button is clicked the <b>Order</b> <b>Properties</b> dialog opens where the User Participant Order properties can be defined. To view or edit the Order properties, select the desired row in the <b>Orders</b> table and click the <b>Properties</b> button to open the <b>Order</b> <b>Properties</b> dialog.</p>
+<p>When the <b>Remove</b> button is clicked, the selected element is removed from the <b>Orders</b> table.</p>
+
+<p><img src="userParticipantOrderProp.png" align="absmiddle" border="0" alt="Order Properties" /></p>
+<p>The following table describes the fields </p>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Operation</b></td>
+<td class='confluenceTd'>A list box containing all <em>one-way</em> Operations (refer to section on <a href="../Metadata_Objects/External Services/external services.html">External Services</a> for  an <b>Operation type</b> of <em>One-Way</em> on the <b>General</b> tab of the Operation properties) defined for the <b>Interface</b> selected on the <b>Interface</b> tab for this User Participant.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Effort</b></td>
+<td class='confluenceTd'>Reserved for future use.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Order type</b></td>
+<td class='confluenceTd'>A list box containing all defined Orders. When the <b>Order type</b> is selected, either the <b>Default order item</b> or <b>Duration</b> must be defined.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Default order item</b></td>
+<td class='confluenceTd'>A list box containing all Documents of the underlying Order. If an Order Document is selected in this field, it is opened automatically when the User Participant works on the Order worklist task for the selected Operation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Duration</b></td>
+<td class='confluenceTd'>Defines a time constraint for the User Participant to work on the underlying Order. The duration value defined here  overwrites the default <b>Duration</b> value provided on the <b>General</b> tab. The duration can only be expressed by one of two ways: by expressing the duration time in <b>Days</b>, <b>Hours</b>, and <b>Minutes</b> or by writing a JavaScript script in the <b>Script</b> field.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>User Participant Methods Tab</h3>
+<p>The <b>Methods</b> tab of the User Participant may define details of what methods may be performed on this object. </p>
+<p>The cwOnPartDistrib script is a custom distribution rule for worklist tasks   created for the participant type. The script is invoked when the worklist task for the   participant is created and returns the string value representation of the user. If   the returned string is an existing user, the worklist task is assigned to it. Otherwise, an error message appears. </p>
+
+<img src="userParticipantMethods.png" align="absmiddle" border="1" alt="User participant - Methods tab - cwOnPartDistrib script" />
+
+<p>In addition, you can add a New Method defining parameters for the script and a return type.</p>
+
+<img src="userParticipantMethods1.png" align="absmiddle" border="1" alt="User participant - Methods tab - define script parameters and return type" />
+
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Resource Locks Overview</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2> Overview</h2>
+<p>The resource  locking feature provides a mechanism to place constraints on the orders. With resource locking in place you  can do the following:</p>
+<ul>
+  <li>Request a Resource lock. A resource can be  defined as system, entity, and entity ID (for example, Siebel, Customer, 123,  and so on). The response includes lock status, owner information, and the lock  expiry date (lock duration, optional). The fault response includes current  owner information and the lock expiry date. You can request a lock on a  resource and on an order.</li>
+  <li>Request a lock on a resource either indefinitely  or for a period of time (fixed duration, date, or time). The lock request  carries requester information which is stored with the lock.</li>
+  <li>Request a wait for the lock to be released if  the resource is already locked. It is not a real-time wait. A notification is  sent on the resource release event. You can specify wait timeout and timeout  handler.</li>
+  <li><a href="releaseRemoveLocks.html">Release the lock </a>on a resource. The lock can  only be released by the locking entity or by an administrator who provides the  system, entity, and entity ID as the requester.</li>
+  <li>Release the lock on a timer.</li>
+</ul>
+<ul>
+  <li>Prevent two orders against the same subscriber,  account, or location.</li>
+  <li>Lock a single resource requestor.</li>
+  <li>Prevent two users from changing the same order.</li>
+  <li>Queue lock requests if the resource is already  locked</li>
+  <li>Release one lock or all for the requestor.</li>
+  <li>Prevent two <a href="../../../../Help 6.x/html/Service_Designer_Tool_User_Guide/Business_Process_Metadata/sub-process and sub-flow.html">workflows</a><a href="subflowForProcesses.html"></a> from updating the same  order at the same time.</li>
+  <li>Notify the requestor when the lock is obtained.</li>
+  <li>Prevent two orders against the same service.</li>
+  <li>Release a lock or all locks for the requestor.</li>
+  <li>Remove the lock request from <a href="orderQueuing.html"> the queue</a>.</li>
+  <li>Query for <a href="activeLocks.html">active locks</a> and pending requests.</li></ul>
+    </ul></td>
+</tr>
+</table>
+</body>
+</html>

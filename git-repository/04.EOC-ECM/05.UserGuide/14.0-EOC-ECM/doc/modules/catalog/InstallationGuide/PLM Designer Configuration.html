@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>PLD - Velocity Studio Configuration</title>
+<link rel="stylesheet" href="../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Product Lifecycle Designer - Velocity Studio Configuration</h2>
+<p>To configure <a href="../plm/PLM.html">Product Lifecycle Designer</a> (PLD), you must do the following:</p>
+<ul>
+<li>Obtain a valid PLD license. For more information, see the product documentation's <em>Installation  User Guide &gt; Appendix C - License Files Explained</em>.</li>
+<li><a href="Designer Configuration.html#updateCatalogNode">Update the Velocity Studio Preferences to reflect the catalog Node created</a> in the configuration application</li>
+<li><a href="Designer Configuration.html#addCatalogLibraryFiles">Add catalog library files</a></li>
+</ul>
+
+<h3><a name="addPLMLibraryFiles"></a>Add PLD  Library File</h3>
+<p>The PLD library file, serviceOrchestrationFramework.jar,  contains the metadata that enables PLD to run. This file must be added to Velocity Studio's library.  Here are the steps to complete this process:</p>
+<ol>
+  <li>Open Velocity Studio and click <strong>File &gt; Open Project</strong> from the menu bar.</li>
+   <li>Click the metadata root node. In the right pane, click the <strong>Library</strong> tab.</li>
+   <li>Click  the <strong>Add</strong> button.
+     
+   </li>   
+   <li>Add the <em>serviceOrchestrationFramework.jar</em> file, which is located in the &lt;<em>product_installation_folder</em>&gt;\modules folder.
+   </li>
+   <li>Once the files are added, <strong>Save</strong> the project metadata, and reload or open the project  for the library files to take effect.</li>
+   </ol>
+<p><strong>Note:</strong> For more information, see   <a href="Designer Configuration.html#addCatalogLibraryFiles">Add Library files</a>.</p>
+<p>Once all the library files have been successfully added, the <b>Library</b> folder contains all the files.</p>
+<p>
+<img src="PLMLibraryFolder.png" alt="Library Files" /></p>
+</tr>
+</td>
+</table>
+</body>
+</html>

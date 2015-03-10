@@ -1,0 +1,171 @@
+﻿
+
+
+<html>
+<head>
+<title>Metadata Object Detail Pane</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Metadata Object Detail Pane</h2>
+<p>Once selected in the <b>Navigation</b> pane, the metadata objects' properties will appear in the <b>Detail</b> pane where they may be updated. Objects from the <b>Library</b> tab are read-only and cannot be changed.</p>
+<p>The general layout of the <b>Detail</b> pane for all metadata objects is very similar. The <b>Detail</b> pane for a Data Type object is shown here.</p>
+
+<img src="detailDT.png" align="absmiddle" border="0" alt="Metadata object - detail pane" />
+
+<p>The following sections highlight some common notable features found in object pane.</p>
+
+<h4>Property Tabs</h4>
+<p>The tabs at the top of the <b>Detail</b> pane allow navigation to the various groups of object properties. Clicking a tab displays the associated properties. Property tabs are different depending on the metadata type of the object.</p>
+
+<h4><a name="MDLookup">Metadata Lookup</a></h4>
+
+<p>The metadata lookup icon <img src="iconMD.png" align="absmiddle" border="0" alt="" /> is located at the end of any Metadata Object Selection field. If the field is editable, a Metadata Lookup dialog box appears when the icon is clicked:</p>
+
+<img src="lookupMD.png" align="absmiddle" border="0" alt="Select a metadata object" />
+
+<p>Only those relevant to the field (that is, the field is allowed to reference such metadata objects) are listed in the <b>Matching items</b> list. The dialog box allows you to search for the metadata object, in various ways:
+<ul>
+<li>Scroll up/down the list of matching metadata objects in the <b>Matching items</b> listbox, which is all the metadata objects qualified for selection based on this selection field's criteria. The full pathname (that is, prefixed with namespace path) of each qualified metadata object is shown. Select from this list and click the <b>Save</b> button to select the desired metadata object.</li>
+<li>Use the search field to key in refined matching criteria. With each keystroke, the <b>Matching items</b> listbox is updated by filtering pathname of metadata objects using the search key.
+	<ul>
+	<li>the search key is prefix-matching on pathname and name of metadata objects. For example, if search key is <i>sample</i>, then metadata objects such as <i>sampleNamespace.abc.documentA</i> and <i>anyNamespace.def.sampleDoc</i> would be matched.</li>
+	<li>the asterisk (<b>*</b>) character can be used to wildcard match any character strings of any length. For example, <i>*.system</i> would be to match metadata objects with any character strings followed by <i>.system</i> and followed by any character strings (because the search key is prefix matching), such as <i>com.conceptwave.system.anyObject</i>.</li>
+	<li>the question mark (<b>?</b>) character can be used to wildcard match any character. For example, <i>da?e</i> would be to prefix match metadata objects such as <i>date</i>, <i>datetime</i>, <i>dayeffective</i>.</li>
+	</ul>
+Type in a fragment to shorten the matching list, such as namespace prefix, before finding your desired metadata object in the listbox.</li>
+</ul>
+</p>
+
+<p>If the Metadata Object Selection field is read-only, the properties of the metadata object in selection appears in pop-up when the metadata lookup icon is clicked. The pop-up is read-only.</p>
+
+<img src="lookupMDreadonly.png" align="absmiddle" border="0" alt="Metadata object - read-only properties" />
+
+<h4><a name="ArrayElements">Manage Array Elements</a></h4>
+
+<p>Quite often, a metadata object contains an array of elements, and is managed with a tabular widget as shown below.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="listTable.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="actionicon"></a>Action Icon Toolbar</h4>
+<p>A column of action icons exists at the right of the table. The following table describes their functionalities. Note that not all tabular widgets have all of these icons. Only the applicable icons appear.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Icon</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconMoveUp.png" align="absmiddle" border="0" alt="" /> <b>Move Up</b></td>
+<td class='confluenceTd'>Move the selected Element up one row in the table.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconMoveDown.png" align="absmiddle" border="0" alt="" /> <b>Move Down</b></td>
+<td class='confluenceTd'>Move the selected Element down one row in the table.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconAdd.png" align="absmiddle" border="0" alt="" /> <b>Add Element</b></td>
+<td class='confluenceTd'>Adds an Element to the table.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconRemove.png" align="absmiddle" border="0" alt="" /> <b>Remove Element</b></td>
+<td class='confluenceTd'>Remove/delete the selected Elements from the table.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconSort.png" align="absmiddle" border="0" alt="" /> <b>Sort</b></td>
+<td class='confluenceTd'>Sort the Elements in the table in alphabetical order.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconHighlight.png" align="absmiddle" border="0" alt="" /> <b>Highlight</b></td>
+<td class='confluenceTd'>Highlight the selected Elements in another color. The <b>Highlighting Settings</b> Dialog appears, which has the same functionality as the <b>Highlight</b> command in right-click pop-up menu found in Navigation Pane.<br>
+  <br/>
+<img src="highlightDialog.png" align="absmiddle" border="0" alt="" />
+</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong><img src="iconCut2.png" alt="Cut icon"> Cut</strong></td>
+  <td class='confluenceTd'>Cut the selected Element.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconCopyPaste.png" align="absmiddle" border="0" alt="" /><b> Copy</b></td>
+<td class='confluenceTd'>Make a duplicate copy the selected Elements in the table. The duplicated Elements has all the same properties as the selected Elements, but with the name appended with "1" (for example, <i>dateOfBirth</i> would be duplicated to <i>dateOfBirth1</i>).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong><img src="iconPaste2.png" width="21" height="21" alt="Paste icon"> Paste</strong></td>
+  <td class='confluenceTd'>Paste a selected Element that was either cut or copied.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconProperties.png" align="absmiddle" border="0" alt="" /> <b>Properties</b></td>
+<td class='confluenceTd'>Shows the properties of the selected Element in a Dialog box.</td>
+</tr>
+</tbody>
+</table>
+</a>
+<p><strong>Note:</strong> With the <strong>Cut</strong>, <strong>Copy</strong>, and <strong>Paste</strong> icons, you can move or copy object parts to other objects:</p>
+<ul>
+  <li>Select variables (that is, leafs) of a document, and either copy-paste or cut-paste them to another document</li>
+  <li>Select functions of an object, and  either copy-paste or cut-paste them to another similar (document or UI) object</li>
+  <li>Select nodes or leafs of a data structure on the same level, and either copy or move them to another data structure</li>
+</ul>
+<h3>General Tab - Common Items</h3>
+<p>All metadata objects have a <b>General</b> tab that contains the common fields described in the table below.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Property</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'><p>Mandatory. Unique name of the object. The <b>Name</b> must conform to JavaScript naming conventions (that is, begin with a letter and the following characters must be letters, numbers, or the underscore character). </p>
+  <p>For namespaces, the name must not match another namespace name and cannot be any of the following: Array, boolean, break, case, catch, class, const, continue, Dashboard, DataStructure, debugger, DecisionTree, default, delete, deprecated, do, Document, else, enum, export, extends, false, final, finally, Finder, for, function, Global, if, import, in, instanceof, int, new, null, Number, Object, optional, Order, private, Process, public, readonly, Reference, return, static, String, super, switch, this, throw, true, try, typeof, var, void, while, with, writeonly. For all other objects, the name must be unique within the namespace. Read-only after creation. To change it, use the <b>Rename</b> command in the popup menu by right-clicking the metadata object.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (for example, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (for example, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Deprecated</b></td>
+<td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Final</strong></td>
+  <td class='confluenceTd'>Metadata elements can be marked as final, which includes any Boolean final property that is available on any metadata element. Additionally, any metadata element that has the <strong>Final</strong> property set to true can neither be extended, nor overridden.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Mandatory. Visual label of the Metadata object. The label may include the full variety of characters, including punctuation. The label has the same restrictions in duplication as the <b>Name</b> field.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Detailed description of the object used for documentation purposes.</td>
+</tr>
+<!--<tr>
+<td class='confluenceTd'><b>Help</b></td>
+<td class='confluenceTd'>All objects that may be presented to the user at run-time have an optional <b>Help</b> field that contains a very brief help text, usually presented to the user as flyover text.</td>
+</tr>-->
+</tbody>
+</table>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

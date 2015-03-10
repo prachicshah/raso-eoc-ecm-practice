@@ -1,0 +1,121 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Deploying Application</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+		<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+			<h1>Deploying Application</h1>
+
+<p>You should start the exercise of deployment as an application becomes ready for User Acceptance Testing (UAT), staging or production.</p>
+<p>There are several aspects that require your attention when deploying a Velocity Studio application:</p>
+<ol>
+<li>Metadata</li>
+<li>Configuration</li>
+<li>Database schema</li>
+<li>Processes</li>
+</ol>
+<p>The procedure below describes how these aspects are managed.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="deploy.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+<p>This figure depicts the process of deploying an application, which involves these phases:</p>
+<ol>
+
+<li><b>Metadata Check-in</b>: Once metadata is developed and tested to be ready for deployment, the metadata is first checked into a version control system. This checked-in step may also including running an SQL script for upgrading schema, using the <a href="../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Upgrading System.html"><b>Upgrade System</b></a>  command in Velocity Studio, and any other additional SQL scripts that are required for the application. Then label the version of the checked-in data.
+  <p></p></li>
+
+<li><b>Metadata Check-out</b>: Metadata is checked out to a packaging environment, using the labelled version.</li><p></p>
+
+<li><b>Package</b>: Use the <a href="../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Metadata Build WAR.html">Package command in Velocity Studio</a>, or use <a href="Packaging in Command Line Interface.html">command-line "-package"</a>, to package the metadata into Web Application Archive (WAR) file.<br>
+  <p><strong>Note:</strong> The Package command is not mandatory. Use the package command in multi-tenancy deployments only.</p>
+  <p>The pre-requisites of packaging are:</p>
+<ul>
+<li>access to the Application Metadata in source format</li>
+<li>Velocity Studio installed</li>
+<li>in the event that the packaging procedure writes into Metadata, have write access to source control system to check-in the Metadata changes (see explanation below)</li>
+</ul>
+<p>The packaging command has a <i>buildVersion</i> parameter; this parameter and its generated GUID <i>buildInternalVersion</i> are tagged into the WAR file, at the metadata header, to identify the build version of the packaged metadata. Enter the metadata version label in step 1 as the buildVersion to tag this WAR file with its metadata version.</p>
+<p><strong>Note:</strong> This buildVersion is not written into the project's metadata header file, but only at the WAR file.</p>
+</li>
+<p>If the Process Metadata is changed since last packaging, the packaging command creates new <a href="../Service_Designer_Tool_User_Guide/Business_Process_Metadata/process revisions.html">Process Revisions</a> in the metadata. If this happens, <b>it is important to immediately check in these metadata changes into source control system</b> -- if not, further development in Process Metadata becomes out of sync with process revisions in deployment environment!</p>
+
+<li><b>Update Configuration</b>: The WAR file that is packaged does not include configuration settings that are managed in the Configuration application; the configuration is stored within database. In fact, the configuration in deployment environment is most likely different from engineering environment, such as addressing of external interfaces and node clustering settings, while other settings may remain the same. For a new deployment, use engineering environment's configuration as baseline and modify for deployment environment. For an upgrade of an existing deployment, compare the configurations of existing deployment with Configuration application of the upgrading metadata for any necessary modifications.
+
+  <p>The pre-requisites of updating configuration are:
+<ul>
+<li>Velocity Studio installed, to run AVM in config mode</li>
+<li>access to WAR file</li>
+<li>access to deployment database -- its equivalence, e.g. staging DB, is not sufficient.</li>
+</ul>
+</p>
+
+<p>There are various ways to update configurations for deployment environment. The System Configuration application can be <a href="../Configuration_Tool_User_Guide/Getting Started/accessSystemConfiguration.html">started using Velocity Studio GUI or in command-line</a>. Note that running the Configuration application need not be by Deployment Application Servers, as long as the machine has access to the deployment database.</p>
+<ol>
+<li>The most straightforward method is to update the configuration with Configuration application after deploying WAR file to Application Server.</li>
+<li>However, in production environment where maintenance window is limited, the deployment procedure shall be prepared at staging environment, and the configuration update can be exported. Compare and merge with an exported copy of production's current configuration. At deployment time, import the merged configuration into production system.</li>
+<li>If there is no shadowing environment available for pre-deployment of production system, configuration update may be prepared in production in advance. The method of <a href="../Configuration_Tool_User_Guide/Configure/System/introduction.html#fast-swapping">fast-swapping configuration</a> is recommended, which prepares an inactive configuration version before deploying a WAR file. There is another alternative approach, by making a copy of all node configuration, then disable <b>Active configuration</b> flag on the copy, and make the necessary configuration updates. At deployment time, swap the active vs inactive copy to activate the new configuration. There is a limitation to this alternative, however, that some configuration settings may not be available until the new WAR file is deployed. For example, if a new external interface is defined, configurations cannot be set before deployment by this approach.</li>
+</ol><p></p>
+</li>
+
+<!-- In the event that validation fails due to bad configuration and cannot deploy, you may be required to run the Config tool using Service Designer in command-line (link???), to fix the configuration settings stored in deployment database.</b>
+-->
+
+
+<li><b>Update Database Schema</b>: The WAR file does not contain the deployment database schema nor schema update. The SQL Schema Update script may be obtained from the engineering environment that was previously checked-in, or simply use Velocity Studio to run the <a href="../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Upgrading System.html"><b>Upgrade System</b></a> command with the upgrading metadata against the deployment database or equivalent (e.g. use staging DB instead of production DB), which produces the file of SQL statements, if any, necessary for updating the database. Review those statements with a DBA, and execute them. Additional SQL scripts required for the application can be updated at this time as well.</li>
+<p></p>
+
+<!--as per ticket 22504, Activate was removed 
+<li><b>Activate</b>: Use the <a href="Activation in Command Line Interface.html">command-line "-activate"</a> to prepare the deployment environment to deploy the WAR file. The pre-requisites of Activation are:</p>
+  <ul>
+<li>Velocity Studio installed</li>
+<li>access to WAR file</li>
+<li>access to deployment database -- its equivalence, e.g. staging DB, is not sufficient.</li>
+<li>configuration exists for all nodes that are to be deployed -- the Configuration needs not be finalized, but the node IDs need to exist in the Configuration application.</li>
+</ul>
+
+<p>The Activate command requires parameters for database connection, path of WAR file, and node IDs to activate against. The command prepares the deployment environment to allow the deployment, by writing into deployment database. It does not write into the WAR file.</p>
+<p>Specifically, the Activate command retrieves the <i>buildVersion</i> and <i>buildInternalVersion</i> in the WAR file, and writes into the <i>CWVMINFO</i> table the columns of <i>ACTIVATED_VERSION</i> and <i>ACTIVATED_IVERSION</i> for all of the rows identified by the Node IDs. Effectively, this step tags the next metadata deployment for these nodes against the specified WAR file.</p>
+
+</li>
+-->
+<li><strong>Deploy Application</strong>: To run your metadata from an application server, the metadata must be in the   database, instead of in the file system. Once you have created your metadata,   see <a href="../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Metadata Deploy Application.html">Deploy Application</a> to deploy the database from within Velocity Studio.<br>
+  <br>
+<li><b>Copy WAR File into deploying nodes</b>: Copy the WAR file into machines where J2EE containers are configured to run as certain nodes.
+  <br>
+  <br>
+</li>
+
+<li><b>Deploy WAR file</b>: Deploy the WAR file according to the <a href="Deploy in J2EE Application Server.html">deployment procedure of your J2EE Application Server</a>, for all target nodes.</p>
+
+  <p>If this deployment involves adding new Service Providers such as WSDL or Tibco, or changes in nodes,  see <a href="J2EE Application Server Installation.html">J2EE Application Server Installation</a> on J2EE setup before deploying.</p>
+</li>
+
+<p>At setup, each Application Server instance is assigned with node ID using the <i>-Dcom.conceptwave.nodeId</i> VM parameter. </p>
+
+<!--as per ticket 22504, removed descriptions releated to ACTIVATED_IVERSION> 
+<p>At this deployment step, the application metadata is not allowed to start if the WAR file's <i>buildInternalVersion</i> does not match column <i>ACTIVATED_IVERSION</i> of its node ID in <i>CWVMINFO</i> table. This verification ensures the intended WAR file is started, as explicitly specified in the Activation step; for example, if the latest WAR file is forgotten to be copied to one of the Application Servers, the verification prevents the previous version of WAR file to be run along with other Application Servers that are running the latest WAR file.</p>
+
+<p>If deployment is successful, the <i>CWVMINFO</i> table's columns <i>RUNNING_VERSION</i> and <i>RUNNING_IVERSION</i> are updated to values of <i>ACTIVATED_VERSION</i> and <i>ACTIVATED_IVERSION</i> respectively, to indicate the current running version.</p>
+-->
+
+<p><strong>Note</strong>: the deployment process, in fact, does not prohibit deploying different WAR files into different Application Servers. Indeed, this may be advantageous in certain deployments -- for example, a dedicated node for serving operational reports may be deployed in separate WAR file, which may shield the main nodes from deployment (and all regression testing associated with it) in the event of constant development changes in reporting. Simply repeat this deployment procedure for each metadata stream, particularly activating only the designated nodes at each activation step.</p>
+
+	  </td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Process Engine Memory Considerations</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Process Engine Memory Considerations</h2>
+
+<p>From a memory perspective, the difference between a big process and a small  one  is relatively moderate – one bit per activity, as long as the maximum  number of processes specified for the process engine&nbsp;is the same. </p>
+<p>As an example, if a process engine has 500,000 processes, each being 2000 activities long, and the same number of  processes is 20 activities long, the difference in memory is 500,000 * 1980 / 8  = 124 MB. </p>
+<p>To calculate the minimum needed memory, use the following  formula:</p>
+<blockquote>
+  <p>Total memory for the processes in bytes = MNP * 250 /* process  table */ + &nbsp;(MNP * 9 * 80 /* activity cache */) + (MNP / 15 * 1500 /*  process data cache */) + 
+    (MNP / 15 * 500 /* dynamic participant cache */)</p>
+  <p>Where MNP is the maximum number of processes as defined in the  process engine configuration.</p>
+</blockquote>
+<p>For example, for 500,000 processes, a process engine needs 125 M + 360 M +  50 M + 17 M = 565 K memory, or roughly 1.2 K per process. </p>
+<p><strong>Note:</strong> All calculations have at least a 25% error based  on the inability to calculate the exact size of objects in memory.</p>
+<p>To  calculate the minimum memory needed for the  process engine, use the following formula:</p>
+<blockquote>
+  <p> (500M /* AVM + metadata* / + the size of all user-defined caches + PE memory) * 1.5</p>
+</blockquote>
+<p>  For 500,000 processes, this formula gives the minimum result of  approximately 2 G of memory. It is recommended that you add at least 25% of free memory, so the <em>minimum</em> memory  is 2.5 GB. To ensure that you have  good performance, it is suggested that you add at least 25% of free memory, which would make the minimum memory be 3 GB.</p>
+<p>For a rough calculation using  average-sized metadata, user caches that are not too large, and an MNP above 100,000, use the following formula: </p>
+<blockquote>
+  <p>1GB + MNP * 3K</p>
+</blockquote></td>
+</tr>
+</table>
+</body>
+</html>

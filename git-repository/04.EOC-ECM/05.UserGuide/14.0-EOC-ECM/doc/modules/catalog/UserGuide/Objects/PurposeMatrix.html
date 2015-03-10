@@ -1,0 +1,231 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Actions and Purpose Matrices</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Actions and Purpose Matrices</h2>
+<h3>Actions and Purposes</h3>
+<p><strong>Actions</strong> perform either hard coded (system actions) or  user-defined (user actions) logic using associations from different association  types in different association categories.</p>
+<p>The implementations of actions rely on associations. Association  types are used for actions’  <strong>purposes</strong>. Purposes are codes (strings)  that define lists of one or many association type codes in given association  categories. </p>
+<p>Catalog predefines some purpose codes but the user is free  to introduce new purpose codes needed for the user actions. The difference in  the implementation of the system defined and user defined actions is as  follows:</p>
+<ol>
+  <li>System defined actions – implemented in the Catalog  core</li>
+  <li>User defined actions – implemented in the Catalog  templates and/or applications as metadata (or external) scripts</li>
+</ol>
+<p>The following lists the system purpose codes that are  available:</p>
+<ol>
+  <li>Eligibility – contains item-rule association types  that decide whether a given item can be used for the action. </li>
+  <li>Components – contains item to item association types  that define what items must necessarily exist as children of a given item.</li>
+  <li>Groups – contains the group associations for the parent  of an item.</li>
+  <li>Validation – contains item-rule associations for the  item validation rules.</li>
+  <li>Price – contains the charge type associations that  price the item.</li>
+</ol>
+<h3>Purpose Matrix</h3>
+<p>The two dimensional matrix which defines what association types  and condition rules are used for particular purpose code by a particular action  is called the <strong>purpose matrix</strong>. The  purpose matrix has the following generic form:</p>
+<table border="1" cellspacing="0" cellpadding="0">
+  <tr>
+    <th width="120" class="confluenceTh">Action/Purpose</th>
+    <th width="120" class="confluenceTh">Purpose1 name</th>
+    <th width="120" class="confluenceTh">Purpose 2 name</th>
+    <th width="120" class="confluenceTh">…</th>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Action1 name</strong></td>
+    <td class="confluenceTd">Purpose cell content</td>
+    <td class="confluenceTd">Purpose cell content</td>
+    <td class="confluenceTd">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Action2 name</strong></td>
+    <td class="confluenceTd">Purpose cell content</td>
+    <td class="confluenceTd">Purpose cell content</td>
+    <td class="confluenceTd">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>…</strong></td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+  </tr>
+</table>
+<p>The left-most column specifies the list of unique action  names (system and user). The top row specifies the list of unique purpose  codes. The elements of the matrix (the purpose cell content) have one of the  following content types:</p>
+<ol>
+  <li>Empty – not used by the action.</li>
+  <li>Association type code and condition – the association  type used by the action for the specified purpose. If optional condition rule  is specified, it is run before any association of the specified type is  processed. If it fails (returns false) the association type is skipped. <br>
+    The syntax of the matrix element is:    <em>&lt;Association  type&gt;</em>[&amp;<em>&lt;Catalog rule name&gt;</em>]</li>
+  <li>List of association type codes and conditions – the  association types and optional condition rules used by the action for the  specified purpose. For syntax, see the previous bullet. The list is specified  in CSV format.</li>
+</ol>
+<p>There are three sources of data that define the purpose  matrix:</p>
+<ol>
+  <li>The hard-coded default system purpose matrix.</li>
+  <li>The template purpose matrix modifications – a list of  cells returned from the global script cwtCatalogInit: cwCtlgActionPurposeMatrix</li>
+  <li>The application purpose matrix – a list of cells  returned from the global script cwInit: cwCtlgActionPurposeMatrix.</li>
+</ol>
+<p>The default system purpose matrix is as follows:</p>
+<table border="1" cellspacing="0" cellpadding="5">
+  <tbody>
+<tr>
+   <th width="100" class="confluenceTh">Action/Purpose</th>
+    <th width="100" class="confluenceTh">Eligibility</th>
+    <th width="100" class="confluenceTh">Components</th>
+    <th width="100" class="confluenceTh">Validation</th>
+    <th width="100" class="confluenceTh">Groups</th>
+    <th width="100" class="confluenceTh">Price</th>
+    <th width="100" class="confluenceTh">Availability</th>
+    <th width="100" class="confluenceTh">Rank</th>
+  </tr>
+  
+  <tr>
+    <td class="confluenceTd"><strong>add</strong></td>
+    <td class="confluenceTd">eligibility</td>
+    <td class="confluenceTd">components</td>
+    <td class="confluenceTd">No default</td>
+    <td class="confluenceTd">No default</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>forcedAdd</strong></td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">components</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>remove</strong></td>
+    <td class="confluenceTd">No default</td>
+    <td class="confluenceTd">components</td>
+    <td class="confluenceTd">No default</td>
+    <td class="confluenceTd">No default</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>validate</strong></td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">validation</td>
+    <td class="confluenceTd">groups</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>price</strong></td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">price</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>browse</strong></p></td>
+    <td class="confluenceTd">eligibility</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">availability</td>
+    <td class="confluenceTd">rank</td>
+  </tr>
+  </tbody>
+</table>
+<p><strong>Note:</strong> The cells  marked “No default” specify purposes that can be used but are left empty in the  standard out-of-the-box Catalog product. The application may specify particular  values for them. The cells that are empty are not used by the corresponding  actions.</p>
+<p>The purpose matrix extension mechanism modifies the system  purpose matrix by applying first the Catalog template modifications (if any)  and then the application modifications (if any). </p>
+<p>The purpose matrix modification scripts have to return a  string array consisting of triples – action name, purpose name and cell  content. The cells may exist in the system matrix or may be new cells – new  actions and/or purposes. Only the new cells or the existing cells that are  changes need to be specified. The order of triples is not important but the  action and purpose names have to be spelled correctly. The cells that are not  specified are inherited from the base purpose matrix.</p>
+<p>For example:</p>
+<p>Consider the following  script : </p>
+<p class="code">function cwCtlgActionPurposeMatrix() {<br>
+  return [<br>
+  “Add”,    ”Components”,  ”Comp1&amp;Rule1,Comp2”, <br>
+  “Remove”, ”Components”,  “CompRemove1”,<br>
+  “Remove”, ”Eligibility”, “CanRemove”,<br>
+  “MyMove”, ”Components”,  ”CompMove&amp;Rule3”, <br>
+  “MyMove”, ”ForMove”,     ”Move”, <br>
+       ];<br>
+  }</p>
+<p>The resulting purpose matrix after merging with the system  matrix is shown in the following table.</p>
+
+<table border="1" cellspacing="0" cellpadding="5">
+<tbody>
+  <tr>
+    <th width="100" class="confluenceTh">Action/Purpose</th>
+    <th width="100" class="confluenceTh">Eligibility</th>
+    <th width="100" class="confluenceTh">Components</th>
+    <th width="100" class="confluenceTh">Validation</th>
+    <th width="100" class="confluenceTh">Groups</th>
+    <th width="100" class="confluenceTh">Pricing</th>
+    <th width="100" class="confluenceTh">ForMove</th>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Add</strong></td>
+    <td class="confluenceTd">Eligibility</td>
+    <td class="confluenceTd">Comp1&amp;Rule1, Comp2</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Remove</strong></td>
+    <td class="confluenceTd">CanRemove</td>
+    <td class="confluenceTd">CompRemove1</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Validate</strong></td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">Contains</td>
+    <td class="confluenceTd">Validate</td>
+    <td class="confluenceTd">Groups</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>Price</strong></td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">Price</td>
+    <td class="confluenceTd">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd"><strong>MyMove</strong></td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">CompMove&amp;Rule3</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">&nbsp;</td>
+    <td class="confluenceTd">Move</td>
+  </tr>
+  </tbody>
+</table>
+<p>The Catalog implements a user action extension mechanism  which works in the following way: if a shopping basket API is not found (i.e. it is not  system-defined) a global script with name cwCtlg<em>&lt;Action name&gt;</em> is searched  first in the application initialization namespace and then in the template  initialization namespace. When found, the global script is invoked with the  same parameters as the original call and the shopping basket object as ‘this’  object.</p>
+<p>For example:</p>
+<p>The API call myAction1 with parameters (item) will call the  global script cwCtlgmyAction1 in the application initialization namespace passing  the value of the item as first parameter and the basket object as ‘this’  parameter.</p>
+<p><strong>Note:</strong> Action and  purpose names are case insensitive. So are association type codes and rule  names.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

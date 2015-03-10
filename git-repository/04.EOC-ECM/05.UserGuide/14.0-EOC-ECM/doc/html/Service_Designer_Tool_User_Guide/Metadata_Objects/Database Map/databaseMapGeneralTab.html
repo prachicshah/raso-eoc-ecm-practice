@@ -1,0 +1,102 @@
+﻿<html>
+<head>
+<title>Database Maps - General properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Database Maps General Properties</h2>
+<p>The database map's General  tab allows you to define its general properties. </p>
+<p><img src="databaseMapGeneralTab.png" alt="Database Maps - General properties" border="1"></p>
+<p>The following table describes  the common fields for the database map's General tab:</p>
+<table class='confluenceTable' border cellpadding="1"
+>
+<tr>
+      <th width="131" class='confluenceTh'>Field</th>
+      <th width="1397" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Name</b></td>
+      <td class='confluenceTd'>This field contains the name of the database map metadata object (used in scripts; must conform to JavaScript naming conventions). It is read-only after its creation. To change it, use the <b>Rename</b> command in the popup menu by right-clicking the metadata object.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Private</b></td>
+      <td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as product metadata (that is, library).</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Restricted</b></td>
+      <td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as product metadata (that is, library).</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Deprecated</b></td>
+      <td class='confluenceTd'>If checked, the metadata object is designated for archival only. The object becomes hidden from all metadata object selection lists.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Label</b></td>
+      <td class='confluenceTd'>This field contains the database map object's display label.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Description</b></td>
+      <td class='confluenceTd'>This field represents a brief description about the database map for documentation.</td>
+    </tr>
+    <tr>
+      <td height="30" class='confluenceTd'><b>Extends</b></td>
+      <td class='confluenceTd'>This field is of Metadata type and allows the database map to extend an existing map. Click the drop-down menu and select the map that you want to extend. This property is neither enabled, nor visible for non-top-level database  maps.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Target</b></td>
+      <td class='confluenceTd'>This field specifies the data structure that is to be mapped to the column.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Default</strong></td>
+      <td class='confluenceTd'>This field determines whether this database map is the default map to use for the given schema, for the given metadata. By default, this field is unchecked and can be changed. For a non-top-level database map, this field is automatically set to true, and is neither changeable, nor visible.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Conflict Resolution</strong></td>
+      <td class='confluenceTd'><p>When selected, this property enables conflict resolution on the database map. When you create a variable with any of the following data types and they are mapped to a database column, the values are internally generated during the save or update operation:</p>
+        <table class='confluenceTable' border cellpadding="1"
+>
+  <tr>
+    <th width="104" class='confluenceTh'>System Data Type</th>
+    <th width="392" class='confluenceTh'>Description</th>
+    <th width="393" class='confluenceTh'>Database Column Requirement</th>
+    </tr>
+          <tr>
+            <td class='confluenceTd'><strong>CWDOCSTAMP</strong></td>
+            <td class='confluenceTd'>This system data type denotes the batch's base 64 sequence number.</td>
+            <td class='confluenceTd'>VARCHAR with a length 9 character.</td>
+            </tr>
+          <tr>
+            <td class='confluenceTd'><strong>CWTIMESTAMP</strong></td>
+            <td class='confluenceTd'>This system data type represents the timestamp.</td>
+            <td class='confluenceTd'><p>Either DATE or TIMESTAMP.</p></td>
+            </tr>
+          </table>
+        <br>
+  <p><strong>Note:</strong> These system data types must be a part of the data structure leaf to use them in the conflict check. If you have enabled this property, but the system type mapping does not exist, a warning message appears.</p>
+  <!--
+  <ul>
+          <li>Conflict resolution is not supported in Cassandra, as it does not support the <tt>update</tt> or <tt>delete</tt> count statement with the database operation.</li>
+          </ul>-->
+          </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Skip DB schema generation</strong></td>
+      <td class='confluenceTd'>There are cases in which database maps used on external database services does not require creating the table structure for these maps. When selected, this property skips generating the DDL for the specified database map and its corresponding API methods to set or get the property value.</td>
+    </tr>
+    <tr>
+      <td height="56" class='confluenceTd'><strong>Audit Trail</strong></td>
+      <td class='confluenceTd'><p>This field determines whether you want to track changes to mapped data structures. By default, this field is unchecked, which indicates that changes are not tracked. To track changes to mapped data structures, select this checkbox.</p>
+        <p><strong>Note:</strong> To successfully track changes to mapped data structures, other audit settings must be set.</p></td>
+    </tr>
+</table>
+<p>&nbsp; </p>
+</td>
+</tr>
+</table>
+</body>
+</html>

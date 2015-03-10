@@ -1,0 +1,321 @@
+<html>
+<head>
+<title>Finders at Runtime</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="topic-check-list" content="Ran Smart Index" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Finders at Runtime</h2>
+<p>Finders are used to search, access, add, update, and delete data from different data sources and display it at runtime. There are several types of Finders available including Document, Order, Rule, Script, and SQL. Each  finder displays different type of information at runtime. Using the available Finder User Interface features (configured at design time) end users can customize the display of the data.</p>
+<p>In most cases, when displaying a finder user interface,  properties such as the search form to display, the initial search data, the  result form to use, and so on are taken from the first available finder view as defined in Velocity Studio. A finder's custom  view changes the way the finder user interface looks on top of that static view. If a  custom view is set as the default view, it is used to render the user interface as  defined in that custom view and run the finder automatically if the  corresponding option is on.</p>
+<p>The runtime Finder data  can be customized  using  the following menus and features:</p>
+<ul>
+  <li><A href="#preferences">Preference Menu</A></li>
+  <li><A href="#table">Table Features</A></li>
+  <li><A href="#tableedit">Editing Table Data</A></li>
+  <li><A href="#hover">Displaying a Hover Form</A></li>
+</ul>
+<h3><a name="preference"></a>Preference Menu</h3>
+
+<p>In Velocity Studio,  the  Default Form of the Finder User Interface contains Form elements that are, by default, configured to display a Preference menu at runtime. At runtime, the Finder contains  a Preference drop-down menu contains a number of options that enable the user to drill down on data or change how it is displayed in the Finder User Interface. The following section discusses the options and  how they works, including some important design time configuration information.</p>
+
+<img src="Finder_pref_runtime.png" border="0" alt="Finder Preference menu at runtime" />
+
+<h4>Show/hide Search</h4>
+<p>This menu option controls if the detailed information in the Finder is displayed or hidden. In the Finder Default Form, the toggleMenu menu element contains a <em>Visible</em> property that sets the menu as toggleVisible or toggleHidden.</p>
+<h4>Finder Name</h4>
+<p>The name of the current Finder displays in two places, in the header of the Finder and on the lower region of the <strong>Preference</strong> menu. When the user selects and opens a specific View, the name of the selected view appears on the top of the Finder dialog and on the Preferences dialog as a label. The name of the view is stored as a variable called <em>header</em> in the  Variables tab in the Finder User Interface. For more information see <a href="Finder User Interface Variables.html">Finder User Interface Variables</a>.</p>
+<p><img src="Finder_Runtime_Header.png" align="absmiddle" border="0" alt="Finder Runtime Header" /></p>
+<p> When the Finder User Interface menu is initialized, the list of Finders is generated.  In Velocity Studio, the Finder Default form contains an Iterator element that iterates through the objects specified in the Menu element, which is located beneath it. The Menu variable property is set to  <em>view</em>--which refers to the name of the Finder view that displays in the Preference menu at runtime.</p>
+<h4>Custom View</h4>
+<p>The <strong>Open Custom View</strong> menu option enables end users to open a custom view for the current Finder. The custom view enables users to search, select and save particular records of a Finder.  In the openView menu,  the<em> Click method</em> property controls the display of the view. To change a custom view, you would have to open a custom view and then click the Edit menu option.</p>
+<p>Once a custom view is created, it can be changed by using the <strong> Modify Custom View</strong> menu option, which allows you to edit the custom view. The customViewFinder script is used for this menu's operation, as it contains SQL to retrieve information from two separate database tables.</p>
+<h4>Favorites</h4>
+<p>The <strong>Add Custom View</strong> menu options enables end users to add and customize a Favorites view. The  Favorite dialog enables the user to save Finder settings as a favorite record (that displays in the Favorite menu). To access the Favorites view, the user must view Finder results.</p>
+
+<p><img src="Finder_add_custview.png" border="0" alt="Add Custom View for Favorites" /></p>
+
+<p>The <b>Favorite</b> menu allows the user to store, change, and select a set of parameters for a given Finder. </p>
+<p>This set may include some of the Finder search criteria, the resulting columns, the sort order and the maximum number of rows. Each set has a unique name and is called <em>Favorite</em> or <em>Favorite record</em>. </p>
+
+<p>The menu contains the following menu items:</p>
+<ul>
+  <li><strong>Add Custom View</strong> - allows you to change the favorite parameters for the current favorite record.</li>
+  <li><strong>Open Custom View</strong> - enables the user to search, select and save particular records of a Finder. This data can be viewed in the Favorites menu.</li>
+  <li><strong>Modify Custom View</strong> - allows you to change the current favorite view's parameters.</li>
+  </ul>
+
+<p>  If the Finder is not opened using the <b>Open Custom View</b> dialog or as a default Favorite, or if the user that has created the favorite record is not the current user, the operation is not performed. If the Finder is opened using the <strong>Open Custom View</strong> menu,  the <b>Favorite</b> dialog (refer to the <a href="#Add Favorite"> Add Favorite</a> section) opens and allows the user to change the the favorite parameters for the current favorite record. </p>
+<p><img src="Finder_favorite.png" align="absmiddle" border="1" alt="Custom View for Finder" /></p>
+<p>The new favorite record is stored with the current Finder settings and replaces the existing record.</p>
+
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Favorite Menu Item</th>
+      <th class='confluenceTh'>Function</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Label</b></td>
+      <td class='confluenceTd'>The name of the <b>Label</b>. Note, that the favorite <b>Label</b> parameter cannot be changed once it is entered.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Max Rows</b></td>
+      <td class='confluenceTd'>Saves the current Finder result to the database with the <b>Label</b> field used as the identifier. Maximum number of rows to retrieve. The default is the same number of   rows as specified for <strong>Page Size</strong>. The maximum rows allowed is 999. Setting   the maximum number of rows avoids caching memory. </td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Default</strong></td>
+      <td class='confluenceTd'>Open the  corresponding Finder user interface using the properties set in this custom  view by default. </td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Show search form at start</strong></td>
+      <td class='confluenceTd'>Opens the selected Favorite and displays the report on screen.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Run query at start</strong></td>
+      <td class='confluenceTd'>Searches the database for existing Favorites.</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Save Search Criteria</strong></td>
+      <td class='confluenceTd'><p>By default, this field is selected, meaning that the finder's search criteria are saved for custom views and favorites. Otherwise, when this field is not selected, the search criteria are cleared when you leave your finder results.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Save Table State</strong></td>
+      <td class='confluenceTd'>By default, this field is selected, indicating that you want to save the table layout for your custom view. This field is always visible.</td>
+    </tr>
+    </tbody>
+</table>
+
+<h4>Chart</h4>
+<p>The <strong>Chart</strong> options of the Preference menu displays information that is configured in the Finder Chart Form. The Finder Chart Form consists of a Chart Form Element and a ChartField. When these elements are configured, they refer to a result Form, and display the content of the form in a chart display. For more information see, <a href="Finder_Form_Chart.html">Finder Chart Form</a>.</p>
+<p><strong>Download Files</strong></p>
+<p>In the Preference menu there are three options for downloading files:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Downloading Option</th>
+      <th class='confluenceTh'>Function</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Download as XSL</td>
+      <td class='confluenceTd'>To import data from a <SPAN name="resultofMatch">XSL</SPAN> file click the <strong>Download as</strong> <strong><SPAN name="resultofMatch">XSL</SPAN></strong> button. The Download<strong> as</strong> <strong><SPAN name="resultofMatch">XSL</SPAN></strong> dialog opens where the file is   selected. The download only contains the current page information.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Download as CSV</td>
+      <td class='confluenceTd'>To import data from a <SPAN name="resultofMatch">CSV</SPAN> file click the <strong>Download as CSV </strong>button. The Download<strong> as</strong> <strong>CSV </strong>dialog opens where the file is   selected.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Download as XML</td>
+      <td class='confluenceTd'>Open a previously-saved favorite record that  opens the corresponding Finder in the screen</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Move Table Columns</h3>
+<p>At runtime, it is possible to move an entire results column.  By right-clicking the column header and holding down and moving the mouse, the user is able to reposition the entire column to either left or right. </p>
+<h3>Display Number of Retrieved Rows After Conducting a Search</h3>
+<p>The number of retrieved rows after conducting a finder search appears in the status bar of your Web browser.</p>
+<h3><a name="table"></a>Table Features</h3>
+<p>At runtime, data from the Finder User Interface Result Form is displayed in a  table. The user can customize the table  using several of the table options.</p>
+<h4>Table Menu</h4>
+<p>Each column in the table displays a menu when the column arrow is selected.</p>
+<p><img src="table_menu.png" align="absmiddle" border="0" alt="Finder - Table Menu" />
+<p><strong>Note</strong>: In Velocity Studio, the display<em> </em>of the table  is  bound to a Finder User Interface variable called <em>tableState</em>.  The <em>tableState</em> variable  is set to the current view state of the table.</p>
+<p>The following options are available for each column in the  table.</p>
+
+<table class='confluenceTable' border cellpadding="1"><tbody>
+    <tr>
+      <th width="158" class='confluenceTh'> Option</th>
+      <th width="1038" class='confluenceTh'>Function</th>
+      <th width="460" class='confluenceTh'>Example</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Sort Ascending</strong></td>
+      <td class='confluenceTd'>This menu item arranges column data  into a sequence from the lowest to the highest values.</td>
+      <td class='confluenceTd'><img src="table_ascending.png" align="absmiddle" border="0" alt="" /></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Sort Descending</strong></td>
+      <td class='confluenceTd'>This menu item arranges column data  into a sequence from the highest to lowest values.</td>
+       <td class='confluenceTd'><img src="table_descending.png" align="absmiddle" border="0" alt="" /></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Configure Sort</strong></td>
+      <td class='confluenceTd'><p>Selecting  this option launches the Sort dialog, allowing you to specify the order in  which your table columns are sorted.</p>
+        <p>You can perform the following actions:</p>
+        <ul>
+          <li>Add a sorting level by clicking  the <strong>Add Level</strong> button. Click the <strong>Column</strong> drop-down menu and select the  column name, and then click the <strong>Order</strong> drop-down menu to specify whether to sort the data in either ascending or  descending order. Numbers appears in the column  headings, indicating the order in which the columns are sorted.</li>
+<li>Remove a sorting level by  selecting a level from the table and then clicking the <strong>Delete Level</strong> button.</li>
+          <li>Copy a sorting level by  selecting a level from the table and then clicking the <strong>Copy Level</strong> button.</li>
+          <li>Move a sorting level up or down  in the sorting configuration by clicking the <strong>Up</strong> and <strong>Down</strong> arrow  buttons, respectively.</li>
+        </ul>
+        When  you have finished configuring your sort, click the <strong>Apply</strong> button to save your changes.</td>
+      <td class='confluenceTd'><img src="table_configure_sort.png" border="1" alt="Configure sort"></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Clear Sort</strong></td>
+      <td class='confluenceTd'>This  menu item allows you to clear your previously configured sort.</td>
+      <td class='confluenceTd'><img src="table_clear_sort.png"  border="1"alt="Clear sort"></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Column</strong></td>
+      <td class='confluenceTd'>This column item hides or shows column data.</td>
+       <td class='confluenceTd'><img src="table_column.png" align="absmiddle" border="1" alt="Column Option" /></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Group By Name</strong></td>
+      <td class='confluenceTd'><p>This menu item groups results based on the value of the column. For example, if the column is set by a datetype, then the data is grouped by calendar specifics. </p>
+        <p><strong>Note:</strong> For Translation Fields (Translation Form element), the<em> Group by In Table</em> property field must be set.</p></td>
+      <td class='confluenceTd'><img src="table_group.png" align="absmiddle" border="1" alt="Group By Name Option" /></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Freeze Frame</strong></td>
+      <td class='confluenceTd'>The menu item freezes the indicated table so that it remains in place and visible when horizontal scrolling occurs. The column that is frozen is moved into the first column position (far left of the table). After the column is frozen, you can select the unfreeze option to return the column to its previous state.</td>
+      <td class='confluenceTd'><img src="table_freeze.png" align="absmiddle" border="0" alt="Freeze Frame Option" /></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Auto Fit All Columns</strong></td>
+      <td class='confluenceTd'>This menu item ensures all data automatically fits within all table columns.</td>
+      <td class='confluenceTd'><img src="Finder_AutoFitAllColumns.png" border="1" alt="Auto Fit All Columns"></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Auto Fit</strong></td>
+      <td class='confluenceTd'>This menu item ensures all data automatically fits within the specified table column.</td>
+      <td class='confluenceTd'><img src="Finder_AutoFit.png" border="1" alt="Auto Fit"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h3><a name="tableedit"></a>Editing Table Data</h3>
+<p>The user can edit data in the table when the Table element property called<em> Editable</em>  is set to <em>True</em>. Setting the Editable property  to true enables the user to edit the fields of the table at runtime. There are two ways in which users can edit table data; click the row that contains the data that the user want to edit or click the <img src="table_doubleclick_icon.png"> arrow icon of the row that the user want to edit. Clicking the icon makes the row editable and is the same action as a double-click.</p>
+<p>When a field of a table is editable, do the following:</p>
+<table class='confluenceTable' border cellpadding="1"><tbody>
+    <tr>
+      <th class='referenceTh'>Form Element Type</th>
+      <th class='referenceTh'>Element in Table</th>
+      <th class='referenceTh'>Edit Action</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Text Field</td>
+      <td class='confluenceTd'><img src="table_text.png"></td>
+      <td class='confluenceTd'>Type text in text field.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Text Area</td>
+      <td class='confluenceTd'>see Text Field</td>
+      <td class='confluenceTd'>Type  text in text field.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Large Text</td>
+      <td class='confluenceTd'><img src="table_largetext.png"></td>
+      <td class='confluenceTd'>Click the Large Text icon. A Finder opens for this data. In the Finder, select a row of data. The data that the user selects replaces the data that currently appears in the  field. Scroll to the bottom of the Finder and click <strong>Select</strong>. The current data is replaced by the  selected data in the Finder. Note, the Editable property of the Large Text Form element must be set to <em>True.</em></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Large Text Area</td>
+      <td class='confluenceTd'>see Text Field</td>
+      <td class='confluenceTd'>Type text in text field.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Select</td>
+      <td class='confluenceTd'><img src="table_dropdown.png"></td>
+      <td class='confluenceTd'>Select text from the drop-down menu list.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Date Time</td>
+      <td class='confluenceTd'><img src="table_datetime.png"></td>
+      <td class='confluenceTd'>Click the calendar icon. A calendar selector displays from which the user can select the new data and time.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Date</td>
+      <td class='confluenceTd'><img src="table_datetime.png"></td>
+      <td class='confluenceTd'>Click the calendar icon. A calendar selector displays from which the user can select the new data.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Reference</td>
+      <td class='confluenceTd'><img src="table_reference.png"></td>
+      <td class='confluenceTd'>Click the Reference icon. A Finder opens for this data. In the Finder, select a row of data. The data that the user selects replaces the data that currently appears in the  field. Scroll to the bottom of the Finder and click <strong>Select</strong>. The current data is replaced by the  selected data in the Finder. Note, the Editable property of the Reference element must be set to <em>True.</em></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Translation</td>
+      <td class='confluenceTd'><img src="table_translation.png"></td>
+      <td class='confluenceTd'>Click the Translation icon. A Finder opens for this data. In the Finder, select a row of data. The data that the user selects replaces the data that currently appears in the  field. Scroll to the bottom of the Finder and click <strong>Select</strong>. The current data is replaced by the  selected data in the Finder. Note, the Editable property of the Translation element must be set to <em>True.</em></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Hyperlink</td>
+      <td class='confluenceTd'>see Text Field</td>
+      <td class='confluenceTd'>Add a URL.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Upload File</td>
+      <td class='confluenceTd'>see Text Field</td>
+      <td class='confluenceTd'>Type the path and name of the file to be uploaded.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Variable</td>
+      <td class='confluenceTd'>see Text Field</td>
+      <td class='confluenceTd'>Type the name of the variable.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p>Image</p></td>
+      <td class='confluenceTd'>see Text Field</td>
+      <td class='confluenceTd'>Type the path and name of the image.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Label</td>
+      <td class='confluenceTd'>see Text Field</td>
+      <td class='confluenceTd'>Type the name of the label.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Checkbox</td>
+      <td class='confluenceTd'><img src="table_checkbox.png"></td>
+      <td class='confluenceTd'> Check or uncheck the checkbox. Note, the toggle edit property of the Checkbox Form element must be set to <em>True</em>.</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Editing a Table Row</h3>
+<p>Table rows can be added, edited, deleted and copied using the table edit control located at the bottom of the table.</p>
+<table class='confluenceTable' border cellpadding="1"><tbody>
+    <tr>
+      <th class='confluenceTh'>Table Edit Icon</th>
+      <th class='confluenceTh'>Table Edit Action</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><img src="table_add.png"></td>
+      <td class='confluenceTd'>Add</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><img src="table_copy.png"></td>
+      <td class='confluenceTd'>Copy</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><img src="table_edit.png"></td>
+      <td class='confluenceTd'>Edit</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><img src="table_delete.png"></td>
+      <td class='confluenceTd'>Delete</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h3><a name="hover"></a>Displaying a Hover Form</h3>
+<p>In Velocity Studio, when the  hover properties of the Table element are configured, the user can display a document as a  hover form in the Finder at runtime. At runtime, when the user hovers on a row, the form displays beside the cursor.</p>
+<p><strong>Note:</strong> There is a short delay (2 seconds) between the time the cursor is set on a row and the display of the form. This value may be overridden by adding a variable called <strong><a href="../../../Configuration_Tool_User_Guide/UI Settings.html">Hover Delay</a></strong> into your design time configuration. Acceptable values for this  variable are between 100 and 5000 milliseconds. Any numbers above or below this range are ignored and the default 2000 (2 seconds) is used.</p>
+<p>There are several ways in which to display a hover:</p>
+<ul>
+  <li><a href="../../Velocity_Studio/Element - Table.html#hoverForm">Hover form with local form</a></li>
+  <li><a href="../../Velocity_Studio/Element - Table.html#hoverVariable">Hover form with variable</a></li>
+</ul>
+<p>For more information see <a href="../../Velocity_Studio/Element - Table.html">Table element</a>.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

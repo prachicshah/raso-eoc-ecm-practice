@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Item Object</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h4><a name="Item">Item</a></h4>
+<p>The Item object represents a read-only  basket item. The attributes of the item are accessible by name through dot  notation in item_variable.attribute_name format.  </p>
+<p>The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>Var Item i1 as select single item from theBasket where code == "TVP";</strong>
+  <strong>Var Number c1 as i1.quantity + 25;</strong>
+</pre>
+</div>
+</div>
+<p>All  items have two predefined string properties, <em>code</em> and <em>type</em>, that represent  the corresponding Catalog item's code and type, respectively. </p>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>Catalog or basket item metadata documents cannot contain an attribute or leaf named <em>code</em> or <em>type</em> (case sensitive).</li>
+  <li>Leaf names of basket item metadata documents must contain lowercase letters and digits only, and must start with a letter.</li>
+</ul>
+<h4>Item methods</h4>
+
+<p>The basket item (source item) may have associations  to other items (target items). Associations have unique, case-sensitive  names and belong to association types that have unique association type codes. The following table shows the source item, its associated type code and name, and the target item code:</p>
+<table border="1" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="128" align="left" valign="top"><strong>Source Item Code </strong></td>
+    <td width="128" align="left" valign="top"><p><strong>Association Type Code </strong></p></td>
+    <td width="128" align="left" valign="top"><p><strong>Association Code</strong></p></td>
+    <td width="128" align="left" valign="top"><p><strong>Target Item Code</strong></p></td>
+  </tr>
+  <tr>
+    <td width="128" valign="top"><p>BASIC_TV</p></td>
+    <td width="128" valign="top"><p>CHANNELS</p></td>
+    <td width="128" valign="top"><p>hbo</p></td>
+    <td width="128" valign="top"><p>HBO_CHANNEL</p></td>
+  </tr>
+  <tr>
+    <td width="128" valign="top"><p>BASIC_TV</p></td>
+    <td width="128" valign="top"><p>CHANNELS</p></td>
+    <td width="128" valign="top"><p>abc</p></td>
+    <td width="128" valign="top"><p>ABC_CHANNEL</p></td>
+  </tr>
+  <tr>
+    <td width="128" valign="top"><p>BASIC_TV</p></td>
+    <td width="128" valign="top"><p>CHANNELS</p></td>
+    <td width="128" valign="top"><p>rogers</p></td>
+    <td width="128" valign="top"><p>ROGERS_ENG</p></td>
+  </tr>
+  <tr>
+    <td width="128" valign="top"><p>BASIC_TV</p></td>
+    <td width="128" valign="top"><p>CHANNELS</p></td>
+    <td width="128" valign="top"><p>tv5</p></td>
+    <td width="128" valign="top"><p>TV5_FRANCE</p></td>
+  </tr>
+</table>
+<p>The  itemByName(association code)  method returns either the association's target item, or null if the name is not found or does  not represent an item association.</p>
+<p><strong>Note:</strong> The itemByName method's is case sensitive - particularly when referenced by a Catalog Rule or API.</p>
+  Example 1:
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>Var Item i1 as select single item from theBasket where code is "TVP";</strong>
+  <strong>Item provider = i1.itemByName("Provider");</strong>
+</pre>
+</div>
+</div>
+
+  <br>
+  Example 2:
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>If (Offer1.itemByName(&quot;hbo&quot;) is not null and</strong>
+  <strong>               Offer1.itemByName(&quot;Rogers&quot;) is not null) then</strong>
+</pre>
+</div>
+</div>
+
+<p>The parent() method returns the parent item of the given item or null if the item is a top-level item in the basket.<br>
+  <br>
+  The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>Var Item i1 as select single item from theBasket where code is &quot;TVP&quot;;</strong>
+  <strong>If i1.parent().type is "Contract" then do</strong>
+</pre>
+</div>
+</div>
+
+<h4>Item operations</h4>
+<p>The item operations are select operations  that are similar to the basket select operation. However, instead of searching for particular items in the basket, these operations  search the set of items associated with  the given item. The item select operations use the same comparison operations  in their where clause as the basket select operations.</p>
+<p>  One important difference is that the item  select operations allow specifying built-in property functions in the where clause instead of attribute names. The built-in property functions  allow access to association properties that  are not values of item attributes.</p>
+<p>  The supported property functions are as follows:</p>
+<ul>
+  <li>Name() – returns the  association name. Association names are case-sensitive. The  function returns a string value, and supports the equal and not equal operations.</li>
+  <li>TypeCode() – returns the  association type code. Type codes are case-sensitive. The function returns  a string value, and supports the equal and not equal operations.</li>
+</ul>
+<p>The item select  operation's where clause has the following format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>where</strong><strong> </strong>
+  &lt;property specification&gt; <strong>operation</strong> expression and
+  &lt;property  specification&gt; <strong>operation</strong> expression...</pre>
+</div>
+</div>
+
+<p>Where &lt;property specification&gt; is  either an item attribute name or a built-in property function.  </p>
+<p>For example, the where clause:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>Where weightGr &lt; 50 and type() is &quot;HeadPhones&quot; </strong>
+</pre>
+</div>
+</div>
+  specifies a search for items associated with the given item that have a weightGr attribute value of less than 50 and an association type of HeadPhones.
+  <h5>Select single associated item</h5>
+  <p>The operation returns an associated item  that matches the search criteria. If more than one item is found, it throws  exception. If no items are found, it returns null. The operation has the following syntax:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>select [single] associated/related item from</strong> item<strong> </strong>variable <strong>where</strong>
+  &lt;property specification&gt; <strong>operation</strong> expression and
+  &lt;property specification&gt; <strong>operation</strong> expression...</pre>
+</div>
+</div>
+<p>The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>Variable  Item item1, item2;</strong>
+  <strong>...</strong>
+  <strong>item1 = select associated item from item2 where type is "CONTAINS" and code == "HS-001"</strong>
+</pre>
+</div>
+</div>
+<h5>Select many associated items</h5>
+<p>The operation returns a collection of associated  items that match the search criteria. If no items are found, it returns an empty  collection. The returned collection can  be processed in the For statement. The where clause is optional. The operation has the following syntax:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>select [many] associated/related items from</strong> item<strong> </strong>variable [<strong>where</strong>
+  &lt;property specification&gt; <strong>operation</strong> expression and
+  &lt;property specification&gt; <strong>operation</strong> expression...]
+</pre>
+</div>
+</div>
+<p>  The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>Variable Item item1, item2, product;
+...
+For each product in 
+    select many associated items from item2 
+    where type == "CONTAINS" and type == "PRODUCT" do:</strong></pre>
+</div>
+</div>
+<h5>Select associated items count</h5>
+<p>The operation returns the number of selected items that match the search criteria. The operation returns true if there is at least one associated  item that matches the search criteria. If no item is found, it returns false. The where clause is optional. The operation has the following syntax:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>select associated/related item[s] count from</strong> itemvariable [<strong>where</strong>
+  &lt;property  specification&gt; <strong>operation</strong> expression and
+  &lt;property specification&gt; <strong>operation</strong> expression...]</pre>
+</div>
+</div>
+<p>The following is an example:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>
+If (select associated items count from item1 where 
+  type is "CONTAINS" and type is "PRODUCT") < 3 then
+</pre>
+</div>
+</div>
+<h5>Match count operation</h5>
+<p>The operation returns the number of  constants in the list that  matches the specified attribute's values in the selection. There is no restriction of how many times a particular literal is  matched – it counts for one match only. The attribute must be a string  attribute and exist in each selected item. The where clause is optional. The operation has the following syntax:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>select associated/related match count for </strong>literal, literal, ... / constant list <strong>by </strong>attribute name
+<strong>from</strong> item<strong> </strong>variable [<strong>where</strong>
+  &lt;property  specification&gt; <strong>operation</strong> expression and
+  &lt;property specification&gt; <strong>operation</strong> expression...]
+</pre>
+</div>
+</div>
+<p>The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>If (select associated match count for "AA021", "AA036", "AA047" by code 
+  from theItem where type == "product") greater or equal 2 then</pre>
+</div>
+</div>
+
+<p></p>
+</td>
+</tr>
+</body>
+</html>

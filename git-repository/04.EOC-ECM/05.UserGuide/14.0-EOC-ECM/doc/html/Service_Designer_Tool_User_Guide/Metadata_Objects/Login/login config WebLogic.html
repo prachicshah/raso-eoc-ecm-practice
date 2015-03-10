@@ -1,0 +1,410 @@
+<html>
+<head>
+<title>Configure Weblogic 10.3 Kerberos and Active Directory Single Sign-on Authentication</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2><a name="ConfigWeblogicSSO"></a>Configure Weblogic 10.3 Kerberos and Active Directory Single Sign-on (SSO) Authentication</h2>
+<p>This procedure consists the following steps:</p>
+<ol>
+	<li><a href="#CreateKerberosIDWebLogic">Create a Kerberos identification for WebLogic Server</a></li>
+	<li><a href="#ConfigNetworkDomainKerberos">Configure your network domain to use Kerberos</a></li>
+	<li><a href="#CreateJAASloginFile">Create a JAAS login file</a></li>
+    <li><a href="#ConfigureWeblogicStartup">Configure  Weblogic Startup Script for Kerberos Authentication</a></li>
+    <li><a href="#ConfiguringMicrosoftClients">Configure Microsoft Clients to Use Windows Integrated Authentication</a></li>
+    <li><a href="#ConfiguringSecurityProviders">Configure Security Providers</a></li>
+    <li><a href="#ConfiguringSecurityProviders">Configure Users and LDAP Security Provider in Administration Application</a></li>
+    <li><a href="#ModifyApplication">Modify Your Application's web.xml and weblogic.xml</a></li>
+</ol>
+
+
+      <h3><a name="CreateKerberosIDWebLogic"></a>Step 1: Create a Kerberos Identification for WebLogic Server</h3>
+<p><strong>Notes:</strong>
+<ul>
+	<li>Creating a Kerberos identification is environment-related. For the AVM environment, see <a href="#CreateKerberosConceptWave">Create Kerberos in an AVM environment</a>.</li>
+	<li>The following steps are from <a href="http://download.oracle.com/docs/cd/E13222_01/wls/docs103/secmanage/sso.html#wp1101370" target="_blank">Oracle's</a> Web site.
+</ul>
+
+<p>To create a Kerberos identification for WebLogic Server, do the following: 
+
+<ol>
+	<li>In the Active Directory server, create a user account for the host computer on which WebLogic Server runs by clicking <strong>New &gt; User</strong>. When creating the user account, use the simple name of the computer. For example, if the host is named <em>myhost.example.com</em>, create a user in Active Directory called <em>myhost</em>. 
+
+	<p>Note the password you defined when creating the user account. You will need it in step 3. Do not select the <strong>User must change password at next logon</strong> option, or any other password options.</p></li>
+
+	<li>Configure the new user account to comply with the Kerberos protocol. The user account's encryption type must be DES and the account must require Kerberos pre-authentication.
+
+	<ol type=a>
+		<li>Right-click the name of the user account in the <strong>Users</strong> tree in the left pane and select <strong>Properties</strong>.</li>
+
+		<li>Click the <strong>Account</strong> tab and check the <strong>Use DES encryption types for this account</strong> checkbox. Make sure that no other boxes are checked, particularly the <strong>Do not require Kerberos pre-authentication</strong> option.</li>
+
+		<li>Setting the encryption type may corrupt the password. Therefore, reset the user password by right-clicking the name of the user account, selecting <strong>Reset Password</strong>, and then re-entering the same password specified earlier.</li>
+	</ol>
+
+	<li>Use the setspn utility to create the Service Principal Names (SPNs) for the user account created in step 1. Enter the following commands:
+
+	        <div class="code">
+			<div class="codeContent">
+			<pre class="code-java">setspn -a host/myhost.example.com myhost
+setspn -a HTTP/myhost.example.com myhost
+			</pre>
+			</div>
+			</div>
+	</li>
+
+	<li>Check which SPNs are associated with your user account, using the following command:
+	        <div class="code">
+			<div class="codeContent">
+			<pre class="code-java">setspn -L account name
+			</pre>
+			</div>
+			</div>
+
+<p><strong>Note:</strong> If the same service is linked to a different account in the Active Directory server, the client will not send a Kerberos ticket to the server.</p></li> 
+
+	<li>Create a user mapping using the ktpass utility. In Windows, run the following command:
+	        <div class="code">
+			<div class="codeContent">
+			<pre class="code-java">ktpass -princ host/myhost@Example.CORP -pass password -mapuser myhost -out c:\temp\myhost.host.keytab
+			</pre>
+			</div>
+			</div>
+	</li>
+
+	<li>Create a keytab file. On Windows, the ktab utility manages principal name and key pairs in the key table, and allows you to list, add, update, or delete principal names and key pairs. On Unix, it is preferable to use the ktpass utility.
+
+	<p>For Windows, follow these steps:</p>
+	<ol type=a>
+		<li>Run the ktab utility on the host on which WebLogic Server is running to create the keytab file:
+	        <div class="code">
+			<div class="codeContent">
+			<pre class="code-java">ktab -k keytab-filename -a myhost@Example.CORP
+			</pre>
+			</div>
+			</div>
+</li>
+
+		<li>Copy the keytab file to the startup directory in the WebLogic Server domain.</li>
+	</ol>
+
+	<p>For Unix, complete these steps:</p>
+	<ol type=a>
+		<li>Create a user mapping using the ktpass utility, using a command such as the following, where <em>password</em> is the password for the user account created in step 1:
+	        
+			<div class="code">
+			<div class="codeContent">
+			<pre class="code-java">ktpass -princ HTTP/myhost@Example.CORP -pass password -mapuser myhost -out c:\temp\myhost.HTTP.keytab
+			</pre>
+			</div>
+			</div>
+		</li>
+
+		<li>Copy the keytab file created in Step a to the startup directory in the WebLogic Server domain.</li> 
+
+		<li>Log in as root and then merge them into a single keytab using the ktutil utility as follows:
+			<div class="code">
+			<div class="codeContent">
+			<pre class="code-java">ktutil: "rkt myhost.host.keytab"
+ktutil: "rkt myhost.HTTP.keytab"
+ktutil: "wkt mykeytab"
+ktutil: "q"
+			</pre>
+			</div>
+			</div>
+		</li>
+	</ol>
+
+	<li>Run the kinit utility to verify that Kerberos authentication is working properly:
+			<div class="code">
+			<div class="codeContent">
+			<pre class="code-java">kinit -k -t keytab-file account-name
+			</pre>
+			</div>
+			</div>
+
+<p>The output should be something similar to the following: </p>
+
+<p><tt>New ticket is stored in cache file C:\Documents and Settings\Username\krb5cc_MachineB</tt></p>
+</ol>
+
+<h4><a name="CreateKerberosConceptWave"></a>Create Kerberos in an AVM environment</h4>
+
+<p>To create Kerberos in your AVM environment, complete these steps:</p>
+
+<ol>
+	<li>In Active Directory, right-click the <strong>Users</strong> folder in the left navigation menu, and click <strong>New </strong>><strong> User</strong>. Create a user <em>XXX</em> in Active Directory as guided by the wizard.</li>  
+	<li>Open the newly created user account and click the <strong>Account</strong> tab. For the <strong>Account options</strong> field, scroll down and select <strong>Use DES encryption types for this account</strong>.</li>
+	<li>Click the <strong>Apply</strong>, and then <strong>OK</strong> buttons to save your changes.</li>
+	<li>Proceed to reset the password for this user. Right-click the user account and select <strong>Reset Password</strong>.
+	<li>Set the <strong>Service Principal Name</strong> by entering the following at a command prompt:
+
+		<div class="code">
+		<div class="codeContent">
+		<pre class="code-java">setspn -a HTTP/ <em>XXX</em>.CONCEPTWAVE.COM <em>XXX</em>
+		</pre>
+		</div>
+		</div>
+
+	<li>Test the service principal name by entering the following command:
+		<div class="code">
+		<div class="codeContent">
+		<pre class="code-java">setspn -L <em>XXX</em>
+		</pre>
+		</div>
+		</div>
+				
+	<li>Generate a key tab by running one of the following commands:
+		<ul>
+			<li>ktab:
+			<div class="code">
+			<div class="codeContent">
+			<pre class="code-java">ktab -k <em>XXX</em>.keytab a <em>XXX</em>@ CONCEPTWAVE.COM
+			</pre>
+			</div>
+			</div></li>
+
+			<li>ktpass:
+			<div class="code">
+			<div class="codeContent">
+			<pre class="code-java">ktpass -out c:\temp\ws.keytab -princ HTTP/ <em>XXX</em>.conceptwave.com@CONCEPTWAVE.COM <br>-mapUser  <em>XXX</em> -mapOp set -pass <em>XXX</em> -crypto DES-CBC-MD5 -pType KRB5_NT_PRINCIPAL +DesOnly
+			</pre>
+			</div>
+			</div></li>
+		</ul>
+
+	<li>Test the keytab file by using this command: 
+		<div class="code">
+		<div class="codeContent">
+		<pre class="code-java">klist -k <em>XXX</em>.keytab
+		</pre>
+		</div>
+		</div></li>
+
+	<li>Copy the generated keytab file, <em>XXX</em>.keytab, to the domain directory of WebLogic</li>
+
+	<li>Place the krb5.ini file in c:\windows.</li>
+</ol>   
+
+<h3><a name="ConfigNetworkDomainKerberos"></a>Step 2: Configure Your Network Domain to Use Kerberos</h3>
+
+<p>A Windows domain controller can serve as the Kerberos Key Distribution Centre (KDC), using the Active Directory and the Kerberos services. On any domain controller, the Active Directory and the Kerberos services are running automatically.</p> 
+
+<p>Java&trade; GSS requires a Kerberos configuration file. The default name and location of the Kerberos configuration file depends on the operating system being used. Java GSS uses the following order to search for the default configuration file: 
+
+<ol>
+	<li>The file referenced by the java.security.krb5.conf Java property.</li>
+
+	<li>${java.home}/lib/security/krb5.conf.</li>
+
+	<li>%windir%\krb5.ini on Microsoft Windows platforms.</li>
+
+	<li>/etc/krb5/krb5.conf on Solaris platforms.</li>
+
+	<li>/etc/krb5.conf on other Unix platforms.</li>
+</ol>
+
+<p>To configure Kerberos in your Windows domain controller, you need to configure each workstation that will access the KDC to locate the Kerberos realm and available KDC servers. The following is a sample krb5.ini file:</p> 
+
+            <div class="code">
+			<div class="codeContent">
+			<pre class="code-java">[libdefaults]
+default_realm = MYDOM.COM //Identifies the default realm. Set its value to your Kerberos realm.
+default_tkt_enctypes = des-cbc-crc
+default_tgs_enctypes = des-cbc-crc
+ticket_lifetime = 600
+
+[realms]
+MYDOM.COM = {
+kdc = &lt;<em>IP address for MachineA</em>&gt; //Host running the KDC
+//For Unix systems, you need to specify port 88, as in &lt;<em>IP-address</em>&gt;:88
+admin_server = MachineA
+default_domain = MYDOM.COM
+}
+
+[domain_realm]
+.mydom.com = MYDOM.COM
+
+[appdefaults]
+autologin = true
+forward = true
+forwardable = true
+encrypt = true
+			</pre>
+			</div>
+			</div>
+
+
+<h3><a name="CreateJAASloginFile"></a>Step 3: Create a JAAS Login File</h3>
+
+<p>Create a JAAS login file for Kerberos authentication (krb5Login.conf), and put this file in the WebLogic domain folder.</p>
+		<div class="code">
+		<div class="codeContent">
+		<pre class="code-java">com.sun.security.jgss.krb5.initiate {
+     com.sun.security.auth.module.Krb5LoginModule required
+     principal="myhost@Example.CORP" useKeyTab=true
+     keyTab=mykeytab storeKey=true;
+};
+
+com.sun.security.jgss.krb5.accept {
+     com.sun.security.auth.module.Krb5LoginModule required
+     principal="myhost@Example.CORP" useKeyTab=true 
+     keyTab=mykeytab storeKey=true;
+};		</pre>
+		</div>
+		</div>
+  
+  
+        
+
+<h3><a name="ConfigureWeblogicStartup"></a>Step 4: 	Configure  Weblogic Startup Script for Kerberos Authentication</h3>
+Add the following system parameters into your WebLogic startup command:
+<div class="code">
+		<div class="codeContent">
+		<pre class="code-java">java.security.krb5.realm=domain name 
+java.security.krb5.kdc=AdHostName 
+javax.security.auth.useSubjectCredsOnly=false
+WebLogic.security.enableNegotiate=true
+java.security.auth.login.config=krb5Login.conf  (Note: This is the JAAS file created in step 3 above.)
+java.security.krb5.conf=krb5.conf (Note: This is the configuration file created in step 3 above. This file name is for UNIX environment; for windows, the file will be named krb5.ini and can be placed directly under    
+    C:\WinNT\)		</pre>
+		</div>
+	  </div>
+<p> For debug purpose, you can add the following system parameters into your WebLogic startup command:</p>
+<div class="code">
+		<div class="codeContent">
+		<pre class="code-java">sun.security.krb5.debug=true
+sun.security.jgss.debug=true
+DebugSecurityAdjudicator=true
+WebLogic.StdoutDebugEnabled=true
+WebLogic.Debug.DebugSecurityAtz=true
+WebLogic.Debug.DebugSecurityAtn=true
+WebLogic.log.StdoutSeverity=Debug
+WebLogic.StdoutSeverityLevel=64		</pre>
+		</div>
+	  </div>
+<h3><a name="ConfiguringMicrosoftClients"></a>Step 5: Configure Microsoft Clients to Use Windows Integrated Authentication</h3>
+
+Configure your Microsoft clients to use Windows Integrated Authentication by following the  steps provided in <a href="login config Microsoft clients.html">Configure Microsoft Clients to Use Windows Integrated Authentication</a>.
+
+
+<h3><a name="ConfiguringSecurityProviders"></a>Step 6:	Configure Security Providers</h3>
+<p>Configure the security providers from the WebLogic console. Login to WebLogic console and go to <strong>Home</strong> > <strong>Summary of Security Realms</strong> > <strong>myrealm</strong> > <strong>Providers</strong>.</p>
+
+<ol>
+  <li>Select WebLogic&rsquo;s existing default authenticator  <strong>DefaultAuthenticator</strong> and change  control flag of DefaultAuthenticator to <strong>SUFFICIENT</strong>.</li>
+  <li>Follow these steps to create Negotiate Identity Assertion provider:</li>
+  <ol type="a">
+  <li> Navigate to <strong>Home</strong> &gt; <strong>Summary of Security Realms</strong> &gt; <strong>myrealm</strong> &gt;  <strong>Providers</strong> &gt; <strong>New</strong>.</li>
+  <li>Enter<em> NegotiateIdentityAsserter</em> as the  name of the new provider.</li>
+  <li>Select  <em>NegotiateIdentityAsserter</em> from <strong>Type</strong> drop-down list.</li>
+  <li>Click the <strong>OK</strong> button to save your changes.</li> </ol>
+  <p>Under <strong>Provider Specific</strong>, uncheck <strong>Form Based Negotiation Enabled</strong>.
+  </p>
+ 
+
+
+  <li>Follow these steps to create Active Directory Authentication provider:</li>  
+  <ol type="a">
+  <li> Navigate to <strong>Home</strong> &gt; <strong>Summary of Security Realms</strong> &gt; <strong>myrealm</strong> &gt;  <strong>Providers</strong> &gt; <strong>New</strong>.</li>
+  <li>Enter <em>ActiveDirectoryAuthenticator</em> as the  name of the new provider.</li>
+  <li>Select <em>ActiveDirectoryAuthenticator</em><em> </em>from <strong>Type</strong> drop-down list.</li>
+  <li>Click the <strong>OK</strong> button to save your changes.</li>  </ol>
+  <p>Under <strong>Provider Specific</strong>, specify your AD server&rsquo;s setup.  Below is the configuration set and can be seen under
+ <strong>/wldomain/config/config.xml</strong>.</p>
+ <div class="code">
+		<div class="codeContent">
+		  <pre class="code-java">&lt;sec:authentication-provider  xsi:type=&quot;wls:active-directory-authenticatorType&quot;&gt;
+	 &lt;sec:name&gt;ActiveDirectoryAuthenticator &lt;/sec:name&gt;
+	 &lt;sec:control-flag&gt;OPTIONAL&lt;/sec:control-flag&gt;
+	 &lt;wls:propagate-cause-for-login-exception&gt;false&lt;/wls:propagate-cause-for-login-exception&gt;
+	 &lt;wls:host&gt;xxx.conceptwave.com&lt;/wls:host&gt;
+	 &lt;wls:user-object-class&gt;*&lt;/wls:user-object-class&gt;
+	 &lt;wls:user-name-attribute&gt;sAMAccountName&lt;/wls:user-name-attribute&gt;
+	 &lt;wls:principal&gt;zzz&lt;/wls:principal&gt;
+	 &lt;wls:user-base-dn&gt;DC=conceptwave,DC=com&lt;/wls:user-base-dn&gt;
+	 &lt;wls:credential-encrypted&gt;{3DES}BYgR6W3RUtCXJ9KrwuA0zA==&lt;/wls:credential-encrypted&gt;
+	 &lt;wls:user-from-name-filter&gt;(&amp;amp;(sAMAccountName=%u)(objectclass=*))&lt;/wls:user-from-name-filter&gt;
+	 &lt;wls:group-base-dn&gt;DC=conceptwave,DC=com&lt;/wls:group-base-dn&gt;
+	 &lt;wls:group-from-name-filter&gt;(&amp;amp;(cn=%g))&lt;/wls:group-from-name-filter&gt;
+	 &lt;wls:static-group-name-attribute&gt;&lt;/wls:static-group-name-attribute&gt;
+	 &lt;wls:static-member-dn-attribute&gt;memberOf&lt;/wls:static-member-dn-attribute&gt;
+	 &lt;wls:static-group-dns-from-member-dn-filter&gt;(&amp;amp;(objectCategory=group))&lt;/wls:static-group-dns-from-member-dn-filter&gt;
+&lt;/sec:authentication-provider&gt;</pre>
+          
+        </div>
+	  </div>
+  <li>Activate the changes and restart the server.</li></ol>
+ 
+<h3><a name="ConfiguringSecurityProviders"></a>Step 7:	Configure Users and LDAP Security Provider in Administration Application</h3>
+<p>To configure users and LDAP security provider in Administration application, follow these steps:</p> 
+<ol>
+  <li>In the runtime environment select Administration application and navigate to<strong> Providers</strong> &gt;<strong> Provider</strong> menu.</li>
+  <li>The <strong>Provider</strong> dialoge appears; select <strong>LDAP</strong> from the drop-down list of <strong>Security Provider</strong> field.</li>
+  <li> In the <strong>Data</strong> field enter the following value:
+  </li>
+
+<div class="code">
+		<div class="codeContent">
+		  
+		      <pre class="code-java">ldap://&lt;yourdomaincontroller&gt;:389;{user}@conceptwave.com</pre>
+	  </div>
+	  </div>
+<li> Click the <strong>Save</strong> button to save your changes.
+  </li>
+<li><a href="../../../System_Administration_Application_User_Guide/User Profile Manager/Users/users.html">Create  the users</a>  you want to authenticate with active directory. These are the  users which exist in the active directory using their sAMAccountName, such as their  NTID (network ID) and assign their appropriate groups.</li><br>
+<strong>Note:</strong> The users settings should be already done in real  production environment in case application is currently running without SSO  also. But for testing purpose you need to create few users you want to test  with.
+</ol>
+<h3><a name="ModifyApplication"></a>Step 8:	Modify Your Application's web.xml and weblogic.xml</h3>
+<p>Stop the already running server and modify web.xml and WebLogic.xml.</p>
+<p> Add the following to the web.xml:</p>
+<div class="code">
+		<div class="codeContent">
+		  
+		      <pre class="code-java">    
+ &lt;security-constraint&gt;
+    &lt;display-name&gt;Security Constraint  for SSO &lt;/display-name&gt;
+    &lt;web-resource-collection&gt;
+         &lt;web-resource-name&gt;My  webapp&lt;/web-resource-name&gt;
+         &lt;description&gt;Group of  Users&lt;/description&gt;
+         &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/web-resource-collection&gt;
+    &lt;auth-constraint&gt;
+         &lt;role-name&gt;SSORole&lt;/role-name&gt;
+    &lt;/auth-constraint&gt;
+ &lt;/security-constraint&gt;   
+ &lt;login-config&gt;
+       &lt;auth-method&gt;CLIENT-CERT&lt;/auth-method&gt;
+ &lt;/login-config&gt;   
+ &lt;security-role&gt;
+      &lt;description&gt;Role  description&lt;/description&gt;
+      &lt;role-name&gt;SSORole&lt;/role-name&gt;
+ &lt;/security-role&gt;
+		</pre>
+		</div>
+	  </div>
+
+
+<p>Add following into the WebLogic.xml:</p>
+<div class="code">
+		<div class="codeContent">
+		  
+		      <pre class="code-java">
+&lt;security-role-assignment&gt;
+    &lt;role-name&gt;SSORole&lt;/role-name&gt;
+    &lt;principal-name&gt;everyone&lt;/principal-name&gt;
+&lt;/security-role-assignment&gt;    </pre>
+        </div>
+	  </div>
+<p>After making all the above changes and deployment of war file with above web.xml and weblogic.xml restart the application server. You should be able to login to application as SSO, such as without login. </p>
+</td>
+</tr>
+</table>
+</body>
+</html>

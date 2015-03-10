@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>Finder Form Chart</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>Finder Chart Form</h3>
+<p>The <strong>Finder Chart Form</strong> is, by default, one of the Forms that appears in Finder User Interface.  The Chart Form  is used to define different chart types (for example, bar, pie, line) that can be used for animated in 2D or 3D graphical presentation of the Finder  Result. Data that is configured to display in the Result Form can also be configured to  display in a chart. </p>
+<p><img src="Finder_Bar_Chart.png" align="absmiddle" border="1" alt="Finder Bar Chart" /></p>
+<p>The Form elements,  Chart and ChartField, can be configured to display the data displayed in the Result Form. The Chart option contained in the Preference menu allows users to  display the Result data in a graphical format in a Web browser at runtime.</p>
+<p><img src="Finder_Chart_Pref.png" align="absmiddle" border="1" alt="Finder Chart Preference" /></p>
+<p>The following list the types of Charts and the different types of display that are available:</p>
+<table class='confluenceTable' border cellpadding="1"><tbody>
+    <tr>
+      <th class='confluenceTh'>Chart Type</th>
+      <th class='confluenceTh'>Example</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Area</td>
+      <td class='confluenceTd'><img src="Area.png" align="absmiddle" border="0" alt="" /></td>
+      <td class='confluenceTd'><p>Shows trends and performance using solid area over a period of time</p>
+        <p>Appears in 2D (Area2D)</p>
+        <p>Appears in (multi-series)</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Bar</td>
+      <td class='confluenceTd'><img src="Finder_Bar.png" align="absmiddle" border="0" alt="" /></td>
+      <td class='confluenceTd'><p>Horizontal bars to support longer data labels</p>
+        <p>Appears in 2D (Bar2D) and 3D (Bar3D) </p>
+        <p>Appears in multi-series2D and multi-series3D</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Column</td>
+      <td class='confluenceTd'><img src="Finder_Column.png" align="absmiddle" border="0" alt="" /></td>
+      <td class='confluenceTd'><p>Compare data using columns</p>
+        <p>Appears in 2D (Column2D) and (Column3D) 3D</p>
+        <p>Appears in multi-series2D and  multi-series3D</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Line</td>
+      <td class='confluenceTd'><img src="Finder_Line.png" align="absmiddle" border="0" alt="" /></td>
+      <td class='confluenceTd'><p>Shows trends and performance using lines over a period of time</p>
+        <p>Appears in 2D (Line2D)</p>
+        <p>Appears in (multi-series)</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Pie</td>
+      <td class='confluenceTd'><img src="Finder_Pie.png" align="absmiddle" border="0" alt="" /></td>
+      <td class='confluenceTd'><p>Shows individual values with respect to total.</p>
+        <p>Appears in 2D (Pie2D) and 3D (Pie3D) </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Scroll Area</td>
+      <td class='confluenceTd'><img src="Finder_Scroll.png" align="absmiddle" border="0" alt="" /></td>
+      <td class='confluenceTd'><p>Area charts with scrollable x-axis</p>
+        <p>Appears in 2D (ScatterArea2D)</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Scroll Column</td>
+      <td class='confluenceTd'>Similar to scroll area but displays with  columns</td>
+      <td class='confluenceTd'><p>Column charts with scrollable x-axis</p>
+        <p>Appears in 2D (ScrollColumn2D)</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Scroll Line</td>
+      <td class='confluenceTd'>Similar to scroll area but displays with lines</td>
+      <td class='confluenceTd'><p>Line  charts with scrollable x-axis</p>
+        <p>Appears in 2D (ScrollLine2D)</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Scroll Stacked Column</td>
+      <td class='confluenceTd'>Stacked area columns with scroll bar</td>
+      <td class='confluenceTd'><p>Show relative quantity with respect to whole with scroll bar </p>
+        <p>Appears in 2D (ScrollStackedCol2D) </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Stacked Area</td>
+      <td class='confluenceTd'><img src="Finder_StackedArea.png" align="absmiddle" border="0" alt="" /></td>
+      <td class='confluenceTd'><p>Show relative quantity with respect to whole</p>
+        <p>Appears in 2D (StackedArea2D)</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Stacked Bar</td>
+      <td class='confluenceTd'>Similar to stacked area but displays with bars</td>
+      <td class='confluenceTd'><p>Show relative quantity with respect to whole</p>
+        <p>Appears in 2D (StackedBar2D) and 3D (StackedBar3D) </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Stacked Column</td>
+      <td class='confluenceTd'>Similar to stacked area but displays with  columns</td>
+      <td class='confluenceTd'><p>Show relative quantity with respect to whole</p>
+        <p>Appears in 2D (StackedColumn2D) and 3D (StackedColumn3D) </p></td>
+    </tr>
+    
+  </tbody>
+</table>
+<p><strong>Note:</strong> The chart displays as an empty Form when it is  configured but there is not any data to display.</p>
+<h3>Configuring the Chart</h3>
+<p>There are several steps involved to configure the Chart Form:</p>
+<ol>
+  <li>To display a chart, you  must override the Chart Form by right-clicking it and selecting Override from the menu (see <a href="../../Velocity_Studio/Overriding a Form.htm">Override a Form</a>). </li>
+  <li>In the  Element Tree pane, right-click the Chart Form and from the menu click <strong>Add</strong>.</li>
+  <li>From the Add Element dialog box, select <strong>Structures</strong> &gt;<strong> Chart </strong>and click <strong>Finish</strong>.</li>
+  <li>Continue by configuring the properties of the Chart Form.</li>
+  <li>Right-click the Chart Form element, and from the menu click <strong>Add</strong>.</li>
+  <li>From the Select Form Element Type dialog box, select <strong>Misc Controls</strong> &gt; <strong>Chart Field</strong> and click <strong>Finish</strong>.</li>
+  <li>Continue by configuring the properties of the ChartField.</li>
+</ol>
+<h3>Configuring Chart Properties</h3>
+<p>After adding the Chart Form element you can configure the chart properties. The Chart Form element contains properties that enable you to bind to  a  results form using the Variable property. To view the Chart at runtime, you need to configure the Variable property. The Variable points to an array of documents for the Finder. From the Variable property field, select a result form from the drop-down menu. For a list and description of chart properties, see <a href="../../Velocity_Studio/Element - Chart.htm">Chart Form Element</a></p>
+<p>The ChartField Form element configures the display of the chart at runtime. For example, you can configure the color and label of the Chart. In addition you can configure the variable (a numeric variable from the Chart Form element). For a list and description of chart properties, see <a href="../../Velocity_Studio/Element - ChartField.htm">ChartField Form Element</a>.</p>
+<p><strong>Note:</strong> By default, the Variable property field in the Chart  Form element is configured to refer to the Result variable of the Finder User Interface. This variable is configured as  an array of documents. When customizing this field, ensure that variable refers to an array of documents.</p>
+<h3>Displaying Multiple Charts</h3>
+<p>You can configure  multiple charts to display on the same form at runtime. This is a convenient way to compare data results in different formats on one page. Alternatively, you can display multiple charts using different data.</p>
+<p><img src="dashboard_settup.png" align="absmiddle" border="1" alt="Dashboard Settup" /></p>
+<p><em>To configure multiple charts on a single page:</em></p>
+<ol>
+  <li>In the Finder User Interface, right-click the node and select <strong>New Form</strong>. Alternatively, you can use an existing Form.</li>
+  <li>In the<strong> New Metadata Object</strong> dialog, type the name of the new form.</li>
+  <li>In the <strong>Form Element</strong> pane, right-click the node and select <strong>Add</strong>.</li>
+  <li>From the Add Element dialog, select <strong>Misc Controls &gt; Form Frame</strong>.</li>
+  <li>Continue by adding elements to configure the chart layout.</li>
+  <li>Configure the variable property for each Form Frame. This variable refers to a Chart Form element.</li>
+  <li>Configure the <strong>Presentation User Interfaces</strong> so that the  newly created Form displays in the menu at runtime. </li>
+</ol>
+
+<p><img src="Multi-chart.png" align="absmiddle" border="0" alt="Multiple Charts" /></p>
+
+  
+</body>
+</html>

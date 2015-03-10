@@ -1,0 +1,140 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Validation Method</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+		<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+			<h3>Validation Method</h3>
+
+<p>A Document Validation Method is a user-defined script that determines the validity of runtime data values of the Document. It can be triggered with Document method "<i>.validate()</i>". By default, the generated Document Form's "save" menu button triggers such validation.</p>
+
+<p><strong>Note:</strong> Document Variable-level Validation Methods can be defined under <b>Variables</b> tab, by selecting the Variable in the Variables List in that tab, and then select the <b>Methods</b> tab in the Variable detail pane to edit the Variable's Methods. These Variable-level Validation Methods also appear and are editable on Document Method tab.
+<p>When a Validation Method is triggered and evaluated to true, the user is presented with a message of an assigned severity. </p>
+<p>There are three levels of severity: </p>
+<ul>
+  <li>Information</li>
+  <li>Warning</li>
+  <li>Error</li>
+</ul>
+
+		<p><img src="DocumentValidationActionMessage.png" align="absmiddle" border="1" alt="Validation Action Messages" /></p>
+
+<p>At runtime, all Validation Methods defined in the Document (and its base Document) are evaluated. The maximum severity of all Validation Methods that are "fired" are to collectively set the Document status as shown in table below.</p>
+<table class="confluenceTable" border cellpadding="1">
+	  <tr>
+				<th class="confluenceTh">Document Status</th>
+				<th class="confluenceTh">Collective Method Severities</th>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Valid</b></td>
+				<td class="confluenceTd">None.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Information</b></td>
+				<td class="confluenceTd">Information or warning only.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Invalid</b></td>
+				<td class="confluenceTd">Any error.</td>
+			</tr>
+		</table>
+
+		 
+		<p>See <span class="confluenceTd">the <a href="../../../Configuration_Tool_User_Guide/Configure/System/System/configVariables.html#phasedValidation">phasedValidation configuration variable</a> for validating all variables and document rule scripts even when there are errors for mandatory fields or at the data type level.</span></p>
+		<p>Add, edit, and remove Validation Methods in the Document's <b>Methods</b> tab.</p>
+		
+		<p><img src="DocumentValidationAction.png" align="absmiddle" border="1" alt="" /></p>
+		<table class="confluenceTable" border cellpadding="1">
+			<tr>
+				<th class="confluenceTh">Field</th>
+				<th class="confluenceTh">Description</th>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Name</b></td>
+				<td class="confluenceTd">Name of the Method. Must be unique 
+				 within the Document.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Description</b></td>
+				<td class="confluenceTd">Descriptive text for documentation 
+				 purposes.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Script</b></td>
+				<td class="confluenceTd">Validation JavaScript script. 
+				 The script can be one of the following:<br style="clear: all;" />
+				
+				<ul>
+					<li>An expression that evaluates to true to indicate 
+					 that the text in <b>Message</b> field or the message 
+					 corresponding to the specified <b>Message Code</b> 
+					 is to be displayed. Otherwise it must evaluate to 
+					 false.<br style="clear: all;" />
+					</li>
+					<li>A script that returns true to indicate that the 
+					 text in <b>Message</b> field or the message corresponding 
+					 to the specified <b>Message Code</b> specified is 
+					 to be displayed. Otherwise it must return false.<br 
+					 style="clear: all;" />
+					</li>
+					<li>A script that returns a resource identifier string 
+					 or list of identifiers separated by semicolons to 
+					 indicate the resource message(s) to be displayed. 
+					 For example: AW0155 or AW0155;AE0156. We recommend 
+					 that the first character must be A. The second character 
+					 indicates the message type: I - information, W - warning, 
+					 and E - error.<br style="clear: all;" />
+					</li>
+					<li>A JavaScript script returning text (that is not 
+					 a resource identifier) that will be displayed as a 
+					 rule message.</li>
+				</ul></td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Return 
+				 type</b></td>
+				<td class="confluenceTd">The Object type to be returned 
+				 by the script.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Severity</b></td>
+				<td class="confluenceTd">Indicates the severity of the Method: information, warning or error.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Message</b></td>
+				<td class="confluenceTd">Message to display at runtime 
+				 when this Method is evaluated and the condition is met. Plain text. 
+				 May include the placeholder {1} for the Document visual key. If this is a Document Variable Validation Method, it may include the place holder {0} for the field label.<br/>It is 
+				 mandatory that one of either the <b>Message</b> or <b>Message 
+				 Code</b> fields are specified. If both the <b>Message</b> 
+				 and <b>Message Code</b> fields are specified, the <b>Message 
+				 Code</b> will be ignored.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Message 
+				 Code</b></td>
+				<td class="confluenceTd">Defines the message code.<br/>It is 
+				 mandatory that one of either the <b>Message</b> or <b>Message 
+				 Code</b> fields are specified. If both the <b>Message</b> 
+				 and <b>Message Code</b> fields are specified, the <b>Message 
+				 Code</b> will be ignored.</td>
+			</tr>
+		</table>
+
+		
+<p>Document validation methods permit setting breakpoints within Velocity Studio for <a href="../../Service Designer Menu Actions/Metadata Debug.html">debugging</a>. Velocity Studio translates a breakpoint set on a validation rule to a breakpoint on the generated validation script. Whether a document has one or more validation methods, setting or unsetting the breakpoint on any of them also sets or unsets a breakpoint on the combined script, which is named &lt;<em>document name</em>&gt;.cwOnGenDocValidation. The individual scripts are visible within that combined script.</p>
+</td>
+	</tr>
+</table>
+</body>
+</html>

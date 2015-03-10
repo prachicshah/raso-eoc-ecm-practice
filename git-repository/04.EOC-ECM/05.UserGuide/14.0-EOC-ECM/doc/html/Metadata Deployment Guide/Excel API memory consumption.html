@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Excel API Memory Consumption</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Excel API  Memory Consumption</h2>
+<p>There may be times in which memory consumption using an Excel API may cause performance issues, such as high heap usage on Excel operations. The following scenarios indicate memory consumption based on a number of factors, which include the Excel file's size and the number of concurrent users.</p>
+<p>The following scenarios use the  Java&#8482; runtime memory setting:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre><SPAN id="internal-source-marker_0.5997129802793719">-Xmx4096m -XX:MaxPermSize=256m-Xms4096m</SPAN></pre>
+  </div>
+</div>
+<p><strong>Scenario 1:</strong> Load  Excel files from the database</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+  
+    <tr>
+      <th width="164" class='referenceTh'>Excel File Size</th>
+      <td width="92" class='referenceTd'>100 KB</td>
+      <td width="92" class='referenceTd'>500 KB</td>
+      <td width="120" class='referenceTd'>1 MB</td>
+      <td width="830" class='referenceTd'>5 MB</td>
+    </tr>
+    <tr>
+      <th class='referenceTh'>1 User</th>
+      <td class='referenceTd'>+30 MB</td>
+      <td class='referenceTd'>+130 MB</td>
+      <td class='referenceTd'>+360 MB</td>
+      <td class='referenceTd'>Approximately +1 GB</td>
+    </tr>
+    <tr>
+      <th class='referenceTh'>5 Concurrent Users</th>
+      <td class='referenceTd'>+130 MB</td>
+      <td class='referenceTd'>+400 MB</td>
+      <td class='referenceTd'>+520 MB</td>
+      <td class='referenceTd'>Massive garbage collection occurs, with peak memory at approximately +3 GB</td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Scenario 2:</strong> Load Excel files from the database, and then loop into each cell to read the cell value</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="137" class='referenceTh'>Excel File Size</th>
+      <td width="72" class='referenceTd'>100 KB</td>
+      <td width="460" class='referenceTd'>500 KB</td>
+      <td width="444" class='referenceTd'>1 MB</td>
+      <td width="471" class='referenceTd'>5MB</td>
+    </tr>
+    <tr>
+      <th class='referenceTh'>1 User</th>
+      <td class='referenceTd'>+40 MB</td>
+      <td class='referenceTd'>+220 MB</td>
+      <td class='referenceTd'>+490 MB</td>
+      <td class='referenceTd'>Massive garbage collection occurs, with peak memory at approximately +1.5 GB</td>
+    </tr>
+    <tr>
+      <th class='referenceTh'>5 Concurrent Users</th>
+      <td class='referenceTd'>+220 MB</td>
+      <td class='referenceTd'>Massive garbage collection occurs, with peak memory at approximately +550 MB</td>
+      <td class='referenceTd'>Massive garbage collection occurs, with peak memory at approximately +1.5 GB</td>
+      <td class='referenceTd'>Massive garbage collection occurs, sometimes with an out-of-memory exception</td>
+    </tr>
+  </tbody>
+</table>
+<p>The sample Excel files had the following characteristics:</p>
+<ul>
+  <li>All Excel files contained plain data (that is, no style, format, formulas, and so on)</li>
+  <li>The 100 K file contains 4 sheets, with each sheet having 800 rows, and each row having 6 cells</li>
+  <li>The 500 K file contains 11 sheets, with each sheet having 1,600 rows, and each row having 6 cells</li>
+  <li>The 1 MB file contains 11 sheets, with each sheet having 3,200 rows, and each row having 6 cells</li>
+  <li>The 5 MB file contains 18 sheets, with each sheet having 9,600 rows, and each row having 6 cells</li>
+</ul></td>
+</tr>
+</table>
+</body>
+</html>

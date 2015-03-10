@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>User Interface Validation Example</title>
+<link rel="StyleSheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script><script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>User Interface Validation Example</h2>
+<p>This section shows an example of a User Interface Validation functionality for an Array and UserInterface Object.  In this example, a Document is created with mandatory leaves that are validated by calling the onValidate script by using a UserInterface button. </p>
+
+<h3>Create a Document</h3>
+<p>A Document is created with mandatory input fields that are mapped to a user interface and a button that calls the onValidate script. </p>
+<h4>Leaf Creation</h4>
+<p>Document variables have been defined as mandatory for user input by assigning  False to the <strong>Optional</strong> field. </p>
+
+<img src="DocumentValidation.png" alt="Document variables" border="1" />
+
+<h4>Create Validation Methods</h4>
+<p>The leaf variables have been assigned validation methods of various severities.</p>
+
+<img src="DocumentValidationRule.png" alt="Create validation methods - assign validation methods to document variables" border="1" />
+
+<h4>Design User Interface</h4>
+<p>A user interface is designed for the document with a validation button.</p>
+
+<img src="ExampleUserInterfaceTestDoc.png" alt="Document - validation button" border="1" />
+
+<h4>Define Validation Method for button element</h4>
+<p>In the UserInterface shown above, a <strong>Validate</strong> button displays, which has a Click Method property associated with the ValidateButtonAction method. The ValidateButtonAction method is a user-defined method that calls the onValidate script:</p>
+
+<img src="ExampleValidateButtonAction.png" alt="Validation button action" border="1" />
+
+<h3>Define the Presentation</h3>
+<p>At the Presentation layer, a UserInterface object is defined containing a variable (<em>testDocUI) </em>that points to the document object (validate.TestDoc.UserInterface) created in the steps above and flagged for the <strong>Validate</strong> checkbox.  The second variable, <em>testDocUIArray,</em> also points to the same document object, but this variable is an Array with the <strong>Array</strong> checkbox flagged. </p>
+
+<img src="ExampleTestDocUIVariable.png" alt="Define the presentation - Document variable" border="1" />
+
+<h4>Initialization</h4>
+<p>At runtime, the <i>testDocUI</i> user interface variable is initialized to the user interface <i>(validate.TestDoc.UserInterface)</i> by the onInit method.   The onInit method of the TestUI object assigns the <i>TestDocUI</i> variable to the document user interface object (validate.TestDoc.UserInterface).</p>
+
+<img src="ExampleTestDocUIonInit.png" alt="Initialize user interface variable" border="1" />
+
+<h4>FormFrame Variable</h4>
+<p>For the FormFrame element of the <i>TestUI</i> Default form, the <i>testDocUI</i> variable is assigned to the <strong>Variable</strong> property:</p>
+
+<img src="ExampleTestUIVariable.png" alt="FormFrame element - assign to Variable property" border="1" />
+
+<p> The second FormFrame element of the <i>TestUI</i> Default form, has the <i>testDocUIArray</i> (array variable) assigned to the Form property and the associated Iterator variable is associated to the <i>testDocUIArray</i>. Below are the properties details for the FormFrame and Iterator elements:</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+	<th class="confluenceTh">FormFrame</th>
+	<th class="confluenceTh">Iterator</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="ExampleFormFrameArray.png" alt="FormFrame element - array variable" border="1" /></td>
+<td class='confluenceTd'><img src="ExampleIteratorArray.png" alt="Iterator element - array variable" border="1" /></td>
+</tr>
+</tbody>
+</table>
+<br />
+<h3>Runtime</h3>
+<p>At runtime, the TestDoc document appears as a single instance and an array: </p>
+
+<img src="runtimeVariables.png" alt="Runtime - document appears as a single instance and an array" border="1" />
+
+</td>
+</tr>
+</table>
+</body>
+</html>

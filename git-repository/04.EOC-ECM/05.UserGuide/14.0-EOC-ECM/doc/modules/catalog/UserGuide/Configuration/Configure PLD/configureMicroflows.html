@@ -1,0 +1,189 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Configure Microflows</title>
+<link rel="StyleSheet" href="../../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../../highlight.js"></script><script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> 
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2><strong>Configure M</strong>icroflows</h2>
+<p>A microflow is a  fully modeled workflow within the platform. You model microflows as processes,  not as sub-flows. The primary difference is that they can instantiate themselves  (without calling a parent), and may define their own parameters, rather than  inheriting the calling parent&rsquo;s parameters. You can access the Configure Microflow option using the Quick Start menu on the Ericsson Catalog Manager home page or by clicking <strong>Configuration </strong>&gt;<strong> Configure PLD </strong>&gt;<strong> Configure Microflow </strong>to allow you to  <a href="#Search Microflow"> Search</a>, <a href="#Add Microflow">Add</a>, <a href="#Copy Microflow">Copy</a>, and <a href="#Delete Microflow">Delete</a> microflow. You can also <a href="#Convert to TAS">Convert a microflow to a Technical  Action Specification (TAS)</a> from this page.
+<p><img src="configureMicroflows.png" alt="Searh Stage Finder" border="1" /></p>
+<h3>Pre-defined Microflow Codes</h3>
+<p>The default, out-of-the-box Microflow codes that are pre-defined in the Configure Microflows page include the following:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="150" class='confluenceTh'>Pre-defined microflow code</th>
+      <th width="691" class='confluenceTh'>Workflow action description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>definition_setup</td>
+      <td class='confluenceTd'>Sets the Definition stage for the Setup workgroup microflow. In the Definition stage, the product details and rollout plan are defined.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>build_setup</td>
+      <td class='confluenceTd'>Sets the Build stage for the Setup workgroup microflow. During the build stage, the product is built in the system.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>launch_setup</td>
+      <td class='confluenceTd'><p>Sets the Launch Product stage for the Setup workgroup microflow. Launch product is the last stage of the product lifecycle that is used to execute the rollout plan and launch the product.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>conception_setup</td>
+      <td class='confluenceTd'>Sets the Conception stage  for the Setup workgroup microflow. The Conception stage is the first step in the PLD process that outlines the business case for the change request. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>evaluation_setup</td>
+      <td class='confluenceTd'>Sets the Evaluation stage  for the Setup workgroup microflow. In the Evaluation stage, the Business Analyst and IT departments develop and confirm business requirements. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>testing_setup</td>
+      <td class='confluenceTd'>Sets the Testing stage for the Setup workgroup microflow. In the testing stage, the product is released to testing.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>def_teardown</td>
+      <td class='confluenceTd'>Sets the Definition stage for the Teardown workgroup microflow. In the Definition stage, the product details and rollout plan are defined.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>build_teardown</td>
+      <td class='confluenceTd'>Sets the  Build stage for the Teardown workgroup microflow. During the build stage, the product is built in the system.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>launch_teardown</td>
+      <td class='confluenceTd'>Sets the Launch stage  for the Teardown workgroup microflow.  Launch product is the last stage of the product lifecycle that is used to execute the rollout plan and launch the product.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>concep_teardown</td>
+      <td class='confluenceTd'>Sets the  Conception stage  for the Teardown workgroup microflow. The Conception stage is the first step in the PLD process that outlines the business case for the change request. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>eval_teardown</td>
+      <td class='confluenceTd'>Sets the  Evaluation stage  for the Teardown workgroup microflow.  In the Evaluation stage, the Business Analyst and IT departments develop and confirm business requirements. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>testing_teardown</td>
+      <td class='confluenceTd'>Sets the  Testing stage for the Teardown workgroup microflow. In the testing stage, the product is released to testing.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ba_approval</td>
+      <td class='confluenceTd'>Triggers the workflow to require approval for action from a Business Analyst participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>it_approval</td>
+      <td class='confluenceTd'>Triggers the workflow to require approval for action  from an IT Network Analyst participant</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ma_approval</td>
+      <td class='confluenceTd'>Triggers the workflow to require approval for action  from a Marketing participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'> no_approval</td>
+      <td class='confluenceTd'>Triggers the workflow to require  approval for action  from a Network Operations participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>pe_approval</td>
+      <td class='confluenceTd'>Triggers the workflow to require approval for action  from a Pricing Economics participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>pm_approval</td>
+      <td class='confluenceTd'>Triggers the workflow to require  approval for action  from a Product Management participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>pr_approval</td>
+      <td class='confluenceTd'>Triggers the workflow to require approval for action  from a Product Modeler participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ra_approval</td>
+      <td class='confluenceTd'>Triggers the workflow to require approval for action  from a Revenue Assurance participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>main</td>
+      <td class='confluenceTd'>The main microflow code is added to all  stages and has an internal use that is  executed as the last microflow  at the end of each stage. Specifying Main triggers the <strong>mainFlow_Complex</strong> workflow that is defined in the <strong>plmDev</strong> library files.  This workflow takes the information that is created in the change request to initiate and process the tasks.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ba_action</td>
+      <td class='confluenceTd'>Triggers the workflow to assign the   action  to a Business Analyst participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>it_action</td>
+      <td class='confluenceTd'>Triggers the workflow to assign the   action to an IT Network Analyst participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ma_action</td>
+      <td class='confluenceTd'>Triggers the workflow to assign the   action to a Marketing participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>no_action</td>
+      <td class='confluenceTd'>Triggers the workflow to assign the   action to a Network Operations participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>pe_action</td>
+      <td class='confluenceTd'>Triggers the workflow to assign the   action to a Pricing Economics participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>pm_action</td>
+      <td class='confluenceTd'>Triggers the workflow to assign the   action to a Product Manager participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>pr_action</td>
+      <td class='confluenceTd'>Triggers the workflow to assign the   action to a Product Modeler participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>ra_action</td>
+      <td class='confluenceTd'>Triggers the workflow to assign the   action to a Revenue Assurance participant.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>resetFlags</td>
+      <td class='confluenceTd'>Triggers the workflow  for the Intermediate microflow.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>defaultProc</td>
+      <td class='confluenceTd'>The intermediate microflow that is used as the default microflow   when a custom microflow is not chosen.</td>
+    </tr>
+  </tbody>
+</table>
+<p> For more information on the workflow stages, see the <a href="../../../plm/PLMWorkflow.html">Product Lifecycle Developer Setup</a> page in the Product Lifecycle Developer documentation.</p>
+<h3><a name="Search Microflow "> Search a Microflow</a></h3>
+<p>To perform a search, enter your search criteria in the<strong> Metadata Type, Work</strong><strong>flow Code</strong>, or<strong> Workgroup</strong> fields and then click the <strong>Search</strong> button.</p>
+<h3><a name="Add Microflow"> Add a Microflow</a></h3>
+<p>To add a new microflow, do the following:</p>
+<ol>
+  <li>From the Microflow search page, click the <strong>New</strong> button. The  Microflow Details page appears.</li>
+  <li>Enter the  information for the <strong>Microflow Code</strong> and the <strong>Label</strong> field (for example, Evaluation Setup).</li>
+  <li>From the drop-down list of  the <strong>State</strong> field, select one stage (for example, Active).</li>
+  <li>Enter the description of the microflow in the <strong>Description</strong> field.</li>
+  <li>    Select a process from the drop-down list of<strong> Metadata Name of Workflow </strong>field. You can select the checkbox next to this field to support any changes in the participant by this microflow.  </li>
+  <li>Click the <strong>Save</strong> button. A message confirms the microflow was saved and <strong>Workgroup and Operation</strong>, <strong>eMail</strong>, and <strong>Timestamps</strong> tabs appear.
+    <blockquote>
+      <p><img src="configureMicroflows_WorkgroupOperation.png" width="1075" height="460"></p>
+    </blockquote>
+    </li>
+  
+  <li>For the <strong>Workgroup and Operation Information</strong> tab, do the following:</li>
+  <ol type="a">
+    <li>Select  a participant from the drop-down list of the <strong>Workgroup</strong> field.</li>
+    <li>Select the <strong>Non-Standard Task </strong>checkbox if you want to indicate that the task to be  allocated to the user does not exist in the metadata and is supplied as part  of the definition. </li>
+    <li>Select a task from the list of  Task to Perform (Pre-defined).<br>
+      <strong>Note: </strong>The task list for this field depends on the option selected in the Stage and Workgroup field.</li></ol>
+  <li>You can send the task  information to the participants through e-mail. Click the <strong>eMail Task </strong>tab and enter the information in the <strong>To</strong>,<strong> From (Reply To)</strong>,<strong> Subject</strong>,<strong> and Message</strong> fields. </li>
+  <li>Click the <strong>Save</strong> button. Click the <strong>Timestamps</strong> tab to view information in the <strong>Created by, Created on, Updated By, </strong>and<strong> Updated on</strong> fields that are generated by the system.</li>
+</ol>
+<h3><a name="Copy Microflow">Copy a Microflow</a></h3>
+<p>To copy a microflow, select the microflow that you want to copy  from the search results and click the<strong> Copy</strong> button. The MicroFlow Details page appears with a  copy of the selected microflow.  You can make the  changes and then click the <strong>Save</strong> button.</p>
+<h3><a name="Delete Microflow">Delete a Microflow</a></h3>
+<p>To delete a microflow, select the microflow that you want to delete  from the search results list and click the <strong>Delete</strong> button. A confirmation dialog appears; click the <strong>Yes</strong> button to delete the selected  microflow. </p>
+<h3><a name="Export Microflow">Export a Microflow</a></h3>
+</p>To export  a list of microflows in the system,   click the <strong>Export</strong> button and choose to export the microflow <strong>to XLS</strong>, <strong>to CSV</strong>, or <strong>to XML</strong> format.
+<h3><a name="Convert to TAS">Convert a Microflow to a Technical  Action Specification (TAS)</a></h3>
+<p>From  Microflow Details page, select a  microflow from the result list and then click  the <strong>Convert To TAS</strong> button to reference the selected microflow to the Technical  Action Specification (TAS).  The  TAS consists of a microflow, along with any  parameters, conditions, and compensating actions. The TAS is a reference to the  microflow that is required to be invoked for each component that requires  fulfillment.  </p></td>
+</tr>
+</body>
+</html>

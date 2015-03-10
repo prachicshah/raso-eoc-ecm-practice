@@ -1,0 +1,106 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Delete a Project</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+ <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Delete a Project</h3>
+<p>You can delete a project, project assignments, and all catalog objects and associations created in the project if the following conditions hold true:</p>
+<ul>
+  <li>The project that you want to delete is not active.</li>
+  <li>Neither the catalog objects, nor associations created in the project have their <strong>Status</strong> field set to an <strong> Active</strong> state.</li>
+  <li> None of the catalog objects created in the project to be deleted have child associations in different projects. As an example, if a charge type is not active, its attributes are also not active. If the charge type is in project A and its attributes are in project B, project A cannot be deleted.</li>
+</ul>
+<p><strong>Note: </strong> You can delete an active project  and project with active objects in testing enviourment, if the<strong> Framework Paremeter Enviourment Type </strong>in the Configuration application is set to <strong>Testing</strong>. </p>
+<p> To delete a project, do the following:
+<ol>
+  <li>From the Project Search Results page, select the checkbox next to the project, and then click <strong>Delete</strong>. <br>
+    <br>
+    <img src="ProjectDeleteButton.png" alt="Delete a project" border="1"><br>
+    <br>
+  </li>
+  <li>A dialog appears, asking you to confirm whether you want to delete your project.  Click the <strong>Yes</strong> button to continue. 
+    <br>
+  </li>
+  <li>If your project has child projects, another confirmation message appears, asking whether you want to delete all child nodes. Click the <strong>Yes</strong> button to continue.</li>
+  <li>Your non-empty project has been successfully deleted.</li>
+  </ol>
+<p>When you select a project for deletion, Catalog checks whether there are tasks running for the project and displays an error message when they are, preventing project deletion. If no tasks are running (that is, a new project that has yet to start), you can delete the project.</p>
+<h4>Delete a Project and its Child Projects through an API</h4>
+<p>You can delete a project and all its child projects by using the projectMaintenance API's deleteProject  method, which is a part of the maintenance API.</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+void deleteProject(projectDeleteDS)</pre>
+</div>
+</div>
+
+<p>The deleteProject's input parameters are as follows:</p>
+<tt>projectDeleteDS</tt>:
+<ul>
+  <li><tt>projectCode</tt>: string (mandatory)</li>
+  <li><tt>projectName</tt></li>
+  <li><tt>status</tt></li>
+  <li><tt>cascadeDelete</tt>: boolean (optional and allows null); its default is true </li>
+</ul>
+<p>This API allows you to delete a project, project assignments, and all catalog objects and associations created in the project if the following conditions hold true:</p>
+<ul>
+  <li>The project that you want to delete is not active.</li>
+  <li>Neither the catalog objects, nor associations created in the project have their <strong>Status</strong> field set to an <strong> Active</strong> state.</li>
+  <li> None of the catalog objects created in the project to be deleted are used by catalog objects or associations in different projects (for example, if a charge type exists in the project to be deleted and if that charge is used by an item in another project, both the charge type and project cannot be deleted).</li>
+</ul>
+<p>All child associations of the catalog object or association to be deleted are also deleted. The assumption is that if the parent object is not active, its child associations are also not active. As an example, if a charge type is not active, its attributes are also not active. As a result, if a charge type is deleted as part of the project, its attributes are also deleted.</p>
+<p>You can also delete a project if an info model is active, an attribute is active, and an info model attribute uses this attribute.</p>
+<p> If <tt>cascadeDelete</tt> is true, all child projects are deleted. Otherwise, when <tt>cascadeDelete</tt> is false, the parent of all child projects is nullified and the child projects are not deleted. </p>
+<p>The following is an example of deleting a project and its child project using the deleteProject operation:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+//assign cascadeDelete as true<br>var ds = new DataStructure(&quot;cwt_pcmaintapi:projectDeleteDS&quot;);<br>ds.projectCode = &quot;P1&quot;;<br>ds.cascadeDelete = true;
+
+var list = Global.invokeInterface(&quot;cwt_pcmaintapi:ProjectMaintenance&quot;, &quot;DeleteProject&quot;, ds);<br>assertNotNull(list, &quot;response is not found as return value is null.&quot;);
+
+var response = list[0];<br>assertNotNull(response, &quot;response now is null&quot;);<br>assertTrue(response.message.trim() == &quot;Project P1 has been successfully deleted&quot;, &quot;Project P1 has not been successfully created: &quot;+ response.message.trim());
+</pre>
+</div>
+</div>
+
+<p>The following table lists the exceptions that can be thrown under specific conditions:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class="confluenceTh" width="253">Exception</th>
+      <th width="1081" class="confluenceTh">Description</th>
+    </tr>
+    <tr>
+      <td class="confluenceTd"><strong>Data not found</strong></td>
+      <td class="confluenceTd">This exception appears when the project to be deleted is not found.</td>
+    </tr>
+    <tr>
+      <td class="confluenceTd"><strong>Project/child project in active state</strong></td>
+      <td class="confluenceTd">This exception occurs when the <strong>Status</strong> field of either a project or any of its children is <strong>Active</strong>.</td>
+    </tr>
+    <tr>
+      <td class="confluenceTd"><strong>One or more Catalog objects in use or active</strong></td>
+      <td class="confluenceTd">This exception appears if one or more project objects are referenced by other objects outside of the project, or if these project objects are active.</td>
+    </tr>
+    <tr>
+      <td class="confluenceTd"><strong>Internal exception</strong></td>
+      <td class="confluenceTd">This exception indicates that an unexpected internal error has    occurred.  </td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Note: </strong>When you delete a project, the items deleted under that project are not recreated.
+  </p>
+</td>
+</tr>
+</table>
+</body>
+</html>

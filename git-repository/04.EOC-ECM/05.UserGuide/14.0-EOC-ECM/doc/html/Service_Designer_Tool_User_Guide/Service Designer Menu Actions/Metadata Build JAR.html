@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>Build Library JAR</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Build Library JAR</h2>
+
+<p>The project's application metadata can be exported as a Java Archive (JAR) file within Velocity Studio with menu <b>Runtime &gt; Build Library JAR</b>. The JAR file can then be <a href="../Metadata_Objects/Metadata Root/Metadata Root Templates.html">imported</a> into another project as a library to be used by the project in Velocity Studio.</p>
+
+<p>Use this command to create your own libraries to aid the distribution and organization of your application.  For example, external interface integration based on technical contracts (such as WSDL) can be consumed and implemented in Velocity Studio as a project, and then use this command to create the library.  Such a library may be imported into your application, with the benefit that your application metadata being focused on implementing the core application. See <a href="../Introduction_to_Metadata/Managing Metadata.html">Managing Metadata</a> for background information.</p>
+
+<p><b>Note</b>: This menu command is only enabled when a project has been opened and no <a href="../Service_Designer_User_Interface/Error Pane.html">validation errors</a> exist in the metadata. Otherwise, the menu command is disabled (that is, greyed out). You must fix all errors in the metadata before being able to build the JAR file.</p>
+<p>To build a library JAR file, follow these steps:</p>
+<ol>
+  <li>From the menu bar, click  <strong>Runtime</strong> &gt; <strong>Build Library JAR</strong>. to launch the Build Library JAR dialog. </li>
+  <li>For the <strong>JAR file destination</strong> field, specify the folder in which to save the output JAR file by clicking the <strong>Browse</strong> button. If you have set the <strong>Export Template JAR Folder</strong> field in your <a href="Preferences.html#export">Preferences</a>, this location serves as the default folder for the generated JAR file.</li>
+  <p><img src="mdJAROutput.png" alt="Build Library JAR dialog" /></p>
+  <li>By default, all project metadata folders are selected to be included in creating the JAR file. You can select or deselect project folders and their respective sub-folders. Selecting a folder highlights its folder label, indicating that it has been selected for inclusion in the generated JAR file.<br>
+    <br>
+    <strong>Note:</strong> When you select a folder, that folder and its sub-folders are selected. Similarly, deselecting a folder means that its sub-folders are also deselected.</li>
+  <li>Click the <strong>Finish</strong> button to create the JAR file. The Creating library JAR file dialog appears and then disappears when finished.</li>
+  <li>The JAR file  has &lt;<em>internal_name</em>&gt;.jar  as its filename, where internal_name is the <strong>Internal Name</strong> field of your metadata project. You can rename the JAR file without impacting its integrity.</li></ol>
+
+<p><strong>Note:</strong> The metadata files contained within the JAR file are encrypted for the purpose of protecting intellectual property.</p>
+<h3>Build Library JAR through the Command Line</h3>
+<p>You can generate the Build Library output using a command line:</p>
+<ul>
+  <li>In Windows, use <tt>buildLibrary.cmd</tt></li>
+  <li>In Unix or Linux, use <tt>buildLibrary.sh</tt></li>
+</ul>
+<p>The following describes the syntax of the command-line interface and the available arguments. A shortcut command can be found in <b><strong>&lt;<em>installation_folder</em>&gt;</strong>\designer\env\buildLibrary.cmd</b>:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>@echo off
+if ""%1""=="""" goto echoSyntax
+
+set CWOC_CLASSPATH=C:\6\264
+%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^
+%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^
+%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^
+%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^
+%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^
+%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;
+
+set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m -Djava.awt.headless=true
+
+"C:\java\jdk1.6.0_16\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -buildlibrary %1 %2
+
+goto end
+:echoSyntax
+echo ----------------------------------------------------------------------------------------------------------------------------------------------------
+echo Syntax: buildLibrary [-logFile logFile] metadata_path [library name] [S stop with error]
+echo Example: buildLibrary c:\metadata_path
+echo buildLibrary c:\metadata_path catalog s
+echo ----------------------------------------------------------------------------------------------------------------------------------------------------
+:end</pre>
+  </div>
+  <tt></tt></div></td>
+</tr>
+</table>
+</body>
+</html>

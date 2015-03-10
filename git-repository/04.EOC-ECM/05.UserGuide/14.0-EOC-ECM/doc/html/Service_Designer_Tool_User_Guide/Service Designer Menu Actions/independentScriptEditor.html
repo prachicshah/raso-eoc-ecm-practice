@@ -1,0 +1,185 @@
+<html>
+<head>
+<title>Independent Script Editor</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Independent Script Editor</h2>
+<p>Velocity Studio provides an Independent Script Editor, which extends the <a href="../../JavaScripting in Order Care/new JavaScript Editor.html">JavaScript   Editor</a> and implements multiple tab functionality. You can open and save independent JavaScript in a file.</p>
+<p>To open the Independent Script Editor, in Velocity Studio, click <strong>Edit &gt; Independent Script Editor</strong> from the menu bar.</p>
+<h3>Independent Script Editor - User Interface</h3>
+
+<p>The Independent Script Editor consists of four main areas:</p>
+<ul>
+  <li><a href="#menuBar">Menu bar</a></li>
+  <li><a href="#toolbar">Toolbar</a></li>
+  <li><a href="#mainScriptArea">Main area for script development</a></li>
+  <li><a href="#statusBar">Status bar</a></li>
+  </ul>
+<p><img src="independentScriptEditorUserInterface.png" alt="Independent Script Editor - user interface"></p>
+
+<h4><a name="menuBar"></a>Menu Bar</h4>
+<p>The Independent Script Editor contains a menu bar, which differs from the <a href="../../JavaScripting in Order Care/JavaScript Editor.html">JavaScript Editor</a>. The following options are available when you click <strong>File</strong> from the menu bar:</p>
+<table width="793" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="139" class='confluenceTh'>Menu Option</th>
+      <th width="718" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>New Tab</strong></td>
+      <td class='confluenceTd'>Open multiple tabs within the script editor.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Open File</strong></td>
+      <td class='confluenceTd'>Open a dialog to specify the JavaScript file that you want to open.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Save</strong></td>
+      <td class='confluenceTd'>Save your JavaScript file.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Save As</strong></td>
+      <td class='confluenceTd'>Specify the location where you want to save your JavaScript file and provide a name for your file.</td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Tabs</strong></p>
+<p>You can open multiple tabs within the Independent Script Editor. Each tab contains the name of your JavaScript file, if you have already named the file or  you have opened an existing JavaScript file.</p>
+<p>If you have made changes to your script and have not save your file, an asterisk (*) appears in the tab area.</p>
+<p><img src="independentScriptEditorTabs.png" alt="Multiple tabs"></p>
+<p><strong>History</strong></p>
+<p>The Independent Script Editor contains a history feature. The editor keeps track of the last four JavaScript files that you have opened. The following example shows that two files were open from the editor.</p>
+<p><img src="independentScriptEditorFileHistory.png" alt="File history - lists last four JavaScript files opened "></p>
+<h4><a name="toolbar"></a>Toolbar</h4>
+<p>The Independent Script Editor toolbar allows you to perform a number of actions to help you with writing your script. The following table describes what each button does within the script editor.</p>
+
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+  <th width="86" class='confluenceTh'>Button</th>
+  <th width="86" class='confluenceTh'>Shortcut</th>
+<th width="1547" class='confluenceTh'>Function</th>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="independentScriptEditorTabButton.png" width="31" height="31" alt="Tab button"></td>
+  <td class='confluenceTd'>&nbsp;</td>
+  <td class='confluenceTd'>Open multiple tabs within the script editor.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="../../JavaScripting in Order Care/newJSEditorPrintButton.png" width="31" height="31" alt="Print button"></td>
+  <td class='confluenceTd'><em>Ctrl + P</em></td>
+<td class='confluenceTd'><a href="../../JavaScripting in Order Care/new JavaScript Editor print menu.html">Print the code</a> displayed in the Independent Script Editor.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="../../JavaScripting in Order Care/newJSEditorUndoButton.png" width="31" height="31" alt="Undo button"></td>
+  <td class='confluenceTd'><em>Ctrl + Z</em></td>
+  <td class='confluenceTd'><a href="../../JavaScripting in Order Care/new JavaScript Editor edit menu.html#undoFunction">Undo the last action</a> that you performed.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="../../JavaScripting in Order Care/newJSEditorRedoButton.png" width="31" height="31" alt="Redo button"></td>
+  <td class='confluenceTd'><em>Ctrl + Y</em></td>
+<td class='confluenceTd'><a href="../../JavaScripting in Order Care/new JavaScript Editor edit menu.html#redoFunction">Redo an action</a> that you performed.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="../../JavaScripting in Order Care/newJSEditorCopyButton.png" width="31" height="31" alt="Copy button"></td>
+  <td class='confluenceTd'><em>Ctrl + C</em></td>
+<td class='confluenceTd'><a href="../../JavaScripting in Order Care/new JavaScript Editor edit menu.html#copyText">Copy</a> highlighted text into your script.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="../../JavaScripting in Order Care/newJSEditorPasteButton.png" width="31" height="31" alt="Paste button"></td>
+  <td class='confluenceTd'><em>Ctrl + V</em></td>
+<td class='confluenceTd'><a href="../../JavaScripting in Order Care/new JavaScript Editor edit menu.html#pasteFunction">Paste</a> cut or copied text into your script.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="../../JavaScripting in Order Care/newJSEditorCutButton.png" width="31" height="31" alt="Cut button"></td>
+  <td class='confluenceTd'><em>Ctrl + X</em></td>
+<td class='confluenceTd'><a href="../../JavaScripting in Order Care/new JavaScript Editor edit menu.html#cutFunction">Cut</a> highlighted text into your script.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="../../JavaScripting in Order Care/newJSEditorFindTextButton.png" width="31" height="31" alt="Find and Replace Text button"></td>
+  <td class='confluenceTd'><em>Ctrl + F</em></td>
+<td class='confluenceTd'><a href="../../JavaScripting in Order Care/new JavaScript Editor search menu.html#searchFindReplace">Find specific words or text</a> within your script. You also have the option of finding words or text, and replacing them.</td>
+<tr>
+<td align="center" class='confluenceTd'><img src="../../JavaScripting in Order Care/newJSEditorFindTextNextOccurrenceButton.png" width="179" height="30" alt="Find Next Occurrence button"></td>
+<td class='confluenceTd'><em>Ctrl + K</em></td>
+<td class='confluenceTd'>The <a href="../../JavaScripting in Order Care/new JavaScript Editor search menu.html#previousSearchCriteria">drop-down box</a> allows you to select from previous search criteria that you have used. Click the <strong>Find Next Occurrence</strong> button to the right of the drop-down field to find the next occurrence of your search criteria in your script.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="../../JavaScripting in Order Care/newJSEditorListMethodsButton.png" width="31" height="31" alt="List Methods button"></td>
+  <td class='confluenceTd'><em>Ctrl + Spacebar</em></td>
+<td class='confluenceTd'><a href="../../JavaScripting in Order Care/new JavaScript Editor functions menu.html#listMethods">List methods</a> that you can use in your script by clicking this button. Select the method you want to insert into your script by double-clicking your selection.</td>
+<tr>
+  <td height="42" align="center" class='confluenceTd'><img src="../../JavaScripting in Order Care/newJSEditorSelectMethodsButton.png" width="31" height="31" alt="Select Method button"></td>
+  <td class='confluenceTd'><em>Ctrl + M</em></td>
+  <td class='confluenceTd'>    Open the <b>Select Method</b> dialog, which <a href="../../JavaScripting in Order Care/new JavaScript Editor functions menu.html#selectJSmethods">lists the available JavaScript functions</a> that can be selected and added into the script editor.<br>
+    <br></td>
+</tr>
+<tr>
+  <td height="40" align="center" class='confluenceTd'><img src="../../JavaScripting in Order Care/newJSEditorSelectElementButton.png" width="31" height="31" alt="Select Element button"></td>
+  <td class='confluenceTd'><em>Ctrl + E</em></td>
+  <td class='confluenceTd'>    Opens the <b>Select Element</b> dialog, which <a href="../../JavaScripting in Order Care/new JavaScript Editor functions menu.html#selectMetadataElement">lists the available metadata elements</a> that can be selected and added into the script editor.<br>
+    <br></td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="../../JavaScripting in Order Care/newJSEditorCodeTemplateButton.png" alt="Code Template button"></td>
+  <td class='confluenceTd'>&nbsp;</td>
+  <td class='confluenceTd'><p>Click this button to launch the JavaScript Code Template dialog, allowing you to <a href="../../JavaScripting in Order Care/new JavaScript Editor functions menu.html#insertCodeTemplates">insert code templates</a> or standard code patterns into the script editor.<br>
+    <br>
+  </p></td>
+</tr>
+  
+  </tbody>
+</table>
+
+<h4><a name="mainScriptArea"></a>Main Area for Script Development</h4>
+<p>The Independent Script Editor's main area allows you to code and edit your scripts. You use this area with its toolbar, which provides you with a number of useful actions to help you develop and edit your scripts. </p>
+
+<h4><a name="statusBar"></a>Status Bar</h4>
+<p>The Independent Script Editor's status bar shows a number of useful details:</p>
+<ul>
+  <li>Whether the script has been changed.</li>
+  <li>Whether you are in <strong>Insert</strong> mode (insert text as you use the Independent Script Editor) or in <strong>Overwrite</strong> (enter text over existing text) mode.</li>
+  <li>What line and  character position your cursor is on. In the example that follows, your cursor is on line three, at character 50. <br>
+    <br>
+    <img src="independentScriptEditorStatusBar.png" alt="Status bar example"><br>
+  </li>
+  </ul>
+<p>To the left of the status bar, the <strong>Close</strong> button closes the Independent Script Editor.</p>
+<h3>Runtime Script Editor</h3>
+<p>You can use a system template UI that allows you to import, export, and edit JavaScript at runtime. To access this system template, do the following:</p>
+<ol>
+  <li>Create an application or application menu to display com.conceptwave.system/ScriptEditorUI.</li>
+  <li>At runtime, display this user interface.</li>
+  </ol>
+<h4>Edit JavaScript</h4>
+<p>To edit JavaScript from this user interface, complete these steps:</p>
+<ol>
+  <li>Click the <strong>Edit</strong> button (top right) to launch the editor.</li>
+  <li>Make your changes in the text area and then click the <strong>OK</strong> button.</li>
+  </ol>
+<h4>Import a JavaScript File</h4>
+<p>To import a  JavaScript file from this user interface, complete these steps:</p>
+<ol>
+  <li>Click the <strong>Import</strong> button (icon with the down arrow) to launch the upload file dialog.</li>
+  <li>Select the .js file that you want and then click the <strong>Upload</strong> button.</li>
+  <li>The contents of your .js file appear in the main screen.</li>
+</ol>
+<h4>Export a JavaScript File</h4>
+<p>To export a  JavaScript file from this user interface, complete these steps:</p>
+<ol>
+  <li>Click the <strong>Export</strong> button (icon with the up arrow) to launch the Save As dialog.</li>
+  <li>Specify the name of the  .js file that you want to export your script to and then click the <strong>Save</strong> button.</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

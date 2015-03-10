@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>JConsole - AVM Caches Domain</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>AVM Caches Domain</h1>
+<p>The AVMCaches domain allows you to view, manage, and change a number of attributes, including Size and Element count. It also provides you with operations that you can use to manage your AVM caches, such as the Clean the cache and Count removable elements operations.</p>
+<h3>Attributes</h3>
+<p>Expanding the AVMCaches' <strong>Attributes</strong> node in the MBeans tree provides you with all attributes that you can view, manage, and change. </p>
+<p><img src="JConsole AVMCaches Attributes main node.png" width="907" height="771" alt="AVMCaches node in JConsole - all attributes"></p>
+<p>As an example, clicking the <strong>Element count</strong> attribute displays pertinent information about it, including the attribute's description, whether it is readable or writeable, and its data type.</p>
+
+<p><img src="JConsole AVMCaches Attributes Element count Name.png" width="901" height="752" alt="sds"></p>
+<p>When you hover your mouse pointer over the <strong>Refresh</strong> button, a tooltip indicates the action that occurs after you click the button. You can also hover your mouse pointer over the <strong>Name</strong> and <strong>Value</strong> fields. In the following example, hovering the mouse pointer over the <strong>Value</strong> field displays a tooltip indicating that you can expand the field by double-clicking it.</p>
+<p><img src="JConsole AVMCaches Attributes Element count Value.png" width="899" height="752" alt="Value field for Element count attribute - double-click to expand field"></p>
+<p>Double-clicking the <strong>Value</strong> field in this example allows you to chart the Element count. You also have the option of clicking the <strong>Discard chart</strong> button to view the attribute's <strong>Value</strong> field.</p>
+<p><img src="JConsole AVMCaches Attributes Element count Value expand.png" width="900" height="751" alt="Value field for Element count attribute - expanded Value field"></p>
+<h3>Operations</h3>
+<p>Expanding the AVMCaches' <strong>Operations</strong> node in the MBeans tree provides you with operations that you can use to manage your AVM caches.</p>
+
+<p><img src="JConsole AVMCaches Operations Count removable elements All buttons.png" width="900" height="700" alt="All operations for AVM caches"></p>
+<p> As an example, clicking the <strong>Count removable elements</strong> operation displays pertinent information about the operation, including its description, return type, impact, and any parameters that the operation has.</p>
+<p><img src="JConsole AVMCaches Operations Count removable elements.png" width="899" height="751" alt="Count removable elements operation - AVMCaches"></p>
+<p>To invoke an operation, click the button in the right pane that is associated with the command you want to use. In this example, click the <strong>Count removable elements</strong> button to invoke the command.</p>
+<h4>Print Cache Info Operation</h4>
+<p>The <strong>Print Cache Info</strong> operation is available in  AVM Caches and accepts the following parameters:</p>
+<ul>
+  <li>    <strong>ID Only</strong><br>
+    This property accepts Boolean values and the output only includes  the cache elements's ID</li>
+  <li>
+    <strong>ID</strong><br>
+    This property accepts String values, with the output object having a specific ID</li>
+  </ul>
+<p>  The following caches can have their memory queues exported using this operation:</p>
+<ul>
+  <li>Activities Cache</li>
+  <li>CodeTable  Cache</li>
+  <li>DynamicParticipants Cache</li>
+  <li> Image Cache</li>
+  <li> InterfaceData Cache</li>
+  <li> Process Cache</li>
+  <li> ProcessData Cache</li>
+  <li>RecentlyChecked Cache</li>
+  <li>RecentlyFinished Cache</li>
+  <li> Resource Cache</li>
+  </ul>
+<p>Addtionally, the following Catalog caches can have their memory queues exported:</p>
+<ul>
+  <li>CatalogTranslations Cache</li>
+  <li>ChargeType Cache</li>
+  <li>DynamicRow Cache</li>
+  <li>InfoTable Cache</li>
+  <li>Item Cache</li>
+  <li>ItemParents Cache</li>
+  <li>QueryResult Cache</li>
+  <li>Tax Cache</li>
+  <li>TaxModel Cache</li>
+</ul></td>
+</tr>
+</table>
+</body>
+</html>

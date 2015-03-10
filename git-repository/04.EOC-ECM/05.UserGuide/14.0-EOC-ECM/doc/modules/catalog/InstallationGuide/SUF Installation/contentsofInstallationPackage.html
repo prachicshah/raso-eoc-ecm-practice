@@ -1,0 +1,245 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Contents of Installation Pack</title>
+<link rel="stylesheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<tr>
+  <td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top"><h2>Contents of Installation Pack</h2>
+    <p>This page explains the contents of installation package. The following files are required for installation: </p>
+    <ul>
+      <li><a href="network.xml">network.xml</a></li>
+      <li><a href="host_node_mapping.properties">host_node_mapping.properties</a></li>
+      <li><a href="AVM_Platform.rpm">AVM_Platform.rpm</a></li>
+      <li><a href="AVM_SUF.tar.gz">AVM_SUF.tar.gz</a></li>
+      <li><a href="AVM_BSSF_PSCM.rpm">AVM_BSSF_PSCM.rpm</a></li>
+      </ul>   
+    <h3><a name="network.xml">network.xml</a></h3>
+      
+        <p>This network configuration file is part of the installation package. It is needed by the SUF server in order to install the ECM application. It contains the login credentials that the SUF server uses during the installation. This file is uploaded using the SUF Server GUI and the configuration settings need to be edited according to the network infrastructure.
+        </li>
+        </p>
+        <p> If multiple installations or upgrades of the ECM application are to be performed at one time, there must be one entry for each server that is to be installed. That is, for a scenario with two installations, in the example below there would be host name two entries (&lt;host name=&quot;{hostname1}&quot;&gt; and &lt;host name=&quot;{hostname2}&quot;&gt; ).</p>
+        <p>
+         <strong>
+       </li>
+       Note:</strong> The values for the configuration variables in the network.xml configuration file are modified via the SUF GUI after it is imported. The values can also be entered by manually editing the file.<br>
+        </p>
+    <p>Below is an example of the network.xml file. The text between <strong>{curly   parenthesis}</strong> represents a variable. These variables need to be replaced   with the appropriate values.</p>
+    <table class="confluenceTable" border cellpadding="1">
+      <tr>
+        <th width="142" class="confluenceTh">Variable </th>
+        <th width="348" class="confluenceTh">Description </th>
+      </tr>
+      <tr>
+        <td class="confluenceTd"><strong>{appserver1}<BR>
+{appserver2}</strong></td>
+        <td class="confluenceTd"><p>These variables hold the value of the node name for the application server. <BR>
+For example, {appserver1} = "PSCM1", {appserver2} =   "PSCM2".</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="confluenceTd"><strong>{hostname1}<BR>
+{hostname2}</strong></td>
+        <td class="confluenceTd">These variables hold the value of the host name of the application server   node(s). The value(s) must match the value(s) of the {hostname} variable(s) in   the host_node_mapping.properties file.<BR>
+For example, {hostname1} =   "PSCM1_HOST", {hostname2} = "PSCM2_HOST"</td>
+      </tr>
+      <tr>
+        <td class="confluenceTd"><strong>{accessaddr}</strong></td>
+        <td class="confluenceTd">This variable holds the value of the access address, that is, the fully   qualified domain name or IP address.</td>
+      </tr>
+      <tr>
+        <td class="confluenceTd"><strong>{oracle}</strong></td>
+        <td class="confluenceTd">This variable holds the value of the host name of the Oracle DB   node.</td>
+      </tr>
+      </table>
+    <div class="code">
+      <div class="codeContent">
+        <pre class="code-java">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>&lt;network name=&quot;PSCM_NETWORK&quot; version&quot;2.2&quot;&gt;<br>	&lt;node name=&quot;{appserver1}&quot; type=&quot;AVM&quot;&gt;<br>		&lt;host name=&quot;{hostname1}&quot;&gt;<br>			&lt;access address=&quot;{accessaddr}&quot; connection=&quot;SFTP&quot; name=&quot;{hostname1}_sftp&quot; password=&quot;&quot; username=&quot;root&quot;/&gt;<br>			&lt;access address=&quot;{accessaddr}&quot; connection=&quot;SSH&quot; name=&quot;{hostname1}_ssh&quot; password=&quot;&quot; username=&quot;root&quot;/&gt;<br>		&lt;/host&gt;<br>	&lt;/node&gt;<br>	&lt;node name=&quot;{appserver2}&quot; type=&quot;AVM&quot;&gt;<br>		&lt;host name=&quot;{hostname2}&quot;&gt;<br>			&lt;access address=&quot;{accessaddr}&quot; connection=&quot;SFTP&quot; name=&quot;{hostname2}_sftp&quot; password=&quot;&quot; username=&quot;root&quot;/&gt;<br>			&lt;access address=&quot;{accessaddr}&quot; connection=&quot;SSH&quot; name=&quot;{hostname2}_ssh&quot; password=&quot;&quot; username=&quot;root&quot;/&gt;<br>		&lt;/host&gt;<br>	&lt;/node&gt;<br>&lt;node name=&quot;Oracle&quot; type=&quot;AVM&quot;&gt;<br>		&lt;host name=&quot;{oracle}&quot;&gt;<br>			&lt;access address=&quot;{accessaddr}&quot; connection=&quot;SFTP&quot; name=&quot;{oracle}_sftp&quot; password=&quot;&quot; username=&quot;oracle&quot;/&gt;<br>			&lt;access address=&quot;{accessaddr}&quot; connection=&quot;SSH&quot; name=&quot;{oracle}_ssh&quot; password=&quot;&quot; username=&quot;oracle&quot;/&gt;<br>		&lt;/host&gt;<br>	&lt;/node&gt;<br>&lt;/network&gt;</pre>
+      </div>
+    </div>
+    <h3><a name="host_node_mapping.properties">host_node_mapping.properties</a></h3>
+    <p>The playlist reads this property file and adds a system parameter to specify the node on which the JBoss (ECM application) server will be running. If this file does not exist, all JBoss (ECM application) server run on the root node, that is, the application name.</p>
+    <p>If multiple installations or upgrades of the ECM application are to be performed at one time, there must be one entry for each server that is to be installed as shown in the example below (refer to entries {hostname1} and {hostname2}).</p>
+    <p> Below is an example of the host_node_mapping.properties file. The text between {curly parenthesis} represents a variable and needs to be replaced with the appropriate values.</p>
+<div class="code">
+      <div class="codeContent">
+        <pre class="code-java">PSCM1_HOST=PSCM_01 
+ PSCM2_HOST=PSCM_02</pre>
+      </div>
+    </div>
+    <table class="confluenceTable" border cellpadding="1">
+      <tr>
+        <th width="142" class="confluenceTh">Variable </th>
+        <th width="348" class="confluenceTh">Description </th>
+      </tr>
+      <tr>
+        <td class="confluenceTd"><strong>{hostname1}<BR>
+{hostname2}</strong></td>
+        <td class="confluenceTd"><p>These variables hold the value of the host name of the application server   node(s). The value(s) must match the value(s) of the {hostname} variable(s) in   the network.xml file.</p></td>
+      </tr>
+      </table>
+
+
+<h3><a name="AVM_Platform.rpm">AVM_Platform.rpm </a></h3>
+<p>This package file contains the AVM product in RPM format. It includes DDLs,   scripts, Designer.jar, cwf.war, modules, etc. </p>
+<h3><a name="AVM_SUF.tar.gz">AVM_SUF.tar.gz</a></h3>
+<p>This file includes SUF playlists. Playlists are the instructions for SUF server on how to install or deploy the application across SUF clients. </p>
+<p>There is a playlist for each step in the installation process and a few top level playlists. The top level playlists invoke other playlists to perform the specific tasks. The names of the top level playlists starts with an underscore (“_”) and they appear on the top of the list in the SUF Web User Interface. </p>
+<h3>Playlists Details</h3>
+<p>Playlists are the instructions for the SUF server to install or upgrade an application. There is a playlist for each step in the installation/upgrade process. To install or upgrade the application a job needs to be created that runs a top level playlist. The following are the four top level playlists:</p>
+<ul><li>_NewInstallation.xml</li>
+ <li> _UpgradeInstallation.xml</li>
+<li>  _AVMUpgrade.xml</li>
+ <li> _ApplicationUpgrade.xml </li></ul>
+</p>
+<table width="765" height="521" border cellpadding="1" class="confluenceTable">
+  <tr>
+    <th width="156" class="confluenceTh"><strong>Top    level Playlist</strong></th>
+    <th width="430" class="confluenceTh">Description</th>
+    <th width="139" class="confluenceTh"><strong>Invoked    Playlists</strong></th>
+    </tr>
+  <tr>
+    <td class="confluenceTd" ><strong>_NewInstallation.xml </strong></td>
+    <td class="confluenceTd" ><p><SPAN id="docs-internal-guid-6311a78b-4e71-dc04-90b3-36d7a14f1eb5">This playlist is used for the new Installation of both platform and application.</SPAN></p></td>
+    <td class="confluenceTd"><ul>
+      <li>avm_rpm.xml </li>
+      <li> application_rpm.xml</li>
+      <li> license_distribution.xml db_init_.xml </li>
+      <li> application_deploy.xml</li>
+      <li> catalog_import.xml </li>
+      <li> config_init.xml </li>
+      <li> db_upgrade.xml </li>
+      <li> application_sql.xml </li>
+      <li> jdbc_install.xml </li>
+      <li> jboss_start.xml </li>
+      <li> jndi_setup.xml </li>
+      <li> ngee_conf.xml </li>
+      <li> war_deploy.xml</li>
+    </ul>      <p>&nbsp;</p></td>
+    </tr>
+  <tr>
+    <td class="confluenceTd"> <p><strong>_UpgradeInstallation.xml </strong></p></td>
+    <td class="confluenceTd"><p>This playlist is used to upgrade an installation of both platform and application.</SPAN></p>
+      <p>&nbsp;</p></td>
+    <td class="confluenceTd"> <ul>
+      <li>avm_rpm.xml</li>
+      <li>application_rpm.xml</li>
+      <li> application_deploy.xml</li>
+      <li> catalog_import.xml</li>
+      <li> db_upgrade.xml</li>
+      <li> application_sql.xml</li>
+      <li> jboss_start.xml</li>
+      <li> war_deploy.xml</li>
+    </ul></td>
+    </tr>
+  <tr>
+    <td class="confluenceTd" ><p><strong>_AVMUpgrade.xml </strong></p></td>
+    <td class="confluenceTd" >This playlist is used  to upgrade the AVM platform only</td>
+    <td class="confluenceTd"> <ul>
+      <li>avm_rpm.xml </li>
+      <li> db_upgrade.xml </li>
+      <li> war_deploy.xml </li>
+    </ul></td>
+    </tr>
+  <tr>
+    <td class="confluenceTd" ><p><strong>_ApplicationUpgrade.xml </strong></p></td>
+    <td class="confluenceTd" >This playlist is used  to upgrade the application only.</td>
+    <td class="confluenceTd" ><ul>
+      <li>application_rpm.xml </li>
+      <li> application_deploy.xml</li>
+      <li> catalog_import.xml        </li>
+      <li>db_upgrade.xml </li>
+      <li>application_sql.xml </li>
+      <li>jboss_start.xml </li>
+    </ul></td>
+    </tr>
+    </table>
+<p>The top level playlists invoke other task specific playlists. </p>
+<table width="767" border cellpadding="1" class="confluenceTable">
+<tr>
+<th width="139" class="confluenceTh" ><p><strong>Task Specific Playlist </strong></p></th>
+<th width="494" class="confluenceTh" ><p><strong>Description</strong></p></th>
+</tr>
+<tr>
+<td class="confluenceTd" ><p><strong>application_deploy.xml </strong></p></td>
+<td class="confluenceTd" ><p>This playlist  deploy the application metadata in the database. </p></td>
+</tr>
+<tr>
+<td class="confluenceTd" ><p><strong>application_rpm.xml </strong></p></td>
+<td class="confluenceTd" ><p>This playlist installs    the<em> AVM_&lt;applicationName&gt;.rpm</em> package.</p></td>
+</tr>
+<tr>
+<td class="confluenceTd" ><p><strong>application_sql.xml </strong></p></td>
+<td class="confluenceTd" ><p>This playlist runs the application specific SQL files.</p></td>
+</tr>
+<tr>
+<td class="confluenceTd" ><p><strong>avm_rpm.xml </strong></p></td>
+<td class="confluenceTd" ><p>This playlist installs the <em>AVM_Platform.rpm</em>.</p></td>
+</tr>
+<tr>
+  <td class="confluenceTd"><strong>catalog_import.xml</strong></td>
+  <td class="confluenceTd">This playlist imports the catalog configuration for the Catalog application.</td>
+</tr>
+<tr>
+<td class="confluenceTd" ><p><strong>config_init.xml </strong></p></td>
+<td class="confluenceTd" ><p>This playlist initialize the application configuration.</p></td>
+</tr>
+<tr>
+<td class="confluenceTd" ><p><strong>db_init.xml </strong></p></td>
+<td class="confluenceTd" ><p>This playlist initialize the platform database.</p></td>
+</tr>
+<tr>
+<td class="confluenceTd" ><p><strong>db_upgrade.xml </strong></p></td>
+<td class="confluenceTd" ><p>This playlist upgrade the platform database for    application.</p></td>
+</tr>
+<tr>
+<td class="confluenceTd" ><p><strong>jboss_start.xml </strong></p></td>
+<td class="confluenceTd" ><p>This playlist start or restart the application servers.</p></td>
+</tr>
+<tr>
+<td class="confluenceTd" ><p><strong>jdbc_install.xml </strong></p></td>
+<td class="confluenceTd" ><p>This playlist install the JDBC driver in application    servers.</p></td>
+</tr>
+<tr>
+<td class="confluenceTd" ><p><strong>jndi_setup.xml </strong></p></td>
+<td class="confluenceTd" ><p>This playlist setup the JNDI configuration in    application servers.</p></td>
+</tr>
+<tr>
+<td class="confluenceTd" ><p><strong>license_distribution.xml </strong></p></td>
+<td class="confluenceTd" ><p>This playlist distributes the license to the application    servers.</p></td>
+</tr>
+<tr>
+  <td class="confluenceTd"><strong>ngee_conf.xml</strong></td>
+  <td class="confluenceTd">This playlist copies the Execution Environment configuration on the application servers.</td>
+</tr>
+<tr>
+<td class="confluenceTd" ><p><strong>verify_prereq.xml </strong></p></td>
+<td class="confluenceTd" ><p>This playlist verifies the pre-requisites on application    servers.</p></td>
+</tr>
+<tr>
+<td class="confluenceTd" ><p><strong>war_deploy.xml </strong></p></td>
+<td class="confluenceTd" ><p>This playlist  deploy the WAR file on application    servers.</p></td>
+</tr>
+</table>
+
+
+<p>When running a top level playlist, each invoked playlist is processed as a step. SUF will run installation or upgrade specific tasks towards each of the JBoss application server(s) defined in the network.xml configuration file. However, since there is only one Oracle DB server defined in the network configuration file, the database specific tasks will be processed only once. If a task specific playlist fails, the problem should be fixed and the failed step needs to be rerun. You do not need not to rerun the previously successful steps. </p>
+<h3><a name="AVM_BSSF_PSCM.rpm">AVM_BSSF_PSCM.rpm</a></h3>
+<p>This file includes the following:</p>
+<ul><li>application deployment.jar<br>
+  This JAR file contains the application metadata.</li><br>
+  <li>config.xml <br>
+  This is the default ECM application configuration file.</li><br>
+<li> application SQL files<br>
+  These SQL files are executed before starting the runtime environment of the ECM application. They contain scripts to perform activities such as populating data, creating database triggers and indexes and storing procedures.</li><br>
+</ul>
+</body>
+</html>

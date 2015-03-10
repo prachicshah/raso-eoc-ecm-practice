@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>User Interface User Action Methods</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>User Action Method</h2>
+<p>The User Action Method wizard enables you to configure settings or a script to invoke a user action in a Form.  Although you can also create a User Action Method using a <em>generic method</em> script, the User Action Method is a convenient and advanced way of configuring a user action. For example, by creating a User Action Method script, you can create a dialog box and display a specified object.</p>
+<p>The User Action Method, consists of an object, and depending upon the object type, a form.  You need to specify an object as either a user interface or a model. You can define the object as either a top-level or embedded User Interface, neither of which requires you to define  a Form.  In the case of the embedded user interface, the model (Finder, Order, User Interface, Navigation Tree or Document) is created by the default constructor. When the object is defined as a Model,  you need to specify a Form that is part of that User Interface.</p>
+<p>Although any script can set a trigger, User Action Methods is an advanced way of creating a trigger. The User Action Method can display an object as a dialog or display a  message (error or confirmation) before performing the Method Action. </p>
+<h3>Configure a User Action Method </h3>
+<p>There are three ways to configure the User Action Method:</p>
+		  <ul>
+			  <li> Use the Object and Form list menus</li>
+			  <li> Use a User Action Method script </li>
+			  <li>Use a script</li>
+		  </ul>
+		  <p>The  <strong>Object</strong> and <strong>Form</strong> list menus make the  configuration of the User Action Method a quick task. Select an object (a User Interface or a Model) and where applicable, select a Form (additional properties are available from the Methods tab).</p>
+		  <p>Alternatively, you can configure the User Action Method using more advanced options. The script functions  independently from the list menu options.When you initialize the User Action Method with a script, the script calls a constructor that creates an object. The User Action Method script can return a value (a Document, Finder, Order, User Interface, Navigation Tree) and that returned object is set as the content object at the Form level. In some cases you may not want to display the returned object as the content object of a Form (or a Form element such as a Form Frame). </p>
+		  <p>For example, if the user action is set as a button click, and there is no content  to return, you would not setup a Form. In other cases you may want the returned object set as content to display in a Form Frame. The Form Frame binds to a Form variable. The User Action Method instantiates corresponding variables and forwards them to the next action within   the model. </p>
+<p><strong>Note:</strong> User Action Methods can be called from another script.</p>
+<p>To add a User Action Method, complete these steps:</p>
+          <ol>
+            <li>In the Navigation pane, click the  User Interface object that you want to open.</li>
+            <li>Click the Methods tab.</li>
+            <li>Right-click the User Interface node and select <strong>New User Action</strong>.</li>
+            <li>In the New User Action dialog, configure the settings and then click <strong>Finish</strong>.</li>
+            <li>The User Action Method is added to the Methods list and the properties dialog displays.</li>
+          </ol>
+<h4>Configure the User Action Method Properties</h4>
+<p>After you have configured the User Action Method using the wizard, you can configure more properties using the Methods tab (see the descriptions that follow). When you are using a script, and you have multiple parameter in the script, you must ensure that the object is the last parameter in the script.</p>
+
+<p><img src="useraction_dialog.png" align="absmiddle" border="1" alt="User Action Method - Methods tab" />  </p>
+<p>The Methods tab contains the following fields:</p>
+<table class="confluenceTable">
+			<tr>
+				<th class="confluenceTh">Field</th>
+				<th class="confluenceTh">Description</th>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Name</b></td>
+				<td class="confluenceTd">Name of the Method. Must be unique 
+				 within the User Interface.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Description</b></td>
+				<td class="confluenceTd">Descriptive text for documentation 
+				 purposes.</td>
+			</tr>
+            <tr>
+				<td class="confluenceTd"><b>Action Category</b></td>
+				<td class="confluenceTd">String value that enables User Action Methods to be queued to avoid overloading the system while simultaneously executing server intensive processes. <a href="../../Configuration_Tool_User_Guide/Performance Action Categories.html">Action Categories</a> are defined in the Configuration application.</td>
+			</tr>
+            <tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Parameters</b></td>
+				<td class="confluenceTd">Adds parameters in your script.  The last parameter must be defined as the object. For example, if the User Action Method is invoked by the User Interface (object), the only parameter that is used is this  object.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Script</b></td>
+				<td class="confluenceTd">Any method, including Permission Methods, is considered to be a script Method when it  includes a custom JavaScript that is invoked as an action. The User Action script can return a value (a Document, Finder, Order, User Interface, Navigation Tree) and that returned object is set as the content object at the page or pop-up dialog (returning a value  overrides the object property).</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Return</b></td>
+				<td class="confluenceTd">The object type to be returned by the script.</td>
+			</tr>
+            <tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Object</b></td>
+				<td class="confluenceTd">The object of this type is  instantiated when this Method is invoked.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Form</b></td>
+				<td class="confluenceTd">The Form to present to user when the object is instantiated. Choices are available and limited only to Forms of the selected object.</td>
+			</tr>
+            <tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Confirmation</b></td>
+				<td class="confluenceTd">Configure a confirmation message that displays before the performing the user action.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">*Allow invalid object</b></td>
+				<td class="confluenceTd">This parameter works with the Validate parameter. The Validate parameter determines whether user interface validation will be performed on the whole page and content or dialog box. If validation fails and this parameter is  checked, then the user action script defined here will continue. Otherwise, if validation fails and this parameter is unchecked, the user action method will be interrupted quietly.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Autosave</b></td>
+				<td class="confluenceTd">Prompt the user to save the Document or Order if it has unsaved changes. </td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">Show in popup</b></td>
+				<td class="confluenceTd">If checked, opens in a pop-up window.</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><b style="font-weight: bold;">*Validate</b></td>
+				<td class="confluenceTd">If checked, the onValidate method is called on the parent controller window (for example, the whole page or the dialog) when called as a menu Click action or a script method called from another script method. The validation on the UserInterface object will be performed <em>before</em> the user action is invoked.  If the onValidate method returns a False (not valid), then the user action will be quietly be interrupted without an exception being thrown.  However, if the <strong>Allow invalid object </strong> is checked, then the user action script will continue with a UI that is not valid. </td>
+			</tr>
+		</table>
+<p>The following information pertains to the <strong>Validate</strong> and <strong>Allow invalid object</strong> checkboxes: </p>
+<ul>
+  <li> If checked, the <strong>Validate</strong> checkbox calls the onValidate method for the "content" controller starting with the parent UI, and then to the children.  The onValidate method checks standard validation rules.  If the onValidate method returns a False (that is, the UI is not valid) and the <strong>Allow invalid objects</strong> parameter is checked, the User Action method is invoked.  However, if the onValidate method returns a False (that is, the UI is not valid) and the <strong>Allow invalid objects</strong> parameter is <em>not</em> checked,  the User Action is quietly interrupted without throwing an exception.   For the system to display an exception or a custom message, the <strong>Validation</strong> parameter should not be checked and the onValidate() method should be called in the User Action script:
+<div class="preformatted">
+    <div class="preformattedContent">
+      <pre>
+var parentWindow = this.getParentWindow();
+if(!parentWindow.onValidate()){
+  Global.throwException("Error", this);
+}</pre>
+    </div>
+  </div>
+    <br>
+ </li>
+ <li> In the client UI, to present documents that have been previously generated and stored in the database, you can create a user action. Then, in the script panel, write the following:
+   
+   <div class="preformatted">
+    <div class="preformattedContent">
+      <pre>var download = new com.conceptwave.system.DownloadBinary(null, this);<BR>download.fileName = "/cwf/order.pdf";         //any name<BR>download.mimeType = "application/pdf";        // mime type of the binary file<BR>download.binaryFile = this.onLoadPdfFromDB(); // script which will read the binary file from the database<BR>Global.doDownload(download); </pre>
+    </div>
+  </div>
+ </li>
+ 
+</ul>    
+</table>
+</tr>
+</td>
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿<html>
+<head>
+<title>Data Structures Alias Tab</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Data Structures - Alias Tab</h3>
+<p>When variables under child data structures are renamed in template metadata, dependent metadata with references to the original variables results in unresolved reference errors. The Alias tab allows you to provide an alias for a renamed  variable so that dependent metadata that references the original variable will  reference the new variable instead.</p>
+<p>To add an alias, complete these steps:</p>
+<ol>
+  <li>From the Alias tab, click the <strong>Add</strong> button.<br>
+    <br>
+    <img src="dataStructuresAliasTabAddButton.png" alt="Alias tab - Add button" border="1"><br>
+    <br>
+  </li>
+  <li>Double-click the <strong>Original</strong> field and specify the original variable. Press the <strong>Enter</strong> key to continue.<br>
+    <br>
+    <img src="dataStructuresAliasTabOriginal.png" alt="Alias tab - Specify element's original alias" border="1"><br>
+    <br>
+  </li>
+  <li>Click the <strong>Replacement</strong> field of the new row that you have added and select the new variable that you want from the list. Alternatively, you can click the <strong>Select Element</strong> button (<img src="../../Service Designer Menu Actions/replaceReferencesSelectElementButton.png" width="27" height="25" alt="Replace References - Select Element button">) and enter the object name that you want in the field provided.<br>
+    <br>
+    <img src="dataStructuresAliasTabReplacement.png" alt="Alias tab - Select Element" border="1"><br>
+    <br>
+  </li>
+  <li>When you save and reload your metadata, all original elements in your metadata are replaced with the replacement elements using this aliases map.</li>
+  </ol>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>Both  the <strong>Original</strong> and <strong>Replacement</strong> fields are mandatory. If the <strong>Original</strong> field does not contain a value, the  row entry is automatically removed. If  the <strong>Replacement</strong> field does not contain a value, a validation error occurs.</li>
+  <li>Even though the alias information appears under the data structure's Alias tab, the actual information is stored  under the metadata header.  Therefore,  whenever you make changes  to a data structure's alias, the metadata header becomes dirty and not the data structure itself.</li>
+</ul>
+<h4>Delete an Alias</h4>
+<p>To delete an alias from the Alias tab, highlight the alias that you want and then click the <strong>Delete</strong> button.</p>
+<p><img src="dataStructuresAliasTabDelete.png" alt="Alias tab - Delete button" border="1"></p>
+
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

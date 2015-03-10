@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Element - BreadCrumb</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+.Courier {
+	font-family: Courier New, Courier, monospace;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td valign="top" class="pagebody"><h2>Element - BreadCrumb</h2>
+      <p>This element provides a navigation control that accumulates the history of navigation in a delimited set of links, which allows easy navigation to previously visited pages. Breadcrumb page navigation is the page transition that occurs when you  click a section of the breadcrumb or an item in a breadcrumb dropdown.</p>
+      <table class='confluenceTable' border cellpadding=1>
+        <tbody>
+          <tr>
+            <th width="94" class='confluenceTh'>Property</th>
+            <th width="66" class='confluenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+            <th width="407" class='confluenceTh'>Comment</th>
+          </tr>
+          <tr>
+            <td class='confluenceTd'><strong>Name</strong></td>
+            <td class='confluenceTd'>Mandatory
+            <td class='confluenceTd'>This property indicates the name of the breadcrumb element.</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'><strong>Click Method</strong></td>
+            <td class='confluenceTd'>Mandatory</td>
+            <td class='confluenceTd'><p>This property allows you to choose a method from the list of methods available for the User Interface (UI). The method is invoked when you click the breadcrumb.  This method receives two parameters:</p>
+              <ol>
+                <li>Index of the select  breadcrumb.</li>
+                <li>If selected  breadcrumb is an array, the parameter is an index of the selection within the  array. Otherwise, it is the first parameter.</li>
+              </ol></td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'><strong>Variable</strong></td>
+            <td class='confluenceTd'>Mandatory</td>
+            <td class='confluenceTd'>This property allows you to select a variable. The variable must be of type <em>com.conceptwave.Object</em> that is initialized to  <em>CwfScriptBreadCrumb</em> at runtime.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>Notes:</strong></p>
+      <ul>
+        <li>It is recommended that only one UI should contain the breadcrumb element and hold the breadcrumb instance object in a local variable. The breadcrumb then can be used to control the flow of pages in a single content area of the UI.</li>
+        <br>
+        <li>The UI method that controls the content change must call the <em>pushBreadCrumb() </em>method. Use the UI object instance of the content area  as the first parameter of the <tt>pushBreadCrumb()</tt> API. </li>
+        <br>
+        <li> When the breadcrumb page navigation occurs, the method selected in the <em>Click Method </em>property of the breadcrumb element is invoked.  It is recommended  to invoke the <tt>popToBreadCrumb()</tt> API within this method. Set  the content of the UI as  the result of this method. </li>
+      </ul>
+      <h3>BreadCrumb with Dropdown Options</h3>
+      <p>BreadCrumb with dropdown options are best used for the pages  with several options available for the flow to the next page.  When the page navigation occurs, the <em>pushBreadCrumb()</em> method is called with  the first parameter being an array of all possible options available, and the  second parameter being the index of the actually selected option within the  array. When the breadcrumb page navigation occurs on a dropdown, the method selected  in the <em>Click Method</em> property of the  breadcrumb element is invoked, that in turn  invoke the  <em>popToBreadCrumb()</em>  and <em>setSelectionIndex()</em> methods initialized in this selected method.  Using the parameter value given to the selected method, that indicates the  index of the selected option, you can retrieve the UI object resulted from the <em>popToBreadCrumb()</em> API   in the array.</p></td>
+</table>
+</li>
+</ul>
+</td>
+</table>
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿
+
+
+<html>
+<head>
+<title>Import XML Data</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>Import XML Data</h3>
+<p>A Data Structure can be created based on the structure of a sample XML data file by selecting the <b>File &gt; Import &gt; XML Data</b> menu command.</p>
+<p>The <b>XML Data</b> command is a helper function that is used to reduce the development work. Instead of manually creating the corresponding data type objects and Data Structure objects, the metadata developer can automatically generate them. When this command is used, certain assumptions are made that may not be valid in all cases. It is recommended that the developer carefully examines the generated objects and does appropriate changes where needed.</p>
+<p>Velocity Studio always attempts to use the existing metadata objects before generating new ones (unless new objects are explicitly requested). In some cases, Velocity Studio may decide to modify an existing metadata object to fit the required properties, but this will only be done if the modified object is backward compatible with the original object (that is, Velocity Studio will change existing data type objects only if their base type (integer, boolen, string, etc.) is the same and the length and precision of the modified data type object can accommodate the length and precision of the original type). For Data Structures, Velocity Studio will add new nodes if needed but never will remove existing nodes. If a metadata object with the same name already exists in the specified namespace and it cannot be reused or modified, Velocity Studio will generate a new object that has the name of the existing object with a numeric suffix added for uniqueness.</p>
+<p>Once the menu command is invoked, the first <b>Import Data Structure from XML</b> dialog opens where the XML file to be imported is selected. After file selection, the second <b>Import Data Structure from XML</b> dialog opens.</p>
+
+<img src="importXMLData.png" align="absmiddle" border="0" alt="Import XML data" /><br>
+<br>
+
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Namespace</b></td>
+<td class='confluenceTd'>Namespace in which to create the new Data Structure object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Create</b> <b>data</b> <b>types</b></td>
+<td class='confluenceTd'>If checked, data type objects for each new tag name will be created.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Update</b> <b>data</b> <b>structure</b></td>
+<td class='confluenceTd'>If checked, the existing the Data Structure object will be updated/merged with the incoming data.<br clear="all" />
+If unchecked, the existing Data Structure object will be replaced by a new Data Structure object.<br clear="all" />
+<b>Note:</b> This applies only if a Data Structure object by the same name exists. If an object with the same name does not exist then a new Data Structure object will be created whether checked or unchecked.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Import</b></td>
+<td class='confluenceTd'>When clicked, creates or updates the Data Structure object from the XML file.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Cancel</b></td>
+<td class='confluenceTd'>When clicked, closes the dialog without any action.</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p><strong>Note:</strong> When creating XML in Velocity Studio, the following properties do not appear:</p>
+<ul>
+  <li>filenameHash</li>
+  <li>versionHash</li>
+</ul>
+<p>Additionally, validation does not occur for these two properties when you import XML files with these properties.<br>
+  <br>
+  <br>
+</p></td>
+</tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

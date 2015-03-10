@@ -1,0 +1,179 @@
+<html>
+    <head>
+        <title>Using "super" Methods</title>
+	    <link rel="stylesheet" href="../styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">	    
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script>    </head>
+
+    <body onload="highlight();">
+	    <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+		    <tr>
+			    <td valign="top" class="pagebody">
+
+
+<h2>Using "super" Methods</h2>
+
+<p>Calling the Object Method (whether it is system or user metadata object) will run the first instance of the script up the derivation chain. A script defined in an extended object will overlay the script in the base object with the same name. Note that the script interpreter does not check the parameter signature of the called method. This way, the script in the extended element will be called with parameters for the base script even if it has different parameters from the base script.</p>
+
+<p>The script interpreter does not use object oriented model with class inheritance and cannot call "super" methods using notation such as <i>super.name()</i>. Instead AVM implements a proprietary "super" mechanism by calling:
+<ul>
+<li>short super call: <i>cw$super</i> method, or</li>
+<li>long super call: <i>cw$super_&lt;methodname&gt;</i> method.</li>
+</ul>
+It should be noted that the short form of the super call is roughly equivalent to Java construct <i>super(...)</i> while the long form is roughly equivalent to Java <i>super.name(...)</i>. The short form calls the super script of the current script in which it is executed while the long form executes the super script from the top of the object derivation chain.</p>
+
+<p>The short form can be used only to call the super script of the script in which it is used. The long form can be used to call super scripts on objects different from the 'this' object of the current script or different super methods of 'this' object of the current script.</p>
+
+<p>To illustrate the rules of calling the scripts, we will use example with three metadata objects in the derivation chain that define user scripts with names <i>echo</i> and <i>test</i> as follows:</p>
+
+Document <i>MyNamespace.Echo1</i>:<br/>
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'>
+<i>echo</i>:
+</td>
+<td class='confluenceTd'>
+<div class="code"><div class="codeContent">
+<pre>
+debugPrintln('Echo1');
+debugPrintln(this.test());
+</pre>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'>
+<i>test</i>:
+</td>
+<td class='confluenceTd'>
+<div class="code"><div class="codeContent">
+<pre>
+return 'test1';
+</pre>
+</div>
+</div>
+</td>
+</tr>
+</tbody></table>
+
+
+Document <i>MyNamespace.Echo2</i> that extends document <i>MyNamespace:Echo1</i>:
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'>
+<i>echo</i>:
+</td>
+<td class='confluenceTd'>
+<div class="code"><div class="codeContent">
+<pre>
+this.cw$super(); // Call echo in Echo1 document
+debugPrintln('Echo2');
+debugPrintln(this.cw$super_test());
+</pre>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'>
+<i>test</i>:
+</td>
+<td class='confluenceTd'>
+<div class="code"><div class="codeContent">
+<pre>
+return 'Test2';
+</pre>
+</div>
+</div>
+</td>
+</tr>
+</tbody></table>
+
+Document <i>MyNamespace.Echo3</i> that extends document <i>MyNamespace:Echo2</i>:
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'>
+<i>echo</i>:
+</td>
+<td class='confluenceTd'>
+<div class="code"><div class="codeContent">
+<pre>
+this.cw$super(); // call echo in Echo2 document
+debugPrintln('Echo3');
+debugPrintln(this.cw$super_test());
+</pre>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class='confluenceTd'>
+<i>test</i>:
+</td>
+<td class='confluenceTd'>
+<div class="code"><div class="codeContent">
+<pre>
+return 'Test3';
+</pre>
+</div>
+</div>
+</td>
+</tr>
+</tbody></table>
+
+<p>Using the example above, run the project in debug mode with the following script segment:</p>
+<div class="code"><div class="codeContent">
+<pre>
+var doc = new com.coneceptwave.system.Document("MyNamespace.Echo3");
+doc.echo();
+</pre>
+</div>
+</div>
+
+<p>will write on the system output device:</p>
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'> <b>Echo1</b><br clear="all" />
+ <b>Test3</b><br clear="all" />
+ <b>Echo2</b><br clear="all" />
+ <b>Test2</b><br clear="all" />
+ <b>Echo3</b><br clear="all" />
+ <b>Test2</b> </td>
+</tr>
+</tbody></table>
+<p>The script segment:</p>
+<div class="code"><div class="codeContent">
+<pre>
+var doc = new com.conceptwave.system.Document("MyNamespace.Echo3");
+doc.cw$super_echo();
+</pre>
+</div>
+</div>
+<p>will write on the system output device:</p>
+<table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'> <b>Echo1</b><br clear="all" />
+ <b>Test3</b><br clear="all" />
+ <b>Echo2</b><br clear="all" />
+ <b>Test2</b> </td>
+</tr>
+</tbody></table>
+
+<p><b>Note:</b> For backwards compatibility the AVM treats long super call on 'this' object with the same name as the element script that contains the long super call as short super call. That means that we can rewrite the echo script in <i>MyNamespace.Echo2</i> as:</p>
+<div class="code"><div class="codeContent">
+<pre>
+this.cw$super_echo();
+debugPrintln('Echo2');
+debugPrintln(this.cw$super_test());
+</pre>
+</div>
+</div>
+<p>We strongly discourage the use of this particular feature as it will be deprecated in the future.</p>
+
+<p><b>Note:</b> If a short super call is used in script that is not an element script, the AVM will throw exception. If a long super call does not have an underscore after the <i>cw$super</i> prefix, AVM considers it to be a simple script name and the interpreter will generate error as it will not find component or method with such name.</p>
+
+</table>
+</body>
+</html>

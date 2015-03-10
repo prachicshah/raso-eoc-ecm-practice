@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Catalog Object Types</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+<h3><a name="ObjectTypes">Object types</a></h3>
+<p>Objects that the rule language works with  can be divided in three groups:</p>
+<ul>
+  <li><strong>Simple data types</strong><br>
+      A simple  data type object contains a value that  can be a string, number, Boolean value, or  date.</li>
+  <li><strong>Objects</strong><br>
+    Objects are complex  types that  may contain other objects or  simple data types, or both. These object types  define methods (object functions) that can be performed on any object instance  of the same type. Objects that are components of a complex object are called  members. Some simple data types have methods, but they do not have members.</li>
+  <li><strong>Collections</strong><br>
+    Collections are  object that contain zero, one, or more objects of the same type. The rule  language supports a collection of basket items and info table rows, but you   cannot define variables of collection type. Collections can be used only in the  “in�? clause of the “For each�? operator. Constant lists are also considered  collections.</li>
+  </ul>
+<p>Rule language expressions and  identifiers have the following object types:</p>
+<ul>
+  <li><strong><a href="StringType.html">String</a></strong> – a simple string data type</li>
+  <li><strong><a href="ConstantListStrings.html#ConstantListString">[Constant] List Of String[s]</a> / String[] </strong>–<strong> </strong>a constant list of strings</li>
+  <li><strong><a href="ConstantListStrings.html#NumberType">Number</a></strong> – a simple numeric data type</li>
+  <li><strong><a href="ConstantListStrings.html#ConstantNumber">Constant List Of Number[s]</a> / Number[] </strong>–<strong> </strong>a constant list of strings</li>
+  <li><strong><a href="ConstantListStrings.html#Boolean">Boolean</a></strong> – a simple Boolean data type</li>
+  <li><strong><a href="DateType.html">Date</a></strong> – a simple date data type</li>
+  <li><strong><a href="RowType.html">Row</a></strong> – a row of info table</li>
+  <li><strong><a href="ItemType.html">Item</a></strong> – a basket item</li>
+  <li><strong><a href="BasketType.html">Basket</a></strong> – a catalog basket (or shopping  basket)</li>
+  <li><strong>Inventory</strong> – the inventory for the given  request</li>
+  <li><strong><a href="ConstantListStrings.html#Context">Context</a></strong> – a generic object that contains other named objects, either simple or complex </li>
+</ul>
+<p>Each  data type exposes methods and allows operations that  are defined in their respective  sections.</p></td>
+</tr>
+</body>
+</html>

@@ -1,0 +1,510 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Dynamic Process Engine Load Balancing</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Dynamic Process Engine Load Balancing</h2>
+
+<p>Dynamic load balancing allows running process engines (PEs)  to dynamically distribute the load of dead PEs between themselves, as well  as dynamically reduce their load if new PEs are started. This feature is also known as a <strong>dynamic PE cluster</strong>.</p>
+<p>This page contains the following information:</p>
+<ul>
+  <li><a href="#configurationModel">Configuration model</a></li>
+  <li><a href="#dynamicCluster">Dynamic cluster definitions and approach</a></li>
+  <li><a href="#generalRules">General rules</a> about PEs and load balancing</li>
+  <li><a href="#PE-UI">PE or PE-UI configuration rules</a></li>
+</ul>
+<h3><a name="configurationModel"></a>Configuration Model</h3>
+<p>Product applications run on the cluster  (that is, the root node) of AVMs. Each AVM in a cluster uses a set of configuration parameters called the <strong>AVM configuration</strong>. The set of all AVM configurations  belonging to one cluster is called the <strong>cluster configuration</strong>. The configurations  inherit one from another and all configurations for a cluster form  a configuration inheritance tree called the <strong>cluster (configuration) tree</strong>.</p>
+<p>Each cluster tree is linked with a metadata  application. There may be many applications running the same database, but  in different cluster configurations. Many applications may run in the same  application server.</p>
+<p>  Each configuration in the cluster, except  the CLUSTER configuration, can specify one or more runtime AVMs. These configurations are active. Configurations that do not specify the runtime  AVM count (or specify count 0) are deemed inactive.</p>
+<p>  The top of each cluster configuration tree  consists of a number of predefined configurations, which are called the <strong>system  configuration</strong>. You can define your own user configurations by deriving them from either system configurations or another user configuration in the same  cluster. The system configurations are as follows:</p>
+<ul>
+  <li><strong>CLUSTER</strong> – a root configuration from which  all other configurations in the cluster are derived</li>
+  <li><strong>PE</strong> – the default PE  configuration, which is at the top of the PE configuration sub-tree</li>
+  <li><strong>UI</strong> – the default user interface  configuration, which is at the top of the UI configuration sub-tree </li>
+  <li><strong>PE-UI</strong> – the default PE and UI  configuration, which is at the top of the PE-UI configuration sub-tree</li>
+</ul>
+<p><strong>Note:  </strong>Although there is support for PE-UI (that is, both running modes), it is not recommended that you use this mode in production systems. From a configuration viewpoint, an AVM in PE-UI running mode is the same as being in PE mode.</p>
+<p>  The following example shows a configuration  tree for the MyCluster cluster consisting of nine AVMs. The number in brackets after  some configurations shows the number of runtime AVMs:</p>
+<strong>CLUSTER</strong>
+<ul>
+  <li><strong>PE [2]</strong><strong>           </strong>
+    <ul>
+      <li><strong> MyAppGlobalProcesses  [2]</strong></li>
+      <li><strong> MyAppListeners  [2]</strong><br>
+      </li>
+    </ul>
+  </li>
+  <li><strong>PE-STANDBY</strong><br>
+  </li>
+  <li><strong>PE-UI</strong><br>
+  </li>
+  <li><strong>UI  [3]</strong></li>
+</ul>
+<p>  The PE cluster load distribution model  works based on a set of configuration parameters called the <strong>PE load specification</strong>, which is a  two-level tree with a variable number of variable as shown in this example: </p>
+<ul>
+  <li><strong>USER_PROCESSES [150,000]</strong></li>
+  <li><strong>GLOBAL_PROCESSES [1]</strong>
+    <ul>
+      <li><strong>MyNamespace1.MyGlobalProcess1  [5]</strong></li>
+      <li><strong>MyNamespace2.MyGlobalProcess1  [0]</strong></li>
+    </ul>
+  </li>
+  <li><strong>INTERFACE_PROCESSES [1]</strong>  
+    <ul>
+      <li><strong>MyNamespace3.  MyInterface1 [3]</strong></li>
+      <li><strong>MyNamespace3.  MyInterface1 [10]</strong></li>
+    </ul>
+  </li>
+</ul>
+</p>
+
+The load size, which appears in parentheses, specifies  the number of process instances of the given load type. For user processes, the  load size is the maximum number of instances. For other load types, it is  the exact number of instances.
+<p><strong>Note:</strong> Both GLOBAL_PROCESSES and  INTERFACE_PROCESSES variables specify the default value of the corresponding load that can be overwritten for a specific global or interface process. The set of all PE load specifications for a given  cluster is called the <strong>cluster load specification</strong>. </p>
+<h3><a name="dynamicCluster"></a>Dynamic Cluster Definitions and Approach</h3>
+<p>The following points outline how the dynamic cluster definitions and the approach work:</p>
+<ul>
+  <li>The PE's role in the  cluster is either being in PE or  PE-UI mode.</li>
+  <li>From a processing standpoint, a  PE  or any AVM can either be running or dead. A dead AVM is an AVM that has not  updated its heartbeat record for 45 seconds and does not respond on its JMX  port. In other words,  the AVM cluster can recognize a dead AVM and start  distributing the dead PE load in an interval of one minute. For a particular PE, this  case happens in an interval defined by the <strong><a href="general.html#loadDistributionInterval">Load Distribution Interval</a></strong> configuration parameter.</li>
+  <li>Each active PE or PE-UI configuration  must have PE load specifications.</li>
+  <li>Every PE load type (that is, user process  instances, instances of a particular global process, or instances of a  particular interface process) are each divided into 100 logical buckets. Each  bucket is identified by its bucket number  from 0 to 99. The bucket type can be one of the followiing:
+    <ul>
+      <li>-1 – user processes </li>
+      <li>Global process type number</li>
+      <li>Interface (process) type number</li>
+    </ul>
+  </li>
+  <li>Each bucket of a given load  type is either free (that is, no PE has taken it or is used) or some PE has taken it.</li>
+  <li>The number of buckets of a given  load type that a running PE owns for a given period is called the <strong>type  load</strong>. The sum of all runtime type loads of a given PE is called the <strong>[PE] load</strong>. The dead PE has no load. The running PE has a PE  load; however, it  may not have a particular type load. </li>
+  <li>The load balancing algorithm is  based on a value called the <strong>ideal load</strong>, which is calculated for each load type as the result of dividing 100 by  the number of PEs that process this load rounded up to the nearest  integer. As an example, if there are three PEs  that run user processes, the ideal load for each PE for user processes is 34 (that is, 100 / 3,  rounded up to the next integer) and 20 for five PEs.</li>
+  <li>The ideal load changes  dynamically based on the PE's state or the  number of running PEs, or both. Each  running PE is in one of three different processing states:
+    <ul>
+      <li><strong>Startup state</strong><br>
+      The newly  started PE is in this state for the duration stated in the <strong>Cluster startup interval</strong> parameter (from 5 to 60 minutes, with a default of 20 minutes). It is recommended that you set this interval that is large enough to start all the cluster's  PEs. During the startup interval, the PE's ideal load is calculated based on the number of PEs from the active cluster configurations, and not  based on the number of  running PEs.</li>
+      <li><strong>Run state</strong><br>
+      After the cluster  startup interval passes, the PE enters a run state. In this state, the PE ideal  load's calculation is based on the number of running PEs.</li>
+      <li><strong>Shutdown state<br>
+      </strong> In  this state,  the PE releases all buckets that it owns. The shutdown state can be entered only on  manual request.</li>
+    </ul>
+  </li>
+  <li>Periodically, at a parameterized  interval called <strong>Load balancing interval</strong> (from 1 to 60 minutes, with a default 5 minutes),  each running PE analyzes the other running PEs and balances its load, independently  for each load type,  trying to reach its ideal load. The balancing algorithm uses  a <strong>load difference</strong> (LD) value, which is calculated as the ideal load minus  the current PE load. The following table specifies the actions that the running PE takes  based on the load difference and the availability of free buckets:<br>
+    <br>
+    <table width="604" class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="115" class='confluenceTh'>Condition</th>
+          <th width="161" class='confluenceTh'>Free Buckets</th>
+          <th width="746" class='confluenceTh'>Action</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'>LD &gt; 0</td>
+          <td class='confluenceTd'>No</td>
+          <td class='confluenceTd'>No action is taken.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'>LD &gt; 0</td>
+          <td class='confluenceTd'>Yes</td>
+          <td class='confluenceTd'>Attempt to take LD buckets.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'>LD &lt; 0</td>
+          <td class='confluenceTd'>No</td>
+          <td class='confluenceTd'>Release |LD| buckets.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'>LD &lt; 0</td>
+          <td class='confluenceTd'>Yes</td>
+          <td class='confluenceTd'>Release |LD| buckets.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  <strong>Note:</strong> The load  difference's absolute value is specified as |LD|.</li>
+</ul>
+<h4>Approach</h4>
+<p>The load balancing approach defines minimum load balancing steps and almost equal  distribution of the load between the PEs. The maximum difference in the individual PE load type depends of the  number of  running PEs for the given load type and the reachable value (that is, ideal  load * number or running PEs – 100).  For  the number of PEs from 1 to 20, the maximum difference in the load appears in the following table:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="112" class='confluenceTh'>Number of PEs</th>
+      <th width="333" class='confluenceTh'>Maximum Load Difference (percentage of the entire load)</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>1</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>2</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>3</td>
+      <td class='confluenceTd'>2</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>4</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>5</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>6</td>
+      <td class='confluenceTd'>2</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>7</td>
+      <td class='confluenceTd'>5</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>8</td>
+      <td class='confluenceTd'>4</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>9</td>
+      <td class='confluenceTd'>8 (avoid such configurations)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>10</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>11</td>
+      <td class='confluenceTd'>10 (avoid such configurations)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>12</td>
+      <td class='confluenceTd'>8 (avoid such configurations)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>13</td>
+      <td class='confluenceTd'>4</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>14</td>
+      <td class='confluenceTd'>12 (avoid such configurations)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>15</td>
+      <td class='confluenceTd'>5</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>16</td>
+      <td class='confluenceTd'>12 (avoid such configurations)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>17</td>
+      <td class='confluenceTd'>2</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>18</td>
+      <td class='confluenceTd'>8 (avoid such configurations)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>19</td>
+      <td class='confluenceTd'>14 (avoid such configurations)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>The table shows that for eight PEs or less, the maximum load difference is low. When more than eight PEs are required, some configurations (for example, 11 running PEs) should be avoided because they do not provide any advantage over using 10 PEs.</p>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>The recommended cluster sizes (for a particular load) are 1, 2, 3, 4, 5, 6, 8,  10, 13, 17, and 20.</li>
+  <li>It is not recommended that you use more than six running PEs because the service overhead  that they put on the database reduces the benefit of having additional PE  power. Configurations above 6 PEs are feasible for asymmetrical clusters in  which certain PEs run only memory-based global or interface processes, or both. </li>
+  <li> It is more beneficial to run a smaller number of  PEs with more working threads than more PEs  with a smaller number of working threads. <br>
+    </li>
+</ul>
+<p>Reserving and releasing the  buckets is simple and has minimal database contention. Instead of  competing for  thousands of individual processes, the PEs compete for tens  of buckets (that is, the free buckets only). A real database contention is extremely low  as different PEs balance their load at different times. <br>
+  <br>
+  The following is a realistic example  of the dynamics of bucket distribution for one load type between PEs  where one of PE dies and is restarted later, and then an additional PE is  started. The cluster configuration specifies four active PEs.</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Event</th>
+      <th class='confluenceTh'>Additional PE5</th>
+      <th class='confluenceTh'>PE1 Load</th>
+      <th class='confluenceTh'>PE2 Load</th>
+      <th class='confluenceTh'>PE3 Load</th>
+      <th class='confluenceTh'>PE4 Load</th>
+      <th class='confluenceTh'>Free Buckets</th>
+    </tr>
+    <tr>
+      <td height="42" class='confluenceTd'>All 4 PEs are working</td>
+      <td class='confluenceTd'>&nbsp;</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>PE3 dies</strong></td>
+      <td class='confluenceTd'>&nbsp;</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>0</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE1 detects the change</td>
+      <td class='confluenceTd'>&nbsp;</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>0</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>16</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE2 detects the change</td>
+      <td class='confluenceTd'>&nbsp;</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>0</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>7</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE4 detects the change</td>
+      <td class='confluenceTd'>&nbsp;</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>0</td>
+      <td class='confluenceTd'>32</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE 1,2 and 4 are working</td>
+      <td class='confluenceTd'>&nbsp;</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>0</td>
+      <td class='confluenceTd'>32</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>PE3 is restarted</strong></td>
+      <td class='confluenceTd'>&nbsp;</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>0</td>
+      <td class='confluenceTd'>32</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE4 detects the change</td>
+      <td class='confluenceTd'>&nbsp;</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>0</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>7</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE3 detects the change</td>
+      <td class='confluenceTd'>&nbsp;</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>7</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE1 detects the change</td>
+      <td class='confluenceTd'>&nbsp;</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>34</td>
+      <td class='confluenceTd'>7</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>9</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE2 detects the change</td>
+      <td class='confluenceTd'>&nbsp;</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>7</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>18</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE3 detects the change</td>
+      <td class='confluenceTd'>&nbsp;</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Additional PE5 is started</strong></td>
+      <td class='confluenceTd'>0</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE1 detects the change</td>
+      <td class='confluenceTd'>0</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>5</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE4 detects the change</td>
+      <td class='confluenceTd'>0</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>10</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE2 detects the change</td>
+      <td class='confluenceTd'>0</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>15</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE5 detects the change</td>
+      <td class='confluenceTd'>15</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>25</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE3 detects the change</td>
+      <td class='confluenceTd'>15</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>5</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PE5 detects the change</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>All 5 PEs are working</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>20</td>
+      <td class='confluenceTd'>0</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="generalRules"></a>General Rules</h3>
+<p>The following are general rules about PEs and dynamic load balancing:</p>
+<ol>
+  <li>At any moment of its startup,  run, or shutdown state, the PE can either be killed through manual intervention or  die as a result of unrecoverable errors without any negative effects on its load's content. Other PEs recover the load some time after  the PE dies.</li>
+  <li>When a running PE acquires a load  from another dead PE, it does not run more than the maximum number specified in the  configuration. This rule also applies to the global and interface process loads.  If a PE gets additional global and interface process loads, it does not increase  the number of global or interface processes that it runs as specified in its  configuration.</li>
+  <li>If a running PE does not  process a given load type, it cannot accept such a load type from the dead PE. This  rule has important consequences. Iin an asymmetrical cluster, if only one PE  processes a given load type and it dies, this load type is  not processed at  all until the PE is restarted. This situation should be avoided because it may severely cripple the application. <br>
+    <br>
+  <strong>Note:</strong> Each load type must have proper backup  strategy.</li>
+  <li>Each  running working PE evaluates its load at startup, at the end of the cluster  startup interval, and then periodically every load balancing interval until  it either shuts down or dies. <br>
+  </li>
+</ol>
+<h3><a name="PE-UI"></a>PE or PE-UI Configuration Rules</h3>
+<p>The PE and PE-UI configurations  maintain a  PE cluster load map (class CwfAVMLoadBalanceThread) of all running  PEs and their buckets for each load it has according to the configuration. The  AVM load map contains a list of load maps with the following content:</p>
+<ul>
+  <li>The type ID of the load, which is either the global or interface type ID, or -1 for user processes</li>
+  <li>The current ideal load</li>
+  <li>The numbers of the buckets this  PE currently owns for the given load type</li>
+</ul>
+<p>At CwfAVMLoadBalanceThread creation time, the  list of type maps is populated with the cluster configuration data and the  ideal load is calculated based on this data. In other words, the AVM  provides a method to read the PE load specification of all active PE nodes. At the end of the  startup interval and periodically afterwards, it recalculates the ideal load  for each type map based on the current running PEs. </p>
+<p>  The CwfAVMLoadBalanceThread is a separate  thread that is created and started when the heartbeat thread starts and is  killed when the heartbeat thread is killed. A separate thread is required because  it may be delayed and interfere with the heartbeat at more precise intervals. Its  run method sleeps for the necessary time before running the following  algorithm: </p>
+<ol>
+  <li>Start a transaction.</li>
+  <li>Lock the CW_AVM_TYPE_LOAD  table in exclusive mode.</li>
+  <li>Get information about all  running PEs in the cluster by running the query:<br>
+    <div class="code"><div class="codeContent">
+    <pre class="code-java">SELECT DISTINCT BUCKET_TYPE ,AVM_ID FROM CW_AVM_TYPE_LOAD WHERE AVM_ID<><em>current AVM</em> AND CLUSTER_ID=<em>current cluster</em> ORDER BY AVM_ID</pre>
+    </div>
+    </div>
+  </li>
+  <li>Create a list of all distinct  AVM_IDs from the query result.</li>
+  <li>Check which AVMs are  dead by calling the checkAVMList(ArrayList&lt;<em>String</em>&gt;  ids) heartbeat class method.</li>
+  <li>For each bucket type, calculate  the number of alive PEs that work with this type and calculate the ideal type  load for the type. </li>
+  <li>Set the <strong>AVM_ID</strong> field to null for all bucket type  records owned by all dead PEs by running the following statement:<br>
+    
+    <div class="code">
+      <div class="codeContent">
+    <pre class="code-java">UPDATE CW_AVM_TYPE_LOAD SET AVM_ID=NULL WHERE AVM_ID IN (<em>list of dead AVM IDs</em>)</pre>
+    </div>
+    </div>
+  </li>
+  <li>For each record type that needs  additional buckets, run this statement: <br>
+    <div class="code">
+      <div class="codeContent">
+    <pre class="code-java">UPDATE CW_AVM_TYPE_LOAD SET AVM_ID=<em>current AVM</em> WHERE AVM_ID IS  NULL AND ROWNUM &lt;= <em>load difference</em></pre>
+    </div>
+    </div>
+  </li>
+  <li>For each record type that needs  to release buckets, it returns the statement: <br>
+    <div class="code">
+      <div class="codeContent">
+    <pre class="code-java">UPDATE CW_AVM_TYPE_LOAD SET AVM_ID=NULL WHERE AVM_ID=<em>current AVM</em> AND ROWNUM &lt;= <em>-load difference</em></pre>
+    </div>
+    </div>
+  </li>
+  <li>Read all used buckets:<br>
+    <div class="code">
+      <div class="codeContent">
+    <pre class="code-java">SELECT DISTINCT BUCKET_TYPE ,BUCKET_NO FROM CW_AVM_TYPE_LOAD WHERE AVM_ID==<em>current AVM</em> ORDER BY BUCKET_TYPE,BUCKET_NO</pre>
+    </div>
+    </div>
+  </li>
+  <li>Compare the database buckets  with the bucket list in the load type map: </li>
+  <ol type=a>
+    <li>If a new bucket is in the database results, add it to the corresponding bucket list. </li>
+    <li>If a bucket is missing in the database results, delete it from the bucket list and call the releaseBucket(int bucketNo) method of the process manager class.</li>
+  </ol>
+  <li>Release the lock by committing the transactions.</li>
+  <li>Calculate the next balance timestamp.</li>
+</ol>
+<p>This algorithm is dependent on locking the bucket type table and may take  a longer time (that is, more than seconds) to process. If another AVM tries to balance its  load at the same moment, it has to wait. </p>
+<p>Waiting is  not  dangerous for these reasons:</p>
+<ul>
+  <li>The load balance thread is  waiting anyway for more than 99% of its time. Waiting more neither creates  additional work, nor reduces PE processing capabilities that are implemented in different  independent working threads.</li>
+  <li>If the load balance thread  waits for a certain period, it  shifts the next load balance time  accordingly, which  practically eliminates the chance to collide in the  future with the AVM that is currently blocking it.</li>
+</ul>
+<p>The important part of this approach is to  ensure that the buckets that are released are not processed after the  database transaction completes, as well as the new buckets taken are  used after the database transaction completes. The load balancing thread must  synchronize with the old and new process threads so that the bucket change does not happen while reading the old buckets. Synchronizing the threads uses a Java semaphore with two  permits. The load balancing thread can  work only if it has the two permits. The old and new processes threads can work  if they have a single permit.</p>
+<p>  The information about the buckets that the  PEs own is used the following way:</p>
+<ul>
+  <li>The algorithm that decides whether  a PE can take a particular process checks if the PE owns the bucket. This  check allows moving the process selection to the database – the PE never  reads  the new or old processes that do not match its bucket list.</li>
+  <li>Because the SQL for the old and  new processes threads can change only if the bucket list changes during the load  balancing, the load balancing thread prepares and stores the SQL statements for these two threads.</li>
+  <li>The interface and global  process message selection changes to get modulo 100 result from the  message synchronization ID and check it against the type bucket list.</li>
+  <li>The calculation of the initial  ideal load uses a different algorithm that needs access to the PE load specification arrays of  all active configurations of the cluster. This information is used only for  startup and does not need to be present on subsequent configuration reloads. </li>
+  <li>The start of a new PE always  creates a new AVM ID. This way, the new AVM cannot interfere with the existing PE  and can be started at any moment. However, starting a new PE  deletes and  removes to the CW_RUN_TIME_AVM_ARCHIVE table the record from the CW_RUN_TIME_AVM  table, which has the same IP address as the newly started AVM. To keep  the runtime AVM table minimal, it deletes and archives any record in which  the heartbeat has not been updated for 24 hours.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

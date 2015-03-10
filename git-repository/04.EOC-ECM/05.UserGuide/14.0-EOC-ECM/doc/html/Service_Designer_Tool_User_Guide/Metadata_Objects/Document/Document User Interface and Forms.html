@@ -1,0 +1,158 @@
+<html>
+<head>
+<title>Document User Interface and Forms</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>Document User Interface and Forms</h3>
+
+<p>Document Forms cohere to the User Interface generalization among metadata objects; that is, the Document contains a <a href="../../Velocity_Studio/Configuring User Interface Object Overview.html"><b>User Interface</b></a>, where <a href="../../Velocity_Studio/Form.htm"><b>Forms</b></a> are contained within the User Interface. See <a href="../../Velocity_Studio/User_Interface_Design_with_VS.htm">User Interface Modelling</a> on how you should use the User Interface object as <i>Controller</i> to connect the Document as <i>Model</i> to present Document Forms as <i>View</i> to users, adhering to the MVC architectural pattern.</p>
+
+<p><img src="DocumentUInode.png" align="absmiddle" border="1" alt="Document User Interface Node" /></p>
+
+<p>A Document Form typically defines how the Document will be displayed at runtime in the browser, and is typically referenced in a <a href="../../Velocity_Studio/Element - Form Frame.htm">Form Frame</a> of another Form or Page to be displayed as part of an web-based application. You can define the layout of the Form, which Document Variable to display and/or edit, which Form Element to use to present each Document Variable, and also control over the Form Elements to tailor to your needs of the Document Form.</p>
+
+<h3>Document User Interface</h3>
+
+<p>Identical to other User Interface metadata, Document User Interface has the <a href="../../Velocity_Studio/User Interface general properties.htm">General</a>, <a href="../../Velocity_Studio/User Interface Variables.htm">Variables</a> and <a href="../../Velocity_Studio/User Interface Methods.htm">Methods</a> tabs; please see the respective section for details.</p>
+
+<p>Specific to Document User Interface, however, is existing User Interface Variables and Methods already defined from its base User Interface object <i>com.conceptwave.system.Document.UserInterface</i>.</p>
+
+<p><i><u>Pre-defined Variables of Document User Interface</u></i></p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Variable</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+
+<tr>
+<td class='confluenceTd'><b>model</b></td>
+<td class='confluenceTd'><i>&lt;Type of this Document&gt;</i></td>
+<td class='confluenceTd'>The Document Variable that models the data of this Document. As per MVC architecture, this Variable is the means of the User Interface as (C)ontroller to expose the (M)odel to the (V)iew, thus allowing to present data of this Document metadata object type in the Forms.<br>
+  </br>
+At runtime, this Variable may be initialized as a new Document object or as an existing Document, depending on how this User Interface is instantiated. If the <i>model</i> parameter of the Document User Interface constructor is not provided or null, a new Document object is created into this Variable. Otherwise, this Variable assumes the object passed in through the <i>model</i> parameter. In either case, you are not required to instantiate a new Document object for this Variable.</td>
+</tr>
+
+<tr>
+<td class='confluenceTd'><b>confirmObject</b></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Object</i></td>
+<td class='confluenceTd'></td>
+</tr>
+</tbody>
+</table>
+
+<p>You are strongly encouraged to read <a href="../../Velocity_Studio/Scripting in Velocity Studio.htm">Scripting</a> on how to use User Interface Variables.</p>
+
+<p><i><u>Pre-defined Methods of Document User Interface</u></i></p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Method</th>
+<th class='confluenceTh'>Return</th>
+<th class='confluenceTh'>Script</th>
+</tr>
+
+<tr>
+  <td class='confluenceTd'><strong>onAutoSave</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'>System method that is triggered on auto-save.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>onClick</b></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+<td class='confluenceTd'>The generic system method that is triggered when there is a mouse-click.</td>
+</tr>
+
+<tr>
+<td class='confluenceTd'><b>onFullTextEdit</b></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+<td class='confluenceTd'>Parameters <i>leafName</i>, <i>isEditable</i>. <br>
+A User Action Method that is invoked by default when the drill-down icon of <a href="../../Velocity_Studio/Element - Large Text.html">Large Text</a> Form Element is clicked in any of the Forms. The default action is showing the Large Text pop-up Dialog Form.</td>
+
+<tr>
+<td class='confluenceTd'><b>onInit</b></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+<td class='confluenceTd'>Document User Interface initialization script to set initial values for any Variables in the User Interface. It is triggered when the User Interface is created.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>onRefClick</b></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+<td class='confluenceTd'>Parameters <i>leafName</i>, <i>isEditable</i>. <br>
+A User Action Method that is invoked by default when either the drill-down icon of <a href="../../Velocity_Studio/Element - Translation.html">Translation</a> or <a href="../../Velocity_Studio/Element - Reference.html">Reference</a> Form Element is clicked in any of the Forms. The default action is showing the Translation Finder or Reference Finder respectively as pop-up Dialog Form.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>onTimer</b></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+<td class='confluenceTd'>The Method that is invoked periodically for every <b>Time duration</b> defined in User Interface <b>General</b> tab since the creation of this User Interface, if it is defined. By default, this Method is empty.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>onValidation</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+  <td class='confluenceTd'>The method <em>onValidate</em> is called on validate notification. The <em>validate</em> method of the metadata validates all fields and the model of the UserInterface (if exists) 
+    and returns ValidationErrorList object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>runTrigger</b></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+<td class='confluenceTd'>The Method that is invoked when the content of a Form Element is changed at runtime, which by default invokes all Trigger Methods of the Document.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Save</b></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+<td class='confluenceTd'>The action of saving <i>model</i> data of the Document. By default, validation Methods are invoked before the save operation takes place. This is the Method that is invoked when the Save button in <b>Menu</b> Form is clicked.</td>
+</tr>
+</tbody>
+</table>
+
+<p>When a Document extends from a base (non-system) Document, the Document has a User Interface that extends from the base Document's User Interface. In particular, the extended Document User Interface inherits all the Forms, Variables and Methods of the base User Interface, with the exception of the <b><i>model</i></b> Variable. This model Variable does not inherit, but rather created at the extended User Interface with Data Type of the extended Document. Thus, the extended User Interface "connects" to the extended Document rather than the base Document (which makes sense!).</p>
+
+<h3>Document Forms</h3>
+
+<p>Multiple forms may be defined for one Document. This is useful for scenarios when you need to create different views of the Document for different users (for example, an administrative user versus a regular user) or for different occasions (for example, a "summary" view versus a "detailed" view). A Form can have permissions that specify in which situation it can be used. When different users open the Document, they may see different sets of fields in different formats, based on their individual roles and the content of the data.</p>
+
+<p>There is tremendous flexibility that is provided to Form design. See <a href="../../Velocity_Studio/User_Interface_Design_with_VS.htm">User Interface Modelling</a> to leverage full capabilities of UI design.</p>
+
+<p><b>Note</b>: You must create or generate a Form after defining a Document to present it in UI.</p>
+
+<p><b>Note</b>: If you change your Document's Variables after the Form is generated, you must update the created / generated Form corresponding to your Document Variables' changes.</p>
+
+<p>The User Interface of a new Document contains two default Forms, which are inherited from base User Interface <i>com.conceptwave.system.Document.UserInterface</i>:<br/>
+<ul>
+<li><b>Default</b> Form: The default Form of the Document. By default, this Form is empty. Override this Form to present the Document with Form Elements and layout that suits your needs.</li>
+<li><b>Menu</b> Form: contains object menu that pertains to using the Default Form, namely the Save menu button.</li>
+</ul>
+
+<p>You can override this <b>Default</b> Form to create your own default Form for the Document, or use the <a href="Generate Document Form.htm">Generate Form command</a> to have Velocity Studio generate a Form based on the Document's current set of Variables.</p>
+
+<p>Notice that the <b>Default</b> Form, itself, does not contain the <b>Menu</b> Form. The <b>Menu</b> Form appears below the <b>Default</b> Form (by default, but can be chosen) when the Document Form is to be displayed within an Application (see <i>com.conceptwave.system.Application</i> in <a href="../../Velocity_Studio/Creating UI Objects.html">Top-Level User Interface Objects</a>) via <a href="../../Velocity_Studio/User Interface User Action Method.htm">User Action Method</a>. This User Action Method may be invoked by any existing Form Element in the Application; for example, it can be setup to be invoked by a Menu Item click.</p>
+
+<u><i>Document Form shown within an Application in runtime</i></u>
+<p><img src="DocumentFormInApp.png" align="absmiddle" border="1" alt="Document from Application at Runtime." />
+
+<p>A Document User Interface can also contain a <a href="../../Velocity_Studio/Page.htm">Page</a> in addition to Forms. Similar to other User Interface objects, only one page is allowed in a Document User Interface, with fixed name <i>Page</i>.</p>
+
+<h3>Context Menu in Document User Interface</h3>
+
+<p>To create a Form or a Page in a Document User Interface, right-click the User Interface node in the <b>Metadata tab</b> of <b>Navigation</b> pane. Select <b>New Form</b> or <b>New Page</b> respectively. Enter Form/Page name in the subsequent wizard pop-up, and click <b>Finish</b>.</p>
+
+<img src="DocumentUIcontextMenu.png" align="absmiddle" border="1" alt="Document User Interface Context Menu" />
+
+<p>The right-click pop-up menu also has a <a href="">Generate Form</a> command which creates a Form based on the Document's Variable list. For the rest of the pop-up commands, please see pop-up menu description in <a href="../../Service_Designer_User_Interface/navigation pane - Metadata.html#PopUpMenu">Navigation Pane</a>.</p>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

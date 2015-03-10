@@ -1,0 +1,83 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Export Translation</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onload="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Export Translation</h2>
+
+<p>The purpose of <a href="../Introduction_to_Metadata/Internationalization.html">translation</a> is for defining all fields and labels visible in the runtime application in a specific language. You can export a set of Excel files that contain all translation records to a specified language in the project by clicking <b>File &gt; Export &gt; Translation</b> from the menu bar.</p>
+
+<p>This function allows you to export translation that has been previously <a href="Import Translation.html">imported</a>. You can also export translation on a language that has not been previously imported, which serves as the Excel spreadsheet template for you to fill in the translation using the Excel application, before you import the translation into the project.</p>
+ 
+<p>It is recommended that you save your metadata project before invoking this menu command so that latest changes in metadata objects are reflected in the Excel files. </p>
+<p>To use the export translation function, perform these steps:</p>
+<ol>
+  <li>From the menu bar, click <b>File &gt; Export &gt; Translation</b>.</li>
+  <li>From the  <b>Select language to export</b> dialog, click the <strong>Language</strong> drop-down menu and select a language from the available list. You are restricted to export from the list defined in top-level metadata's <a href="../Metadata_Objects/Metadata Root/Metadata Root Languages.html">Language tab</a>. <br>
+    <br>
+    <img src="exportTranslation.png" alt="Select a language to export" border="0" />    <br>
+    <br>
+  </li>
+  <li>By default, the exported resources are sorted by translation value. To have your exported resources sorted by translation key, select the <strong>Sort By Key</strong> checkbox. s rather Click the <strong>OK</strong> button to continue.
+    <br>
+  </li>
+  <li>The <b>Select Directory</b> dialog displays. Select a directory where you want the files to be exported. You may save the Excel files under <b>Resources</b> folder of the project directory such that these files can be managed as part of the project.<br>
+    <br>
+    
+  <img src="exportTranslationDir.png" alt="Export translation - select directory path" border="0" />
+    <br>
+    <br>
+    </li>
+  <li>Click the <strong>Open</strong> button to export your metadata resource files. These exported files have the following hard-coded names:
+    <ul>
+      <li>appRC_<i>ll-xx</i>.xls</li>
+      <li>metaRC_<i>ll-xx</i>.xls</li>
+      <li>sysRC_<i>ll-xx</i>.xls</li>
+      <li>userRC_<i>ll-xx</i>.xls</li>
+    </ul>
+    
+    <p>where <i>ll</i> is the language of the selected language code and <i>xx</i> is the country or locale (for example, <i>appRC_en-us.xls</i>).
+    </p>
+    <p>Each file contains an Excel sheet with three columns:</p>
+<ul>
+<li>Resource ID. It is a hidden column for system usage only. Do not change data in this column.</li>
+<li>Resource label on the metadata language. It is a source for translation. Do not change data in this column.</li>
+<li>Resource label on the currently selected language. This column can be empty. A translation of the label from column B should be written here.<br>
+  <br>
+</li>
+
+</ul>
+  </li>
+  <li>A confirmation message appears, indicating that your export was successful. Click the <strong>OK</strong> button.</li>
+</ol>
+
+
+
+<p><b>Notes</b>:</p>
+<ul>
+  <li>Any row can be deleted from the generated Excel sheet. It only means that translation for this resource is missing when the file will be imported back into the <strong>Resources</strong> tab of your metadata project.</li>
+  <li>Do not add new rows in the Excel sheet or, if you do, always leave a cell in the column A empty.</li>
+  <li>Do not add new columns between columns A and C.</li>
+  <li>The generated part of the resource file name must not be changed. Otherwise, you will not be able to import the file back into the <strong>Resources</strong> tab. Any additions to the file name can be done only between <em>RC</em> and underscore (_) characters (for example, <i>metaRC<b>forTranslation</b>_ll-xx.xls</i>).</li>
+  <li>You can export icon tooltips. The icon <strong>Tooltip</strong> property only appears when the UI element's <strong>Icon</strong> property is assigned an image.<br>
+    <br>
+  </li>
+</ul>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

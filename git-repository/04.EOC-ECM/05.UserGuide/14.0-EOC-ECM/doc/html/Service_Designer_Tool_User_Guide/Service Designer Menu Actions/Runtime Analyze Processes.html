@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>Analyze Processes</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Analyze Processes</h2>
+
+<p>You can use the <strong>Analyze Processes</strong> tool to compare  local process metadata and the deployed process metadata. It  is highly recommended that you perform the comparison prior to deploying metadata,  especially in production, to ensure metadata compatibility and to avoid runtime  process exceptions. The tool compares the processes in the local directory and the deployed  metadata and looks for processes with modified metadata on the same revision number.  Having modified processes with the same revision number is a potential runtime exception. </p>
+<p>Based on the comparison it performs, if the <strong>Analyze Processes</strong> tool indicates that the metadata is compatible, the metadata can be deployed. Otherwise, it is the user's responsibility to analyze  each non-compatible process case by case and decide whether a new revision is needed  or to deploy in the current state.</p>
+<p>To use the  <strong>Analyze Processes</strong> tool, do the following:</p>
+<ol>
+  <li>Click  <strong>Runtime</strong> &gt; <strong>Analyze Processes</strong> from the menu bar.</li>
+  <li>In the Analyze Processes dialog,  choose the <strong>Full Check</strong> option or the <strong>Quick Check</strong> option.<br>
+    <br>
+<ul>
+<li>
+  <strong>Full Check</strong>: this is the default and the recommended mode. It provides the most reliable  comparison as it involves each process component. The <strong>Full Check</strong> mode compares the following:<br>
+<ul>
+<li>Process properties, such as type of process, priority, process document reference,  “synchronize” flag, etc.</li>
+<li>Process workflow, i.e. the activity tree</li>
+<li>Local subflows belonging to the process</li>
+<li>Activities  properties, such as participant references, operations, alerts, etc.</li>
+<li>Process and  activities script: name, parameters, return types, scripts, etc.</li>
+<br>
+</ul>
+</li>
+
+<li><strong>Quick Check</strong>: this mode compares processes by file size and timestamp. The benefit of this mode is that it is quicker to use than the <strong>Full Check</strong> mode. However, this mode has the following limitations:<br>
+  </li>
+<ul>
+<li>File size can remain the same even if the process was modified. For example, if the process subflow revision reference  is changed from 4 to 5, the process size 
+    remains the same yet the workflow is modified  and can cause runtime exceptions.<br></li>
+<li>Timestamp comparison is not completely reliable as  identical processes can have different  timestamps. The metadata timestamp  depends on when the metadata was checked out of the Revision Control System, such as SVN.</li>
+</ul>
+</ul>
+<br>
+  </li>
+  <li>Choose whether or not to keep the   <strong>Open check result</strong> checkbox   in Analyze Processes dialog selected. This checkbox allows you to choose whether the system automatically opens the comparision results file once the  comparison is done. By default, the checkbox is selected. </li>
+  <li>Click the <strong>OK</strong> button.</li>
+  <li>In the dialog that appears, specify the filename of the text (.txt) file that is to  store the comparison results, and the location where the file is to be  stored.</li>
+  <li>Click the <strong>Save</strong> button.<br>
+    <br>
+    <STRONG>Note:</STRONG> When using this command, you are prompted to connect to the database, if  the database connection is not established already.</li>
+  </ol>
+<h3><a name="analyzeProcessesCommandLine"></a>Analyze Processes Command-Line Option</h3>
+<p>You can also run the Analyze Process tool from the <a href="../Introduction_to_Metadata/Command Line Options of Designer.html"> command line</a>. The following describes the syntax of the command-line interface and the available arguments. You can find the command in the  &lt;<em>installation_folder</em>&gt;\designer\analyseProcesses.cmd:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre>@echo off
+if ""%1""=="""" goto echoSyntax
+if ""%2""=="""" goto echoSyntax
+if ""%3""=="""" goto echoSyntax
+if ""%4""=="""" goto echoSyntax
+if ""%5""=="""" goto echoSyntax
+if ""%6""=="""" goto echoSyntax
+if ""%7""=="""" goto echoSyntax
+IF ""%1""==""-logFile"" (
+set LOG_FILE=%2
+set JDBC_URL=%3
+set MODE=%4
+set APP_NAME=%5
+set APP_VERSION=%6
+set NODE=%7
+set META_DIR=%8
+set FILE=%9
+) ELSE (
+set JDBC_URL=%1
+set MODE=%2
+set APP_NAME=%3
+set APP_VERSION=%4
+set NODE=%5
+set META_DIR=%6
+set FILE=%7
+)
+
+set CWOC_CLASSPATH=C:\6\411
+set CLASSPATH=%CWOC_CLASSPATH%\designer\Designer.jar;^
+%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^
+%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^
+%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^
+%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^
+%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^
+%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;
+
+set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m -Dcom.conceptwave.licenseDir="%CWOC_CLASSPATH%"\designer\env -Dcom.conceptwave.modules.path="%CWOC_CLASSPATH%"\modules
+IF ""%1""==""-logFile"" (
+"C:\Program Files\Java\jdk1.7.0_45\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -analyze -logFile %LOG_FILE% -jdbc=%JDBC_URL% -mode=%MODE% -app_name=%APP_NAME% -app_version=%APP_VERSION% -config_node=%NODE% -metadata_dir=%META_DIR% -file=%FILE%
+) ELSE (
+"C:\Program Files\Java\jdk1.7.0_45\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -analyze -jdbc=%JDBC_URL% -mode=%MODE% -app_name=%APP_NAME% -app_version=%APP_VERSION% -config_node=%NODE% -metadata_dir=%META_DIR% -file=%FILE%
+)
+goto end
+:echoSyntax
+echo -----------------------------------------------------------------------------
+echo Syntax: 
+echo analyseProcesses [-logFile logFile] JDBC_URL mode(F/Q) application_name application_version config_node metadata_dir output_file
+echo JDBC_URL could be user@host:port:sid,user@host:port/service_name or any jdbc url
+echo Example: 
+echo analyseProcesses cw@localhost:1521:orcl F ON V1.0 PE c:\metadata\ON c:\result.txt
+echo analyseProcesses "cw@oracle.jdbc.driver.OracleDriver;jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=on)(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl)))" Q ON V1.0 PE c:\metadata\ON c:\result.txt
+echo (refer to documentation for details.)
+echo ------------------------------------------------------------------------------
+:end
+</pre>
+  </div>
+  </div>
+  
+  <p><strong>Note:</strong> The <tt>-mode</tt> parameter is optional. If it is not specified, full check mode is used. Otherwise, you can specify the following values for this field:</p>
+  <ul>
+    <li><tt>F</tt> - represents full mode</li>
+    <li><tt>Q</tt> - represents quick mode</li>
+  </ul></td>
+</tr>
+</table>
+</body>
+</html>

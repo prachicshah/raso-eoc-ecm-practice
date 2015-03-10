@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Execution of Process and Process Activities</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Execution of Process and Process Activities</h1>
+
+<p>Global and interface processes are executed by Process Engines. Which Process Engine will execute a particular type of global or interface process (and how many instances), depends on the <a href="../../Configuration_Tool_User_Guide/Processes PE Processes.html">Process Engine configuration</a> in the Configuration application.</p>
+
+<p>User processes are typically started through the user interface, but other <a href="starting user processes.html">starting methods</a> exist. When a request to start a specific process type is submitted, it is stored as an unassigned process in the database with a certain process ID. The process ID determines the user process <em>bucket</em>, that defines which Process Engine instance is responsible for its execution. See <a href="Assignment of Workload to Buckets.html">Assignment of Workload to Buckets</a> for details.</p>
+<p>The CWPRODUCTPROPERTIES table contains the CW-SMLST-PID data value, which specifies the smallest process ID. This value must be larger than 250000.</p>
+<p>Once execution is started by a Process Engine, the bucket number is assigned and stored in the process record in the database. This way, there is no need to reassign the running processes when a PE instance is restarted.</p>
+<p>Each process contains a <a href="setting process priority.html">process priority</a> (as defined for this process type), so processes with the highest priority will be addressed first.</p>
+<p>Each Process Engine monitors its resource utilization (such as memory), and will not run more processes than its calculated limit. This is done to guarantee adequate performance, and to prevent memory allocation problems.</p>
+<p>Any new sub-processes started by the <a href="sub-process and sub-flow.html"><em>sub-process (spawn)</em> activity</a> of a parent process are always executed by the same Process Engine that executes the parent process.</p>
+
+<p>During process execution, the Process Manager framework stores processes and process-activity status in the process database. This includes process Documents, process flow status, activity-status, activity time constrains, etc. The frequency of these database updates depends on the <em>speed mode</em> of the Process Engine (configurable in <a href="../../Configuration_Tool_User_Guide/System Parameters.html">System Parameters</a> page in Configuration application). If the Process Engine restarts in whatever reason (because of server or Java VM shutdown), processes will start executing from the point reached prior to Process Engine failure.</p>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

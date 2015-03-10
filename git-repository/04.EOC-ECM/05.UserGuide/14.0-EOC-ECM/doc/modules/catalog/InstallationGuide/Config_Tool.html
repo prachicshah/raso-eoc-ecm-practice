@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Configuration - Catalog Parameters</title>
+<link rel="stylesheet" href="../site.css" type="text/css">
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF" cellpadding="">
+  <tr>
+    <td ><h2>Configuration  - Catalog Parameters</a></h2>
+      <p>Once Velocity Studio is properly configured and installed, and a database initialization is done (refer to the Velocity Studio Installer User Guide for more details), you can  initiate the catalog configuration process. This process contains the following steps:</p>
+      <ol>
+        <li>Run the Velocity Studio project</li>
+        <li>Start the System Configuration application</li>
+        <li>Configure logical connections</li>
+        <li>Configure catalog node</li>
+      </ol>
+      <h3>Run the Velocity Studio Project</h3>
+      <p>To run the project, click the<strong> Runtime</strong> &gt; <strong>Run</strong> button from the menu bar.  The  Velocity Studio runs in the configuration mode. See <em>Velocity Studio User Guide &gt; Velocity Studio Menu Actions  &gt; Runtime &gt; Run </em>for more details.</p>
+      <h3>Start the System Configuration Application</h3>
+      In your Web browser, access the System  Configuration application by entering http://localhost:8080/cwf/configApp as  the URL.
+      Enter <em>upadmin</em> as both your Username and  Password, and then press the Enter key. The main screen of configuration  application displays
+      </li>
+      <h3>Configure  Logical Connections</h3>
+      <p>In the  catalog configuration process, you must configure the logical connections. The following step describes how to configure the logical connection and database settings:</p>
+      <ol>
+        <li>Select the main node (for example, Catalog) from the  node menu section, and then click the <strong>Database</strong> tab.</li>
+        <li>Clicking <strong>Databases</strong> &gt; <strong>Logical  Connection</strong> displays the logical connections to the database, which are  responsible for enabling the AVM to send database commands to the database, to  carry out different functionalities.</li>
+        <li>Clicking <strong>Databases</strong> &gt; <strong>Physical  Connection</strong> displays the physical connections to the database, which are  responsible for defining database connection parameters to be used by logical  connections.</li>
+        <li>To add a physical connection, complete these  steps:</li>
+        <ol type="i">
+          <li>From  the Physical Connection page, click the <strong>Add</strong> button.</li>
+          <li>The  New Physical Connection dialog appears. Enter the database credentials; when  you have finished, click the <strong>Apply</strong> button. A message appears, indicating  that you have successfully updated your Oracle thin connection.</li>
+          <li>To test your connection settings, click the <strong>Test</strong> button. If your connection settings are properly set up, a confirmation message  appears.
+            <p><strong>N</strong><strong>o</strong><strong>te: </strong>The database attributes  in the System Configuration application need to match the  database attributes in the Velocity Studio. For more information,  refer to the System Configuration User Guide.</p>
+          </li>
+        </ol>
+        <li>Click  the Logical Connection tab to associate your logical connections to the  physical connection you have just created, double-click each of the following  logical connections and select your newly created physical connection from the  drop-down list:</li>
+        <ul>
+          <li><strong>ARCHIVE</strong></li>
+          <li><strong>CATALOG</strong></li>
+          <li><strong>ORDER</strong></li>
+          <li><strong>PE_ORDER </strong></li>
+          <li><strong>REPORT</strong><strong><br>
+            </strong></li>
+        </ul>
+        <p><img src="ConfigLogicalConnections.png" alt="Configuration Logical Connection" border="1" ></p>
+        <li>Click the<strong> Save</strong> button to save your configuration settings; a confirmation message appears that the catalog has been saved successfully.</li>
+      </ol>
+      <h3>Configure Catalog Node</h3>
+      <p>To create a new node for catalog, follow these steps:</p>
+      <ol>
+        <li>Expand the main cluster node (for example, Catalog) from the  node menu section.</li>
+        <li>Click the <strong>PE_UI </strong>node and click the<strong> Catalog </strong>tab.</li>
+        <li>Configure the catalog parameters; the following table describes  the fields available:
+          <p>
+<table class='confluenceTable' border cellpadding="1">
+            <tr>
+              <th width="112" class='confluenceTh'>Field</th>
+              <th width="1136" class='confluenceTh'>Description</th>
+            </tr>
+            <tr>
+              <td height="79" class='confluenceTd'><strong>Catalog mode</strong></td>
+              <td class='confluenceTd'>This drop-down list contains two values <i>Server</i> or <i>Client</i>.  This parameter determines the type of catalog implementation or communication either server-side or client-side. Select <strong>Server</strong> to configure catalog.
+                <p><strong>Note: </strong> When using <em>http://localhost:port/cwf/catalogMain</em> to access the Catalog application, it is recommended that this Web address be load-balanced (routed) to either a UI server or Catalog server, and not a catalog client. Additionally, if you use <em>http://localhost:port/cwf/</em> to log in and then select <strong>Catalog Designer</strong> from the<em> Application selection page</em>, this Web address may be load-balanced (routed) to a UI or catalog client. </p></td>
+            </tr>
+            <tr>
+              <td height="48" class='confluenceTd'><strong>Catalog server port</strong></td>
+              <td class='confluenceTd'> This parameter is used when the <strong>Catalog mode</strong> is <em>Server</em>. This parameter determines the maximum number of threads that the catalog server uses to handle requests from catalog client nodes. It defines the largest number of client requests that can be concurrently processed by the catalog server (for example, 10009). </td>
+            </tr>
+            <tr>
+              <td height="46" class='confluenceTd'><strong>Server thread pool size</strong></td>
+              <td class='confluenceTd'>This parameter is used when the <strong>Catalog mode</strong> is <em>Client</em>. This parameter determines the maximum number of concurrent connections that the catalog client node can make to the catalog server.</td>
+            </tr>
+          </table>
+          </p>
+        <li>Click the System tab  of the PE_UI Node, and click the <strong>Active Configuration</strong> check box to make this node   active. This configuration is used by a runtime instance.</li>
+
+      <p><img src="ConfigNodeConfiguration.png" alt="Configure Catalog Node" /></p>  
+      
+      <li>Click the <strong>Save</strong> button to save the settings.</li>
+      <li> Exit the System configuration application and go back to the Velociy Studio.</li>
+      </ol>
+      <p><strong>Note: </strong>You can create new nodes for PE, PE_UI, or UI nodes. For more information see<strong> System Configuration User Guide</strong> &gt; <strong>Getting Started</strong> &gt;<strong>System Configuration User Interface</strong>.</p></td>
+
+  </tr>
+</table>
+</body>
+</html>

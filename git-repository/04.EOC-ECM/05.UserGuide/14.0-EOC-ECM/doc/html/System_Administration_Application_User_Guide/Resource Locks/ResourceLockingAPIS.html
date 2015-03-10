@@ -1,0 +1,194 @@
+<html>
+<head>
+<title>Resource Locks APIs</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<h2>Resource Locks APIs</h2>
+<p>There are APIs available for the Resource Locks menu. The following  is a list of APIs,  their description, and the parameters:</p>
+<table width="1054" border cellpadding="1" class="confluenceTable" >
+  <tr>
+    <th width="165" class="confluenceTh">Field</th>
+    <th width="192" class="confluenceTh">Parameter</th>
+    <th width="954" class="confluenceTh">Description</th>
+  </tr>
+  <tr>
+    <td class="confluenceTd">getGroupLock</td>
+    <td width="192" valign="top"><ul>
+        <li>resources</li>
+        <li>requesterId</li>
+        <li>requesterType</li>
+        <li>duration</li>
+        <li>callback</li>
+        <li>timeToWait</li>
+        <li>notifyOnTimeout</li>
+        <li>callbackParam</li>
+        <li>durationType</li>
+        <li>priority</li>
+      </ul></td>
+    <td class="confluenceTd"> This API is requests a lock on a resource. This API returns true if the  lock is acquired, and false if the resource is unavailable. If a resource is  unavailable and callback is specified, the request is placed in the queue to  wait for the resource to be released.  
+      If callback is specified, it is invoked in the following scenarios:  
+        <p><ul>
+        <li>On  unavailability, when the lock is acquired (asynchronously).</li>
+        <li>On  waiting timeout, if timeToWait parameter is specified and notifyOnTimeout  parameter is true.</li>
+      </ul></p>
+      A second time call  of getLock API for the same resource and requester, if a resource is  unavailable, adds another lock request in the queue. It does not overwrite  existing pending request. </p>      <p> <strong>Note:</strong> In a multi process engine (PE)  or AVM environment, the callback can be invoked by different AVM node. </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">getGroupLock</td>
+    <td class="confluenceTd"><ul>
+        <li>resources </li>
+        <li>requesterId</li>
+        <li>requesterType</li>
+        <li>duration</li>
+        <li>callback</li>
+        <li>timeToWait</li>
+        <li>notifyOnTimeout </li>
+        <li> callbackParam </li>
+        <li>durationType</li>
+        <li> priority</li>
+      </ul></td>
+    <td class="confluenceTd"> This API requests a lock on a group of resource. It returns true if the  lock is acquired for all resources from the group and false if one or more  resources are unavailable.<br>
+        The maximum value of resources in a group is one hundred (100).  
+      <p>If resources are unavailable and<em> callback</em> is specified, the request is getting queued waiting for  resources to be released. If callback is specified, it is invoked on the following scenarios: 
+      <ul>
+        <li>On unavailability, when the lock  is acquired (asynchronously). </li>
+        <li>On waiting  timeout, if timeToWait parameter is specified and notifyOnTimeout parameter is  true.</li>
+      </ul>
+      <p>A  second time call of getGroupLock() API,  for the same resource and requester, returns true for already acquired  locks and ignores other parameters. If a resource from the group is  unavailable, checks weather there is already a pending lock for the resource  and the requester. If the lock does not exist, adds pending locks for every  resource from the group (pending locks are marked with group ID). </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">lockOrderByProcess</td>
+    <td class="confluenceTd"><ul>
+        <li>orderId </li>
+        <li> processId </li>
+        <li> orderType </li>
+        <li> duration</li>
+      </ul></td>
+    <td class="confluenceTd">This API is used to locks an order or resource  for the process. </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">lockOrderByUser</td>
+    <td class="confluenceTd"><ul>
+        <li> orderId </li>
+        <li>processId </li>
+        <li>orderType </li>
+        <li> duration</li>
+      </ul></td>
+    <td class="confluenceTd"> This API is used to locks an order or resource for the user (requester).  </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">queryLock</td>
+    <td class="confluenceTd"><ul>
+        <li>search</li>
+      </ul></td>
+    <td class="confluenceTd">This API searches the locks by the specified  criteria.</td>
+  </tr>
+  <tr>
+    <td width="165" class="confluenceTd">releaseAllLocks
+       </td>
+    <td width="192" class="confluenceTd"><ul>
+        <li>requesterId requesterType</li>
+        <li> transactionId </li>
+        <li>removePendingRequest
+           
+        </li>
+      </ul></td>
+    <td width="954" class="confluenceTd">This API releases all locks by the requestor key or the transaction    ID, and returns a list of released locks.
+       </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">releaseLock
+       </td>
+    <td class="confluenceTd"><ul>
+        <li>resourceId </li>
+        <li> resourceType </li>
+        <li> system</li>
+        <li> requesterId</li>
+        <li> requesterType</li>
+        <li> removePendingRequests
+           
+        </li>
+      </ul></td>
+    <td class="confluenceTd">This API releases the lock on resources. The return value of this API    is true if the lock is added to the release queue and false if the lock is    not found.
+       </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">releaseLocks
+       </td>
+    <td class="confluenceTd"><ul>
+        <li>resources</li>
+        <li> requesterId</li>
+        <li> requesterType</li>
+        <li> removePendingRequests
+           
+        </li>
+      </ul></td>
+    <td class="confluenceTd">This API is used to release lock on a set of resources.
+       </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">releaseOrderByProcess
+       </td>
+    <td class="confluenceTd"><ul>
+        <li>orderId</li>
+        <li> processId</li>
+        <li> orderType
+           
+        </li>
+      </ul></td>
+    <td class="confluenceTd">This API is used to locks the order (resource) for the user    (requester).
+       </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">releaseOrderByUser
+       </td>
+    <td class="confluenceTd"><ul>
+        <li>orderId</li>
+        <li> userId</li>
+        <li> orderType
+           
+        </li>
+      </ul></td>
+    <td class="confluenceTd">This API is used to locks the order (resource) for the user    (requester).
+       </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">setPriority
+       </td>
+    <td class="confluenceTd"><ul>
+        <li>resourceId</li>
+        <li> resourceType</li>
+        <li> system</li>
+        <li> requesterId</li>
+        <li> requesterType</li>
+        <li> priority
+           
+        </li>
+      </ul></td>
+    <td class="confluenceTd">This API is to set the priority for the pending lock requests. It sets the priority for all pending    locks in the group, if a resource is a part of the resource group.
+       </td>
+  </tr>
+  <tr>
+    <td class="confluenceTd">setRequesterPriority
+       </td>
+    <td class="confluenceTd"><ul>
+        <li>requesterId</li>
+        <li> requesterType</li>
+        <li> priority
+           
+        </li>
+      </ul></td>
+    <td class="confluenceTd">This API is to set the priority for all pending locks related to a    requester.
+       </td>
+  </tr>
+</table>
+</body>
+</html>

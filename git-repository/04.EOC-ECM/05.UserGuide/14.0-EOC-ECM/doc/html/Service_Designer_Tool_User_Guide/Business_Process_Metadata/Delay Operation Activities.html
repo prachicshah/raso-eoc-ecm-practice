@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Delay Operation Activities</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Delay Notification Activities</h2>
+<p>Operation Activities of the Type = <em>Notification</em> allows notifications or messages to be queued before processing.  When sending a  message, the earliestConsumeTime and a priority can be specified to determine when the message will be processed.  The Operation Activity calls the sendMessageToProcess() method to send the message.  To make changes to the existing  messages, the delayMessageToProcess method is called in the <em>After</em> Script of the Operation Activity.</p>
+
+
+<h3>Operation Activity</h3>
+<p>The following business process diagram  displays the Operation Activity of the type Notification.  The Process diagram displays the Activity Operation and Participant associated with the Operation.</p>
+
+<img src="OperationActivity.png" align="absmiddle" border="1" alt="Operation activity that has its type set to Notification" />
+
+<p>To call the sendMessageToProcess method, the Properties of the Operation must contain a Participant and define the Operation of type <em>Notification</em> (defined in Business Processes &gt; External Services &gt; Interface &gt; Operation).</p>
+
+<img src="OperationActivityProperty.png" align="absmiddle" border="1" alt="Operation must contain a participant and be of Notification type to call the sendMessageToProcess method" />
+
+<h3>sendMessageToProcess</h3>
+<p>A message can be sent through the sendMessageToProcess from any script. To receive the message, you need to configure the Operation activity<em></em>.  This method passes the <em>earliestConsumeTime</em> and <em>priority</em> optional parameters.</p>
+<p>The <strong>earliestConsumeTime</strong> is either a time or date stamp, or an integer value that determines the earliest possible time that the message can be processed.  The integer value acts as a delay time in seconds from the current moment; however, it cannot exceed 6 months (190 days).  The time or date stamp must be a future date.   An exception message occurs if the integer value exceeds 190 days, or the time or date is a past date.  If the parameter value is null or zero (0), the system  assumes no delay.  
+  
+If the delay exceeds the allowed delay, the process goes into an error state.</p>
+<p>The <strong>priority</strong> determines the importance of the message for being processed. A value of 1 has the highest priority. The acceptable values of this parameter range from 1 to 15.  The system will assign a value of eight (8) when a zero (0) or null value passed in this parameter. Any other number that is out of range will result in an exception message being created.</p>
+<p><strong>Note:</strong> The process engine does not guarantee that messages sent to  a process's Operation activities&nbsp;are consumed in the same  order in which they were sent.</p>
+<h3>delayMessageToProcess</h3>
+<p>The delayMessageToProcess() method is called in only the <em>After</em> script of the Operation Activity and passes only the earliestConsumeTime (time/date stamp or integer value) and priority (integer value).  This method updates the message record with the new values that are passed and return the message to the queue. In the following example, the message will be processed no earlier than 60 seconds and in the highest priority. If one of these parameters is not passed - then that value will not be updated. </p>
+<img src="OperationActivityAfterScript.png" align="absmiddle" border="1" alt="delayMessageToProcess method in Actions tab" />
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

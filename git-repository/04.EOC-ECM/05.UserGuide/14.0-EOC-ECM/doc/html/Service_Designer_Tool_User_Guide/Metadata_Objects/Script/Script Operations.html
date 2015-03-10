@@ -1,0 +1,62 @@
+﻿
+
+
+<html>
+<head>
+<title>Script Operations</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Script Operations</h3>
+<p>An individual Script has a <b>Debug</b> <b>Script</b> item in its right-click pop-up menu in addition to the common right-click menu items. When selected, this menu item opens the <b>Script</b> <b>Parameters</b> <b>Definition</b> dialog (see figure below) followed by the <b>Rhino</b> <b>JavaScript</b> <b>Debugger</b> dialog (see below). These dialogs allow invocation of the script with specified parameters for debugging purposes.</p>
+
+<p><b>Note</b>: The <b>Debug Script</b> pop-up menu command is only enabled when there is no validation errors in metadata. If the command is disabled (that is, greyed-out), fix all validation errors to enable the menu command.</p>
+
+<p><img src="scriptParameterDefinition.png" align="absmiddle" border="0" alt="Script Parameter Definition" /></p>
+<p>The <b>Script</b> <b>Parameters</b> <b>Definition</b> dialog contains a table with a list of the parameters defined in the script. Each parameter must have the type defined and be initialized before the <b>Rhino</b> <b>JavaScript</b><b>Debugger</b> dialog can be used. Velocity Studio will keep the initialization data for the last debugged script. Therefore the script can be modified and debugged multiple times without having to re-define the parameters with the same parameter name. The table below contains a description of the columns.</p>
+<p><ins>Description of columns in the Script Parameters Definition dialog.</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Column</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>The parameter name as defined in the <b>Script</b> field on the <b>General</b> tab. Read-only.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Type</b></td>
+<td class='confluenceTd'>Mandatory. The type of parameter. Either double-click the table row or click the <b>Properties</b> button to open the <b>Properties</b> dialog (see figure below) where the type can be selected. Must be defined to evaluate and debug the script.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Object</b></td>
+<td class='confluenceTd'>Mandatory. The metadata object that represents the parameter type. Either double-click the table row or click the <b>Properties</b> button to open the <b>Properties</b> dialog (see figure below) where the type can be selected. Must be defined to evaluate and debug the script.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Initialized</b></td>
+<td class='confluenceTd'>If checked, the parameter has been initialized.</td>
+</tr>
+</tbody>
+</table>
+<p>Click the <b>Properties</b> button to open the <b>Properties</b> dialog where the <b>Type</b>, type of parameter, and <b>Object</b>, metadata object that represents the type, are defined. The <em>null</em> and <em>process</em> types do not require an object to be specified.</p>
+<p><img src="parameterProperties.png" align="absmiddle" border="0" alt="Parameter Properties" /></p>
+<p>After the <b>Type</b> and <b>Object</b> have been defined, the parameter value can be set using either the <b>Initialize</b> or <b>From</b> <b>DB</b> buttons. If the button is not applicable for the chosen object type, the button will be disabled. The <em>null</em> type does not require initialization.</p>
+<p>When the <b>Initialize</b> button is clicked, the dialog that opens depends on the parameter type specified in the <b>Type</b> column. This button can be used to initialize the <em>data type</em>, <em>document</em> and <em>data structure</em> types.</p>
+<p>The <b>Document</b> <b>Initialization</b> dialog (see figure below) will be opened for the d<em>ocument</em> object type. The Document can be initialized by entering data manually or by loading existing data from a text or XML file. To validate the data entered, click the <b>Validate</b> button. Click the <b>OK</b> button to initialize the parameter.</p>
+<p><img src="documentInitialization.png" align="absmiddle" border="0" alt="Document Initialization" /></p>
+<p>The <b>Data</b> <b>Structure</b> <b>Initialization</b> dialog (see figure below) will be opened for the <em>data structure</em> object type. The Data Structure can be initialized by entering data manually or by loading existing data from an XML file (refer to section on Data Structure Operations). To validate the data entered, click the <b>Validate</b> button. Click the <b>OK</b> button to initialize the parameter.</p>
+<p><img src="dataStructureInitialization.png" align="absmiddle" border="0" alt="Data Structure Initialization" /></p>
+<p>When the <b>From</b> <b>DB</b> button is clicked the <b>Object</b> <b>ID</b> dialog (see figure below) will open, prompting the user for the ID of the instance of the specified object. The ID must exist in the database. This button can be used to initialize the <em>document, order</em> and <em>process</em> types.</p>
+<p><img src="objectID.png" align="absmiddle" border="0" alt="Object ID" /></p>
+<p>When all the parameters are initialized, click the <b>OK</b> button to proceed to debug the script. The <a href="../../Service Designer Menu Actions/Metadata Debug.html">Rhino JavaScript Debugger</a> dialog will open in front of the Velocity Studio window. The <b>Rhino</b> <b>JavaScript</b> <b>Debugger</b> is a third-party product; documentation on how to use this product can be found at <a href="http://www.mozilla.org/rhino/debugger.html">http://www.mozilla.org/rhino/debugger.html</a>.</p>
+<p>To cancel debugging the script, click the <b>Cancel</b> button in the <b>Script</b> <b>Parameters</b> <b>Definition</b> dialog. The <b>Rhino</b> <b>JavaScript</b><b>Debugger</b> dialog will still open and can be closed at anytime. Velocity Studio will keep the initialization data for the last debugged script. Therefore the script can be modified and debugged multiple times without having to re-define the parameters with the same parameter name.</p></td>
+</tr>
+</table>
+</body>
+</html>

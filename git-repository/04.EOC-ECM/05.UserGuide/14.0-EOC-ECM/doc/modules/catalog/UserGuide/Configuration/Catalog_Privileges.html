@@ -1,0 +1,174 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Catalog Privileges</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Catalog Privileges</h2>
+
+<p>You can assign catalog privileges to a catalog object which will dictate the user access to that object. Catalog privileges are created and associated to groups of users in the System Administration application. Within the Catalog Designer application, the privilege is associated to a Catalog object and an action, resulting in a Catalog privilege definition  that dictates the action a  group of users can perform on a specific object. Within Catalog Designer, an object instance can be further restricted by the use of  <a href="Catalog_Domains.html">Catalog Domains</a>.</p>
+<p>In the User Profile Management application, the administrator can set up users, privileges and groups.  In the Catalog application these privileges are associated to an object and  dictates the right the user has to access (view, edit, or activate) that object. </p>
+<p>The Catalog assumes that if privileges are not assigned to a particular Catalog Object, then all users have  full access to that object. Once a privilege is assigned to an object, access to that object is limited to the users associated with that privilege.  For example, for the object <em>Item</em>, if a privilege is not assigned to the <em>Item</em> object then all users have access to edit, view and activate items. However, once the a privilege is assigned to the <em>Item</em> object, then only the user group associated with that privilege will have access to the Items.</p>
+<p> This section contains the steps required to define a privilege and associate the privilege to a user group.</p>
+<h3>User Profile Management Application</h3>
+<p>In the User Profile Management, you can create users and groups. A user can be bound to a group which in turn can be  bound to a privilege.  Additional privileges can also be created in the User Profile Management application.  The <em>User Profile Management User Guide</em> contains more information on privileges. This section describes the steps that bind the user to a privilege within the User Profile Management application. </p>
+
+<ol>
+<li>Log in to the User Profile Management application.</li>
+
+<li>Navigate to User Profile Manager and create a new user.<br>
+  <br>
+  <img src="UserProfile.png" alt="User Profile" /><br>
+  <br>
+</li>
+
+<li>Create a Group by navigate to the Groups node and enter group information.<br>
+  <br>
+<img src="AdminGroup.png" alt="Admin Group" /><br>
+<br>
+</li>
+
+<li>Bind the Group to the User.  Select the newly created user and click the Groups tab to Add a group to the user.<br>
+  <br>
+<img src="AdminGroupUser.png" alt="Bind User to Group" /><br>
+<br>
+</li>
+
+<li>Bind the Group to the Privilege. Select the Privilege and click the Groups tab to Add a group.  All users associated with this group are now binded to this Privilege.<br>
+  <br>
+<img src="AdminPrivilegeGroup.png" alt="Bind Privilege to Group" /></li>
+</ol>
+
+<h3>Catalog Privileges</h3>
+<p>The privileges create in the System Administration Application are defined in Catalog.  It is in the Catalog application that the privilege is associated to an action and a Catalog object. A user associated with a certain privilege will have the ability to perform the action on the Catalog object defined for the privilege. </p>
+<h4>Create Privileges</h4>
+<p>In the Catalog application, navigate to the <strong>Configuration</strong> menu and select the <strong>Catalog Configuration</strong> sub menu option.  When the Catalog Privileges form appears, click the <strong>Add</strong> button.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="Catalog_Privileges.png" alt="Attribute Type Detail" /></td>
+</tr>
+</tbody>
+</table>
+<br>
+When defining a privilege, the user specifies the Catalog Object to which the privilege applies and the Action that will be allowed. The table below describes these fields:
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Object</td>
+<td class='confluenceTd'>Select the Catalog Object for which  you want to set an action and privilege. These objects are system defined (refer to the list below).</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Action</td>
+<td class='confluenceTd'>Select from View, Edit, Active.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Privileges</td>
+<td class='confluenceTd'>Select the privilege that you want to apply to the catalog object. Privileges are previously set in the System Administration Application.</td>
+</tr>
+
+
+
+</tbody>
+</table>
+
+
+
+
+</td>
+</tr>
+<p>The <strong>Catalog Object</strong> fields contains a listing of system-defined objects:</p>
+<ul>
+<li>Association Type</li>
+<li>Attribute</li>
+<li>Info Model</li>
+<li>Charge Type</li>
+<li>Catalog Rule</li>
+<li>Relation Type</li>
+<li>Tax</li>
+<li>Context</li>
+<li>Project</li>
+<li>Catalog Hierarchy</li>
+<li>Catalog Domain</li>
+<li>Item</li>
+<li>Item Attribute</li>
+<li>Item Hierarchy</li>
+<li>Item Relation</li>
+<li>Item Image</li>
+<li>Item Attachment</li>
+<li>Item Charge</li>
+<li>Item Rule</li>
+<li>Item Description</li>
+<li>Item Group</li>
+<li>Item Type</li>
+<li>System Identifier</li>
+<li>Info Table</li>
+<li>Charge Type Attribute</li>
+<li>Version Code Table</li>
+<li>Item Charge Type Attribute</li>
+<li>Request</li>
+<li>Request Workflow</li>
+<li>Request Availability</li>
+<li>Item Market Segment Rule</li>
+<li>Item Business Dates</li>
+<li>Market Segment Dimension</li>
+<li>Business Date Definition</li>
+<li>Business Date Model</li>
+<li>Business Date Model Dates</li>
+</ul>
+<p>The <strong>Privileges</strong> field contains the Catalog privileges defined in the User Profile Management application that include the following:</p>
+<ul>
+  <li>Approve Change</li>
+  <li>Approve Task</li>
+  <li>Catalog Association Type Manager</li>
+  <li>Catalog Attribute Manager</li>
+  <li>Catalog Charge Type Manager</li>
+  <li>Catalog Context Manager</li>
+  <li>Catalog Hierarchy Manager</li>
+  <li>Catalog Info Model Manager</li>
+  <li>Catalog Item Attachment Manager</li>
+  <li>Catalog Item Attribute Manager</li>
+  <li>Catalog Item Charge Manager</li>
+  <li>Catalog Item Description Manager</li>
+  <li>Catalog Item Group Manager</li>
+  <li>Catalog Item Hierarchy Manager</li>
+  <li>Catalog Item Image Manager</li>
+  <li>Catalog Item Manager</li>
+  <li>Catalog Item Relation Manager</li>
+  <li>Catalog Item Rule Manager</li>
+  <li>Catalog Manager</li>
+  <li>Catalog Management Administrator</li>
+  <li>Catalog Project Manager</li>
+  <li>Catalog System Identifier Manager</li>
+  <li>Catalog Tax Manager</li>
+  <li>Initiate Workflow Task</li>
+  <li>Perform Workflow Task</li>
+  <li>Request Change</li>
+</ul>
+<p><strong>
+  </table>
+Notes:</strong> </p>
+<ul>
+  <li>The user must have the Catalog Management Administrator privilege, along with running the server node, to access the Catalog application. This privilege grants full access to all catalog objects if nothing is configured in the configuration table, to ensure backward compatibility.</li>
+  <li>The user can also access the Catalog application if he has at leaste one privilege defined for a Catalog object in the Catalog privilege configuration table.</li>
+  <li>For Catalog non-administrators, they can access Catalog if they have privileges that are configured for Catalog objects and can only view these objects when these users have the proper privileges to access them.<BR>
+    <BR>
+    <BR>
+  </li>
+</ul>
+<p>&nbsp;</p>
+</body>
+</html>

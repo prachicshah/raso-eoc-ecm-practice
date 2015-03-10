@@ -1,0 +1,54 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Metadata Internal Version</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+		<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+			<h2>Metadata Internal Version</h2>
+		<p>In Velocity Studio, clicking <strong>Database &gt; Upgrade System</strong> from the menu bar ensures that your database is compatible with the current version of your product release. After invoking the Upgrade System command, the system creates a .sql file that contains an upgrade SQL script. </p>
+		<p>Creating the .sql file consists of two parts:</p>
+		<ol>
+		  <li>Generating SQL statements according to changes in mapping the database documents.</li>
+		  <li>Appending SQL statements to the .sql file, which are retrieved from a predefined .txt file according to the current metadata internal version. This file, &lt;<em>InternalName</em>&gt;SQLUpgrades.txt, includes changes required for the current release.</li>
+		  </ol>
+		<p>For the second part of creating the .sql file, system, template, and user metadata can be upgraded, with each set of metadata having its  own predefined file (that is, its own &lt;<em>InternalName</em>&gt;SQLUpgrades.txt file).</p>
+		<h3>Internal Name and Internal Version fields for User Metadata</h3>
+		<p>In Velocity Studio, clicking your metadata root node displays the <strong>General</strong> tab in the right pane. The <strong>Internal Name</strong> and <strong>Internal Version</strong> fields are mandatory to perform the upgrade.</p>
+		<p><img src="MDrootGeneral.png" alt="Internal Name and Internal Version - User metadata root node" border="1"></p>
+		<p>When you first view the information on the <strong>General</strong> tab, only the <strong>Internal Name</strong> field can be edited. When you save your metadata, this field is grayed out and the <strong>Internal Version</strong> field is then available for input. The <strong>Internal Version</strong> field is an eight-digit number (for example, 12345678) and is editable.</p>
+		<h3>Locations of the &lt;<em>InternalName</em>&gt;SQLUpgrades.txt file</h3>
+		<p>The &lt;<em>InternalName</em>&gt;SQLUpgrades.txt file for each type of metadata can be found in these locations:</p>
+        <ul>
+          <li>For system metadata, its .txt file is located under <strong>Resources</strong>.</li>
+          <li>For template metadata, its .txt file is located under the template metadata resources directory.</li>
+          <li>For user metadata, its .txt file is located under the user metadata resources directory</li>
+          </ul>
+        <p>If the &lt;<em>InternalName</em>&gt;SQLUpgrades.txt files exist for both templates and user metadata, and there are upgrades for the current product release, selecting <strong>Database &gt; Upgrade System</strong> from the menu bar generates a .sql file containing SQL upgrading scripts for system, templates, and user metadata. </p>
+        <h3>CWPRODUCTPROPERTIES Table</h3>
+        <p>The CWPRODUCTPROPERTIES table contains a record for system metadata, every template, and user metadata in which the column ID receives the following values:</p>
+        <ul>
+          <li>ID=&quot;CW&quot; for system metadata</li>
+          <li>ID=&lt;<em>value of <strong>Internal Name</strong></em>&gt; for template metadata</li>
+          <li>ID=&lt;<em>value of <strong>Internal Name</strong></em>&gt; for user metadata</li>
+          </ul>
+      <p>When you click <strong>Database &gt; Upgrade System</strong> from the menu bar, a .sql file is generated and processed, with the CWPRODUCTPROPERTIES table updated accordingly.</p>
+      <p><strong>Note:</strong> If a template is removed from the metadata templates list, the record containing an ID equal to the removed template name is also removed from the CWPRODUCTPROPERTIES table.</p>
+      <h3>Add a New Template to Metadata</h3>
+      <p>Suppose that you have clicked <strong>Database &gt; Upgrade System</strong> from the menu bar and have run the .sql file. When you add a new template to metadata that contains the &lt;<em>InternalName</em>&gt;SQLUpgrades.txt file, according to the current metadata internal version, an upgrade is required.</p>
+      <h3>Add and Remove the Same Template in Metadata</h3>
+      <p>Assume that you have a template that requires an upgrade, as indicated by the current metadata internal version. You are required to click <strong>Database &gt; Upgrade System</strong> from the menu bar and then run the .sql file. If you first remove the template from your metadata and then decide to add the same template, or the same template with a different name, you are required to click <strong>Database &gt; Upgrade System</strong> once again.</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p></td>
+	</tr>
+</table>
+</body>
+</html>

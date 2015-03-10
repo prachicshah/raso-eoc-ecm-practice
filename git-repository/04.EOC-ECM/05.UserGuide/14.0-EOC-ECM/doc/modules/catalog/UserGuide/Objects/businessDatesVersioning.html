@@ -1,0 +1,170 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Date Versioning</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h3>Date Versioning</h3>
+<p>The version effective date allows the Catalog application to handle  multiple versions with the same start date, based on the version effective date. When there are multiple versions  with the same start date, the version with the latest effective date applies.</p>
+<p>The following tables shows the version number, its version effective date, and how multiple versions with the same start dates are handled:</p>
+<table width="99%" border cellpadding="1" class='confluenceTable'>
+  <tr>
+    <th width="110" class='confluenceTh'>Version Number</th>
+    <td width="117" class='confluenceTd'>1</td>
+    <td width="122" class='confluenceTd'>2</td>
+    <td width="165" class='confluenceTd'>3</td>
+    <td width="150" class='confluenceTd'>4a</td>
+    <td width="298" class='confluenceTd'>4b</td>
+    <td width="194" class='confluenceTd'>5</td>
+    <td width="200" class='confluenceTd'>&nbsp;</td>
+    <td width="230" class='confluenceTd'>6</td>
+    <td width="133" class='confluenceTd'>7</td>
+  </tr>
+  <tr>
+    <th class='confluenceTh'><strong>Version Effective Date</strong></th>
+    <td class='confluenceTd'>March 1</td>
+    <td class='confluenceTd'>April 1</td>
+    <td class='confluenceTd'>April 15</td>
+    <td class='confluenceTd'>May 12</td>
+    <td class='confluenceTd'>May 12</td>
+    <td class='confluenceTd'>May 12</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>August 20</td>
+    <td class='confluenceTd'>October 1</td>
+  </tr>
+  <tr>
+    <th class='confluenceTh'><strong>Date  Version Start Date</strong></th>
+    <td class='confluenceTd'>March 1</td>
+    <td class='confluenceTd'>March 1</td>
+    <td class='confluenceTd'>March 1</td>
+    <td class='confluenceTd'>March 1</td>
+    <td class='confluenceTd'>May 12</td>
+    <td class='confluenceTd'>?</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>August 20</td>
+    <td class='confluenceTd'>November 1</td>
+  </tr>
+  <tr>
+    <th class='confluenceTh'><strong>Item  Start Date</strong></th>
+    <td class='confluenceTd'>March 1</td>
+    <td class='confluenceTd'>March 1</td>
+    <td class='confluenceTd'>March 1</td>
+    <td class='confluenceTd'>March 1</td>
+    <td class='confluenceTd'>March 1</td>
+    <td class='confluenceTd'>March 1</td>
+    <td class='confluenceTd'>March 1</td>
+    <td class='confluenceTd'>March 1</td>
+    <td class='confluenceTd'>March 1</td>
+    </tr>
+  <tr>
+    <th class='confluenceTh'><strong>Advertising  Start Date</strong></th>
+    <td class='confluenceTd'>March 15</td>
+    <td class='confluenceTd'>March 15</td>
+    <td class='confluenceTd'>March 15</td>
+    <td class='confluenceTd'>March 15</td>
+    <td class='confluenceTd'>March 15</td>
+    <td class='confluenceTd'>March 15</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>March 15</td>
+    <td class='confluenceTd'>March 15</td>
+    </tr>
+  <tr>
+    <th class='confluenceTh'><strong>Selling  Start Date</strong></th>
+    <td class='confluenceTd'>Null</td>
+    <td class='confluenceTd'>May 20</td>
+    <td class='confluenceTd'>May 10</td>
+    <td class='confluenceTd'>May 10</td>
+    <td class='confluenceTd'>May 10</td>
+    <td class='confluenceTd'>May 30</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>May 10</td>
+    <td class='confluenceTd'>May 10</td>
+    </tr>
+  <tr>
+    <th class='confluenceTh'><strong>Servicing  Start Date</strong></th>
+    <td class='confluenceTd'>Null</td>
+    <td class='confluenceTd'>Null</td>
+    <td class='confluenceTd'>May 15</td>
+    <td class='confluenceTd'>May 20</td>
+    <td class='confluenceTd'>May 20</td>
+    <td class='confluenceTd'>May 30</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>May 15</td>
+    <td class='confluenceTd'>May 15</td>
+    </tr>
+  <tr>
+    <th class='confluenceTh'><strong>Selling End Date</strong></th>
+    <td class='confluenceTd'>Null</td>
+    <td class='confluenceTd'>Null</td>
+    <td class='confluenceTd'>Null</td>
+    <td class='confluenceTd'>Null</td>
+    <td class='confluenceTd'>Null</td>
+    <td class='confluenceTd'>Null</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>July 30</td>
+    <td class='confluenceTd'>&nbsp;</td>
+  </tr>
+  <tr>
+    <th class='confluenceTh'><strong>New  Item Version Created</strong></th>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>No</td>
+    <td class='confluenceTd'>No</td>
+    <td class='confluenceTd'>No</td>
+    <td class='confluenceTd'>Yes</td>
+    <td class='confluenceTd'>No</td>
+    <td class='confluenceTd'>Yes</td>
+    <td class='confluenceTd'>Yes, the new offer version  is created. New dates only apply to the latest version.</td>
+    <td class='confluenceTd'>Yes</td>
+  </tr>
+  <tr>
+    <th class='confluenceTh'><strong>Override  Existing Version</strong></th>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>Yes</td>
+    <td class='confluenceTd'>Yes</td>
+    <td class='confluenceTd'>Yes</td>
+    <td class='confluenceTd'>No</td>
+    <td class='confluenceTd'>Yes</td>
+    <td class='confluenceTd'>No</td>
+    <td class='confluenceTd'>No</td>
+    <td class='confluenceTd'>No</td>
+  </tr>
+  <tr>
+    <th class='confluenceTh'><strong>Business  Case</strong></th>
+    <td class='confluenceTd'>Offer is ready for  advertising.</td>
+    <td class='confluenceTd'>Offer is ready  for selling from May 20.</td>
+    <td class='confluenceTd'>Due to competition,  I need to start selling earlier.</td>
+    <td class='confluenceTd'> I cannot service  before May 20.</td>
+    <td class='confluenceTd'>I cannot service  before May 20.</td>
+    <td class='confluenceTd'>I need to move the  selling date further.</td>
+    <td class='confluenceTd'>July 20: Pricing of offer  changes and a new offer version is created.</td>
+    <td class='confluenceTd'>The offer is not selling well, so stop  selling it.</td>
+    <td class='confluenceTd'>Start selling again from November 1.</td>
+  </tr>
+  <tr>
+    <th class='confluenceTh'><strong>Comments</strong></th>
+    <td class='confluenceTd'>Dates apply to all item  versions.</td>
+    <td class='confluenceTd'>Dates apply to all item  versions.</td>
+    <td class='confluenceTd'>Dates apply to all item  versions.</td>
+    <td class='confluenceTd'>Dates apply to all item  versions</td>
+    <td class='confluenceTd'>Orders taken between May 10  and May 12 have the servicing date as May 15. This new servicing date applies  to orders taken on or after May 12.</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>&nbsp;</td>
+    <td class='confluenceTd'>&nbsp;</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>Export a Code Table</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Export a Code Table</h2>
+<p>You can export a code table to one of the following file formats:</p>
+<ul>
+  <li>XLS</li>
+  <li>CSV</li>
+  <li>XML</li>
+  <li>ZIP</li>
+</ul>
+<p>The following is an example of exporting a code table to a .zip  file:  </p>
+<ol>
+  <li>From the Code Table page's search results section, select the code table <strong>Name</strong> that you want to export, and then click the <strong>Export</strong> &gt; <strong>to ZIP</strong>.<br>
+    <br>
+    <img src="codeTablesExport.png" alt="Export a code table - Export button - to ZIP" border="1"><br>
+    <br>
+  </li>
+  <li>Depending on what Web browser you are using, you are prompted to open or select a directory location to save your file. The default filename is <em>code_table_name</em>.zip. You can change this name, if required.</li>
+  <li>When you open and extract your .zip file, it contains an .xml file containing your code table information.</li>
+  </ol>
+<h3>Export Code Tables from the Command Line</h3>
+<p>You can export a code table from the command line in Windows and Unix. You can use catalogExport and the runScript.cmd to import the code tables.</p>
+<h4>With Catalog Export</h4>
+<p> This option is used when the Catalog application is up and running.  A shortcut command can be found in <strong><STRONG>&lt;<EM>installation_folder</EM>&gt;</STRONG>\designer\env\catalogExport.cmd</strong>. The following describes the syntax of the command-line interface and the available arguments.</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>
+@echo off
+if ""%1""=="""" goto echoSyntax
+
+set CWOC_CLASSPATH=C:\Program Files\6.x\6.0 (263)
+set CLASSPATH=%CWOC_CLASSPATH%\designer\Designer.jar;^
+%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^
+%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^
+%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^
+%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^
+%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^
+%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;
+
+set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m
+
+"C:\java\jdk1.6.0_16\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -catalogexport %*
+
+goto end
+:echoSyntax
+echo ----------------------------------------------------------------------------
+echo Syntax:  catalogExport [-logFile logFile] username=? [password=?] server_url=? export_folder=? [export_type=?] 
+echo          [exported_objectid_list=?] [updated_since=?] [exclude_expired=?] 
+echo          [log_general_info=?] [export_domains=?] [export_codetables=?] 
+echo          [exclude_related_projects=?] [include_child_projects=?]
+echo ----------------------------------------------------------------------------
+echo Note:    password could be input from console.
+echo 					export_type: project, item, hierarchy, entire, codetable, default is entire.
+echo          exported_objectid_list: ':' seperated object id string.
+echo          export_codetables: only when the export type is entire.
+echo          updated_since date format: yyyy-MM-dd.
+echo          exclude_related_projects: only when the export type is project.
+echo          exclude_expired: default is false.
+echo          log_general_info: default is true.
+echo          export_domains: default is true.
+echo          export_codetables: default is false.
+echo          exclude_related_projects: default is false.
+echo	      include_child_projects: default is false.
+echo ----------------------------------------------------------------------------
+echo Example: catalogExport username=a password=b server_url=http://server:8080/cwf export_folder=c:/temp/
+echo          catalogExport username=a server_url=http://server:8080/cwf export_folder=c:/temp/ export_type=entire updated_since=2011-01-01
+echo          catalogExport username=a password=b server_url=http://server:8080/cwf export_folder=c:/temp/ export_type=item exported_objectid_list=ABC:DEF:HIJ updated_since=2011-01-01
+echo          catalogExport username=a server_url=http://server:8080/cwf export_folder=c:/temp/ export_type=project exported_objectid_list=ABC:DEF:HIJ export_domains=true log_general_info=false
+echo          catalogExport username=a password=b server_url=http://server:8080/cwf export_folder=c:\temp export_type=codetable exported_objectid_list=ACC_CAN_TYPE:manufacturer
+echo ----------------------------------------------------------------------------
+:end</pre>
+  </div>
+</div>
+<h4><a Name="Run Script">With Run Script</a></h4>
+<p>This option is used when the Catalog application is not available. The following describes the syntax of the command-line interface and the available arguments. A shortcut command can be found in <strong><STRONG>&lt;<EM>installation_folder</EM>&gt;</STRONG>\designer\env\runScript.cmd</strong>. This command imports the file either in .zip or in .xml format.</p>
+    <div class="code">
+         <div class="codeContent">
+           <pre class="code-java">
+@echo off
+if ""%1""=="""" goto echoSyntax
+if ""%2""=="""" goto echoSyntax
+if ""%3""=="""" goto echoSyntax
+if ""%4""=="""" goto echoSyntax
+if ""%5""=="""" goto echoSyntax
+
+IF ""%1""==""-logFile"" (
+set LOG_FILE=%2
+set JDBC_URL=%3
+set APP_NAME=%4
+set APP_VERSION=%5
+set META_DIR=%6
+set GLOBAL_SCRIPT=%7
+set PARAMETERS=%8
+) ELSE (
+set JDBC_URL=%1
+set APP_NAME=%2
+set APP_VERSION=%3
+set META_DIR=%4
+set GLOBAL_SCRIPT=%5
+set PARAMETERS=%6
+)
+
+set CWOC_CLASSPATH=C:\Program Files\6.x\6.0 (263)
+set CLASSPATH=%CWOC_CLASSPATH%\designer\Designer.jar;^
+%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^
+%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^
+%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^
+%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^
+%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^
+%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;
+
+set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m
+IF ""%1""==""-logFile"" (
+"C:\java\jdk1.6.0_16\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -runscript -logFile %LOG_FILE% -jdbc=%JDBC_URL% -app_name=%APP_NAME% -app_version=%APP_VERSION% -metadata_dir=%META_DIR% %GLOBAL_SCRIPT% %PARAMETERS%
+) ELSE (
+"C:\java\jdk1.6.0_16\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -runscript -jdbc=%JDBC_URL% -app_name=%APP_NAME% -app_version=%APP_VERSION% -metadata_dir=%META_DIR% %GLOBAL_SCRIPT% %PARAMETERS%
+)
+goto end
+:echoSyntax
+echo ----------------------------------------------------------------
+echo Syntax:  runscript [-logFile logFile] JDBC_URL application_name application_version metadata_path global_script parameters
+echo ----------------------------------------------------------------
+echo Note:    password could be input from console.
+echo 					parameters be quoted, and splitted by ',' for multiple parameters if any.
+echo ----------------------------------------------------------------
+echo Example: runscript cw@localhost:1521:orcl ON V1 c:\metadata\ON cwl_ct.doExportCmd "c:/temp/a.zip"
+echo          runscript cw@localhost:1521:orcl ON V1 c:\metadata\ON cwl_ct.doImportCmd "c:/temp/a.zip"
+echo ----------------------------------------------------------------
+:end
+ </pre>
+      </div>
+    </div></td>
+</tr>
+</table>
+</body>
+</html>

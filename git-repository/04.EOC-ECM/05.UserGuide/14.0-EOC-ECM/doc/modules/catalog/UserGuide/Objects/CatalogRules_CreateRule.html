@@ -1,0 +1,147 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Create a New Catalog Rule</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Create a New Catalog Rule</h2>
+<p>To create a new catalog rule in  Catalog Designer, follow these steps:</p>
+<ol>
+  <li>From the Catalog Rules page, click the <strong>Add</strong> button to launch a new Catalog Rule Details page.<br>
+    <br>
+    <img src="CatalogRuleCreateNew.png" alt="Create a new catalog rule"><br>
+    <br>
+  </li>
+  <li>On the Catalog Details page, fill in the following fields:<br>
+    <br>
+    <strong>Note:</strong> Fields that require information have an asterisk that follows their field names. Additionally, required fields have bolded names.<br>
+    <br>
+    <table class='confluenceTable' border cellpadding="1">
+      <tbody>
+        <tr>
+          <th width="72" class='confluenceTh'>Field</th>
+          <th width="928" class='confluenceTh'>Description</th>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Rule Code</strong></td>
+          <td class='confluenceTd'>Enter a unique code that identifies the rule.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Status</strong></td>
+          <td class='confluenceTd'><p>Click the drop-down menu and select one of the  current object statuses that applies to your rule.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong> Name</strong></td>
+          <td class='confluenceTd'>Enter a name for the  rule you are creating. The rule name must be in lowercase letters.  This field is for internal use when designing your catalog model. This field is not supported by language translation. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Start Date</strong></td>
+          <td class='confluenceTd'>This field represents the date that the rule commences and defaults to the current date. To make changes, click the <strong>Calendar</strong> icon and select the date that you want..</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>End Date</strong></td>
+          <td class='confluenceTd'>This field denotes thee date that the rule ends. Click the <strong>Calendar</strong> icon</td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Rule Type</strong></td>
+          <td class='confluenceTd'><p>Click the drop-down menu and select one of the following rule types: </p>
+            <ul>
+              <li><strong>Validation</strong> - Validation rules check if the shopping basket or particular item of it is correctly  configured. Validation rules can put one or more errors in the operation error  list. The validation rule result is either <em>invalid</em> or <em>null</em>. <br>
+              </li>
+              <li><strong>Price</strong> - Pricing rules or formulas calculate the price of a given item or a set of items. Price rules return a  number that represents the price.</li>
+              <li><strong>Condition</strong> - Condition rules  check if a condition is valid. Condition rules  return Boolean value of  true if the condition is valid.</li>
+            </ul></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Return Type</strong></td>
+          <td class='confluenceTd'><p>Click the drop-down menu and select one of the following return types from the list: </p>
+            <ul>
+              <li>String</li>
+              <li> Number</li>
+              <li> Boolean</li>
+            </ul></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Label</strong></td>
+          <td class='confluenceTd'>This field denotes the visual (user-friendly) name for this rule, which is used in the application user interface.  This field is a translational string that supports language translations (refer to Velocity Studio's Translation Element for more details).</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Description</strong></td>
+          <td class='confluenceTd'>This field contains a description of the rule.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Project</strong></td>
+          <td class='confluenceTd'>If you have already opened a project, this field's contents appear in grey. To see details about your project, click the<strong>Magnifying Glass</strong>button next to this field.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'>Owner</td>
+          <td class='confluenceTd'>This field  indicates information about the owner of the project.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Rule</strong></td>
+          <td class='confluenceTd'>This field displays the rule script. Proceed to the next step on filling in this field. Note that Catalog is case sensitive. If the rule calls for a Catalog code, then  the case must match. </td>
+          </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>For the <strong>Rule</strong> field, click the <strong>Magnifying Glass</strong> button to launch a blank dialog in which you can write your catalog rule. When you have finished, click the <strong>Save</strong> button to return to the Catalog Rules page.<br>
+    <br>
+    For details on the rule language, see the <a href="../Rules/CatalogRuleLanguage.html">Catalog Rule Language</a> section. <br>
+    <br>
+  </li>
+  <li>Click the <strong>Save</strong> button to save your rule. A new area appears on the Catalog Rules Detail page that contains tabs labelled <a href="#versions"><strong>Versions</strong></a> and <strong><a href="#parameters">Parameters</a></strong>. </li>
+    
+<p><img src="CatalogRules_Details1.png" alt="Attribute Type" /></p> 
+ 
+</ol>
+<h3><a name="versions"></a>Versions</h3>
+<p>The <strong>Versions</strong> tab provide information about the selected rule. It shows  a summary of the rule name, status, and start date.</p>
+<p><img src="ruleversion.png" alt="Attribute Type" border="1" /></p>
+
+<h3><a name="parameters"></a>Parameters</h3>
+<p>The rule parameter tab provides information about the parameter name, attribute, and rule name. </p>
+<p>To view the Rule Parameter dialog, click  the <strong>Detail </strong>button and then specify whether the rule script contains parameters.</p>
+<p><img src="ruleparameter.png" alt="Attribute Type" /></p>
+
+<p>The Rule Parameter dialog contains the following fields:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+<tr>
+<th width="104" class='confluenceTh'>Fields</th>
+<th width="740" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Attribute</strong></td>
+  <td class='confluenceTd'>This field denotes the attribute type (that is, String, Boolean) defined in the Attribute Type object. Enter the Attribute type and then click the <strong>Magnifying Glass</strong> button to perform a search.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Param Name</strong></td>
+  <td class='confluenceTd'>The field contains the parameter name.</td>
+</tr>
+<tr>
+  <td height="27" class='confluenceTd'><strong>Sequence</strong></td>
+  <td class='confluenceTd'>This filed contains the parameter's sequence position in the rule.</td>
+</tr>
+<tr>
+  <td height="27" class='confluenceTd'><strong>Project</strong></td>
+  <td class='confluenceTd'>Enter the rule in this field and then click the <strong>Magnifying Glass</strong> button to perform a search, which displays objects containing the selected rule within the Catalog.</td>
+</tr>
+</tbody>
+</table>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

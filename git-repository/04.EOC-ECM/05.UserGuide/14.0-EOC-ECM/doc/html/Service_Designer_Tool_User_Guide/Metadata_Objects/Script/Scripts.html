@@ -1,0 +1,49 @@
+
+<html>
+<head>
+<title>Scripts</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Scripts</h2>
+
+<p>A Script is a metadata object that contains a JavaScript, which can be invoked by the metadata object's name. Parameters and Return Type of the JavaScript function can be defined in the Script as well.</p>
+
+<p>The Script can be called from any other script anywhere in the application metadata. When calling a JavaScript script the format is as follows: &lt;namespace_name&gt;:&lt;script_name&gt; (the name of the namespace followed by a colon ( : ) and then the JavaScript script name).</p>
+
+<p>To differentiate scripts that are created within <b>Methods</b> of metadata objects, these Scripts are commonly referred to as <i>top-level scripts</i> or <i>global scripts</i>. The Script can also be used in the System Administration application  to create a script recurrence in the <a href="../../../User Profile Manager User Guide/Create/calendarTemplate.html">Calendar library</a>. To create a Script, do the following:</p>
+In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:</li>
+  <ol>
+    <li>Right-click a Namespace. Select <b>New ...</b></li>
+    <li><b>New Metadata Object</b> wizard appears. Expand the <b>Global Scripts</b> node, select <b>Script</b>, and then click the <b>Next</b> button.</li>
+    <li>Select one from the following types of scripts, and click the <strong>Next</strong> button.  </li>
+    <ul>
+      <li><strong>General</strong></li>
+      <li><strong>Action Auditor</strong></li>    
+    </ul>
+     
+    
+    <li>Enter the name of Script (must conform to JavaScript naming conventions), and other parameters (see <a href="Script General Properties.html">Script general properties</a> for description). Then, click the <b>Finish </b>button.</li>
+  </ol>
+<i>OR</i>
+
+  <ol>
+    <li>Right-click the <b>Script</b> folder or the <b>Global Scripts </b>folder in a Namespace, if it is present. Select <b>New Script</b>.</li>
+    <li>Follow step 2 mentioned previously.</li>
+    </ol>
+
+
+<p>After the Script is created, the newly created Script appears under the <b>Scripts</b> folder.</p>
+
+<p><img src="newScriptNode.png" align="absmiddle" border="1" alt="New Script Node" /></p>
+<p>Right-clicking a script shows a number of actions that you can perform on your script, including <strong><a href="../../Service Designer Menu Actions/Metadata Debug.html#breakFirstLine">Break on first line</a></strong>, <strong>Show usage</strong>, and <strong>Find in Scripts</strong> for interface operations. See <a href="../../Service_Designer_User_Interface/navigation pane - Metadata.html#PopUpMenu">Right-click Popup Menu</a> for a list of common actions that you can perform.</p></td>
+</tr>
+</table>
+</body>
+</html>

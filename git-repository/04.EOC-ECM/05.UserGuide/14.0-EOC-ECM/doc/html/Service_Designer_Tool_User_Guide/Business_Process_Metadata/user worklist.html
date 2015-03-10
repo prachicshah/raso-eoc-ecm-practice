@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>User Worklist</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>User Worklist</h2>
+<p>Based on configured processes, the user worklist displays a list of all user tasks that are assigned to the current user. The worklist user interface is instantiated using the <em>BaseWorklistFinder (Worklist)</em> found in the <strong>Templates</strong> tab &gt; <b>cwf_pm (Process Management Product)</b> &gt; <strong>Finders</strong> &gt; <strong>Document Finders</strong> folder. If a user has worklist tasks assigned to him or her, the application menu (top right corner) displays the number of worklist tasks and an icon <img src="worklist_icon.png" align="absmiddle" border="0" alt="" /> indicating whether user is Available or Unavailable. Clicking the icon or the task number opens the  Worklist Finder specified on the Application User Interface element.</p>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<td class='confluenceTd'><img src="worklist_runtime.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table> 
+  <p>The columns of the worklist displays  specific data about each item.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Column</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'>&nbsp;</td>
+  <td class='confluenceTd'>The first column allows you to use sort the column in the table. This functionality is similar to the table functionality in  <a href="../Metadata_Objects/Finder/Finders at Runtime.html">Finders</a>.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b><p><img src="worklist_priority.png" align="absmiddle" border="0" alt="" /> (priority - sorted first)</b></td>
+<td class='confluenceTd'><p>Indicates the item with an icon as follows: </p>
+  <p><img src="worklist_alarm.png" align="absmiddle" border="0" alt="" />Alarm</p>
+  <p><img src="worklist_task.png" align="absmiddle" border="0" alt="" />Task</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Due (sorted second)</b></td>
+<td class='confluenceTd'>Date and time that the task is due to be completed</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Task</b></td>
+<td class='confluenceTd'>Task description</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Details</b></td>
+<td class='confluenceTd'>Task details</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Assigned</b></td>
+<td class='confluenceTd'>Date and time assigned to the current user</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Started</b></td>
+<td class='confluenceTd'>Date and time started by the current user</td>
+</tr>
+</tbody>
+</table>
+<h3>Displaying Details</h3>
+<p>You can display the details for a worklist item by doing one of the following actions:</p>
+<ul>
+  <li>double-click the action in the worklist row.</li>
+  <li>click the arrow icon located at the beginning of the row for the action that you want to view the details.</li>
+</ul>
+<p>The worklist user interface has a <strong>Task</strong> drop-down menu that contains actions that correspond to data displayed in the Worklist. </p>
+<h3>Working With Tasks</h3>
+<p>When a process sends a task to a User Participant, these tasks are   added to the global worklist queue, but not assigned to any specific user. The   User Participant properties have a <SPAN name="resultofMatch"><SPAN name="resultofMatch">distribut</SPAN>ion</SPAN> type attribute which   specifies how manual tasks should be assigned to users. This is defined by the <strong><SPAN name="resultofMatch"><SPAN name="resultofMatch">Distribut</SPAN>ion</SPAN> type</strong> field on the <strong>General</strong> tab.</p>
+<p>There are several task settings available in the user interface  in a submenu titled <b>Task</b>. This submenu contains a list of all <em>notification</em>Operations defined for each participant. Clicking a task action  sends a message to the Process Engine and moves the item into the worklist archive (the user no longer sees this item in the worklist).  For example, when a user B takes a task  from user A, the acknowledge task appears in the user interface for user A to acknowledge this change.</p>
+<p><strong>Note:</strong> Errors are generated when an action cannot be completed.</p>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Action</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Start Work</strong></td>
+  <td class='confluenceTd'><p>The default the task that displays in the list. When this task action is selected, the current date and time appears in the Started column. The task is not bolded.</p>
+    <p><strong>Note:</strong> The Start Work action is only available if selected work items have not been started.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Get Available</strong></td>
+  <td class='confluenceTd'>This task displays when the user has the privileges to at least one participant that has shared distribution. This task allows the user to retrieve one or more items from the shared task list. If the user does not have the Workgroup Select privilege, the next unassigned task is assigned to the current user and displayed in the worklist (the tasks are chosen by highest priority and earliest due date). If no tasks are available, a warning dialog displays. </td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Take From User</strong></td>
+<td class='confluenceTd'><p>Displays if the current user has the privilege to at least one participant that has shared distribution. This task allows the  user to take tasks assigned to other users. </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Delegate Task(s)</strong></td>
+  <td class='confluenceTd'>Displays if the current user has the privilege to at least one participant that has shared distribution. This task allows the user to give one or more items from the shared task list to another user who has not reached their maximum task capacity.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Acknowledge</strong></td>
+  <td class='confluenceTd'>This task displays when a task has been taken or delegated to a user.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Assign Tasks</strong></td>
+<td class='confluenceTd'>This task is shown if the current user has the Workgroup Select privilege. It opens a dialog that allows the user to change the user assigned to the selected task (allowed only if selected task is for a participant with Shared distribution).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Return to Queue</strong></td>
+  <td class='confluenceTd'>Returns the task to the participant's queue for the process.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Complete</strong></td>
+<td class='confluenceTd'>The task is removed from the task list.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> All worklist task actions allow for invalid objects.</p>
+<p>Tasks displayed in the worklist table are highlighted as follows:</p>
+<ul>
+<li>New tasks: Text is shown in <b>bold</b> until the user selects the task.</li>
+<li>Late tasks: Text is shown in <font color="red">red</font> after the due date has passed.</li>
+<li>Taken tasks: Text is shown in <font color="red">red</font>.</li>
+</ul>
+<p>Distribution of tasks are controlled by the configuration of Participants at design time. The Distribution type drop-down field on the Participants  general tab contains three choices that allows you to specify how a task is routed. For details, see <a href="user participant.html">User Participant</a>.</p>
+<p>Work item actions displayed in the <strong>Actions</strong> menu support  translation labels.</p>
+<p>&nbsp;</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>Configuration</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+<!--
+.style2 {
+	font-size: 18px;
+	color: #FF0000;
+	font-weight: bold;
+}
+.style4 {color: #000000}
+.style5 {
+	color: #FF0000;
+	font-weight: bold;
+}
+-->
+</style>
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="OrderCareToolsConfiguration"></a> Configuration</h2>
+<p> This section describes the database configuration setup for both bootstrap and runtime database connections, which includes:</p>
+<ul>
+  <li><a href="#dbCredentials">Obtaining database credentials</a></li>
+  <li><a href="#bootstrapConnection">Setting up the bootstrap database connection</a></li>
+  <li><a href="#ConfigTool">Configuring the cluster configuration application</a></li>
+</ul>
+
+<h4><a name="dbCredentials"></a>Database Credentials</h4>
+<p>Before proceeding, ensure that you know the following database credentials listed:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="168" class='confluenceTh'>Credential</th>
+<th width="58" class='confluenceTh'>Example</th>
+<th width="586" class='confluenceTh'>Comment</th>
+</tr>
+<tr>
+<td class='confluenceTd'>Database Host (name or IP)</td>
+<td class='confluenceTd'> localhost</td>
+<td class='confluenceTd'>In the Oracle Enterprise Manager, the host information can be found under the properties of the database.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Database Port</td>
+<td class='confluenceTd'>1521</td>
+<td class='confluenceTd'>This value is the default Oracle port value defined during the installation. </td>
+</tr>
+<tr>
+<td class='confluenceTd'>Database Service ID</td>
+<td class='confluenceTd'>localdb</td>
+<td class='confluenceTd'>This value is an identifier that is used to connect the application  to a particular database.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Schema user</td>
+<td class='confluenceTd'>CW</td>
+<td class='confluenceTd'>This value is the username defined when configuring the Oracle database during <a href="database initialization.html">database initialization.</a></td>
+</tr>
+</tbody>
+</table>
+<p>Refer to <a href="Database Initialization.html">Database Initialization</a> for instructions on creating and initializing your database schema. For example, the Oracle database credentials can be found in the Oracle Enterprise Manager Console:</p>
+<p><img src="Oracle DB.jpg" alt="Oracle Enterprice Console" border="1"></p>
+<h3><a name="bootstrapConnection"></a>Setting up Bootstrap Database Connection in Velocity Studio</h3>
+<p>To configure Velocity Studio with the Web-based Configuration application, the framework must be connecting to the database. To set up the bootstrap database connection and start Configuration application, do the following:</p>
+<ol>
+<li>Run <b>Velocity Studio</b> by clicking &lt;<em>installation_folder</em>&gt;/Designer/env/startDesigner or by double-clicking the shortcut icon.</li>
+<li>Create a new project by clicking <b>File &gt; New &gt; New Project</b> from the menu, and specifying an empty project folder.</li>
+<li>Enter the <a href="../../html/Service_Designer_Tool_User_Guide/Metadata_Objects/Metadata Root/Metadata Root General Properties.html">internal name</a>  of the project on the <strong>General</strong> tab of root metadata.</li>
+<li>Select <b>Runtime</b> &gt; <b>Run</b>. The Database Login screen appears.</li><li>Click the <b>New</b> button on the <b>Database Login</b> dialog. 
+  <p><img src="Database Login.jpg" alt="Database Login" width="305" height="174"> </p></li><li>The <b>Connection Properties</b> dialog appears. Click the <b>New</b> button. 
+  <p> <img src="Connection Properties.jpg" alt="Connection Properties" width="396" height="284"> </p></li>
+  <li>The  database <b>Driver Properties</b> dialog appears. Enter the <a href="#dbCredentials">Database Credentials</a> as previously indicated and click the <b>OK</b> button when done.   The Connection Type can either be a Service Name or Service (SID).
+  <p><img src="driverProperties.png" alt="Database driver properties"></p></li>
+  <li> The <b>Connection Properties</b> dialog appears. Enter the name of the database connection in the<strong> Name </strong> field. </li>
+  <li>Enter the database schema username in the <strong>User</strong> field. Use the same username  as defined in your <a href="#dbCredentials">Database Credentials</a> (for example, <b>cw</b>). </li>
+  <li>Click the <strong>OK</strong> button to save the connection properties. </li>
+  <li>In the database login dialog, enter the database password  as defined in your <span class="confluenceTd"><a href="database initialization.html">Database Initialization</a></span> (for example, <b>cw</b>), and then click the <b>OK</b> button.</li>
+  <li>Click <strong>Runtime</strong> &gt; <strong>Run </strong>from the menu bar or by  click the <strong>Run</strong> button to run the framework. </li>
+
+  <li>The <a href="../../html/Service_Designer_Tool_User_Guide/Service Designer Menu Actions/runtimeSelectApplication.html"> Select Application</a> dialog appears; click the <strong>New</strong> button.</li>
+  <li>The <strong>Add</strong> dialog appears; enter the information for the <strong> Version </strong>and  <strong>Description</strong> fields</li>
+  <li>Click the <strong>OK</strong> button from <strong>Add</strong> and <strong>Select Application</strong> dialogs.</li>
+
+</ol>
+
+<p>The database connection setting is stored in the <a href="../Service_Designer_Tool_User_Guide/Introduction_to_Metadata/Understanding Your Metadata Files.html"><i>.settings</i> file in the directory root</a>.</p>
+
+<p>The framework is now started in configuration mode. Once the configuration application is properly set up and the application metadata has been run, the framework  appears in run mode.
+
+<table cellpadding='5' width='85%' cellspacing='8px' class='noteMacro' border="0" align='left'>
+<tr>
+<td><b class="strong">Note:</b> The console should provide the following messages:
+  <ul>
+      <li>Error in  startup - starting config only<br>
+      <li>Starting  web server on port 8080 in CONFIG mode<br>
+      <li>Started web server on port 8080 in CONFIG mode.
+</ul>
+
+<td><img src="Order Care console.jpg" alt="Console" width="373" height="90"></td>
+</tr>
+</table> 
+<p><br>
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<h3><a name="ConfigTool"></a>Configure the  System Configuration Application</h3>
+<p>The system configuration application allows you to set up the database connection, which is used during the application metadata runtime. This section describes the required steps to set up the Configuration application. For more information about the Configuration application, see the <a href="../Configuration_Tool_User_Guide/Getting Started/introductionSystemConfiguration.html">Configuration User Guide</a>.</p>
+<ol>
+<li>In your Web browser, access the System Configuration application by entering   http://localhost:8080/cwf/config as the URL.
+  <p><strong>Note:</strong> The port 8080 is defined in the Velocity Studio <a href="../../html/Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Preferences.html">preferences</a>.</li>
+<li>The System Configuration application's login page appears. Enter <strong>upadmin</strong> as both your Username and Password,  and then press the Enter key.
+  <p><img src="configurationApplication.png" alt="Home Page of Configuration Application" border="1" /></p>
+</li>
+
+<h4><a name="DBSetup"></a>Set up Database Connection in System Configuration Application</h4>
+<li>Select the main cluster node (for example, Wireless Project) from the  node menu section, and then click the <strong>Database</strong> tab.</li>
+<li>Clicking <strong>Databases</strong> &gt; <strong>Logical  Connection</strong> displays the logical connections to the database, which are  responsible for enabling the AVM to send database commands to the database, to  carry out different functionalities.</li>
+<li>Clicking <strong>Databases</strong> &gt; <strong>Physical  Connection</strong> displays the physical connections to the database, which are  responsible for defining database connection parameters to be used by logical  connections.</li>
+<li>To add a physical connection, complete these  steps:</li>
+
+<ol type="i">
+  <li>From  the Physical Connection page, click the <strong>Add</strong> button.</li>
+  <li>The  New Physical Connection dialog appears. Enter the database credentials; when  you have finished, click the <strong>Apply</strong> button. A message appears, indicating  that you have successfully updated your Oracle thin connection.</li>
+  <li>To test your connection settings, click the <strong>Test</strong> button. If your connection settings are properly set up, a confirmation message  appears.</li>
+</ol>
+<p><strong>Note:</strong> The database attributes in the system configuration application need to match the database attributes set in the Velocity Studio. </p>
+  <li>Click the Logical Connection tab to associate  your logical connections to the physical connection you have just created,  double-click each of the following logical connections and select your newly  created physical connection from the drop-down list:</li>
+ <ul> <li><strong>ARCHIVE</strong></li>
+  <li><strong>ORDER</strong></li>
+ <li><strong>PE_ORDER </strong></li></ul>
+
+  <li>Click the<strong> Save</strong> button to save your configuration settings, and logout from the system configuration  application.</li>
+   <p><strong>Note:</strong> You can select the <strong>Active configuration</strong> checkbox for PE, PE_UI, or UI node.</p>
+  <li>Go back to the Velocity Studio and click <strong>Runtime</strong> &gt; <strong>Stop</strong> from the menu bar, to stop the runtime.</li>
+  <li>Click <strong>Runtime</strong> &gt; <strong>Run</strong> from the menu bar  to start the framework again. The framework is now started in Run mode.</li>
+  </ol>
+<p><strong>Note: </strong>For more information, refer to the <a href="../../html/Configuration_Tool_User_Guide/Getting Started/gettingStarted.html">System Configuration User Guide</a>.</p>
+<h3><a name="ProcessEngineConfiguration"></a>Process Engine Configuration</h3>
+<p>If you are building or have an existing metadata that requires the process engine, you are required to set up the node configuration for it. Settings depend on your cluster arrangement (for example, single or symmetrical or asymmetrical clustered). Refer to the <a href="../Metadata Deployment Guide/Process Engine Clustering Changes.html">Process Engine Configuration</a> for more information.</p>
+<h3>Installation Complete</h3>
+<p>Your  installation is complete. You can now create your new application metadata or load an existing metadata, and then run it. You can <a href="verifying your installation (optional).html">verify that your installation</a> is done correctly.</p>
+
+<p>Installation complete does not mean that you are ready for deployment. However, in a development or engineering environment, deployment is not necessary. See the <a href="..\Metadata Deployment Guide\Introduction to Deployment.html">deployment guide</a> for details on setting up for deployment environment.</p></td>
+</tr>
+</table>
+
+</body>
+</html>

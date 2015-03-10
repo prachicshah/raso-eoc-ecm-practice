@@ -1,0 +1,266 @@
+<html>
+<head>
+<title>Finder User Interface</title>
+<link rel="StyleSheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2> Finder User Interface</h2>
+<br>
+To  create a new finder User Interface (UI),  create a <a href="../Creating UI Objects.html#createTopLevelUI"> new user interface</a></a>, which  extends<strong> ui_common.baseFinder</strong><strong></strong>. By  default, this finder UI has two types of search forms: 
+<ul>
+  <li> <strong>Search</strong> – This  is the modern search form. Some  data objects support Oracle-type searches. For more information, refer to the API.</li>
+  <li><strong>classicSearch</strong> – This  is the basic search form, in which fields are bound to a search object.</li>
+  </ul>
+<a name="#FinderUI">To  show either modern search or classic search, override the</a> <strong>OnInit</strong> method  from <strong>Methods</strong> tab of the finder UI, and set the  values for <strong>isModernSearchEnabled</strong> and <strong>isClassicSearchEnabled </strong>variables. <br>
+<br>
+
+<img src="./onInitMethod.png" alt="Show modern or classic search" />
+
+<p><strong>Note: </strong> If both search types are enabled, the modern search  displays  automatically.  To display classic search in runtime, click the arrow icon beside the search menu. If the modern search is hidden, the classic  search form displays by default.</p>
+ To disable the finder results editing, set the<strong> isDetailEditable </strong>varialbe to false by following these steps:
+ <ol>
+  <li>Select the <strong>isDetailEditable</strong> variable. </li>
+  <li>Click  the <strong>Methods</strong> tab of the variable and right-click the finder UI (for example, testFinderUI). </li>
+  <li> Select <strong>New Initialization</strong> and  in the script use <tt>return false;</tt> to set the variable to false.<br>
+    <br>
+  </li>
+</ol>
+<img src="./isEditable.png" alt="Disable finder results" border="1" />
+
+<h3><a name="searchForm">Create a Classic Search Form</a></h3>
+There are two ways to implement the classic search:
+  <ul>
+    <li> <a href="#internalForm">Use an  internal form in the base finder</a>.</li>
+    <li><a href="#externalForm">Use an external form and link it to the base finder by an event</a>.
+        </p>
+    </li>
+  </ul>
+  <h4><a name="#internalForm">Use an Internal Search Form</a></h4>
+<ol>
+  <li>Navigate to the<strong> Variables</strong> tab and find <strong>searchForm</strong> variable.</li>
+  <li> Add an<strong> init</strong> method  for this variable and  return the string <em>classicSearch</em>. </li>
+  <li>To internally  configure the search form, once the search model is set up, right-click  the <strong>classicSearch</strong> form and select  <strong>Override</strong>. </li>
+  <li>To add new elements, right-click the <strong>formGridLayout</strong> and select <strong>Add</strong>. </li>
+  <li>Set the <strong>Column  Span</strong> property to 2 or more for each field added.</li>
+</ol>
+<p> <strong>Note:</strong> It is not a good practice  to override <strong>formGridLayout</strong><em>,</em> as it contains styling  used throughout the modules.</p>
+<h4><a name="externalForm"> Use an External Search Form</a></h4>
+To implement a classic search form using an external form, consider these steps:
+<ol>
+<li><a href="../Creating UI Objects.html#createTopLevelUI">Create a new user interface</a> that   extends<strong> ui_common.baseForm</strong>.</li>
+<li> Navigate to the  <strong>Variables</strong> tab.</li>
+<li>Right-click  the<strong> model </strong>variable and select <strong>Override</strong>.  Provide the data type to be used for the search data object. </li>
+<li>Once  the model is setup, override the <strong>Default</strong> form and add fields to the  <strong>formGridLayout</strong>.</li>
+<li>  Set the <strong>Column Span</strong> property  to 2 or more.</li>
+<li> Navigate  back to the finder UI and override<strong> getClassicSearchForm </strong>method. This method can be implemented in two ways:
+<ul>
+  <li>If  the finder UI is re-usable, it is a good practice to create an event which   returns a <em>string</em> representation of the full name of the detail form. For  example,  an event can be created with the event id <em>UI_COMMON_ORG_CHART_SEARCH_FORM</em>.  In <strong>getClassicSearchForm</strong> method, a publish can be called for this event:</li><br>
+  <div class="code">
+<div class="codeContent">
+<pre>return ui_common.doPublishEvent(&quot;UI_COMMON_ORG_CHART_SEARCH_FORM&quot;, FIRST_ONE,this.model,&quot;cwa_security.orgChartNodeSearchForm&quot;);</pre>
+  <pre>&nbsp;</pre>
+</div>
+  </div> 
+  <li>If  this finder UI is not reusable,  return the detail form UI full name. For example:<br></li>
+  <div class="code">
+  <div class="codeContent">
+   <pre>return cwa_security.orgChartNodeSearchForm;</pre>
+  </div>
+ </div></ul>
+</ol>
+<h3><a name="createResultForm">Create a Result Form</a></h3>
+ The  result form can be customized by <strong>Selection, Editable</strong><em>, </em>and hiding <strong>Detail Icon Column</strong> (see <a href="#CustimizeaResultForm">Customize the Result Form</a> for more details). There are two ways to implement the result form:
+ <ul>
+    <li> <a href="#internalForm">Use an  internal form in the base finder</a>.</li>
+    <li><a href="#externalResultForm">Use an external form and link it to the base finder by an event</a>.      
+    </li>
+  </ul>
+ 
+  <h4><a name="#internalResultForm"> Use an Internal Result Form</a></h4>
+<ol>
+  <li>Navigate to the<strong> Variables</strong> tab and find <strong>resultForm</strong> variable.</li>
+  <li> Add an<strong> init</strong> method for this variable and  return the string <em>Result</em>.</li>
+  <li>To   configure the result form internally, right-click  the <strong>Result</strong> form and select <strong>Override</strong>.</li>
+  <li>To add new elements  right-click the <strong>resultList</strong> and  select <strong>Add</strong>. </li>
+  <li>Set the <strong>Column Span</strong>  property to 2 or more for each field  added.</li>
+</ol>
+<strong>Note:</strong> It is not a good practice    to override<strong>  resultList</strong><em>, </em> as it contains styling  used throughout the modules.</p>
+<h4><a name="externalResultForm">Use an External Result Form</a></h4>
+  To  display the list of objects returned by this finder,  provide the search  functionality. For example, if  finder is a script finder then implement <em>cwOnFinderSel</em> at the finder level. Once the implementation is done, follow these steps:
+
+<ol>
+  <li><a href="../Creating UI Objects.html#createTopLevelUI">Create a  new user interface</a></a>,  which extends <strong>ui_common.baseResult</strong>.</li>
+  <li> Navigate to the <strong>Variables</strong> tab and create a  new variable called <strong>result</strong>.</li>
+  <li> Set the <strong>Data Type</strong> to the type of data object  needed and  set the<strong> Array </strong>to true.</li>
+  <li> Override the <strong>Default</strong> form and right-click <strong>resultList</strong>. Select<strong> Extend</strong>, which allows  you to  change the table element&rsquo;s<strong> Variable </strong>property. Set it to the variable result created in step 2.</li>
+  <li> To add fields under the table element, right-click <strong>resultList</strong> and select  <strong>Add</strong>. </li>
+</ol> 
+When the result form is completed, navigate back to the finder UI's <strong>Methods</strong> tab. Override the<strong> getResultForm</strong> method and return the full name of the result form, by either publishing an event or just  returning the full name.
+  <h3><a name= "CustimizeaResultForm">Customize the Result Form</a></h3>
+<p>The  result form can be customized in the following ways:</p>
+    <table class="confluenceTable" border="1" cellspacing="0" cellpadding="0">
+    <tbody>
+      <tr>
+        <th height="24" valign="top" class="confluenceTh"><p align="left"><strong> Type</strong></th>
+        <th height="24" valign="top" class="confluenceTh"><p align="left"><strong>Details</strong></th>
+      </tr> 
+      <tr>
+        <td width="125" height="61" valign="top"><strong>Selection </strong></td>
+        <td width="590" valign="top"><ul>
+          <li>Checkbox or Simple – Use <strong>Default</strong> for checkbox and <strong>ResultSimpleSelect</strong> for simple</li>
+          <li>Multiple or Single  table selection – By default multiple is on. To restrict to single selection, set the   <strong>cwTableSelection</strong> variable  to single.</li>
+        </ul></td>
+      </tr>
+      <tr>
+        <td width="125" height="34" valign="top"><strong>Editable</strong></td>
+        <td width="590" valign="top">To make the result  editable, use the <strong>ResultEditable </strong> form and set the  <strong>isTableEditable</strong> variable to true.</td>
+      </tr>
+      <tr>
+        <td width="125" height="58" valign="top"><strong>Detail Icon Column</strong></td>
+        <td width="590" valign="top">To disable the detail  icon column, override the <strong>onInit</strong> method of the finder UI and add a call to <strong>this.setShowDetailEnabled</strong>(false). Passing in the Boolean false  disables the column. To enable the column later, pass the Boolean true.</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h3>Custom Menus</h3>
+To add additional menus to the finder, follow these steps:
+  <ol><li>Overriding the  result user interface <strong>Menu</strong> form.</li>
+<li> Add elements to <strong>customMenuLayout</strong> (see <a href="./detailUserInterface.html#customMenus">Custom Menus</a> for more details).</li></ol>
+  <h3><a name="implementingFinder">Implement Finder Functionality</a> </h3>
+The finder functionality can be implemented by providing the following:
+  <h4>Provide the Detail Form</h4>
+  
+  To  provide the detail form to use, when you click on the detail icon, override  the <strong>getDetailForm  </strong>method  by returning the full name of the detail form  (for example, the detail component created in <a href="./detailUserInterface.html#usingDetailForm">using  the detail form</a>). To display the detail form properly, the data object to display  must be provided by implementing <strong>getDetailModel</strong> method. Some implementations of this method can be as simple as returning the  parameter called <em>selected</em>. For others, an API can be called.
+  <h4>Provide New Functionality</h4>
+  
+  By  default, the <strong>Add</strong> menu is shown when the finder UI is in edit mode.  To hide the <strong>Add</strong> menu,  set the<strong> isNewMenuVisible</strong> variable to false. To  provide functionality for this menu, override the <strong>getNewDetailModel</strong> method on the finder UI. This method  returns a new instance of the data object to be saved. The finder UI  uses the form returned by <em>getDetailForm method.</em>
+  <h4>Provide Delete Functionality</h4>
+  
+  By  default, the <strong>Delete</strong> menu is shown when the finder UI is loaded. To  hide the <strong>Delete</strong> menu, set the<strong> isDeleteMenuVisible</strong> variable to false. To  provide functionality for this menu, override <strong>onDelete </strong>method. By default, there is one parameter passed in,  representing the data object selected in the UI.
+  <h3><a name="_Toc341958267">Redesign an Existing Finder</a></h3>
+  To redesign an existing finder follow these steps:
+  <ol>
+    <li><a href="../Creating UI Objects.html#createTopLevelUI"> Create a new user interface</a>,  which extends <strong>ui_common.baseFinder</strong>. Set the <strong>Select input</strong> and <strong>Select output</strong> objects as that of  the old finder.</li>
+    <li>Override the <strong>onInit</strong> method of the finder UI, and set the <strong> isClassicSearchEnabled </strong>variable.</li>
+    <li>To provide the classic  search form, ensure that the search object of the finder <strong>search</strong> is set with  the correct data type property.</li>
+    <li> Right-click the <strong>classicSearch</strong>   under  the finder UI and select <strong>Override</strong>. </li>
+    <li>Copy fields from the  old search form to the<strong> classicSearchGridLayout</strong> layout element. Ensure that  the fields use variables from the search object of the finder <em>search</em>.</li>
+    
+    <li>Navigate to the  <strong>Variables</strong> tab and find <strong>searchForm </strong>variable. Add an <strong>init</strong> method for this variable and  return the string <em>classicSearch</em>. </li>
+    <li>To provide the result  form, right-click the <strong>Result </strong> form under the finder UI and select  <strong>Override</strong>.</li>
+    <li> Right-click the <strong>resultList </strong>element and select <strong>Extend</strong>. </li>
+    <li>Set the  <strong>Variable</strong> property to the <strong>result</strong>  variable. Necessary fields can  be added under this table element. </li>
+    <li>Navigate to the  <strong>Variables</strong> tab and find<strong> resultForm</strong> variable. Add an <strong>init</strong> method for this variable and  return the string <strong>Result</strong>. </li>
+    <li>Follow <a href="#implementingFinder">Implement Finder Functionality</a> to provide further  functionality.</li>
+    <li>To add custom menus,  override the<strong> Menu</strong> form. Add menus under the <strong>customMenuLayout</strong> as needed.</li>
+  </ol>
+  <h3><a name="_Toc341958268"> Reference Finders</a></h3>
+  To create a finder that can be used as a top-level object and a reference finder, follow these steps:
+  <ol>
+    <li><a href="../Creating UI Objects.html#createTopLevelUI">Create a new user interface</a> which extends <strong>ui_common.basePrimaryFinder</strong>. Set the <strong>Select input</strong> and <strong>Select output</strong> objects as that of  the old finder.</li>
+    <li>Follow  the rest of the steps in <a href="#FinderUI">Finder UI</a>.</li>
+    <li>For  finders that are used as second-level finders, such as the user finder,  the  Groups UI needs to implement <em>onSelect method</em>.</li>
+  </ol>
+  <h3> Third-Level (popup) Finders</a></h3>
+  <p>A third-level finder is a finder that is displayed within a second-level finder.  The primary use is to add a subset of objects as a property of a  component. For example, the<em> Group detail</em> form in <em>cwa_security </em>contains a  <strong>Users</strong> tab that displays a list of users belonging to the group. The <strong>Add</strong> button in this users finder displays a third-level finder that allows you to select more objects to add to the list. 
+</p>
+  <img src="./userTab.png" alt="Third-level finder"/><br>
+  <br>
+To create the Third-Level finder, follow these steps:   
+   <ol>
+    <li><a href="../Creating UI Objects.html#createTopLevelUI">Create a new user interface</a>, which extends<strong> ui_common.basePrimaryFinder</strong><em>. </em>Set the <strong>Select input</strong> and <strong>Select output</strong> objects as that of  the old finder.</li>
+    <li>Provide a search form for  the finder as in <a href="#searchForm">create a search form</a> (optional).</li>
+    <li>Provide a result form  for the finder as in <a href="#createResultForm">create a result form</a>.</li>
+  </ol>
+   <h4>Provide Select Functionality</h4>
+  The <strong>Select</strong> menu is shown when the finder UI is loaded.  To achieve this functionality    override <strong>onSelect</strong> method form <strong>Methods</strong> list. By default, there is one  parameter passed in, representing the data object selected in the UI.
+  <h4>Provide Result Filtering Functionality</h4>
+  The result filtering functionality can be achieved by overriding <strong>compareKeys</strong> method in the<strong> Methods</strong> tab and implementing with required  filtering criteria, if different from <em>cwStructId</em> comparison.
+  Implement    <strong>cwOnFinderSel</strong> method and apply  filter on search result. 
+  
+  For example:<br> 
+<div class="code">
+<div class="codeContent">
+   <pre>return this.controllerOwner.filterResult(result);</pre>
+  </div>
+ </div> 
+<h3><a name="secondlevelFinder">Second-Level Finders</a></h3>
+ <p> Second-level finders are finder user  interfaces that are displayed within an object&rsquo;s detail component. For  example, the <em>Group detail</em> form in <em>cwa_security</em> contains a <strong>Users</strong> tab that  displays a list of users belonging to the group. This form is a second-level finder.  It differs from regular finders because it has logic to add or remove data objects  to or from the list  through the <strong>Add </strong>button.
+  </p>
+  <img src="./userTab2.png" alt="Second-level finders" border="1" /><br><br>
+  To create the Second-Level finder, follow these steps: 
+  <ol>
+    <li><a href="../Creating UI Objects.html#createTopLevelUI">Create a new user interface</a>, which extends <strong>ui_common.baseSecondaryFinder</strong>. Set the <strong>Select input</strong> and <strong>Select output</strong> objects. </li>
+    <li>Provide a search form  for the finder as in <a href="#searchForm">create a search form</a> (optional).</li>
+    <li>Provide a result form  for the finder as in <a href="#createResultForm">create a result form</a>.</li>
+  </ol>
+  <p>By  default, the <strong>Remove</strong> menu is hidden, if the finder UI is read only.  If <strong>Edit</strong> menu is selected, then  the user interface is editable and  the<strong> Remove</strong> menu is visible. Override the  <strong>onRemove </strong>method and implement. By default,  there is one parameter passed in, representing the data object selected in the  UI.</p>
+  <h4>Provide the Add Finder Form</h4>
+  By  default, the <strong>Add</strong> menu is hidden, if the finder UI is read only.  Selecting the <strong>Edit </strong>menu makes the user interface editable and makes the<strong> Add</strong> menu visible.
+  To  provide the add finder form to use, when you click on the <strong>Add</strong> icon;  override the <strong>getAddFinderForm</strong> method by returning the full name of the finder UI. Override the <strong>getAddFinderForm</strong> method and return the full  name of the third-level finder form, by either publishing an event or just  returning the full name.
+  <h4>Popup Menus</h4>
+The add finder can  appear as a popup menu. The implementation can be done in the <em>addAction method</em> in<em> baseSecondaryFinder. </em>To create the  pop up  for additional menus, follow these steps:
+<ol>
+<li>Create a new Popup  <a href="../User Interface User Action Method.htm">user action</a> and specify  the dialog object to <strong>ui_common.dialogExtend</strong><em>.</em></li>
+<li>  In the script body, return the UI object to be displayed as a dialog.</li>
+</ol><br>
+<h4>Providing the Search Criteria</h4>
+  
+  Set up for search  criteria can be done in two ways:
+  <ol>
+    <li>By using a search model.  Navigate to the <strong>Variables</strong> tab and create a new variable, for example  <em>searchModel</em>. Use this model in the select method. </li>
+    <li>Override and  implement the  <strong>setSearchModel</strong> method.</li>
+  </ol>
+  
+  <h4>Detailed View </h4>
+  
+  If detail view is  enabled:
+  <ul>
+    <li>Override and implement <strong>getDetailForm</strong>and <strong>getDetailModel</strong> methods as in  <a href="./detailUserInterface.html#usingDetailForm">providing the detail  form</a>.</li>
+    <li>Ensure that the<strong> isShowDetailEnabled</strong> variable is set to  true when using the <a href="#secondlevelFinder">second-level finder</a>.</li>
+  </ul>
+  <h4>Read Only View</h4>
+  
+  Once the second-level finder is initialized,   you can set the user interface to read-only until edit menu is selected as follows:<br>
+    <div class="code">
+  <div class="codeContent">
+   <pre>showEditMenu = true;
+setReadOnly(true);</pre>
+  </div>
+ </div> 
+    <h3><a name="_Using_the_“2nd"></a>Use the Second-Level Finder</h3>
+<p>In the calling UI, the following are the variables to be set or methods to be called after initializing the second-level finder:</p>
+  <table width="490" border="1" cellpadding="0" cellspacing="0" class="confluenceTable">
+    <tbody>
+      <tr>
+        <th height="24" valign="top" class="confluenceTh"><p align="left"><strong> Method or Variable </strong></th>
+        <th height="24" valign="top" class="confluenceTh"><p align="left"><strong>Details</strong></th>
+      </tr> 
+      <tr>
+        <td width="158" height="34" valign="top"><strong>isShowDetailEnabled</strong></td>
+        <td width="326" valign="top">Enables or disables result items on double click</td>
+      </tr>
+      <tr>
+        <td width="158" height="33" valign="top"><strong>isIconVisible</strong></td>
+        <td width="326" valign="top">Sets the visibility of  result detail icon</td>
+      </tr>
+      <tr>
+        <td width="158" height="33" valign="top"><strong>isGradientStyle</strong></td>
+        <td width="326" valign="top">False, if this variable is an embedded finder</td>
+        
+      </tr>
+       <tr>
+        <td width="158" height="33" valign="top"><strong>searchModel </strong></td>
+        <td width="326" valign="top"> If  <em>setSearchModel  method</em> is set</td>        
+      </tr>
+    </tbody>
+</table></td>
+ </tr>
+  </table>
+   </body>
+    </html>

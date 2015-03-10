@@ -1,0 +1,34 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Classification Types</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td class="pagebody" ><h3>Classification Types</h3>
+      <p>Classification types are to support multiple types in items and attributes. These types are used to identify items and attributes under different environments (for example, Service registry, Order, or Catalog). You can define multiple  types for item and attributes, which are used to mark item or attribute is  browse-able, selectable, or configurable in different environments. The type  list is from<strong> cwt_classification</strong> code table. New type code can be added in the <a href="../Configuration/CodeTables_Adding.html">code table</a>. The pre-defined types are <strong>Browse-able</strong>, <strong>Show on Detail</strong>, <strong>Configurable</strong>, <strong>Provisionable</strong>, and <strong>Searchable</strong>. These types are multi-selectable.</p>
+      <p>Classification types can be added in<strong> Item</strong>,<strong> Item Attribute</strong>, <strong>Item  Image</strong>, <strong>Item Description</strong>, and <strong>Item Charge Type</strong>. To add a classification types for an Item in the Catalog appplication, follow these steps:</p>
+      <ol>
+        <li>Click <strong>Commercial Modeling</strong> &gt;<strong> Items</strong> from the  Overview page.</li>
+        <li>The Item page appears; click  the <strong>New</strong> button to <a href="itemsAddNew.html"> create an item</a>. </li>
+        <li>For the <strong>Classification Types</strong> field, click add (<img src="classificationTypesButton.png" alt=" Add Classification Types utton">) button.</li>
+        <p><img src="classificationTypes.png" alt="Select the classification types from the list"></p>
+        <li>The list of classification types appears; select the types for the item from the list.</li>
+        <p> <strong>Note:</strong> You can select multiple types from the list. </p>
+        <li>Click the <strong>Save</strong> button. The selected classification types appears in the classification types field.</li>
+        <li>Click the <strong>Save </strong> button to save the item with the classification types.</li>
+      </ol>
+      <p><strong>Note: </strong>You can follow the above mentioned steps to add  classification types for  Item Attribute, Item  Image, Item Description, and Item Charge Type.</p>
+      <p>In  runtime, you can use <strong>getClassificationTypes </strong>API  by item, Attribute, Image, or Description  object to get classification type list. The API <strong>hasClassificationType</strong> can be used to check if the given classification type is assigned.  For more information on the API`s, refer to <a href="../../../../html/JavaScripting in Order Care/index.html">JavaScript documentation</a>.</p></td>
+  </tr>
+</table>
+</body>
+</html>

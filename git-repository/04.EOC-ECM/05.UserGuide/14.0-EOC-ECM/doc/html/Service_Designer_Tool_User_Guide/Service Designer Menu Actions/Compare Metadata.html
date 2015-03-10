@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Compare Metadata</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Compare Metadata</h2>
+
+<p>Velocity Studio allows you to view the differences between two metadata projects. To use the metadata comparison tool, complete these steps:</p>
+<ol>
+  <li>In Velocity Studio, ensure that you have <a href="Open Project.html">opened a project</a> that will be compared with another project.<br>
+    <br>
+  </li>
+  <li>From the menu bar, click <strong>File &gt; Compare</strong>. <br>
+    <br>
+  </li>
+  <li>A dialog appears, prompting you to select the directory in which your second project is located. Once you have selected your project directory, click the <strong>Open</strong> button to launch the <strong>Compare Metadata</strong> page.<br>
+    <br>
+    <img src="compareOpenProject.png" alt="Select project metadata to be compared with current project metadata"><br>
+    <br>
+  </li>
+  <li>The <strong>Compare Metadata</strong> screen appears:<br>
+    <br>
+    <img src="compareMetadata.png" alt="Compare Metadata page"><br>
+<br>
+The page contains the following sections:<br>
+<br>
+<table width="610" border="1">
+  <tr>
+    <th width="75" class='referenceTh'>Pane</th>
+    <th width="519" class='referenceTh'>Description</th>
+    </tr>
+  <tr>
+    <td><strong>Source</strong></td>
+    <td>This pane shows the current project's metadata tree. You can right-click any metadata object and select <strong>Properties</strong> to view its properties.</td>
+    </tr>
+  <tr>
+    <td><strong>Difference</strong></td>
+    <td><p>This pane contains a metadata tree containing three nodes:
+      <ul>
+        <li><strong>Added</strong> - node contains all top-level metadata that does not exist in the current metadata project.
+        <li><strong>Deleted</strong> - node contains all top-level metadata objects that no longer exist in the secondary metadata project.
+        <li><strong>Modified</strong> - node contains all top-level metadata objects that are different in the two projects. You can expand each top-level metadata object node in the Modified pane to view which of its children are different. 
+Specifically, this pane contains  all modified property elements of top-level metadata objects, including children, methods, and the user interface.</p></ul></td>
+    </tr>
+  <tr>
+    <td><strong>Target</strong></td>
+    <td>This pane shows the secondary project's metadata tree. You can right-click any metadata object and select <strong>Properties</strong> to view its properties.</td>
+    </tr>
+</table>
+  </li>
+</ol>
+<p><strong>Notes:</strong>
+<ul>
+  <li>It is not possible to have two simultaneous AVMs. The source metadata is located in the first AVM that was created, which refers to objects in the second AVM that was created.</li>
+  <li>If no projects have been opened in Velocity Studio, the <strong>Compare</strong> option under the <strong>File</strong> option is disabled.  </li>
+  <li>When you select a modified property element, the old  and   new values appear  in the detail panel under the <strong>Difference</strong> pane.</li>
+  <li>When you select a modified element, the <strong>Detail</strong> button is enabled. Click this button to open the <strong>Detail</strong> panel, showing both the old and new values in a split screen.</li>
+</ul>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

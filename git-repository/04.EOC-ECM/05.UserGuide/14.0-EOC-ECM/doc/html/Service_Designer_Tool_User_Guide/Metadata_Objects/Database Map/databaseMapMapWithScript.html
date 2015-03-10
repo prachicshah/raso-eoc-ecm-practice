@@ -1,0 +1,36 @@
+﻿<html>
+<head>
+<title>Database Maps - Map with a Script</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Map with a Script</h2>
+<p>You can map using a script by completing these steps:</p>
+<ol>
+  <li>Select the column that you want to map, and then click the <strong>Map With Script</strong> button.<br>
+    <br>
+    <img src="databaseMapMappingTabMapWithScriptButton.png" alt="Database Maps - Map With Script button" border="1">    <br>
+    <br>
+  </li>
+  <li>To denote whether the column is a key, your data structure must have a key variable defined within it. Refer to the <a href="../Document/Document General Properties.html">Data Structures General properties</a> - <strong>Keys</strong> field for more information.<br>
+    <br>
+    <img src="databaseMapMappingTabMapWithScriptKeyField.png" alt="Database Maps - Map With Script - Key field" border="1">    <br>
+    <br>
+  </li>
+  <li>Two separate script functions appear in the area under the <strong>Map with Script</strong> button:  </li>
+  <ul>
+    <li>cwDBMapFromAction, which runs when data is retrieved from the database</li>
+    <li>cwDBMapToAction, which runs when the data object is saved to the database.</li>
+    </ul>
+  <p><strong>Note:</strong> It is mandatory to provide an implementation that returns the appropriate values that match the column data type.</p>
+</ol>
+</td>
+</tr>
+</table>
+</body>
+</html>

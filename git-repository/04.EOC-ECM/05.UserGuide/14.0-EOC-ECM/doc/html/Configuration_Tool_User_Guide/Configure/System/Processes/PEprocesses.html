@@ -1,0 +1,113 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Processes - Process Engine Processes</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Process Engine Processes</h2>
+
+<p>Clicking  <strong>Processes</strong> &gt; <strong>PE Processes</strong> displays   the workload allocated to this process engine (PE) for each process type (User, Global, and Interface processes). You are also able to do the same for a specific metadata process type (Global and Interface only).</p>
+<p><img src="PEprocesses.png" alt="Processes - PE Processes tab" border="1"></p>
+<h3>Configure PE Process Parameters</h3>
+<p>To configure your PE process parameters, do the following:</p>
+<ol>
+  <li>Click the <strong>Number of Processes</strong> field next to the process name that you want and complete the field.</li>
+  <li>Click the <strong>Serialization</strong> drop-down menu and select a value from the list.</li>
+  <li>When you have finished making your changes, click the <strong>Save</strong> button.</li>
+</ol>
+<p>By default, there are at least three items in the table to indicate:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Name</th>
+      <th class='confluenceTh'>Description</th>
+      <th class='confluenceTh'>Default Number of Processes</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><i>USER.PROCESSES</i></td>
+      <td class='confluenceTd'>User Processes.</td>
+      <td class='confluenceTd'>50,000</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><i>DEFAULT.GLOBALPROCESSES</i></td>
+      <td class='confluenceTd'>Represents all Global Processes that are not specified or added in this table by name.</td>
+      <td class='confluenceTd'>1</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><i>DEFAULT.INTERFACEPROCESSES</i></td>
+      <td class='confluenceTd'>Represents all Interface Processes that are not specified or added in this table by name.</td>
+      <td class='confluenceTd'>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>You cannot add or delete a record pertaining to a specific global or interface process from the processes list. However, you can change their parameters. If no values are defined, the values are taken from either DEFAULT.GLOBALPROCESSES or  DEFAULT.INTERFACEPROCESSES. If these values are empty, the values are then taken from the default  CLUSTER node, which you must  not change.</p>
+<p><strong>Note:</strong> DEFAULT.GLOBALPROCESSES and  DEFAULT.INTERFACEPROCESSES are available at the root level only.</p>
+<p>This page contains the following fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="132" class='confluenceTh'>Field</th>
+      <th width="1395" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Process Name</b></td>
+      <td class='confluenceTd'>This field denotes the process type's name.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Number of Processes</b></td>
+      <td class='confluenceTd'>This field represents the number of process instances for this PE instance, which is used for calculating the cache sizes and memory size. The PE does not start if there is not enough memory for the specified number of processes. The value can be changed at runtime through JMX. If the value is 0, the PE does  not run the processes. There are further restrictions based on process type:
+        <ul>
+          <li><i>User Processes</i>: This value can be 0 or any number between 10,000 and 5,000,000. If the value is not specified, the PE calculates its own number, which will be considerably lower than the maximum number that the PE can run. As a rule, the maximum number of user processes that the PE can run must always be specified.</li>
+          <li><i>Global Processes</i>: The default value is 1. The allowed values are from 0 to 10,000.</li>
+          <li><i>Interface Processes</i>: The default value is 1.</li>
+          <li><i>Specific Global Processes by Name</i>: If unspecified, the value from the DEFAULT.GLOBALPROCESSES is used. If that is not specified, a value of 1 is used.</li>
+          <li><i>Specific Interface Processes by Name</i>: If unspecified, the value from the DEFAULT.INTERFACEPROCESSES is used. If that is not specified, a value of 1 is used.</li>
+        </ul>
+        See the <a href="#ProcessInstances">Determining Process Instances</a> section that follows on how to best set this value. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Serialization</b></td>
+      <td class='confluenceTd'><p>This field contains the following values:</p>
+        <ul>
+          <li><strong>DEFAULT</strong></li>
+          <li><strong>SERIAL</strong></li>
+          <li><strong>NOT_SERIAL</strong></li>
+        </ul>
+      <p>If you select <strong>SERIAL</strong>, the PE processes messages to global or interface processes that have the same serialization (correlation ID), one at a time. This way, in environments with several instances of Global or Interface processes, messages are guaranteed to be processed in the order that they are stored in the database (by MSGID or arrival time). This field is not applicable to user processes. For specific Global processes or Interface processes by name, the property is useful to revert serial or non-serial for a particular type of global or interface process when DEFAULT.GLOBALPROCESSES or DEFAULT.INTERFACEPROCESSES has this property set to <strong>SERIAL</strong> or <strong>NOT_SERIAL</strong>. </p></td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Note:</strong> This <b>PE processes</b> tab is editable only at node-level.  It is read-only at cluster-level. </p>
+<!--
+<p>See <a href="PEprocessesRules.html">Process Engine Configuration Rules</a> for information on recommended configuration rules for your process engine.</p>
+-->
+
+<h4><a name="ProcessInstances"></a>Determining Process Instances</h4>
+<p>There is no hard and fast rule to determine the number of process instances on a PE. However, using general system engineering principles, strategic numbers can be deduced.</p>
+<p><b>For example:</b></p>
+<p>An application runs on average 1,000,000 processes per month. The average duration of a process is 5 working days. For each top-level process, there are approximately three sub-processes running in parallel. How do we define the process space for a cluster of two PEs?</p>
+<p><b>Solution:</b></p>
+<ol>
+  <li>Calculate the average number of processes per day assuming 20 working days per month - 1,000,000 / 20 = 50,000 processes per day.</li>
+  <li>Calculate the number of active processes based on average duration of the process - 50,000 x 5 = 250,000.</li>
+  <li>Add 25% for uneven distribution of the load - 250,000 x 1.25 = 320,000 active processes at any moment.</li>
+  <li>Add 20% reserve - 320,000 x 1.2 = 390,000. Round it to 400,000 active processes running at any moment.<br>
+  </li>
+</ol>
+<p>Therefore, each PE of the cluster must have a process limit of 50,000 and an absolute limit of 200,000. As a result, each PE must run with approximately 400 MB of space. See the section on <a href="../Metadata Deployment Guide/J2EE Application Server Installation.html#PEMemory">PE Memory Allocation Guidelines</a> for details.</p>
+<p>It is important to properly define the process space of each PE. The process allocation mechanism is based on the notion of process space size (that is, the number of processes that the PE can run).</p>
+<p>Two parameters define the process space, both of which are visible on the JMX console:</p>
+<ul>
+  <li><strong>Absolute Process Limit</strong>: Maximum number of processes that the PE can run (JMX name is <em>AbsoluteProcessesLimit</em>). It is computed based on the available memory.</li>
+  <li><strong>Process Limit</strong>: Maximum number of processes that the PE is allowed to run (JMX name is <em>ProcessesLimit</em>), which is specified by you in the CDEF. If it is not specified, its value will stick to the absolute process limit's value.</li>
+</ul>
+<p>The PE will never run more processes than the absolute limit. </p>
+<p><b>Note</b>: Its value can change during runtime if you change the free memory size. Changing the sizes of the caches, however, have no effect on the absolute process limit. It increases or decreases the effective size of the free memory. Thus, increasing cache sizes can be done only if there is enough free memory, and reduction of its size will not cause problems.</p>
+<p>If the number of processes run by the PE reaches the absolute process limit, the PE postpones any external (a command in the database queue) and internal request (Spawn activity or script API that creates processes) to create a new process. Requests for new processes are queued in the database, waiting for time when the PE will have free memory for new processes.</p>
+<p>If the number of processes run by the PE reaches the process limit, the PE postpones any external request for process creation (both top-level processes and sub-processes) and internal request for top-level processes, but will create sub-processes on an internal request.</p>
+</body>
+</html>

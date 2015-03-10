@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title>Decision Trees</title>
+	    <link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">	    
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script>    </head>
+
+    <body onLoad="highlight();">
+	    <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+		    <tr>
+			    <td valign="top" class="pagebody">
+
+				    <h2>Decision Trees</h2>
+
+<p>A <b>Decision Tree</b> is a metadata object that encapsulates complex logic using BPML (Business Process Modeling Language) model, as well as executing at runtime. It presents the complex decision flow graphically, as a tree of decision making units called <b>Activities</b>. The Decision Tree reuses the basic ideas of BPML process model (see section <a href="../../Business_Process_Metadata/intro to business processes.html">Business Processes</a>). This encourages a piecewise, divide-and-conquer approach to defining a decision logic. Compared to pure scripting, Decision Tree can increase readability and decrease overall maintenance effort when you are faced with managing complicated business logic.</p>
+
+<p>Although the metadata of Decision Tree is akin to Business Process Metadata, they serve different purposes. Decision Tree is to be logically-oriented, to perform tasks based on criteria. Conversely, Business Process is to carry out the workflow required to coordinate the course of business activities. The expected execution life-span of of a Decision Tree instance is instantaneous, while completing business process instances are to be in hours, days, weeks or months (for example, Order orchestration). From a functional perspective, the key differences are:</p>
+
+<table class='confluenceTable' border cellpadding="1"><tbody>
+<tr>
+<th class='confluenceTh'> Decision Tree </th>
+<th class='confluenceTh'> Business Process </th>
+</tr>
+<tr>
+<td class='confluenceTd'> Decision Tree can run in any AVM environment (in UI Server or in Process Engine) </td>
+<td class='confluenceTd'> Processes can only be executed by Process Engines </td>
+</tr>
+<tr>
+<td class='confluenceTd'> Runs synchronously as uninterrupted units in a single session (server thread). </td>
+<td class='confluenceTd'> Multi-threaded, dedicated technology (process engine) to execute and maintain process states. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> Not possible to have persistent "in-progress" instance. As such, no need to indicate instance status, or migration of in-progress instances. </td>
+<td class='confluenceTd'> Persists progress in database upon completing activities in workflow; has <a href="../../Business_Process_Metadata/process status.html">process status</a> and need to <a href="../../Business_Process_Metadata/migration.html">migrate in-progress process instances</a> when Process definition is changed. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> Operations can only be of type <em>one-way</em> or <em>request-response</em>, but not <em>notification</em>, because it cannot wait for external interface to asynchronously trigger the flow of Decision Tree. </td>
+<td class='confluenceTd'> Operations can be of any type. </td>
+</tr>
+</tbody></table>
+
+<h4>Activities in Decision Tree</h4>
+
+<p>Similar to Activities in Processes, an Activity in Decision Tree is a component that performs a specific function within the tree, such as message passing (that is, operation) or execute a script. Activities are either <em>atomic</em> or <em>complex</em>. An <em>atomic</em> activity cannot have other sub-activities beneath them in the tree. Atomic activities tend to be "executable" activities, performing Decision Tree actions. A <em>complex</em> activity is composed of other activities. Complex activities are "control" activities that directs the execution of these sub-activities.</p>
+
+<p>Conceptually, the Decision Tree presents the logic by the use of the following complex activities:</p>
+<ol>
+	<li><b>Sequence</b> - executes the sub-activities one-by-one, in sequence</li>
+	<li><b>Switch</b> - spans the control logic to branches, where the execution/selection of each branch is conditional to the <em>case</em> sub-activity. This is equivalent to the switch/case statement available in most programming languages.</li>
+	<li><b>While</b> - repeats the sub-activities in sequence, until the condition in the While activity becomes false. It can contain the <b>Break</b> sub-activity to interrupt the loop.</li>
+</ol>
+
+
+<p>As well, there is a <b>Decision Tree</b> Activity which runs another Decision Tree. This is equivalent to function call in programming languages.</p>
+
+<h4>Notable properties in Decision Tree</h4>
+
+<p>A Decision Tree can contain a parameter list (see <b>Parameters</b> tab), which is a list of (name, type) pairs. It can also contain an initialization script and completion script (see <b>Actions</b> tab), which is run before the first activity and after terminal activity respectively. Together, a Decision Tree is capable of holding parameters, initializing them before the Decision Tree's execution.</p>
+
+<p>By default, Decision Tree runs as a single database transaction, but this can be altered by <b>Tree Transaction</b> property in <b>General</b> tab.</p>
+
+<h4><a name="new">Create New Decision Tree</a></h4>
+
+<p>To create a new Decision Tree:</p>
+In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:
+<ol>
+<li>Right-click a Namespace and select <b>New ...</b></li>
+<li><b>New Metadata Object</b> wizard appears as a popup. Expand <b>Business Processes</b>, and select <b>Decision Tree</b>, and then click the <b>Next</b> button.</li>
+<li>Step two of wizard appears. Type in the name of Decision Tree (must conform to JavaScript naming conventions), and other parameters (see <a href="Decision Tree General Properties.html">Decision Tree general properties</a> for description). Then click <b>Finish</b>.</li>
+</ol>
+<i>OR</i>
+<ol>
+<li>Right-click the <b>Decision Trees</b> folder or the <b>Business Processes</b> folder in a Namespace, if it is present. Select <b>New Decision Tree</b></li>
+<li>Follow step3 from above.</li>
+</ol>
+
+
+<p>After the Decision Tree is created, the newly created Decision Tree is added under <b>Decision Trees</b> folder.</p><p><img src="dtNavPane.png" align="absmiddle" border="1" alt="Decision Tree Node" /></p>
+
+</body>
+</html>

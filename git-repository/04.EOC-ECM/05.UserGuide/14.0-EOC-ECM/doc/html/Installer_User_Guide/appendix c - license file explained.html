@@ -1,0 +1,116 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Appendix C - License File Explained</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h1>Appendix C - License Files Explained</h1>
+
+<p>A number of products comprise our software offerings, including Velocity Studio, Order Management, Catalog Management, and Order Analytics. To successfully install each product requires a license.</p>
+
+    <h2>Licensing Described</h2>
+<p>License files that are provided to you by are in an XML file. The file contains a  signature in one of the XML fields to protect it from file tampering. A license file is bound to an expiry date or a fixed MAC address, or a combination of both. The license becomes invalid if it goes beyond the specified expiry date, or the machine running Velocity Studio does not have the same MAC address.</p>
+<p>Licenses are configured using namespaces which  enables features for a particular product ( Velocity Studio,  Order   Negotiations). </p>
+<p>For example,</p>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java">
+<em>&lt;namespaces&gt;<BR>
+   ....<BR>
+   &lt;namespace&gt;</em>Order Negotiations<em>&lt;/namespace&gt;</em><BR>
+&lt;/namespaces&gt;</pre>
+</div>
+</div>
+
+<p>Namespaces are also used to provide access for different modes  of Velocity Studio, for example, copy, can save, can publish. Several license files can be used, and features are added cumulatively based on the contents of the license file. </p>
+<p><strong>Note:</strong> When starting a product WAR file under an application container, the path to the directory with license files must be passed through <em>-D</em> property.</p>
+<p>Business partners can protect their namespaces using the information provided in the License protection namespace section. </p>
+<p>The following code is an example of the license file.</p>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;license&gt;
+  &lt;comments&gt;Internal development license&lt;/comments&gt;
+  &lt;expiryDate&gt;01-01-2012&lt;/expiryDate&gt;
+  &lt;macAddress&gt;99-1A-99-A1-99-A1&lt;/macAddress&gt;
+  &lt;operatingSystem&gt;Windows&lt;/operatingSystem&gt;
+  &lt;organization&gt;
+    &lt;name&gt;Test Company&lt;/name&gt;
+    &lt;address&gt;5000 Test Rd, Suite 1000, Mississauga, ON Canada, L4V 1W2&lt;/address&gt;
+  &lt;/organization&gt;
+<br>  &lt;namespaces&gt;<br>    &lt;namespace&gt;com.conceptwave.license.SelfCare&lt;/namespace&gt;<br>    &lt;namespace&gt;com.conceptwave.license.UnifiedWorkstation&lt;/namespace&gt;<br>    &lt;namespace&gt;com.conceptwave.license.CustomerInformationManagement&lt;/namespace&gt;<br>    &lt;namespace&gt;com.conceptwave.license.ServiceRegistry&lt;/namespace&gt;<br>    &lt;namespace&gt;com.conceptwave.license.OrderNegotiations&lt;/namespace&gt;<br>    &lt;namespace&gt;com.conceptwave.license.CatalogManagement&lt;/namespace&gt;<br>    &lt;namespace&gt;com.conceptwave.license.ProductLifecycleManagement&lt;/namespace&gt;<br>    &lt;namespace&gt;com.conceptwave.license.OrderManagement&lt;/namespace&gt;<br>    &lt;namespace&gt;com.conceptwave.license.OrderAnalytics&lt;/namespace&gt;<br>    &lt;namespace&gt;com.conceptwave.license.DesignStudio&lt;/namespace&gt;<br>    &lt;namespace&gt;com.conceptwave.license.Velocity&lt;/namespace&gt;<br>  &lt;/namespaces&gt;<br>&lt;Signature xmlns=&quot;http://www.w3.org/2000/09/xmldsig#&quot;&gt;&lt;SignedInfo&gt;&lt;CanonicalizationMethod Algorithm=&quot;http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments&quot;/&gt;&lt;SignatureMethod Algorithm=&quot;http://www.w3.org/2000/09/xmldsig#dsa-sha1&quot;/&gt;&lt;Reference URI=&quot;&quot;&gt;&lt;Transforms&gt;&lt;Transform Algorithm=&quot;http://www.w3.org/2000/09/xmldsig#enveloped-signature&quot;/&gt;&lt;/Transforms&gt;&lt;DigestMethod Algorithm=&quot;http://www.w3.org/2000/09/xmldsig#sha1&quot;/&gt;&lt;DigestValue&gt;Kh53kFlB3uY4S67olZde8k3SNc8=&lt;/DigestValue&gt;&lt;/Reference&gt;&lt;/SignedInfo&gt;&lt;SignatureValue&gt;S0z0sWUVhocCVAjwBT7uS3KRw/MrvorNTJYDjasUY+btSf6wa3mHpA==&lt;/SignatureValue&gt;&lt;/Signature&gt;&lt;/license&gt;</pre>
+</div>
+</div>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Parameter</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>comments</td>
+<td class='confluenceTd'>Description on the license file.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>expiryDate</td>
+<td class='confluenceTd'>If present, the license is only valid until the expiry date.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>macAddress</td>
+<td class='confluenceTd'>If present, the license is only valid to machine with the specified MAC address.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>gracePeriodDays</td>
+  <td class='confluenceTd'>If present, the license's grace period in days.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>operatingSystem</td>
+<td class='confluenceTd'>The operating system of the software to run on.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>organization</td>
+  <td class='confluenceTd'>The organization that issues this license.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>namespaces</td>
+  <td class='confluenceTd'>Each namespace listed enables a certain capability (such as copy, view) of the software products (such as  Velocity Studio,  Order Negotiations). </td>
+</tr>
+<tr>
+  <td class='confluenceTd'>signature</td>
+  <td class='confluenceTd'>Signature and Message Digest generated based on the XML content in the file and also the private key. The license file becomes void if it is hand-edited in any way because the message digest verifiable with signature no longer matches with the one hashed from the altered content.</td>
+</tr>
+
+</tbody>
+</table>
+
+
+<p>Here are the available namespaces:</p>
+<ul>
+<li><b>com.conceptwave.license.CatalogManagement</b>: Enable Catalog Management component.</li>
+<li><strong>com.conceptwave.license.CustomerInformationManagement</strong>: Enable the Customer Information Management component<sup></sup>.</li>
+<li><b>com.conceptwave.license.DesignStudio</b>: Enable Velocity Studio to start.</li>
+<li><b>com.conceptwave.license.OrderAnalytics</b>: Enable Order Analytics component.</li>
+<li><b>com.conceptwave.license.OrderManagement</b>: Enable Order Management component.</li>
+<li><b>com.conceptwave.license.OrderNegotiations</b>: Enable Order Negotiations component.</li>
+<li><span class="code-java"><strong>com.conceptwave.license.ProductLifecycleManagement</strong></span>: Enable the Product Lifecycle Developer (PLD) with the Catalog module.</li>
+<li><strong>com.conceptwave.license.SelfCare:</strong> Enable the Self-Care component.</li>
+<li><strong>com.conceptwave.license.ServiceRegistry</strong>: Enable the Service Registry component<sup></sup>.</li>
+<li><b>com.conceptwave.license.Velocity</b>: Enable Velocity Studio mode in Velocity Studio.</li>
+<li><strong>com.conceptwave.license.UnifiedWorkstation</strong>: Enable the Unified Workstation component<sup></sup>.</li>
+</ul>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

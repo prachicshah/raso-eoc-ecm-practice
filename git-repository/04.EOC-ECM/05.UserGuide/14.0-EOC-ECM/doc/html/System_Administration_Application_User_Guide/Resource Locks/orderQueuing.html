@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>Order Queuing</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td valign="top" class="pagebody"><h2>Order Queuing</h2>
+      <p>Order queuing allows for synchronizing processing of orders  according to their priority. Order queuing uses the <a href="ResourceLockingAPIS.html">resource locking API</a>.</p>
+      <h3>Queue and Resource Locking</h3>
+      <p>Resource lock menu options can be used for order queuing. The  release lock queue handles the following requests:</p>
+      <ol>
+        <li>Release  lock requests on API call (without delay).</li>
+        <li><a href="releaseRemoveLocks.html">Release  lock</a> request on lock duration or expiration (with delay same as lock duration).</li>
+        <li>Remove  pending request on API call (no delay).</li>
+        <li>Remove  pending request on timeout (with delay same as waiting timeout).</li>
+        <li>Callback  processes the requests again. </li>
+      </ol>
+      <p>The resource locking uses the queue() API, and provides queue message handler. You can include certain  queue implementation (DB or JMS). When a resource is released, the release  queue handler selects the next request sorted by the requested (created) date.  The priority is saved with the pending lock request, so that the release queue  handler selects the next request first by sorting priority and then by creation  date.</p>
+      <strong>Note:</strong> For  detailed information on APIs, see the <em>Velocity  Studio User Guide</em>, under <em>JavaScripting  &gt; </em><em>JavaScripting Extensions &gt;  JavaScript Documentation.</em>
+      </li>
+      </ul>
+     
+      <h3>Resource Request Priority</h3>
+      <p>The priority attribute has been introduced to the lock  request API. The priority is saved with the pending lock request, so that the  release queue handler selects the next request, sorting first by priority, and  then by creation date.        The priority ranges from 1 to 15, where 1 is the highest  priority and 15 is the lowest. The default priority is 8. This range is  consistent with priorities for processes and worklist tasks.  
+      The following priority APIs are available:</p>
+      <ul>
+        <li><a href="#getLock Method">getLock()</a></li>
+        <li><a href="#setPriority Method">setPriority()</a></li>
+        <li><a href="#setRequesterPriorityMethod">setRequesterPriority()</a></li>
+      </ul>
+      <h4><a name="getLock Method">getLock() Method</a></h4>
+      <p>The getLock() method has additional priority and durationType parameters.<br>
+        <br>
+        <em>getLock(String resourceID, String  resourceType, String system, String requesterID, String requesterType, Integer  duration, String callback, Integer timeToWait, Boolean notifyOnTimeout, Object  callbackParams, Integer durationType, Integer priority)</em></p>
+      <ul>
+        <li>The priority  parameter is optional. The default property of 8 is used if this parameter is not  specified. If input &lt; 1, the priority is set to 1. If input &gt; 15, the priority  is set to 15.</li>
+        <li>The durationType  parameter is optional. By default, its value is set to 0:</li>
+        <ul>
+          <li>0 – seconds</li>
+          <li>1 – minutes</li>
+          <li>2 – days</li>
+          <li>3 – timestamp</li>
+        </ul>
+      </ul>
+      <p><strong>Note:</strong> The  duration type applies to the duration  and timeToWait parameters, and  indicates in what units these input parameters are specified.</p>
+      <h4><a name="setPriority Method">setPriority() Method</a></h4>
+      <p>The setPriority() method sets the priority for the pending  lock request. If a resource is a part of the resource group, this method  increases the priority for all pending locks in the group.<br>
+        <strong><br>
+        </strong><em>setPriority(String resourceID, String resourceType, String system,  String requesterID, String requesterType, Integer priority)</em></p>
+      <h4><a name="setRequesterPriorityMethod">setRequesterPriority() Method</a></h4>
+      <p>The setRequesterPriority() method sets the priority for  all pending locks for the requester.<br>
+        <br>
+        <em>setRequesterPriority(String requesterID, String  requesterType, Integer delta)</em></p>
+      <h3><a name="_Toc385410974">Lock a Group of Resources</a></h3>
+      <p>The following API methods allow you to lock and release a  group of resources:</p>
+      <ul>
+        <li><a href="#getGroupLock Method">getGroupLock()</a></li>
+        <li><a href="#releaseLocks Method">releaseLocks()</a></li>
+      </ul>
+      <h4><a name="getGroupLock Method"></a>getGroupLock()  Method</h4>
+      <p>The getGroupLock() method requests a lock on a group of  resources. The maximum number of resources for a group is 100.</p>
+       <em>getGroupLock(resources[], String requesterID, String  requesterType, Integer duration, String callback, Integer timeToWait, Boolean  notifyOnTimeout, Object callbackParams, Integer durationType, Integer priority)</em>
+       <p>        This method returns true if the lock is acquired for all  resources from the group, and false if one or more resources are unavailable.  If resources are unavailable and<em> callback</em> is specified, the request is getting queued waiting for resources to be  released.</p>
+        The getGroupLock() method has the following parameters:</p>
+      <ul>
+        <li><em>resources</em> – an array of resource objects. The resource  object is of cwi_rslock.data.resource type and consists of these data items:</li>
+        <ul>
+          <li><em>resourceID</em> - the resource identifier, String, must be unique for type and System.</li>
+          <li><em>resourceType</em> – resource or lock type (Entity)</li>
+          <li><em>System - </em>resource  system</li>
+        </ul>
+      </ul>      
+      <ul>
+        <li><em>requesterID </em>– the requester ID</li>
+        <li><em>requesterType</em> – the requester type</li>
+      </ul>
+       
+       <p> The following are  optional lock parameters:</p>
+      
+      <ul>
+        <li><em>duration</em> – number of seconds to hold the lock  or until it is released.</li>
+        <li><em>callback</em> – handler for the lock acquired and  timeout notification, which is either the global script name or event ID.</li>
+        <li><em>timeToWait</em> – number of seconds to wait for the  lock to be acquired.</li>
+        <li><em>notifyOnTimeout</em> – true or false if a timeout  notification is needed and calls <em>callback</em>.</li>
+        <li><em>callbackParams</em> – additional parameter to pass to the  callback, which is either a serializable data object or an array of strings.</li>
+        <li><em>durationType</em> – an optional parameter. By default, its value is set to 0:</li>
+        <ul>
+          <li>0 – seconds</li>
+          <li>1 – minutes</li>
+          <li>2 – days</li>
+          <li>3 – timestamp</li>
+        </ul>
+        <li><em>priority</em> – an optional parameter. The default  property of 8 is used if this parameter is not specified. If input &lt; 1, the  priority is set to 1. If input &gt; 15, the priority is set to 15.</li>
+      </ul>
+      <p>The getGroupLock() method returns either true or false, or  any unexpected error, such as the fault object with an error message.<br>
+      </p>
+<p>        <strong>Callback Invocation </strong></p>
+        Callback parameters consist of the following: </p>
+      <ul>
+        <li>Lock request information</li>
+        <li>Lock status</li>
+        <li>Additional parameters</li>
+      </ul>
+      <p>If callback is specified, the  following actions are invoked: </p>
+      <ul>
+        <li>If unavailable, callback  is fired when the lock is acquired for all resources (asynchronously).</li>
+        <li>On waiting  timeout if <em>waitingTimeout</em> is  specified and <em>notifyOnTimeout</em>=true.</li>
+      </ul>
+      <p>When calling the getGroupLock() method a second time for  the same set of resources and requester:</p>
+      <ul>
+        <li>For already acquired locks, the method returns  true and ignores all other parameters.</li>
+        <li>If a resource from the group is unavailable, for  each resource from the group, a check occurs to determine whether there is  already a pending lock for the resource and the requester. If it exists, the  method returns fault and does not allow overwriting existing pending locks. If it  does not exist, the method adds pending locks for every resource from the group  (that is, pending locks are getting marked with the group ID).</li>
+      </ul>
+      <h4><a name="#releaseLocks Method">releaseLocks() Method</a></h4>
+      <p>The releaseLocks() method releases the lock on a set of  resources.</p>
+      <p><em>releaseLocks(resources[], String requesterID, String  resuesterType, Boolean removePendingRequests)</em><br>
+      <p> <strong>Note:</strong> The set  of resources passed to releaseLocks() may be different from the lock group, so  that resources can be released at any time if they are not needed. </p>
+        The releaseLocks() method returns true if all resources  from the group are released. Otherwise, it returns false if some of the locks  are not found (that is, either expired or helped by another requester). It also  returns any unexpected error, such as the fault object with an error message.</p>
+      <h3>Additional  Release Locks Details</h3>
+      <p>This  section contains additional information about release locks</p>
+      <h4>Group ID attribute</h4>
+      The <em>Group ID</em> attribute is a part of the  pending lock object. This attribute is a unique ID that is used to mark a group  of resources from the lock request.<br>
+      <h4> Notification when lock acquired for a  group</h4>
+      When a  resource is getting released, the queue handler gets the next pending lock from  the line. If the next pending lock is marked with a group ID, it gets all  pending locks with that ID and tries to lock all resources from the group.<br><br>
+      If the lock  for all resources is obtained, the callback is invoked. If it is not acquired,  the queue handler gets the next pending lock for the resource from the line,  skipping the group.<br>
+      <h4>Notification on a request timeout</h4>
+      In  current implementation, if the<tt> timeToWait</tt> parameter is specified, it  immediately adds the releaseLockRequest message to the release queue with the  delay = timeToWait, so that the pending request is removed when expired. <br><br>
+      For the  group of resources, it needs to push the releaseLockRequest message only once,  so all pending locks for the group are removed at once and the timeout  notification is invoked only once for the group.
+    </p>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

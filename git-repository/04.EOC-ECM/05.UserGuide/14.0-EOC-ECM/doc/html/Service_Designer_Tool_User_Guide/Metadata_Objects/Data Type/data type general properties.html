@@ -1,0 +1,262 @@
+<html>
+<head>
+<title>Data Type General Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="DataTypeGeneralProperties"></a>Data Type General Properties</h2>
+<p>The set of properties available in a Data Type varies depending on the Base Data Type that it <b>Extends</b> upon. Some properties are inherited from the Base Data Type, and depending on circumstances, may or may not changed from the given inheritance. The <b>General</b> tab of a Data Type is as follows:</p>
+<img src="dataType.png" border="0" alt="Data Type - General tab" />
+<br>
+<p>The following table describes the fields:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Name of the metadata object (used in scripts; must conform to JavaScript naming conventions). Read-only after creation. To change it, use the <b>Rename</b> command in pop-up menu by right-clicking the metadata object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Deprecated</b></td>
+  <td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Final</strong></td>
+  <td class='confluenceTd'>Metadata elements can be marked as final, which includes any Boolean final property that is available on any metadata element. Additionally, any metadata element that has the <strong>Final</strong> property set to true can neither be extended, nor overridden.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Label</b></td>
+  <td class='confluenceTd'>Metadata object display label.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the metadata object for documentation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Help</b></td>
+<td class='confluenceTd'>Context sensitive user help for the framework.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Extends</b></td>
+<td class='confluenceTd'>Base Data Type to derive from. Unchangeable after Data Type creation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Visual key</b></td>
+<td class='confluenceTd'>Appears only when Data Type is a <a href="data types.html#DataReferenceTypes">Reference Type</a>. A boolean that, if true, specifies that visual key of the referenced Document is to be displayed in the UI. If false, the reference key itself is displayed instead.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Overrides</b></td>
+<td class='confluenceTd'>Metadata object to override. Used to customize system or library metadata objects.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Finder</b></td>
+<td class='confluenceTd'>Only applicable to <a href="data types.html#DataReferenceTypes">Reference</a> types. This is the Finder that defines the Reference type. Specifically, the output document of the Finder is the reference target of the Reference type. The select operation of the Finder returns the dataset of the reference target available to be chosen by user.<br/><br/>
+  <strong>Note</strong>: If a Script Finder is chosen, the Script Finder must have <i>cwOnFinderGet</i> Method defined to access <i>.refData</i> and <i>.reference</i> in the corresponding <a href="../../../JavaScripting in Order Care/com/conceptwave/scripting/ReferenceValue.html">ReferenceValue</a> object in script, unless the output document is mapped to the database.
+</td>
+</tr>
+<!--<tr>
+<td class='confluenceTd'><b>Format</b></td>
+<td class='confluenceTd'>UI presentation format (refer to section <a href="data formats.html">Data Formats</a>).</td>
+</tr>-->
+<tr>
+  <td class='confluenceTd'><strong>Event</strong></td>
+  <td class='confluenceTd'><p>Only applicable to <a href="data types.html#DataReferenceTypes">Reference</a> types. This field represents the event that defines the Reference type. See the <a href="#reference"><strong>Reference</strong></a> property for details.</p>
+    <p>This field acts as a substitute for the <strong>Finder</strong> field. Events in which the handler returns either the full name of the finder or an instance of the finder object itself to be used as reference must be specified for this field. </p>
+    <p><strong>Note:</strong> A data type must have either the <strong>Finder</strong>  or the <strong>Event</strong> field specified, but not both fields.</p>
+    <p>The following is an example of using the <strong>Event</strong> field:</p>
+    <ol>
+      <li>Create an event.</li>
+      <li> Create an event handler for the event that returns the full name of the finder to use (for example, return "cwa_security.userFinder").</li>
+      <li> Create a data type and set its <strong>Event</strong> field to the event that you have just created.</li>
+      <li> Use this data type as a variable's data type, bind the variable to a <strong>Select</strong> field, and display the input field in a user interface.</li>
+      <li>At runtime, when you click the drop-down icon, the list shown comes from the finder.</li>
+    </ol></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Length</b></td>
+<td class='confluenceTd'>Only applicable to Decimal, Integer or String Data Types. For Strings, it specifies allowable max character length. For Decimals and Integers, it specifies allowable max number of digits (that is, negative sign and decimal point do not count). Select from drop-down listbox the inherited choice (displayed with <b>(&lt;Inherited&gt;)</b> appended) or <b>&lt;Unlimited&gt;</b>, or type in a number in the textbox to specify the length.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Scale</b></td>
+<td class='confluenceTd'>Only applicable to Decimal Data Types. Specifies the number of  digits that appear to the right of the Decimal. Select from drop-down listbox the inherited choice (displayed with <b>(&lt;Inherited&gt;)</b> appended) or <b>&lt;Unlimited&gt;</b>, or type in a number in the textbox to specify the scale. Refer to the Notes section below for more details. </td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Min</b></td>
+<td class='confluenceTd'>Only applicable to Integer or Decimal Data Types. The inclusive minimum value for the Data Type. Select from drop-down listbox the inherited choice (displayed with <b>(&lt;Inherited&gt;)</b> appended), or type in a number in the textbox to specify the minimum value.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Max</b></td>
+<td class='confluenceTd'>Only applicable to Integer or Decimal Data Types. The inclusive maximum value for the Data Type. Select from drop-down listbox the inherited choice (displayed with <b>(&lt;Inherited&gt;)</b> appended), or type in a number in the textbox to specify the maximum value.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Default value</b></td>
+<td class='confluenceTd'><p>This field is only applicable to Integer, Decimal, Boolean, String, Date, and DateTime data types. The data type's default value  is assumed in initialization.</p>
+<p>    The default value for Date and DateTime types can be specified either using the display format defined in the Element properties, or the default display format: <em>MM/dd/yyyy</em> for Date and <em>MM/dd/yyyy HH:mm</em> for DateTime. </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Nullable</b></td>
+<td class='confluenceTd'>If checked, this Data Type may have an empty/null value. If unchecked, a value must be specified. The default is checked.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Encrypt</b></td>
+<td class='confluenceTd'>If checked, this Data Type will be encrypted when saved and decrypted during loading procedures.  This checkbox will be disabled if this datatype is inherited from another data type that is flagged as encrypted. <strong>Note</strong>: If the inherited datatype does not have this encrypted flag checked then the child datatype can be flagged for encryption.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Auto format</strong></td>
+  <td class='confluenceTd'><p>This flag defaults to being checked, meaning that an integer or decimal data type contains commas (for example, 1,234,567). Unchecking this property sets it to false, indicating that an integer or decimal value does not contain any commas.</p>
+    <p><strong>Notes:</strong> </p>
+    <ul>
+      <li><span lang="EN-US">This checkbox is displayed only if the data type extends either integer or decimal.</span></li>
+      <li>When this checkbox is false, no commas appear in the  data type. For example, if the display format is set to \d\d\d\d\d\d\d\d\.\d\d, the data type still  formats with a decimal.</li>
+      <li>When numeric values having a length longer than the display format, a validation error is thrown in the Web browser.</li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a name="reference"></a><strong>Reference</strong></td>
+  <td class='confluenceTd'><p><SPAN id="internal-source-marker_0.20181406918443356">This property is available for a data type if it extends a String, Integer, or Decimal system type, or any other type based on these system types.</SPAN> When this property is selected, the type is considered to be a reference. As a result, you need to specify the <strong>Finder</strong> or <strong>Event</strong> property to get a reference finder at runtime.    A variable of that type can then be used in a reference field.<BR>
+    <BR>
+    <strong>Extending a type with the Reference property</strong><BR>
+    All extending child data types inherit the <strong>Reference</strong> property and become a reference type automatically. The checkbox displays selected, but disabled. </p>
+    <p><strong>Note:</strong> Child types do not inherit the <strong>Finder</strong> or <strong>Event</strong> property. As a result, properties need to be set for each child separately.<BR>
+      <BR>
+      <strong>Parent-child collisions</strong><BR>
+    There is the potential for parent-child type collisions:</p>
+    <ul>
+      <li>If the base is not a reference when you create the child type, but becomes a reference later, the child type automatically becomes a reference, too. In this case, Velocity Studio displays an error for the child type, requiring you to specify either the <strong>Finder</strong> or <strong>Event</strong> property.</li>
+      <li>If the base type was a reference, but this property's checkbox was deselected for the parent, the child type does not become a reference either. However, the <strong>Reference</strong> checkbox becomes enabled for the child type, so it can be corrected.</li>
+    </ul>
+<BR>
+    <strong>cwf.sReference, cwf.iReference, and cwf.nReference system types</strong><BR>
+    By default, these system types are still reference typest. This property's checkbox is selected and disabled for them, as well as for all child types based on them.    </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>XML name</b></td>
+  <td class='confluenceTd'>The XML tag name for this Data Type. Defaults to Name. This field is used when exporting data to XML.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>JSON name</strong></td>
+  <td class='confluenceTd'>The JSON tag name for this Data Type. Defaults to Name. This field is used when exporting data to JSON.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Pattern</strong></td>
+  <td class='confluenceTd'>Text mapping format pattern, which is used when it appears on a document using a text map. This field is used when exporting data to XML.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Text format</b></td>
+  <td class='confluenceTd'>Text mapping format (refer to section <a href="data formats.html">Data Formats</a>), which is used when it appears on a document that uses a text map. This field is used when exporting data to XML.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Text length</b></td>
+  <td class='confluenceTd'>Text mapping format length, which is used when it appears on a document using a text map. This field is used when exporting data to XML.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Element</b></td>
+  <td class='confluenceTd'>The type of <a href="../../Velocity_Studio/Form Elements Overview.htm">Form Element</a> that the Data Type shall be defaulted to present. Available choices depend on the base Data Type, and whether enumeration is defined.
+  <!--
+If base Data Type is:
+<ul>
+<li><b>Boolean</b>: Radio Buttons (default), Checkbox or Select List</li>
+<li><b>Date</b> or <b>DateTime</b>: Date Field (default)</li>
+<li><b>Decimal</b> or <b>Integer</b>: Textfield (default), Checkbox, Money</li>
+<li><b>Decimal</b> or <b>Integer</b> with enumeration defined: Select List, Auto Filter, Radio Buttons</li>
+<li><b>String</b>: extfield (default), Checkbox</li>
+<li><b>String</b> with enumeration defined: Select List, Auto Filter, Radio Buttons</li>
+<li><b>Translation</b>: Translation</li>
+<li><b>Money</b>: Money</li>
+<li><b>Reference Type</b>: Textfield, Auto Filter, Radio Buttons, Select List, Finder</li>
+</ul>
+-->
+  </td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Element Properties</b></td>
+<td class='confluenceTd'>List of properties that the Form Element of a Variable of this Data Type shall inherit. These properties can be overridden at lower levels; see <a href="../Permission/Permissions Velocity.html">Permissions</a> for details. Available properties to be inherited depend on the selected Element Type; they are:
+  <ul>
+<li><b>Display Format</b>: Specifies, in regular expression, the format of how the field Element shall be displayed. The use of this property depends on the Element Type selected. See documentation of the selected Element Type for details.</li>
+<li><b>Visible</b>: Determines whether the field Element is visible in UI or not. True or false, or assign a Permission Method to determine the boolean result.</li>
+<li><b>Editable</b>: Determines whether the field Element is editable (true) in UI or read-only (false). True or false, or assign a Permission Method to determine the boolean result.<br>
+  <br>
+  <strong>Note:</strong> If a field contains  an editable permission that is either coming from the form field itself, or inherited  from the variable or data type, it takes precedence. Otherwise, the user  interface's editablePerm permission takes over. If this method is not  overwritten, the model's editablePerm permission is used. User interfaces  displayed under another user interface with editablePerm are also be inherited  if the embedded user interfaces do not have their own editablePerm permission. <br>
+</li>
+<li><b>Optional</b>: Determines whether the field Element can have empty value (true) or a mandatory field (false). True or false, or assign a Permission Method to determine the boolean result.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<strong><br>
+Notes:</strong>
+<ul>
+<ul>
+  <li>Data Types may only specify more restrictive values than their base Data Types. For example, Length of an extended Data Type cannot be longer than its base Data Type.</li>
+  <li>If you change the Element of the Data Type after Forms are created based on Variables of this Data Type, this change does not propagate to the Form. For example, if you change from Select Field to Radio Button Group for a String-based Data Type, the existing Forms that contain Form Elements assigned with Variable of this Data Type will not be automatically changed to Radio Button Group. If desired, you must change it yourself, for each such Form Element across all Forms.</li>
+  <li><b>Number Formatting:</b>  Decimal and integer data types are strictly numeric by default.  When using a Textfield element and assigning a Variable of the type Decimal, the scale and length property will determine how the digits are displayed.  The Scale property determines how many digits appear to the right of the decimal. If the user enters decimal digits less than the Scale value, then the system will insert zeros at the end of the decimal number. The length and scale properties of the data type will dictate the number of digits that will appear to the left of the decimal.   The difference between the Length and Scale values will determine the number of digits that appear to the left of the decimal.  
+  
+    <table class='confluenceTable' border=1>
+      <tbody>
+        <tr>
+          <th class='referenceTh'>Length</th>
+          <th class='referenceTh'>Scale</th>
+          <th class='referenceTh'>User Entry</th>
+          <th class='referenceTh'>Display Value</th>
+        </tr>
+        <tr>
+          <td class='referenceTd'>2</td>
+          <td class='referenceTd'>3</td>
+          <td class='referenceTd'>123</td>
+          <td class='referenceTd'>.123</td>
+        </tr>
+        <tr>
+          <td class='referenceTd'>4</td>
+          <td class='referenceTd'>3</td>
+          <td class='referenceTd'>123</td>
+          <td class='referenceTd'>1.230</td>
+        </tr>
+        <tr>
+          <td class='referenceTd'>5</td>
+          <td class='referenceTd'>2</td>
+          <td class='referenceTd'>123</td>
+          <td class='referenceTd'>123.00</td>
+        </tr>
+        <tr>
+          <td class='referenceTd'>5</td>
+          <td class='referenceTd'>2</td>
+          <td class='referenceTd'>12.3</td>
+          <td class='referenceTd'>12.30</td>
+        </tr>
+        <tr>
+          <td class='referenceTd'>5</td>
+          <td class='referenceTd'>2</td>
+          <td class='referenceTd'>1.23</td>
+          <td class='referenceTd'>1.23</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+<ul>
+  <li><b>Number Formatting (commas and decimals):</b> When displaying data of the type Decimals, the commas and decimals are reversed depending on the browser language settings.  For example, 1.23 is displayed for US English and 1,23 is displayed for Portuguese. </li>
+  <li>You can override variables with a data type user interface, as long as the data type is the same or extends the original variable's data type.	</li>
+</ul>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

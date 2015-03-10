@@ -1,0 +1,225 @@
+<html>
+<head>
+<title>JMS Service Provider</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>JMS Service Provider</h3>
+<p>The JMS Service Provider allows interactions with other systems through JMS Server (Java Messaging Service). The JMS Service Provider supports connection queues only (no topics) for sending and receiving messages.</p>
+
+<h4>Invoking JMS Operations
+</h4>
+<p>When a JMS interface operation is invoked, a logical connection is initiated to a specific location. When completed, the connection is cached. If it is not used again within one hour (the time is not configurable), the connection is closed.
+  The connection is not shared between threads. So, if interface operations are invoked with the same location simultaneously by different threads, extra connections are created and remain open for one hour, if they are not used.
+  Additionally, if an error or exception occurs during the invocation of an operation, the connection is closed and is not cached.
+  </p>
+<p><strong>Note:</strong> The JMS Service Provider only supports Request-response and One-way interface operation types. JMS  listeners  are port based.&nbsp; That is, a port needs  to be defined for each listener. Port settings for JMS listeners allow the choice of an  operation meaning it  can support multiple operations, however each JMS  listener is tied to a specific operation. By  default, the operation is the first operation in the interfaces operation list. <br>
+</p>
+<h4>JMS Listeners</h4>
+<p> JMS listeners have a single logical connection created for each number of threads that are configured.
+  During normal operation, that connection is open for the listener's lifetime.
+  In the configuration, at the operation level, there is a <strong>Distributed</strong> flag. If this flag is set to true, the connection is shut down and an attempt is made to reconnect approximately every five minutes (the time is not configurable).
+  The time is approximate, and depends on how long the listener has been waiting for a message and how many threads are defined. If multiple listener threads are defined, the time is staggered between them by 10 seconds so that not all threads are shut down at once.
+  
+  If any kind of error occurs in between establishing a connection and trying to receive a message, the connection is shut down after 600 attempts (the number of attempts is not configurable) and attempts to get a new connection.
+  
+  If an error occurs trying to obtain a connection, the listener waits for ten seconds (time is not configurable) before it tries again. These attempts  continue indefinitely. 
+  
+</p>
+<h4>JMS Attributes in Velocity Studio</h4>
+
+<p>The table below describes the attributes that are exposed in Velocity Studio specifically for the JMS Service Provider.</p>
+
+<p>These attributes are found at <b><a href="../External Services/defining a binding.html">Binding</a></b> metadata object in Velocity Studio. When an Interface, Operation or message element is selected in the <b>Interface element</b> tree, the attributes for the element appears in the <b>Element definitions</b> table where values can be provided.</p>
+
+<p><ins>Attributes in Velocity Studio for the JMS Service Provider.</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Correlate</b></td>
+<td class='confluenceTd'>Gives options to <b>Correlate</b> request-response messages. If a selection is made here, there is no need to specify a <b>CorrelateProperty</b> (that is, the system automatically generates a sequence/key).
+  <ul>
+<li><b>msgID</b> - unique ID assigned by bus</li>
+<li><b>sequence</b> - unique ID assigned by system</li>
+<li><b>no</b> - no correlation</li>
+</ul>
+</td>
+<td class='confluenceTd'>Output Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>CorrelateProperty</b></td>
+<td class='confluenceTd'>User-specified <b>Correlate</b> property (for example, <em>msg.jms.correlationPropertyId = orderid)</em></td>
+<td class='confluenceTd'>Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></p>
+
+<h4>JMS Attributes in Configuration Application</h4>
+
+<p>The table below describes the attributes that are exposed in Configuration application specifically for the JMS Service Provider.</p>
+
+<p>These attributes are found in<b> </b><a href="../../../Configuration_Tool_User_Guide/Configure/System/Services/services.html" title="Services"><strong>Services</strong></a> tab in Configuration application. When clicking a Port, Binding, Operation or message node in the <b>Service Port tree</b>, the Configuration attributes for the node appears at the <b>Configuration</b> section at the right where values can be provided.</p>
+
+<p><ins>Attributes in Configuration application for the JMS Service Provider.</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Location</b></td>
+<td class='confluenceTd'>Specifies the location of JNDI Server.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>JNDIClass</b></td>
+<td class='confluenceTd'>Specifies the full name of Initial Context Factory class.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Factory</b></td>
+<td class='confluenceTd'>Specifies the name of queue connection factory.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>User</b></td>
+<td class='confluenceTd'>Specifies the user name if the JNDI Server requires authentication.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>PasswordKey</b></td>
+<td class='confluenceTd'>Specifies the password key to use for retrieving the password. The password key/value pairs are created in the Configuration application.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>cacheSize</b></td>
+<td class='confluenceTd'>The number of connections to be cached for the Service Provider. 100 is the default, and also capped to 100.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Transactional</b></td>
+<td class='confluenceTd'><p><b>Yes/No</b> - Request message will stay in queue until after receiving a confirmation response from receiving end. Only relevant for listeners and servers, and not clients.</p></td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>ExpiryTime</b></td>
+<td class='confluenceTd'>The duration, in seconds, that the message is in queue before expiry.</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Priority</b></td>
+<td class='confluenceTd'>JMS defines a 10 level priority value with 0 as the lowest and 9 as the highest. Clients should consider 0-4 as gradients of normal priority and 5-9 as gradients of expedited priority. Priority is set to 4, by default.</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>ReplyTo</b></td>
+<td class='confluenceTd'>Set where a reply to this message should be sent.</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Queue</b></td>
+<td class='confluenceTd'>Specifies the queue name where messages are put into or retrieved from.</td>
+<td class='confluenceTd'>Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Timeout</b></td>
+<td class='confluenceTd'>Number of seconds to wait when retrieving a message from the queue. Default is 1 second. If the <b>Timeout</b> is set at a value of 0 (zero), the wait will be indefinite. Applies to output messages only.</td>
+<td class='confluenceTd'>Output Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Properties</b></td>
+<td class='confluenceTd'><p>Name of a global script that is invoked with the input data object. For sending messages, if it returns a data object (Document, Order or Data Structure) the names and values of the data leaves of the returned objects are added as properties to the message. Specifically:</p>
+  <ul>
+    <li><STRONG>JMSDeliveryMode</STRONG> - value of 1 or 2 (1 = NON_PERSISTENT, 2 = PERSISTENT)</li>
+  </ul>
+  <p>For receiving messages (that is, for both client and listener), this field contains the Global function that  returns a String expression. This expression's syntax is based on a subset of the SQL92 conditional expression syntax, such as <tt>NewsType = 'Sports' OR NewsType = 'Opinion'</tt>. Refer to JMS Message Selectors in the JavaScript documentation for details.</p>
+  <p><strong>Note:</strong> By default, a JMS message is set to PERSISTENT.</p></td>
+<td class='confluenceTd'>Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></p>
+
+<h4>JMS Message Transaction Control (read)</h4>
+<p>Transaction support is available only when an interface is used by the listener&#160;(incoming messages). This option, when set to 'yes' will allow listener perform message processing in transaction manner: If message processing encounters any errors (usually in script processing module), message will be put back on the queue for reprocessing. Message reprocessing parameters, such as  message reprocessing attempt, priority, delay, and so on, are usually controlled by JMS Server configuration.</p>
+<h4>Set JMS Connection-Specific Credentials</h4>
+<p>  If values are found in the Config Variables tab in the Configuration application for port JMS connection credentials, they are used when creating queue connections (that is, javax.jms.QueueConnectionFactory.createConnection(String user, String password) is used).</p>
+<p>To configure your configuration variables, do the following:</p>
+<ol>
+  <li> Log in to the Configuration application. </li>
+  <li>Select the CLUSTER node, which applies the changes to all nodes and uses the same credentials. If you want to apply different credentials or ports for different nodes, make the pertinent changes by selecting each node.</li>
+  <li>Click the Config Variables tab.</li>
+  <li>Click the <strong>Add</strong> button, and enter <strong>&lt;<em>por</em>t&gt;.cw.jms.user</strong> in the <strong>Name</strong> field and the username in the <strong>Value</strong> field.</li>
+  <li>Click the <strong>Add</strong> button again, and enter <strong>&lt;<em>port</em>&gt;.cw.jms.password</strong> (for example,  10008.cw.jms.user) in the <strong>Name</strong> field and  the password in the <strong>Value</strong> field.</li>
+  <li>Click the <strong>Save</strong> button to save your changes.<BR>
+  </li>
+</ol>
+<p><strong>Note:</strong> If set, the username and password set for each port in the configuration are still used to set up the initial context environment.</p>
+<p>Logging support allows you to view whether your credentials have been located and used. To set up logging, do the following:</p>
+<ol>
+  <li>In the Configuration application, click the Logging tab. </li>
+  <li>Click the <strong>Add</strong> button and enter <strong>com.conceptwave.serviceprovider.JMSServiceProvider</strong> in the <strong>Name</strong> field.</li>
+  <li> Set the logging level to <strong>DEBUG</strong>.</li>
+  <li>Click the <strong>Save</strong> button to save your changes.
+  </li>
+</ol>
+<p>Once you have enabled your configuration, the following messages appear in the message log:  </p>
+<ul>
+  <li>JMSServiceProvider - &lt;Port name&gt;: &lt;Port name&gt;.cw.jms.connection.user found in configuration</li>
+  <li> JMSServiceProvider - &lt;Port name&gt;: &lt;Port name&gt;.cw.jms.connection.password found in configuration</li>
+  <li> JMSServiceProvider - &lt;Port name&gt;: Setting up Initial Context Environment with port credentials</li>
+  <li> JMSServiceProvider - &lt;Port name&gt;: Creating queue connection with configuration variable credentials</li>
+  </ul>
+<h4>JMS Topic Support and Connection-Level Authentication</h4>
+<p> You can publish JMS topics for JMS and <a href="MQ Service Provider.html">MQ service providers</a>, which allows for publishing messages to existing JMS topics for client invocation. This feature also contains listener support.</p>
+<p>Additionally, for JMS and MQ service providers and listeners, you can create a JMS connection  with an explicit username and password, if properly configured. This feature is useful if the  JMS modules and JMS destination have different security policies to access. It is also  useful when creating a JMS connection to <a href="tibco service provider.html">Tibco</a>, which requires two  validations to connect.</p>
+<p><strong>Note:</strong> The product does not support receiving messages from  topics. As a result, you can only use a one-way operation to publish messages to topics,  and cannot use a request-response operation to publish and receive message from topics.</p>
+<p>For connection-level authentication, the following configuration fields are available at the Message level:</p>
+<p><img src="jmsTopicSupport.png" alt="JMS topic support and connection-level authentication" border="1"></p>
+<p>A description of each field appears in the following table:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="153" class='confluenceTh'>Field</th>
+      <th width="1028" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Queue or Topic</b></td>
+      <td class='confluenceTd'><p>The default value is <strong>Queue</strong>. If the JMS destination is topic, you must click the dropdown menu and select <strong>Topic</strong> for this field.</p>
+        <p><strong>Note:</strong> <strong>Topic</strong> is strictly for one-way operations. If you select <strong>Topic</strong> for a request-response operation, a validation warning appears.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Use port credential</strong></td>
+      <td class='confluenceTd'>By default, this field is unchecked. Selecting this checkbox indicates that the user and password are cleared and disabled.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>User</strong></td>
+      <td class='confluenceTd'><p>This field denotes the username used in creating the JMS connection. </p>
+        <p><strong>Note:</strong> The credential setting for INPUT or OUTPUT must be identical.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Password</b></td>
+      <td class='confluenceTd'><p>This field denotes the password in creating the JMS connection. </p>
+        <p><strong>Note:</strong> The credential setting for INPUT or OUTPUT must be identical.</p></td>
+    </tr>
+  </tbody>
+</table>
+<p><br>
+  Keep the following points in mind between port credentials versus message-level credentials:</p>
+<ul>
+  <li>If the <strong>Use port credential</strong> field is selected, the JMS connection is created using the username and password from the Port setting. Additionally, the JNDI context contains the username and password from the Port setting.</li>
+  <li>If the <strong>Use port credential</strong> field is unchecked, and the username and password on  the Message level is empty, the JMS connection is created without the username and password. Instead, the JNDI context contains the username and password  from the Port level.</li>
+  <li>If the <strong>Use port credential</strong> field is unchecked, and the username and password on  the Message level is not empty, the JMS connection is created with the username and password from the Message Level. The JNDI context contains the username and password from the Port level.</li>
+</ul>
+<p><BR>
+</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Associations</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+  <td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top"><h2>Associations</h2>
+    <p>Associations define all characteristics of the item, such as  its content, structure, business rules, business name, image, specification, and so on. As you can create new types of associations, the Catalog can define items with any level of detail and any rule complexity.
+      In general, an association links a Catalog object to another Catalog object or set of data items. The majority of associations are item associations.</p>
+    <p>For example, suppose you create an association between an item (A) and another item (B). During the shopping cart process, when item A is selected, item B is displayed for selection (depends on the <strong>Orderable</strong> flag). </p>
+    <p>Some associations have a static, predefined set of properties. Other associations allow user-defined content, such as a list of attributes. The Catalog Designer application sets these attribute values and are immutable at runtime (that is, they are association properties).
+      If the items are simple and static, the associations are simple and flexible – they have versions and conditions. The evolution of the items is the evolution of its associations.</p>
+      The versions define different instances of an association with different life spans (start and end date), which are explained in the <a href="../Objects/Versions.html">Versions</a> section. The conditions are business rules that determine, at runtime, which association (version) applies for a particular operation, user, shopping basket, and service inventory.</p>
+    <p>All associations are identified by their source (that is, the object that they start from), name, category, type, and target. Depending of their target, the associations are divided into the following categories:</p>
+    <table width="1577" border cellpadding="1" class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th class='confluenceTh'>Type</th>
+          <th class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'>Associations with a single object as a target (object associations)</td>
+          <td class='confluenceTd'>The object associations define the item's structural and behavioural aspects (for example, what are the rules that check the item's eligibility, what are the item's attributes, and so on).</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'>Associations with multiple items as a target (groups)</td>
+          <td class='confluenceTd'>The group associations define the minimum and maximum number of (sets of) objects that can be selected for a given item.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'>Associations that have another association as a target (association) qualifiers</td>
+          <td class='confluenceTd'>Association qualifiers define additional properties of target associations. They are used mainly to define additional properties of item attributes and charges for item-to-item associations.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'>Associations that do not have a target (null target) open associations.</td>
+          <td class='confluenceTd'>Open associations link the items with sets of data (for example, the association may link an item with the name of a workflow process that activates it or provide alternative code for the item in another system). <br>
+            <br>
+            <strong>Note:</strong> Catalog version 5.x implements the open associations as item-to-item association with the target item set to null.</td>
+        </tr>
+    </table>
+    <p>Associations fall into categories, as detailed in the following table. This table also provides a description of each association category, the target type, whether the category has predefined type codes, and more.</p>
+    <table width="99%" border cellpadding="1" class='confluenceTable'>
+      <tr>
+        <th width="118" class='confluenceTh'>Category</th>
+        <th width="633" class='confluenceTh'>Description</th>
+        <th width="168" class='confluenceTh'>Target</th>
+        <th width="86" class='confluenceTh'>Has Conditions</th>
+        <th width="151" class='confluenceTh'>Has User- Defined Types</th>
+        <th width="159" class='confluenceTh'>Has User-Defined Content</th>
+        <th width="212" class='confluenceTh'>Predefined Type Codes</th>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Attribute</strong></td>
+        <td class='confluenceTd'>Defines the item attributes</td>
+        <td class='confluenceTd'>Attribute type</td>
+        <td class='confluenceTd'>No</td>
+        <td class='confluenceTd'>No</td>
+        <td class='confluenceTd'>No</td>
+        <td class='confluenceTd'>No</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Image</strong></td>
+        <td class='confluenceTd'>Groups images and icons to appear on the client's system</td>
+        <td class='confluenceTd'>Association types or items</td>
+        <td class='confluenceTd'>No</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>No</td>
+        <td class='confluenceTd'>No</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Attachment</strong></td>
+        <td class='confluenceTd'>Defines data file attachments associated to the item</td>
+        <td class='confluenceTd'>Null</td>
+        <td class='confluenceTd'>No</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>No</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Rule</strong></td>
+        <td class='confluenceTd'>Defines rules that apply to an item such as availability, eligibility, and validation</td>
+        <td class='confluenceTd'>Rule</td>
+        <td class='confluenceTd'>No</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'><li>Availability</li>
+          <li>Eligibility</li>
+          <li>Validation</li></td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Description</strong></td>
+        <td class='confluenceTd'>Defines the minimum and maximum number of instances for a group of item codes or item-to-item association types</td>
+        <td class='confluenceTd'>Association types or items</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>No </td>
+        <td class='confluenceTd'>No</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Group</strong></td>
+        <td class='confluenceTd'>Defines the minimum and maximum number of instances for a group of item codes or item-to-item association types</td>
+        <td class='confluenceTd'>Association types or items</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>No </td>
+        <td class='confluenceTd'>Groups</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Relation Attribute</strong></td>
+        <td class='confluenceTd'>Defines the runtime properties of the item's attributes and the item's relationship to other items</td>
+        <td class='confluenceTd'>Items</td>
+        <td class='confluenceTd'>No</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>No</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Item</strong></td>
+        <td class='confluenceTd'>Defines other items that are linked to the item</td>
+        <td class='confluenceTd'>Item</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>Contains</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Restriction</strong></td>
+        <td class='confluenceTd'>Defines item attribute restrictions</td>
+        <td class='confluenceTd'>Item Attribute</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>No</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Availability</strong></td>
+        <td class='confluenceTd'>Associates an  item with an availability tree</td>
+        <td class='confluenceTd'>Item</td>
+        <td class='confluenceTd'>No</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>Yes</td>
+        <td class='confluenceTd'>No</td>
+      </tr>
+    </table>
+    <h3>Attributes</h3>
+    <p>The attributes category defines the item's attributes. It defines the name, attribute type, and default value of an item attribute. If an attribute association is marked as a property, the default value specified cannot be changed in client applications. Attribute associations are unconditional – the set of attributes for a given item at a given moment is statically (not dynamically) defined.</p>
+    <p>The attributes category allows for defining properties relating to Catalog items. First, define an attribute type, which is then linked to an attribute association.  If the <strong>Is Property</strong> field is selected, the <strong>Default Value</strong> field cannot be changed in the client application. </p>
+    <img src="AttributeCategory.png" alt="Attribute Category">
+    <h3> Images</h3>
+    The images category defines image groupings.  In the item association, you can upload images and icons to be displayed on the client system.  These file types are MIME type files.<br>
+    <br>
+    <img src="ImageAssociation.png" alt="Image Association">
+    <h3>Attachments</h3>
+    <p>The attachments category allows attachment data types to be associated to an item.  This association allows you to upload an attachment to the associated item.  At the item level, the Attachment Details page contains the <strong>Type</strong> field that lists all associations created for the attachments category.</p>
+    <p>Each instance of the association created is<a href="../Catalog_Composition/Versions.html"> version-controlled</a>.</p>
+    <img src="AttachmentsCategory.png" alt="Attachments Category">
+    <h3>Rules</h3>
+    <p> The rules category specifies associations between an item and rules. Rules can be condition or  validation rules. The condition rules define whether the item can be use in a given operation context (basket, inventory, or Catalog context), while the validation rules specify whether the item is valid for the given context. </p>
+    <p>Conditional rules are used in many other cases. From a formal point of view, they are association qualifiers. However, the Catalog application treats them as properties of the corresponding associations.
+      Price formulas are used in charge type objects. They are de-facto rule associations for charge type objects.</p>
+    <h3>Descriptions</h3>
+    <p> The descriptions category defines open associations that represent item description properties. Multiple descriptions can be associated with an item and rules can be defined to determine which description association appears at what time.</p>
+    <img src="DescriptionAssociation.png" alt="Description Association">
+    <h3>Relations</h3>
+    <p>The relations category allows you to categorize the relationship between one item to a target item.  When you define this relationship as an item association, you can then define the relationship's attributes, as well as pricing, restrictions, and conditions on this relationship.</p>
+    <p><img src="RelationAssociation.png" alt="Relation Category"></p>
+    <p>Click the <strong>Add</strong> button next to the <strong>Relation</strong> category of your item displays the Relation Detail page. The following fields are available:</p>
+    <table class='confluenceTable' border cellpadding="1">
+      <tbody>
+        <tr>
+          <th width="137" class='confluenceTh'>Field</th>
+          <th width="812" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td height="26" class='confluenceTd'><strong>Target</strong></td>
+          <td class='confluenceTd'>&nbsp;</td>
+        </tr>
+        <tr>
+          <td height="26" class='confluenceTd'><strong>Code</strong></td>
+          <td class='confluenceTd'><p>This field denotes the code that is  used to identify the assocation type. The association instances for a given source object (also called associations) are uniquely identified by their <strong>Code</strong> name. The name must follow the requirements for scriptable identifiers (that is, it must start with letter, and contain letters and digits). The association code is case-sensitive. Association names are used in the Catalog API and the Catalog rule language. Thus, it is important to match the case-sensitive code to the rule language. They are unique within an item. There are also used also to implement item inheritance.</p>
+            <p><strong>Note:</strong> Catalog can handle duplicate association names and codes within an item (for example, an itemAttribute can have <em>attr1</em> as its code and <em>attr1</em> as its restriction). Catalog
+              makes this differentiation using the association category when duplicate association names are found. However, it is recommended that the association name be unique for a particular type of association within an item (for example, the itemAttribute association code cannot be a duplicate for itemA).</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Type</strong></td>
+          <td class='confluenceTd'><p>This field denotes  the association's data type. Click the drop-down menu and select one of the types from the list. </p>
+            <p>The association type groups the associations with similar structure and purpose. If the category in which the association type is defined does not allow user-defined association content, the association types are merely names that group associations used for the same purposes. However, if user-defined association content is allowed, the association type defines the set of attribute types that are populated by the Catalog maintenance application and becomes properties of the corresponding association instance. Because the association's properties are user-defined, the generic Catalog maintenance application does not know whether the values entered for particular instance are correct. As a result, the association type may specify a validation script that checks whether the entered data is valid.</p>
+            <p>Each association belongs to an association type. For example,  the associations are instances of association types. Associations in categories that do not allow user-defined types have hard-coded invisible types.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Status</strong></td>
+          <td class='confluenceTd'>This field denotes  a list of available <a href="States.html">statuses</a> for the association (for example, <strong>Definition</strong> and<strong> Active</strong>).</td>
+        </tr
+>
+        <tr>
+          <td class='confluenceTd'><strong>Name</strong></td>
+          <td class='confluenceTd'>This field indicates a<span class="confluenceTd"> unique name for </span> the association.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Start Date</strong></td>
+          <td class='confluenceTd'>This field represents the start (effective) date that the association is available<span class="confluenceTd">. Refer to <a href="../Objects/StartEnd_Dates.html">Start and End dates</a> for details.</span></td>
+        </tr
+>
+        <tr>
+          <td class='confluenceTd'><strong>End Date</strong></td>
+          <td class='confluenceTd'>This field indicates the<span class="confluenceTd"> date when the association is no longer effective</span>. <span class="confluenceTd">Refer to <a href="../Objects/StartEnd_Dates.html">Start and End dates</a> for details.</span></td>
+        </tr
+>
+        <tr>
+          <td class='confluenceTd'><strong>Sequence</strong></td>
+          <td class='confluenceTd'>The associations are ordered entities. For example, they are shown to the user of the maintenance program in a certain order. The Catalog APIs delivers them and the Catalog core uses them in the same order. </td>
+        </tr
+>
+        <tr>
+          <td class='confluenceTd'><strong>Project</strong></td>
+          <td class='confluenceTd'>This field indicates with which project  the association type is associated. <span class="confluenceTd">Each object is assigned to a <a href="../Objects/Project.html">project</a>. This field defaults to the active or opened project when the association is first created. </span></td>
+        </tr>
+    </table>
+    <br>
+    <p>In previous releases, if there was an item relation between Item A and Item B with an association type of <strong>contains</strong>, adding Item A into the Catalog basket also added the associated Item B. However, the number of Item Bs added into the basket would always be 1. You can provide a <strong>Default Cardinality</strong>, allowing you to specify it with a number in the item relation. If the parent item is added into the basket and the item relation association type is <strong>contains</strong>, the same number of child items is automatically added into the basket. </p>
+    <p>When the related item is passed in as a string using the createItemRelation() method, it does not have to be a valid basket item ID. In this case, the ID is considered to be an external ID, which implies the relationship is from this item to an external entity that is not in this basket.</p>
+    <p><strong>Note:</strong> If you pass a string that is identical to a basket item ID in the same basket, it is equivalent to passing in the basket item object. As a result, it is recommended that you change the ID.</p>
+    <h4>Remove a Relation</h4>
+    <p>To remove an item relation (that is, change the <strong>End Date</strong> field of the relation that you want to expire), complete these steps:</p>
+    <ol>
+      <li>Create a new project (for example, testNew).</li>
+      <li>Navigate to the Item Relation Detail pane.</li>
+      <li>Click the <strong>End Date</strong> button and change the end date on the relation that you want expired. </li>
+      <li>Select the testNew <strong>Project</strong>. </li>
+      <li>Click the <strong>End Date</strong> button and select an end date.</li>
+      <li>Activate your testNew project. The end date of your relation appears with the end date that you have specified for it to expire.<br>
+      </li>
+    </ol>
+    <p>To learn about ending an inherited relationship, see <a href="Remove_Inherited_Relationship.html" title="Remove an Inherited Relationship">Remove an Inherited Relationship</a>.</p>
+    <h3>Restrictions </h3>
+    <p>The restrictions category allows restrictions to be created for an item attribute.  When an item attribute is created for an attribute associated to a restriction, the relation's properties  can be defined under three tabs: </p>
+    <ul>
+      <li>Detail</li>
+      <li> Conditions</li>
+      <li>Properties </li>
+    </ul>
+    <p><br>
+      Refer to the <a href="../Objects/Item Attribute Restrictions.html">Item Attribute Restriction</a> section for more details.<br>
+      <br>
+      <img src="RestrictionDetails.png" alt="Restriction Details"> </p>
+    <h3>Item</h3>
+    <p> The item category contains associations that link an item with other items. These associations represent the rules that define the item structure, optional items that can be added, good-to-have items, and so on.</p>
+    <h3>Groups</h3>
+    <p>Groups are special types of validation rules that define restrictions on the minimum and maximum number of items belonging to a given item. Groups may have many targets.</p>
+    <p> There are two kinds of groups:</p>
+    <ul>
+      <li> Type groups – the target is one or many association types of item category. The group specifies the minimum and maximum number of items from the specified association types.</li>
+      <li> Code groups - the target is a list of item codes. The group specifies the minimum and maximum number of items from the specified list of codes.</li>
+    </ul>
+    <p>When adding a relation to a group from the <strong>Target</strong> tab, you can specify one of the following:</p>
+    <ul>
+      <li>Add a single <strong>Relation</strong></li>
+      <li>Specify an <strong>Association Type</strong><BR>
+      </li>
+    </ul>
+    <p><img src="../Objects/groupRelationAssociation.png" alt="Group - Target details" border="1"></p>
+    <h3>Availability</h3>
+    <p>The availability category allows you to associate an  item with an availability tree.</p>
+    <p><img src="availabilityDetails.png" alt="Associate an item with an availabillity tree" border="1"></p>
+    <p>You can add a new item availability either from the Item tree or from the catalog hierarchy. A Miller table appears that allows you to select from locational-based records. In the Miller table, single-click the record that you want to select. Double-click the record to display its child.</p>
+    <p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

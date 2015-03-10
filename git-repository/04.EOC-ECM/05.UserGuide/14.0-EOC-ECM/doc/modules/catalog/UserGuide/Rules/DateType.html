@@ -1,0 +1,143 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Date data type</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+<h4><a name="DataType">Date data type</a></h4>
+<p>The global function newDate(year, month, day, hours ,  minutes, seconds, milliseconds) can be used to create a new date variable as  shown  in this example:</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+Variable Date dt = newDate(2009, 12, 16, 17, 30, 29, 111);
+</pre>
+</div>
+</div>
+
+<p>An alternative way to create a date is to use  the dateFromString(date string, pattern) global function. </p>
+<p>The pattern parameter is optional, which specifies the order of the date fields and defaults to <em>dd-MM-yyyy HH:mm:ss</em>.  It follows the pattern format defined by the Java SimpleDateFormat class and can  specify any possible date format. When using this function, the letters in the default notation represent the following:</p>
+<ul>
+  <li><em>dd</em> represents the day field.</li>
+  <li><em>MM</em>  represents the month field. <em>MMM</em> indicates  the month as a three-letter abbreviation.</li>
+  <li><em>yyyy</em> represents the year. When only two letters are specified, a two-digit year is applied  to the proper century.</li>
+  <li><em>HH</em> letters specify the hour field in 0 -24 format, whereas  lowercase <em>hh</em> letters specify the  hour in 0 - 12 format. </li>
+  <li><em>mm</em> specifies  minutes.</li>
+  <li><em>ss</em> represents seconds.</li>
+  <li><em>aa represent</em>s the am/pm field. This field follows the HH:mm:ss part of the date syntax. </li>
+</ul>
+<p>The following are examples of how date strings and patterns are interpreted:</p>
+<table width="600" height="241" border="1" cellpadding="0">
+  <tr>
+    <th width="200" scope="col" class='confluenceTh'>String</th>
+    <th width="200" scope="col" class='confluenceTh'>Pattern</th>
+    <th width="184" scope="col" class='confluenceTh'>Result</th>
+  </tr>
+  <tr>
+    <td valign="top"><p>2009/dec/11 1:8:0</p></td>
+    <td valign="top"><p>yyyy/MMM/dd HH:mm:ss</p></td>
+    <td valign="top"><p>11 Dec 2009 01:08:00</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>15.NOV.2009</p></td>
+    <td valign="top"><p>yyyy.MMM.dd</p></td>
+    <td valign="top"><p>15 Nov 2009 00:00:00</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Oct-2009.1</p></td>
+    <td valign="top"><p>MMM-yyyy.dd</p></td>
+    <td valign="top"><p>1 Oct 2009 00:00:00</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>23-Oct-2009</p></td>
+    <td valign="top"><p>dd-MMM-yyyy</p></td>
+    <td valign="top"><p>23 Oct 2009 00:00:00</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>4 22 2009</p></td>
+    <td valign="top"><p>MM dd yyyy</p></td>
+    <td valign="top"><p>22 Apr 2009 00:00:00</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>6/Oct/09</p></td>
+    <td valign="top"><p>dd/MMM/yy</p></td>
+    <td valign="top"><p>6 Oct 2009 00:00:00</p></td>
+    </tr>
+</table>
+<p>Other global functions that you can use to retrieve the current date, and time are as follows:</p>
+<ul>
+  <li>The today() function returns today's date with the time field set to 00:00:00</li>
+  <li>The now() function returns the current date and the current time</li>
+  <li>The timeOfTheDay() returns the current time of the day in seconds.</li>
+</ul>
+<p>The Date data type has the following methods:</p>
+<table width="600" height="241" border="1" cellpadding="0">
+  <tr>
+    <th width="141" scope="col" class='confluenceTh'>Method</th>
+    <th width="447" scope="col" class='confluenceTh'>Description</th>
+  </tr>
+  <tr>
+    <td>isBefore(date[, milliseconds]) </td>
+    <td>Returns true if the given date precedes the parameter date. The comparison takes into account the time portion of the dates. If the second parameter is present, it specifies the signed time interval in milliseconds, which will be added to the date parameter before the comparison is done.</td>
+  </tr>
+  <tr>
+    <td>isAfter(date[, milliseconds])) </td>
+    <td>Returns true if the given date is past the parameter date. The comparison takes into account the time portion of the date. If the second parameter is present, it specifies the signed time interval in milliseconds, which will be added to the date  parameter before the comparison is done.</td>
+  </tr>
+  <tr>
+    <td>isTheSame(date[, milliseconds]))</td>
+    <td>Returns true if the given date is equal to the parameter date. The comparison takes into account the time portion of the dates. If the second parameter is present, it specifies the signed time interval in milliseconds, which will be added to the date parameter before the comparison is done.</td>
+  </tr>
+  <tr>
+    <td>isBeforeDay(date[, milliseconds]) </td>
+    <td>Returns true if the given date precedes the parameter date. The comparison does not take in account the time portion of the dates. If the second parameter is present, it specifies the signed time interval for days in milliseconds, which will be added to the date parameter before the comparison is done.</td>
+  </tr>
+  <tr>
+    <td>isAfterDay(date[, milliseconds])) </td>
+    <td>Returns true if the given date is past the parameter date. The comparison does not take into account the time portion of the date. If the second parameter is  present, it specifies the signed time interval for days in milliseconds, which will be added to the date parameter before the comparison is done.</td>
+  </tr>
+  <tr>
+    <td>isTheSameDay(date[, milliseconds])) </td>
+    <td>Returns true if the given date is equal to the parameter date. The comparison does not take in account the time portion of the dates. If the second parameter is present, it specifies the signed time interval for days in milliseconds, which will be added to the date parameter before the comparison is done.</td>
+  </tr>
+</table>
+<p><strong>Note:</strong> No arithmetic or comparison operations are allowed on dates.</p>
+<p>The following is a sample rule that uses the isBefore() function:</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+Variable Number days;
+Variable Number daysInms;
+Variable Date d1= dateFromString("2014-4-4 09:30","yyyy-MM-dd HH:mm");
+Variable Date d2= dateFromString("2014-4-1 10:30","yyyy-MM-dd HH:mm");
+
+days = 3; 
+daysInms = days*24*60*60*1000;
+
+if d1.isBeforeDay(d2,daysInms) then
+    return true;
+end if;
+return false;</pre>
+</div>
+</div>
+<p>This examnple returns false because the dates become the same after adding 3 days to d2. However, d21 is before b2 when the time portion is considered by calling the isBefore() function.</p>
+<p><strong>Date objects and <tt>is not null</tt> operation</strong></p>
+<p>You can use the <tt>is not null</tt> operation for Date objects using the Catalog Rule Language.<BR>
+  <BR>
+  TThe following is a sample rule that uses a couple of date operations and checks for null:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>
+Var Date measure =theContext.measure<BR>Var Date compareddate2 = newDate(2013, 11, 01, 0, 0, 0, 0) <BR>  
+If(measure is not null and (measure.isTheSame(compareddate2) or  measure.isAfterDay(compareddate2)))<BR>  return true<BR>Else<BR>  return false <BR>End</pre>
+  </div>
+</div></td></tr>
+</body>
+</html>

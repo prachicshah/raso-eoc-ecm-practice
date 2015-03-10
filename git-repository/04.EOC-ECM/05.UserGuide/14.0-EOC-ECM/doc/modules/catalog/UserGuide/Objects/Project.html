@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Projects</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> 
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Projects</h2>
+<p>Projects are used to control changes to the Catalog definition and to release the changes to a live production environment in a controlled manner.  The Catalog Designer application manages the Catalog definition and uses the project as a change control mechanism. Before changes are released into production, you create a project  to help manage Catalog definition changes.  The project name is associated to all defined Catalog changes and additions. During the design or definition stage, the project and its associated changes have a <em>Definition</em> status. Once the changes are ready to be moved into production, the project status is changed to <em>Active</em> and all the necessary information regarding the objects belonging to the project are available into production. </p>
+<p>Projects facilitate a  <a href="../Configuration/ChangeControls.html">change control mechanism</a> for elements under a project. The term <em>change</em> refers to any possible changes of the Catalog definition data that can potentially impact the behavior of the Catalog client and server applications. However, from a change control viewpoint, changes fall in two categories:</p>
+<ul>
+  <li> Adding new elements</li>
+  <li> Changing existing elements</li>
+</ul>
+<p>Controlled changes are implemented by the project's mechanism and such changes are visible for all Catalog client and server applications at the same time. The projects are sets of changes that are committed as a single logical transaction.
+  Users with project <a href="../Configuration/Catalog_Privileges.html">privileges</a> create project and project elements can be created by any users with the appropriate  <a href="../Configuration/Catalog_Privileges.html">privilege</a>. Element changes under a project become effective once the project is active,  and the effective date of the project and the start date of the element are reached.  Make sure the project is active at least an hour before the project's effective date to ensure that the changes are realized by the change monitoring thread. </p>
+<p> You can restrict the project data   through <a href="../Configuration/Catalog_Domains.html">catalog domains</a> and positions within organizational charts. The project creator's position appears in the <strong>Owner</strong> field of the project. This field restricts the project data to users who have the same position in the organizational chart or higher.   Once you have specified an owner, it can neither be changed, nor transferred.</p>
+<p> Projects go through a development stage where project changes are created and approved. After the development stage, the project must either be committed (for example, an active project) or cancelled.  The project has a number of different system stages: </p>
+<ul>
+  <li>Definition</li>
+  <li>Development</li>
+  <li>Conception</li>
+  <li>Evaluation</li>
+  <li>Testing</li>
+  <li>Launch Product</li>
+  <li>Active</li>
+  </ul>
+<p> When a project is first created, the project <a href="States.html">status</a> defaults to <em>Definition</em>. The <em>Development</em>, <em>Conception</em>, <em>Evaluation</em>, <em>Testing</em>, and <em>Launch Product</em> statuses are only for information purposes and are used in the development stage. It is in this stage that the project's effective  data can be changed at any time, but it can be set not earlier than one hour past the moment of the change. Once a project has an <em>Active</em> status, all changes associated with that project are available to production. Further changes can neither be made to that project, nor can that  project be deleted.  A   new project must be created to make additional catalog changes.</p>
+<p>You can perform the following actions with a project:</p>
+<ul>
+  <li><a href="ProjectCreate.html">Create a new project</a></li>
+  <li><a href="ProjectOpen.html">Open an existing project</a></li>
+  <li><a href="ProjectDelete.html">Delete a project</a></li>
+  <li><a href="ProjectMove.html">Move part of a project to another project</a></li>
+  <li><a href="ProjectAddElements.html">Add elements to a project</a></li>
+  <li><a href="ProjectActivate.html">Activate a project</a></li>
+  </ul>
+<p>To import a project, see <a href="../Configuration/importCatalog.html">Import Catalog</a> for details.</p></td>
+</tr>
+</table>
+</body>
+</html>

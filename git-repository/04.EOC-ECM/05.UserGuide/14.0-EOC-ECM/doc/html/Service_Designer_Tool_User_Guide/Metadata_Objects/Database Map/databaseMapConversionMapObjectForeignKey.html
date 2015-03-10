@@ -1,0 +1,74 @@
+﻿<html>
+<head>
+<title>Database Maps - Conversion Map Support for an Object Map with a Foreign Key</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Conversion Map Support for an Object Map with a Foreign Key</h2>
+<p>There are instances where a data structure has multiple keys defined and it has a variable data structure that is mapped using a foreign key reference. If the foreign key reference uses only one column or variable to store the root data structure information, there is no need for a conversion map. The generated key from the root data structure has a composed key containing all key variable values. However, if the data structure variable has other variables that require the same value as the root data structure variable, you need a conversion map to copy the values.</p>
+<p>To use a conversion map for an object map containing a foreign key, complete these steps:</p>
+<ol>
+  <li>Select the object from the left side of the page, and then click the <strong>Map Object</strong> button. <br>
+    <br>
+    <img src="databaseMapMappingTabConversionMapMapObjectButton.png" alt="Database Maps - Conversion map support - Map object" border="1"><br>
+    <br>
+  </li>
+  <li>A number of fields appear.<br>
+    <br>
+    <img src="databaseMapMappingTabConversionMapMapObjectButtonFields.png" alt="Database Maps - Conversion map support - Map an object - Fields" border="1"><br>
+    <br>
+    Specify the following fields:<br>
+    <br>
+    <table class='confluenceTable' border cellpadding="1"
+>
+<tbody>
+        <tr>
+          <th width="114" class='confluenceTh'>Field</th>
+          <th width="1368" class='confluenceTh'>Description</th>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><b>Source</b></td>
+          <td class='confluenceTd'>This field represents the source object variable that you want to map to your database table.</td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><b>Map </b></td>
+          <td class='confluenceTd'>Click the drop-down menu and select an object mapping from the list. If you do not select a map, the default mapping is used for the object. Only the object ID of the child object is saved to the parent data structure. The cwSetStructId and cwGetStructId  methods set and get the object ID, which need to be overridden in the child object data structure.</td>
+          </tr>
+        <tr>
+          <td height="44" class='confluenceTd'><strong>Foreign Key</strong></td>
+          <td class='confluenceTd'><p>An object variable can be mapped  as an object reference where the parent object reference, as a foreign key, is stored in the object variable data structure. A key column value of the parent object is stored in the child data object variable in the foreign key column. No column in the parent data structure exists that refers to the child object variable. However, the child object variable has a reference of the parent object. Click the <strong>Foreign Key</strong> field's drop-down menu and select from the list.</p></td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Conversion Map</strong></td>
+          <td class='confluenceTd'><p>Click this field's drop-down menu and select the conversion map that you want. This field displays conversion maps that have the root data structure as its source. Its target is the child data structure with the first item selected.</p></td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Read on Select</strong></td>
+          <td class='confluenceTd'>Selecting this property allows reading the object with the parent data object.</td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><b>Write on Save</b></td>
+          <td class='confluenceTd'>Selecting this property allows writing the object when you save the parent data object.</td>
+          </tr>
+        </tbody>
+      </table>
+    <br>
+    <strong>Notes:</strong> 
+    <ul>
+      <li>Map conversion takes place during an insert operation only.</li>
+      <li>When a data structure is mapped as a reference key (that is, either a foreign key or an ID mapping), during a save or update operation, the reference key column automatically populates with the data structure object key.</li>
+    </ul>
+  </li>
+  </ol>
+
+<h4>&nbsp;</h4>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

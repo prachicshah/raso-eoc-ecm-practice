@@ -1,0 +1,36 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Hardware Sizing</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+		<td  class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+			 padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+		<h2>Sample Hardware Sizing Configuration </h2>
+        <p>This section  describes a sample configuration, which can be helpful when setting up a  complete solution. It is suggested  to implement a single Application (App) Server Node and a single Database (DB) Server Node based on the anticipated system load, expected in  terms of transactions per second. With this configuration in place, a series of  performance tests can be conducted to ensure that the system is responding as  designed. Then furthermore, depending upon the performance results, you can determine  what additional hardware or software refinements          are required to  satisfy the performance requirements. The following is a sample layout  for hardware configuration:</p>
+        <p><img src="sampleHardwareConfiguration.png" border="1" alt="Sample Hardware Sizing Configuration" /></p>
+<p>In this example, each App Server Node has been configured to have four App Server  instances. It is primarily to handle the user interface load of users and  the API based  Web Service requests to the Ericsson Framework from external systems.  Additional App Server instances can be added as the WEB based traffic  increases. Ensure that adding instances does  not degrade the overall performance of the system. In such a scenario, add additional  hardware App Sever Nodes to the server farm.</p>
+<p>Each App  Server Node has also been configured to have one instance of the Process  Engine (PE). PE instances implements the workflow engine of the Ericsson  Product Suite and are responsible for moving orders along the business process  models. There is no direct interaction between the users of the system and the PE. The PE spends most of its time in performing  database operations. Depending upon the complexity of the process models  within a metadata; it may be necessary to move PE instances to a separate independent hardware for greater throughput.</p>
+<p><strong>Notes:</strong> </p>
+<p>
+<ul>
+  <li>Ericsson  recommends a hardware-based load balancer rather than a software-based load  balancer.</li>
+  <li>The  Application Servers and Process Engines do not store any business data on local  (or remote) storage. All business and system configuration data is stored in  the Oracle database. The local server must have sufficient disk space  to house:</li>
+  <ul>
+    <li>The application itself.</li>
+    <li>All third-party softwares (for example, BEA WebLogic). </li>
+    <li>Application logs.</li>
+  </ul>
+  <li>Ericsson is not aware of any compatibility  issues from running its software on a virtual machine, such as a machine  running VMWare. However, due to the size of the servers recommended, Ericsson  believes that standalone servers may be more appropriate. </li>
+</ul></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>System - Logging</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Logging</h2>
+
+<p>Clicking <b>System</b> &gt;<b> Logging</b> displays a list of system logging levels, which specifies the level of logging of various components.</p>
+<p><img src="logging.png" alt="System - Logging tab" border="1"></p>
+<p>Logging works with the <strong><a href="../UI/UIgeneral.html#enableActionLogging">Enable Action Logging</a></strong> parameter found by clicking <strong>UI</strong> &gt; <strong>General</strong> from the menu bar.</p>
+<p>You can perform the following tasks on the Logging page:</p>
+<ul>
+  <li><a href="#addLoggingVariable">Add</a> a new logging variable</li>
+  <li><a href="#editLoggingVariable">Edit</a> a logging variable</li>
+  <li><a href="#deleteLoggingVariable">Delete</a> a logging variable</li>
+</ul>
+<p> <strong>Note</strong>: It is recommended to restart JBoss if you make changes to configuration variables. </p>
+<h3><a name="addLoggingVariable"></a>Add a Logging Variable</h3>
+<p>To add a new logging variable, follow these steps:</p>
+<ol>
+  <li>Click the <strong>Add</strong> button to add an empty row to the table.<br>
+    <br>
+    <img src="loggingAddButton.png" alt="System - Loggiing tab - Add button" border="1"><br>
+    <br>
+  </li>
+  <li>Enter the <strong>Name</strong> of your loggiing variable. Proceed to set the logging level for both the <strong>Console Level</strong> and <strong>Database Level</strong> fields by clicking their respective drop-down menu and selecting a value from the list. <br>
+    <br>
+    <img src="loggingAddLoggingName.png" alt="System - Logging tab - Add a new logging variable" border="1"><br>
+    <br>
+The <strong>Console Level</strong> and <strong>Database Level</strong> fields enable additional runtime logging information for diagnostic needs. The following choices are available for these fields:<br>
+<br>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Choice</th>
+      <th class='confluenceTh'>Description</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>OFF</td>
+      <td class='confluenceTd'>This setting indicates that logging is off.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>ERROR</td>
+      <td class='confluenceTd'>This setting allows for error-level logging.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>WARNING</td>
+      <td class='confluenceTd'>This setting denotes warning-level logging.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>INFO</td>
+      <td class='confluenceTd'>This setting represents information-level logging.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>DEBUG</td>
+      <td class='confluenceTd'>This setting indicates debug-level logging.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>TRACE</td>
+      <td class='confluenceTd'>This setting allows for trace-level logging.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>ALL</td>
+      <td class='confluenceTd'>This setting indicates that everything is logged.</td>
+      </tr>
+    </tbody>
+</table>
+<br>
+  </li>
+  <li>When you have finished creating your logging variable, click the <strong>Save</strong> button to save your configuration.<br>
+  </li>
+</ol>
+<p><b>Notes:</b></p>
+<ul>
+  <li>The Javascript interpreter log level can be set to <strong>DEBUG</strong> to allow output from the JavaScriptGlobal._println and Global._logDebug functions.</li>
+  <li>The User Interface log level needs to be set to <strong>DEBUG</strong> to generate product GUIDs for all generated user interface objects.</li>
+  <li>The com.conceptwave.statistics log level can be set to <strong>DEBUG</strong> (or <strong>TRACE</strong> to get statistics for all resource server requests) to enable the Statistics log. There are server-side statistics and client-side statistics. For server-side, you should find the statistics in the log, akin to the following:
+    <div class="code">
+      <div class="codeContent">
+        <pre>
+SERVER statistics [ user: upadmin, action: userAction[Button1cwOnFormFieldAfter], extract: 0, invoke: 78, generate: 16, full_cycle: 94] (ms)
+
+  </pre>
+      </div>
+    </div>
+    where <i>invoke</i> is the time to invoke the action script from metadata and <i>full_cycle</i> is the time to process the request on the server. For client-side, statistics are collected by browser, akin to the following:
+    <div class="code">
+      <div class="codeContent">
+        <pre>
+CLIENT statistics [ user: upadmin, action: ShowTree, generate: 3, response: 95, update: 4, full_cycle: 103] (ms)
+
+</pre>
+      </div>
+    </div>
+    <p>where <i>generate</i> is the time to collect field data and generate request to the server, <i>response</i> is the time to get response from the server, and <i>update</i> is the time to update received data to the page. Browser-side statistics is gathered with delay -- at the next server request. If you set the database log level for the statistics, it increases the server response time significantly. Instead, logging statistics on the file log is recommended.</p>
+  </li>
+</ul>
+<ul>
+  <li>To enable tracing to show what rules were processed for various actions, add com.conceptwave.runtimemetadata.CwfMetadataRTRule and set its log level to either <strong>TRACE</strong> or <strong>ALL</strong>.</li>
+</ul>
+<h3><a name="editLoggingVariable"></a>Edit a Logging Variable</h3>
+<p>To edit a logging variable, do the following:</p>
+<ol>
+  <li>Double-click the field within the table cell that you want and make your changes. </li>
+  <li>When you have finished editing your logging variable, click the <strong>Save</strong> button to save your configuration.<br>
+  </li>
+</ol>
+<h3><a name="deleteLoggingVariable"></a>Delete a Logging Variable</h3>
+<p>To delete a logging variable, complete these steps:</p>
+<ol>
+  <li>Select the checkbox next to the  logging variable that you want, and then click the <strong>Delete</strong> button.<br>
+    <br>
+    <img src="loggingDeleteButton.png" alt="System - Logging tab - Delete a logging variable" border="1"> <br>
+    <br>
+  </li>
+  <li>A confirmation message appears. Click the <strong>Yes</strong> button to confirm.</li>
+  <li>Your selected logging variable has been successfully removed from the list.</li>
+</ol>
+<p>&nbsp;</p>
+<p><br>
+</p>
+<p>&nbsp;</p>
+</body>
+</html>

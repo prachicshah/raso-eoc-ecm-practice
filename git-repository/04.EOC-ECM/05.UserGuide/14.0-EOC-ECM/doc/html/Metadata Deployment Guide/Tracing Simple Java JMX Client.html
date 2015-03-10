@@ -1,0 +1,34 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Simple Java JMX Client</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h3>Simple Java JMX client</h3>
+<p>The tracing configuration scripts can use the  com.conceptwave.runtime.cli.CwfInvokeJmx standalone class, which is meant to be  a simple <a href="Introduction JMX.html">JMX</a> client utility. It has minimal classpath dependencies and needs to  be installed in JAR format with the command-line interfaces script on the  application instances along with the AVM. </p>
+<p>When this JAR file is installed, the command-line  interface scripts need to be installed with the AVM JMX port number so that it  can be provided to this class as a parameter.</p>
+<p>The ordered arguments for its main method are as follows:</p>
+<ol>
+  <li>JMX port</li>
+  <li>MBean name on which to perform the operation</li>
+  <li>Operation name</li>
+  <li>Parameters (dependent on the operation)</li>
+  </ol>
+
+<p>This class does the following:</p>
+<ol>
+  <li>Creates a JMX connection</li>
+  <li>Fetches the MBean</li>
+  <li>Invokes the specified operation</li>
+  <li>Returns the result or propagates any exceptions</li>
+</ol></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Large Text</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="102%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Large Text</h2>
+
+<p>The Large Text Form element enables you to add text into the property summary field, and display it in a dialog box. The property summary  displays  a  read only summary of the text, based on user-defined settings. Users sets the property summary length, which is applied to the text and displayed in preview mode. Based on permission settings, the text displays in the dialog box as read only or editable. </p>
+
+<img src="large_text.jpg" align="absmiddle" border="1" alt="Large text element" />
+
+<p>In addition, the Large Text element can be structured inside of a table (see the following properties, Can Sort, Start Row, Cell Row Span, Cell Column Span, Group by In Table).</p>
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th width="170" class='referenceTh'>references Variable</th>
+<td width="385" class='referenceTd'>Yes, variables must be at the document level.</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method</th>
+<td class='referenceTd'><p>Yes</p>
+  <p>Run Trigger, Editable, Icon Action, Visible, Optional, Label Orientation</p></td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>Allowable Child Elements</th>
+<td class='referenceTd'>None</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='referenceTh'>Property</th>
+<th class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+<th class='referenceTh'>Comment</th>
+</tr>
+<tr>
+  <th width="105" class='referenceTh'>Name</th>
+  <td width="141" class='referenceTd'>Mandatory</td>
+  <td width="1400" class='referenceTd'>Name of the Label</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label</th>
+  <td class='referenceTd'>Mandatory</td>
+  <td class='referenceTd'>Visible label of the Label. If empty, the label assumes the Name of the Label. Default is empty.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Can Sort</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Applicable only when parent Element is a table. Specifies whether the Large Text Field can be sorted (true) or unsorted (false).   The default is set to true.</p>
+    <p>This property is  refers to a Finder table column during runtime.  This will allow the user to sort the search results data by ascending or descending order at runtime. Setting this property to <em>False </em>will disable the sorting functionality. By default this functionality is set to <em>True.</em></p></td>
+</tr>
+<tr>
+<th class='referenceTh'>*Cell Alignment</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Controls the horizontal and vertical positioning of the Label in the page or parent Element. Default is undefined, which behaves as if it is top-left.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Cell Column Span</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Only applicable when in a Grid Layout. Specifies the number of columns that the Image shall occupy in the Grid Layout, to the right of current cell. Default is empty, which occupies one column.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Cell Row Span</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>This property provides more flexibility when building a grid-based user interface, instead of using a combination of horizontal and vertical layouts. This property appears when form elements appear under a Grid Layout element and the form element has a parent element. This property specifies the number of rows that the element occupies in the grid layout.</p>
+    <p>By default, this field is set to 1. All nine positions are made available for the <strong>Cell Alignment</strong> property if the form element is under a Grid Layout element and has a row span greater than 1, so that the form element can be aligned in nine different positions. With rowspan as 1, only the three centre positions are available.</p>
+    <p>To use this property, see the <a href="Element - Button.html#cellRowSpanExample">example</a> for details.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Dynamic Label</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Defines a label value that is set dynamically at runtime.  Set property to a <em>String</em> variable or a script that returns a <em>String</em>. The static Label property is considered as default until the action returns a value.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Dynamic Label Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>The value of this property is a method with a Return type <em>String</em>. In conjunction with the Variable property, this method will dynamically change the style of the label at runtime based on the instructions returned by the method.  The label style returned by the method must exist within the current css file that is being used by the application.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Dynamic Tooltip</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'><p>Defines a dynamic tooltip text that is displayed in a hover box when the cursor hovers the element.  Set property to a <em>String</em> variable or a script with a Return type <em>String</em>. The static Tooltip property is considered as default until the action returns a value.</p>
+  <p>When this element is  used under the Table element, the <strong> Dynamic Tooltip</strong> property accepts a script, which is called for each result document value bound to a field with a dynamic tooltip set. This script returns the string desired to be shown on the hover. Additionally, the property accepts a variable value belonging to the result document. The value for this variable is then used to display the tooltip.</p></td>
+</tr>
+<tr>
+<th class='referenceTh'>Dynamic Tooltip Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>This property dynamically changes the style of the Dynamic Tooltip.  Set property to a script with a Return type <em>String</em> that is a cascading style sheet (css) name found in the stylesheet used by the application.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Editable</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Specifies whether the Large Text  Field is editable (true) or read-only (false).   Default is NONE, which is editable. Setting this property to <em>True</em> enables editing of this element when it appear within a Table. The values for this property are either <em>True</em> (editable), <em>False</em> (read-only) or a <em>Permissions</em> method (for example, depending on the user's permissions, this field will be read-only or editable).</p>
+  <p><strong>Note:</strong> If a field contains  an editable permission that is either coming from the form field itself, or inherited from the variable or data type, it takes precedence. Otherwise, the user interface's editablePerm permission takes over. If this method is not overwritten, the model's editablePerm permission is used. User interfaces displayed under another user interface with editablePerm are also be inherited if the embedded user interfaces do not have their own editablePerm permission.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Error Icon Gap</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Select this property's checkbox to make a gap for the validation icon. By default, this property is false. </p>
+    <p><strong>Note:</strong> This property is available only for left (or default) error orientation. The gap is calculated according to the /cwfv/error.png icon size. When the image is substituted with a smaller one, the gap is also smaller. </p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Error Icon Orientation</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property allows you to configure how an icon are displayed. This property takes the values left (default) and right.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Group By In Table</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Displays the   Large Text data in text area portion of the Finder results. Each results is grouped in the table based  upon its size (from largest to smallest). Default is <em>False.</em></td>
+</tr>
+<tr>
+<th class='referenceTh'>Height</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Height to be taken up by the Large Text area as defined as an integer value in pixels.  If this element is nested under a Table element, the width and height properties can be set using either the percentage (%) or pixel (px) measurement. If this element is not nested under a Table element, the width and height properties are only available using the pixel setting.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Icon</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Choose an image file that appears as an icon to the right of the Large Text field. Default is /cwfv/text_view.png icon.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Icon Action</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'><p>Choose from the list of Methods available in the User Interface to bind to the Icon. The Method is invoked when a user clicks on the Icon.</p></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label Align</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>Click the <strong>Value</strong> field and select from one of the following alignment options for your label:</p>
+    <ul>
+      <li><strong>Left</strong></li>
+      <li><strong>Centre</strong></li>
+      <li><strong>Right</strong></li>
+      </ul></td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label Orientation</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Choose the location of the Label. Options include top, left or right.. The default orientation is <i>right</i>.  However, in a Grid Layout , the default label orientation is defined by the Grid Layout element.  But if a value of this Label Orientation property is specified, than it overrides the Label Orientation property provided by the Grid Layout. </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Label Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Choose from styles in the selected stylesheet at the toolbar, which defines the styling of the Label such as font color. Default is NONE.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Remove Label Line</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>Select this property's checkbox when the element is in a grid layout and its column span is equal to the grid layout's   number of columns. In other words, if the   field is the only field in that row, this empty line is removed above the element. </td>
+</tr>
+<tr>
+  <th class='referenceTh'>Run Trigger</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'><p>The method assigned to this property is invoked whenever the data in the Large Text changes and the dialog box becomes out-of-focus. The method can be a User Action or a Script.</p>
+    <p>The trigger of a field fires only if the field has first gained focus,  and then lost focus under these conditions:</p>
+    <ul>
+      <li>You focus on another field through either clicking your mouse or pressing the Tab key.</li>
+      <li>You click a menu.</li>
+      <li>You change your selection in a navigation tree.</li>
+      <li>You click another tab of a tabset.<br>
+        </li>
+      </ul>
+    <p><strong>Notes:</strong></p>
+    <ul>
+      <li>Field triggers do not fire on save. However, document triggers do.&nbsp;</li>
+      <li>As long as the cursor is still inside the field, the trigger  does not fire. Clicking outside  the field into the layout will not trigger  the field as layouts are not focusable by default.</li>
+      </ul></td>
+</tr>
+<tr>
+<th class='referenceTh'>Show Label</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>This property determines whether the label is displayed on the Large Text. Choose from <i>True</i> or <i>False</i>. Default is True which means that the label is displayed.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Start Row</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Applicable only when the parent element is a Grid Layout. If true, the Large Text appears in a new row of the grid. If <i>False</i>, it is simply placed in the next available cell. Default is <i>False, </i>which means that the Large Text element does not start in a new row.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Choose from styles within the selected stylesheet (located in the Velocity Studio toolbar), which defines the styling of the button such as positioning and co lour. Default is none.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Summary Length</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Specifies the maximum number of characters that will display in the preview Large Text Field.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Text Align</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Specifies the text alignment of the Large Text entry at runtime; it can be <i>left</i>, <i>center</i>, or <i>right</i>. Default is empty, which is right-aligned.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Textbox Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'><p>Choose from styles in the selected stylesheet at the toolbar, which defines the styling of the textbox of the Large Text such as color and font. Default is NONE.</p>
+  <p>To change the default disabled style for text fields, set this property with your own style, and make sure your stylesheet contains a style with the <em>Disabled</em> suffix appended to the assigned style. As example, when assigning the MyStyle style to the <strong>Textbox Style</strong> property, the stylesheet must have MyStyleDisabled to represent the disabled style.</p>
+  <p>To change the disabled style for text fields globally, add the <em>fieldDisabled</em> style to your stylesheet.<BR>
+    <strong>Note:</strong> The <em>fieldDisabled</em> style is  also  applied to any element that has a text field when disabled (for example, the date element or the password element). </p></td>
+</tr>
+<tr>
+<th class='referenceTh'>Tooltip</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Defines the tooltip text, which is displayed in a hover box when the cursor hovers over the Large Text. Default is empty, which means no tooltip for the Large Text.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Variable</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Choose from the list of Variables available in the User Interface to bind to this Large Text. Default is not assigned. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Visible</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Determines whether the Large Text is visible or not. Choose true (visible) or false ( not visible) or from the list of Permission Methods available in the User Interface to bind to the Field.  This property defines the user permissions assigned to this layout. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and visiblePerm can be assigned as well as Object Permissions. Defaults to NONE, which means no permissions assigned.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Width</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Width to be taken up by the Large Text; can be in integer which is in pixels, or in percentage (for example, "30%") of page width or parent Element. If this field is empty, the Width of the field should be taken up by that defined in the Column Width property of the Grid Layout.  If this element is nested under a Table element, the width and height properties can be set using either the percentage (%) or pixel (px) measurement. If this element is not nested under a Table element, the width and height properties are only available using the pixel setting.</td>
+</tr>
+</tbody>
+</table>
+<strong><br>
+Notes:</strong>
+<ul>
+  <li>If this element is nested under a Table element, the width and height properties can be set using either the percentage (%)  or pixel (px) measurement. If this element is not nested under a Table element, the width and height properties are only available using the pixel setting. </li> 
+<li>If this element is the first element that appears in the Element Tree pane, you can set the cell alignment. If this element has a parent layout (for example, vlayout or layout with the width or height set), this element uses these values as a base to set its alignment. If the parent layout does not contain a width or height, then this element does not have a base to which it can set its alignment.</li>
+  <li>If the element has a parent that contains width or height settings, but this form is displayed under another layout with different widths, your form alignment is restricted to the parent's width or height settings.</li>
+<li>If you use a reference or large text field under a finder whose output object does not have a user interface, a validation error occurs.</li>
+</ul>
+</td>
+</tr>
+</table>
+</body>
+</html>

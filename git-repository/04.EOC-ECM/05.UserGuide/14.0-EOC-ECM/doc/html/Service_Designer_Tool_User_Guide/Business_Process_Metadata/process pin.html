@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Process Pinning</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Process Pinning</h2>
+
+<p>Metadata can have multiple versions of the same process that are not in  use and are of no interest in your  current project, such as old process reincarnations, different  process versions, non-applicable process versions, and so on. These metadata versions are regular  processes that already exist, must remain in the metadata as-is, and have the ability to run in the process engine, if required. However, they overpopulate the  Process folder and you may choose to temporarily hide them.</p>
+<p>The key is to be able to logically organize processes by moving  unused process versions under the main process folder. When needed, you can  view these versions by accessing the process folder and hide them by closing it. Additionally, you must be able to move these processes back to their original  location. These actions are called <strong>process pinning</strong> and <strong>process unpinning</strong>, respectively. The old version that is pinned under the process is called the <strong>process pin</strong>, and can be  unpinned or moved back to its original location. </p>
+
+<p><strong>Note:</strong> Having multiple versions of the same process that are not in use is different than creating a <a href="process revisions.html">process revision</a>. The latter refers to an archive of the user process metadata object, which is a snapshot taken previously by Velocity Studio of the Process metadata object and can be changed later.</p>
+
+<h3><strong>Process Folder</strong></h3>
+
+<p>The Process folder contains  two types of metadata: </p>
+<ul>
+  <li>Process  revisions</li>
+  <li>Pinned processes</li>
+</ul>
+<p>Each process in the Velocity Studio acts as folder which, by default, is closed and hidden from users. If this folder is empty, you cannot open it.</p>
+<h4>Open a Non-empty Folder</h4>
+<p>To open a non-empty folder, choose from one of the following options:</p>
+<ol>
+  <li>Double-click the process.</li>
+  <li>Right-click and select <strong>View Process Folder</strong>.</li>
+</ol>
+<h4>Close a Folder</h4>
+<p>To  close a folder, do one of the following:</p>
+<ol>
+  <li>Double-click the process with an open folder.</li>
+  <li>Right-click and select <strong>Hide Process Folder.</strong></li>
+</ol>
+<p>Refer to the <a href="process revisions.html">Process Revisions</a> section to see how revisions are generated and used.</p>
+
+<h3>Pin Process Versions</h3>
+<p>To pin process versions to the parent process, complete these steps:</p>
+<ol>
+  <li>Select the processes to be pinned, and either select <strong>Copy</strong> or <strong>Cut</strong> them, to place these processes on the clipboard.</li>
+  <li>Select the  process pin, right-click, and then select <strong>Pin to Process</strong>.</li>
+  <li>Pinned processes are no  longer displayed under the Process category. However, you can see them in the  Process pin folder. </li>
+  </ol>
+
+<p><strong>Note:</strong> Processes can be pinned to a Process element only (that is, the <strong>Pin to Process</strong> option is only available in the right-click menu of the  Process element). This option is unavailable in either the Process Revision or any other  metadata element. </p>
+
+<p>The <strong>Pin to Process</strong> option is disabled when:</p>
+<ul>
+  <li>The clipboard is empty.</li>
+  <li>The process  pin is non-editable.</li>
+  <li>The process pin itself is pinned to another process to avoid  multi-level pinning.</li>
+  <li>One of the elements on the clipboard is not a process  (for example, a process revision <em>is not</em> a process).</li>
+  <li> One of the clipboard processes has other processes pinned  to it to avoid multi-level pinning.</li>
+  <li> One of the elements in the clipboard is outside of the  process pin’s namespace. In  Velocity Studio, you cannot identify which namespace the process belongs to unless it is displayed within the namespace. If you pin a process to a process pin belonging to  another namespace,  you cannot identify the original namespace of the  pinned process. This restriction does not pose a problem, as you are working with different versions of the same process that are mostly located inside the same namespace.</li>
+</ul>
+<h3>Unpin Process Versions</h3>
+<p>To unpin process versions back to their original location, do the following:</p>
+<ol>
+  <li>
+    Select the processes to be pinned, right-click, and then select <strong>Unpin from  process</strong>. </li>
+  <li>The selected processes  no longer display in the process pin folder. Instead, they return to the original location (that is, in the Process category folder  in their respective namespaces).</li>
+  </ol>
+<p>The <strong>Unpin from process</strong> option is disabled when:</p>
+<ul>
+  <li>No process to unpin is selected.</li>
+  <li>One of the selected elements is not a process.</li>
+  <li> One of the processes is not pinned</li>
+</ul>
+<h3>Examples of Valid Operations</h3>
+<p>The following are examples of using pinned processes:</p>
+<ul>
+  <li>You can  select pinned processes across multiple process  pins in different namespaces and unpin them in one action.</li>
+  <li>You can select pinned and unpinned processes  in the same namespace, and pin them to a third process in one action.</li>
+</ul>
+<p><strong>Considerations</strong></p>
+<p>When the Process pin folder is hidden and you click the pinned process in either the <strong>Search</strong> or <strong>Problems</strong> panel, the pinned process panel  displays and the Velocity Studio tree is expanded properly. However, the process node  in the Velocity Studio tree is not shown as selected.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

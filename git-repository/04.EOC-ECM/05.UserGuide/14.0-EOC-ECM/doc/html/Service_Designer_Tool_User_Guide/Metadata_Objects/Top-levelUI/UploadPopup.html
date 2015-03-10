@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>UploadPopup User Interface Objects</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name=""></a>UploadPopup User Interface Objects</h2>
+<p>A com.conceptwave.system.UploadPopup provides default forms for uploading documents. There are two forms available that can be extended: CustomDocumentUpload and DocumentUploadForm.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="UploadPopup.png" alt="UploadPopup" /></td>
+</tr>
+</tbody>
+</table>
+<br>
+<h3>DocumentUpload Form</h3>
+<p>The DocumentUploadForm contains the UploadFile and errorMessage elements. </p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="DocUploadForm.png" alt="DocUploadPopup" /></td>
+</tr>
+</tbody>
+</table>
+
+<p>Each element can be replaced by "right-clicking" the element and selecting <b>Copy &amp; Replace</b>.   By performing a copy and replace, the properties of the elements are exposed and can be modified. The look and feel of the popup button can be changed by setting the <b>Button Style</b>. However, neither the <b>File</b> text nor <b>Browse</b> button can be changed as they are browser controls.</p>
+
+<h3>CustomDocumentUpload Form</h3>
+<p>The CustomDocumentUploadForm contains the UploadFile and errorMessage elements. It also contains a separate Button element from the UploadFile element. The Button element is located beside the UploadFile element. </p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="CustomDocUploadForm.png" alt="DocUploadPopup" /></td>
+</tr>
+</tbody>
+</table>
+
+<p>In this form, the <b>Show Upload </b>button property of the UploadFile element is set to <em>false</em> such that the <b>Upload </b>button associated with the UploadFile element is hidden. Instead, the Upload button that is displayed in the preview pane is the button associated with the Button element. The <b>Upload Control Name</b> property of the Button element can be set to the upload file element name that you want associated with this button. </p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

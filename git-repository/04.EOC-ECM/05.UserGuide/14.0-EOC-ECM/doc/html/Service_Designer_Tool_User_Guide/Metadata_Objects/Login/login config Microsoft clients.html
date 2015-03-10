@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>Configure Microsoft Clients to Use Windows Integrated Authentication</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2><a name="ConfigureMicrosoftClients"></a>Configure Microsoft Clients to Use Windows Integrated Authentication</h2>
+<p>This procedure contains the following tasks:</p>
+
+<ul>
+	<li><a href="#ConfigIEauthentication">Configure Internet Explorer to use Windows authentication</a></li>
+	<li><a href="#ConfigureIntranetAuthentication">Configure intranet authentication</a></li>
+	<li><a href="#VerifyProxySettings">Verify the proxy settings</a></li>
+</ul>
+
+<h3><a name="ConfigIEauthentication"></a>Configure Internet Explorer to use Windows Authentication</h3>
+<p>To configure your Internet Explorer browser to use Windows authentication, follow these procedures:</p>
+
+<ol>
+<li>Open Internet Explorer, and click <b>Tools &gt; Internet Options</b> from the menu bar.</li>
+<li>Click the <strong>Security tab</strong>.</li>
+<li>Click the <strong>Local intranet</strong> icon, and then click the <strong>Sites</strong> button.</li>
+<li>In the Local intranet dialog, ensure that you have checked the following settings:
+	<ul>
+		<li><strong>Include all local (intranet) sites not listed in other zones</strong></li>
+		<li><strong>Include all sites that bypass the proxy server</strong></li>
+	</ul>
+<li>Proceed to click the <strong>Advanced</strong> button.</li>
+<li>In the Local intranet dialog, add all relative domain names that will be used for WebLogic Server instances participating in the single sign-on configuration (for example, <em>myhost.example.com</em>), and then click the <strong>OK</strong> button.</li>
+</ol>
+
+<h3><a name="ConfigureIntranetAuthentication"></a>Configure Intranet Authentication</h3> 
+<p>To configure your Internet Explorer browser for intranet authentication, complete these steps:</p>
+
+<ol>
+	<li>In Internet Explorer, click <strong>Tools &gt; Internet Options</strong> from the menu bar.</li>
+	<li>Click the <strong>Security tab</strong>.</li>
+	<li>Click the <strong>Local intranet</strong> icon, and then click the <strong>Custom level...</strong> button.</li>
+	<li>In the <strong>Security Settings</strong> dialog, scroll to the <strong>User Authentication section</strong> and select <strong>Automatic logon only in Intranet zone</strong>. This option prevents you from having to re-enter logon credentials.</li>
+	<li>Click the <strong>OK</strong> button to save your changes.</li>
+</ol>
+
+<h3><a name="VerifyProxySettings"></a>Verify the Proxy Settings</h3> 
+
+<p>If you have a proxy server enabled, do the following:</p> 
+
+<ol>
+	<li>In Internet Explorer, click <strong>Tools &gt; Internet Options</strong> from the menu bar.</li>
+	<li>Click the <strong>Connections</strong> tab, and then click the <strong>LAN settings</strong> button.</li>
+	<li>Verify that the proxy server <strong>Address</strong> and <strong>Port</strong> number fields are correct, and then click the <strong>Advanced</strong> button.</li>
+	<li>In the <strong>Proxy Settings</strong> dialog box, ensure that all desired domain names are entered in the <strong>Exceptions</strong> field.
+	<li>Click the <strong>OK</strong> button to close the <strong>Proxy Settings</strong> dialog and save your changes. 
+</ol>
+</td>
+</tr>
+</table>
+</body>
+</html>

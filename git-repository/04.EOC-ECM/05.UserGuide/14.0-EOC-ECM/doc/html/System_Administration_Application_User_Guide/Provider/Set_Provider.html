@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>Manage Provider Settings</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <h2>Manage Provider Settings</h2>
+ <p>You can set a security provider and/or service provider, which differs from the default ConceptWave<sup>&reg;</sup> providers, by navigating to<strong> Provider > Set Provider</strong> menu. </p>
+
+ <h3>Set up an LDAP Provider</h3>
+ <p>To set up an LDAP security provider, complete the following steps:</p>
+<ol>
+  <li>Open your Web browser and go to <a href="http://localhost:8080/cwf/admin">http://<em>hostname:port</em>/cwf/admin</a> to open the User Profile Administrator.</li>
+  <li>Log in to the User Profile Administrator by entering <tt>upadmin</tt> as both your <strong>Username</strong> and <strong>Password</strong>.</li>
+  <li>From the User Profile Administrator's menu bar, click <strong>Providers &gt; Provider</strong>.<br>
+    <br>
+  <table class='confluenceTable'><tbody>
+<tr>
+<td class='confluenceTd'><img src="provider.png" align="absmiddle" border="0" /></td>
+</tr>
+</tbody>
+</table>
+  <br>
+  </li>
+  <li>On the Providers dialog, under <strong>Security Provider</strong>, click the <strong>Provider</strong> drop-down menu and select <strong>LDAP</strong> from the list.</li>
+  <li>Fill in the <strong>Data</strong> field of the Security Provider section, which consists of entering the URL and Principal:
+    <ol type="a">
+      <li>The URL has the following syntax:<br>
+        <strong><em>ldap</em>://&lt;<em>hostname</em>&gt;&lt;:<em>port</em>&gt;</strong><br>
+        <br>
+      Where:      </li>
+      <ul>
+        <li><em>ldap</em> is the protocol.</li>
+        <li><em>hostname</em> is either the name or IP address of the LDAP server to which you want to connect.</li>
+        <li><em>port</em> is the port number on which the server is running. The default port number is 389 for non-secure servers.</li>
+      </ul> 
+    
+      <p><strong>Example:</strong> ldap://neptune:389
+      </p>
+  
+      <li>The principal has the following syntax:<br>
+        <em>CN</em>=&lt;Users&gt;, <em>DC</em>=&lt;domain&gt;, <em>DC</em>=&lt;top-level domain&gt;<br>
+        <br>
+      Where: </li>
+      <ul>
+        <li><em>CN</em> represents the common name.</li>
+        <li><em>DC</em> represents the domain component.</li>
+      </ul>
+      <p><strong>Example:</strong> CN=Users, DC=conceptwave, DC=com
+      </p>
+      <li>
+        <p>In the <strong>Data</strong> field of the Security Provider section, enter the URL and Principal.<br>
+          <br>
+          <strong>Example:</strong> ldap://neptune:389; DC=my-domain, DC=com</p>
+</li>
+    </ol>
+</li>
+  <li>Click the <strong>Save</strong> button to continue.</li>
+  <li>A message appears, indicating that at least one User Profile Manager account needs to be authenticated by the new security provider. Click the <strong>Yes</strong> button.</li>
+  <li>Create a user as part of the User Profile Administrators group, which allows you to log in with these credentials in the User Profile Administration application.</li>
+  <li>Create as many users are you require, following the syntax in the LDAP provider.<br>
+    <br>
+    <strong>Note:</strong> The user ID must reflect the exact user ID found in the LDAP list of users. These user IDs and relevant information must be provided by the client's IT staff.<br>
+  </li>
+  <li>With the User Profile Administrator application still opened, open a new Web browser and go to <a href="http://hostname:port/cwf/config/index.html">http://<em>hostname:port</em>/cwf/config/index.html</a> or <a href="http://hostname:port/cwf/config">http://<em>hostname:port</em>/cwf/config/</a> to log in to the Configuration application.</li>
+  <li>After logging in to the Configuration application, add a configuration variable:
+    <ol type="a">
+      <li>Click the <strong>System</strong> tab and then click the <strong>Config variables</strong> tab. </li>
+      <li>Click the <strong>Add</strong> button to add a new configuration variable.</li>
+      <li>For the <strong>Name</strong> field, enter <tt>ldap_superuser_id</tt>. For its value, enter <tt>Manager</tt>.<br>
+        <br>
+        <img src="provider_ldap_config_variable.png" alt="ldap_superuser_id configuration variable" width="767" height="581" border="1"><br>
+        <br>
+      </li>
+      <li>Continue creating the following configuration variables:
+        <ul>
+          <li><strong>ldap_superuser_password</strong> (in this example, the password for the Neptune server)</li>
+          <li><strong>ldap_user_attribute</strong> (the default is <strong>cn</strong>)</li>
+          <li><strong>ldap_password_attribute</strong> (the default is <strong>userPassword</strong>)</li>
+          <li><strong>ldap_password_encrypt_algorithm</strong> (the default is <strong>MD5</strong>)<br>
+            <br>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>Start the LDAP server. In this example, to start the LDAP server on the Neptune computer, use the following:  </li>
+  <blockquote>
+    <tt>c:\openldap\.\slapd -d 1</tt>
+  </blockquote>
+  <li>Start the framework.</li>
+  <li>Log in to the runtime application by using the <strong>Username</strong> and <strong>Password</strong> for the LDAP user.</li>
+</ol>
+<p>For a list of security providers that you can use in conjunction with the User Profile Administration application, see the <a href="Security_Providers.html">Security Providers</a> section.</p>
+<h3>Profile Providers</h3>
+<p>Depending on the profile provider selected, a Profile Provider menu item will appear in the Tools main menu containing the pertinent sub menu items.</p>
+<p>Currently, the User Profile Administration application supports the following profile providers:</p>
+<h4>ConceptWave<sup>&reg;</sup> Profile Provider</h4>
+<p>ConceptWave<sup>&reg;</sup> profile provider has the following characteristics:</p>
+<ul>
+	<li>The default profile provider.</li>
+	<li>Supports product<sup></sup>-specific profile information.</li>
+</ul>
+<h4>Other (Additional) Profile Providers</h4>
+<p>Other (additional) profile providers have the following characteristics:</p>
+<ul>
+	<li>Can be developed and used by the User Profile Administrator application by selecting <em>&lt;other&gt;</em> in the profile provider <b>Provider</b> drop-down list box.</li>
+	<li>The Java class of the profile provider is set in the profile provider <b>Other</b> field.</li>
+	<li>Such a profile provider can supply <em>external profile</em> information that does not reside in the User Profile database. This information appears as an additional tab on user property pages. This <em>external profile</em> document is also available to Java Scripts written in Velocity Studio.&nbsp;</li>
+</ul>
+<p>&nbsp;</p>
+</body>
+</html>

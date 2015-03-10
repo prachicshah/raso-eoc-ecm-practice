@@ -1,0 +1,48 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Installation and Packaging</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h3>Installation and Packaging</h3>
+
+<p>When you install the product through the wizard, the <a href="../../../Installer_User_Guide/order care install wizard.html#electLicenseFile">Check Licence</a> page prompts whether you want to use a licence file or the Sentinel licence server address. If you select the Sentinel server type and a connection to the server is successfully established, the product checks out the pertinent licence information to local persistence storage and the server continues working offline. When you open the Velocity Studio application and start the AVM, the application uses the information from this persistence storage. </p>
+<p>The Sentinel server address is saved in the properties file in the Designer installation directory. You can add the server IP address and change it by clicking <a href="../../Service Designer Menu Actions/Help About.html#license"><strong>Help</strong> &gt; <strong>About Velocity Studio - License</strong></a> tab from the menu bar.</p>
+<h4>Supported Operating Systems</h4>
+<p>The Sentinel licence manager supports the following operating systems:</p>
+<ul>
+  <li>Windows 32- and 64-bit versions</li>
+  <li>Windows XP</li>
+  <li>Windows Vista</li>
+  <li>Windows 7</li>
+  <li>Windows 8 (Desktop mode)</li>
+  <li>Windows Server 2003, 2008, 2008 R2 (64-bit only), and 2012</li>
+  <li>Solaris Sparc</li>
+  <li>Solaris x86</li>
+  <li>Linux</li>
+  <li>Macintosh</li>
+  <!--
+  <li>AIX</li>
+  <li>HPUX</li>
+  -->
+</ul>
+<h4>AVM under a Web Container</h4>
+<p>The WAR file that is used to deploy the application under a Web container includes DDLs and SO (shared object) files that the Sentinel API library requires. At startup, it extracts the libraries to the user home directory.</p>
+<p>The IP address to the server is defined as a Java system option. Alternatively, it may look for a local properties file with the licence server information. If the AVM is unable to connect to the licence server, the AVM dos not start and logs the error.</p>
+<h4>SUF Installation</h4>
+<p>The SUF installation prompts for the licence type (that is, either the licence file or the licence server). If you specify the latter, it prompts for the IP address. A special playlist command then runs, and checks whether the server is available and the licence can be obtained. The IP address is then saved as Java options in the JBoss standalone configuration file.</p>
+<h4>Upgrade Licences</h4>
+<p>Upgrading licences is currently unsupported, but will be supported in future releases. To use additional licences, you must install additional licence servers.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

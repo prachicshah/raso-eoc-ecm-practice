@@ -1,0 +1,197 @@
+<html>
+<head>
+<title>Messages</title>
+<link rel="StyleSheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Messages</h2>
+<p>There  are two types of messages related to the user Interface:</p>
+<ul>
+  <li><a href="#statusMessages">Status Messages</a><br>
+  </li>
+  <li><a href="#confirmMessage">Confirm messages</a></li>
+</ul>
+<h3><a name="statusMessages">Status Messages</a></h3>
+Status  messages are displayed after actions are triggered, to inform the  success or failure (for example, in finders, delete  and search  actions and in components, the save action). The common library has predefined status message codes. These codes can be reused or augmented with new messages. 
+  Status  messages are displayed on either the application  or  dialog UI. When the status  message is longer than the status textbox, a menu beside the status  is available to trigger a new window with the full status message.
+<h4>Methods</h4>
+The following methods are used to set or clear the status of a message:
+
+<ul>
+  <li><strong>setModelStatus</strong> (Object result, String msg, Boolean style,  String label) – This method is used to set the status of a component or finder with either a  confirmation or error message. The result parameter is the result of an action  performed (such as, saved model, or a fault). The msg parameter is the text code.  The style parameter, sets if the message is either a confirmation or an error. The label parameter act  as input  parameter to translate the text code.</li>
+
+  <li><strong>resetModelStatus</strong>() – This method is used to clear the status of either a component or  finder. </li>
+</ul>
+<h4>Global Scripts</h4>
+The following global scripts are used with messages:
+<ul>
+  <li><strong>ui_common.resetStatusMessage</strong>(Object obj) – This script is used to  clear the status message. It is called from application UI menu items to  clear status on page change.</li>
+  <li><strong>ui_common.setModelStatus</strong>(Object input, Object  result, String msg, Boolean style, String label) – This script is called from  <em>setModelStatus method </em>either  to set the application UI or dialog UI status message.</li>
+</ul>
+<h4>Variables</h4>
+The following variables are used in <strong>ui_common.baseApplication</strong> and<strong> ui_common.dialogExtend</strong><strong></strong> to display the status messages:<br><br>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+  <th width="189" class='confluenceTh'>Variable</th>
+  <th width="377" class='confluenceTh'>Description</th>
+  </tr>
+  <tr>
+  <td height="32" class='confluenceTd'><strong>modelStatus</strong></td>
+  <td class='confluenceTd'> Full model status message</td>
+  </tr>
+  <tr>
+  <td height="35" class='confluenceTd'><strong>modelStatusTrim</strong></td>
+  <td class='confluenceTd'>Trimmed model status. Used for display in  the textbox</td>
+  </tr>
+  <tr>
+  <td height="37" class='confluenceTd'><strong>showStatus</strong></td>
+  <td class='confluenceTd'>Flag used to show status message</td>
+  </tr>
+  <tr>
+  <td height="65" class='confluenceTd'><strong>isConfirmStyle</strong></td>
+  <td class='confluenceTd'> Flag used for  model status type: 
+    <ul>
+      <li> True = Confirmation</li>
+    <li>False = Error</li></ul></td>
+  </tr>
+  <tr>
+  <td height="35" class='confluenceTd'><strong>isModelStatusMenuEnabled</strong></td>
+  <td class='confluenceTd'> Flag used for model  status menu, if enabled or disabled</td>
+  </tr>
+  <tr>
+  <td height="43" class='confluenceTd'><strong>isModelStatusMenuVisible</strong></td>
+  <td class='confluenceTd'>Flag used for model  status menu visibility
+  <p></p></td>
+  </tr>
+
+</tbody>
+</table>
+<h4>Styles</h4>
+The following style parameter are used to  sets if the message is either a confirmation or an error:<br><br><table width="542" class='confluenceTable'>
+<tbody>
+<tr>
+  <th width="181" class='confluenceTh'>Style</th>
+  <th width="330" class='confluenceTh'>Description</th>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>cwConfirmMessage</strong></td>
+  <td class='confluenceTd'> This is the style used when the message is  a confirmation.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>cwErrorMessage</strong></td>
+  <td class='confluenceTd'> This is the style used when the message is  an error.</td>
+  </tr>
+
+</tbody>
+</table>
+<h4>Status Message Codes</h4>
+ Here  are examples of status message texts with codes in the common library. To  customize, add  messages codes to your own library.<br>
+<br>
+ 
+<table width="542" class='confluenceTable'>
+<tbody>
+<tr>
+  <th width="173" class='confluenceTh'>ID</th>
+  <th width="344" class='confluenceTh'>Message</th>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>COMMON_UI_DEL_002</strong></td>
+  <td class='confluenceTd'>Delete    {0} completed successfully</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>COMMON_UI_SAVE_001</strong></td>
+  <td class='confluenceTd'>Saving    failed</td>
+  </tr>
+   <tr>
+  <td class='confluenceTd'><strong>COMMON_UI_SAVE_002</strong></td>
+  <td class='confluenceTd'>{0}    has been saved successfully</td>
+ </tr>
+</tbody>
+</table
+><br>
+These codes are listed in Velocity Studio. Go to the left navigation panel and select  the <strong>Resources</strong>  tab. Select the  <strong>Application Resources of ui_common</strong>. A list   of messages with related id  displays.<br><br>
+<img src="./messageCodes.png" alt="Message codes" border="1" />
+<h4>Using Status Messages</h4>
+
+Error  messages can be customized by:
+<ul>
+  <li>Custom Message Text</li>
+  <li>Success or Error Flag</li>
+  <li>Custom Label</li>
+</ul>
+
+A status message can be reset from within the UI or from  any other UI. To  reset status messages from any UI, use the following script:
+ <div class="code"> <div class="codeContent">
+<pre><tt> ui_common.resetStatusMessage(target UI)</tt> </pre>
+ </div>
+ </div>
+ 
+To reset status messages from within the UI, use the following script:
+ <div class="code"> <div class="codeContent">
+<pre>resetModelStatus()</pre>
+ </div>
+ </div>
+ 
+ <h4><a name="statusMessageFinders"></a>Status Messages for Finders</h4>
+To use status messages for finders,  consider these points:
+ <ul>
+   <li>For default error message, only one parameter needs to be passed to <em>setModelStatus method</em>, the fault. If the first parameter is a fault, the  status message is set to the fault message with the<em> cwErrorMessage</em> style. </li>
+   <li> To set a custom message for finders, the first parameter needs to be <strong>null</strong>. The second parameter is the message code. </li>
+   <li>The third parameter   sets the message style to either a confirmation or an error.  </li>
+   <li>The fourth parameter is  optional and is used if a parameter is required to set in the error text. For example: <br>
+   </li>
+ </ul>
+ <div class="code"> <div class="codeContent">
+  <pre>this.setModelStatus(null,&quot;COMMON_UI_DEL_002&quot;,true,selected[0].metadataTypeLabel);</pre>
+     </div>
+ </div>
+   <h4><a name="statusMessageComponents"></a>Status Messages for Components</h4>
+To  simplify status messaging for components, when using the save action, only one  parameter needs to be passed to <em>setModelStatus method</em> for either error or success status  messages.<br><br>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+  <th width="173" class='confluenceTh'>Message</th>
+  <th width="487" class='confluenceTh'>Description</th>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>Error</strong></td>
+  <td class='confluenceTd'> If the first  parameter is  fault, the status message is set to the default message with  the<em> cwErrorMessage</em> style.</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><strong>Success</strong></td>
+  <td class='confluenceTd'> If the first  parameter is not fault, the model is updated with the parameter and the  standard component save success message is  displayed with the  <em>cwConfirmMessage</em> style.</td>
+  </tr>
+
+</tbody>
+</table><br>
+For  example, to set the status message from a save action, use these steps for the  <strong>onSaveModel</strong> method:
+<ol>
+  <li>If calling an API,  capture the return value and use it to set the model status (for example, <tt>this.setModelStatus(result))</tt>. The status message style is set automatically.</li>
+
+  <li>If performing  validation check, defaults can be set in the model status in the same way (for  example, <tt>this.setModelStatus(fault)).</tt> The status message style is <em>cwErrorMessage</em>.</li>
+
+  <li>To set a custom  message, provide a custom success message code in the parameters. If the first parameter is a fault the default  error message is used (for example, <tt> this.setModelStatus(result,&quot;LOC_UI_SAVE_ADDR_002&quot;)).</tt></li>
+</ol>
+
+<h3><a name="confirmMessage">Confirm Message</a></h3>
+Confirm  messages are used to confirm a user action (for example,delete). To create a confirm message, follow these steps:
+<ol>
+  <li>Create a new script  method that shows the confirm message (for example, <tt>return  &quot;UU0167:YN&quot;;</tt>). The script in the example returns  a <em>Are you sure you want to perform this action?</em> and <em>yes</em> and <em>no</em> button (as in the image).</li> 
+
+<li>Create the user action  that  needs to specify as the click action of the menu or button.</li>
+  <li>Set the confirmation  script to the one created in Step 1. </li>
+  <li>Set the customized  confirm dialog object to <strong>ui_common.confirmDialog</strong>. The result  looks like this image:</li>
+  <br>
+   <img src="./yesno.png" alt="Confirmation dialog"/> <br>
+</ol>
+</td>
+ </tr>
+  </table>
+   </body>
+   </html>

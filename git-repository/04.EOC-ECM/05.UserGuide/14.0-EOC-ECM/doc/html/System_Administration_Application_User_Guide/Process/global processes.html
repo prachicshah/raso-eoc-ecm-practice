@@ -1,0 +1,129 @@
+﻿
+<html>
+<head>
+<title>Global Processes</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<h2>Global Processes</h2>
+<p>The <b>Global Processes</b> report displays a list of all global processes in the system. Global processes are processes that are running at all times.</p>
+<p>To access the Global Processes report, do the following:</p>
+<ol>
+  <li>From the menu bar, click <strong>Processes</strong> &gt; <strong>Global Processes</strong>.</li>
+  <li>On the Global Processes page, click the <strong>Search</strong> button to display a list of all global processes in the system. You can also specify your search criteria.<br>
+    <br>
+    <img src="global.png" border="1" alt="Global Processes - Search button" /><br>
+  </li>
+</ol>
+<p>The following search fields are available:</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Process </strong><b>Status</b></td>
+  <td class='confluenceTd'>Status of the global process.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b><strong>Process </strong>Type</b></td>
+  <td class='confluenceTd'>Type of global process.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Priority</b></td>
+  <td class='confluenceTd'>Priority of the global process.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Process Engine ID</b></td>
+  <td class='confluenceTd'>ID of the Process Engine running the global process.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Start Time</b></td>
+  <td class='confluenceTd'>Date and time when the global process was started.  Click the <strong>Calendar</strong> icon to view the calendar and select a date. You can also specify the time by using the <strong>Hour</strong>, <strong>Minute</strong>, and <strong>Second</strong> drop-down fields.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Status Changed</b></td>
+  <td class='confluenceTd'>Date and time when the status of the global process ended.  Click the <strong>Calendar</strong> icon to view the calendar and select a date. You can also specify the time by using the <strong>Hour</strong>, <strong>Minute</strong>, and <strong>Second</strong> drop-down fields.</td>
+</tr>
+</tbody>
+</table>
+<h3>Action Menu</h3>
+<p>The <strong>Action</strong> menu allows you to perform a number of process functions. Select the checkbox next to the process that you want from the search results, click the <strong>Action</strong> button, and then select one of the following options:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="161" class='confluenceTh'>Option</th>
+      <th width="348" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Suspend</b></td>
+      <td class='confluenceTd'>Suspends the selected process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Resume</b></td>
+      <td class='confluenceTd'>Attempts to resume the selected process.</td>
+    </tr>
+  </tbody>
+</table>
+<h3>Detail Menu </h3>
+<p>The <strong>Detail</strong> menu allows you to view information about a specific process. Select  the checkbox next to the process that you want from the search results, click the <strong>Detail</strong> button, and then select of the following options:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Option</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Event Log</b></td>
+      <td class='confluenceTd'>Activates an <b>Event Log</b> dialog (refer to section Event Log), which displays a list of messages associated with the selected process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Activities</b></td>
+      <td class='confluenceTd'>Activates an <b>Activity Finder</b> dialog, which displays a list of activities associated with the selected process.</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="GlobalProcesses-%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3BDetail%3AActivities"></a> Activities</h3>
+<p>The <b>Activities</b> dialog  displays a list of activities associated with the selected global process. To access the activities dialog, do the following:</p>
+<ol>
+  <li>Select  the checkbox next to the global process that you want from the list and then click <strong>Detail &gt; Activities</strong>.</li>
+  <li>The Activities dialog, which lists all activities associated with the selected global process that have been started, but have not completed.<br>
+    <br>
+    <img src="global_detail_activities.png" border="1" alt="Global Processes - Activities" /><br>
+    <br>
+    The Activities dialog contains the following fields:<br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th class='confluenceTh'>Field</th>
+          <th class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Started</b></td>
+          <td class='confluenceTd'>Date and time when the activity was started.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Completed</b></td>
+          <td class='confluenceTd'>Date and time when the activity completed.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Activity</b></td>
+          <td class='confluenceTd'>Description of the activity.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>To view details about a specific activity, click the <strong>Details</strong> icon next to the activity that you want to view its details. <br>
+    <br>
+    <img src="global_detail_activitiesDetails.png" border="1"><br>
+    <br></li>
+  <li>When you are done reviewing the information, click the <strong>Close</strong> (X) button in the right corner of the dialog to return to the Global Processes page.</li>
+</ol>
+</body>
+</html>

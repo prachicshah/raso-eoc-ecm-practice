@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>Import a Code Table</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Import a Code Table</h2>
+<p>You can import a code table  in   XML and ZIP format.</p>
+<p>To import code tables,  complete these steps: </p>
+<ol>
+  <li>From the Code Tables page, click the <strong> Import</strong> button.
+    <br>
+    <br>
+    <img src="codeTablesImport.png" alt="Code table - Import button" border="1"><br>
+<br>
+  </li>
+  <li>The Import dialog appears.<br>
+    <br>
+    <img src="codeTablesImportDialog.png" alt="Code table - Import dialog" border="1">    <br>
+    <br>
+    Specify the following fields:<br>
+    <br>
+    <table border cellpadding="1" class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="178" class="confluenceTh" >Field</th>
+          <th width="594" class="confluenceTh">Description</th>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Select File</strong></td>
+          <td class="confluenceTd"><p>Click the <strong>Browse</strong> button and specify the file containing the code tables. You can import code tables from XML and ZIP files.</p>
+            <p><strong>Note:</strong> Only a ZIP file created through the <a href="codeTablesExport.html">export option</a> can be imported; you can not import custom ZIP files.</p></td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Import Mode</strong></td>
+          <td class="confluenceTd"><p>By default, this field is set to <strong>Replace</strong>, indicating that if the code tables exist, this import action replaces them. Otherwise, click the drop-down menu and select from the following options:</p>
+            <ul>
+            <li><strong>Create</strong>, which creates all code tables</li>
+            <li><strong>Update</strong>, which updates all existing code tables</li>
+            </ul></td>
+        </tr>
+        <tr>
+          <td class="confluenceTd"><strong>Max Errors </strong></td>
+          <td class="confluenceTd" >This field defaults to 10, indicating that up to ten errors are ignored when importing the code tables. If the number of errors during the import exceeds the number set in this field, the import action stops and a message   occurs, indicating that the action has failed.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>Click the<strong> import </strong>button; a confirmation message displays the summary of code tables import. </li>
+</ol>
+<h3><a name="importFromCommandLine"></a>Import Code Tables from the Command Line</h3>
+<p>You can import a code table from the command line in Windows and Unix. You can use catalogImport and the runScript.cmd to import the code tables.</p>
+<h4>With Catalog Import</h4>
+<p> This option is used when the Catalog application is up and running.  A shortcut command can be found in <strong><STRONG>&lt;<EM>installation_folder</EM>&gt;</STRONG>\designer\env\catalogImport.cmd</strong>. The following describes the syntax of the command-line interface and the available arguments.</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>
+@echo off
+if ""%1""=="""" goto echoSyntax
+
+set CWOC_CLASSPATH=C:\Program Files\6.x\6.0 (263)
+set CLASSPATH=%CWOC_CLASSPATH%\designer\Designer.jar;^
+%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^
+%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^
+%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^
+%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^
+%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^
+%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;
+
+set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m
+
+"C:\java\jdk1.6.0_16\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -catalogimport %*
+
+goto end
+:echoSyntax
+echo ----------------------------------------------------------------
+echo Syntax:  catalogImport [-logFile logFile] username=? [password=?] server_url=? import_file=? 
+echo         [exclude_before=?] [log_general_info=?] [import_domains=?] [import_codetable=?]
+echo		 [deleteProjectBeforeImport=?] [validateDates=?] [newStatus=?] [newProjectEffectiveDate=?] 
+echo		 [maintainOffset=?] [updateFutureDates=?] [moveEndDatedObjects=?] [effectiveEndDate=?]
+echo ----------------------------------------------------------------
+echo Note:    password could be input from console.
+echo 					log_general_info: default is true.
+echo          import_domains: default is true.
+echo          exclude_before date format: yyyy-MM-dd.
+echo ----------------------------------------------------------------
+echo Example: catalogImport username=a password=b server_url=http://server:8080/cwf import_file=c:/temp/myfile.xml exclude_before=2010-01-01 log_general_info=true import_domains=false
+echo          catalogImport username=a server_url=http://server:8080/cwf import_file=c:/temp/myfile.xml 
+echo          catalogImport username=a password=b server_url=http://server:8080/cwf import_file=c:/temp/myfile.xml import_domains=true
+echo          catalogImport username=a password=b server_url=http://server:8080/cwf import_file=C:/temp/ACC_CAN_TYPE.xml import_codetable=true log_general_info=false import_domains=false
+echo          catalogImport username=a password=b server_url=http://server:8080/cwf import_file=C:/temp/ import_codetable=true log_general_info=false import_domains=false deleteProjectBeforeImport=true validateDates=false newStatus=ACT newProjectEffectiveDate=2013-05-30 maintainOffset=true updateFutureDates=false moveEndDatedObjects=false effectiveEndDate=2013-04-22
+echo ----------------------------------------------------------------
+:end    </pre>
+  </div>
+</div>
+
+<h4>With Run Script</h4>
+<p>This option is used when the Catalog application is not available. The following describes the syntax of the command-line interface and the available arguments. A shortcut command can be found in <strong><STRONG>&lt;<EM>installation_folder</EM>&gt;</STRONG>\designer\env\runScript.cmd</strong>. This command imports the file either in .zip or in .xml format.</p>
+    <div class="code">
+         <div class="codeContent">
+           <pre class="code-java">
+@echo off
+if ""%1""=="""" goto echoSyntax
+if ""%2""=="""" goto echoSyntax
+if ""%3""=="""" goto echoSyntax
+if ""%4""=="""" goto echoSyntax
+if ""%5""=="""" goto echoSyntax
+
+IF ""%1""==""-logFile"" (
+set LOG_FILE=%2
+set JDBC_URL=%3
+set APP_NAME=%4
+set APP_VERSION=%5
+set META_DIR=%6
+set GLOBAL_SCRIPT=%7
+set PARAMETERS=%8
+) ELSE (
+set JDBC_URL=%1
+set APP_NAME=%2
+set APP_VERSION=%3
+set META_DIR=%4
+set GLOBAL_SCRIPT=%5
+set PARAMETERS=%6
+)
+
+set CWOC_CLASSPATH=C:\Program Files\6.x\6.0 (263)
+set CLASSPATH=%CWOC_CLASSPATH%\designer\Designer.jar;^
+%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^
+%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^
+%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^
+%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^
+%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^
+%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;
+
+set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m
+IF ""%1""==""-logFile"" (
+"C:\java\jdk1.6.0_16\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -runscript -logFile %LOG_FILE% -jdbc=%JDBC_URL% -app_name=%APP_NAME% -app_version=%APP_VERSION% -metadata_dir=%META_DIR% %GLOBAL_SCRIPT% %PARAMETERS%
+) ELSE (
+"C:\java\jdk1.6.0_16\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -runscript -jdbc=%JDBC_URL% -app_name=%APP_NAME% -app_version=%APP_VERSION% -metadata_dir=%META_DIR% %GLOBAL_SCRIPT% %PARAMETERS%
+)
+goto end
+:echoSyntax
+echo ----------------------------------------------------------------
+echo Syntax:  runscript [-logFile logFile] JDBC_URL application_name application_version metadata_path global_script parameters
+echo ----------------------------------------------------------------
+echo Note:    password could be input from console.
+echo 					parameters be quoted, and splitted by ',' for multiple parameters if any.
+echo ----------------------------------------------------------------
+echo Example: runscript cw@localhost:1521:orcl ON V1 c:\metadata\ON cwl_ct.doExportCmd "c:/temp/a.zip"
+echo          runscript cw@localhost:1521:orcl ON V1 c:\metadata\ON cwl_ct.doImportCmd "c:/temp/a.zip"
+echo ----------------------------------------------------------------
+:end
+ </pre>
+      </div>
+    </div></td>
+</tr>
+</table>
+</body>
+</html>

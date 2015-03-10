@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Namespace Protection Using Partner Licences</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Namespace Protection Using Partner Licences</h2>
+<p>A situation may arise in which you want to protect your namespace as intellectual property. In Velocity Studio, you can protect your namespace through licences.</p>
+<p>To protect your namespace using partner licences, perform these steps:</p>
+<ol>
+  <li>Contact the Support team to advise that you want to protect your namespace. For each partner, the team generates a new private and public key pair:  </li>
+  <ul>
+    <li>The public key is included  in the product software</li>
+    <li>The Support team ships the private key to you<br>
+      <br>
+      </li>
+    </ul>
+  
+  <li>Once you have both the private key and a release that contains the public key, you can then use namespace licences for your respective customers. </li>
+  <li>You must provide  the Support team with a unique identifier. This identifier must be used on the  <strong>License protection namespace</strong> line in the metadata for each namespace. The  format is as follows:
+    <blockquote>
+      <p>com.unique identifier.NS1 <br>
+        </p>
+      </blockquote>
+    </li>
+  
+  <li>Manually create the &lt;<em>template_licence</em>&gt;.xml.The following sample template  licence .xml file is for two namespaces defined by:
+    <ul>
+      <li>com.unique identifier.NS1</li>
+      <li>
+        com.unique identifier.NS2</li>
+      </ul>
+    <p>In this example, NS1 and NS2 are names selected by you for your partner namespace.<br>
+      </li>
+  
+  <pre>
+            &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+            &lt;license&gt;
+            &nbsp;&nbsp;&lt;comments&gt;Partner name template licence&lt;/comments&gt;
+            &nbsp;&nbsp;&lt;organization&gt;
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;Partner Name&lt;/name&gt;
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;address&gt;Partner address&lt;/address&gt;
+            &nbsp;&nbsp;&lt;/organization&gt;
+            &nbsp;&nbsp;&lt;namespaces&gt;
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;namespace&gt;com.unique identifier.NS1&lt;/namespace&gt;
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;namespace&gt;com.unique identifier.NS2&lt;/namespace&gt;
+            &nbsp;&nbsp;&lt;/namespaces&gt;
+            &lt;/license&gt;</p></pre>
+  
+  
+  <li>Use the <tt>signLicense.cmd</tt> command, which is available in the product. This command creates the template  licences for the end-customer. The syntax for this command is as follows:<br>
+    <pre>
+      signLicense.cmd [<em>logfile</em>] &lt;<em>template_licence</em>&gt;.xml privateKey</pre></li>
+
+
+  <p>This command requires  &lt;<em>template_licence</em>&gt;.xml  and the private  key as input. 
+    After running this command, the &lt;<em>temp_licence</em>&gt;.lic template licence file is created in the same folder where &lt;<em>template_licence</em>&gt;.xml resides. The <em><tt>logFile</tt></em> parameter  allows you to specify the log file for a command line. It is an optional parameter. However, when used, it must be the first parameter.</p>
+  <li>The namespaces defined in  the .xml  is same as those defined in the  metadata in the licence protection namespace. The following is a sample screenshot:</li>
+<p><img src="namespacesProtection.png" alt="NamespacesProtection" border="1" /><br>
+  <br>
+  The licence-protected namespaces must always be prefixed with com.<em>unique identifier</em>.  The <strong>License Protection namespace</strong> field is available for namespaces only.  When set, it forces runtime to check if this namespace is indeed included in the licence files. </p>
+<li> After putting the  template licence file into the Designer licence directory, you can use licence-protected namespaces for development. At runtime, in the application server, the namespace licence file must reside in same place as the product license.lic file.<br>
+</li>
+</ol>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

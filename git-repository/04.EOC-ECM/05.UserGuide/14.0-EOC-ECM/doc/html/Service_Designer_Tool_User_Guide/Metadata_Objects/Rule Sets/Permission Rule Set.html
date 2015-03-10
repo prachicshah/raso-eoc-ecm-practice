@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Permission Rule Set</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+  <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+  <td valign="top" class="pagebody">
+    <h2>Permission Rule Set</h2>
+    <p>A permission rule defines accessibility of data object nodes  in  user interface (UI). Permission of element nodes or containers  is determined by rule sets defined on the referenced element. Each node in a data object can have exactly  one rule defined of each type of application. Permission rules are automatically evaluated  by the UI when rendering the data object's UI. The order of permission rules is not relevant.</p>
+ <h3>Permission Rule Types</h3><br>    
+  <table class='confluenceTable' border cellpadding="1">
+    <tbody>
+    <tr>
+    <th class='confluenceTh'>Type</th>
+    <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+    <td class='confluenceTd'><b>Visible</b></td>
+    <td class='confluenceTd'>Indicates a given node can be visible in the UI. This rule type is applicable to all nodes.</td>
+    </tr>
+    <tr>
+    <td class='confluenceTd'><b>Editable</b></td>
+    <td class='confluenceTd'>Indicates a given node can be edited in the UI. This rule type is applicable to all nodes. </td>
+    </tr>
+    <tr>
+    <td height="26" class='confluenceTd'><b>Optional</b></td>
+    <td class='confluenceTd'>Indicates a value for a given node does<em> not</em> need to be defined. This rule type is applicable to data type. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Add</b></td>
+      <td class='confluenceTd'> Indicates  a given node can be added to its parent. This rule type is applicable to container nodes only.</td>
+    </tr>    
+    <tr>
+      <td class='confluenceTd'><b>Delete</b></td>
+      <td class='confluenceTd'>  Indicates a given node can be removed from  its parent. This rule type is&nbsp;applicable to container nodes only.</td>
+    </tr>
+    <tr>
+</tbody>
+</table>
+  </td>
+  </tr>
+  </table>
+  </body>
+  </html>

@@ -1,0 +1,119 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Processes - General</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>General</h2>
+
+<p>Clicking  <strong>Processes</strong> &gt; <strong>General</strong> displays the general parameters of processes. </p>
+<p><img src="general.png" alt="Processes - General tab" border="1"></p>
+<h3>Configure Process Parameters</h3>
+<p>To configure your process parameters, do the following:</p>
+<ol>
+  <li>Make changes to each parameter by either changing the value in the field provided, or selecting or deselecting its checkbox.</li>
+  <li>When you have finished making your changes, click the <strong>Save</strong> button.</li>
+</ol>
+<p><strong>Note:</strong> The process parameters that are in bold font and have an asterisk indicate that they are mandatory.</p>
+<p>This page contains the following settings:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Field</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Maximum delay of activity (days)</strong></td>
+      <td class='confluenceTd'>If the delay of an activity is greater than this value, the process goes into an error status.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Maximum duration of active process (months)</strong></td>
+      <td class='confluenceTd'><p>The processes that are created earlier than the current moment minus the specified number of months are  not restarted.</p>
+        <p><strong>Note:</strong> For UI nodes, this parameter appears as read-only.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Maximum inactivity period for active process (months)</strong></td>
+      <td class='confluenceTd'><p>Processes that have been dormant beyond this period are not started.</p>
+        <p><strong>Note:</strong> For UI nodes, this parameter appears as read-only.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Maximum repeat count for activities of user processes</strong></td>
+      <td class='confluenceTd'>This parameter denotes the maximum allowed times an activity in a user process can be repeated. The maximum value for this field is 32000. This limit is a good safeguard against loops in the user processes due to bad metadata. Global processes are, as a rule, endless loops. As a result, their activities are never checked for a maximum number of repetitions.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a name="maxNumberUnexpectedErrors"></a><strong>Maximum number of unexpected errors before PE shuts down</strong></td>
+      <td class='confluenceTd'>The process engine  shuts itself down if more than the specified number of unexpected errors happens.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a name="newProcessesReadOverlap"></a>New processes read overlap (sec)</strong></td>
+      <td class='confluenceTd'>This parameter represents the number of seconds that the new processes thread adds to the requested interval's lower limit to capture <a href="../../../../Service_Designer_Tool_User_Guide/Business_Process_Metadata/starting user processes.html#processEngineSkipsNewProcess">new processes that have been skipped</a> in the previous iterations due to race conditions in the CWPROCESS table.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Participant messages id read overlap</strong></td>
+      <td class='confluenceTd'>The parameter specifies the number subtracted from the participant message ID's start value when reading new participant messages. This parameter compensates for potential race conditions in the CWPPARTICIPANT table independently. However, every bucket of participant messages is updated every 1, 3, 9, 27, 81, ... minutes.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Minimum rate for reading participant messages (mins)</strong></td>
+      <td class='confluenceTd'>This parameter specifies the time allotted to read participant messages. The default setting is 5 minutes.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>PE requests id read overlap</strong></td>
+      <td class='confluenceTd'>This parameter is the number subtracted from the request ID's start value when reading new requests from the CWPGLOBAL table. This parameter compensates for potential race conditions in the CWPGLOBAL table.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Process Start Priority Script</strong></td>
+      <td class='confluenceTd'>This parameter specifies a start priority script used to define the priorities of restarting the processes. The script name is the fully qualified metadata script name. The script receives one parameter that is the current process object and must return the process restart priority, which is a number between 1 (high) and 15 (low). A non-valid return value restart the process with a priority value retrieved from the corresponding process record in the database.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Sliding exit window on critical errors (days)</strong></td>
+      <td class='confluenceTd'><p>Use this parameter to specify the window in days over which the number of errors parameter is to apply. This parameter works with the <a href="#maxNumberUnexpectedErrors">Maximum number of unexpected errors before PE shuts down</a> process parameter. </p>
+      <p><strong>Note:</strong> The process engine terminates or restarts if the number of errors encountered exceeds the specified number of errors  within the  window.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Sliding exit window on critical error (# of errors)</strong></td>
+      <td class='confluenceTd'><p>Use this parameter to specify the number of errors for the specified window (in days). The parameter works with the <a href="#maxNumberUnexpectedErrors">Maximum number of unexpected errors before PE shuts down</a><a href="Processes General.html"></a> process parameter.</p>
+      <p><strong>Note:</strong> The process engine terminates or restarts if the number of errors encountered exceeds the specified number of errors  within the  window.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong><a name="loadDistributionInterval"></a>Load Distribution Interval (seconds)</strong></td>
+      <td class='confluenceTd'>This field represents the interval that each running process engine analyzes the other running process engines and balances its load independently for each load type, trying to reach its ideal load. This field defaults to 120 seconds, and can have values between 60 and 3600 seconds.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Load Distribution Initial Interval (seconds)</strong></td>
+      <td class='confluenceTd'>This field represents the initial interval that each running process engine analyzes the other running  process engines and balances its load independently for each load type, trying to reach its ideal load.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Disable the <em>last update by</em> and <em>last updated date</em> modifications</strong></td>
+      <td class='confluenceTd'>This field allows you to enable when activities may repeat.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Store interface process states</strong></td>
+      <td class='confluenceTd'>This setting defaults to true, indicating that interface process states are automatically stored. Otherwise, change this setting to false to not store interface process states.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Family Synchronization</strong></td>
+      <td class='confluenceTd'><p>Selecting this checkbox ensures that the process engine runs only  one activity from a process family at a time. Process family denotes the  root process and all children processes.</p>
+      <p>As an example, suppose that process A invokes subprocesses B and C, and subprocess C invokes subprocess D. When subprocess B's activities run, activities from either A, B, C, or D cannot run simultaneously. These activities cannot run at the same time because the root process is A. As a result, neither process A's activities, nor its child activities (that is, B, C, and D) can run simultaneously.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Group  Synchronization</strong></td>
+      <td class='confluenceTd'><p>Selecting this checkbox indicates that the process engine runs only  one activity from a parent process and all immediate children processes at a  time.</p>
+      <p>As an example, suppose that process A invokes subprocesses B and C, and subprocess C invokes subprocess D. When subprocess B's activities run, neither activities from A, nor C can run simultaneously. These activities cannot run at the same time because the parent process is A, and none of its own or immediate child activities (that is, B and C) can run simultaneously.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Order  Synchronization</strong></td>
+      <td class='confluenceTd'>Selecting this checkbox specifies that the process engine runs one activity at a time for any given order. As a result, processes do  not compete for access to the order (for example, parent and children processes).</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Global Process  Synchronization</strong></td>
+      <td class='confluenceTd'>Selecting this checkbox ensures that the process engine runs one global process operation for any given  participant message serialization ID at a time.</td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

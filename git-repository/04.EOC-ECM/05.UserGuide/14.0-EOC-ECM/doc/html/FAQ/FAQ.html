@@ -1,0 +1,308 @@
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>FAQ</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+
+<body onLoad="highlight();">
+ <a id="Top">
+ <h2>Frequently Asked Questions and Answers</h2></a>
+<p><ol>
+<li><a href="#q1">With the usage of JavaScripting, what is done if an error occurs in the application that results in non-working environment?</a></li>
+<li><a href="#q2">Is there a quick way to create a Database user?</a></li>
+<li><a href="#q3">Why the run button is not active?</a></li>
+<li><a href="#q4">What is the difference in a terminated process and a cancelled process?</a></li>
+<li><a href="#q5">How to add custom error message codes in Velocity Studio?</a></li>
+<li><a href="#q6">Is there any impact on user Interface (UI), if the fields defined  in Product Catalog, and non-product data elements (for example, fields (data  elements) which are used to capture reporting or tags for external systems) defined in the Velocity Studio are moved in UI at development time  and later the product definition is changed?  Does these changes retain in Product catalog if  more products are added? Is there any need to rearrange fields in UI?</a></li>
+<li><a href="#q7">How to export the error list from Velocity Studio?
+</a></li>
+<li><a href="#q8">How to capture data elements for each product and get them into the Product Catalog in a time effective way?
+</a></li>
+<li><a href="#q9">Does two to three months time frame is sufficient to generate the UI using Order Care and Catalog Manager?
+</a></li>
+<li><a href="#q10">What is used for analytics and escalations handling that Includes average handle time (AHT) based on flows paths?
+</a></li>
+<li><a href="#q11"> How to show or block different fields in an application based on user profile (for example, external user sees less fields than internal user)?</a></li>
+<li><a href="#q12">Where you can find the download object and how to specify a user interface that can be used  to look up the result table?</a></li>
+<li><a href="#q13">How to resolve the errors of a rule set that has invalid rule items?</a></li>
+<li><a href="#q13">How to set custom application level HTTP status codes in the REST HTTP listeners which limits the REST communication between client and server ?</a></li>
+</ol>
+
+
+<p></p>
+<h2>&nbsp;</h2>   
+
+<p>
+<a name="q1"> <strong>	With the usage of JavaScripting, what is done if an error occurs in the application that results in non-working environment?</strong></a>
+
+<p>JavaScript errors are captured by the application.  The end-users action will fail but the user is permitted to proceed to perform other actions, for example, if an error occurs while working with a web site that is JavaScript based, the website does not crash. The fail safe for the end user in the event of long-running queries, dropped connections, etc. is a simple refresh command (F5 on MS IE).</p>
+<p> From a support perspective, the errors are recorded in the event log with a stack trace for diagnosis purposes (and the user is provided the event log number to report).  The Order Care platform provides a debugging facility that includes break point and stepping functionality to diagnose errors. </p>
+<p>Refer to <a href="../support/supportIntro.html">Diagnostic and  Support Guide</a> for more information.</p>
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE"><input type="button" alt="Back to top" value="Back to top" ></input></a></p>
+<h2>&nbsp;</h2>
+
+<p><a name="q2"><strong>Is there a quick way to create a database user?</strong></a></p>  
+<p>Instead of <a href="../Installer_User_Guide/database initialization.html">creating a user manually</a>, you can use the following script to  create database users. Use any database program, such as Oracle SQL Developer.</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>
+              DROP USER cw CASCADE; 
+              
+              CREATE USER cw  IDENTIFIED BY cw;
+              
+              GRANT CONNECT TO cw  WITH ADMIN OPTION;
+              GRANT ALTER USER TO cw ;
+              GRANT CREATE JOB TO cw;<BR>              GRANT CREATE PROCEDURE TO cw ;
+              GRANT CREATE SEQUENCE TO cw ;
+              GRANT CREATE SYNONYM TO cw ;
+              GRANT CREATE TABLE TO cw ;
+              GRANT CREATE TRIGGER TO cw ;
+              GRANT CREATE TYPE TO cw ;
+              GRANT CREATE USER TO cw ;
+              GRANT CREATE VIEW TO cw ;
+              GRANT CREATE CLUSTER TO cw ;
+              GRANT CREATE INDEXTYPE TO cw ;
+              GRANT CREATE OPERATOR TO cw ;
+              GRANT CREATE SESSION TO cw ;
+              GRANT DROP USER TO cw ;
+              
+              GRANT UNLIMITED TABLESPACE TO cw ;
+              
+              alter user cw quota unlimited on users;
+</pre>
+</div>
+</div>
+<p>Here <strong>cw</strong> is used as username and  password. You can replace the <strong>cw</strong> with a username or password of your choice.  </p></li>
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE"><input type="button" alt="Back to top" value="Back to top" ></input></a></p>
+<h2>&nbsp;</h2>
+
+
+
+<p>
+<a id="q3">
+<strong> Why the run button is not active?</strong></a></p>
+<p> Sometimes there are no errors in a Project yet you are not  able to run it. Right-click the root metadata (for example, Test Metadata) and click the <strong>Refresh </strong>option. This  action will reload the entire project and will resolve any non-error conflicts.</p>
+
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE"><input type="button" alt="Back to top" value="Back to top" ></input></a></p>      
+<h2>&nbsp;</h2>     
+      
+      
+
+
+<a id="q4"><strong>What is the difference in a terminated process and a cancelled process?</strong></a>
+<p>
+  Refer to <a href="../Service_Designer_Tool_User_Guide/Business_Process_Metadata/process status.html" title="Process Status">Process Status</a> for more information.</p>
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE"><input type="button" alt="Back to top" value="Back to top" ></input></a></p>
+</li>
+<h2>&nbsp;</h2>
+
+
+
+<p>
+<a id="q5">
+<strong>How to add custom error message codes in Velocity Studio?</strong></a></p>
+<p>To add a new error or message code, follow these steps:</p>   
+<ol>
+<li>Click the <strong>Resources</strong> tab in the left pane of Velocity Studio.</li>
+<li>Select the <strong>Application Resources</strong> in the left pane and click   the <strong>Add</strong> button (<img src= "FAQImages/addButton.png" alt="Add Button" width="12" height="12">).  </li>
+<li>The <strong>New Value</strong> dialogue appears; enter information in the <strong>ID</strong>, <strong>Message</strong>,  and <strong>Description</strong> fields. </li>
+<li> Click the <strong>Ok</strong> button.</li>
+
+</ol>
+<p>The new error or message code has been added to the project.  Custom created error codes are relevant to project they are created in. To use  custom error codes in other projects copy the Resources folder from current  metadata folder and paste in the metadata folder of another project.</p>
+<p>For more information refer to <a href="../Service_Designer_Tool_User_Guide/Service_Designer_User_Interface/Navigation Pane - Resource.html"> Navigation Pane - Resource</a>.</p>  
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE"><input type="button" alt="Back to top" value="Back to top" ></input></a></p>
+<h2>&nbsp;</h2>
+
+
+
+<p>
+<a id="q6">
+<strong>How to export the error list from Velocity Studio?</strong></a></p>
+<p>You can export the list of errors as an Excel file, follow  these steps:</p>
+<ol>
+<li>    From the menu bar of Velocity Studio, navigate to <strong>File</strong> &gt; <strong>Export</strong> &gt; <strong>Translation</strong>.</li>
+<p><img src="FAQImages/exportTranslation.png" alt="Export error codes"></p>
+<li>    Select a preferred language from the <strong>Select language to export </strong>dialog and click the <strong>OK</strong> button.</li>
+
+<li>    The <strong>Select Directory</strong> dialog appears. Specify a directory to save the excel file. Do not specify the  name of the file; the name is generated by the system.</li>
+</ol> 
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE"><input type="button" alt="Back to top" value="Back to top" ></input></a></p>
+<h2>&nbsp;</h2>
+
+
+
+
+<p>
+<a id="q7">
+<strong>Is there any impact on user Interface (UI), if the fields defined  in Product Catalog, and non-product data elements (for example, fields (data  elements) which are used to capture reporting or tags for external systems) defined in the Velocity Studio are moved in UI at development time  and later the product definition is changed?  Does these changes retain in Product catalog if  more products are added? Is there any need to rearrange fields in UI?</strong></a></p>
+<p>By default, Catalog defined attributes presented on the UI  are presented as a list of attributes that need to be completed. The addition  of a new attribute will extend the list of attributes or characteristics that  need to be configured. It will not affect the positioning or placement of  non-catalog data elements. </p>
+  <p>  If a custom form is developed to tailor the  presentation of these configurable attributes to speed order entry, or to  include integration to a 3rd party system (such as number management), this  custom form must be manually adjusted to include the new attribute(s) defined  in the catalog.</p>
+  <p> If changes are made to data elements within the metadata, these  changes need to be reflected in the UI forms as defined within Velocity Studio.  Each catalog attribute is assigned an internal 32 character GUID. It is  identified internally by this name and as such can be moved anywhere on a form  without impact. Subsequent changes to the catalog will not affect the assigned  ID (unless it is deleted in the catalog, then re-added). </p>
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE"><input type="button" alt="Back to top" value="Back to top" ></input></a></p>
+<h2>&nbsp;</h2>
+
+
+  
+<p>
+<a id="q8">
+<strong>How to capture data elements for each product and get them  into the Product Catalog in a time effective way?</strong></a></p>
+<p>Catalog  manager provides the functionality to gather data elements in no time. It includes  a bulk load facility that permits to import data elements from a provided MS  Excel template. The template is broken into one sheet per catalog entity, with  the columns being the attributes. </p>
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE"><input type="button" alt="Back to top" value="Back to top" ></input></a></p>
+<h2>&nbsp;</h2>
+
+
+
+
+  <p>
+<a id="q9">
+<strong>Does two to three months time frame is sufficient to generate the UI using Order Care and Catalog Manager?</strong></a></p>
+<p>With Order Care and Catalog Manager, two to three months is  more than sufficient time to generate the UI for all product data elements. The  longest lead time will be in discovering or gathering the required elements to  enter into the system.  Defining the  elements and designing the forms is not a large endeavor.</p>
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE"><input type="button" alt="Back to top" value="Back to top" ></input></a></p>
+<h2>&nbsp;</h2>
+
+
+
+<p>
+<a id="q10">
+<strong>What is used for analytics and escalations handling that Includes average handle time (AHT) based on flows paths?</strong></a></p>
+<p>Order Analytics (OA) module can be used for real-time operational reporting (statistics and measurements) to address all aspects of the end-to-end order fulfillment lifecycle. The OA module comes with a flexible configuration environment in order to address the unique business requirements.
+It includes an Exception Management solution where configurable management dashboards show the most critical information to managers related to their responsibility areas. It can  automatically trigger escalations through  pagers or e-mail. If necessary these triggers can be based upon specific business rules.</p>
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE"><input type="button" alt="Back to top" value="Back to top" ></input></a></p>
+<h2>&nbsp;</h2>
+  
+  
+  
+
+  <p>
+<a id="q11">
+<strong>	How to show or block different fields in an application based on user profile (for example, external user sees less fields than internal user)?</strong></a></p>
+<p>To allow certain functional tasks to be  performed only by specific users with certain skills, Order Care allows you to  assign user privileges to user participants.   User privileges specify allowable actions in the system. User privileges  are defined and assigned to the user in the System Administration application under  <a href="../System_Administration_Application_User_Guide/User Profile Manager/user profile_into.html">User Profile Manager</a> menu.<br>
+Privileges are used in the following manners:</p>
+<ul>
+  <li>To define a privilege that must be held in  order to access an order care application</li>
+  <li>To define a privilege that must be held in order  to view or perform a specific action</li>
+  <li>To identify the orders, order pages, forms, and  fields that are visible and editable, or both</li>
+  <li>To identify membership within a <em>participant</em> or workflow actor</li>
+  <li>To define a privilege that must be held for  external systems to communicate to Order Care through an API</li>
+</ul>
+<p>The relationship between users and the  privileges are defined using <a href="../System_Administration_Application_User_Guide/User Profile Manager/Groups/Groups.html">Groups</a> so that:</p>
+<ul>
+  <li>A group holds privileges</li>
+  <li>A user may be a member of one or more groups</li>
+</ul><br>
+The user holds the sum of  all privileges held by all the groups to which he or she belongs.
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE"><input type="button" alt="Back to top" value="Back to top" ></input></a></p>
+<h2>&nbsp;</h2>  
+  
+
+
+
+</ul>
+</td>
+</tr>
+</table>
+<p> <a id="q12"><strong> Where you can find the download object and how to specify a user interface that can be used  to look up the result table?</strong></a></p>
+<p>In the Velocity Studio,  the <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Finder/Finder User Interface Methods.html">toXML()</a>, <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Finder/Finder User Interface Methods.html">toXLS()</a>, and <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Finder/Finder User Interface Methods.html">toCSV()</a> functions are available to create a  download object, and to invoke download data at runtime. The following are the steps to access and edit these functions:</p>
+<ol>
+  <li>Create a finder user interface that extends <em>ui_common.baseFinder (Finder UI)</em>.</li>
+  <li> Click  the <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Finder/Finder User Interface Methods.html">Methods tab</a> of finder UI, and click the <STRONG>Show base methods</STRONG> (<IMG src="FAQImages/FAQ_methodsTabShowBaseMethods.png" alt="Show base methods button" width="15" height="15">) button. </li>
+  <li>The built in functions <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Finder/Finder User Interface Methods.html">toXML()</a>, <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Finder/Finder User Interface Methods.html">toXLS()</a>, and <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Finder/Finder User Interface Methods.html">toCSV()</a> can be found on this tab as JavaScripts.</li>
+  <li>Right-click  one function, for example, <em>toXML() </em>and select <strong>Override toXML() </strong>option. You can edit <em>the Download.resultUI</em> and <em>download.resultForm</em> options in the script to   specify which user interface to use to look up the result table if result form of finder does not have a table element. </li>
+</ol>
+<h2>&nbsp;</h2> 
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE">
+  <input type="button" alt="Back to top" value="Back to top" >
+  </input>
+</a></p>
+
+<p> <a id="q13"><strong> How to resolve the errors of a rule set that has invalid rule items?</strong></a></p>
+<p>If any variable of rule set source object is deleted or changed (for example, data structure variable was changed from data type to element), the rule set becomes invalid.<br>
+For <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Rule Sets/Rule set.html">rule sets</a>, error cleanup is performed automatically within the Velocity Studio. To resolve the errors select the rule set and do save.<br>
+</p>
+<h2>&nbsp;</h2> 
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE">
+  <input type="button" alt="Back to top" value="Back to top" >
+  </input>
+</a></p>
+<p> <a id="q14"><strong> How to<SPAN id="docs-internal-guid-7d17cfca-7ee4-50d0-8ade-cf96a5d1afed"> set custom application level</SPAN></strong></a><strong> HTTP status codes in the REST HTTP listeners which limits the REST communication between client and server</strong><strong><a>?</a></strong></p>
+
+<ol>
+  <li>Create a new project in Velocity Studio.</li>
+  <li>Create a namespace (for example, <em>testNS</em>) and create two common data structures (for example, <em>dsInput</em> and <em>dsOutput</em>) under it.</li>
+  <ol type="i">
+      <li>Create new data types (for example, <em>message</em> of type String) under <em>dsInput</em> data structure</li>
+    <li>Create two data types (for example,<em> httpMethod </em>and<em> customURL</em> of type String) under<em> dsOutput </em>data structure.</li>
+  </ol>
+  <li><a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Built-in Service Providers/set up an http api listener.html">Create an external HTTP listener</a> service in Velocity Studio with  scripts associated with it (<em>ServerScript and TestClient</em>). You create one operation for  each Httpmethod (for example, OpDelete, OpHead, OpGet, OpPut,   and OpPost).
+    <p><img src="FAQImages/httpListner.png" alt="HTTP Listner" border="1"></p>
+  </li>
+  
+  <p>You can use the following as an example for the <em>TestClient</em> script.</p>
+
+<div class="code">
+<div class="codeContent">
+<pre>
+var testCase="TT_26535";
+var testDescr="HTTP Listener - to be able to set the HTTP Response code in the header";
+var passed = false;
+try{
+    Global.logDebug("Client Script sending DELETE request");
+    var aresponse = Global.invokeInterface("TT_26535.ClientInterface","OpDelete");
+    Global.logDebug("Client Script received method: " + aresponse[0].httpMethod);
+    Global.logDebug("Client Script received custom URL: " + aresponse[0].customURL);
+    Global.logDebug("Client Script sending GET request");
+    var aresponse = Global.invokeInterface("TT_26535.ClientInterface","OpGet");
+    Global.logDebug("Client Script received method: " + aresponse[0].httpMethod);
+    Global.logDebug("Client Script received custom URL: " + aresponse[0].customURL);
+    Global.logDebug("Client Script sending HEAD request");
+    var aresponse = Global.invokeInterface("TT_26535.ClientInterface","OpHead");
+    Global.logDebug("Client Script received method: " + aresponse[0].httpMethod);
+    Global.logDebug("Client Script received custom URL: " + aresponse[0].customURL);
+    Global.logDebug("Client Script sending PUT request");
+    var aresponse = Global.invokeInterface("TT_26535.ClientInterface","OpPut");
+    Global.logDebug("Client Script received method: " + aresponse[0].httpMethod);
+    Global.logDebug("Client Script received custom URL: " + aresponse[0].customURL);
+    Global.logDebug("Client Script sending POST request");
+    var aresponse = Global.invokeInterface("TT_26535.ClientInterface","OpPost");
+    Global.logDebug("Client Script received method: " + aresponse[0].httpMethod);
+    Global.logDebug("Client Script received custom URL: " + aresponse[0].customURL);
+}
+catch(ex){
+     APIS.Helper.logging(testCase,"An exception was thrown in the client script: "+ex,false);
+}
+</pre></div>
+</div>
+<p>You can use the following as an example for the<em> ServerScript</em>. </p>
+
+
+  <div class="code">
+    <div class="codeContent">
+      <pre>
+var result = new testHTTP.dsOutput();<br>var method = UserProfile.getHttpMethod();<br>result.httpMethod = method; // http method as string in the result message<br>// Global.logDebug(&quot;Server reveived HTTP method &quot; + method);<br>// script to be invoked with a custom URL configured in the Binding/Location section of the configuration<br>var adir = UserProfile.getRequestPath();<br>var dir = &quot;&quot;;<br>for(var i=0;i &lt; adir.length; i++){<br>    dir +=  adir[i];<br>    dir += &quot; &quot;;<br>}<br>result.customURL = dir;<br>// Global.logDebug(&quot;Server reveived custom URL path with &quot; + adir.length + &quot; elements&quot;);<br>// Global.logDebug(&quot;Path element received: &quot; + result.customURL);<br>if(method == &quot;HEAD&quot;){<br>    // when the method is HEAD, the server is not expected to return any contents<br>    // therefore we cannot verigy that the call has worked by checking returned data in the client<br>    // so, I'm using this reposnse code as a way of indicating to the client that the server has<br>    // received a HEAD message<br>    UserProfile.setHttpResponseCode(301);<br>}<br>return result;
+      </pre>
+    </div>
+  </div>
+  <li>Under  <em>ClientBindings, </em> associate the appropriate HttpMethod for each operation. For example, select the DELETE HttpMethod for the delete operation.
+    <p><img src="FAQImages/httpMethod.png" alt="HTTP Listner" border="1"></p>
+
+<li>Create an application user interface (for example, httpUI). Create a method for each operation and initialize the method with  custom status codes.  For example, testHttp_Delete method corresponds to the Delete operation.
+  <p><img src="FAQImages/httpUI.png" alt="User Interface for the TestHTTP " border="1"></p></li>
+
+<li>Override the Menu Page of the user interface and add menu items for each operation. Associate the method created in the step 5 to the <strong>Click Method</strong> property of the menu item.</li>
+<li>At runtime, a success message is displayed when you select the Delete  menu.</li></ul>
+<p><strong>Note: </strong></p>
+<p>The node in the System Configuration application has to be configured. Client port's location must be   http://localhost:8080/cwf/api/testHTTP-ServerInterface/. Make sure Client and   Server ports are active. In the Bindings tab, the OpDelete, OpHead, OpGet, OpPut,   and OpPost operation's location must be set to the name of the server   operation, RequestResponse + a custom URL. Make sure the listener's thread number is set   to 1.</p>
+<p>For the GET, HEAD, PUT, DELETE, and POST, the server will return   the name of the HTTP method invoked by the client and the client will verify the   result. In the result message, the server will also send a string obtained from   the <SPAN dir="auto">concatenation</SPAN> of the path elements configured as custom URL in the bindings   tab of the node configuration. The client will verify that this string is not   empty. The purpose is to ensure that the server was able to access the custom   URL path.</p></li></ol>
+<p align="right"><a href="#Top" style="TEXT-DECORATION: NONE">
+  <input type="button" alt="Back to top" value="Back to top" >
+  </input>
+</a></p>
+</body>
+</html>

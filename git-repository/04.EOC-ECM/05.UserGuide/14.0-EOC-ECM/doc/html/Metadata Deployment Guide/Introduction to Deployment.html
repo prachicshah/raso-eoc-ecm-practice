@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Introduction to Deployment</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Introduction to Deployment</h1>
+<p>This deployment guide details the planning and procedure of deploying Application metadata into a deployment environment with J2EE Application Servers.</p>
+<p>Because each deployment environment is different ranging from system-load expectations to corporate IT policies, you are expected to use this guide to understand the product's deployment mechanics and capabilities, and strategize your own deployment procedure that is tailored for your deployment environment.</p>
+<p><b>Note</b>: During metadata development and functional testing, there is no need to deploy metadata. Simply run the metadata within Velocity Studio.</p>
+<h3>Deployment Overview</h3>
+
+<p>In an enterprise setting, metadata deployment would span across multiple environments. For the convenience of our discussion, we denote the following:</p>
+<ul>
+<li><b>Engineering Environment</b>: the environment where engineering/R&D team develops and tests their application metadata.</li>
+<li><b>Packaging Environment</b>: the environment where metadata is retrieved from source format and packaged into WAR (Web application ARchive) file. It may also be the environment to prepare for the deployment environment before deployment takes place.</li>
+<li><b>Deployment Environment</b>: the environment where the application is deployed
+</ul>
+
+<p>At a high level, there are several items that require your attention when deploying an application:
+<ul>
+  <li>Metadata</li>
+  <li>Configuration</li>
+  <li>Database schema</li>
+  <li>Processes</li>
+</ul>
+<p>Each of these aspects are addressed in this deployment guide.
+</p>
+<h3>Performance Monitoring</h3>
+<p>See the <a href="Introduction JMX.html">JMX</a> section on performance monitoring.</p>
+<p><strong>Note:</strong> User interface performance should not be measured by running from Velocity Studio. Once deployed under a container, our product caches resources.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>Process Signals &amp; Synchronization</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Signals</h2>
+<p>The Process Management product provides the ability to define Signals to coordinate the execution of activities executing in the same process or of activities executing in different processes. Signals are often used to synchronize between parallel activities (executing in the same or different process).</p>
+<p>The <em>signal</em> activity raises the Signal by producing a new instance of the Signal. The <em>sync</em> activity synchronizes the Signal by waiting for the Signal to be raised, and then lowers the Signal by consuming it.</p>
+<p>Signals are uniquely identified by the Signal's <b>Name</b> and defined as a global metadata element.</p>
+<p>Signals can be raised locally (within the same process) or sent to another process. To send a Signal to another process, the <b>Before</b> script of the <em>signal</em> activity should return a process ID or process object, indicating to whom a Signal should be to sent (refer to the <a href="../../JavaScripting in Order Care/Scripting Interface.html">JavaScript Extensions HTML documentation</a>). For example, to send a Signal to a parent process, use following script: </p>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java">
+return process.parent
+</pre>
+</div>
+</div>
+
+<h4><a name="new">Create New Signal</a></h4>
+
+<p>To create a new Signal:</p>
+<ul>
+<li>In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:</li>
+<ol>
+<li>Right-click a Namespace. Select <b>New ...</b></li>
+<li><b>New Metadata Object</b> wizard appears as pop-up. Expand <b>Business Processes</b>, and select <b>Signal</b>, and then click <b>Next</b>.</li>
+<li>Step two of wizard appears. Type in the name of Signal (must conform to JavaScript naming conventions), and populate other fields as desired. Then click <b>Finish</b>.</li>
+</ol>
+<li><i>OR</i></li>
+<ol>
+<li>Right-click the <b>Signals</b> folder or the <b>Business Processes</b> folder in a Namespace, if it is present. Select <b>New Signal</b></li>
+<li>Follow step3 from above.</li>
+</ol>
+</ul>
+
+<p>The newly created Signal is added under <b>Signals</b> folder.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="newSignalNode.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<h3>Signal Properties</h3>
+<p>The Signal properties are defined as follows.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="signalProperties.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory. Name of the Signal within the namespace.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Deprecated</b></td>
+<td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Mandatory. Label to identify the Signal.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the Signal for documentation purposes.</td>
+</tr>
+</tbody>
+</table>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,57 @@
+﻿<html>
+<head>
+<title>Life Cycles</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Life Cycles</h2>
+<p>Life Cycle objects, also known as State Machines, define a set of states and the directed transitions between them. The list of all state codes is defined by an enumeration data type, known as the state codes list, which is selected in the <b>Enumeration</b> field on the <b>General</b> tab.</p>
+<p>The state nodes specify the states of some object. It can be an Order, Order Item, Document that is used as trouble ticket or any other business entity that has a notion of state. It is important to put emphasis on the fact that the Life Cycle diagram is attached to a data element so a single Order, Order Item or Document may use different Life Cycle diagrams in different situations. State nodes may contain an optional state script and Decision Tree.</p>
+<p>Transitions define a possible switch from one state to another. Transitions from a given state are an ordered set of elements. They may contain an optional condition script, action script and Decision Tree.</p>
+<p>The actions which the Life Cycle diagram performs are coded into the state and transition action scripts defined in the state and link property dialogs (refer to sections on Life Cycle State Properties and on Life Cycle Link Properties). This guarantees high performance and is a preferable solution when these actions rarely change.</p>
+<p>The runtime scripts, state script, transition condition script and transition action script take the following parameters:</p>
+<ul>
+<li><em>Document</em>: The Document that contains the state code field.</li>
+<li><em>Item</em>: The field name of the state code field in the Document.</li>
+<li><em>Input</em>: The input message.</li>
+<li><em>theTree</em>: The Decision Tree for the state or transition action script.</li>
+</ul>
+<p>The Decision Tree runtime object list takes the following parameters:</p>
+<ul>
+<li><em>Document</em>: The Document that contains the state code field.</li>
+<li><em>Item</em>: The field name of the state code field in the Document.</li>
+<li><em>Input</em>: The input message.</li>
+</ul>
+<p>The Life Cycle diagram is used in two ways:</p>
+<ol>
+<li>As an Order Life Cycle Diagram to specify a set of valid transitions and optional actions from one Order state to another. The LifeCycle is set to associate with an Order, in the <b>States</b> field on the <b>General</b> tab of the Order properties, enforcing an ordering process following the defined state flow.</li>
+<li>As a State Machine that performs actions based on the object state and an incoming message connected with any object that has a notion of state.</li>
+</ol>
+<p><b>Order Life Cycle Diagram Behaviour</b></p>
+<p>The Life Cycle diagram used in an Order is called an Order Life Cycle Diagram. Their state codes list should be based on the system type <em>All States</em> and it should contain the state code NEW. The AVM automatically sets the code of any newly created Orders to NEW.</p>
+<p>The Order Life Cycle Diagram defines whether the transition from one Order state to another is allowed. Their states use a property that is not related to the State Machine model, <b>Allow invalid state</b>, that specifies whether or not an Order can go into a given state if it is invalid.</p>
+<p><b>State Machine Behaviour</b></p>
+<p>The State Machine can be invoked automatically by the AVM or by a script through the Document method runStateMachine(String fieldName, Document message, String stateMachineName). It always works in the context of a given incoming message.</p>
+<p><img src="lifecycleStateMachineBehaviour.png" align="absmiddle" border="0" alt="State Machine Behaviour" /></p>
+<p>The State Machine performs its actions as scripts so it can generate zero, one or more output messages to different internal or external consumers.</p>
+<p>The processing of an incoming message is an atomic transaction that returns a value called the <em>transition result</em>. The State Machine as a whole is performing asynchronously, each incoming message processed in the moment it comes.</p>
+<p>The algorithm for processing a single message is:</p>
+<ol>
+<li>Find the state in the State Machine which corresponds to the current enumeration value (state code). If such a state does not exist throw a runtime exception.</li>
+<li>Run the state script (if any). If the script returns a new state code find the corresponding transition from the current state to the new state and continue to 4. If no corresponding transition is found throw a runtime exception.</li>
+<li>Run the condition scripts of the transitions from the current state in the order they are defined and take the first one which returns true (there may not be one).</li>
+<li>If no transition is found then return null.</li>
+<li>Run the transition action script and store the returned value into the transition result. If there is no script then set the transition result to null.</li>
+<li>Set the enumeration data to the new state code as defined by the transition.</li>
+<li>Return the transition result.</li>
+</ol>
+</td>
+</tr>
+</table>
+</body>
+</html>

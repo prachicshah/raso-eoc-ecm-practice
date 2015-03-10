@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Process Operations</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Process Operations</h2>
+<p>The right-click pop-up menu for an individual Process metadata has several items in addition to the common right-click menu items.</p>
+
+<img src="processPopUpMenu.png" align="absmiddle" border="1" alt="Operations - right-click menu" />
+
+<h3><a name="showRev">Show Revisions</a></h3>
+
+<p>The <b>Show Revisions</b> menu item (and then expand using the <b>expand</b> icon in Process node) shows all existing <a href="process revisions.html">Process Revisions</a> of the Process, under the Process node in the <b>Navigation</b> pane.</p>
+
+<img src="userProcessRevs.png" align="absmiddle" border="1" alt="Show Revisions - list all revisions to a process" />
+
+<p>Selecting a Process Revision node shows its content in <b>Details</b> pane. All content of Process Revision is read-only, including the notable <b>Revision</b> number.</p>
+
+<p>Equivalent to <b>Show Revisions</b> from right-click pop-up menu is double-clicking the Process node in <b>Navigation</b> pane.</p>
+
+<h3><a name="hideRev">Hide Revisions</a></h3>
+
+<p>The <b>Hide Revisions</b> menu item does the reverse of <b>Show Revisions</b>, which hides all Process Revisions under the Process node.</p>
+
+<h3><a name="newRev">New Revision</a></h3>
+
+<p>The <b>New Revision</b> menu item allows to explicitly create a new <a href="process revisions.html">Process Revision</a> of the Process, if the Process metadata has been changed from its latest Process Revision.</p>
+
+<p>A new Process Revision can only be created if the Process metadata has been changed according to the <a href="process revisions.html#new">Process Revision change definition</a>. The reason is to minimize the number of Process Revisions in a Process over time. If not, the Process Revision creation is disallowed with the following pop-up prompt:<p>
+
+<img src="processRevNewFail.png" align="absmiddle" border="1" alt="Warning message - process without any revisions" />
+
+<p>If <a href="process revisions.html#new">new Process Revision</a> is successfully created, it will show up under the Process (use <b><a href="#showRev">Show Revisions</a></b> if Process Revisions are not shown in Process), with the name of the Process Revision appended with its revision number.</p>
+
+<p><b>Note</b>: This command should be reserved for occasions when there is specific justification to do so. This is to avoid polluting the metadata with unnecessary Process Revisions. For ordinary circumstances, up-to-date Process Revisions of all Processes are created at <a href="../Service Designer Menu Actions/Metadata Build WAR.html">Packaging</a> step of deployment, and thus this command is not necessary.</p>
+
+<h3><a name="deleteRev">Delete Revision</a></h3>
+
+<p>The <b>Delete Revision</b> menu item appears on the right-click menu item of a Process Revision node (as opposed to Process node), which removes the Process Revision from project directory. The Process Revision will be forever lost in design time as well as any <a href="../Service Designer Menu Actions/Metadata Build WAR.html">WAR file</a> that is built afterwards, which implies its runtime will no longer have this metadata to run.</p>
+
+<p>As such, <b>use this command only when you are sure that it is safe to do so</b>. Refer to <a href="process revisions.html#removeRev">removing Process Revisions</a> for details. A confirmation prompt appears upon invoking this command:</p>
+
+<img src="processRevDeleteConfirm.png" align="absmiddle" border="1" alt="Warning message - confirm deleting a process revision" />
+
+<p><b>Note</b>: This command is disabled on the latest Process Revision node, because it is a required metadata to compare with Process metadata to decide whether the Process is changed.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

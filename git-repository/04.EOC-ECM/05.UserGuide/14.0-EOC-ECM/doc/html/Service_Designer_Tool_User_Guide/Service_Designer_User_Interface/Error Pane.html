@@ -1,0 +1,76 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Problems Pane</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+	<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Problems Pane</h2>
+
+<p>The Problems pane is located at the bottom-right of Velocity Studio as the <b>Problems</b> tab, which contains all validation errors and warnings of all metadata in the project. You can expand the list of errors/warnings using the expand icon, and then double-click the individual error or warning to jump to the metadata object in question. You can then fix the problem at hand.</p>
+
+<img src="paneError.png" border="0" alt="Problems pane - Errors and warnings" />
+
+<p>The Problems pane contains the following columns:</p>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Column</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>The description of the validation error</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Object</b></td>
+<td class='confluenceTd'>The metadata object that contains the validation error</td>
+</tr>
+</tbody>
+</table>
+<p>The Problems pane groups messages by warning or error first, followed by the message code. You can also expand and collapse grouped errors and warnings as shown the previous example.</p>
+<p>As metadata objects are created and updated by you, Velocity Studio performs validation checks on these updates and generate validation errors and warnings if any is failed. If there exists validation errors, metadata can continue to be edited and can also be saved. However, metadata cannot be <a href="../Service Designer Menu Actions/Metadata Run.html">run</a> or <a href="../Service Designer Menu Actions/Metadata Debug.html">debugged</a>. Other project functions such as to <a href="../Service Designer Menu Actions/Metadata Build WAR.html">build deployment WAR</a> or <a href="../Service Designer Menu Actions/Metadata Build JAR.html">library JAR</a>, <a href="../Service Designer Menu Actions/Check DB Mapping.html">check DB mapping</a>, as well as <a href="../Service Designer Menu Actions/Upgrading System.html">Upgrade System</a> are disabled. The <a href="../Metadata_Objects/Script/Script Operations.html">Debug Script</a> function in top-level Scripts is disabled as well. Therefore, <b>you must resolve all validation errors before running your metadata.</b> Warnings, on the other hand, do not disable any running command of metadata.</p>
+
+<p>If the Problems pane is closed, click <b>Views &gt; Problems</b> from the menu bar to open the pane again.</p>
+<h3>Filter Results button</h3>
+<p>Clicking the <strong>Filter Results</strong> button (<img src="paneErrorFilterResultsButton.png" width="23" height="21" alt="Problems pane - Filter Results button">) allows you to select the following options:</p>
+<ul>
+  <li><strong>Filter Result</strong>, which launches the Filter Results dialog to filter the information in the Problem pane to suit your needs</li>
+  <li><strong>Clear Filter</strong>, which clears all information in the Problem pane</li>
+  </ul>
+<p><strong>Filter Result dialog</strong></p>
+<p>To use the Filter Result dialog to filter the information in the Problem pane, do the following:</p>
+<ol>
+  <li>
+    <!--<p>In order to handle different error situation the Designer internally 
+		 (in the memory) supports two additional type of references – unresolved 
+		 references (references to elements that don’t exist) and invalid 
+		 references – references to elements of incompatible type (for 
+		 example reference to data type where document is required).</p> -->
+    In the <strong>Filter Name</strong> field, enter your filter criteria. Wildcard (*) and any character (?) are acceptable. In this example, filtering is for an object name using a wildcard.<br>
+  <br>
+  <img src="paneErrorFilterResultDialog.png" alt="Problem pane - Filter Result dialog"><br>
+  <br>
+  </li>
+  <li>In the <strong>Search For</strong> section, <strong>Object Name</strong> has been selected. You can also filter by <strong>Code</strong> or <strong>Message</strong>. If you leave the <strong>Filter Name</strong> field blank, and select either <strong>Code</strong> or <strong>Message</strong>, your results are filtered alphanumerically.</li>
+  <li>For the <strong>Scope</strong> section, the default is <strong>All</strong>. To narrow down your filtering, you can click <strong>Selected Namespaces</strong>:
+    <ol type="a">
+      <li> Proceed to click the <strong>Checkmark</strong> icon to launch the Select Namespaces dialog and specify the namespaces that you want. </li>
+      <li>Click the <strong>Save</strong> button to return to the Filter Result dialog.</li>
+    </ol>
+  </li>
+  <li>Click the <strong>Search</strong> button to filter your results, which appear in the Problem pane.</li>
+</ol></td>
+</tr>
+</table>
+</body>
+</html>

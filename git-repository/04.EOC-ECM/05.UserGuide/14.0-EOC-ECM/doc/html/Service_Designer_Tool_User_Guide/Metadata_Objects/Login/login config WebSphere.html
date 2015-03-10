@@ -1,0 +1,250 @@
+<html>
+<head>
+<title>Configure WebSphere 7.x Kerberos and Active Directory Single Sign-on Authentication</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2><a name="ConfigKerberosAndAD"></a>Configure WebSphere 7.x Kerberos and Active Directory Single Sign-on Authentication</h2>
+
+<p>Before proceeding with configuring WebSphere 7.x Kerberos and Active Directory for single sign-on authentication, add the following parameters to your WebSphere JVM runtime environment to help debug:
+
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">-Dcom.ibm.security.jgss.debug=all<br> 
+-Dcom.ibm.security.krb5.Krb5Debug=all
+</pre>
+</div>
+</div>
+
+<p><strong>Note:</strong> After you are done with the procedure that follows, remove these parameters.</p>
+
+<p>This procedure consists of four steps:</p>
+<ol>
+	<li><a href="#CreateKerberosID">Create a Kerberos identification</a></li>
+	<li><a href="#ConfigureKCF">Configure the Kerberos configuration file</a></li>
+	<li><a href="#ConfigADRepository">Configure Microsoft Active Directory as a WebSphere user repository</a></li>
+	<li><a href="#ConfigSPNEGOauth">Configure SPNEGO Web authentication in WebSphere</a></li>
+</ol>
+
+<h3><a name="CreateKerberosID"></a>Step 1: Create a Kerberos identification</h3>
+
+<p>To create a Kerberos identification, complete these steps:</p>
+
+<ol>
+	<li>In Active Directory, right-click the <strong>Users</strong> folder in the left navigation menu, and click <strong>New > User</strong>. Create a user <em>XXX</em> in Active Directory as guided by the wizard.</li>  
+	<li>Open the newly created user account and click the <strong>Account</strong> tab. For the <strong>Account options</strong> field, scroll down and select <strong>Use DES encryption types for this account</strong>.</li>
+	<li>Click the <strong>Apply</strong>, and then <strong>OK</strong> buttons to save your changes.</li>
+	<li>Proceed to reset the password for this user by right-clicking the user account and selecting <strong>Reset Password</strong>.
+	<li>Set the <strong>Service Principal Name</strong> by entering the following at a command prompt:
+
+		<div class="code">
+		<div class="codeContent">
+		<pre class="code-java">setspn -a HTTP/ <em>XXX</em>.CONCEPTWAVE.COM <em>XXX</em>
+		</pre>
+		</div>
+		</div>
+
+	<li>Test the service principal name by entering the following command:
+		<div class="code">
+		<div class="codeContent">
+		<pre class="code-java">setspn -L <em>XXX</em>
+		</pre>
+		</div>
+		</div>
+				
+	<li>Generate a key tab by entering the following command: 
+		<div class="code">
+		<div class="codeContent">
+		<pre class="code-java">ktpass -out c:\temp\ws.keytab -princ HTTP/ <em>XXX</em>.conceptwave.com@CONCEPTWAVE.COM <br>-mapUser  <em>XXX</em> -mapOp set -pass <em>XXX</em> -crypto DES-CBC-MD5 -pType KRB5_NT_PRINCIPAL +DesOnly
+		</pre>
+		</div>
+		</div>
+
+	<li>Test the keytab file by using this command: 
+		<div class="code">
+		<div class="codeContent">
+		<pre class="code-java">klist -k <em>XXX</em>.keytab 
+		</pre>
+		</div>
+		</div>
+</ol>   
+
+<h4>Verify Kerberos Environment</h4>
+<p>To verify that the Kerberos environment is set up correctly, perform these steps:</p>
+
+<p><strong>Note:</strong> JAVA_HOME in the following commands indicate your IBM JDK home.</p>
+ 
+<ol>
+	<li>Verify that the Kerberos keytab file is valid with the correct encryption by running the following command:
+			<div class="code">
+			<div class="codeContent">
+			<pre class="code-java"><em>JAVA_HOME</em>/jre/bin/java com.ibm.security.krb5.internal.tools.Klist -e -k &lt;<em>keytab file</em>&gt;
+			</pre>
+			</div>
+			</div>
+
+    <li>Verify that the Kerberos configuration file (krb5.ini for Windows and krb5.conf for other platforms) points to the keytab by running the following command: 
+	        <div class="code">
+			<div class="codeContent">
+			<pre class="code-java"><em>JAVA_HOME</em>/jre/bin/java -Djava.security.krb5.conf=&lt;<em>krb5 file</em>&gt; com.ibm.security.krb5.internal.tools.Ktab
+			</pre>
+			</div>
+			</div>
+
+    <li>Verify that the Kerberos configuration file points correctly to the Key Distribution Centre (KDC) by using this command:
+            <div class="code">
+			<div class="codeContent">
+			<pre class="code-java"><em>JAVA_HOME</em>/jre/bin/java <br>-Djava.security.krb5.conf=&lt;<em>krb5 file</em>&gt; com.ibm.security.krb5.internal.tools.Kinit &lt;<em>User or SPN&gt;</em>
+			</pre>
+			</div>
+			</div>
+
+    <li>If only one key is inside the keytab, verify that the Kerberos configuration file and Kerberos keytab are valid using the following command:
+
+            <div class="code">
+			<div class="codeContent">
+			<pre class="code-java"><em>JAVA_HOME</em>/jre/bin/java <br>-Djava.security.krb5.conf=&lt;<em>krb5 file&gt;</em> com.ibm.security.krb5.internal.tools.Kinit -k</em>
+			</pre>
+			</div>
+			</div>
+</ol>
+
+<h3><a name="ConfigureKCF"></a>Step 2: Configure the Kerberos Configuration File</h3>
+
+<p>To create a Kerberos configuration file for WebSphere's use, follow these steps:</p>
+
+<ol>
+	<li>Copy the keytab file to the WebSphere Application Server system. In this scenario, the file is copied to <em>c:\windows</em>.</li>
+
+    <li>Create the associated Kerberos configuration file by selecting one of the following methods:
+	
+	<ol type=a>
+		<li>Use wsadmin by entering the following command:
+
+            <div class="code">
+			<div class="codeContent">
+			<pre class="code-java">wsadmin>$AdminTask createKrbConfigFile {-krbPath c:/WINDOWS/krb5.ini <br>-realm CONCEPTWAVE.COM -kdcHost carta.conceptwave.com -dns conceptwave.com <br>-keytabPath c:/WINDOWS/ws.keytab}
+			</pre>
+			</div>
+			</div>
+
+    <p>The configuration file located in c:/WINDOWS/krb5.ini.</p>
+
+	<li>Manually create a krb5.ini file. The following is a sample file:
+ 
+            <div class="code">
+			<div class="codeContent">
+			<pre class="code-java">[libdefaults]
+default_realm = MYDOM.COM //Identifies the default realm. Set its value to your Kerberos realm.
+default_tkt_enctypes = des-cbc-crc
+default_tgs_enctypes = des-cbc-crc
+ticket_lifetime = 600
+
+[realms]
+MYDOM.COM = {
+kdc = &lt;<em>IP address for MachineA</em>&gt; //Host running the KDC
+//For Unix systems, you need to specify port 88, as in &lt;<em>IP-address</em>&gt;:88
+admin_server = MachineA
+default_domain = MYDOM.COM
+}
+
+[domain_realm]
+.mydom.com = MYDOM.COM
+
+[appdefaults]
+autologin = true
+forward = true
+forwardable = true
+encrypt = true
+			</pre>
+			</div>
+			</div>
+</ol>
+</ol>
+
+<h3><a name="ConfigADRepository"></a>Step 3: Configure Microsoft Active Directory as a WebSphere User Repository</h3>
+<p>To configure Microsoft Active Directory as a WebSphere user repository, follow these steps:</p>
+
+<ol>
+	<li>Log on to the WebSphere Application Server administrative console and navigate to <strong>Security &gt; Global security</strong>.</li>
+	
+	<li>In the <strong>Authentication</strong> section, select the <strong>Kerberos and LTPA</strong> option.</li>
+
+	<li>In the <strong>Web and SIP security</strong> section, click <strong>Single sign-on (SSO)</strong>. Select the <strong>Enabled</strong> and <strong>Web inbound security attribute propagation</strong> options. In the <strong>Domain name</strong> field, set it to <strong>CONCEPTWAVE.COM</strong>. </li>
+
+	<li>Click <strong>External authorization providers</strong>. Proceed to select <strong>Built-in authorization</strong>, and then click the <strong>OK</strong> button.</li>
+
+	<li>In the <strong>User account repository</strong> section, click the <strong>Available realm definitions</strong> field, select <strong>Standalone LDAP registry</strong>, and then click the<strong> Configure</strong> button. Configure the Microsoft Active Directory as the user registry with the following <strong>General Properties</strong>:
+      <ul>
+        <li> <strong>Primary administrative user name</strong> - Enter your user ID (for example, <strong>build</strong>)</li>
+        <li> <strong>Server user identity</strong> - Select the <strong>Automatically generated server identity</strong> option</li>
+        <li><strong>Type of LDAP server</strong> - Select <strong>Microsoft Active Directory</strong></li>
+        <li><strong>Host</strong> - Name of the LDAP server (for example, <strong>carta.conceptwave.com</strong>)</li>
+        <li><strong>Port</strong> - Port of the LDAP server (for example, <strong>389</strong>)</li>
+        <li><strong>Base distinguished name (DN)</strong> - The base distinguished name of  the directory service </li>
+        <li><strong>Bind distinguished name (DN)</strong> -  Enter the distinguished name for a  user ID that is authorized to run queries on your server </li>
+        <li><strong>Bind password</strong> - Enter the distinguished password for a  user ID that is authorized to run queries on your server </li>
+        <li><strong>Search timeout</strong> - Set to <strong>120</strong> seconds</li>
+        <li><strong>Reuse connection</strong> - Select this option</li>
+        <li><strong>Ignore case for authorization</strong> - Select this option </li>
+      </ul>
+        Click the <strong>Apply</strong> button to save your changes.<br>
+	  <br>
+	  <strong>        Note:</strong> If you have selected the <strong>SSL enabled</strong> option, you must set up your SSL configuration.<br>
+	  <br>
+    </li>
+<li>In the <strong>Configuration</strong> section, click the <strong>Test connection</strong> button. This test must be successful before you continue with this procedure.</li>
+<li>Return to the <strong>Global security</strong> panel. In the <strong>Available realms</strong> drop-down menu, select <strong>Standalone LDAP registry</strong>, and then click <strong>Set as current</strong>.</li>
+  <li>In the <strong>Administrative security</strong> section, verify that you have selected the <strong>Enable administrative security</strong> option. </li>
+  <li>In the <strong>Application security</strong> section, select the <strong>Enable application security</strong> option.</li>
+  
+  <li>Click the <strong>Apply</strong> button to apply all settings in the <strong>Global security</strong> panel.</li>
+  
+  <li>In the <strong>Administrative security</strong> section, click <strong>Administrative user roles</strong> and assign the <strong>Administrative user</strong> role to at least one user (for example, an LDAP - AD repository user such as <strong>CN=build,CN=Users,DC=conceptwave,DC=com</strong>) in the Microsoft Active Directory.</li>
+  
+  <li>Save the configuration and restart WebSphere Application Server.</li>
+</ol>
+
+
+<h3><a name="ConfigSPNEGOauth"></a>Step 4: Configure SPNEGO Web authentication in WebSphere</h3> 
+
+<p>To configure the Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) Web authentication in WebSphere Application Server using the administrative console, follow these steps:</p>
+
+<ol>
+	<li>Navigate to <strong>Security &gt; Global security</strong>, and then expand <strong>Web and SIP security</strong>.</li>
+	
+	<li>Click <strong>General Properties</strong>, select <strong>Authenticate when any URI is accessed</strong> for <strong>Web authentication behavior</strong>, and then click <strong>SPNEGO Web authentication</strong>.</li>
+
+	<li>You need to define a filter for each application that will participate in single sign-on. From the <strong>SPNEGO Filters</strong> list, click the <strong>New</strong> button. In the <strong>General Properties</strong> panel, complete the following steps:
+      <ol type=a>
+		<li>Enter the fully qualified host name of the WebSphere Application Server in the <strong>Host name</strong> field and enter the realm name in the <strong>Kerberos realm name</strong> field (for example, <strong>CONCEPTWAVE.COM</strong>).</li>
+
+		<li> In the <strong>Filter Criteria</strong> field, enter a  value for <strong>request-url%</strong> that equals the name of the Web application or  the prefix for the Web application (for example, <strong>request-url%=cwf</strong>), so  that requests can be verified by SPNEGO Web authentication.</li>
+
+		<li>Select <strong>Trim Kerberos realm from principal name</strong> to remove the suffix of the principal user name.</li>
+
+		<li>Click the <strong>Apply</strong> button.</li>
+	</ol></li>
+
+<li>On the <strong>Global security panel</strong>, in the <strong>Authentication</strong> section, click <strong>Kerberos configuration</strong>. Then, in the <strong>Kerberos Authentication Mechanism</strong> section, complete the following steps:
+  <ol type=a>
+    <li>Change the <strong>Kerberos service name</strong> to <strong>HTTP</strong>, which depends on how you create the Kerberos identification.</li>
+    
+    <li>Enter <strong>CONCEPTWAVE</strong> as the <strong>Kerberos realm name</strong>.</li>
+    
+    <li>Select <strong>Trim Kerberos realm from principal name</strong>, and then clear <strong>Enable delegation of Kerberos credentials</strong>.</li>
+    <li>Click the <strong>Apply</strong> button.</li>
+  </ol>
+</ol>
+<p><strong>Note:</strong> If you are opening an order directly using parameters in the Web address, when you log out and try opening the same Web address again, the page will not load. The issue is that when you log out, <A href="http://host:port/cwf/v/cwf_oe.logout.UserInterface.js'">http://host:port/cwf/v/cwf_oe.logout.UserInterface.js</A> attempts to perform a single sign-on again. To resolve this issue, in <strong>Global security</strong> &gt; <strong>SPNEGO Web authentication</strong>, in the <strong>Filter Criteria</strong> field for <tt>request-url%=cwf</tt>, add <tt>request-url!=cwf/v/cwf_oe.logout.UserInterface.js</tt> as another filter.<BR>
+</p></td>
+</tr>
+</table>
+</body>
+</html>

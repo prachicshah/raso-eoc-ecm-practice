@@ -1,0 +1,235 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Catalog Rule Structure</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td  class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+<h2><a name="RuleStructure">Rule Structure</a></h2>
+<p>The rule language consists of statements. Statements fall in two categories:</p>
+<ul>
+  <li>Simple statements that do not contain other statements.</li>
+  <li>Complex  statements that contain other complex or simple statements. Complex  statements are called <em>group statements</em> or <em>groups</em>. Groups ends with  an End statement.</li>
+  </ul>
+
+<p>Some statement examples are as follows:</p>
+
+<div class="preformatted">
+  <div class="preformattedContent">
+  <pre>
+  <strong>/* </strong>
+  <strong> * The rule logic: Checks if the customer location is allowed</strong>
+  <strong> */</strong>
+
+<strong>  City Is One Of &quot;Toronto&quot;, &quot;Vancouver&quot;, &quot;Montreal&quot;</strong></pre></div>
+</div>
+
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>
+  <strong>Return false when theContext.city is null</strong>
+</pre></div>
+</div>
+
+<p>The rule structure consists of the following:</p>
+<ul>
+  <li><a href="#Comments">Comments</a></li>
+  <li><a href="#LetterCase">Case sensitivity</a></li>
+  <li><a href="#AlternateSyntax">Alternative syntax and coding style</a></li>
+  <li><a href="#EmptyLines">Empty lines</a></li>
+  <li><a href="#StatementCont">Statement continuation</a></li>
+  <li><a href="#Literals">Literals</a></li>
+  <li><a href="#Identifiers">Identifiers</a></li>
+  <li><a href="#Keywords">Keywords</a></li>
+  <li><a href="#Variables">Variables</a></li>
+  <li><a href="#ConstantLists">Constant lists</a></li>
+  <li><a href="#Parameters">Parameters</a></li>
+  <li><a href="#RuleFunctions">Rule functions</a></li>
+</ul>
+
+<h3><a name="Comments">Comments</a></h3>
+
+<p>Comments contain free text and are  ignored by the rule compiler. They can be used freely within and between statements. From a syntactical  point of view, the statement is equivalent to a single  blank character.</p>
+<p>The rule language uses C language-style   line  and statement comments:</p>
+<ul>
+  <li>A <strong>line comment</strong> is text after the // characters to  the end of the current line. A line comment  cannot span more than one line. </li>
+  <li>A <strong>statement comment</strong> consists of  text between “/*�? and “*/�? characters. A statement comment  can span many lines and  cannot be  nested.</li>
+  </ul>
+
+<p>The following is an example of a line comment:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>
+  <strong>//  Check the location</strong><br>
+  <strong>Return City Is One Of &quot;Toronto&quot;, &quot;Vancouver&quot;, &quot;Montreal&quot; </strong>
+</pre>
+</div>
+</div>
+
+<p>The following is an example of a statement comment:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>
+  <strong>/*  Check the location to see if</strong>
+      <strong>it is either Toronto, Vancouver, or Montreal */</strong><br>
+  <strong>Return City Is One Of "Toronto", "Vancouver", "Montreal"</strong>
+</pre>
+</div>
+</div>
+
+<h3><a name="LetterCase">Case Sensitivity</a></h3>
+<p>The Rule Language is case sensitive. The case of the identifiers must match the case of the Catalog. </p>
+
+<h3><a name="AlternateSyntax">Alternative Syntax and Coding Style</a></h3>
+
+<p>The Rule Language defines alternative syntax for many operations and statements. As a result, they can either be written in JavaScript-like form or in an easier-to-read, verbose English. The two styles can be mixed and matched.</p>
+
+<h3><a name="EmptyLines">Empty Lines</a></h3>
+<p>Empty lines are allowed everywhere within and between statements.</p>
+
+<h3><a name="StatementCont">Statement Continuation</a></h3>
+<p>The recommended rule language style is to start each statement on a separate line. The statement may span several lines. An optional semicolon or question mark character can be used to mark the end of the statement. These characters are called <strong>statement delimiters</strong>. If two or more statements are on the same line, it is strongly recommended to mark their ends. </p>
+<p>As previously stated, every rule language statement can span several lines. The following two rules apply for statement continuation:</p>
+<ul>
+  <li>The End keyword and the End statement's optional group type keyword (for example, <strong>End switch</strong>  or <strong>End if</strong>) must be on the same line. If another group statement follows the End statement on the same line, the End statement must have statement delimiter. </li>
+  <li>If an Else group contains the If group, both keywords (that is, Else and If) must be either on different lines or separated by a statement delimiter. For more information about  the Else and If groups see the <a href="Statements.html">Statements</a> section.</li>
+</ul>
+
+<p>The following example shows a correct way to use statement continuation:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>If  a &gt; 5 then do</strong>
+  <strong>a = 4</strong>
+<strong>End</strong>
+<strong>If  a &gt; 10 then do</strong>
+  <strong>a = 3</strong>
+<strong>Else</strong>
+  <strong>If a == 4 then do</strong>
+  <strong>a  = 2</strong>
+  <strong>End</strong>
+  <strong>a = 6</strong>
+<strong>End</strong>
+</pre></div>
+</div>
+
+<p>This example takes the previous example and moves each If statement to the previous line. This example does not use statement delimiters, which results in a completely wrong rule:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>If  a &gt; 5 then do</strong>
+  <strong>a = 4</strong>
+<strong>End  If a &gt; 10 then do // End if statement </strong>
+                       <strong>//  followed by wrong assignment statement - error</strong>
+  <strong>a = 3                //  Statement out of group - error</strong>
+<strong>Else  If a == 4 then do // Else if statement out of If group - error</strong>
+  <strong>a = 2                //  Statement out of group</strong>
+  <strong>End                  //  End statement out of group - error</strong>
+  <strong>a = 6                //  Statement out of group</strong>
+<strong>End                    // End statement out of group  - error</strong>
+</pre></div>
+</div>
+
+<p>This incorrect example can be corrected by adding statement delimiters on those lines that contain more than one statement. However, the resulting rule is more difficult to read:</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>If a &gt; 5 then do</strong>
+  <strong>a = 4</strong>
+<strong>End;  If a &gt; 10 then do </strong>
+<strong>a = 3           </strong>
+<strong>Else;  If a == 4 then do </strong>
+  <strong>a = 2           </strong>
+  <strong>End             </strong>
+  <strong>a = 6           </strong>
+<strong>End                  </strong>
+</pre>
+</div>
+</div>
+
+<p>The last example clearly shows that starting a statement on a separate line enhances readability and promotes good rule language style.</p>
+
+<h3><a name="Literals">Literals</a></h3>
+
+<p>Literals represent immutable (constant) values. The literals are as follows:</p>
+<table class="confluenceTable" border="1" cellpadding="1">
+  <tr>
+    <th class="confluenceTh" scope="col">Literal</th>
+    <th class="confluenceTh" scope="col">Description</th>
+    <th class="confluenceTh" scope="col">Examples</th>
+  </tr>
+  <tr>
+    <td class="confluenceTd" align="left" valign="top"><strong>Numeric </strong></td>
+    <td class="confluenceTd" align="left" valign="top">A numeric literal starts with  a digit and contain digits. THis literal may contain a decimal point. If it contains a decimal  point, it cannot  be the first or the last character of the numeric literal. A numeric literal may start with plus or minus sign. </td>
+    <td class="confluenceTd" align="left" valign="top"><p>Examples of valid numeric literals: +25, 0.17, -23.4. </p>
+      <p>Invalid numeric literals: .125, 47. (should be 0.125, 47.0). </p></td>
+  </tr>
+  <tr>
+    <td class="confluenceTd" align="left" valign="top"><strong>Boolean</strong></td>
+    <td class="confluenceTd" align="left" valign="top">A Boolean literal stores a value of true or false. </td>
+    <td class="confluenceTd" align="left" valign="top">True,  False</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd" align="left" valign="top"><strong>String</strong></td>
+    <td class="confluenceTd" align="left" valign="top"><p>A string literal consists of  any text in  double or single quotation marks. If a literal in double quotation marks contains  a double quotation mark, or a literal in single quotation marks contains a  single quotation mark, the literal must be escaped by a backslash character. </p>
+      <p>If a string literal contains a backslash character, it is escaped by another  backslash character.</p></td>
+    <td class="confluenceTd" align="left" valign="top"><p>Example 1:<br>
+      “City name is \�?Calgary\�?�? <br>
+      <br>
+      Example 2:
+      <br>
+      The text,  The backslash character is “\�?, as a string literal can be either  “The backslash character is \�?\\\’’�? or 
+        ‘The backslash character is �?\\’’’.</p></td>
+  </tr>
+  <tr>
+    <td class="confluenceTd" align="left" valign="top"><strong>Validation error</strong></td>
+    <td class="confluenceTd" align="left" valign="top">This literal contains the result of a validation error.</td>
+    <td class="confluenceTd" align="left" valign="top">Invalid</td>
+  </tr>
+  <tr>
+    <td class="confluenceTd" align="left" valign="top"><strong>Null </strong></td>
+    <td class="confluenceTd" align="left" valign="top">Null is a reference constant.</td>
+    <td class="confluenceTd" align="left" valign="top">Null</td>
+  </tr>
+</table>
+<h3><a name="Identifiers">Identifiers</a></h3>
+<p>Identifiers are names that specify objects that the rule works with. The identifier must start with a letter and contain only  letters, digits, and underscore characters. Identifiers are case-insensitive.</p>
+
+<h3><a name="Keywords">Keywords</a></h3>
+<p>The rule language uses a list of reserved  keywords. These keywords cannot be used as identifiers or rule names. The list of the keywords appears in <a href="AppendixA_Keywords.html">Appendix A</a>. Keywords are case-insensitive.</p>
+
+<h3><a name="Variables">Variables</a></h3>
+<p>Variables are identifiers that represent  data. Only assignment statements can set or change the content of variables. Variables are defined in Variable  statements (see the <a href="Statements.html">Statements</a> section) and must have unique names within the  rule. </p>
+<p>Variables are valid within the rule that  defines them. Their scope is the whole rule, even if they are defined within a group. Variables must also be defined before they are used.</p>
+
+<h3><a name="ConstantLists">Constant lists</a></h3>
+<p>Constant lists represent a list [array] of  literals (constants) of strings or numbers. The list must contain literals of  the same type. The list is immutable (that is,  its content never changes). Lists can be  used in the IN - NOT IN and LIKE - NOT LIKE operations, as well as in the FOR statement. </p>
+<p>Constant lists are defined by Constant  List statements (see the <a href="Statements.html">Statements</a> section). They must have unique names within the rule. </p>
+<p>Constant lists are valid only within the  rule that defines them. Their scope is the whole rule, even if they are defined  within a group. They must be defined before they are used.</p>
+
+<h3><a name="Parameters">Parameters</a></h3>
+<p>Parameters are identifiers that represent  data passed to the catalog rules from the caller, such as object rules or other Catalog  rules. They are defined in the Catalog Maintenance user interface.  Any rule (object or catalog) can  access the following predefined parameters, but should not define them:</p>
+<ul>
+  <li>theBasket – The current user  shopping basket, which has an object type of  Basket.</li>
+  <li>theInventory – The current user  inventory, which has an object type of Inventory.</li>
+  <li>theContext – The current user context, which has an object type of Context.</li>
+  <li>theItem – The selected basket item, which has an object type of Item.</li>
+  <li>the BasketItemCharge - The basket item price stored in the database.</li>
+</ul>
+
+<h3><a name="RuleFunctions">Rule functions</a></h3>
+<p>The rule language defines a set of predefined  functions, also known as global or rule functions, which can be invoked  or called as follows:</p>
+  <blockquote>
+    <p><strong>name(expression,  expression, …)</strong></p>
+  </blockquote>
+  <p>Rule functions always return a value, and  may or may not have parameters. When a function is invoked, parameters have to be given in the order that they are specified in the function  definition. All parameters must be  specified.</p>
+  <p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

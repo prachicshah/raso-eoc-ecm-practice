@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>User Interface Objects Overview</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h1>User Interface Objects Overview</h1>
+<p>The User Interface object controls the input and output data of a application and how it displays at runtime. The  User Interface's primary function is to allow the user to control the display of data at runtime by configure  variables and methods for  Forms and  Pages. Forms allow subsets of data to be displayed in different presentations and are used in different runtime conditions while a Page displays the  layout of a page  in a Web browser at runtime (Pages only exist in User Interfaces of type application).</p>
+<p>User Interface variables  are used to control   specific aspects of  the  user interface's behaviour using  Forms and Page. When the User Interface object is created, system variables are available to configure properties, but you can also create custom variables that can be used to store data or are referenced by a method. For more information see, <a href="User Interface Variables.htm">User Interface Variables.</a></p>
+<p>User Interface methods use a script to invoke parameters.   A method can contain a script that defines an action or sets initial values for variables in the same User Interface object. For more information see, <a href="User Interface Methods.htm">User Interface Methods</a>.</p>
+<p>Using the metadata  contained in a User Interface, you can configure properties and invoke an action on an object. The User Interface is available for several metadata objects such as:</p>
+<ul>
+  <li> Documents</li>
+  <li> Orders</li>
+  <li> Finders</li>
+</ul>
+
+<h2>Model-View-Controller Architecture</h2>
+<p>  MVC is a software architecture design pattern for  interactive applications. MVC organizes an application into three main  components—<strong>Controller, View and Model</strong>.  Controllers are used for handling events that affect the model or  views, Views for  displaying all or a portion of the data including the presentation and user  input, and models are used for maintaining data. Both the View and the Controller depend on the Model, but the Model  does not depend on either of these objects. This means that the model can be  developed separately from the visual presentation.</p>
+
+
+
+
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<td class='confluenceTd'><img src="Configuring User Interface Object Overview.gif" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p>The Controller receives input, such as an event, and initiates a response by  making calls on the model object. It handles the user input and determines which  model classes to call to handle the processing for it. Events typically cause a  controller to change a model, or the view, and sometimes both. Whenever a Controller changes a  model’s data or properties, all dependent views are automatically updated. Similarly, whenever a Controller changes a view, the view gets data from the  underlying model and  refreshes.</p>
+<p>A View queries the Model to generate an appropriate User Interface.  The View gets its own data from the Model. The Model is a representation of the data upon which the application  operates. When a Model changes its state, it notifies its associated views so  they can be refreshed. Because Models, Views and the Controller are separate  objects, multiple Views and Controllers can interface with the same Model.</p>
+
+<h3>MVC and Velocity Studio<sup></sup></h3>
+  <p>The presentation-oriented User Interface design in Velocity Studio<sup></sup> separates the User Interface from its model-driven predecessor, with the use of <a href="User_Interface_Design_with_VS.htm">MVC architecture</a> patterning The <em>User Interface</em> metadata object is  considered the <em>Controller</em>, while the View is considered all of the Form  and Form elements, and the Model is represented by the database.<strong></strong></p>
+  <p>Consider the behavior of a Form Frame Form  element in an application. The Form Frame is a reference element that displays  a Form. Data is displayed in a Form Frame when a related action (such as a  button click) triggers a method script to run. Each button  represents an event source that spawns an action event each time that it is  clicked. The button is connected to a listener that receives action events and  routes them to an action listener. The action listener is an example of a  controller. This controller then converts the event into the  appropriate user action, one that the model can understand. The controller  notifies the model of the user action (that the Form Frame will receive data). The Form  Frame queries the model to generate an appropriate User Interface and the view retrieves data from the model. </p></td>
+</tr>
+</table> 
+</body>
+</html>

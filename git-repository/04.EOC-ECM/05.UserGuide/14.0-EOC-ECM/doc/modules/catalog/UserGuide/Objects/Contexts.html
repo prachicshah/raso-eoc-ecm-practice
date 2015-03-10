@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Contexts Type</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Contexts Type</h2>
+<p>Context Types are variables that are configurable in the Product Catalog to define user specific environment such as location or market segment.
+Context Types variables are used to define Rules in the Product Catalog.  These rules are called by the Order Management APIs to determine item availability, eligibility.   For example, a Catalog item may have a rule that indicates that this item is only available to users in Canada.  The item's availability rule would only specify availability in Canada only.  At the Order Management application, the Catalog would only make this item available or display to users located in Canada.</p>
+<p>While there can be multiple contexts defined, only one of them can be the defult context. Only the default context's attributes can be referenced.</p>
+<p>Context types are non-versioned variables that are used in within the Rules.  The scripts within Rules can call a context variable by <em>theContext</em>.  For example,  the value of a context variable called <em>country</em> is accessed using <em>theContext.country</em>. </p>
+<p>The Context Search page displays all Contexts and allows for a detailed search   based on Context Code, Label, or Owner criteria.</p>
+
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<td class='confluenceTd'><img src="Context.png" alt="Contexts Type" /></td>
+</tr>
+</tbody>
+</table>
+
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th width="70" class='confluenceTh'>Action</th>
+<th width="722" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td height="25" class='confluenceTd'>Add</td>
+  <td class='confluenceTd'>Opens the Context Detail dialog for creating a new Context.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Delete</td>
+<td class='confluenceTd'>Deletes the selected Context.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Detail</td>
+<td class='confluenceTd'>Opens the Context Detail form for editing the selectedContext (a row in the search results table must be selected).</td>
+</tr>
+</tbody>
+</table>
+
+<h3>&nbsp;</h3></td>
+</tr>
+</table>
+</body>
+</html>

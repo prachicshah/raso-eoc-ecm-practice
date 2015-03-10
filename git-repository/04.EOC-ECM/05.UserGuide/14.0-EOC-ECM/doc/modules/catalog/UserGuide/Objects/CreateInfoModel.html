@@ -1,0 +1,153 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Add Info Model</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" >
+
+
+<h2>Add an Info Model</h2>
+
+<p>To create an info model for a standard info table, first attributes must  be created. The attributes can then be added to the info model.  The info model will eventually be referenced in a Catalog Rule that will be linked to a Charge Type. For example, an info model can be created for a price discount containing attributes Brand, Model, and Discount. The figure below shows an info model for a price discount containing attributes Brand, Model, and Discount. This info model defines a standard static Info Table named infomodel_price_disc. The column data values for this table are stored in the data field of the CWPC_INFOTABLE. The status of attributes  must be set to <strong>Active</strong>. </p>
+<p>To create an info model,  follow these steps:</p>
+<ol>
+<li>From the menu bar, click<strong> Designer</strong> &gt; <strong>Attribute Types </strong>menu, and create the following attributes:</li>
+<ul>
+  <li><strong>Brand</strong> and <strong>Model</strong> of type <em>String</em></li>
+  <li><strong>Discount</strong> of type <em>Number</em>. </li>
+  </ul>
+
+ <p><strong>Note:</strong> Set the <strong>Status</strong> of each attribute to <strong>Active</strong>.
+   
+ </p>
+ <li>Navigate to <strong> Designer</strong> &gt; <strong>Info Models</strong> from the menu bar. Click the <strong>Add</strong> button to add a new Info Model.</li>
+<li>The<strong> Info Model Detail</strong> dialog appears.</li>
+<p><img src="InfoModelCreate.png" alt="Create an Info Model" /></p>
+<li>Enter the information in the following fields:<br>
+  <br>
+</li>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="105" class='confluenceTh'><p>Field</p></th>
+      <th width="829" class='confluenceTh'>Description</th>
+      <th width="106" class='confluenceTh'>Rules</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>Code</strong></p></td>
+      <td class='confluenceTd'>This is the code used to identify this Info Model.  This code is not restricted to alphanumeric characters, it can also contain a combination of spaces, hyphens, etc.</td>
+      <td class='confluenceTd'>Mandatory, Unique</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>Status</strong></p></td>
+      <td class='confluenceTd'>A list of available <a href="States.html">Status</a> for this Info model (for example, Definition and Active).</td>
+      <td class='confluenceTd'>Mandatory</td>
+    </tr>
+    
+    <tr>
+      <td class='confluenceTd'><p><strong>Name</strong></p></td>
+      <td class='confluenceTd'>This field denotes the name of the info model.</td>
+      <td class='confluenceTd'>Mandatory</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>Start Date</strong></p></td>
+      <td class='confluenceTd'>The effective date of this Info Model.</td>
+      <td class='confluenceTd'>Optional</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>End Date</strong></p></td>
+      <td class='confluenceTd'>The end date of this Info Model represents the date when this Info Model is no longer effective.</td>
+      <td class='confluenceTd'>Optional</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>Label</strong></p></td>
+      <td class='confluenceTd'>The visual Label used  for this Info Model, which is used in the application user interface. This field is a translational string that supports language translations (refer to Velocity Studio's Translation Element for more details).</td>
+      <td class='confluenceTd'>Mandatory</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>Description</strong></p></td>
+      <td class='confluenceTd'>A description of this Info Model.</td>
+      <td class='confluenceTd'>Optional</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>DB TableName</strong></p></td>
+      <td class='confluenceTd'>A database table name. This is a string value that corresponds to the database table referenced by this Info Model.  If this field is left blank, then the system will assume that the table is a Standard or Dynamic table. </td>
+      <td class='confluenceTd'>Optional</td>
+    </tr>
+    
+    <tr>
+      <td class='confluenceTd'><p><strong>Is Dynamic</strong></p></td>
+      <td class='confluenceTd'> Checking this flag results in the associated Info Table being dynamic. The name of the Dynamic Info Table matches the Info Model Code. The dynamic info table loads rows into memory only if it is needed. See Dynamic Info Tables for more information. </td>
+      <td class='confluenceTd'>Boolean, Mandatory</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>Interval</strong></p></td>
+      <td class='confluenceTd'><p>Expiration interval defines how long the Dynamic Info table row can stay in the cache memory before being reloaded from the external source. The interval is specified in minutes and can have value from 0 to 30,000 or value of -1 (never expires). This field is used in conjunction with the Dynamic Tables and the Dynamic Row cache loader script to load row data into memory. If this field is left blank, the system will assume a value of -1, never expires<strong>.</strong></p>
+        <p><strong>Note:</strong> Interval field remains disabled if the check box for<strong> Is Dynamic</strong> field is unchecked.</p></td>
+      <td class='confluenceTd'>Optional</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>Project</strong></p></td>
+      <td class='confluenceTd'>Each object is assigned to a Project. This defaults to the active or opened project when the attribute is first created.</td>
+      <td class='confluenceTd'>Mandatory</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p><strong>Owner</strong></p></td>
+      <td class='confluenceTd'>This field  indicates information about the owner of the project.</td>
+      <td class='confluenceTd'>Mandatory</td>
+    </tr>
+  </tbody>
+</table>
+  <p><strong><br>
+    Note:</strong> Leave the <strong>DB Tablename</strong> field blank and the <strong>Is</strong> <strong>Dynamic</strong> field unchecked to create a standard info table.
+  </p>
+  <li>Click the <strong>Save</strong> button to save the Info model. After you have saved the info model, the associated tabs appears on the<strong> Info Model Detail</strong> dialog.</li>
+
+<p><img src="InfoModelDetail.png " alt="Tab associated to Info model "></p>
+<li>Add attributes to the info model. Refer to <a href="addAttributes_InfoModel.html">Attributes for Info Model</a> for more details</li>
+<li>Add data to the Info Table. Refer to <a href="CreateInfoTable.html"> Info Tables</a> more details.</li>
+<li>Add <a href="domains_InfoModel.html">domains</a> for info model. Refer to <a href="../Configuration/Catalog_Domains.html">Domains</a> for more information.</li>
+</ol>
+  
+  
+  
+  
+  <h3>Info Model Application</h3>
+  <p>Now that an Info Model has been created, a Catalog Rule can be created to reference that Info Model.  The Catalog Rule can then be linked to a Charge Type and the Charge Type can be associated with an Item. When that item is added to a shopping basket the charge type and its associated catalog rule will be applied. The rule will then reference the info table to find the correct discount to apply. Below are the steps associated with setting up the Catalog Rule and Charge Types that reference the Info Model.</p>
+  <ol>
+  <li>Create the Info Model by clicking <strong>Designer</strong> &gt; <strong>Info Model</strong> from the menu bar.
+  
+    <br>
+    <br>
+    <img src="InfoModelDetailExample.png" alt="Info Model Detail Example" border="1"><br>
+    <br>
+   
+  </li>
+   
+ 
+  
+  
+  <li>Create a Catalog Rule by clicking  <strong>Designer</strong> > <strong>Catalog Rule</strong> from the menu bar.<br>
+<br>
+<img src="InfoModelRule.png" alt="Info Model Rule">  <br>
+<br>
+  </li>
+  
+  <li>Link the Rule to a Charge Type by clicking <strong>Designer</strong> > <strong>Charge Type</strong>.<br>
+<br>
+<img src="InfoModelChargeType.png" alt="Info Model ChargeType"><br>
+<br>
+  </li>
+  
+  </ol>
+ This Charge Type can now be associated to an Item  to determine the price of the Item base on the Model, Brand, Connectivity Plan, and Contract Term selected.
+ </td></tr></table>  
+</body>
+</html>

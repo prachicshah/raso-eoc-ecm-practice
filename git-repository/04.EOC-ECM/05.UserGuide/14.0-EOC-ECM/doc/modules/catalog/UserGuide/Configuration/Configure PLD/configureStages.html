@@ -1,0 +1,121 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Configure Stages</title>
+<link rel="StyleSheet" href="../../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../../highlight.js"></script><script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> 
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2><strong>Configure Stages</strong></h2>
+<p>Each stage represents a set  of Technical  Action Specifications (TAS), Participants, and Microflows. When a PLD stage is  created, new TASs associated with that stage are added to the Orchestration Framework (OF). Each TAS is associated with one microflow and participant. You can access the Configure Stages option using the Quick Start menu on the Ericsson Catalog Manager home page or from the menu bar, by clicking <strong>Configuration </strong>&gt;<strong> Configure PLD </strong>&gt;<strong> Configure Stages. </strong> You can <a href="#Search Stage"> Search</a>, <a href="#Add Stage">Add</a>, <a href="#Edit Stage">Edit</a>, and <a href="#Delete Stage">Delete</a> the stages.</p>
+
+<p><img src="configureStages.png" alt="Search Stage Finder" border="1" /></p>
+
+<p>When configuring stages note that:</p>
+<ol>
+  <li>A request is associated with an order. </li>
+  <li>An order is subject to a lifecycle (as defined in the getLifecycle script of the metadata).</li>
+  <li>The request order (as defined in the ObjectLifeCycleModified script of the metadata) is the order assocated with the request that is following that lifecycle.<br>
+  </li>
+</ol>
+
+<h3><a name="Search Stage">Search a Stage</a></h3>
+<p>To search a stage, enter the search criteria in the <strong>Code</strong> or <strong>Label (%)</strong> field, and then click the <strong>Search</strong> button. </p>
+<h3><a name="Add Stage">Add a Stage</a></h3>
+<p><strong>Note</strong>: If you create a new stage, you need to made changes to the metadata to accomodate the new stage. </p>
+<p>To add a new stage, do the following:</p>
+<ol>
+  <li>From the Stage Finder page, click the <strong>Add</strong> button.</li>
+  <li>Enter the information in the <strong>Stage</strong> and <strong>Label</strong> fields (for example, evaluationStage).</li>
+  <p><img src="addStage.png" alt="Add a NewStage" border="1" /></p>
+  <li>Set up the  stages for each of the following microflow types:
+    <br>
+    </li>
+  
+  <ul>
+    <li><strong>Setup Microflow</strong> is executed at the beginning of the stage and is responsible for setting the request status to represent the start of the stage. 
+      <ul>
+        <li> Select <strong>Custom microflow </strong>to change the PLD order initial state  according to the statuses defined in the objectLifeCycleModified order lifecycle.  It should follow the logic defined in the set up of microflows.</li>
+        <li> Select <strong>Default microflow</strong> to  use the default as a placeholder  when specific microflows are not available. Default  microflow does  not update the initial PLD order state. </li>
+        </ul>
+      </li>
+    <li><strong>Intermediate Microflow</strong> is executed in between tasks within a stage. 
+      <br>
+      </li>
+    
+    <ul>
+      <li>Select <strong>Custom microflow</strong> to prepare the internal PLD state for the next  task. resetFlags Microflow should be chosen in 99.9% of the cases.</li>
+      <li>Select <strong>Default microflow</strong> to  use the default as a placeholder  when specific microflows are not available. Default  microflow does not prepare the internal PLD state for the next task.      </li>
+    </ul>
+    <li><strong>Teardown Microflow</strong> is executed at the end of the stage when the last task is completed. It changes the state of the request to represent the completion of the stage. 
+      <ul>
+        <li> Select <strong>Custom microflow </strong>to change the PLD order final state  according to the statuses defined in the objectLifeCycleModified order lifecycle.  It should follow the logic defined in tear down microflows.</li>
+        <li> Select <strong>Default microflow </strong> to use the default as a place holder  when specific microflows are not available. Default  TearDown&nbsp;microflow does not update the PLD order final state.<br>
+        </li>
+      </ul>
+    </li>
+    </ul>
+  <blockquote>
+    <p><strong>Note:</strong>  For each  custom microflow stage that you add, you  need to modify additional  scripts (for example, the getLifecycle script and the ObjectLifeCycleModified script) to accommodate metadata changes for the project.</p>
+  </blockquote>
+  <li>For the <strong>Setup Microflow Type</strong> field<strong>, </strong>select a custom or default out of the box setup microflow.</li>
+  <ol type="a">
+    <li>If you select Custom, the <strong>Setup Microflow</strong> field appears.</li>
+    <li>Click the search button for this field; the Microflow Details page appears.</li>
+    <li>Select a  microflow related to the setup workgroup in the list and click the <strong>Select</strong> button.</li></ol>
+  <li>Click the <strong>Add</strong> button from the Action Participants section; the Participant, Label, and the Microflow fields appear. </li>
+  <ol type="a">
+    <li>Click the search button for the <strong>Participant</strong> field. The Participant Page appears with the list of available participants.<br>
+      <strong>Note: </strong>If you are adding a participant, you must also add  the corresponding microflow. For example, if you add the Business Analyst participant,  in the action participant section, make sure that the microflow chosen is from the  Business Analyst workgroup and that the microflow  action is the corresponding ba_action.<br>
+    </li>
+    <li>Select a participant from the list by clicking on its corresponding arrow.</li>
+    <li>Enter the participant label in the <strong>Label </strong>field.</li>
+    <li>Click the search button for the <strong>Microflow</strong> field;  the Microflow Details page appears.For a list of pre-defined microflow codes, see <a href="configureMicroflows.html">Configure Microflows</a>.</li>
+    <li>Double-click an action  microflow from the list.</li>
+  </ol>
+  
+  <li>For the <strong>Intermediate Microflow Type</strong> field, select a custom or default out of the box setup microflow.</li>
+  <ol type="a">
+    <li>If you select Custom, the <strong>Intermediate Microflow </strong>field appears.</li>
+    <li>Click the search button for this field; the Microflow Details page appears. For a list of pre-defined microflow codes, see <a href="configureMicroflows.html">Configure Microflows</a>.</li>
+    <li>Double-click a  microflow related the intermediate workgroup in the list.</li>
+  </ol>
+  <li>Click the <strong>Add</strong> button from the Approve Participants section; the Participant, Label, and the Microflow fields appear. </li>
+  <ol type="a">
+    <li>Click the search button for the <strong>Participant</strong> field. The Participant Page appears with the list of available participants.<br>
+      <strong>Note:</strong> If you are adding a participant, you must also add  the corresponding microflow. For example, if you add the Product Manager participant  in the approve participant section, make sure that the microflow chosen is from the  Product Manager workgroup and that the microflow  action is the corresponding pm_approval. </li>
+    <li>Select one from the list and click the <strong>Select</strong> button.</li>
+    <li>Enter the information for the <strong>Label </strong>field.</li>
+    <li>Click the search button for the <strong>Microflow</strong> field;  the Microflow Details page appears. For a list of pre-defined microflow codes, see <a href="configureMicroflows.html">Configure Microflows</a>.</li>
+    <li>Double-click an approval  microflow from the list.</li>
+  </ol>
+  <li>For the <strong>Teardown Microflow Type</strong> field, select a custom or<strong> </strong>default out of the box setup microflow.</li>
+  <ol type="a">
+    <li>If you select Custom, the <strong>Teardown Microflow</strong> field appears.</li>
+    <li>Click the search button for this field; the Microflow Details page appears.</li>
+    <li>Double-click a  microflow related the teardown workgroup in the list.</li>
+  </ol>
+  <li>Click the <strong>Save</strong> button. <br>
+    <br>
+  </li>
+</ol>
+<h3><a name="Edit Stage">Edit a Stage</a></h3>
+<p>To edit a  stage, do the following:</p>
+<ol>
+  <li>From the Stage Finder page, click the <strong>Edit</strong> button.  A list of stages is displayed.</li>
+  <li>Select one Stage and click the <strong>Edit</strong> button.</li>
+  <li>Edit the information for the fields, and then click the <strong>Save</strong> button.</li>
+</ol>
+<h3><a name="Delete Stage">Delete a Stage</a></h3>
+<p>To delete a stage,  the select one from the Stage Finder page, and   click the <strong>Delete</strong> button.</p>
+<p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

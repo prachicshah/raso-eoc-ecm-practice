@@ -1,0 +1,360 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Catalog Rule Statements</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2><a name="Statements">Statements</a></h2>
+<p>The set of rule language statements include the following:</p>
+<ul>
+  <li><a href="#VariableDef">Variable definition</a></li>
+  <li><a href="#ConstantListState">Constant list definition</a></li>
+  <li><a href="#AssgnStatement">Assignment</a></li>
+  <li><a href="#NumericIncrements">Numeric increments</a></li>
+  <li><a href="#NumericDecrements">Numeric decrements</a></li>
+  <li><a href="#IfThenElse">If-then-else</a></li>
+  <li><a href="#SwitchStatement">Switch</a></li>
+  <li><a href="#BreakStatement">Break</a></li>
+  <li><a href="#ForEachStatement">For each</a></li>
+  <li><a href="#WhileStatement">While</a></li>
+  <li><a href="#ReturnStatement">Return (Rule Is)</a></li>
+  </ul>
+<p>Elements in square brackets are optional and are added for increased readability.</p>
+<h3><a name="VariableDef">Variable Definition Statement</a></h3>
+<p>The Variable definition statement defines one or more variables of a given type. It has the following format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>[var[iable]]</strong><strong> </strong><strong>object-type</strong>  Identifier   [<strong>as/=</strong> Exp][ , Identifier [<strong>as</strong> Exp]]...</pre>
+</div>
+</div>
+<p>The object type is one of the following data types:</p>
+<ul>
+  <li>Boolean</li>
+  <li>Date</li>
+  <li>Number</li>
+  <li>String</li>
+  <li>Item</li>
+  <li>Row</li>
+</ul>
+<p>Variables must be declared before they are used. They have rule scope, meaning they are valid through the entire rule, no matter where they are defined. The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>Variable  String s;</strong>
+  <strong>Variable  Number i as 0,j; </strong>
+  <strong>While  (i &lt; 10) do:</strong>
+  <strong>j = ...</strong>
+  <strong>...</strong>
+  <strong>End  while</strong>
+  <strong>i  = j + 3; // J has rule scope</strong>
+  <strong>...</strong></pre>
+</div>
+</div>
+<h3><a name="ConstantListState">Constant List Definition Statement</a></h3>
+<p>The Constant List statement defines a list of  literals of either String or Number type. The list cannot be changed once it is  declared. It can be used in  IN/NOT IN and LIKE/NOT LIKE operations, in a For  statement, or passed as a parameter to other catalog rules.<br>
+  <br>
+  This statement has the following format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>[const[ant]]  list</strong> <strong>of</strong><strong>string[s]</strong>  Identifier  [<strong>as/=</strong> literal, literal ...
+  <strong>string[] </strong>Identifier  [<strong>as/=</strong> literal, literal ...
+  <strong>[const[ant]]  list</strong> <strong>of</strong> <strong>number[s]</strong>    Identifier  [<strong>as/=</strong> literal, literal ...
+  <strong>Number[]</strong>  Identifier   [<strong>as/=</strong> literal, literal ...
+</pre>
+</div>
+</div>
+<p>The Constant List statement is one of the <a href="ObjectTypes.html">object types</a> recognized by the rule language. List literals  must be  declared before they are used. They also have rule scope, meaning they are valid through the entire rule, no matter where they are defined.  </p>
+<p>The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>Constant list of Strings list1 =  &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;,&quot;F&quot;</strong>
+  <strong>Boolean flag1 = x is one of list1</strong>
+  <strong>Number[] list2 = 1,2,3,4,5,6,7</strong>
+  <strong>Boolean flag2 = y not in list 2</strong>
+</pre>
+</div>
+</div>
+<h3><a name="AssgnStatement">Assignment statement</a></h3>
+<p>The assignment statement assigns a value to  a variable. Before the variable is  assigned a value, it must be declared using the Variable statement. The assignment  statement has the following three formats:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>set</strong> variable as/= Exp[when Boolean expression]
+<strong>assign </strong>Exp to variable[when Boolean expression]
+variable = Exp [when Boolean expression
+</pre>
+</div>
+</div>
+  <p>If the When clause is specified, the statement  will be performed only if the Boolean expression is true, as shown in these examples:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>Var Number  v1, v3;
+Var String v2;
+Set v1 as 5 + param1.x;
+v2 = current.name; 
+assign v2.length + 24 to v3 when v1 is 10
+</pre>
+</div>
+</div>
+<h3><a name="NumericIncrements">Numeric increments statement</a></h3>
+<p>The numeric increment statement adds one to  the value of a numeric variable. For example, the <em>Increment a</em> statement is equivalent to the <em>a = a + 1</em> statement. </p>
+<p>The numeric increment statement has the following format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>increment</strong> variable
+  variable<strong>++</strong></pre></div>
+</div>
+  <p>The following is an example:<br>
+  </p>
+  <div class="preformatted">
+    <div class="preformattedContent">
+<pre>
+  <strong>Increment count when a &gt; 5</strong>
+  <strong>b++</strong>
+</pre>
+</div>
+</div>
+<h3><a name="NumericDecrements">Numeric decrement statement</a></h3>
+<p>The numeric decrement statement subtracts  one from the value of a numeric variable. For example,  the <em>Decrement a</em> statement is equivalent to the <em>a= a – 1</em> statement.<br>
+  <br>
+  The numeric decrement statement has the following format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>decrement</strong> variable
+  variable<strong>--</strong></pre>
+</div>
+</div>
+  <p>The following is an example:<br>
+  </p>
+  <div class="preformatted">
+    <div class="preformattedContent">
+<pre>
+  <strong>Decrement count when a &gt; 5</strong>
+  <strong>b--</strong>
+</pre>
+</div>
+</div>
+
+<h3><a name="IfThenElse">If-then-else statement</a></h3>
+<p>The if-then-else statement is a group  statement with the following format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>if </strong><strong>Exp </strong><strong>[ [then] [do][:] / { ]</strong>
+  <strong>  Statements...</strong>
+  <strong>else If </strong><strong>Exp </strong><strong>[ [then] [do[:] / { ] </strong>
+  <strong>  Statements...]</strong>
+  ..<strong>.</strong>
+  <strong>else [do[:] / { ] </strong>
+  <strong>  Statements...]</strong>
+  ...<strong></strong>
+  <strong>end[ if] / }</strong>
+</pre>
+</div>
+</div>
+ <p><strong>Notes:</strong></p>
+ <ul>
+   <li>The Else group is optional. However, if it is present, the Else keyword must be on a separate line.</li>
+   <li> The  If statement may contain only one Else group, but many Else-If groups.</li>
+   <li>An  Else-If group is defined by the Else and If keywords on the same line. The Else-If group will be performed only if the corresponding condition is true.</li>
+   <li>The  Else group is performed if the If group and all Else-If groups are not performed.</li>
+ </ul>
+<p>The following two code segments perform the  same way. The difference is that the first code segment consists of one If group, whereas  the second one  has an If group embedded in another If group with two End statements.</p>
+  One  If group:
+  <div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>If  a &gt; 5 then // If a is 2 v is 0 </strong>
+  <strong>     Set v as 3</strong>
+  <strong>Else  If a &gt; 3</strong>
+  <strong>     v = 2</strong>
+  <strong>Else</strong>
+  <strong>     v = 0</strong>
+  <strong>End</strong>
+</pre>
+</div>
+</div>
+<p>Two If groups:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>If  a &gt; 5 then</strong>
+  <strong>     Set v as 3</strong>
+  <strong>Else </strong>
+  <strong>     If a &gt; 3</strong>
+  <strong>           v = 2</strong>
+  <strong>     Else</strong>
+  <strong>           v = 0</strong>
+  <strong>     End</strong>
+  <strong>End  if</strong>
+</pre>
+</div>
+</div>
+
+<h3><a name="SwitchStatement">Switch statement</a></h3>
+<p>The Switch statement allows you to specify actions for different values of a String or Number expression and has the following format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>switch </strong><strong>Exp</strong><strong> [do[:]] / { </strong>
+  <strong>case [of] </strong><strong>literal</strong><strong> [do][:]</strong>
+  <strong>  Statements...</strong>
+  <strong>case [of] </strong><strong>literal</strong><strong> [do][:]</strong>
+  <strong>  Statements...</strong>
+  ...<strong></strong>
+  <strong>default [case] [do][:]</strong>
+  <strong>  Statements...</strong>
+  <strong>end[ switch] / }</strong>
+</pre>
+</div>
+</div>
+
+<p>The Switch statement starts with the first statement following the case literal that matches the expression and continues processing all statements until it reaches either a Break  statement or the end of the group. If a case clause is not matched, the Switch  statement runs the default case statement, if one has been specified.</p>
+<p>The Switch statement expression and the case literals must be of Number or String type. </p>
+<p>The following is an example:</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>Switch Current.location</strong>
+  <strong>Case of &quot;Vancouver&quot; do</strong>
+  <strong>           Set v as 3</strong>
+  <strong>           Set p as 4</strong>
+  <strong>           break</strong>
+  <strong>Case &quot;Montreal&quot;</strong>
+  <strong>           Set v as 5</strong>
+  <strong>           Set p as 6</strong>
+  <strong>           break</strong>
+  <strong>     Default case</strong>
+  <strong>           Set v as 0</strong>
+  <strong>           Set p as 1</strong>
+  <strong>End</strong>
+</pre>
+</div>
+</div>
+
+<h3><a name="BreakStatement">Break statement</a></h3>
+<p>The Break statement interrupts the  running Switch, While, or For group statements, and  continues with the first statement after the group end. The Break statement has the following format:<br>
+</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>
+  <strong>break </strong>[when Boolean expression]
+</pre>
+</div>
+</div>
+<p>If the When clause is specified, the statement  will be performed only if the Boolean expression is true.</p>
+<h3><a name="ForEachStatement">For each statement</a></h3>
+<p>The For Each statement iterates through  all elements of a collection. The following types of objects are collections:</p>
+<ul>
+  <li>Row sets (Row variable type)</li>
+  <li>Item sets (Item variable type)</li>
+  <li>Constant lists (String or Number variable type)</li>
+</ul>
+<p>This statement has the following format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>for [each] </strong>variable<strong> in </strong>Collection <strong>Exp</strong><strong> [do[:] / { ]</strong>
+  <strong> Statements...</strong>
+  <strong>end[ for] / }</strong>
+</pre>
+</div>
+</div>
+<p>The variable must be of the same type as the element of the collection expression. If the identifier is not defined, it is temporarily defined as a variable of the corresponding type within the For group and stays undefined outside of the group. This behavior allows you to use the same identifier in several For groups that follow one other.</p>
+
+<p>If the collection is empty (null), the For each statement does not run.</p>
+
+<p>The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>Var  Number totalRebates </strong>
+<strong>Var  Row r </strong>
+<strong>totalRebates  = 0 </strong>
+<strong>For  each r in select from InfoTable1 where col1=&quot;Toronto&quot; do</strong>
+<strong>     totalRebates = totalRebates + r.Rebate</strong>
+<strong>End</strong>
+</pre>
+</div>
+</div>
+
+<h3><a name="WhileStatement">While statement</a></h3>
+<p>The While statement indicates that while the given expression is true, statements within the While block are run iteratively.  </p>
+<p>The While statement has the following format:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+  <pre>
+  <strong>while </strong><strong>Exp</strong><strong> [do[:]/ { ]</strong>
+  <strong> Statements...</strong>
+  <strong>end[ while] / }</strong>
+</pre>
+  </div>
+</div>
+<p>The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>Var  Number i, factorial is 1</strong>
+<strong>i  = 2</strong>
+<strong>While  i &lt;= 10 do // Calculates 10!</strong>
+<strong>     factorial = factorial * i.</strong>
+<strong>     i = i + 1</strong>
+<strong>End</strong>
+</pre>
+</div>
+</div>
+
+<h3><a name="ReturnStatement">Return (Rule Is) statement</a></h3>
+<p>The Rule Is statement is a mandatory  statement that stops rule processing and returns the value of the  specified expression to the caller (either another rule or the catalog). If the When  clause is specified, the statement runs only if the Boolean expression is true.  </p>
+<p>The Rule Is statement takes the following format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>return </strong><strong>Expression </strong> [when Boolean expression]
+<strong>rule  is[:] </strong><strong>Expression</strong> [when Boolean expression]
+</pre>
+</div>
+</div>
+<p>The expression type should match the rule's return type, as shown in this example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>rule is: current.town is one of &quot;Vancouver&quot; &quot;Calgary&quot; "Winnipeg"?</strong>
+<strong>return 5 when a &gt; 5.  </strong>
+</pre>
+</div>
+</div>
+
+<h3>Debug Statement</h3>
+<p>The rule language includes a special Debug statement that can be used to print information on the console. The format of the Debug statement is as follows:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  debug  println expression
+  or
+  debug  printf format specification, expression, ...
+</pre>
+</div>
+</div>
+  <br>
+  where <em>format specification</em> is a string expression that specifies the print format using the  Java Formatter class and <em>expression</em> is any expression. For the debug printf statement, the expression type should match the formatting element within the format specification.<br>
+  <br>
+  <strong>Note:</strong> The debug statement only works if the AVM runs in debug mode .Otherwise, the statement is ignored. <br>
+
+<p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

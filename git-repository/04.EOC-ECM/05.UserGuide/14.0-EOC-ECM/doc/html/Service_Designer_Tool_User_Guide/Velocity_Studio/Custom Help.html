@@ -1,0 +1,237 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Custom Help</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">
+<!--
+Hilary {
+	color: #F00;
+}
+.Hilary {
+	color: #F00;
+}
+-->
+</style>
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Custom Help</h2>
+
+<p>The Velocity Studio provides two levels of custom help text creation that are available at the field element level and the user interface level through tooltips and popup windows.  At the field element level a Tooltip property is available that appears at runtime when the user's mouse hovers over the field. The pop up help option is available at the User Interface level of Presentation, Documents, Finders and Orders and enables you to enter more extensive help information. The popup help is displayed at runtime when the user clicks on any input field in the form and the help image on the top right hand corner of the browser.</p>
+
+<h3>Tooltip Help</h3>
+<p>Tooltip help is available at the form element level as a property of certain elements.  You can enter help text or information about the element at the form element level via the tooltip property. At runtime, a small hover box is displayed  when the user hovers a cursor over the field element (without clicking it).</p>
+
+<img src="exampleToolTip.png" align="absmiddle" border="1" alt="Tool Tip Text" />
+
+<p>The following table shows which field elements supports the tooltip  functionality. </p>
+<table class='confluenceTable' width="331">
+  <tbody>
+<tr>
+<th class='confluenceTh' width="200">Element Type</th>
+<th class='confluenceTh' width="119">Tooltip Available</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Button.html">Button</a></td>
+  <td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Cell Spacer.html">Cell Spacer</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Chart.htm">Chart</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+
+<tr>
+<td class='confluenceTd'><a href="Element - Checkbox.htm">Checkbox</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Date Field.htm">Date Field</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Date Time.html">Date Time</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Dialog.htm">Dialog</a></td>
+  <td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Dynamic Document.html">Dynamic Document</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Dynamic Table.html">Dynamic Table</a></td>
+  <td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Form Frame.htm">Form Frame</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Grid Layout.htm">Grid Layout</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Header.htm">Header</a></td>
+  <td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Horizontal Layout.htm">Horizontal Layout</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - HTML Content.html">HTML Content</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Hyperlink.htm">Hyperlink</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Image.htm">Image</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Iterator.htm">Iterator</a></td>
+  <td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Label.htm">Label</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Large Text.html">Large Text</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Large Text Area.html">Large Text Area</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Layout Spacer.htm">Layout Spacer</a></td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Menu.htm">Menu</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Password Field.htm">Password Field</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Radio Button Group.htm">Radio Button</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Reference.html">Reference Field</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Row Spacer.htm">Row Spacer</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Section.htm">Section</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Section Header.htm">Section Header</a></td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Section Stack.html">Section Stack</a></td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Separator.htm">Separator</a></td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Select Field.htm">Select Field</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Tab Frame.htm">Tab Frame</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Table.html">Table</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Tabset.htm">Tabset</a></td>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Text Area.html">Text Area</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Textfield.htm">Text Field</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Translation.html">Translation Field</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a href="Element - Tree.html">Tree</a></td>
+  <td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Upload File.html">Upload File</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Variable.htm">Variable</a></td>
+<td class='confluenceTd'>N/A</td>
+</tr>
+<tr>
+<td class='confluenceTd'><a href="Element - Vertical Layout.htm">Vertical Layout</a></td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+
+</tbody>
+</table>
+</tbody>
+</table>
+
+<h3>Popup Help</h3>
+<p>At the User Interface level, popup help is available for Presentation, Documents, Orders, and Finders.  Velocity Studio contains the popup help functionality within the Page form of the com.conceptwave.system.Application. The scripts, variables and graphic images related to the popup help functionality defaults within the properties of the  HelpImage of the Page form. The image graphic points to the help.gif file and this image  appears on the top right hand corner of the application. The <strong>Click method</strong> property is pointing to the generateHelp script.  The script uses the <em>string</em> variable HelpVariable to pass the correct help text at runtime when the user clicks on this image.
+<p><img src="examplegenerateHelp.png" align="absmiddle" border="1" alt="Popup help - Click method, Image URL, and Variable properties" />
+  
+<p>The generateHelp method calls the <a href="../../JavaScripting in Order Care/com/conceptwave/scripting/Global.html">Global.showHelp</a>(this.HelpVariable, width, height, this) object. The width and height properties control the size of the popup help.</p>
+<p>For elements like Finders,  which display a dialog box, the help image will appear in the bottom left hand corner of the dialog box. The user would click the help image within the dialog box - such that the focus remains on this element.  If help is not found within the dialog box then help for the parented form displays.</p>
+<p> <img src="exampleDialogHelp.png" align="absmiddle" border="1" alt="Dialog Help Image" />  </p>
+<p>In the Global.showHelp object, &quot;this&quot; is the dialog controller and should point to the current user interface. </p>
+<h4>Design Mode</h4>
+<p>In design mode, the developer is able to create multiple lines of help text within the User Interface's General tab's <strong>Help</strong> field through a textbox editor.
+<p> <img src="exampleHelpDesign.png" align="absmiddle" border="1" alt="Help Design mode" />
+<h4>Runtime</h4>
+<p>At runtime, the custom help will be displayed in a popup window by clicking any input field element within the form then clicking the help image (<img src="HelpImage.png" width="26" height="23" alt="HelpImage">) on the top right hand corner of the page. The help image has a Visible permission.  If help is not available for the current form, then the generateHelp method will execute a recursive search in a hierarchical process to find the next available help text at the parent level. If help text is not found within the hierarchical parent levels, then help is not displayed.
+
+<p>The following is an example of the runtime display of the popup help window.
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="examplePopupHelp.png" align="absmiddle" border="0"  alt="popup Help" /></td>
+</tr>
+</tbody>
+</table>
+ </p>
+</tr>
+</table>
+</body>
+</html>

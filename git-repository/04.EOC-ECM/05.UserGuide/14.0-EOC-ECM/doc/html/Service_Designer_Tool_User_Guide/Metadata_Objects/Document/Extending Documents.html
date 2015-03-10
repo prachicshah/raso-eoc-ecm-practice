@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Extending Documents</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Extending Documents</h3>
+<p>Existing Documents from system metadata or libraries can be extended in the user metadata to change them or add new functionality.</p>
+<p>A Document that extends an existing Document (base Document) is called a derived Document. These rules apply to derived Documents:</p>
+<ul>
+<li>A Document can be derived from only one base Document. The base Document Variables are placed at the beginning of the derived Document's <b>Variables</b> <b>list</b> on the <b>Variables</b> tab and cannot be changed.</li>
+<li>The derived Document can add new Variables to the base Document, but cannot have another base Document inside it.</li>
+<li>The derived Document inherits the forms of the base Document. An inherited form can be overridden in the derived Document.</li>
+<li>The base Document Variable initialization scripts are always processed before the derived Document Variable initialization scripts defined in the <b>Methods</b> tab.</li>
+<li>For a given Document, the Variable initialization scripts are performed before the Document initialization script defined on the <b>Methods</b> tab of the Document.</li>
+<li>For all Document-level scripts, the base Document's scripts are run at the derived Document, unless they are overridden by derived Document's scripts (that is, with override command in <b>Methods</b> tab at the derived Document), where the derived Document's scripts are run, but not the base Document's.</li>
+<li>For all Document Variable-level scripts, the Variables from the base Document may have scripts that are run at the derived Document. These scripts can neither be overridden at the derived Document, nor can additional scripts be added to that Variable at the derived Document.</li>
+<li>Derived Documents cannot change or override the DB mapping of the base Documents.</li>
+<li>When extending or overriding a Document, you can add methods..</li>
+</ul>
+
+<p>To extend an existing Document, follow the same instructions as <a href="Documents.html#new">creating a new Document</a>. However,  in the <b>Extend</b> property in the Document creation wizard, choose the desired base Document to extend (instead of <b>com.conceptwave.system.Document</b>, which creates a new Document).</p>
+
+<p><img src="DocumentExtend.png" align="absmiddle" border="0" alt="New Metadata Object Dialog" /></p>
+<p>You can extend from a Document in your application Metadata (that is, Document found in <b>Metadata</b> tab in Navigation Pane) or extend from a Document in the library Metadata (that is,  Document found in <b>Library</b> tab in Navigation Pane).</p>
+
+<p>Once the derived Document is created, the Document cannot change its base Document (that is, <b>Extends</b> property in <b>General</b> tab of the derived Document is read-only).</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

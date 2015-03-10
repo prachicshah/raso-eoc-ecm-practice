@@ -1,0 +1,39 @@
+﻿<html>
+<head>
+<title>Metadata Settings</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="MetadataSettings"></a>Metadata Settings</h2>
+<p>The following metadata settings can be made to optimize the conflicts handling:</p>
+<ul>
+<li>In the Document metadata a new flag, <em>Timestamp sync</em> (default value false), can be set for Documents that are not part of an Order. If the flag is set and the Document does not contain the <em>System doc stamp</em> field, the <em>System last updated timestamp</em> will be used for conflict detection. This is done mainly to accommodate foreign Documents (from the existing databases) in the conflict detection mechanism.</li>
+</ul>
+<ul>
+<li>The <b>Sync mode</b> field in the Order may have one of the following values:
+<ul>
+<li><em>Document</em>: The <em>Document stamp</em> field is used for conflict detection. No conflict detection is done if the Document does not have a Document stamp field. Since no conflict detection is done if no conflict detection field is specified, this situation should be handled with care.</li>
+<li><em>Order</em>: The <em>Order stamp</em> field is always used for synchronization even if the Document has a <em>Document stamp</em> field.</li>
+<li><em>Default</em>: The <em>Order stamp</em> field is used for synchronization if the Document has no stamp field.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>If the Document is part of an Order it MUST have a System Order ID and a System Parent ID that are mapped to database. It is highly recommended to have <em>Document stamp</em> field.</li>
+</ul>
+<ul>
+<li>If the Document is mapped to database its <em>Document stamp</em> field (if any) should be mapped to the database.</li>
+</ul>
+<ul>
+<li>The Lifecycle Diagram States will have the <em>Read-only</em> state. By default only the <em>END</em> state has this flag set.</li>
+</ul>
+</td>
+</tr>
+</table>
+</body>
+</html>

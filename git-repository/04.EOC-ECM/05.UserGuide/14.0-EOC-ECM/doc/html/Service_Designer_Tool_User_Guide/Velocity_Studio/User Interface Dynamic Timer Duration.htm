@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Dynamic Timer Duration</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">
+<!--
+Hilary {
+	color: #F00;
+}
+.Hilary {
+	color: #F00;
+}
+-->
+</style>
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Dynamic Timer Duration</h2>
+
+<p>Any User Interface can have a timer bound to it. If a timer interval has been specified, the timer calls the onTimer() method each time an interval elapses.</p>
+<p><img src="UItimerDuration.png" alt="User Interface object - Timer duration"></p>
+
+<p>The dynamic script duration is configurable. The dynamicTimerDuration script in com.conceptwave.system.UserInterface allows you to override this script in your metadata, and return either an integer or a script that returns an integer to configure the time duration.</p>
+<p>To use the script, create a new dynamicTimerDuration script with a return type of integer in com.conceptwave.system.UserInterface. </p>
+
+<p><img src="UIdynamicTimerDurationScript.png" alt="Dynamic Timer Duration script"></p>
+<p>By default, the implementation is empty. If a value is returned, it is the timerDuration. Otherwise, use the static value in your metadata.</p>
+
+</table>
+
+
+</body>
+</html>

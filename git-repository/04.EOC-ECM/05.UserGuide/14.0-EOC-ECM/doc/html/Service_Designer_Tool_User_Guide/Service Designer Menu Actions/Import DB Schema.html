@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Import DB Schema</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Import DB Schema</h2>
+<p>You can import database tables into the currently opened metadata as Documents by selecting the <b>DB Schema</b> command from the <b>Database</b> menu. The command works for Oracle databases and all other databases provided that the corresponding JDBC drivers can access the database schema metadata.</p>
+<p>The <b>DB Schema</b> command is a helper function that is used to reduce the development work. Instead of manually creating the corresponding data type objects and Document objects, the metadata developer can automatically generate them. When this command is used, certain assumptions are made that may not be valid in all cases. It is recommended that the developer carefully examines the generated objects and does appropriate changes where needed.</p>
+<p>Velocity Studio always attempts to use the existing metadata objects before generating new ones. In some cases, Velocity Studio may decide to change an existing metadata object to fit the required properties, but this will only be done if the modified object is backward compatible with the original object (that is, Velocity Studio will change existing data type objects only if their base type (integer, boolean, string, etc.) is the same and the length and precision of the modified data type object can accommodate the length and precision of the original type). For Documents, Velocity Studio will add new Document leaves if needed but will never remove existing leaves. If a metadata object with the same name already exists in the specified namespace and it cannot be reused or modified, Velocity Studio will generate a new object that has the name of the existing object with a numeric suffix added for uniqueness.</p>
+<p>A Document object will be updated/created in the namespace and will have the corresponding structure of the imported table. The required data type objects will be created/updated first, one for each table column. The <b>Base Type</b> on the <b>General</b> tab of the data type object will correspond to the column data type. These data type objects are added as leaves of the Document object and are mapped to the corresponding columns of the imported database table on the <b>DB Map</b> sub-tab in the <b>Map</b> tab of the Document object.</p>
+
+<img src="dbSchemaImported.png" align="absmiddle" border="0" alt="" />
+
+<p>Once you select the <b>DB Schema</b> command, the <a href="Database Connect.html">Database Login</a> dialog will open so that you can connect to the desired database where the table(s) are located. The <b>Import Database Schema</b> dialog will open where the tables to be imported as Documents can be selected.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="dbSchemaImport.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p><ins>Description of fields in the Import Database Schema dialog.</ins></p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Category</b></td>
+<td class='confluenceTd'>Not used by this command.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Table(s) to import</b></td>
+<td class='confluenceTd'>A list of available database tables that can be imported into the metadata.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>All</b></td>
+<td class='confluenceTd'>When clicked, all the database tables in the <b>Table(s) to import</b> list will be selected for import.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>None</b></td>
+<td class='confluenceTd'>When clicked, all the database tables in the <b>Table(s) to import</b> list will be deselected.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Target Namespace</b></td>
+<td class='confluenceTd'><p>The namespace in which the data type objects and Document objects, that are based on the selected tables are created or updated. If <em>&lt;new&gt;</em> is selected, the <b>Create Namespace</b> dialog  opens after clicking the <b>Import</b> button.
+  
+  </p>
+  <p><img src="dbProcImportNewNS.png" align="absmiddle" border="0" alt="Create a namespace" />    </p>
+  <p>You can define the <b>Name</b>, <b>Label</b>, and <b>Namespace</b> properties of the new namespace. When the <b>OK</b> button is clicked, the new namespace will be created in the metadata along with the corresponding data type objects and Document objects for the selected table(s).</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Update existing documents</b></td>
+<td class='confluenceTd'>If checked, existing Document objects in the metadata will be updated to reflect changes in the selected table(s). It is your responsibility to make sure that the imported Document object does not override existing Document objects used for other purposes.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Once the import is completed, the <b>Import Database Schema</b> completed dialog opens, allowing you to either close the dialog by clicking the <b>Close Import Dialog</b> button or do another import by clicking the <b>Continue Import</b> button. If you click the <b>Continue Import</b> button, you are returned to the original <b>Import Database Schema</b> dialog.<br>
+  <br>
+  <br>
+</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

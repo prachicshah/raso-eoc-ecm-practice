@@ -1,0 +1,249 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Create an Association</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Create an Association</h2>
+<p>To create a new association, complete these steps:</p>
+<ol>
+  <li>In Catalog Designer, <a href="ProjectOpen.html">open a project</a>.</li>
+  <li>From the menu bar, click <strong>Designer</strong> &gt; <strong>Association Types</strong> to launch the Association Type Finder page.</li>
+  <li>Click the <strong>Add</strong> button to launch the Association Type Detail page. <br>
+    <br>
+    <img src="AssociationDetails.png" alt="Association Details" border="1"><br>
+    <br>
+    Complete the following fields:<br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th class='confluenceTh'>Field</th>
+          <th class='confluenceTh'>Description</th>
+          <th class='confluenceTh'>Rules</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Code</strong></td>
+          <td class='confluenceTd'>This code uniquely identifies the association's instance name. This code  must follow the convention for script identifiers (that is, start with a letter, and contain letters and digits). The Catalog is case-sensitive. The Catalog API and Catalog Rule Language use this code. As a result, it is important that the case in this field matches that used by them.</td>
+          <td class='confluenceTd'>Mandatory, Unique</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Category</strong></td>
+          <td class='confluenceTd'>This field denotes the association category. Each association that you create describes either the structural or behavioural aspects of an item. Click the field's drop-down menu and select a catalog from the list.:<br>
+            <br>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="98" class='confluenceTh'>Category</th>
+      <th width="603" class='confluenceTh'>Description</th>
+      <th width="141" class='confluenceTh'>Association</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Attachment</strong></td>
+      <td class='confluenceTd'>This category allows an attachment file to be uploaded to the system and associated with a catalog item.</td>
+      <td class='confluenceTd'>Associated to an item</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Description</strong></td>
+      <td class='confluenceTd'>This category allows you to group description categories for a catalog item.  The Item Description Association allows for long descriptions to be entered.</td>
+      <td class='confluenceTd'>Associated to an item</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Group</strong></td>
+      <td class='confluenceTd'>Groups allows for restrictions to be placed on the quantity of an item in the Catalog (for example, items added to the shopping basket).</td>
+      <td class='confluenceTd'>Associated to an item</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Image</strong></td>
+      <td class='confluenceTd'>This category allows image files or icons to be uploaded and displayed on the client system.</td>
+      <td class='confluenceTd'>Associated to an item</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Item</strong></td>
+      <td class='confluenceTd'>This category creates relationships between other items.  You use this category when creating the item's Relation association.</td>
+      <td class='confluenceTd'>Associated to an item</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Rule</strong></td>
+      <td class='confluenceTd'>This category defines associations between items and rules (for example, validation and condition).</td>
+      <td class='confluenceTd'>Associated to an item</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Item Attribute</strong></td>
+      <td class='confluenceTd'>This category  allows for various groupings of item properties to be defined.</td>
+      <td class='confluenceTd'>Associated to an item</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Relation Attribute</strong></td>
+      <td class='confluenceTd'>This category  allows for various groupings of relational properties to be defined.</td>
+      <td class='confluenceTd'>Associated to an item</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Price</strong></td>
+      <td class='confluenceTd'>This category is an association type for pricing an item.</td>
+      <td class='confluenceTd'>Associated to an item</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Restriction</strong></td>
+      <td class='confluenceTd'>This category enables restrictions to be created for attribute values.</td>
+      <td class='confluenceTd'>Associated to an item attribute</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Charge Type Description</strong></td>
+      <td class='confluenceTd'>This category allows for grouping characteristics of a chargeable item, such as pricing and discounts.</td>
+      <td class='confluenceTd'>Associated to an item</td>
+      </tr>
+    </tbody>
+</table>
+            <br>
+            <br></td>
+          <td class='confluenceTd'><p>Mandatory</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Status</strong></td>
+          <td class='confluenceTd'>Click the drop-down menu and select a <a href="../Configuration/States.html">status</a> for this Association (for example, <strong>Definition</strong>, <strong>Active</strong>, and so on).</td>
+          <td class='confluenceTd'>Mandatory</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Name</strong></td>
+          <td class='confluenceTd'>This field denotes a<span class="confluenceTd"> unique name for </span> the association.</td>
+          <td class='confluenceTd'>Mandatory</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Start Date</strong></td>
+          <td class='confluenceTd'>This field represents the start (effective) date that the association is available<span class="confluenceTd">. Refer to <a href="../Objects/StartEnd_Dates.html">Start and End dates</a> for details.</span></td>
+          <td class='confluenceTd'>Optional</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>End Date</strong></td>
+          <td class='confluenceTd'>This field indicates the<span class="confluenceTd"> date when the association is no longer effective</span>. <span class="confluenceTd">Refer to <a href="../Objects/StartEnd_Dates.html">Start and End dates</a> for details.</span></td>
+          <td class='confluenceTd'>Optional</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Label</strong></td>
+          <td class='confluenceTd'>The visual label used  for this association, which is used in the application user interface. This field is a translational string that supports language translations (refer to Velocity Studio's Translation Element for more details).</td>
+          <td class='confluenceTd'>Optional</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Description</strong></td>
+          <td class='confluenceTd'>This field allows you to provide details about the association.</td>
+          <td class='confluenceTd'>Optional</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Project</strong></td>
+          <td class='confluenceTd'>Each object is assigned to a Project. This defaults to the active or opened project when the association is first created.</td>
+          <td class='confluenceTd'>Mandatory</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>Click the <strong>Save</strong> button to create your new attribute.</li>
+  <li>Both the Attributes and Domains tabs appear. To create an attribute for the association, click the Attributes tab, and then click the <strong>Add</strong> button.</li>
+  <li>The following information is available for the Association Type Attribute section:<br>
+    <br>
+    <table class='confluenceTable' border cellpadding=1>
+      <tbody>
+        <tr>
+          <th width="70" class='confluenceTh'>Field</th>
+          <th width="722" class='confluenceTh'>Description</th>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Code</strong></td>
+          <td class='confluenceTd'>The Code ID for this Context Attribute. </td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Attribute Code</strong></td>
+          <td class='confluenceTd'>Search for the attribute type code  that you want to  associate with this Context. </td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Name</strong></td>
+          <td class='confluenceTd'>The name of the attribute  for internal use when designing your catalog model. This field is not supported by language translation. This name becomes the context variable name.</td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Label</strong></td>
+          <td class='confluenceTd'>The visual Label used  for this Attribute, which is used in the application user interface. </td>
+          </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Project</strong></td>
+          <td class='confluenceTd'>Search for the name of the project that holds the Attribute object.</td>
+          </tr>
+        </tbody>
+    </table>
+    <br>
+  </li>
+  <li>  When you have completed entering your information, click the <strong>Save</strong> button to save your changes to the Association Type Attribute section.<br>
+    <br>
+    <img src="associationDetailsAttributes.png" alt="Association Details - Association Type Attribute" border="1">  <br>
+    <br>
+  </li>
+  <li>Similarly, for domains, click the Domains tab, and then click the <strong>Add</strong> button.</li>
+  <li>Click the Org Chart field's <strong>Finder</strong> button and select an organizational chart from the list. Click the <strong>Save</strong> button to save your changes.<br>
+    <br>
+    <img src="associationDetailsDomains.png" alt="Association Details - Domains tab" border="1"><br>
+    <br>
+  </li>
+  <li>    Click the association's <strong>Save</strong> button to save all changes.<br>
+  </li>
+</ol>
+<h3>Default System Association Types</h3>
+<p>The Catalog Designer contains the following default system association types with built-in logic.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th width="137" class='confluenceTh'>Association Type Code</th>
+<th width="59" class='confluenceTh'>Category</th>
+<th width="82" class='confluenceTh'>Label</th>
+<th width="827" class='confluenceTh'>Functionality</th>
+</tr>
+<tr>
+<td class='confluenceTd'>eligibility</td>
+<td class='confluenceTd'>Rule</td>
+<td class='confluenceTd'>Eligibility</td>
+<td class='confluenceTd'>The AddItemToBasket API invokes this association type to check if a catalog item is eligible to be ordered. Eligibility rules are checked when adding an item to a basket.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>contains</td>
+<td class='confluenceTd'>Item</td>
+<td class='confluenceTd'>Contains</td>
+<td class='confluenceTd'>Contains is an association type of the item-item association. It forces the association target to be added to the basket when the association source is added.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>groups</td>
+<td class='confluenceTd'>Group</td>
+<td class='confluenceTd'>Groups</td>
+<td class='confluenceTd'>Group is an association type for an item group association and is used for grouping.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>validation</td>
+<td class='confluenceTd'>Rule</td>
+<td class='confluenceTd'>Validation</td>
+<td class='confluenceTd'>The validateBasket API invokes this association type to check the validity of a catalog basket.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>price</td>
+<td class='confluenceTd'>Price</td>
+<td class='confluenceTd'>Price</td>
+<td class='confluenceTd'>Price is an association type for an item price association and is used for pricing.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>availability</td>
+<td class='confluenceTd'>Rule</td>
+<td class='confluenceTd'>Availability</td>
+<td class='confluenceTd'>The Browse Catalog API invokes this association type to check if a catalog time is available for the given user contexts.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</body>
+</html>

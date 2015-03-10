@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>Finder Methods</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Finder Methods</h2>
+
+<p>The <b>Methods</b> tab centralizes all of the Finder methods into one tab. You can define different types of methods  for the Finder.</p>
+
+<p><img src="FinderMethods.png" border="0" alt="Finder Methods Tab" /></p>
+
+<p>The Methods tab is a <a href="../../../JavaScripting in Order Care/Scripting Interface.html">script management screen</a> in Velocity Studio, which is composed of the <b>Method List pane</b> at the left which lists all scripts of the Finder, and the <b>Details pane</b> which displays the details of a script when selected at the Method List pane. </p>
+<p>To show all base methods, click the <strong>Show base methods</strong> (<img src="../../Velocity_Studio/methodsTabShowBaseMethods.png" alt="Show base methods button">) button. Click the button again to hide all base methods. Base methods appear in blue font, as shown in the following figure. Any method highlighted in blue indicates that you can override it. Methods in black font cannot be overridden.</p>
+<p><img src="finderBaseMethods.png" border="1" alt="Base methods for Finders"></p>
+<p>To create a new Method, right-click the Finder in the Method List pane and select a method from the pop-up menu.</p>
+<p><img src="FinderMethodsContextMenu.png" border="1" alt="Context menu for creating new Finder methods"></p>
+
+
+
+<p>When you select the <strong>Type</strong> radio button, it means that the method can be invoked directly through the script and does not require an instance object.</p>
+<p>If you have a long list of methods in the left pane, you can press the first letter of the method you are looking for to jump to the list of methods beginning with that letter. For example, pressing the <strong>I</strong> key highlights the first instance of a method that begins with the letter I. The method displays in the right pane.</p>
+<p>This list represents the New Methods available that can be added at the Finder level. Please refer to the function headers for comments on input parameters and return types.</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+<tr>
+<th class='confluenceTh'>Method Type</th>
+<th class='confluenceTh'>Script Name</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>General Method</b></td>
+<td class='confluenceTd'>user specified.</td>
+<td class='confluenceTd'>Generic user-defined JavaScript function that can defined in a Finder and explicitly invoked by other scripts; the function is not triggered by other built-in means in the Finder.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Initialization</b></td>
+<td class='confluenceTd'><i>cwOnFinderInit</i></td>
+<td class='confluenceTd'>Finder Initialization script to set initial values for the Finder.<br/>
+It is triggered when the Finder is created.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Result Filter</b></td>
+<td class='confluenceTd'><i>cwOnFilter</i></td>
+<td class='confluenceTd'>Runs the script on each result row and removes it if the script returns false. A dependency exists between the cwOnFilter and  cwOnFinderCompleteSearch scripts. The cwOnFilter is only run if the  cwOnFinderCompleteSearch script exists.</td>
+</tr>
+<!--<tr>
+<td class='confluenceTd'><b>Initialization Search</b></td>
+<td class='confluenceTd'><i>cwOnInitSearch</i></td>
+<td class='confluenceTd'>Runs immediately before the finder select operation.</td>
+</tr>-->
+<tr>
+<td class='confluenceTd'><b>Complete Search</b></td>
+<td class='confluenceTd'><i>cwOnFinderCompleteSearch</i></td>
+<td class='confluenceTd'>Runs when the finder search operation is completed. A dependency exists between the cwOnFilter and  cwOnFinderCompleteSearch scripts. The cwOnFilter is only run if the  cwOnFinderCompleteSearch script exists.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Get script</b></td>
+<td class='confluenceTd'><i>cwOnFinderGet</i></td>
+<td class='confluenceTd'><i>Available only in Script Finder</i>. Script that is executed when get operation (that is, get from result documents) is invoked.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Select script</b></td>
+<td class='confluenceTd'><i>cwOnFinderSel</i></td>
+<td class='confluenceTd'><i>Available only in Script Finder</i>. Script that is executed when select operation (that is, search) is invoked.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Get SQL</b></td>
+<td class='confluenceTd'><i>cwOnFinderSQLGet</i></td>
+<td class='confluenceTd'><i>Available only in SQL Finder</i>. SQL statement that is executed when get operation (that is, get from result documents) is invoked.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Select SQL</b></td>
+<td class='confluenceTd'><i>cwOnFinderSQLSel</i></td>
+<td class='confluenceTd'><i>Available only in SQL Finder</i>. SQL statement that is executed when select operation (that is, search) is invoked.</td>
+</tr>
+</tbody>
+</table>
+
+<br>
+<p>The list represents the system-defined Methods available. By default, the base Finder's equivalent method is invoked if any of these Methods is not overridden (that is, <i>cw$super_&lt;method name&gt;()</i>).</p>
+<table class='confluenceTable' border cellpadding="1"><tbody>
+<tr>
+<th class='confluenceTh'>Method Type</th>
+<th class='confluenceTh'>Script Name</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Add Permission</b></td>
+<td class='confluenceTd'><em>addPerm</em></td>
+<td class='confluenceTd'>Add Permission that determines whether the participant is allowed to create a new instance of the output Document (using Detail section of the Finder <b>Default</b> Form). Controls the visibility of Add button in object <b>Menu</b> Form.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Attach Permission</b></td>
+<td class='confluenceTd'><em>attachPerm</em></td>
+<td class='confluenceTd'>Attach Permission that determines whether attachments are allowed to be attached to the output Documents.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Delete Permission</b></td>
+<td class='confluenceTd'><em>deletePerm</em></td>
+<td class='confluenceTd'>Delete Permission that determines whether the participant is allowed to delete an instance of the output Document from search result (using Detail section of the Finder <b>Default</b> Form). Controls the visibility of Delete button in object <b>Menu</b> Form.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Get Drag Object Type</strong></td>
+  <td class='confluenceTd'><em>cwGetDragObjectType</em></td>
+  <td class='confluenceTd'>When this method is  called on a finder, the finder will return the output document’s type. The purpose of this  method is to allow metadata to provide a different type for the object than  what is used by the product. </td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Edit Permission</b></td>
+<td class='confluenceTd'><em>editablePerm</em></td>
+<td class='confluenceTd'><p>Editable Permission that determines whether the participant is allowed to edit an instance of the output Document from search result (using Detail section of the Finder <b>Default</b> Form). Controls the visibility of Copy and Update buttons in object <b>Menu</b> Form.</p>
+  <p><strong>Note:</strong> If a field contains  an editable permission that is either coming from the form field itself, or inherited  from the variable or data type, it takes precedence. Otherwise, the user  interface's editablePerm permission takes over. If this method is not  overwritten, the model's editablePerm permission is used. User interfaces  displayed under another user interface with editablePerm are also be inherited  if the embedded user interfaces do not have their own editablePerm permission. </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>To String</b></td>
+<td class='confluenceTd'><em>toString</em></td>
+<td class='confluenceTd'><i>Reserved. Do not use.</i></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>View Permission</b></td>
+<td class='confluenceTd'><em>visiblePerm</em></td>
+<td class='confluenceTd'>View Permission that determines whether the participant is allowed to view the Finder. Controls the visibility of the whole Section Stack of the Finder.</td>
+</tr>
+</tbody>
+</table>
+
+<p>For the general Methods, you can create multiple Methods in the same Finder, each identifiable by unique Method name. However, for other system-defined Methods, you can only define one Method each. For scripts that are already defined, they appear in the Method List pane and no longer be available at the right-click context pop-up menu. The Method created in Method List pane can be right-clicked, with various commands available. For more information see<a href="../../../JavaScripting in Order Care/Scripting Interface.html"> script management UI</a>.</p></td>
+</tr>
+</table>
+</body>
+</html>

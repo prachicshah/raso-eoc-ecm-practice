@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Setting up a SOAP Service Listener</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Setting up a SOAP Service Listener</h3>
+<p>To set up the SOAP Service listener:</p>
+<ol>
+<li>Create an <b><a href="../External Services/defining an interface.html">Interface</a></b> with all the required Operations of type <em>one-way</em> or <em>request-response</em> (Select <em>One-Way</em> or <em>Request-Response</em> in the <b>Operation type</b> combo box).</li>
+<li>Create a <b><a href="../External Services/defining a binding.html">Binding</a></b> that binds this Interface to the SOAP service provider (Select the Interface in the <b>Interface</b> combo box and the <em>SOAP Service Provider</em> in the <b>Provider</b> combo box).</li>
+<li>Define the <b>Interface element</b> attribute values of the <a href="../Built-in Service Providers/soap service provider.html">SOAP Binding</a> properties. The SOAP listener expects all messages encoded as Documents and the Action URI should be set to the Operation name to be invoked (matching the Operation name of the Interface).
+	<ul>
+	<li>Select the <i>Interface</i> <img src="iconInterface.png" alt="" border="0" /> element in the <b>Interface element</b> tree and set the <b>style</b> attribute value in the <b>Element definitions</b> table to <em>document</em>, and the <b>targetURI</b> attribute value to the Operation name to be invoked.</li>
+	<li>Next, select the <i>message</i> <img src="iconMessage.png" alt="" border="0" /> element in the <b>Interface element</b> tree and set the <b>use</b> attribute value in the <b>Element definitions</b> table to <em>literal</em>.</li>
+	</ul>
+</li>
+<li>Create a <b><a href="../External Services/defining a port.html">Service Port</a></b> for this Binding and set it as listener port (Check the <b>Listener</b> check box of the Port properties).</li>
+<li>Create a Binding that binds the same Interface to the JS (JavaScript) service provider (Select the Interface in the <b>Interface</b> combo box and the <em>JS Service Provider</em> in the <b>Provider</b> combo box).</li>
+<li>Implement the Interface Operation script functions in the <a href="../Built-in Service Providers/js (javascript) service provider.html">JavaScript Binding</a> (Select the <i>Operation</i> <img src="iconOperation.png" alt="" border="0" /> element in the <b>Interface element</b> tree of the Binding properties, and define the <b>Script</b> attribute value in the <b>Element definitions</b> table).</li>
+<li>Create a Service Port for this JS Binding (Select the JS Binding in the <b>Binding</b> combo box).</li>
+<li>Run Metadata.</li>
+<li>In the Configuration application, this Port can be found and configured at the <b><a href="../../../Configuration_Tool_User_Guide/Services Services.html">Services</a></b> and <b><a href="../../../Configuration_Tool_User_Guide/Services Listeners.html">Listeners</a></b> horizontal tab of the <b>Services</b> vertical tab.</li>
+<li>The AVM will set up this service under the following URL: <em>http://host:port/cwf/services/InterfaceName</em>.</li>
+</ol>
+<p>When running the metadata, a WSDL file for each SOAP Interface can be accessed by the following URL:</p>
+<p><a href="http://host:port/cwf/services/InterfaceName?wsdl">http://host:port/cwf/services/InterfaceName?wsdl</a>.</p>
+<p><strong>Note:</strong> When an incoming message is received by the SOAP service, it calls the corresponding JavaScript function using the action URI as a requested Operation name. If action URI is not present it uses the SOAP message operation name.</p>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

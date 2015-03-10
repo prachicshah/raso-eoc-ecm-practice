@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Choice Setup</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Define a Choice Process</h2>
+This section displays an example of a Choice Process setup.
+
+<h3>1. External Service Interface</h3>
+<p>To define an Operatiion activity that contains a Notification, an external Inteface must be created.  Create an external Interface with the  <strong>Operation Type</strong> field set to <strong>Notification</strong>.</p>
+
+<img src="ExternalIntefaceNotification.png" border="1">
+
+<h3>2. Participant</h3>
+<p>Create a participant associated with your external interface.</p>
+
+<img src="Participant.png" border="1">
+
+<h3> 3. Create a Choice Process Flow Diagram</h3>
+<p>The following figure shows the process flow diagram for a <i>Choice</i>.  There is a minimum of two activities that must be defined.  In this diagram, there are three activities:  <i>On Exception</i>, <i>Timeout</i> and <i>Operation</i>.  In the <b>Choice</b> process, the system will follow one of the branches or sub-activities of the choice.  The <b>Choice</b> branch will wait until it either receives a Notification (in that case it will follow the appropriate Operation branch with that Notification specified), the system has timed out (it will follow the Timeout branch) or there is an exception. </p>
+
+<img src="ChoiceProcessDiagram.png" border="1">
+
+<h4>Operation</h4>
+<p>When creating an Operation Activity as a branch of <b>Choice</b>, a participant must be defined as well as it needs to be linked to an External Interface of the Type Notification (refer to Step 1):</p>
+
+<img src="OperationProperties.png" border="1">
+
+</td>
+</tr>
+</table>
+</body>
+</html>

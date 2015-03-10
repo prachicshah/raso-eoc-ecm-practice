@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Specify URL Mapping at the Application Level</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">
+<!--
+Hilary {
+	color: #F00;
+}
+.Hilary {
+	color: #F00;
+}
+-->
+</style>
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Specify URL Mapping at the Application Level</h2>
+
+<p>All applications that are opened or created in Velocity Studio have a URL mapping. When creating a new application in Velocity Studio, you have the ability to specify the URL mapping by completing these steps:</p>
+<ol>
+  <li>Create a <a href="Creating UI Objects.html#createTopLevelUI">new user interface</a> to launch the New User Interface dialog.</li>
+  <li>For the <strong>Extends</strong> field, select <strong>com.conceptwave.system.Application</strong> to show the <strong>URL Mapping</strong> field.<br>
+    <br>
+    <img src="UImapURL.png" alt="Create a new user interface - URL mapping field">  <br>
+    <br>
+  </li>
+  <li>In the <strong>URL Mapping</strong> field, specify the URL segment after http://&lt;<em>host</em>&gt;:&lt;<em>port</em>&gt;. In this example, the URL to access  this application is http://&lt;<em>host</em>&gt;:&lt;<em>port</em>&gt;/testApp. Ensure that you enter the forward slash (/) before your URL segment in this field. By  default, the URL mapped for each new application is the name of the application.</li>
+  <li>Click the <strong>Finish</strong> button to create your application's user interface.</li>
+  <li>You can verify that your URL mapping was successful by clicking your root metadata and selecting the Application Page tab.<br>
+    <br>
+    <img src="UImapURLrootMetadataNode.png" alt="URL Mapping tab" border="1"><br>
+  </li>
+</ol>
+
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Validation of Metadata in the Command-Line Interface</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+  <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+  <td valign="top" class="pagebody">
+   <h2>Validation of Metadata in the Command-Line Interface</h2>
+   <p>
+     Validation  of metadata can be done,   without running or activating, in the command-line interface.This feature is useful, where metadata requires validation in  development environment (for example, before checking or merging the code to the main project branch), or as a part of the development process (for example, after code review).</p>
+   <p><strong>Note:</strong> Running the <em>runValidate</em> command from a directory  other than designer\env will fail.</p>
+  <p> To validate metadata, in Windows, use<em> runValidate.cmd</em>.  A shortcut command can be found in <strong>&lt;</strong><em><strong>installation_folder</strong></em><strong>&gt;</strong><strong>\designer\env\runValidate.<span name="resultofMatch" className="resultofText">cmd</span></strong>. The following describes the syntax of the command-line interface and the  available arguments.</p>   
+   <div class="code"> <div class="codeContent">
+<pre class="code-java">
+@echo off
+if ""%1""=="""" goto echoSyntax
+
+set CWOC_CLASSPATH=C:\6\264<br>set CLASSPATH=%CWOC_CLASSPATH%\designer\Designer.jar;^<br>%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^<br>%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^<br>%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^<br>%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^<br>%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^<br>%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^<br>%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^<br>%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^<br>%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^<br>%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^<br>%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;
+
+set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m
+
+&quot;C:\java\jdk1.6.0_16\bin\java&quot; %JAVA_OPTS% -cp &quot;%CLASSPATH%&quot; com.conceptwave.servicedesigner.ServiceDesigner -validate %*
+
+goto end
+:echoSyntax
+echo ----------------------------------------------------------------------------------------------------------------------------------------------------
+echo Syntax: runValidate [-logFile logFile] metadata_path
+echo Example: runValidate c:\metadata_path
+echo ----------------------------------------------------------------------------------------------------------------------------------------------------
+:end
+
+</pre>
+</div>
+</div><br>
+To validate metadata, in Unix or Linux, use<em> runValidate.sh</em>. A shortcut command can be found in
+<installation_folder>
+<strong>&lt;</strong><em><strong>installation_folder</strong></em><strong>&gt;\designer\env\runValidate.sh</strong>. The following describes the syntax of the command-line interface and the available arguments.
+<div class="code"> <div class="codeContent">
+   <pre class="code-java">
+#!/bin/sh
+if [ $DOLLAR$# -lt 1 ] || [ $DOLLAR$# -gt 10 ]
+then
+echo "Syntax:  ./runValidate.sh metadata_path" 
+echo "Example: ./runValidate.sh /home/metadata/"
+exit 1
+fi
+
+"$JAVA_HOME$/bin/java" -Xms1024m -Xmx1024m -XX:MaxPermSize=128m -cp "$USER_INSTALL_DIR$/designer/Designer.jar:$USER_INSTALL_DIR$/lib/oracle/ojdbc6.jar:$USER_INSTALL_DIR$/lib/oracle/orai18n.jar:$USER_INSTALL_DIR$/lib/oracle/orai18n-mapping.jar:$USER_INSTALL_DIR$/lib/ilog/sdworkflowmodeler.deployed.jar:$USER_INSTALL_DIR$/lib/jdic/JDICplus.jar:$USER_INSTALL_DIR$/lib/axis2/addressing-1.41.mar:$USER_INSTALL_DIR$/lib/axis2/rampart-1.5.mar:$USER_INSTALL_DIR$/lib/axis2/mex-1.4.1.mar:$USER_INSTALL_DIR$/lib/axis2/jaxb-xjc-2.1.6.jar:$USER_INSTALL_DIR$/lib/axis2/wstx-asl-3.2.4.jar:$USER_INSTALL_DIR$/lib/axis2/rampart-core-1.5.jar:$USER_INSTALL_DIR$/lib/axis2/rampart-policy-1.5.jar" com.conceptwave.servicedesigner.ServiceDesigner  -validate $DOLLAR$*    
+
+</pre>
+</div>
+</div>
+    
+   <p>The syntax used in the command line is as follows: <br>
+     <tt>runValidate metadata_path</tt></p>
+<p>
+  Where&nbsp;  <tt> metadata_path</tt>   is the file     path to a metadata project folder. If a given metadata is valid, the command       exits normally with no errors. Otherwise, if a given metadata or any included library is       not  valid, the validation errors  are sent to the console and the command       exits with an error  status of 1.</p>
+
+<!--For Example:
+  Try to validate a metadata project that has errors.
+  Confirm errors are outputted to the console.
+  Confirm exit status is 1.
+  Try to validate a metadata project that has no  errors.
+ Confirm exit status is 0.-->
+                  
+</td>
+  </tr>
+  </table>
+  </body>
+  </html>

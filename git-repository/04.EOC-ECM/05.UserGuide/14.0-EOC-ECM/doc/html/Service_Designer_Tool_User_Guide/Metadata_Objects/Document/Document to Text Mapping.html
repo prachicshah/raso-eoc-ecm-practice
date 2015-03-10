@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Document to Text Mapping</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Mapping Tab: Document to Text Mapping</h3>
+<p>The <b>Text</b> <b>Map</b> sub-tab in the <b>Mapping</b> tab allows the user to specify how to import/export Documents as text. Table below contains descriptions of the fields in the <b>Text</b><b>Map</b> tab.</p>
+<p><img src="DocumentMappingTextMap.png" align="absmiddle" border="0" alt="Document Text Mapping" /></p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Record</b> <b>type</b></td>
+<td class='confluenceTd'>Specifies <b>Fixed</b> or <b>Variable</b> length records. If <b>Fixed</b> is selected, then every data field will have a data length defined. If <b>Variable</b> is selected, then the record fields will be separated by the separator string specified in the <b>Separator</b> field and the records will be separated by character specified in <b>Terminator</b> field.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Separator</b></td>
+<td class='confluenceTd'>String used to separate the record fields for <b>Variable</b> record type format (for example, comma ,).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Quotation</b></td>
+<td class='confluenceTd'>Character denoting quoted text (for example, single quote ' or double quote ). For <b>Variable</b> record format only</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Terminator</b></td>
+<td class='confluenceTd'>String appended to the end of each record during export that denotes the end of a record. (for example, new line \n). For <b>Variable</b> record format only.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>List</b> <b>of</b> <b>fields</b></td>
+<td class='confluenceTd'>The list of Document fields that will be exported/imported to/from the text file. &#160;May not include all Document Variables.</td>
+</tr>
+</tbody>
+</table>
+<h4>List of Fields</h4>
+<p>The list of fields may be a subset of the Document variables In addition, a <b>Field</b> labeled none can be added to the list to allow fixed text output. </p>
+
+<p>Click the <b>Add</b> <img src="iconAdd.png" align="absmiddle" border="0" alt="" /> button to add a field from the Document Variables. The <b>Text map search dialog</b> appears; highlight the item to be added and click <b>Save"</b> to add the field.</p>
+
+<p><img src="DocumentMappingTextMapField.png" align="absmiddle" border="0" alt="Document Mapping Text Map Field" /></p>
+
+<p>Click the <b>Properties</b> <img src="iconProperties.png" align="absmiddle" border="0" alt="" /> button, the <b>Field Properties</b> dialog will open where the user can enter the field length, format and null value (only the <b>Length</b> field will be visible for none field items). If the length and/or format is defined, it will override the values defined in the <b>Data Types</b> properties. The <b>Length</b> is mandatory for <b>Fixed</b> record types and for none field items.</p>
+<p><img src="DocumentMappingTextMapField2.png" align="absmiddle" border="0" alt=" Text Mapping Field Properties" /></p>
+<p>The rows in the list of fields can be reorganized using the up and down arrow buttons located beside the table. Highlight an item, then click either the up or down button to move it. The order in the list will determine the order that the fields are imported/exported to/from the text file.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

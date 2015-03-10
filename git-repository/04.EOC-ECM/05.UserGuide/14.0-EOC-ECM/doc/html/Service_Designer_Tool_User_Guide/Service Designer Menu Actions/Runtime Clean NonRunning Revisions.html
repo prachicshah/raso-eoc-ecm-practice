@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Clean Non-Running Revisions</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Clean Non-Running Revisions</h2>
+
+<p>The <strong>Clean Non-Running Revisions</strong> command identifies the process revisions that have no running instances or are not used by  running instances in the current database schema, and allows you to delete these processes. To use the command, do the following:</p>
+<ol>
+  <li>Click <strong>Runtime</strong> &gt; <strong>Clean Non-Running Revisions </strong>from the menu bar. <br>
+    <br>
+    <strong>Note:</strong> When using this command, you are prompted to connect to the database, if  the database connection is not established already.<br>
+    <br>
+  </li>
+  <li>When the database connection is established, the command runs and the process revisions that do not  have running instances or are not used by  running instances in the current database schema are  displayed as a list. An empty list is returned if there are no non-running process revisions. Revisions are collected and displayed under their parent processes in a tree structure. You cannot select and delete top-level processes. You can only  collapse or expand the top-level process nodes to view  the non-running revisions listed under those nodes. The criteria used to determine which non-running revisions are listed is as follows:<br>
+
+
+<ul>
+  <li> Excludes all top-level processes: user, subflow, and global</li>
+  <li> Excludes all process revisions with running instances in the database</li>
+  <li>Traverse each process or revision from the two previous list items, and exclude all subflow revisions, nested on any level, such as a subflow within a subflow</li>
+  <li> List contains all revisions of user processes and subflows in the current metadata that are not in
+  any of the previous list items
+  <li>List does not contain duplicate entries and is ordered by full name</li>
+  <li>List does not include revisions from templates (system as well as custom ones) </li>
+</ul>
+<p><img src="cleanNonRunningRevisionsDialog.png" alt="Clean Non-Running Revisions dialog"></p>
+</li>
+<li>To clean the non-running revision from the metadata, select the checkbox for the revisions in the list, and click the <strong>Delete </strong>button. A confirmation dialog appears. To delete the revisions, click the <strong>Yes </strong>button.</li>
+<li>A message dialog appears that displays the number of deleted revisions from metadata. Click the <strong>OK</strong> button to close the dialog.</li>
+</ol>
+<p><strong>Note:</strong> This clean-up process is irreversible. The revisions are deleted from the metadata tree and also from database.</p>
+</td></tr>
+</table>
+</body>
+</html>

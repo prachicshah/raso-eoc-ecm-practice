@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Work with Tasks</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h3>Work With Tasks</h3>
+<p>When a process sends a task to a User Participant, these tasks are   added to the global worklist queue, but not assigned to any specific user. The   User Participant properties have a <SPAN name="resultofMatch"><SPAN name="resultofMatch">distribut</SPAN>ion</SPAN> type attribute which   specifies how manual tasks should be assigned to users. This is defined by the <strong><SPAN name="resultofMatch"><SPAN name="resultofMatch">Distribut</SPAN>ion</SPAN> type</strong> field on the <strong>General</strong> tab.</p>
+<p>There are several task settings available in the user interface  in a submenu titled <b>Task</b>. This submenu contains a list of all <em>notification</em>Operations defined for each participant. Clicking a task action  sends a message to the Process Engine and moves the item into the worklist archive (the user no longer sees this item in the worklist).  For example, when a user B takes a task  from user A, the acknowledge task appears in the user interface for user A to acknowledge this change.</p>
+<p><strong>Note:</strong> Errors are generated when an action cannot be completed.</p>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Action</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><a name="startWork"></a><strong>Start Work</strong></td>
+  <td class='confluenceTd'><p>To perform work on a task by running a task action, the task must be started. Tasks that have not started have an empty <strong>Start Date</strong>. </p>
+    <p>To start a task, select the checbox next to each task that you want to start and click the <strong>Start Work</strong> button. All selected non-started regular tasks are started. All other tasks are ignored.</p>
+    <p><strong>Notes:</strong> </p>
+    <ul>
+      <li>The Start Work action is only available if the selected work items have not been started.</li>
+      <li>Metadata can be set up to automatically start the task once the user opens it (that is, select the task and click the <strong>Open</strong> button in the User Worklist). By default, automatically starting a task is configured to false.<BR>
+      </li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Open</strong></td>
+  <td class='confluenceTd'><p>This action allows you to open an already started task. To open a task, select the checkbox next to the task that you want, and then click the <strong>Open</strong> button.</p>
+    <p>See the <strong>Open Task</strong> section for more details.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a name="acknowledge"></a><strong>Acknowledge</strong></td>
+  <td class='confluenceTd'><p>This task displays when a task has been taken or delegated to a user. <SPAN id="internal-source-marker_0.8523007884360689">Alerts and taken tasks must be acknowledged to be removed from the worklist. </SPAN></p>
+    <p><SPAN>To acknowledge a task, select the checkbox next to the tasks that you want, and then click the <strong>Acknowledge</strong> button. All selected alerts and taken tasks are closed and removed from the worklist. All other tasks are ignored.</SPAN><BR>
+      </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a name="delegate"></a><strong>Delegate</strong></td>
+  <td class='confluenceTd'><p>The <strong>Delegate</strong> option is visible to users having the Delegate Task privilege in User Profile Management. This option allows the user to reassign his tasks to another user who has not reached his maximum task capacity. Delegating tasks opens the Worklist Users finder, which displays the list of users to whom the task is allowed to be assigned. The user must make a new user selection.</p>
+    <p>A task can only be reassigned to a user having the privilege to the task’s participant. As a result, only tasks that belong to the same participant are enabled to be delegated in bulk. If the user needs to delegate tasks belonging to different participants, he must do it for each task individually.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><a name="return"></a><strong>Return</strong> (to shared queue)</td>
+  <td class='confluenceTd'><p>The <strong>Return</strong> option is visible to users having the Return Task privilege in User Profile Management. This option allows the user to unassign his tasks (that is, return them to the available task queue).By default, a confirmation dialog appears, prompting the user to accept unassigning the selected worklist tasks.</p></td>
+</tr>
+<tr>
+  <td height="57" class='confluenceTd'><strong>Get Available</strong></td>
+  <td class='confluenceTd'><p>The <strong>Get Available</strong> option is visible to users having either the Workgroup Select or Get Available privilege only in User Profile Management. Clicking <strong>Tasks</strong> &gt; <strong>Get Available</strong> from the menu bar allows the user to acquire one or more items from the shared task list. A user with the Workgroup Select privilege opens the Available Tasks finder, where he can select tasks to be added to his worklist. If the user does not have the Workgroup Select privilege, the next unassigned task is automatically assigned to the current user and displayed in the worklist (that is, the tasks are chosen by highest priority and earliest due date).</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Take Tasks</strong></td>
+  <td class='confluenceTd'><p id="internal-source-marker_0.3" >The <strong>Take Tasks</strong> option is visible to users having the Taken On Task privilege in User Profile Management. This option allows the user to take one or more tasks belonging to another user. Clicking <strong>Tasks</strong> &gt; <strong>Take Tasks</strong> from the menu bar brings up a finder listing tasks assigned to other users and which tasks that the current user can work on, based on task privilege.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Actions</strong></td>
+  <td class='confluenceTd'>See <a href="#actionsMenu">Actions Menu</a> for details.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> All worklist task actions allow for invalid objects.</p>
+<p>Distribution of tasks are controlled by the configuration of Participants at design time. The Distribution type drop-down field on the Participants  general tab contains three choices that allows you to specify how a task is routed. For details, see <a href="../../Service_Designer_Tool_User_Guide/Business_Process_Metadata/user participant.html">User Participant</a>.</p>
+<p>Work item actions displayed in the <strong>Actions</strong> menu support  translation labels.</p>
+<h4><a name="actionsMenu"></a>Actions Menu</h4>
+<p>The Actions menu lists actions that can be performed on all selected tasks. See the <strong>Task Actions</strong> section for details. An action can only be performed on a regular started task. Non-started tasks, alerts, and taken tasks display an empty action list.</p>
+<p>Task actions are computed from the task participant metadata, meaning that each participant has its own set of actions. If all selected tasks belong to same participant type, clicking an action  invokes the same action script on each task. However, if  selected tasks belong to a different participant, only those actions that have same name in all of these participants can be performed. In this case, each task invokes an action strictly from corresponding participant metadata. As an example, suppose that a  user selects two tasks, where task1 belongs to participant1 and task2 belongs to participant2. Both participants have actions named <strong>Complete</strong>, but each has its own action implementations. When the user clicks the <strong>Complete</strong> button, task1 invokes script participant1.complete and task2 invokes script participant2.complete.</p>
+<p>If, however, at least one of these common-name-but-different participant actions has a confirmation script, this action is no longer available to be performed. This actions has been made to prevent multiple confirmations (one for each selected task) to run prior to performing the action. If all selected tasks belong to same participant, there is no restriction on the confirmation script and the common confirmation script runs once for all tasks.</p>
+<p>If at least one task is non-started, or an alert or taken task, the action list is empty. When the selection consists  of multiple tasks that are regular, started tasks belonging to the same participant, only those actions that are marked as <strong>Bulk Complete</strong> are listed. When the selection is a single task, all allowed actions, regardless of their <strong>Bulk Complete</strong> status, are listed.</p>
+<p>Availability of an action for a particular task is based on both permissions and metadata configurations. As a result, when tasks belong to the same participant, each task can still have an individual subset of participant actions. When the selection consists of multiple tasks, the the list of actions is made up of intersection of actions available on each selected task.</p>
+Once an action is completed, it can either close selected tasks or leave them open, based on the action’s <strong>Keep Open</strong> flag. If the task is closed, it is removed from the worklist and worklist list refreshes. Otherwise, tasks remain open and the worklist remains unchanged. The user can work further on these tasks.<BR></td>
+</tr>
+</table>
+</body>
+</html>

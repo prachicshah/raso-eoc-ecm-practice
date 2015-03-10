@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Tax Models</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Tax Models</h2>
+<p>Tax Models allows the user to set up various tax situations within a Catalog. Different countries have different tax models and within a country there are different tax models within provinces/states or  cities.  For example, in Canada, the provinces of Ontario and Quebec have provincial tax rates, as well as a federal tax. However, Ontario applies the provincial tax on the goods sold, whereas Quebec applies the tax on the cost of goods and services sold, and the federal tax.  These two provinces then have two different tax models. Ontario tax can be modeled as a <a href="#TargetTax">Target Tax</a> and Quebec as a <a href="#TargetTaxModel">Target Tax Model</a>.</p>
+
+<h3><a name="TargetTax"></a>Target Tax </h3>
+<p>The target Tax allows taxes to be applied to the sold item (goods or services).  It allows multiple tax rates to be applied to the cost of goods or services sold within the catalog. For example, a region that has two separate taxes that are both applied to the cost of the items like a GST (federal tax) and a PST (provincial Tax), two Target Tax rates are applied.  Below is the detailed setup as shown in the example below:</p>
+<ol>
+<li> Create two Tax Codes:</li>
+<ul>
+  <li>GST</li>
+  <li> PST </li>
+</ul>
+<li> Create a Tax Model:  ONT</li>
+<li> Enter Tax Model Items:</li>
+<ol type="a"> <li> Enter a Target Tax GST.</li>
+  <li> Enter a second Target Tax PST.<br>
+    <strong>    Note</strong>: The <strong>Target Tax Model</strong> field remains empty.<br>
+    <br>
+  </li>
+</ol>
+<img src="TaxModelTargetTax.png" alt="Target tax model example"></ol>
+
+
+<h3><a name="TargetTaxModel"></a>Target Tax Model</h3>
+<p>The Target Tax Model option within the Tax Model Items allows taxes to be applied to on top of taxed items.  Setting up Tax Model Items and assigning a Sequence to the items ensures that subsequent tax sequences apply the tax not only on the cost of the Taxable Item, but also on the Taxes defined in the previous sequence.  In other words, a Tax of Sequence 2 will apply the tax on the cost of the item and the tax defined on Sequence 1.</p>
+
+<p>For example, in a region where there is a federal and a provincial tax applied to the taxable item and then a city tax  (CST) that is applied on top of all the taxes:</p>
+<ul>
+<li>Taxable Item Cost = $100</li>
+<li>GST Rate = 5% or ($100 * 0.05) = $5</li>
+<li>PST = 7%  or ($100*0.07) = $7.00</li>
+<li>CST = 10% or  [$100 + $7 + $5]*0.1 = $11.20</li>
+<li>Total Taxes = $5 + $7 + $11.20 = $23.20</li><br />
+</ul>
+
+<p>The following is an example of the setup:</p>
+<ol>
+<li> Create a Tax Code: CST</li>
+<li> Create a Tax Model:  MTAX</li>
+<li> Enter Tax Model Items:</li>
+<ol type="a">
+  <li>Enter in the Target Tax Model field the previously created ONT (that already has a GST and PST tax) and assign a Sequence = 1 (setting Sequence = 1 means that this tax is applied first).
+    <br>
+<br>
+  <img src="TargetTaxModel1.png" alt="Target tax model - ONT" border="1">
+  <br>
+  <br>
+  </li>
+  <li> Enter the CST Tax Code as the second item in the Tax Model Items and assign a sequence of 2 to this item.<br>
+    <br>
+   <img src="TargetTaxModel2.png" alt="Target tax model - CST" border="1">
+          </li>
+</ol>
+</ol>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>When setting up Tax Model Items, it is only possible to assign an item as a Target Tax or a Target Tax Model - but not both simultaneously.</li>
+  <li>Catalog Designer supports having the same sequence for a tax model and a tax model item.</li>
+  <li> For a tax or tax model that is not calculated on top of another tax, it needs to be assigned the same sequence number under the same tax model.<br>
+    <br>
+    <img src="TaxModelItemSameSequence.png" alt="Same sequence number for tax model"><br>
+    <br>
+  </li>
+  <li> The behaviour is expected to be different if multiple tax models have the same sequence number under the same tax model. </li>
+</ul>
+
+        
+
+    </td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Finder Search Form</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>Finder Search Form</h3>
+<p>The Finder Search Form is, by default, one of the Forms that appears in the Finder User Interface. The Search Form contains  one Form Frame Form element. By configuring the  Form Frame properties you can define the runtime behaviour of the Search functionality. By default, the Variable property of the Form Frame is configured to bind to the system-generated <em>search</em> variable of  User Interface type. The<em> search</em> variable  returns the content of the Search document. Use this Search Form  when you want to search for data, but do not need to display the results in the Result Form (for this behavior use the Default Form). For example, if you want to perform a search to display the child objects of a Finder, you can setup the Search Form to return this information. In addition, this Search Form  is useful when performing a search on migrated data. </p>
+<p><img src="Finder_Search_Form.png" align="absmiddle" border="0" alt="Finder Search From" /></p>
+
+<h4><a name="EnterKeyDisplaySearchResults"></a>Set onEnter Property on Form Frame to Display Search Results</h4>
+<p>The following example describes how to enable the <strong>Enter</strong> key  to display the search results after you enter your search criteria in a <a href="../Navigation Trees/navigation trees.html">navigation tree</a> finder.</p>
+<ol>
+  <li>Under the finder's <strong>UserInterface</strong>, locate <strong>Search</strong>.</li>
+  <li>Right-click <strong>Search</strong> and select <strong>Override</strong> from the menu.</li>
+  <li>In this Search form, right-click the <strong>Form Frame</strong> element and select <strong>Copy &amp; Replace...</strong> from the menu.</li>
+  <li>Set the <strong>onEnter</strong> property to <strong>searchAction()</strong>, to allow the finder to refresh when pressing the <strong>Enter</strong> key when using the navigation tree.</li>
+</ol>
+</td>
+</tr>
+</table>
+</body>
+</html>

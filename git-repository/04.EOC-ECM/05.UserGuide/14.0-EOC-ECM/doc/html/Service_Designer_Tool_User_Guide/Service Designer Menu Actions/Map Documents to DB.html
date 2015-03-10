@@ -1,0 +1,25 @@
+﻿
+
+
+<html>
+<head>
+<title>Map Documents to DB</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Map Documents to DB</h2>
+<p>You can map the database Documents which have a Database Schema and are not yet mapped by selecting the <b>Map Documents to DB</b> command from the <b>Database</b> menu. The function will generate the table name and column names for all Document leaves that are not explicitly marked as do not map and are not yet mapped to database.</p>
+
+<p>Velocity Studio assumes that each Document will be mapped to one database table only. However, the runtime system allows the mapping of a Document to up to four database tables, providing that the primary keys of all the tables are identical by name and type. While this is rarely used, the performance of some applications may be improved by mapping some Documents to more than one table. If this is the case, you must create the tables upfront and map them manually to the Document leaves.</p>
+
+<p>Once the mapping is done, the <a href="Upgrading System.html"><b>Upgrade System</b></a> command should be used to generate the SQL file that contains the DDL needed to create the tables.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

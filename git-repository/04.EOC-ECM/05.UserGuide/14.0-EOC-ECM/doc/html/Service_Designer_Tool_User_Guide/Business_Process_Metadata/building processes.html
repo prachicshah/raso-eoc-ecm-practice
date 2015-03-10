@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>Building Processes</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Building Processes</h2>
+
+<p>To create a new process, do one of the following:</p>
+
+  <p>In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:</p>
+  <ul>
+    <ol>
+      <li>Right-click a Namespace and select <b>New ...</b> from the menu.</li>
+      <li>The <b>New Metadata Object</b> wizard appears as a popup. Expand <b>Business Processes</b>, select <b>Process</b>, and then click the<b> Next</b> button.</li>
+      <li>Step two of the wizard appears. For the <strong>Name</strong> field, enter the process name that you want, which must conform to JavaScript naming conventions. </li>
+      <li>For <b> Type,</b> select one of the following options:        </li>
+      <ul>
+        <li><strong>User</strong> for user processes</li>
+        <li> <strong>Subflows</strong> for subflow processes</li>
+        <li><strong>Global</strong> for external service processes or global process processes 
+          <br>
+        </li>
+        </ul>
+      
+      <p><img src="processSubflow.png" alt="Create a new process - Type"> </p>
+    
+      <li>Click the <b>Finish</b> button.</li>
+    </ol>
+  </ul>
+  <ul>
+    <li><i>Or</i></li>
+  </ul>
+  <ul>
+    <ol>
+      <li>Right-click the <b>Processes</b> folder or the <b>Business Processes</b> folder in a Namespace, if it is present. Select <b>New Process</b><strong>.</strong></li>
+      <li>Continue by following step 3 from the first set of steps.</li>
+      </ol>
+  </ul>
+  <p>After the wizard creates the process, you can no longer view or change the process type, and different process properties are available based on the selected type. The newly created process is added under <b>Processes</b> node.</p>
+  <p><strong>Note:</strong> When creating a process as a Global type, the Migration tab is not available. When creating a process as a User type, the <strong>Interface</strong> field is not available on the General tab.</p>
+</li>
+</ul>Your newly created process appears in your namespace, under <strong>Business Processes</strong> &gt; <strong>Processes</strong> in the metadata tree:
+<br>
+<br>
+<img src="newProcessNode.png" align="absmiddle" border="1" alt="New process appears in metadata tree" />
+
+<p>The icons for user, subflow, and global processes are as follows:</p>
+
+<table width="150" class='confluenceTable'>
+<tbody>
+<tr>
+<th width="29" class='confluenceTh'>Icon</th>
+<th width="133" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconProcessUser.png" align="absmiddle" border="0" alt="User process icon" /></td>
+<td class='confluenceTd'>User process</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><img src="iconProcessSubflow.png" width="19" height="18" alt="Subflow process icon"></td>
+  <td class='confluenceTd'>Subflow process</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconProcessGlobal.png" align="absmiddle" border="0" alt="Global process icon" /></td>
+<td class='confluenceTd'>Global process</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

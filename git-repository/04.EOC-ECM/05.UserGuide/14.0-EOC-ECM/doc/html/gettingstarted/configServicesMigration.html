@@ -1,0 +1,149 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Metadata Migration through Command-Line</title>
+<link rel="StyleSheet" href="../Service_Designer_Tool_User_Guide/Introduction_to_Metadata/../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2> Migration through Command-Line</h2>
+<p>You can migrate Web services from 5.x to  14.x in the  System Configuration application  using <a href="../Service_Designer_Tool_User_Guide/Introduction_to_Metadata/Command Line Options of Designer.html">command line</a> option of Velocity Studio, with the <em>-migrate5config parameter</em>. The following describes the syntax of the command-line interface and the available arguments. A shortcut command can be found in <strong><STRONG>&lt;<EM>installation_folder</EM>&gt;</STRONG>\designer\env\deploy5db.cmd</strong>, and shown as follows. You can use the shortcut, or copy the .cmd file, and edit it accordingly to create your own  script.</p>
+<p><strong>Note:</strong> It is highly recommended that you create a copy of the  database and the application before using this command for migration.</p>
+<p>This command migrates the matadata in the following  manner:</p>
+<ol>
+  <li> Generates the system upgrade SQL
+  <li> Applies the system SQL 
+  <li> Deploys the metadata to the database</li>
+  <li> Migrates the 5.x configuration settings to 14.x</li>
+  <li> Generates the metadata upgrade SQL</li>
+  <li> Applies the Metadata SQL</li>
+</ol>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">
+@echo off
+if ""%1""=="""" goto echoSyntax
+if ""%2""=="""" goto echoSyntax
+if ""%3""=="""" goto echoSyntax
+if ""%4""=="""" goto echoSyntax
+if ""%5""=="""" goto echoSyntax
+set JDBC_USER=%1
+set JDBC_PWD=%2
+set JDBC_HOST=%3
+set JDBC_PORT=%4
+set JDBC_SERVICE=%5
+set APP_NAME=%6
+set APP_VERSION=%7
+set META_DIR=%8
+set SQL_DIR=%9
+SHIFT
+set CONFIG_NODE_LIST=%9
+
+set CWOC_CLASSPATH=C:\14\14441
+set CLASSPATH=%CWOC_CLASSPATH%\designer\Designer.jar;^
+%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^
+%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^
+%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^
+%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^
+%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^
+%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;
+
+set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m -Dcom.conceptwave.licenseDir="%CWOC_CLASSPATH%"\designer\env -Dcom.conceptwave.modules.path="%CWOC_CLASSPATH%"\modules
+set SYSTEM_UPGRADE_SQL=%SQL_DIR%\systemupgrade_%APP_NAME%_%APP_VERSION%.sql
+set METADATA_UPGRADE_SQL=%SQL_DIR%\metadataupgrade_%APP_NAME%_%APP_VERSION%.sql
+set SQL_PLUS_CONNECT_URL=%JDBC_USER%/%JDBC_PWD%@%JDBC_HOST%:%JDBC_PORT%/%JDBC_SERVICE%
+set JDBC_URL_NO_PWD=%JDBC_USER%@%JDBC_HOST%:%JDBC_PORT%:%JDBC_SERVICE%
+
+:system_table_upgrade
+echo "Generating system table upgrade script..."
+if EXIST %SYSTEM_UPGRADE_SQL% echo "Existing system upgrade sql \"%SYSTEM_UPGRADE_SQL%\" will be overwritten."
+if EXIST %SYSTEM_UPGRADE_SQL% del %SYSTEM_UPGRADE_SQL%
+"C:\Program Files\Java\jdk1.7.0_51\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -generateSql -jdbc=%JDBC_URL_NO_PWD% -app_name=%APP_NAME% -app_version=%APP_VERSION% -metadata_dir=%META_DIR% %SYSTEM_UPGRADE_SQL% true
+if ERRORLEVEL 1 goto system_table_upgrade_problem
+if EXIST %SYSTEM_UPGRADE_SQL% goto apply_system_table_sql
+echo "System upgrade script not generated.  Assuming it has been run already."
+goto metadata_deploy
+:system_table_upgrade_problem
+echo "A problem occurred while generating the System Table Upgrade SQL."
+goto end
+
+:apply_system_table_sql
+echo "Applying system table upgrade sql..."
+echo exit | sqlplus -S %SQL_PLUS_CONNECT_URL% @%SYSTEM_UPGRADE_SQL%
+goto metadata_deploy
+:apply_system_table_sql_problem
+echo "A problem occurred while applying the system table upgrade SQL."
+goto end
+
+:metadata_deploy
+echo "Deploying metadata to the DB..."
+"C:\Program Files\Java\jdk1.7.0_51\bin\java" %JAVA_OPTS% %JMX_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -deploy -jdbc=%JDBC_URL_NO_PWD% -app_name=%APP_NAME% -app_version=%APP_VERSION% -create_app=true -generate_wsdl=true %META_DIR%
+if ERRORLEVEL 1 goto metadata_deploy_problem
+goto migrate_config
+:metadata_deploy_problem
+echo "A problem occurred while deploying metadata to the database."
+goto end
+
+:migrate_config
+echo "Migrating 5.X config"
+"C:\Program Files\Java\jdk1.7.0_51\bin\java" %JAVA_OPTS% %JMX_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -migrate5config -jdbc=%JDBC_URL_NO_PWD% -app_name=%APP_NAME% -app_version=%APP_VERSION% -metadata_dir=%META_DIR% %CONFIG_NODE_LIST%
+if ERRORLEVEL 1 goto migrate_config_problem
+echo "Config migrated.  Check cwprocesseventlog for migration details."
+goto metadata_table_upgrade
+:migrate_config_problem
+echo "A problem occurred while migrating configuration from 5 to 6."
+goto end
+
+:metadata_table_upgrade
+echo "Generating metadata table upgrade script..."
+if EXIST %METADATA_UPGRADE_SQL% echo "Existing system upgrade sql \"%METADATA_UPGRADE_SQL%\" will be overwritten."
+if EXIST %METADATA_UPGRADE_SQL% del %METADATA_UPGRADE_SQL%
+"C:\Program Files\Java\jdk1.7.0_51\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -generateSql -jdbc=%JDBC_URL_NO_PWD% -app_name=%APP_NAME% -app_version=%APP_VERSION% -metadata_dir=%META_DIR% "%METADATA_UPGRADE_SQL%" true
+if ERRORLEVEL 1 goto metadata_table_upgrade_problem
+if EXIST %METADATA_UPGRADE_SQL% goto apply_metadata_table_sql
+echo "Metadata upgrade script not generated.  Assuming it has been run already or not needed."
+goto end
+:metadata_table_upgrade_problem
+echo "A problem occurred while generating the System Table Upgrade SQL."
+goto end
+
+:apply_metadata_table_sql
+echo "Applying metadata table upgrade sql..."
+echo exit | sqlplus -S %SQL_PLUS_CONNECT_URL% @%METADATA_UPGRADE_SQL%
+goto end
+:apply_metadata_table_sql_problem
+echo "A problem occurred while applying the metadata table upgrade SQL."
+goto end
+
+goto end
+:echoSyntax
+echo -----------------------------------------------------------------------------
+echo Syntax: 
+echo deploy5db JDBC_USER JDBC_PWD JDBC_HOST JDBC_PORT JDBC_SERVICE_ID application_name application_version metadata_dir
+echo ------------------------------------------------------------------------------
+:end
+</pre>
+  </div>
+</div>
+<p><strong>Note:</strong> To upgrade the database and to deploy the metadata from version 5.x with deployment JAR file, run this command with  the argument <em>metadata_dir</em> pointing to the deployment JAR file path instead of a metadata project's folder path.</p>
+<p>The <em>deploy5db.cmd</em> script supports one more optional parameter that is a semi-colon (;)   delimited list of node names, you want to migrate. For example:
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>C:\cwsrc\Designer6.0\designer\env&gt;deploy5db.cmd WEBSERV_60 cw cwbuild 1521   cwbuilddb WebServices V1 c:\cwsrc\MDs_60\WebServices c:\sqloutput   N_FF_BOTH_WebServ     </pre>
+  </div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

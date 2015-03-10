@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>User Interface Contributor</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>User Interface Contributor</h2>
+<p>User Interface (UI) Contributor  is a metadata  object that can be used to add new information to user interface forms from  multiple sources. The UI Contributor has the ability to pick the latest inherited  version of forms. With the UI Contributor, changes to user interface forms are same as changes to overridden forms. The UI  Contributor is another type of User Interface Controller.</p>
+<h3>Create a UI Contributor</h3>
+<p>To create a new UI Contributor, do one of the following options:</p>
+In the<strong> Metadata</strong> tab of<strong> Navigation </strong>pane, either:  
+<ol>
+   <li>Right-click a <strong>Namespace</strong> and select <strong> New</strong>.</li>
+   <li><strong>New Metadata Objec</strong>t wizard       appears as a popup. Expand <strong> Presentation</strong>, select <strong>User Interface Contributor</strong>, and then click the<strong>       Next</strong> button.</li>
+   <li>Step two of the wizard appears. Enter the      <strong> Name </strong> of the<strong> UI Contributor</strong>. Enter      the<strong> Label</strong> for the <strong>UI Contributor</strong>.          
+   <li>Select the UI Controller for the <strong>Contribute To</strong> field; UI Contributor must contribute to a valid UI Controller.   
+   <li>Click the<strong> Finish</strong> button.
+   </ol>
+<p><img src="newUIContributor.png" alt="Create New UI Contributor" />
+</p>
+<strong>OR </strong><br><br>
+<ol>
+  <li>Right-click the <strong>Presentation </strong>folder in a Namespace, if it is present. Select <strong>New User Interface Contributor</strong>.</li>
+  <li>Follow step 3 from the previous procedure.</li>
+  </ol>
+<p><strong>Note:</strong> The selected UI Controller in the <strong>Contribute To</strong> field is  referred  as the <strong>Contributee</strong>, whether it is a top-level controller or a non-top level controller.</p><p><img src="createUIContributor.png" alt="Create New UI Contributor" border="1" align="absmiddle" />
+
+<h3>Usage Scope of UI Contributor</h3>
+<p>Once the UI Contributor is created, it can:</p>
+  <ul>
+    <li>Override the <strong>Menu</strong> Form.</li>
+    <li>Override or extend <strong>Menu Elements</strong>.</li>
+    <li>Add new <strong>Menu  Elements</strong>.</li>
+    <li>Add new local variables and local methods.</li>
+    </ul> 
+  <h3>Limitations of UI Contributor</h3>
+<p>The usage of the UI Contributor is limited; consider the following points, when working with UI Contributor:</p>
+  <ul>
+    <li>A UI Contributor cannot add new forms to the  Contributee.</li>
+    <li>A UI Contributor can only contribute to the <strong>Menu</strong> Form.</li>
+    <li>A UI Contributor  cannot override, extend, or add any of the base elements other than <strong>Menu Elements</strong>.<strong></strong></li>
+    <li>A UI Contributor cannot override the Contributee’s  original methods.</li>
+    <li>At design time, a controller <strong>A</strong> extending controller <strong>B</strong> does not have access to any methods  or variables that comes from contributors of controller <strong>B</strong>.</li>
+    <li>Local variables and methods of contributors can be  used only by the UI elements added by the Contributors and cannot be expected  to be usable for other purposes.</li>
+    </ul>
+  <h3>Conflicts</h3>
+<p>Contributors of the same Contributee cannot have methods or  variables with the same name among themselves. If conflicting contributors exist in a  project, either resolve conflicts by renaming UI elements, variables, methods,  or disable a contributor.
+</p>
+To disable a contributor, follow these steps:
+  <ol>
+    <li>Click on the metadata header and select the  <strong>Contributors </strong> tab.</li>
+    <li>From the list, either check or uncheck the <strong>Enabled</strong> field to select which  contributor to use or not. </li>
+  </ol>
+ <p><img src="enableContributor.png" alt="Create New UI Contributor" border="1" align="absmiddle" /></p>
+
+<h3><strong>Design-Time Validation Errors</strong></h3>
+<p>When working with the UI Contributors, there are couple of points  that can be considered to avoid the validation errors:</p>
+  <ul>
+     <li>If different UI Contributors  have variables or methods with same name and they contribute to the same UI  Controller or UI, then it results in a design time validation error.</li>
+
+<p><img src="validateError1.png" alt="" border="1" align="absmiddle" />
+  </p>
+  
+     <li>If different UI  Contributors modify the same menu element, or create menu elements with the  same name and they contribute to the same UI Controller or UI, then it results  in a design time validation error. </li>
+  
+<p>
+<img src="validateError2.png" alt="" border="1" align="absmiddle" /></p>
+</ul>
+</td>
+ </tr>
+  </table>
+   </body>
+    </html>

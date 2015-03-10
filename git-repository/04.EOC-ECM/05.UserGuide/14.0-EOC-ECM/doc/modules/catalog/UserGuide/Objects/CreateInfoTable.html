@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Add an Info Table</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> 
+<tr>
+<td class="pagebody" >
+
+
+<h2>Add an  Info Table</h2>
+<p>An info table can be created for a <a href="InfoModels.html">Standard Info Model</a> that has attributes assigned.  For the table to be created, both the Info Model and the Attributes must be <strong>Active</strong> (that is, the <strong>Status</strong> field must be <strong>Active</strong>).</p>
+<p><strong>Note: </strong>A project must be opened to create an info table.</p>
+<p>To create an info table, complete these steps:</p>  
+<ol>
+<li>From the menu bar, click<strong> Designer</strong> > <strong>Attributes</strong>, and create <strong>Active</strong> attributes of the type <em>String</em> or <em>Number</em>.</li>
+<li> From the menu bar, click  <strong> Designer</strong> > <strong>Info Models,</strong> and <a href="CreateInfoModel.html"> create an Info Model</a>. </li>
+<li>Add   active attributes for  the info model and change the status of the info model to <strong>Active</strong>.</li>
+<li> From the Info Model Detail, click the <strong>Info Tables</strong> tab and then click the <strong>Add</strong> button.</li>
+<p><img src="addInfoTable.png" alt="Add Info Table"></p>
+
+<li>The <strong>Info Table</strong> dialog appears, including the table column names, which  corresponds to the attributes  added  for the info model.</li>
+<p>
+    <img src="infoTable_details.png" alt="Add rows to Info Table "  />  </p>
+<li>Click the <strong>Add New</strong> button. Enter required information in the coloums (for example, Person Name and Person ID), and following fields:</li>
+
+<p><table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="104" class='confluenceTh'>Fields</th>
+      <th width="740" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Start Date</strong></td>
+      <td class='confluenceTd'>The effective date of this Info Table data.  Refer to <a href="Versions.html">version control</a> for more details.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>End Date</strong></td>
+      <td class='confluenceTd'>The last date which this data is no longer effective. Refer to <a href="Versions.html">version control</a> for more details.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status </strong></td>
+      <td class='confluenceTd'>A list of available <a href="../Configuration/States.html">Status</a> for this Info Table (for example, Definition and Active).  Default is Definition</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Project </strong></td>
+      <td class='confluenceTd'>Each object is assigned to a Project. This defaults to the opened project.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Key 1, <br>
+        Key 2, <br>
+        Key 3</strong></td>
+      <td class='confluenceTd'><p>These key fields are used when the info table is saved, and are not used for searching. As a result, no search key is required. The fields are mapped to CWPC_INFOTABLE.<BR>
+        <BR>
+        The Key 1, Key 2, and Key 3 labels denote the actual keys themselves. As an example, if you  want to assign keys as Bandwidth and Price,    enter <strong>Bandwidth</strong> in the <strong>Key 1</strong> field and <strong>Price</strong> in the <strong>Key 2</strong> field.</p>
+        <p> This feature allows the application to filter info   tables using those key values. No direct logic is inside Catalog Designer that uses   those fields.<BR>
+        </p></td>
+    </tr>
+  </tbody>
+</table>
+</p>
+
+  
+  <li>You can use <img src="deleteInfoTableRow_Button.png" width="20" height="21" alt="Delete a Row"> button to delete a row before saving the info model associated with the info table.</li>
+  <li>Click the <strong>Save </strong>button to save added data  or row in info table.</li>
+</ol>
+<h3>Use a Versioned Info Table</h3>
+<p>A versioned info table allows you to make changes. Using a static info table does not allow for changes, as its main purpose is to use static data, such as a list of cities or provinces.</p>
+<p>The following is an example of creating a versioned info table:</p>
+<ol>
+  <li> Create a project (for example, project1).</li>
+  <li> Open the project.</li>
+  <li> Create an info model without a database table.</li>
+  <li> Create info model attributes matching the info model's columns.</li>
+  <li> Create an info table and import the data using a .csv file.</li>
+  <li>Activate your project1 project.</li>
+  <li>Run query on the info table.</li>
+  <li>Create another project (for example, project2).</li>
+  <li> Open the project.</li>
+  <li> Open the info model that you created in step 3.</li>
+  <li>Create a new version of info table, and then import the new .csv data into the table.</li>
+  <li>Activate your project2  project.</li>
+  <li>Wait for approximately five minutes for cache to update.</li>
+  <li> Run query on the same info table to get the new version of data. </li>
+</ol></td>
+</tr>
+</table>
+</body>
+</html>

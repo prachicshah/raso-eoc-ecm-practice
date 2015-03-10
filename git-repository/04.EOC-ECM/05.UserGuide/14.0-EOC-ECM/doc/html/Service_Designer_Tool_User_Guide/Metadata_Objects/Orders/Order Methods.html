@@ -1,0 +1,153 @@
+﻿<html>
+<head>
+<title>Order Methods</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Order Methods</h3>
+
+<p>The <b>Methods</b> tab is used to add Order-level scripts. There are different types of Methods that can be defined for the Order; they are all consolidated into this tab.</p>
+
+<p><img src="OrderMethods.png" alt="Order - Methods tab" border="1" /></p>
+
+<p>When you select the <strong>Type</strong> radio button, it means that the method can be invoked directly through the script and does not require an instance object.</p>
+<p>To show all base methods, click the <strong>Show base methods</strong> (<img src="../../Velocity_Studio/methodsTabShowBaseMethods.png" alt="Show base methods button">) button. Click the button again to hide all base methods. Base methods appear in blue font. Any method highlighted in blue indicates that you can override it. Methods in black font cannot be overridden.</p>
+<p>If you have a long list of methods in the left pane, you can press the first letter of the method you are looking for to jump to the list of methods beginning with that letter. In this example, pressing the <strong>D</strong> key highlights the first instance of a method that begins with the letter D. The method displays in the right pane.</p>
+<p><img src="OrderMethodsKeyJumpList.png" alt="Order Methods tab - press a key to indicate the first letter of the method and jump to first instance in the list" border="1"></p>
+<p>The Methods tab is a <a href="../../../JavaScripting in Order Care/JavaScripting Extensions/Scripting Interface.html">script management screen</a> in Velocity Studio, which is composed of the <b>Method List pane</b> at the left which lists all scripts of the Order, and <b>Details pane</b> which displays the details of a script when selected at the Method List pane. To create a new Method, or to override an existing base Method, right-click the Order in the Method List pane. A pop-up menu appears.</p>
+
+<p><img src="OrderMethodsContextMenu.png" align="absmiddle" border="1" alt="Order Methods Context Menu" /></p>
+
+<p>The table below lists the type of Methods that can be added at the Order level.</p>
+
+<br><i><u>New Methods</u></i></br>
+
+<table class='confluenceTable'border cellpadding="1"
+>
+<tbody>
+<tr>
+<th class='confluenceTh' width='100'>Method Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="OrderMethodsIconScript.png" align="absmiddle" border="0" alt="" /> Script</td>
+<td class='confluenceTd'>Generic user-defined JavaScript function that can defined in an Order and explicitly invoked by other scripts; the function is not triggered by other built-in means in the Order.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="OrderMethodsIconPermission.png" align="absmiddle" border="0" alt="" /> Permission</td>
+<td class='confluenceTd'>Permission Method that can be associated to determine permission for a certain property of the Order. (for example, Element properties). See section <a href="../Permission/Permissions Velocity.html">Permissions</a> for details.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="OrderMethodsIconValidation.png" align="absmiddle" border="0" alt="" />Validation</td>
+<td class='confluenceTd'>Order validation script that determines the validity of runtime data values of the Order. Similar to <a href="../Document/Document Validation Action.html">Document Validation</a> methods, there are three different types of rules: information, warning and error. The user will be presented with a message indicating why the rule has fired. Validation rules are fired in two situations:
+<ul>
+<li>When the Order (the top level icon) is selected in the UI.</li>
+<li>When an Order becomes valid as the result of changes to the content in the UI.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+<br><i><u>New System pre-defined Methods</u></i>
+<table class='confluenceTable' border cellpadding="1"
+>
+<tbody>
+<tr>
+<th class='confluenceTh'>Method Type</th>
+<th class='confluenceTh'>Script Name</th>
+<th class='confluenceTh'>Parameters</th>
+<th class='confluenceTh'>Return Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Visual Key</b></td>
+<td class='confluenceTd'><i>cwOnOrdVisualKey</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>Script that shall return a string representing the visual key. The length of the string shouldn't be longer than 64 characters. If longer the value is truncated. If this Method is empty, the Order Label is used as visual key.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Initialization</b></td>
+<td class='confluenceTd'><i>cwOnOrdInit</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>Order Initialization script to set initial values for the Order.<br/>
+It is triggered when the Order is created.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Load</b></td>
+<td class='confluenceTd'><i>cwOnOrdLoad</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>Order Load script that is executed once after the Order is loaded from the database.</td>
+</tr>
+</tbody>
+</table>
+
+<br><i><u>System-defined Methods that can be overridden</u></i>
+<table class='confluenceTable' border cellpadding="1"
+>
+<tbody>
+<tr>
+<th class='confluenceTh'>Method Type</th>
+<th class='confluenceTh'>Script Name</th>
+<th class='confluenceTh'>Parameters</th>
+<th class='confluenceTh'>Return Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>View Permission</b></td>
+<td class='confluenceTd'><em>visiblePerm</em></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>View Permission that specifies whether the participant is allowed to view the Order.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Add Permission</b></td>
+<td class='confluenceTd'><em>addPerm</em></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Add Permission that specifies whether the participant is allowed to create an instance of this Order.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Delete Permission</b></td>
+<td class='confluenceTd'><em>deletePerm</em></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Delete Permission that specifies whether the participant is allowed to delete an instance of this Order.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Update Permission</b></td>
+<td class='confluenceTd'><em>editablePerm</em></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'><p>Update Permission that specifies whether the participant is allowed to update the Order (for example, change Document Variables in the Order).</p>
+  <p><strong>Note:</strong> If a field contains  an editable permission that is either coming from the form field itself, or inherited  from the variable or data type, it takes precedence. Otherwise, the user  interface's editablePerm permission takes over. If this method is not  overwritten, the model's editablePerm permission is used. User interfaces  displayed under another user interface with editablePerm are also be inherited  if the embedded user interfaces do not have their own editablePerm permission. </p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Attach Permission</b></td>
+<td class='confluenceTd'><em>attachPerm</em></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Attach Permission that specifies whether attachments are allowed to be attached to the Order. </td>
+</tr>
+</tbody>
+</table>
+
+<p>For Method Types that can be created, you can create multiple Methods of the same Method type (for example, Validation 1, Validation 2...), each identifiable by unique Method name. However, for Methods that are to be overridden, you can only define one Method per base Method.</p>
+
+<p>The system-defined Order-level Permission Set above (permView, permAdd, permDelete, permUpdate, permAttach), in essence, govern the Document's Permission. That is, whenever the Document is acted upon (create, read, update, delete...) by a participant, the corresponding Permission Method is invoked by AVM to determine whether the operation is allowed or not. Conversely, the "new" Permission Methods that can be added are not invoked unless explicitly associated with a Permission-related Property (for example, Element Properties in Document Variables).</p>
+
+<p>The Method created in Method List pane can be right-clicked, with various commands available; see <a href="../../../JavaScripting in Order Care/JavaScripting Extensions/Scripting Interface.html">script management UI</a> for details.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Best Practices for Form Design</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Best Practices for Form Design    </h2>
+<p>When modelling a form, follow these guidelines:
+<ul>
+    <li>It is not good practice to design a form that requires horizontal  scrolling. Keep forms to a width that can be presented through a typical  browser at a minimum resolution. This with varies by font size. This width is  60  characters for a 1024 x 768 resolution screen at the default font size.</li>
+    <li>Vertical scrolling is more common, but can be minimized  wherever possible. Vertical scrolling  can be accomplished  by using group forms with tabs to break up a long form into several smaller  forms, each accessible through a tab. Note that this generates a more complicated  user interface that may not be as straightforward as is required for self-care.</li>
+    <li>Keep general form parameters consistent across the application (for example, number  of columns, labels left or on top, column width, and so on).</li>
+    <li>Keep radio button and checkbox use down to items where a small set  of options exist (for example, less than five). These controls consume a lot of  space on a form.</li>
+    <li>Keep drop-down picklists to items with a medium result set (for  example, less than 25). These controls, unless <strong>editable key</strong> is selected, do not permit filtering and may result in  an inability to find or select the desired item, especially if the result set  is larger than the permitted set. Popup finders are more appropriate for  large results sets, especially where the size of the result set is not  predictable.<strong><br clear="all">
+    </strong>    </li>
+</ul>
+<h3>  Design Dynamic Forms </h3>
+<p> A common scenario involves the presented  form growing or shrinking, or changing upon entry of specific information by the  end user. This scenario can be accomplished by designing different forms to represent  each view, or by specifying access rules that enable or disable specific fields.</p>
+    In general, the use of access rules is  preferable over additional forms: 
+  <ul>
+    <li>Access rules define variable-level permissions that apply to wherever a  variable is referenced, which  precludes oversights where a form field may be  presented to an unauthorized user.</li>
+    <li>The use of access rules eliminates the need to define a form for  every end user, and every state (N x N), in to control what is visible and  read-only.</li>
+    <li>Reduction in forms reduces translation efforts.</li>
+  </ul>
+  Additional forms, rather than access  rules, are appropriate in the following scenarios:
+  <ul>
+    <li>The form can also include different static text, computed fields,  images, or controls, such as buttons. These items are not controlled through access  rules and can be modelled using a different form.</li>
+    <li>The use of access rules  results in too much whitespace. Setting  a field to non-visible through access rules does not remove the field from the  form. As a result, a form with 80% of non-visible fields  will be 80% blank.  In this case, it is better to define a new, more streamlined form.</li>
+    <li>The type of control or formatting for a field must change. For  example, a read or write field may be displayed as radio buttons until  selected, then change to read-only. Once the field is read-only, it may be preferable to  display the selected option only. A new form is required to change the field from  <tt>/rv</tt> to a standard format.</li>
+  </ul>
+  <h3>Group Forms -  Specify a Default Form </h3>
+
+   <p>Group forms do not need to specify a  default form (that is, a form with no permissions). However, it is good practice to  define such a form in the unlikely event that the view conditions for any of  the child forms in the group are not met. When the system is unable to identify  a form to present, a message such as  <tt>You are not authorized…</tt> displays. The  specification of a default form eliminates the possibility of a user  seeing such a form.</p>
+ <p> However, note that if the group form is  defined with tabs, the default  form is always  displayed. In this case, it may be required to omit the  default form and review the form conditions to ensure that at least one form is  always displayed.</p>
+ 
+ <h3>Use of Form  Labels</h3> 
+   <p> In general, the specification of form  field labels can be minimized:</p>
+  <ul>
+    <li>When form label is not specified, the visual  label specified for the variable, or in its absence, the variable label is used in the user  interface. Specification of labels at the form level, especially where multiple  forms are defined that include the same variables, requires additional effort in  the initial modelling.</li>
+    <li>Changes to the labels assigned to the underlying variables are not   automatically propagated to the forms.</li>
+    <li>Internationalization is complicated as the translation effort must  be performed for each form, rather than once at the variable level.</li>
+  </ul>
+  Nevertheless, the specification of form  field labels is both valid, and required, in the following circumstance:
+  <ul>
+    <li>The label displayed for the field varies by form. For example,  the label presented on a self-care form is<em> customer number</em>, but it is presented internally as <em> OCN</em>, or the label may vary  by context or state (for example, proposal number versus order number).</li>
+  </ul>
+  Even where form field labels are  appropriate, consider using the variable's visual label for the most common label and specify the form field labels only for the exceptions.<br>
+    <h3>Use of Trigger  Fields </h3>
+    <p>Trigger fields are used to force a round trip to the server in response to  a change in the value of a field. They can be used to:</p>
+  <ul>
+    <li>Perform an action on a change in a field (for example, clear the  currently selected address if the customer selected changes, or retrieve the  selected address and populate the form's address fields based on the  selection).</li>
+    <li>Force a re-evaluation of the contents of picklists (for example,  present only those addresses applicable to the selected customer).</li>
+    <li>Force a re-evaluation of the form to be presented.</li>
+    <li>Force a re-evaluation of the access rules on each form field (that is, to enable or disable fields in response to the selection of an option).</li>
+  </ul>
+  Triggers can be used sparingly since:
+  <ul>
+    <li>The round trip interrupts the order entry flow. If the form is scrollable, the form location is lost and  the user must re-navigate to the appropriate position in the form.</li>
+    <li>The round trip increases the load on the server. A solution with a  significant number of triggers requires more hardware resources than one  with no triggers.</li>
+  </ul>
+  <h3>Use of Computed  Fields </h3>
+   <p> Computed fields provides a mechanism for  presenting data on a form that needs a calculation or that is not located on  the current document. When using computed fields, consider these guidelines:</p>
+  <ul>
+    <li>Computed fields are recomputed on each presentation. Keep these  fields to a minimum, especially where the computation includes access to data  outside the current document.</li>
+    <li>When presenting a computed field based on data outside the current  document, always check the context.   For  example, to present data from another part of the order, access the document from within the context of the order. Otherwise, the  reference generates an exception.</li>
+    <li>Consider using a calculated variable,  rather than a computed field.  These variables are computed on document load and save, rather than on each presentation  of a form. Alternatively, consider using document load and store scripts to  calculate the value and store it in a variable, which provides better performance  when a series of variables are being calculated.</li>
+    <li>Computed fields are not available for reporting as they are not database  fields. Calculated variables may be  persisted and be reported on. </li>
+  </ul>
+  <h3>Use of Read-Only Attribute</h3> 
+
+   <p> Read-only formatting attributes exist at  both the form and form field levels. The function performed by this attribute  may be equally performed by the permission script associated with the document  and variable access rule, respectively.</p>
+    In general, avoid the read-only  attributes  at the form or form field level:
+    <ul>
+    <li>The use of permissions at the document and variable levels ensures that  the permissions are globally applied  across all forms.</li>
+    <li>Centralization of  permissions in access rules provides a more  transparent and easily maintained solution. The use of format codes <tt>/ro</tt> to drive read-only behaviour does  not lend itself to a maintainable solution.</li>
+  </ul>
+  There are some scenarios where form-based  rules are appropriate:
+  <ul>
+    <li>Where the user is presented with two forms (for example, a summary  form and a more detailed editable form) on request. In this case, the  application of permissions  results in the same treatment for each form and  field, instead of the desired read-only treatment on the summary form, followed  by read-write treatment on the detail form.</li>
+  </ul>
+ Some similar scenarios are not  appropriate uses of form-based read-only attributes:
+  <ul>
+    <li>Finder result set access: use of finder update permission to force  result set to be read-only.</li>
+    <li>Order retrieval outside of worklist: use of order or document  permissions based upon the operation being performed (for example, if no  operation is being performed, set to read only).</li>
+  </ul>
+  <h3>Use of Label  Formatting</h3> 
+   <p> Label formatting is  specifying  the font family, font size, and colour of a label. It is available for most  labels and static text. In general, it is better to use the application  stylesheet to control the attributes and to override only those items where  special formatting is required (for example, static text).</p>
+    </td>
+</tr>
+</table>
+</body>
+</html>

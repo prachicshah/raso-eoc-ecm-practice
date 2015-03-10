@@ -1,0 +1,253 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>PriceBasket SID Interface</title>
+<link rel="StyleSheet" href="../../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<h2>PriceBasket SID Interface</h2>
+<p>The PriceBasket interface prices the entire catalog basket at the given date and returns a list of charges. The PriceBasket interface is available in the Library files of Velocity Studio, and contains input, output, and fault data structures defined as follows:</p>
+
+<img src="PriceBasket.png" alt="PriceBasket interface" />
+
+<h3>Input</h3>
+The input file contains the following elements and data types defined in Velocity Studio's data dictionary's cwt_pcsid.priceBasketRequest data structure: <br>
+<br>
+<table width="774" border cellpadding="1" class='confluenceTable'>
+  <tbody>
+<tr>
+ <th width="67" class='confluenceTh'>Input</th>
+ <th width="82" class='confluenceTh'>DataType</th>
+ <th width="75" class='confluenceTh'>Element</th> 
+ <th width="479" class='confluenceTh'>Notes</th>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>basket</td>
+    <td class='confluenceTd'><br></td>
+    <td class='confluenceTd'><br></td>
+    <td class='confluenceTd' VALIGN=TOP><p>Contains the following elements:
+
+<ul>
+<li>basketInstance</li>
+        <ul>
+          <li>basketId (<i>string 10</i>)</li>
+          <li>cwCreated (<i>DateTime</i>)</li>          
+          <li>cwCreatedBy (<i>string (64)</i>)</li>
+          <li>lastUpdateDate (<i>DateTime</i>)</li>
+          <li>updatedBy (<i>string (64)</i>)</li>
+          <li>cwOrderID (<i>string (16)</i>)</li>
+          <li>state (<i>string (16)</i>)</li>
+      </ul>
+<li>basketItemRelations (<i>array</i>)</li>
+        <ul>
+          <li>basketItemRelation</li>
+          <ul>
+          <li>basketItemIdFrom (<i>string 10</i>)</li>
+          <li>basketItemIdTo (<i>string 10</i>)</li>
+          <li>relationName (<i>string 32</i>)</li>
+          <li>basketId (<i>string 10</i>)</li>
+          <li>cwCreated (<i>DateTime</i>)</li>
+          <li>cwCreatedBy (<i>string (64)</i>)</li>
+          <li>lastUpdateDate (<i>DateTime</i>)</li>
+          <li>updatedBy (<i>string (64)</i>)</li>
+          <li>basketItemRelationId (<i>string</i>)</li>
+          </ul> 
+        </ul>     
+<li>basketItems (<i>array</i>)</li>
+        <ul>
+          <li>basketItem</li>
+          <ul>
+          <li>basketItemId (<i>string 10</i>)</li>
+          <li>basketId (<i>string 10</i>)</li>
+          <li>itemcode (<i>string 32</i>)</li>
+          <li>cwCreated (<i>DateTime</i>)</li>          
+          <li>cwCreatedBy (<i>string (64)</i>)</li>
+          <li>lastUpdateDate (<i>DateTime</i>)</li>
+          <li>updatedBy (<i>string (64)</i>)</li>
+          <li>parentbasketitemid (<i>string (10)</i>)</li>
+          <li>relationname (<i>string (32)</i>)</li>
+          <li>sequenceNo (<i>decimal (4)</i>)</li>
+          <li>basketcreationdate (<i>DateTime</i>)</li>
+          <li>requesttime (<i>DateTime</i>)</li>
+          <li>state (<i>string (16)</i>)</li>
+          <li>basketItemCharges (<i>array</i>)</li>
+          <ul>
+            <li>basketItemCharge</li>
+            <ul>
+            <li>basketId (<i>string (10)</i>)</li>
+            <li>basketItemId (<i>string 10</i>)</li>
+            <li>chargeTypeCode  (<i>string (32)</i>)</li>
+            <li>amount (<i>decimal (10.2)</i>)</li>
+            <li>sequenceNo (<i>decimal (4)</i>)</li>
+            <li>currency (<i>string(3)</i>)</li>
+            <li>frequency (<i>string (1)</i>)</li>
+            <li>displayOnly (<i>boolean</i>)</li>
+            <li>taxCode (<i>string (32)</i>)</li>
+            <li>label (<i>string (128)</i></li>
+            <li>cwCreated (<i>DateTime</i>)</li>
+            <li>cwCreatedBy (<i>string (64)</i>)</li>
+            <li>lastUpdateDate (<i>DateTime</i>)</li>
+            <li>updatedBy (<i>string (64)</i>)</li>
+            <li>isDiscount (<i>boolean</i>)</li>
+            </ul>
+          </ul>
+          <li>dynamicLeaves (<i>array</i>)</li>
+            <ul>
+            <li>dynamicLeaf</li>
+            <ul>
+            <li>leafName (<i>string</i>)</li>
+            <li>leafValue (<i>string</i>)</li>
+            </ul>
+            </ul>
+         </ul>
+</ul>
+</td>
+</tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>date</td>
+    <td class='confluenceTd'>DateTime</td>
+    <td class='confluenceTd'><br></td>    
+    <td class='confluenceTd' VALIGN=TOP>Refer to Velocity Studio's documentation for more details on the DateTime format.</td>
+  </tr>
+<tr>
+    <td class='confluenceTd' VALIGN=TOP>context</td>
+    <td class='confluenceTd' VALIGN=TOP>Array</td>
+    <td class='confluenceTd'><br></td>    
+    <td class='confluenceTd' VALIGN=TOP><p>Contains the following elements:
+<ul>
+     <li>code (<i>string</i>)</li>
+     <li>attributes(<i>array</i>)</li>          
+	 <ul>
+	   <li>nameValuePair</li>
+       <ul>
+	   <li>name (<i>string</i>)</li>
+	   <li>value (<i>string</i>)</li>
+	   </ul></ul>
+          <li>label (<i>string</i>)</li></ul></td>
+</tr>    
+</table>
+
+<h3>Output</h3>
+The output file contains the following elements and data types defined in the cwt_psid.basket data structure.<br>
+<br>
+<table class='confluenceTable' width="774" border  cellpadding="1">
+  <tbody>
+<tr>
+ <th width="122" class='confluenceTh'>Output</th>
+ <th width="61" class='confluenceTh'>DataType</th>
+ <th width="176" class='confluenceTh'>Element</th> 
+ <th width="300" class='confluenceTh'>Notes</th>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>basketIntstance</td>
+    <td class='confluenceTd'><br>
+      <br></td>
+    <td class='confluenceTd' VALIGN=TOP>cwt.pcsid.basketInstance</td>
+    <td class='confluenceTd' VALIGN=TOP><p>Contains the following elements:
+      <ul>
+        <li>basketId (<i>string 10</i>)</li>
+        <li>cwCreated (<i>DateTime</i>)</li>
+        <li>cwCreatedBy (<i>string (64)</i>)</li>
+        <li>lastUpdateDate (<i>DateTime</i>)</li>
+        <li>updatedBy (<i>string (64)</i>)</li>
+        <li>cwOrderID (<i>string (16)</i>)</li>
+        <li>state (<i>string (16)</i>)</li>
+      </ul></td>    
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>basketItemRelations</td>
+    <td class='confluenceTd'>&nbsp;</td>
+     <td class='confluenceTd' VALIGN=TOP>cwt.pcsid.basketItemRelations</td>
+     <td class='confluenceTd' VALIGN=TOP><p>XML name is basketItemRelation. Contains the following element:
+      <ul>
+        <li>basketItemRelation(<i>array</i>)</li>
+        <ul>
+          <li>basketItemIdFrom (<i>string 10</i>)</li>
+          <li>basketItemIdTo (<i>string 10</i>)</li>
+          <li>relationName (<i>string (32)</i>)</li>
+          <li>basketId (<i>string 10</i>)</li>
+          <li>cwCreated (<i>DateTime</i>)</li>
+          <li>cwCreatedBy (<i>string (64)</i>)</li>
+          <li>lastUpdateDate (<i>DateTime</i>)</li>
+          <li>updatedBy (<i>string (64)</i>)</li>
+          <li>basketItemRelationId (<i>string</i>)</li>
+        </ul>
+      </ul></td>     
+  </tr>
+<tr>
+  <td class='confluenceTd' VALIGN=TOP>basketItems</td>
+  <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+  <td class='confluenceTd' VALIGN=TOP>cwt.pcsid.basketItems</td>    
+  <td class='confluenceTd' VALIGN=TOP><p>XML name is basketItem. Contains the following elements:
+    <ul>
+      <li>basketItem (<i>array</i>)</li>
+      <ul>
+        <li>basketItemId (<i>string 10</i>)</li>
+        <li>basketId (<i>string 10</i>)</li>
+        <li>itemcode (<i>string 32</i>)</li>
+        <li>cwCreated (<i>DateTime</i>)</li>
+        <li>cwCreatedBy (<i>string (64)</i>)</li>
+        <li>lastUpdateDate (<i>DateTime</i>)</li>
+        <li>updatedBy (<i>string (64)</i>)</li>
+        <li>parentbasketitemid (<i>string (10)</i>)</li>
+        <li>relationname (<i>string (32)</i>)</li>
+        <li>sequenceNo (<i>decimal (4)</i>)</li>
+        <li>basketcreationdate (<i>DateTime</i>)</li>
+        <li>requesttime (<i>DateTime</i>)</li>
+        <li>state (<i>string (16)</i>)</li>
+        <li>basketItemCharges</li>
+        <ul>
+          <li>basketItemCharge <i>(array)</i></li>
+		  <ul>
+          <li>basketId (<i>string (10)</i>)</li>
+          <li>basketItemId (<i>string 10</i>)</li>
+          <li>chargeTypeCode  (<i>string (32)</i>)</li>
+          <li>amount (<i>decimal (10.2)</i>)</li>
+          <li>sequenceNo (<i>decimal (4)</i>)</li>
+          <li>currency (<i>string(3)</i>)</li>
+          <li>frequency (<i>string (1)</i>)</li>
+          <li>displayOnly (<i>boolean</i>)</li>
+          <li>taxCode (<i>string (32)</i>)</li>
+          <li>label (<i>string (128)</i></li>
+          <li>cwCreated (<i>DateTime</i>)</li>
+          <li>cwCreatedBy (<i>string (64)</i>)</li>
+          <li>lastUpdateDate (<i>DateTime</i>)</li>
+          <li>updatedBy (<i>string (64)</i>)</li>
+          <li>isDiscount (<i>boolean</i>)</li>
+          </ul>
+        </ul>
+        <li>dymamicLeaves </li>
+        <ul>
+          <li>dynamicLeaf (<i>array</i>)</li>
+			<ul>
+          <li>leafName (<i>string</i>)</li>
+          <li>leafValue (<i>string</i>)</li></ul>
+        </ul>
+      </ul>
+      </ul></td>
+</tr>  
+ 
+</table>
+
+<h3>Input and Output File Examples</h3>
+<p>These input and output files are examples using  a SoapUI tool.</p>
+
+<b>InputXML:</b>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;<br>   &lt;soapenv:Header/&gt;<br>   &lt;soapenv:Body&gt;<br>      &lt;priceBasketRequest&gt;<br>         &lt;basket&gt;<br>            &lt;basketInstance&gt;<br>               &lt;basketId&gt;FGb000&lt;/basketId&gt;&lt;cwCreated&gt;2011-05-02T00:00:00.000-04:00&lt;/cwCreated&gt;<br>               &lt;cwCreatedBy&gt;?&lt;/cwCreatedBy&gt;<br>               &lt;lastUpdatedDate&gt;2011-05-13T00:00:00.000-04:00&lt;/lastUpdatedDate&gt;<br>               &lt;updatedBy&gt;?&lt;/updatedBy&gt;<br>               &lt;cwOrderId&gt;?&lt;/cwOrderId&gt;<br>               &lt;state&gt;?&lt;/state&gt;<br>            &lt;/basketInstance&gt;<br>         &lt;/basket&gt;<br>         &lt;date&gt;2011-05-13T00:00:00.000-04:00&lt;/date&gt;<br>      &lt;/priceBasketRequest&gt;<br>   &lt;/soapenv:Body&gt;<br>&lt;/soapenv:Envelope&gt;</pre>
+</div>
+</div>
+
+<b>Output XML:</b>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;<br>   &lt;soapenv:Body&gt;<br>      &lt;basket&gt;<br>         &lt;basketInstance/&gt;<br>         &lt;basketItems/&gt;<br>      &lt;/basket&gt;<br>   &lt;/soapenv:Body&gt;<br>&lt;/soapenv:Envelope&gt;</pre>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Memory Processes</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h2>Memory Processes</h2>
+<p>To access the Memory Process page, which displays a list of all processes in the system, do the following:</p>
+<ol>
+  <li>In the AVM search results, select the checkbox next to the AVM that you want to view. </li>
+  <li>Click the <strong>Memory Processes</strong> button to view a list of all processes in the system.</li>
+</ol>
+<p><img src="memory_processes.png" alt="Memory processes" border="1"></p>
+<p>The Memory Processes page contains the following fields:</p>
+<table class='confluenceTable' border  cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="179" class='confluenceTh'>Field</th>
+      <th width="1392" class='confluenceTh'>Description</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Process ID</b></td>
+      <td class='confluenceTd'>The Process identifier.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Bucket Number</strong></td>
+      <td class='confluenceTd'>Refers to the a single process instances with a value of 0, or a multiple process instances (cluster) with a value based the number of  process instances and how they are configured.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Process Type</b></td>
+      <td class='confluenceTd'>The metadata process label.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Started</b></td>
+      <td class='confluenceTd'>Date and time when the process was started.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Status</b></td>
+      <td class='confluenceTd'>Process status.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Priority</b></td>
+      <td class='confluenceTd'>Process priority.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Order ID</b></td>
+      <td class='confluenceTd'>ID of the Order the process belongs to.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Order Type</b></td>
+      <td class='confluenceTd'>Type of Order the process belongs to.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Status Changed</b></td>
+      <td class='confluenceTd'>Date and time when the process status was changed.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Parent ID</b></td>
+      <td class='confluenceTd'>ID of the parent process (if the listed process is a child process).</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Metadata Version</b></td>
+      <td class='confluenceTd'>Metadata version number.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Metadata Revision</b></td>
+      <td class='confluenceTd'><p>The process migration stops runtime  process instances created with process revisions or convert them to the latest revision  number (the process). The migration actions are entirely user defined.</p></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>Order Item ID</b></td>
+      <td class='confluenceTd'>ID of the Order Item that the process belongs to.</td>
+      </tr>
+    </tbody>
+</table>
+<p>Selecting the checkbox next to a process from the Memory Processes page and then clicking the <strong>Activities</strong> button displays a dialog that shows all activities that are being processed.</p>
+<p>To view memory process details, click the <strong>Details</strong> button to the left of the <strong>Process ID</strong> field.</p>
+<p><img src="memory_process_details.png" alt="Activities dialog"></p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

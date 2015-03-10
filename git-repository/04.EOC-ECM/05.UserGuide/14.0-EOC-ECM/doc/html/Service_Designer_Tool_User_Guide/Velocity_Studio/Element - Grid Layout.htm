@@ -1,0 +1,412 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Grid Layout</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Grid Layout</h2>
+
+<p>There are three layout directives for user interface design:  </p>
+<ul>
+  <li>Horizontal</li>
+  <li>Vertical</li>
+  <li>Grid</li>
+</ul>
+<p>Grid Layout presents child elements in a grid. Child elements are placed from top-left, shifting across, then down. The property <b>Number of Columns</b> defines the column span of the Grid All other Grid Layout properties are defined below</p>
+
+<img src="exampleGrid.png" alt="grid" border="1"/>
+
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='confluenceTh'>references Variable?</th>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<th class='confluenceTh'>references Method?</th>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='confluenceTh'>references Form?</th>
+<td class='confluenceTd'>No</td>
+</tr>
+<tr>
+<th class='confluenceTh'>Allowable Child Elements</th>
+<td class='confluenceTd'>
+   Button<br>
+Cell Spacer<br>
+Checkbox<br>
+DateField<br>
+Group<br>
+  Header<br>
+  Hyperlink<br>
+  Image<br>
+  Label<br>
+  Password Field<br>
+  Radio Button Group<br>
+  Reference Field<br>
+  Rich Text Editor <br>
+  Row Space<br>
+  Select Field<br>
+  Separator<br>
+  Text Area<br>
+  Text Field<br>
+  Translation<br>
+  Upload File<br>
+  Variable</td>
+</tr>
+</tbody>
+</table>
+
+<p>The following table describes the properties of grid layout:</p>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+  <th width="137" class='referenceTh'><strong>Property</strong></th>
+  <th width="75" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+  <th width="634" class='referenceTh'>Comment</th>
+</tr>
+
+<tr>
+  <td class='confluenceTd'><strong>Name
+    </th>
+  </strong>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>Name of the Grid Layout.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Can Accept Drop</strong>  
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property allows you to drop objects to layouts from a table, tree, or tile grid. The following example shows how to use this property.</p>
+    <ol>
+      <li>Create a layout and set the <strong>Can Accept Drop</strong> property to either <strong>TRUE</strong> or a permission method.</li>
+      <li>Set On Drop method to a method that you previously created (that is, in the Methods tab, right-click the method node and select <strong>Create Drop Method</strong> from the menu, which provides the required parameter list).</li>
+      <li>Implement this method to suit your needs. <br>
+        <br>
+        <strong>Note:</strong> There is no default implementation for dropping objects into a layout.</li>
+    </ol></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>*Cell Alignment
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Specifies the horizontal positioning of the its children within the Grid Layout (left, center, right). You can override the cell alignment of individual's Child Element by setting it at the Child Element level. Default is undefined, which behaves as if it is left.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Cell Border Style
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Click the drop-down menu and select the style of your cell border from the list.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Cell Padding
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Defines the cell padding of the grid layout. The default value is 2.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Column Width(s)
+  </th>
+</strong>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'><p>Specifies in the individual column widths, comma delimited, of the grid layout. A column width can be in integer which is in pixels or in percentage of the Grid Layout's width, or a combination of pixels and percentages. The following are valid combinations:</p>
+  <ul>
+    <li>      Numbers only indicates px:<br>
+      100, 100, 100</li>
+    <li>Numbers with or without px means they are in pixels. With or without a space 
+      between the number and px is acceptable:<br>
+      100px, 100 px, 100 px</li>
+    <li>Percentage sign (%), with or without a space between it and the percent 
+      value<br>
+      50%, 50 %</li>
+    <li>Combinations of  px and % values:<br>
+      60, 50%, 60, 50%</li>
+  </ul>
+<p>This property uses a simple text editor with designer validation.</p>
+<p><strong>Notes:</strong></p>
+  <ul>
+    <li>The width of  form items width cannot be set in a percentage.</li>
+    <li>Form elements under a grid layout accept * as a width value, meaning that the width   of the field is set by the <strong>Column Width(s)</strong> property.</li>
+  </ul></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Dynamic Tooltip
+  </th>
+</strong>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Defines a dynamic tooltip text that is displayed in a hover box when the cursor hovers the element.  Set property to a <em>String</em> variable or a script with a Return type <em>String</em>. The static Tooltip property is considered as default until the action returns a value.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Dynamic Tooltip Style
+  </th>
+</strong>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>This property dynamically changes the style of the Dynamic Tooltip.  Set property to a script with a Return type <em>String</em> that is a cascading style sheet (css) name found in the stylesheet used by the application.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Edge
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Select this checkbox to show an edge around a layout element. See the other Edge properties in this table to customize your edged layout.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Edge: Content Offset
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This property denotes the amount the contained elements are offset to. The property defaults to <strong>Edge: Size</strong> if the value of the <strong>Edge: Content Offset</strong> is <tt>0</tt>. Set this property to less than <strong>Edge: Size</strong> to allow the contained elements to overlap the edge and corner media.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Edge: Custom Sides
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>Use this property to list custom sides for the border, such as <tt>left</tt>, <tt>top</tt>, <tt>bottom</tt>, and <tt>right</tt>. Some examples include the following:</p>
+    <ul>
+      <li><tt>left, top, bottom</tt></li>
+      <li><tt>top, bottom</tt></li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Edge: Dynamic Image
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property contains either a method or variable that sets the edge image dynamically (starts with a <em>/</em>). If the dynamic image is null, a static image is used for the edge instead.</p>
+    <p><strong>Note:</strong> If neither a dynamic, nor static image is specified, the default <tt>[SKIN]/edge.gif</tt> image is used.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Edge: Fill Center
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Specify whether to show the image background (with the _center extension) in the centre section (that is, behind the decorated layout).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Edge: Size
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Use this property to define the size in pixels for corners and edges.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Edge: Static Image
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property contains the base name of images for edges. Extensions for each corner or edge piece are added to the image URL before its file extension. For example, a default base name of <tt>edge.gif</tt>, the top-left corner images is <tt>edge_TL.gif</tt>.</p>
+    <p>The list of valid extensions is as follows:</p>
+    <ul>
+      <li>_TL (top-left)</li>
+      <li>_TR (top-right)</li>
+      <li>_BL (bottom-left)</li>
+      <li>_BR (bottom-right)</li>
+      <li>_T (top)</li>
+      <li>_L (left)</li>
+      <li>_B (bottom)</li>
+      <li>_R (right)</li>
+      <li>_center (centre)</li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Fixed Column Widths
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Select this property's checkbox to for the grid layout to use  the specified column   widths. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Height
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Height used or consumed by the Grid Layout.  The value is defined as the number of pixels (integer), or as a percentage of page height or of the parent element.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Include in Tab Order
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property allows you to optionally suppress tabbing to any or all form elements. The <strong>Include in Tab Order</strong> property overrides the <a href="../../Configuration_Tool_User_Guide/Configure/System/UI/UItabbing.html">suppress tabbing</a> configuration setting and can take the following values:</p>
+    <ul>
+      <li>When set to <strong>&lt;Default&gt;</strong>, the element is included in tab order according to global rules and its focusable state.</li>
+      <li>If the property is set to <strong>Exclude</strong>, the element is excluded from tabbing even if the element is focusable.</li>
+      <li>If the property is set to <strong>Include</strong>, the element is included <em>only if it is focusable</em>, even if all items of that type are excluded through the Suppress Tabbing variable.</li>
+      </ul>
+    <p><strong>Note:</strong> For menu items and images, the <strong>Can Focus</strong> property affects including the element in the tab order. To ensure that an element is in the tabbing order, select this property.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Label Align
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>Click the <strong>Value</strong> field and select from one of the following alignment options for your label:</p>
+    <ul>
+      <li><strong>Left</strong></li>
+      <li><strong>Centre</strong></li>
+      <li><strong>Right</strong></li>
+      </ul>
+    <p>This property can be overridden by  the Grid Layout element's (for example, text field, radio button, and so on) <strong>Label Align</strong> property. If  Label Align property is set to left or right, the label take  its own column. This means that the grid layout  appear as using two  columns even if the <strong>Number of Columns</strong> property is set to 1.</span></p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Label Orientation
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Specifies where the label of Child Elements in the Grid Layout appear in relation to the Element. The available options are Top, Left and Right. Defaults to top.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Members Margin
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'> Specifies the number of spaces allowed between grid layouts in the layout stack. See the <strong>Notes</strong> section on using two Grid layouts next to each other.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Mouse Over Method
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Click this property's <strong>Value</strong> field and select a method to invoke when users hover their mouse over a specified element.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Number of Columns
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Defines the number of columns within the Grid Layout. If this parameter is left undefined, the system creates a grid with 2 columns.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>On Enter
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The system calls any script defined in this property. The onEnter property is only met if there is an input field (for example, a textfield, selectfield, and so on) that has focus when the <strong>Enter</strong> key is pressed. This onEnter property is invoked only if the input field does not have an OnEnter property set.  This feature can be used with multiple input fields, but only  one onEnter method to fire for all fields. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Redraw on resize
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>By default, this property is unchecked. When selected, this property works when form layouts have either a width or height set at 100%. When you resize the browser window, the layouts in the current form are  redrawn so that  it fits the current window's size. </p>
+    <p><strong>Note</strong>: For complex layouts, it is not recommended that you use this property, as the entire page is redrawn. As a result, redrawing the entire page may take a while. Depending on the complexity of the page  and the slowness of your computer, you may see a delay in seeing the page being redrawn.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Show Error Icon
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>By default, this property is checked, indicating that the error icon is visible. To hide the error icon, deselect this property. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Show Error Style
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This property allows you to set a different style when the field has a validation error by selecting this property. See the <a href="#errorStyle">example</a> that follows on how to use this property with the <strong>Show Error Icon</strong> property.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Style
+  </th>
+</strong>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Choose from styles within the selected stylesheet (located in the Velocity Studio toolbar), which defines the styling of the Grid Layout such as positioning and color. Default is NONE.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Tooltip
+  </th>
+</strong>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Defines the tooltip text that is displayed in a hover box when the cursor hovers over the Grid Layout. Default is empty, which means that a tooltip has not been defined.  During runtime, the tooltip may be difficult to find as it is not the only layout on the screen and may cover a large area.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tooltip Style
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Defines the tooltip style of the text displayed in the hover box when the cursor hovers over the Grid Layout. The default is empty. Click the <strong>Value</strong> field to select a tooltip style from the list.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tooltip Width (px)
+    </th>
+  </strong>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Allows you to change the width of the tooltip popup window statically. Enter the width in pixels. The default value for this property is 0.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Visible
+  </th>
+</strong>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Defines the user permissions assigned to this layout. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and visiblePerm can be assigned as well as Object Permissions. Defaults to NONE, which means no permissions assigned.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Width
+  </th>
+</strong>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Width used or consumed by the Grid Layout. The value is defined as the number of pixels (integer) or as a percentage of page width or of the parent element. For example, 30% of the page width or 150 pixels.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Notes:</h3>
+<ul>
+  <li>Most common use of Grid Layout is to construct a Form for a Document.</li>
+  <li>Elements with labels, such as Text Field, span two cells within the Grid Layout. For example, the a Text Field form element spans two cells:  label in one cell and the text field in another cell. With a Label Orientation of either Left or Right - the label will be in text box's adjacent cell and with a Top Label Orientation, the label will appear in the cell above the text box. </li>
+  <li>If this element is the first element that appears in the Element Tree pane, you can set the cell alignment. If this element has a parent layout, for example vlayout or hlayout with the width/height set, this element uses these values as a base to set its alignment. If the parent layout does not contain a width/height, then this element does not have a base to which it can set its alignment.
+    If the element has a parent that contains width/height settings, but this form is displayed under another layout with different widths, your form alignment is restricted to the parent's width/height settings.</li>
+  <li>If you require drawing a border or box around a label or single form item element, wrap the element with Grid Layout instead of Horizontal Layout or Vertical Layout. The following are examples of drawing a border around a label:
+    <ul>
+      <li>It is recommended that you use a Grid Layout with the <strong>Edge</strong> property selected and a Label element under the layout: <br>
+        <br>
+        <img src="Edged grid layout.png" alt="Edged grid layout" border="1">    <br>
+        <br>
+        </li>
+      <li>It is not recommended that you use a Vertical Layout with the <strong>Edge</strong> property selected and a Label element under the layout:<br>
+        <br>
+        <img src="Edged vertical layout.png" alt="Edged vertical layout" border="1"><br>
+        </li>
+      </ul>
+    <p>The reason for using the Grid Layout is that at runtime, the label and any form element that is not under Grid Layout is already wrapped with Grid Layout.</p>
+    </li>
+  <li>
+    <p>To show an actual grid (that is, horizontal and vertical lines) between the   elements of the grid, do the following:</p>
+    <ol>
+      <li>To add a Grid Layout beside another one, create a form with a Horizontal Layout. </li>
+      <li>Add two Grid Layouts.</li>
+      <li>For the first Grid Layout, set the <strong>Members Margin</strong> property <br>
+        <br>
+        <strong>Note:</strong> The <strong>Members Margin</strong> is for the entire Grid Layout. If you add another grid layout   beside it, the margin acts as the amount of space between the first grid   layout and the one beside it.</li>
+      </ol>
+  </li>
+  </ul>
+<p><a name="errorStyle"></a><strong>Example:</strong> Define an error style and show the error inline</p>
+<p>The following is an example of using the <strong>Show Error Icon</strong> and  <strong> Show Error Style</strong> properties to customize a field containing a validation error:</p>
+<ol>
+  <li>Create a document with a few variables containing validation errors.</li>
+  <li>    In the Default form, add a Grid Layout element with fields bound to the variables.</li>
+  <li>    Set the <strong>Show Error Icon</strong> property to false and the <strong> Show Error Style</strong> to true. </li>
+  <li>In your metadata .css file, add the textItemError style, which overrides the default styling. </li>
+  <li>In  runtime, invoke the validation error. The  error icon does not appear and the styling of the fields have changed. </li>
+  <li>Clear the validation error. The style is back to normal. <br>
+    <BR>
+    <br>
+  </li>
+</ol></td>
+</tr>
+</table>
+</body>
+</html>

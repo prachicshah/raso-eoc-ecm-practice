@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Catalog Rule Comparisons</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+<h2>Rule Comparisons</h2>
+<p>Rules written in Catalog Rule Language are shorter, and are easier to read and understand. The Catalog Rule Language has  two different &quot;dialects&quot; – for non-programmers (verbose) and for JavaScript programmers. The following examples show how the same rule can be written in the following languages:</p>
+<ul>
+  <li>An older version of Catalog in JavaScript</li>
+  <li>This version of Catalog in Catalog Rule Language for non-programmers</li>
+  <li>This version of Catalog in Rule Language for JavaScript programmers</li>
+</ul>
+
+<p><b>Catalog version 4.2 rule in JavaScript:</b>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+var c1=0,c2=0,c3=0;
+
+var h = pcExtension$getCatalogDataHelper();
+var ao = h.getAllOffers();
+for (var i = 0; ao && i < ao.length; i++) {
+     var o = ao[i].offerInstance;
+     if(o.family =='TV' ){
+        var oc = ao[i].getCatalogCode();
+        c1+=(oc=='ot1173' && ao[i].getCommitmentPeriod() == 24)?1:0;
+        c2+=(oc=='ot59' && ao[i].getCommitmentPeriod() == 24)?1:0;
+        c3+=(oc=='ot101' && ao[i].getCommitmentPeriod() == 24)?1:0;
+     }
+}
+
+return ((c1>0 && c2>0 && c3>0)|| (c1==0 && c2==0 && c3==0));
+</pre>
+</div>
+</div>
+
+<b>Catalog version 5.x and higher rule in Rule Language for non-programmers</b>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+Variable Number c1 as 0, c2 as 0, c3 as 0
+Variable Item anItem
+For each anItem in select items from theBasket where type is 'OFFER' and family is 'TV' do:
+    Increment c1 when anItem.code is 'ot1173' and anItem.termValue is 24
+    Increment c2 when anItem.code is 'ot59' and anItem.termValue is 24
+    Increment c3 when anItem.code is 'ot101' and anItem.termValue is 24
+End For
+ 
+Return (c1 is greater than 0 and c2 is greater than 0 and c3 is greater than 0) or
+ (c1 equals 0 and c2 equals 0 and c3 equals 0) 
+</pre>
+</div>
+</div>
+
+<b>Catalog version 5.x and higher rule in Rule Language for JavaScript programmers</b>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+Number c1 = 0, c2 = 0, c3 = 0;
+Item anItem;
+for anItem in select items from theBasket where type == 'OFFER' and family == 'TV' {
+	if (anItem.code == 'ot1173' && anItem.termValue == 24) {
+		c1++;
+	}
+	if (anItem.code == 'ot59' && anItem.termValue == 24) {
+		c2++;
+ 	}
+	If (anItem.code == 'ot101' && anItem.termValue == 24) {
+		c3++;
+	} 
+}
+	
+return (c1 > 0 && c2 > 0 && c3 > 0) || (c1 == 0 && c2 == 0 && c3 == 0);
+</pre>
+</div>
+</div>
+
+</td>
+</tr>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Chart</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Chart</h2>
+
+<p>Chart is a container that allows for the configuration of  charts that represent data in the result Form of the User Interface (of type Finder User Interface). The Chart element enables you to configure the overall look and feel of the chart  display at runtime. The values that display in the chart are controlled using the <a href="Element - ChartField.htm">ChartField</a> Form element.</p>
+
+<img src="UIChart.png" align="absmiddle" border="1" alt="Chart element" />
+
+<p>The following is an example of a chart at runtime.</p>
+<span class="confluenceTd"><img src="barchart_simple.png" align="absmiddle" border="0" alt="Chart at runtime" /></span>
+
+<h3><a name="DisplayMultipleChartsRuntime"></a>Displaying Multiple Charts at Runtime</h3>
+<p>You can display multiple charts in a Form by creating multiple  Form Frame Form elements and then referring the variable of each element to the Finder User Interface  Chart Form that contains the chart that you want to display. Other Form elements can be added between the Form Frames to create a customized look.</p>
+<ol>
+  <li>In the Finder User Interface, right-click the node and select <strong>New Form</strong>. Alternatively, you can use an existing Form.</li>
+  <li>In the New Metadata Object dialog, type the name of the new form.</li>
+  <li>In the Form Element pane, right-click the node and select Add.</li>
+  <li>From the Add Element dialog, select <strong>Misc Controls &gt; Form Frame</strong>.</li>
+  <li>Continue to add From Frame elements.</li>
+  <li>Configure the Variable property of each Form Frame to refer to the  Chart Form element.</li>
+</ol>
+
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='referenceTh'>references Variable</th>
+<td class='referenceTd'>Yes</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>Allowable Child Elements</th>
+<td class='referenceTd'><i>ChartField</i></td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+  <th width="117" class='referenceTh'>Property</th>
+  <th width="136" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+  <th width="1360" class='referenceTh'>Comment</th>
+</tr>
+<tr>
+  <td class='confluenceTd'>Name</td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>The chart name.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Type</b></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'><p>The type of chart. The default value is Bar. Select from one of the following chart types:</p>
+    <ul>
+      <li>Area</li>
+      <li>Bar</li>
+      <li>Column</li>
+      <li>Line</li>
+      <li>Pie</li>
+      <li>Scroll area</li>
+      <li>Scroll column</li>
+      <li>Scroll line</li>
+      <li>Scroll stacked column</li>
+      <li>Stacked area</li>
+      <li>Stacked bar</li>
+      <li>Stacked column</li>
+      </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Variable</b></td>
+  <td class='confluenceTd'>Mandatory</td>
+  <td class='confluenceTd'>Finder result form for the chart. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>3D</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Displays a three-dimensional (3-D) version of the chart. Note, some chart types do not render in 3D.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Caption</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The chart label.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Click Method</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>When you specify this property, chart elements are  clickable. Clicking these elements invokes the method.  The method  receives two parameters:</p>
+    <ul>
+      <li>The data object that the chart node represents</li>
+      <li>The variable name, if applicable, that the chart node represents</li>
+      </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Dynamic Height</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property allows you to dynamically assign a variable or a script to the <strong>Dynamic Height</strong> property.  For a variable, the data type must be  either an integer or string. For the script, only the script action can be used and its return  type must be defined as either integer or string.</p>
+    <p> At runtime, by default, the regular  width and height are used. However, if <strong>Dynamic Width</strong> and <strong>Dynamic Height</strong> are defined, they replace the regular width and height, and the values are calculated based on either the variable or script.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Dynamic Width</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>This property allows you to dynamically assign a variable or a script to the <strong>Dynamic Width</strong> property.  For a variable, the data type must be  either an integer or string. For the script, only the script action can be used and its return  type must be defined as either integer or string.</p>
+    <p> At runtime, by default, the regular  width and height are used. However, if <strong>Dynamic Width</strong> and <strong>Dynamic Height</strong> are defined, they replace the regular width and height, and the values are calculated based on either the variable or script.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Height</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The average height of the chart.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Number of Div Lines</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The number of horizontal lines in the graph.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Number Prefix</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The prefix for the number shown in the chart.</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><strong>Number Suffix</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>The suffix for the number shown in the chart.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Show Validation</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This boolean property has values of either <em>True</em> or <em>False</em>, which  determines whether a validation warning message displays at runtime. By default, this property is unchecked, meaning that validation errors do not appear under the chart at runtime and supports backward compatibility. Otherwise, selecting this property allows validation errors to appear under the chart at runtime.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Show zeros</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>If checked, show 0 value data.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Sub Caption</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This field allows you to enter a sub-caption for your chart, which appears under the title.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Variable</b></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Set this property to the  variable that will hold an array of documents to look up values for the chart.  The values to be used depend on the chart fields added under this chart  element. The first field  displays as the x-coordinate and second field displays as the y-coordinate. Any chart fields after the second field are only relevant to specific chart types. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Width</b></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>The average width of the chart.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>X Axis</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>X Axis label (horizontal).</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><strong>Y Axis</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Y Axis label (vertical).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Y axis Max Value</b></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Specifies the maximum value to display on the y axis. If the value specified is less than the maximum value in the dataset, the chart will ignore the yAxisMaxValue. Proper use of this property is to set it equal to or greater than the maximum value that can be returned in the data set.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Y axis Min Value</b></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Specifies the minimum value to display on the y axis. If the value specified is greater than the minimum value in the dataset, the chart will ignore the yAxisMinValue. Proper use of this property is to set it equal to or lesser than the minimum value that can be returned in the data set.</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>Notes:</h3>
+<ul><li>The Chart Form element has a child element called ChartField.</li>
+<li>At runtime, right-click the chart for more viewing options.</li>
+<li>To view charts, Adobe Flash Player 8.0 or higher must be installed for the Firefox browser. Adobe Flash Player 8.0 or higher as an Active X object must be installed for Internet Explorer. Adobe Flash Player can be downloaded from Adobe's Web site at <a href="http://get.adobe.com/flashplayer/" target="_blank">www.adobe.com</a>.   </li>
+<li>To view JavaScript-based charts, FusionCharts  automatically renders them on computers that do not  have a Flash player installed. The only client-side requirement is a  browser that supports JavaScript.</li>
+<li>To use multilingual characters in a chart, the XML must be UTF-8-encoded. More importantly, the XML file requires a Byte Order Mark (BOM) stamp to be present as the first three Bytes of the file.<br>
+</li>
+</ul></td>
+</tr>
+</table>
+</body>
+</html>

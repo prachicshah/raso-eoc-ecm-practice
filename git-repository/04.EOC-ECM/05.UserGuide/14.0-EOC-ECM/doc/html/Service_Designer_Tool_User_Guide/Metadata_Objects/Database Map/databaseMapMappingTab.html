@@ -1,0 +1,77 @@
+﻿<html>
+<head>
+<title>Database Maps - Mapping properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Database Maps Mapping Properties</h2>
+<p>The database map's Mapping  tab provides a number of mapping options, including the following:</p>
+<UL>
+  <LI dir="ltr">Map top-level<a href="databaseMapMapSimpleTypeVariable.html"> variables</a> and container variables.</LI>
+  <LI dir="ltr">Map a <a href="databaseMapMapObjectVariable.html">data object variable</a> to a table column.</LI>
+  <LI dir="ltr">Map to multiple tables, which is automatically enabled or disabled, based on driver support.</LI>
+  <LI dir="ltr"><a href="databaseMapMapSystemType.html">Map predefined system attributes</a> to a table column, which is used only in insert and update operations. This mapping works similarly to system attributes in a Document object, except that those attributes are not part of source data object.  This mapping can be used to insert or update columns with values such as userId and current date. </LI>
+  <LI dir="ltr">Define<a href="databaseMapMapWithScript.html"> <em>from</em> and <em>to</em> scripts</a> for a table column that map data from and to this table column, respectively. This feature can be used to map data from inner containers or to create composite values.</LI>
+  <LI>Use <a href="databaseMapConversionMapObjectForeignKey.html">conversion map support for an object map that has a foreign key</a></LI>
+</UL>
+<p><img src="databaseMapMappingTab.png" alt="Database Maps - Mapping properties" border="1"></p>
+<p>The following table describes  the common fields for the database map's Mapping tab:</p>
+<table class='confluenceTable' border cellpadding="1"
+>
+<tr>
+  <th width="87" class='confluenceTh'>Field</th>
+  <th width="533" class='confluenceTh'>Description</th>
+</tr>
+      <td class='confluenceTd'><b>Schema</b></td>
+      <td class='confluenceTd'>This field is of String type and denotes the database schema's name. Click the drop-down menu and select a schema from the list, and then click the <strong>Connect</strong> button to connect to the database. This field can only be changed when Velocity Studio has a database connection.</td>
+</tr>
+    <tr>
+      <td class='confluenceTd'><strong>Source</strong></td>
+      <td class='confluenceTd'>This field represents the source object variable that you want to map to your database table. This field appears when you select a database map item that has already been mapped.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Audit</strong></td>
+      <td class='confluenceTd'>This field appears when you select a database map item that has already been mapped. You can <a href="databaseMapAuditDataStructures.html">track changes to mapped data structures</a> by selecting this checkbox. By default, auditing is disabled. </td>
+    </tr>
+</table>
+<p>This page describes the following:</p>
+<ul>
+  <li>The Mapping tab's<a href="#mappingUI"> user interface</a> elements</li>
+  <li>How to <a href="#addColumn">add a database column</a></li>
+  <li>How to <a href="#renameColumn">rename a database column</a></li>
+  <li>How to <a href="#rearrangeColumnNodes">re-arrange database column nodes</a></li>
+</ul>
+<h3><a name="mappingUI"></a>User Interface </h3>
+<p>The section on the left side of the Mapping page, under the <strong>Schema</strong> field, represents the target data structure, showing all fields that can be mapped to another database or tables. Selecting the data structure on the left side of the page allows you to click the <strong>Map All</strong> button, which maps all identical fields simultaneously. <span class="confluenceTd">The identical fields are based on the variable's data type. </span></p>
+<p><img src="databaseMapMappingTabMapAllButton.png" alt="Database Maps - Map All button" border="1"></p>
+<p>After clicking the <strong>Map All</strong> button, the Enter Table Name dialog appears, which prompts you to enter the table or database name. Click the <strong>OK</strong> button to continue.</p>
+<p><img src="databaseMapMappingTabMapAllTableDialog.png" alt="Database Maps - Enter Table Name dialog" border="1"></p>
+<p><span class="confluenceTd">On the right side of the page, all fields are added under the schema name<b> </b> in the same order as items in the target data structure.</span></p>
+<p><img src="databaseMapMappingTabMapButtonRightSide.png" alt="Database Maps - Map All button - Right side mapping" border="1"></p>
+<h3><a name="addColumn"></a>Add a Database Column</h3>
+<p>You can add a database column to your database table by right-clicking your database table on the right side of the page, and then selecting <strong>Add Column</strong>. </p>
+<p>The Enter Column Name dialog appears. Enter the database column's name, and then click the <strong>OK</strong> button.</p>
+<p><img src="databaseMapMappingTabAddColumn.png" alt="Database Maps - Add a new table column" border="1"></p>
+<p>The newly created database column appears on the right side of the page.</p>
+<p><img src="databaseMapMappingTabAddColumnAdded.png" alt="Database Maps - New table column added" border="1"></p>
+<h3><a name="renameColumn"></a>Rename a Database Column</h3>
+<p>You can rename a database column by right-clicking your database column on the right side of the page, and then selecting <strong>Rename Column</strong>. </p>
+<p>The Enter Column Name dialog appears. Enter the new name of the database column's name, and then click the <strong>OK</strong> button.</p>
+<h3><a name="rearrangeColumnNodes"></a>Re-arrange Database Column Nodes</h3>
+<p>You can re-arrange database column nodes under the same table from the Mapping tab by selecting the node that you want, and then dragging it either up and down. In this example, the path node that was originally ordered last in the source has been moved to be after the CODE node.</p>
+<p><img src="databaseMapMappingTabRearrangeColumnNodes.png" alt="Database Maps - Re-arrange database column nodes" border="1"></p>
+<p><strong>Notes: </strong></p>
+<ul>
+  <li>Database column nodes cannot be moved ahead of column nodes that are inherited from the base mapping.</li>
+  <li>The order of database column nodes from the base cannot be changed.</li>
+</ul>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

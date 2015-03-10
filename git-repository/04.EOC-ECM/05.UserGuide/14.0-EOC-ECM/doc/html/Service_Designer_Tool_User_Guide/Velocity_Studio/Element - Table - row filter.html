@@ -1,0 +1,209 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Row Filter in a Table</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td width="1062" valign="top" class="pagebody">
+<h2>Row Filter in a Table</h2>
+<p>You can use the row filter in your browser to filter information in a table. This functionality allows you to perform the following tasks:</p>
+<ul>
+  <li>Specify the <strong>Can filter</strong> property for each column</li>
+  <li>Specify the filter editor type for columns: 
+    <ul>
+      <li>Checkbox (checkbox or drop-down)</li>
+      <li>Select  (drop-down or text) </li>
+    </ul>
+  </li>
+  <li>Filter DateTime columns using  the Date Range cell editor, which is the same editor for the Date column</li>
+  <li>Perform filtering on the server side only, allowing you to use more complex filtering criteria, such as the following with comparison operations:
+    <ul>
+      <li>The LIKE operation  using * for text and select columns</li>
+      <li>Operations such as &lt;, &lt;=,  &gt;=, &gt;, =, != for numeric columns </li>
+      <li>Operators such as <em>in  (...)</em> and <em>not in (...)</em> for both text and numeric  columns</li>
+    </ul>
+  </li>
+  </ul>
+<p>Filtering in a  table consists of using a one-row filter editor that is displayed above the table  column headers:<br>
+  <br>
+  <img src="tableRowFilterEditor.png" alt="Row filter editor in a table"><br>
+  <br>
+  You can view the row filter editor after you select the table element's <strong>Show Filter</strong> property. </p>
+<p>To apply the filter criteria to the table, do one of the following:</p>
+<ul>
+  <li>Press the <strong>Enter</strong> key in the filter editor</li>
+  <li>Click the <strong>Filter</strong> image button located in the top right corner of the table <br>
+  </li>
+</ul>
+<h3>Enable Filtering for  Table</h3>
+<p>To enable filtering of your table, the following properties and options are needed:</p>
+<ul>
+  <li>To show the  filter row, select the Table element's <strong>Show Filter</strong> property. </li>
+  <li>The <strong>Filter  Editor Height</strong> property allows you to set the filter row height (the default value of this property is 20). Optionally, you can use the <strong>Can Filter</strong> property of the column field elements to show or hide  the filter cell editor for each column. </li>
+  <li>The     Checkbox and  Select columns also have <strong>Filter Editor Type</strong> option.&nbsp; </li>
+</ul>
+<h3>Filter Editor Types</h3>
+<p>The following table shows the filter editor types that are available and their descriptions: </p>
+
+<table width="736" border cellpadding=1 class='confluenceTable'>
+  <tr>
+    <th width="152" class='referenceTh'>Filter Editor Type</th>
+    <th width="568" class='referenceTh'>Description</th>
+  </tr>
+  <tr>
+    <td>Text, Label, TextArea </td>
+    <td><p>Uses the text field    filter.</p>
+      <p>        For string data    types, you can use the following: </p>
+      <ul>
+        <li>* and in(...) operators</li>
+        <li> not in (...) operators </li>
+      </ul>
+      <p>        For numeric    data types, you can use the following:</p>
+      <ul>
+        <li>Number    comparison operators</li>
+        <li>Simple list    of values separated with either commas (,) or semicolons (;)</li>
+        <li> in (...) and not in (...) operators </li>
+      </ul></td>
+  </tr>
+  <tr>
+    <td>Checkbox </td>
+    <td><p>The Checkbox column filter can be one of the following: </p>
+      <ul>
+        <li><strong>Checkbox</strong> type (default) that displays a    checkbox with three states:
+          <ul>
+            <li> <strong>Selected</strong></li>
+            <li><strong>Unselected</strong></li>
+            <li><strong>None</strong><br>
+              <br>
+            </li>
+          </ul>
+          <strong>Note:</strong> The states Unselected and None  may not be intuitively recognizable. <br>
+          <br>
+        </li>
+      </ul>
+      <ul>
+        <li><strong>Select</strong> type with the following options
+          <ul>
+            <li><strong>None</strong></li>
+            <li><strong>Yes</strong></li>
+            <li><strong>No</strong></li>
+          </ul>
+        </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>Select </td>
+    <td><p>The Select column    filter can be one of the following:</p>
+      <ul>
+        <li><strong>Select</strong> type that displays a drop-down menu with    column values</li>
+        <li><strong>Text</strong> type to filter the value by visual key  using either * or in (...)    operators </li>
+        </ul>
+      <p><strong>Note:</strong> The <strong>Select</strong> field    with the <strong>Select</strong> filter type is not supported for dynamic enumerations    and reference types. It is recommended that you use the <strong>Text</strong> filter type instead.</p></td>
+  </tr>
+  <tr>
+    <td>Date, DateTime </td>
+    <td>Date range cell editor containing a read-only field with a    button that, when clicked, shows a Date Range dialog. </td>
+  </tr>
+  <tr>
+    <td>Spinner </td>
+    <td>Text filter editor with numeric operators. </td>
+  </tr>
+  <tr>
+    <td>Hyperlink </td>
+    <td>Not supported.</td>
+  </tr>
+  <tr>
+    <td>Image </td>
+    <td>Not supported. </td>
+  </tr>
+  <tr>
+    <td>Calculated columns </td>
+    <td>The filter editor type depends on both the column type and the <strong>Return</strong> data type property specified in the <tt>Variable</tt> script method. </td>
+  </tr>
+</table>
+
+<h3>Server-side Filtering </h3>
+
+<p>Filtering is performed completely on the server side with the internal Java code. The main benefit is that the finder does not have to be used to either re-select or filter the result manually by metadata or by running SQL statements.</p>
+<p>Filtering  occurs <em>on top</em> of the finder's SELECT operation, meaning that the Search  action still has to be invoked to get the initial &quot;result&quot; list. The <strong>Auto Search</strong> property can be used to run search automatically. 
+  Invoking the finder's <strong>Search</strong> action (for example, by clicking the <strong>Search</strong> menu item)  clears the current table filtering so that the table displays the original  unfiltered result. <br>
+  &nbsp; <br>
+  To apply the  filter criteria, the table element sends a special data source request to the  server. The server-side listener gets the table Variable list (for example, the finder  &quot;result&quot;), and filters the records according to the specified criteria. Filtering does  make any changes in the data source and the &quot;result&quot; list remains the same. <br>
+  &nbsp; <br>
+  <strong>Note:</strong> Filtering can be used with any table that uses DataObjectList as a data source, and not necessarily the finder result. </p>
+<h3>Filter Criteria and Notation</h3>
+<p>When using filter criteria, the following notations are available: </p>
+<h4><strong>String comparison</strong></h4>
+<p>Keep the following points in mind when doing a string comparison:</p>
+<ul>
+  <li>A string comparison is case-insensitive (for example, the <strong>abc</strong> filter matches <strong>abc</strong>,  <strong>ABC</strong>, <strong>Abc</strong>, ... values).</li>
+  <li>The wildcard (*) character is not required, as it is automatic (for example, the <strong>abc</strong> filter matches <strong>abctest</strong>, <strong>testabc</strong>, <strong>testabctest</strong>, and so on). In other words, all values that contain the string are returned.</li>
+  <li>The  in(...)  operation requires quotation marks, either single (') or double (&quot;) to separate values, which enable you to specify * inside the filter value token.</li>
+</ul>
+<p>The following are examples of using the in(...) notation: 
+  
+<div class="code">
+    <div class="codeContent">
+    <pre>  // Use ' or  &quot;, or &quot; inside '...'
+  in ('ab', &quot;*def&quot;, &quot;xyz&quot;, ' Quotes inside the token: &quot;quote&quot; ') <br>
+  // 'in' and 'not in' operators in uppercase 
+  NOT IN ('abc', 'def') &nbsp; <br>
+  // Empty string finds records with either null or an empty value 
+  In ('') </pre>
+    </div>
+    </div>
+<h4>Number comparison
+</h4>
+<p>The number filter  accepts the following:</p>
+<ul>
+  <li>A simple sequence of values that are separated by either commas (,) or semicolons (;). </li>
+  <li>Numeric comparison operators, such as &lt;, &lt;=,  &gt;=, &gt;, =, and !=; which allow you to use multiple operators that are separated by either commas (,) or semicolons(;).</li>
+  <li>The in(...)  and not in(...) operators. </li>
+  </ul>
+<p>The number filter also allows you to use a set of strict equal comparisons combined with an OR operation, and others  comparisons such as  AND. The following is an example:<br>
+  <br>
+</p>
+
+<div class="code">
+    <div class="codeContent">
+    <pre>// &quot;10, 15, &gt;= 20, &lt; 30, != 25&quot; is parsed as 
+// (x == 10) or (x == 15) or (x &gt;= 20 and x &lt; 30 and x != 25)</pre></div>
+    </div>
+    
+<p>The following are examples of using number filter notations:</p>
+<div class="code">
+    <div class="codeContent">
+    <pre>  // Criterion is parsed as (x == 1 or x == 7.00 or x == 12) 
+  1, 7.00, 12 &nbsp; <br>
+  // same as 
+  in (1, 7.00, 12) 
+  in ('1', '7.00',  '12') <br>
+  // parsed as (x  &gt;= 1 and x &lt; 7 and x != 25) 
+  &gt;=1, &lt;7, !=  25 <br>
+  //&nbsp; in(..)  operator allows using other operators inside: 
+  in (1, 7, '&gt;  12') <br>
+  // will return  all non-empty values 
+  not in ('') </pre>
+    </div>
+    </div>
+
+<p><strong>Date Range Comparison </strong></p>
+<p>The filter editor for  both the Date and DateTime columns displays the Select Date Range dialog when you click the button within the editor:</p>
+<p><img src="tableRowFilterEditorDateRange.png" alt="Select Date Range dialog"><br>
+  <br>
+  This filter  returns all dates in specified range <em>inclusively</em>. The <strong>From</strong>  and <strong>To</strong> fields can have empty values. <br>
+  &nbsp; <br>
+  <strong>Note:</strong> For DateTime  types, when comparing the <strong>To</strong> date, the time is truncated to include  all timestamps of that date. 
+  </p>
+</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

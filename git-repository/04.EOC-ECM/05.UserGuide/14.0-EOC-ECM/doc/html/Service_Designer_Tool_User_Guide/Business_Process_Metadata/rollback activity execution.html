@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Rollback Activity Execution</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Rollback Activity Execution</h2>
+<p>The following logic is employed by the Process Management product in handling a <em>Rollback</em> activity:</p>
+<ul>
+<li>Execute the <b>Before</b> script. This script should return one or more compensation codes (single code or array of codes) or null.</li>
+<li>If the script returns compensation codes, a <em>Rollback</em> activity will invoke only the <em>Compensation</em> activities that are marked with one of the compensation code(s) returned by this script.</li>
+<li>A <em>Compensation</em> activity that has no compensation code set will always be invoked. To enable the <strong>Compensate</strong> field on the general type, you need to define a data type that extends is enabled when in MD difined  Data Type that extends or overrides the cwf.compensate enumeration type.<br>
+    So user will be able to select  from them.
+</li>
+<li>If the <b>Before</b> script returns null, all of the <em>Compensation </em>activities are invoked.</li>
+<li>All manual activities that are rolled back and not yet assigned to any user are deleted.</li>
+<li>All manual activities that are rolled back and already assigned to user are converted to <em>alert</em>.</li>
+<li>All operation activities that are rolled back and have sent a request to the external system, which has not yet been processed, are deleted from the interface process queue.</li>
+<li>All message responses from external systems that are not yet processed (for operation activities that are rolled back) are deleted from the process queue.</li>
+<li>When there are several non-parallel activities of a suspended tree, they can be in the activity queue simultaneously. The <em>Rollback</em> points to a restart target. At runtime, when an exception occurs, the process engine suspends activity above this reset target. <em>Resume</em> resumes the suspended activity and also restarts the restart target.</li>
+</ul>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

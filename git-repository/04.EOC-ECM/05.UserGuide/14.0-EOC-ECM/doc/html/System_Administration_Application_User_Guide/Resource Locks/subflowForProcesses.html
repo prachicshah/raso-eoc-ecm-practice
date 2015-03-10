@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Subflow for Processes</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td valign="top" class="pagebody">
+    <h2>Subflow for Processes</h2>
+<p>A standard <a href="../../../html/Service_Designer_Tool_User_Guide/Business_Process_Metadata/sub-process and sub-flow.html">subflow for processes</a> to wait for the resource  to be locked must be implemented. The subflow assumes that the process document  has two variables:</p>
+      <ul>
+        <li>isLocked (Boolean)</li>
+        <li>priority (integer)</li>
+      </ul>
+      <p>These variables are required for correctly run the workflow. 
+        The subflow does not need to be tied to an order. It  invokes the CW_RSLOCK_LOCK_REQUEST <a href="../../../html/Service_Designer_Tool_User_Guide/Metadata_Objects/Script/Events.html">event</a> that returns the lock request object  containing the list of resources to be locked. You must implement an <a href="../../../../Help 6.x/html/Service_Designer_Tool_User_Guide/Metadata_Objects/Script/Event Handlers.html">event handler</a> for this event. Using a set of resources, it attempts to lock a group of  resources by specifying a callback and a process ID as callback parameters. <br>
+        The callback is a special event handler that sends a  signal to the process:</p>
+      <ul>
+        <li>The <em>Lock  acquired</em> signal if the lock for a group is acquired, so it can proceed.</li>
+        <li>The <em>Lock  request expired</em> signal to handle the request timeout, which may increase the  lock priority and try to lock again. </li>
+      </ul>
+      <p>The callback event handler also checks the status of the  process. If it is not in the correct state (for example, terminated or error), it  immediately releases resources.</p>
+      <p>The following is an example of a standard subflow for the  <a href="../../../html/Service_Designer_Tool_User_Guide/Business_Process_Metadata/process types.html">processes</a> to wait for the resource to be locked. </p>
+    <p><img src="subflowForProcesses.png" alt="Sample Subflow for Processes" /></p>
+    <p>This subflow does not need to be tied to an order. As  stated in the subflow, using a set of resources it tries to lock a group of  resources by specifying the callback and process ID as callback parameters. The  callback is an event handler that sends a signal to the process. One of signals  is <strong>LockAcquired,</strong> if the lock for a  group is acquired the focus is switched to the next Proceed step in the flow.  Another one is <strong>LockRequestExpired</strong>,  to handle the request timeout. This signal may increase the lock priority and tries  to acquire the lock again.
+     <p> There is a possibility of dead locks when a lock is obtained  by a process that is either completed, dead or in the error state. To avoid  dead locks, it is recommended to use lock duration (release lock on timeout)  and lock request timeout.</p>
+    <p>
+    The callback event handler also checks the status of the  process. If the process is not in the correct state (for example, not waiting  for a signal), the callback event handler immediately releases the resources,  and invokes the resource lock error handler.</p></td>
+  </tr>
+</table>
+</body>
+</html>

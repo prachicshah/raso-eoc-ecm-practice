@@ -1,0 +1,113 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Installation Procedure</title>
+<link rel="stylesheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<tr>
+  <td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top"><h2><SPAN onMouseOver="showWMTTLink('2886911115.html')" onMouseOut="hideWMTT()">Installation   Procedure</SPAN></h2>
+    <p>The different types of installations and upgrades are defined by the top level   playlists described in the Playlist Details section. To install or upgrade an   application you need to create a job and run a top level playlist. For information about the SUF configuration variables, refer to the Prerequisites section.<br>
+      <br>
+    Access the menu Job &gt; Current. Click Create New. Follow these steps:</p>
+    <ol>
+      <li><strong>Playlist Selection (Job - Add - Step 1 / 8):</strong></li>
+      <br>
+      <ol type="a">
+        <li>Enter the Job Name for the type of installation or upgrade.</li>
+        <li>Node Type: Select AVM.</li>
+        <li>Package Name: Select PSCM.<br>
+        <li>Select the playlist appropriate for the type of installation or upgrade. For example, for a brand new installation choose the _PSCM_NewInstallation.xml playlist to execute.</li>
+        <li>Click Next &gt;.</li>
+      </ol>
+      <br>
+      <li><strong>File Selection (Job - Add - Step 2/ 8)</strong>:</li>
+      <br>
+      Based on the playlist selected, SUF asks to Select an AVM installation package or Select application package or both.
+      <ol type="a">
+        <li>In the Select an AVM installation package field, select swtools/AVM_Platform.rpm.</li>
+        <li>In the Select application package field, select swtools/AVM_BSSF_PSCM.rpm.</li>
+        <li>In the Select host node mapping file field, select swtools/host_node_mapping.properties.</li>
+        <li>In the Select the application configuration file field, select swtools/pscm_config.xml. </li>
+        <br><strong>Note:</strong> This selection is optional. It is only required to override the default application configuration. The file pscm_config.xml is used to override the application default file config.xml that is found in AVM_BSSF_PSCM.rpm file.<br>
+        <li>Click Next &gt;.</li>
+      </ol>
+      <br>
+      <li><strong>Node Selection (Job - Add - Step 3/ 8):</strong></li>
+      <br>
+      <ol type="a">
+        <li>Select JBoss node: Select PSCM_NETWORK&gt;AVM&gt;PSCM.</li>
+        <li>Select Oracle node: Select PSCM_NETWORK&gt;AVM&gt;Oracle.</li>
+        <li>Click Next &gt;.</li>
+      </ol>
+      <br>
+      <li><strong>Variable Selection (Job - Add - Step 4/ 8):</strong><br>
+        <br>
+        Enter the values for the following fields. For more information refer to Prerequisites.</li>
+      <ol type="a">
+        <li>Schema Name 
+        <br><strong>Note:</strong> The DB information is used to create a new database user, if it does not already exist. The user with the same name is dropped. The same credentials are used to upgrade the system.</li>
+        <li>Schema Password </li>
+        <li>Oracle System User </li>
+        <li>Oracle System Password </li>
+        <li>Oracle Port </li>
+        <li>Oracle SID </li>
+        <li>Application Internal Name: BSSF_PSCM </li>
+        <li>Application Version: The application version must be set to 1.</li>
+        <li>Web Application Name: The default value is cwf. When multiple applications are to be used on the same environment then provide an appropriate name. For example, for the ECM application, use cwf_PSCM.
+        </li>
+        <li>JNDI Datasource Name: The default value isEricssonConfig. When multiple applications are to be used on the same JNDI Data Source, there is no need to change this value. Otherwise, provide a new name.</li>
+        <li>JMX Domain Name: Use default value com.Ericsson.AVM.</li>
+        <li>JMX Application Name: BSSF_PSCM </li>
+        <li>License Type: Select option FILE.</li>
+        Two types of licenses are supported:<p>
+        <ul>
+          <li><strong>File license:</strong> The folder for this type of license contains all license files for different JBoss servers and the files that need to be named as {HOST.name}_avm_license.lic.</li>
+          <li> <strong>RMS license:</strong> The folder for this type of license contains .ini and .cfg files which are needed for an RMS license.</li>
+        </ul></p>
+        <li>License Folder: For a new installation, specify the location in the field. The location of JBoss license folder on SUF server: /root/lics.
+          This folder contains all licenses files to be distributed to the JBoss servers. The naming convention is important.</li>
+        <li>Click Next &gt;.</li>
+      </ol><br>
+      <li><strong>Configuration Selection (Job - Add - Step 5/ 8):</strong><br>
+        There are no node selections available for this step. Click Next &gt;.</li>
+      <br>
+      <li><strong>Step and Task Selection (Job - Add - Step 6/ 8):</strong></li>
+      <br>
+      SUF lists all the invoked playlists for the top level playlist selected. When running a top level playlist, each invoked playlist is processed as a step. <br>
+      By default, all the invoked task-specific playlist steps are selected. It is recommended to execute all these steps.
+      </li>
+      <p> <strong>Add a User Defined Checkpoint</strong>.</p>
+      A checkpoint can be added on any option displayed on this page. To add a checkpoint, do the following:
+      <ol type="a">
+        <li>Select a playlist, for example DB_Upgrade and click the Add Checkpoint button. </li>
+        <li>The User Defined Checkpoint dialogue appears. Enter the Checkpoint ID and Checkpoint Description fields.</li>
+        <li>Click Save. </li>
+        <li>Click Next &gt;.</li>
+        <br>
+      </ol>
+      <li><strong>Checkpoint Definition (Job - Add - Step 7/ 8):</strong><br>
+        Any user defined checkpoints configured in step 6 Step and Task Selection appear here.</li>
+      <ol type="a">
+        <li>Choose option User to Confirm or Wait Until.</li>
+        <li>Click Next &gt;.</li>
+        <br>
+      </ol>
+      <li><strong>Creation Summary (Job - Add - Step 8/ 8)</strong>: </li>
+      <br>
+      SUF displays the summary details of the job. It is possible to go back to the previous steps to make corrections.
+      </li>
+      <ol type="a">
+        <li>Click Apply to create the new job.</li>
+        <li> Click Done to return to the Job List page.</li>
+      </ol>
+    </ol>
+    <p><strong>Note:</strong> Verify the job and execute.</p>
+</body>
+</html>

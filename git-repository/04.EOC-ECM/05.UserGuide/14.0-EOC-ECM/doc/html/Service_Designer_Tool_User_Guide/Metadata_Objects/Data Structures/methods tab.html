@@ -1,0 +1,177 @@
+﻿<html>
+<head>
+<title>Data Structures Methods Tab</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Data Structures - Methods Tab</h3>
+<p>The <b>Methods</b> tab is used to add and define data structure-level methods and permissions. There are different types of methods that can be defined for the data structure; they are all consolidated into this tab.</p>
+
+<p><img src="dataStructuresMethodsTab.png" border="1" alt="Data Structures - Methods tab"></p>
+
+
+<p>The Methods tab is a <a href="../../../JavaScripting in Order Care/Scripting Interface.html">script management screen</a> in Velocity Studio, which is composed of the <b>Method List pane</b> on the left that lists all scripts of the Document, and <b>Details pane</b> that displays the details of a script when selected at the Method List pane. To create a new method, or to override an existing Method of its base Document, right-click the data structure in the Method list pane. A pop-up menu appears.</p>
+
+<p><img src="dataStructuresMethodsTabContextMenu.png" alt="Data Structures - Methods tab - right-click context menu" border="1"></p>
+
+<p>When you select the <strong>Type</strong> radio button, it means that the method can be invoked directly through the script and does not require an instance object.</p>
+<p>To show all base methods, click the <strong>Show base methods</strong> (<img src="../../Velocity_Studio/methodsTabShowBaseMethods.png" width="24" height="26" alt="Show base methods button">) button. Click the button again to hide all base methods. Base methods appear in blue. Any method highlighted in blue font indicates that you can override it. Methods in black font cannot be overridden.</p>
+<p>If you have a long list of methods in the left pane, you can press the first letter of the method you are looking for to jump to the list of methods beginning with that letter. In this example, pressing the <strong>D</strong> key highlights the first instance of a method that begins with the letter D. The method displays in the right pane.</p>
+<p><img src="dataStructuresMethodsKeyJumpList.png" alt="Data structures methods - press a key to indicate first letter of method to jump to the first instance in the list" border="1"></p>
+<p>The following table lists the wide-ranging type of methods that can be added  at the data structures level.</p>
+<i><u>New Methods</u></i></br>
+<table class='confluenceTable'  border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh' width='149'>Method Type</th>
+      <th width="1432" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><img src="dataStructuresMethodsTabMethodIcon.png" width="28" height="24" alt="Method icon"> Method</td>
+      <td class='confluenceTd'>Generic user-defined JavaScript function that can defined in a data structure and explicitly invoked by other scripts; the function is not triggered by other built-in means in the data structure.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'> <img src="dataStructuresMethodsTabPermissionIcon.png" width="28" height="18" alt="Permission icon">Permission</td>
+      <td class='confluenceTd'>Permission method that can be associated to determine permission for a certain property of the data structure (for example, Element properties). See the <a href="../Permission/Permissions Velocity.html">Permissions</a> section for details.</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<i><u>System-defined Methods </u></i>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Method Type</th>
+      <th class='confluenceTh'>Script Name</th>
+      <th class='confluenceTh'>Parameters</th>
+      <th class='confluenceTh'>Return Type</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Conversion to Data Object</b></td>
+      <td class='confluenceTd'><i>cwFromJson</i></td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'>Document Initialization script that overrides a default conversion of JSON data to a data object.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Conversion to Data Object</b></td>
+      <td class='confluenceTd'><i>cwFromText</i></td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'>Data structure script that overrides a default conversion of text to a data object.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Get Drag Object Type</strong></td>
+      <td class='confluenceTd'><em>cwGetDragObjectType</em></td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><em>String</em></td>
+      <td class='confluenceTd'>Returns the metadata object's type. The purpose of this  method is to allow metadata to provide a different type for the object than  what is used by the product.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Get Data Structure ID</b></td>
+      <td class='confluenceTd'><i>cwGetStructId</i></td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><em>String</em></td>
+      <td class='confluenceTd'>Data structure script that returns the data structure ID.</td>
+    </tr>
+    <!--<tr>
+<td class='confluenceTd'><b>On Enter</b></td>
+<td class='confluenceTd'><i>onEnter</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Not supported at the moment.</i> Document script that is executed when "Enter" key is pressed.</td>
+</tr>-->
+    <tr>
+      <td class='confluenceTd'><strong>Conversion to XML</strong></td>
+      <td class='confluenceTd'><i>cwOnStructToXML</i></td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'>Data structure script that overrides a default conversion of this data structure to XML</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Visual Key</b></td>
+      <td class='confluenceTd'><i>cwOnStructVisualKey</i></td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>String</i></td>
+      <td class='confluenceTd'><p>Data structure script that  returns a string representing the visual key. The length of the string should not be longer than 64 characters. If longer, the value is truncated. If this method is empty, the data structure Label is used as visual key.</p>
+        <p><strong>Note:</strong> Since a data structure can consist of other data structures and documents, making changes in child objects  devaluates (that is, marks to recalculate) the parent data structure's visual key.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Set Data Structure ID</b></td>
+      <td class='confluenceTd'><i>cwSetStructId</i></td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'>Data structure script that sets the ID for the data structure using the structId parameter.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Conversion to JSON</b></td>
+      <td class='confluenceTd'><em>cwToJson</em></td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>None.</i></td>
+      <td class='confluenceTd'>Data structure script that overrides a default conversion of this data object to JSON.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Conversion to Text</b></td>
+      <td class='confluenceTd'><em>cwToText</em></td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>None.</i></td>
+      <td class='confluenceTd'>Data structure script that overrides a default conversion of this data object to text.</td>
+    </tr>
+    <!--<tr>
+<td class='confluenceTd'><b>Execute Permission</b></td>
+<td class='confluenceTd'>permExecute<i></i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Attach Permission is related to validation. The Execute permission specifies whether the validation Methods will execute on a save or submit operation. (e.g. A manager may require the ability to override validation rules). </td>
+</tr>-->
+    <!--<tr>
+<td class='confluenceTd'><b>to String</b></td>
+<td class='confluenceTd'><i>toString</i></td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'>None.</td>
+<td class='confluenceTd'><i>Reserved. Do not use.</i></td>
+</tr>-->
+    <tr>
+      <td class='confluenceTd'><b>Delete Permission</b></td>
+      <td class='confluenceTd'><em>deletePerm</em></td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>Boolean</i></td>
+      <td class='confluenceTd'>Delete Permission that specifies whether the participant is allowed to delete an instance of this Document (for example, Document instances in an Order Collection).</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Update Permission</b></td>
+      <td class='confluenceTd'><em>editablePerm</em></td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>Boolean</i></td>
+      <td class='confluenceTd'>Update Permission that specifies whether the participant is allowed to update the Document (for example, change Variable of the Document).</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Initialization</b></td>
+      <td class='confluenceTd'><i>onInit</i></td>
+      <td class='confluenceTd'>None</td>
+      <td class='confluenceTd'>None</td>
+      <td class='confluenceTd'>The system method that is triggered on data structure's initialization.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>View Permission</b></td>
+      <td class='confluenceTd'><em>visiblePerm</em></td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>Boolean</i></td>
+      <td class='confluenceTd'>View Permission that specifies whether the participant is allowed to view the Document.</td>
+    </tr>
+  </tbody>
+</table>
+<p>For method types that can be created, you can create multiple methods of the same method type (for example, Validation 1, Validation 2...), each identifiable by unique method name. However, for methods that are to be overridden from base data structure, you can only define one method per base method. This rule is applicable to both system-predefined scripts and any additional methods that are defined in non-system-based data structures. All system-predefined methods have empty scripts, except permission methods, which means the default method is to do nothing. All permission methods return <i>true</i>, which allow all operations on the data structure by any participant.</p>
+<p>For scripts that are already overridden, they appear in the Method list pane and no longer be available at the right-click context pop-up menu.</p>
+<p>If this data structure extends from another (non-system based) data structure, and the base data structure has additional methods defined in it, those methods are not displayed in the Methods tab of this data structure.</p>
+<p>The method created in Method list pane can be right-clicked, with various commands available; see <a href="../../../JavaScripting in Order Care/Scripting Interface.html">script management UI</a> for details.</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Section</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Section</h2>
+
+<p>Section is an element that is contained within a Section Stack. The user is able to divide groups of data/form elements into logical blocks that share the same &quot;real estate&quot; on a page. These Sections can be collapsed and expanded at runtime for readability and ease of use. Section Header is a child element of the Section element and it is used to facilitate the expand and collapse functionality of Sections. Below is an example of expanded and collapsed Sections within a Section Stack.</p>
+
+<p><img src="exampleStacks.png" alt="Section element" border="1"></p>
+
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<td class='confluenceTd'>references Variable</td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'>references Method</td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'>references Form</td>
+<td class='confluenceTd'>Yes</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Allowable Child Elements</td>
+<td class='confluenceTd'>
+Button<br>
+Chart<br>
+Checkbox<br>
+Date Field<br>
+Dynamic Document<br>
+Dynamic Table<br>
+Form Frame<br>
+Grid Layout<br>
+HTML Content<br>
+Header<br>
+Horizontal Layout<br>
+Hyperlink<br>
+Image<br>
+Label<br>
+Large Text<br>
+Large Text Area<br>
+Layout Spacer<br>
+Menu Item<br>
+Password Field<br>
+Radio Button Group<br>
+Reference Field<br>
+Section Header<br>
+Section Stack<br>
+Select Field<br>
+Separator<br>
+Table<br>
+Tabset<br>
+Text Area<br>
+Text Field<br>
+Translation<br>
+Tree<br>
+Upload File<br>
+Variable<br>
+Vertical Layout<br>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p>The following table describes the properties of section element:</p>
+<table class='confluenceTable'  border cellpadding=1>
+<tbody>
+<tr>
+<th width="93" class='confluenceTh'>Property</th>
+<th width="143" class='confluenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+<th width="1377" class='confluenceTh'>Comment</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Name</strong></td>
+<td class='confluenceTd' valign=top>Mandatory</td>
+<td class='confluenceTd'>Name of the Section.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>*Cell Alignment</strong></td>
+<td class='confluenceTd' valign=top>Optional</td>
+<td class='confluenceTd'>The cell alignment property works in conjunction with the height/width properties of the parent Section Stack. The values in the height/width properties must be set for the cell alignment property to function.<br>
+This property specifies the horizontal and vertical positioning of the children form elements of the Section.  An undefined value results in a &quot;top-left&quot; alignment.</td>
+</tr>
+
+<tr>
+<td class='confluenceTd'><strong>Dynamic Tooltip</strong></td>
+<td class='confluenceTd'>Optional</td>
+<td class='confluenceTd'>Defines a dynamic tooltip text that is displayed in a hover box when the cursor hovers the element.  Set property to a <em>String</em> variable or a script with a Return type <em>String</em>. The static Tooltip property is considered as default until the action returns a value.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Dynamic Tooltip Style</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This property dynamically changes the style of the Dynamic Tooltip.  Set property to a script with a Return type <em>String</em> that is a cascading style sheet (css) name found in the stylesheet used by the application.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Error Icon Gap</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p>Select this property's checkbox to make a gap for the validation icon. By default, this property is false. </p>
+    <p><strong>Note:</strong> This property is available only for left (or default) error orientation. The gap is calculated according to the /cwfv/error.png icon size. When the image is substituted with a smaller one, the gap is also smaller. </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Error Icon Orientation</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>This property allows you to configure how an icon are displayed. This property takes the values left (default) and right.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Expand</strong></td>
+  <td class='confluenceTd' valign=top>Optional</td>
+  <td class='confluenceTd'>This property dynamically expands or collapses a Section element. Choose from a permission method, or <b>TRUE</b> / <b>FALSE</b> option to assign  the Section element to an expanded or collapsed state. The Default setting is True which means expanded state. This property does <strong>not</strong> need to work with a Section Header. If this property is set to False then the Section element and its children are hidden.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Form</strong></td>
+<td class='confluenceTd' valign=top>Optional</td>
+<td class='confluenceTd'><p>Choose from a list of available Forms which this Form Frame shall present. If the Form Frame is assigned to a Variable property, the choices are limited to the Forms of that Variable. If Variable property is not assigned, the choices are limited to Forms in the current User Interface. Default is not assigned, where no Form is displayed. Alternatively, a local string variable can be used to dynamically change the form to be used at runtime. This string variable should have ONLY the name of the form such as &quot;Default&quot;. Setting this property to a string variable will automatically use the user interface of the Variable property to look for the form if it is provided, otherwise it will use the current user interface for the form lookup.</p>
+  <p><strong>Note:</strong> If metadata is migrated from different version 5.x releases and property is set to the <em>Form.Default</em>, the migration process will reset the value to <em>Default.</em></p>
+  <p>Please refer to the <a href="#FormExample">Form Property</a> example below for more details. </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Header</strong></td>
+  <td class='confluenceTd' valign=top>Mandatory</td>
+  <td class='confluenceTd'>Choose from a list of Finders or Finder View Names. Refer to <a href="../Metadata_Objects/Finder/Finders.html">Finders</a> for more details.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Icon Height</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Height of the icon used or consumed within the element.  The value is defined as the number of pixels (integer) or percentage. The default value is 0.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Icon Tooltip</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Click the ellipsis button and specify a tooltip description within the <strong>Value</strong> field for the icon.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Icon Width</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Width of the icon used or consumed within the element.  The value is defined as the number of pixels (integer) or percentage. The default value is 0.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>On Enter</strong></td>
+  <td class='confluenceTd' valign=top>Mandatory</td>
+  <td class='confluenceTd'>The system calls any script defined in this property. This method is invoked when the Section is focused on the Web page and the user presses the ENTER key.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Remove Label Line</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Select this property's checkbox when the element is in a grid layout and its column span is equal to the grid layout's   number of columns. In other words, if the   field is the only field in that row, this empty line is removed above the element. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>State Change CallBack</strong></td>
+  <td class='confluenceTd' valign=top>Mandatory</td>
+  <td class='confluenceTd'><p>Choose from a list of methods that is called  when the user expands or collapses a Section at runtime. This method is called when the user clicks  the expand/collapse image of the Section Header. For example, Velocity Studio may choose to use this property to control the expand/collapse state of multiple sections. </p>   Please refer to the <a href="#StateChangeCallback">State Change Callback property</a> example below for more details. </td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Style</strong></td>
+<td class='confluenceTd' valign=top>Optional</td>
+<td class='confluenceTd'>Choose from styles within the selected stylesheet (located in the Velocity Studio toolbar), which defines the styling of the Section such as positioning and color. Default is NONE.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tooltip</strong></td>
+  <td class='confluenceTd' valign=top>Optional</td>
+  <td class='confluenceTd'>Defines the tooltip text that is displayed in a hover box when the cursor hovers over the Section. Default is empty, which means that a tooltip has not been defined.  During runtime, the tooltip may be difficult to find as it is not the only layout on the screen and may cover a large area.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tooltip Style</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Defines the tooltip style of the text displayed in the hover box when the cursor hovers over the section. The default is empty. Click the <strong>Value</strong> field to select a tooltip style from the list.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tooltip Width (px)</strong></td>
+  <td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'>Allows you to change the width of the tooltip popup window statically. Enter the width in pixels. The default value for this property is 0.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Variable</strong></td>
+  <td class='confluenceTd' valign=top>Optional</td>
+  <td class='confluenceTd'>Choose from the list of Variables of type <em>User Interface</em> to bind to this Section. Once a Variable is chosen, you can choose a Form to present the Variable in the Form property. If Form property is not selected with a chosen Variable, the<strong> Form</strong> with name <i>Default</i> (that is, <i>&lt;Variable&gt;.Form.Default</i>) is assumed. Default is not assigned. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Visible</strong></td>
+<td class='confluenceTd' valign=top>Optional</td>
+<td class='confluenceTd'>Defines the user permissions assigned to this layout. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and visiblePerm can be assigned as well as Object Permissions. Defaults to NONE, which means no permissions assigned.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Notes</h3>
+<p>Section can have many child elements (see list above). In the absence of a layout element, the child elements are displayed vertically within the section from top-to-bottom.</p>
+<p>A section can work in a similar way to a Form Frame. The Variable and Form properties of the Section element can be set up to function like a Form Frame, where the Section's appearance may change at runtime based on Variables. Please refer to the <a href="Element - Form Frame.htm" title="Form Frame">Form Frame</a> section for further details.</p>
+<p>The Expand property of the Section element will function without a Section Header. The Section and its child elements will simply not be visible if the Expand property is set to False. </p>
+<p>Width of the Section is dictated by the Section Stack's width or the width of the layout elements (Horizontal or Vertical). </p>
+
+<p>There can only be one (1)  Section Header within a Section.</p>
+<p>*If this element is the first element that appears in the Element Tree pane, you can set the cell alignment. If this element has a parent layout, for example vlayout or hlayout with the width/height set, this element uses these values as a base to set its alignment. If the parent layout does not contain a width/height, then this element does not have a base to which it can set its alignment.
+If the element has a parent that contains width/height settings, but this form is displayed under another layout with different widths, your form alignment is restricted to the parent's width/height settings.</p>
+<h4><a name="StateChangeCallback"></a>State Change Callback Example</h4>
+<p>The <strong>State Change Callback</strong> property is called when the user clicks the expand/collapse icon on the Section Header element. The method assigned to this property can be coded to dynamically expand/collapse other sections at runtime. For example, the developer creates two Section elements:<em> SectionA</em> and <em>SectionB</em> and codes the following methods and permissions such that <em>SectionB</em> is expanded when <em>SectionA</em> is expanded:<br></p>
+<ol>
+<li> A variable<em> isExpandedB</em> is created and initialized as <em>False </em>(onInit method).</li>
+<li> Two methods are created: 
+<ul><li>a new script method is created called<em> ExpandB</em> that sets the variable<em> isExpandedB</em> to True</li>
+<li>permissions method <em>PermB </em>returns the variable (<em>&quot;return this.isExpandedB&quot;</em>).</li></ul>
+<p><img src="exampleSectionScripts1.png" alt="Scripts Example" border="1"></p>
+<li>ExpandB is assigned to the State Change Callback property of <em>SectionA</em> and <em>PermB</em> is assigned to <em>SectionB</em> <strong>Expand</strong> property.</li>
+ <p> <img src="exampleSectionScript2.png" alt="Section Properties" border="1"></p></ol>
+<h4><a name="FormExample"></a>Form Property Example</h4>  
+<p>The Form property can be assigned to a variable of the type <i>string</i> which represents a Form to be displayed at runtime. There are instances when the metadata developer may want the form that is displayed within the Section to change based on runtime conditions or actions (that is, a button being clicked changes the value of this variable allowing a different form to be displayed). The example below will show how the Section will display <em>FormA</em> via a string variable <em>STest</em>:</p>
+<ol>
+<li>Create a variable called &quot;<em>STest</em>&quot; of the data type &quot;string&quot; (example a local variable under the UserInterface object where the Section is defined).</li>
+<li>Assign<em> STest</em> to the Form property of the Section.</li>
+<li>Initialize the<em> STest</em> variable in the onInit method <em>(this.STest = &quot;FormA&quot;;</em>).</li>
+<li>Create a new form called <em>FormA</em> (note: form name is the same as the string name - as the string refers to the form).</li>
+</ol>
+<br>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

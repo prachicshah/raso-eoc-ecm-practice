@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Performance - Statistic Monitoring</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Statistic Monitoring</h2>
+
+<p>Complex parameter-driven objects implement the AVM's internal mechanisms. Information about the current state of these objects helps understanding of how healthy the AVM is, what are the current bottlenecks, if any exist, and what has to be done to increase the AVM's performance.</p>
+<p>Each AVM cache listed in JConsole allows you to view, manage, and change statistic counters. Each counter provides data for one runtime operational parameter of each AVM cache. The counter values are positive integers. See <a href="../../../../Metadata Deployment Guide/JConsole AVM caches.html">AVM Caches Domain</a> for the various counters that you can use for each AVM cache.</p>
+<p>  Clicking <b>Performance</b> &gt;<b> Statistic Monitoring </b>displays the list of formatted string called the <strong>statistics monitoring specification</strong> or <strong>SM specification</strong>. This specification provides full control over the statistics gathering and reporting by specifying what statistics counters are to be displayed and how they are to be displayed. See the <a href="../../../../Metadata Deployment Guide/JConsole statistics monitoring.html">Statistics monitoring</a> section for more information on the specification.</p>
+<p><img src="statisticMonitoring.png" alt="Performance - Statistic Monitoring tab" border="1"></p>
+<p>You can perform the following statistics monitoring-related tasks:</p>
+<ul>
+  <li><a href="#enableStatisticsMonitoring">Enable</a> statistics in JConsole. <br>
+  </li>
+  <li><a href="#addSMspecification">Add</a> a statistics monitoring specification</li>
+  <li><a href="#deleteSMspecification">Delete</a> a statistics monitoring specification</li>
+</ul>
+<h3><a name="enableStatisticsMonitoring"></a>Enable Statistics Monitoring</h3>
+<p>By default, statistics monitoring is turned off. It can be turned on directly from <a href="../../../../Metadata Deployment Guide/JConsole statistics monitoring.html#startStopSM">JConsole</a>.</p>
+<p><strong>Note:</strong> Benchmark counters can  be increased. Calling a function with the argument (N &lt;=0) adds a 1 to the existing counter value.</p>
+<h3><a name="addSMspecification"></a>Add a Statistics Monitoring Specification</h3>
+<p>To add a statistics monitoring specification, complete these steps:</p>
+<ol>
+  <li>Click the <strong>Add</strong> button to add an empty row to the table.<br>
+    <br>
+    <img src="statisticMonitoringAddButton.png" alt="Performance - Statistic Monitoring tab - Add button" border="1">
+    <br>
+    <br>
+  </li>
+  <li>Enter the <strong>Name</strong> of your statistics monitoring specification. </li>
+  <li>Proceed to enter the <strong>Specification</strong> details. 
+    See the <a href="../../../../Metadata Deployment Guide/JConsole statistics monitoring.html">Statistics monitoring</a> section for syntactical details.<br>
+  </li>
+
+  <li>When you have finished making your changes, click the <strong>Save</strong> button to save your configuration.</li>
+</ol>
+<h3><a name="deleteSMspecification"></a>Delete a Statistics Monitoring Specification</h3>
+<p>To delete a statistics monitoring specification, complete these steps:</p>
+<ol>
+  <li>Select the checkbox next to the  statistics monitoring specification that you want, and then click the <strong>Delete</strong> button.<br>
+    <br>
+  <img src="statisticMonitoringDeleteButton.png" alt="Performance - Statistic Monitoring tab - Delete button" border="1">  <br>
+  <br>
+  </li>
+  <li>A confirmation message appears. Click the <strong>Yes</strong> button to confirm.</li>
+  <li>Your selected statistics monitoring specification has been successfully removed from the list.</li>
+</ol>
+<ol>
+</ol>
+</body>
+</html>

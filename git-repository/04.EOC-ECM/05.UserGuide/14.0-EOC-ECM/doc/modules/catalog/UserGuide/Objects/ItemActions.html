@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Item Actions</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" >
+
+
+<h2>Item Actions</h2>
+<p>At order  time, you can perform several operations for an item, for example, add, remove, upgrade,or downgrade. The items can  have different behavior for different operations. The actions item object  contains some rules or events. When you do add, remove, or  other  operations on the item, in each stage (add, present, submit), you can execute an action (event, workflow, rule) which is defined in  catalog.</a>   Action in runtime is  part of the item definition. </p>
+<p>To create a new  actions item, follow these steps<strong>:</strong></p>
+<p><strong>Note:</strong> A project must be opened to create a actions item.</p>
+<ol>
+  <li> Navigate to<strong> Designer</strong> &gt; <strong>Items</strong> menu.</li>
+  <li>Expand the <strong> Item</strong> tree and select one item to which you want to add the actions (for example, Internet Offer).</li>
+  <li> Select <strong> Actions</strong> from associated item objects in the left pane.</li>
+  <p><img src="itemActions.png" alt="Item Actions Type"></p>
+  <li>The <strong>Action Detail</strong> dialog appears in the right pane.
+    </li>
+  <li>Enter the information in the following fields:</li>
+  <p>  
+  <table class='confluenceTable' border cellpadding="1">
+    <tbody>
+      <tr>
+        <th width="125" class='confluenceTh'>Field</th>
+        <th width="925" class='confluenceTh'>Description</th>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Code</strong></td>
+        <td class='confluenceTd'>This is the code used to identify the item action.  This code is not restricted to alphanumeric characters, it can also contain a combination of spaces, hyphens, etc. Strings can be up to 32 characters long.</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Status</strong></td>
+        <td class='confluenceTd'>A list of available <a href="States.html">Status</a> for this action (for example, Definition and Active).</td>
+      </tr>
+       <tr>
+      <td class='confluenceTd'><strong>Label</strong></td>
+      <td class='confluenceTd'>The label for the item action, which is used in the application user interface. This field is a translational string that supports language translations (refer to Velocity Studio's Translation Element for more details).</td>
+    </tr>
+       <tr>
+         <td class='confluenceTd'><strong>Start Date</strong></td>
+         <td class='confluenceTd'>The effective date of this action. Refer to <a href="StartEnd_Dates.html">Start and End dates</a> for details. Defaults to the project's start date.</td>
+       </tr>
+      <tr>
+        <td class='confluenceTd'><strong>End Date</strong></td>
+        <td class='confluenceTd'>The end date of this action represents the date when this action is no longer effective. Refer to <a href="StartEnd_Dates.html">Start and End dates</a> for details.</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Cancel</strong></td>
+        <td class='confluenceTd'>Objects that are extended have this Cancel flag checked. If the flag is checked, then the   extended item does not inherit that association. </td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Project</strong></td>
+        <td class='confluenceTd'>Each object is assigned to a Project. This defaults to the active or opened project when the action is first created.</td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Order Item Action</strong></td>
+        <td class='confluenceTd'><p>This field refers to the type of operation  when you need do some  operation on items, such as add, change, and remove. 
+           Predefined  action type list  contains Add, Change, Upgrade, Downgrade, Move, and Disconnect in the <em>cwt_orderItemAction</em> code table.  You can add customized operation types in this code table.</p></td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>SubAction</strong></td>
+        <td class='confluenceTd'><p>This property defines the state of the action. For example,  to create new operation there might be several states add, present, submit,  or complete. State list is listed in the<em> cwt_itemSubAction</em> code table. You can add customized subactions  in this code table.</p></td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Condition</strong></td>
+        <td class='confluenceTd'><p>This field indicates the eligibility rule which is from catalog global  rule to determine whether this action is eligible to execute. 
+          In the runtime, you can call <strong>isEligible()</strong> to execute eligibility  rule.</p></td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Implementation Type</strong></td>
+        <td class='confluenceTd'><p>This property defines action value type. It determines if the  action is executed as workflow, event, catalog rule, or other type. The type list is from  <em>cwt_implementationType</em> code table. There are 4 predefined types workflow, event, eligibility,  and validation. You can add customize types  in the code table.</p></td>
+      </tr>
+      <tr>
+        <td class='confluenceTd'><strong>Implementation Value</strong></td>
+        <td class='confluenceTd'><p>This field is depended on the Implementation type. For workflow,  the value is metadata name, event type or some  user defined type. User Interface  displays a text field for  user to input the name. For eligibility,  validation, the value is global Rule. User interface  displays a finder to select global  rule.</p></td>
+      </tr>
+    </tbody>
+  </table>
+  <li>Click the <strong>Save</strong> (<img src="saveItemButton.png" width="18" height="18" alt="Save Button">) button. </li>
+  <li>The <strong>Versions </strong>tab appears on the <strong>Action Details</strong> dialog. You can create versions of this action object. 
+    Items with same type and state can have multiple actions, you  can create two actions for new (action  type) <strong>Basket.Add</strong> (sub action state)  with different action code. 
+    Multiple versions are also allowed. For same action code, you  can create multiple versions in runtime. Item cache picks up only one  version for each code.
+    </p>
+  </li>
+  <li> The saved item action (ADD - Basket.Add - Workflow) appears under the<strong> Actions </strong> object.</li>
+  
+  
+  <p><img src="savedItemAction.png" alt="Saved Description"></p>
+  <p>&nbsp;</p>  
+</ol>
+
+<h3>&nbsp;</h3></td>
+</tr>
+</table>
+</body>
+</html>
+

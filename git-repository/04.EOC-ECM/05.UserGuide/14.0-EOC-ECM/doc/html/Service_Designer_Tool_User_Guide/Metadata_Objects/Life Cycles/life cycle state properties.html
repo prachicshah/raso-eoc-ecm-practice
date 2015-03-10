@@ -1,0 +1,58 @@
+﻿<html>
+<head>
+<title>Life Cycle State Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Life Cycle State Properties</h3>
+<p>When the user right-clicks on a <b>state</b> icon in the <b>Diagram</b> tab and selects the <b>Properties</b> command, the Life Cycle State <b>Process property</b> dialog will open where the state can be edited. The table that follows provides a description of the fields.</p>
+<p><img src="lifeCycleStatePropertyGeneral.png"  alt="State Property General" /></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Read-only. The state code defined in the enumeration.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Read-only. The state description defined in the enumeration.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Descriptive text for documentation purposes.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Allow</b> <b>invalid</b> <b>state</b></td>
+<td class='confluenceTd'>This attribute only applies to Order Life Cycle Diagrams. The attribute can be set to any node, except the state with the NEW code, to allow the Order state to be changed without concern over incorrect status.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Actions</b></td>
+<td class='confluenceTd'>The Actions tab houses state scripts.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The Action folder enables you to  create or select from various default methods relating to the state by right-clicking the State Code (that is,  Prov). </p>
+ <p><img src="lifeCycleStatePropertyActions.png" alt="State Actions Tab "></p>
+<p>The Action properties folder appears, which allows you to create or change the script.</p>
+<p><img src="lifeCycleStatePropertyActionsMethod.png"  alt="State Actions Method"></p>
+<p>Normally at runtime, when an Order state is changed according to an Order Life Cycle Diagram definition, the system checks two things before it changes the state:</p>
+<ol>
+<li>Whether the current Order is valid.</li>
+<li>Whether the current Order is complete.</li>
+</ol>
+<p>If either of these conditions fails, an internal error message box will pop up and the Order state will not be changed to the next state in the state flow. However, if the <b>Allow </b><b>invalid</b> <b>state</b> check box is checked, the invalid or incomplete status will be ignored and the Order will move to the next state.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

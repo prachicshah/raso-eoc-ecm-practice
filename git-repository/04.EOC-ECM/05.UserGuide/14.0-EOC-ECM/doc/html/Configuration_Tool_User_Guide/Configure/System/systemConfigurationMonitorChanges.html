@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>System Configuration - Monitor Configuration Changes</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Monitor Changes in System Configuration</h2>
+
+<p>This feature allows you to track changes to your system configuration for both cluster and children nodes (that is, PE, UI, and PE_UI). When you save your changes in the System Configuration application, this functionality stores all changes that have occurred to the configuration starting from the time that it was created to the last change. The last version is the active configuration. This feature enables monitoring your system configuration and recovering from a configuration crash by rolling back to a prevous version of your configuration.</p>
+<p>Both  overall and detailed changes are saved. Overall changes show the history for all configuration changes as whole (that is, the entire XML file),  while detailed changes save both the old and new  values for each affected metadata variable node.</p>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>
+    There is no internal  mechanism for rolling back to a specific version.
+  </li>
+  <li>This feature does not produce full XML files (that is, XML stored as an NCLOB  attribute in a database). 
+  </li>
+</ul>
+<h3>Configuration Scripts</h3>
+<p>The monitorConfiguration script appears in the Library tab of Velocity Studio, under <strong>System</strong> &gt; <strong>CWL - Config</strong> &gt; <strong>cwl_config</strong> &gt; <strong>implementation</strong> &gt; <strong>script</strong>, which the saveConfigNode script invokes. This script records previous changes to the configuration before commiting them to the database.</p>
+<p>The  saveConfigNode configuration script gets both the new configuration values and  the current configuration as a document object. The script  then passes these new configurations along with the current document to the monitorConfiguration script, which gets the default configuration and starts calculating the changes.  This script performs iterations, making comparisons between the new and current values.<br>
+  <br>
+The monitorConfiguration script reads the current configuration from  the database and converts it to a data structure (that is, cwl_config.data.config) . It then checks whether the current changes occurred to either the cluster or child node  to load the required configuration. It also creates a new data structure  that contains the default configuration values. </p>
+<p>As a result, the data structure contains three  objects:</p>
+<ul>
+  <li> One object that represents the default configuration</li>
+  <li>One object   that represents the current configuration from the database</li>
+  <li>One object that represents  the new configuration values that needs to be committed into the database</li>
+</ul>
+<p>After creating the required objects, the monitorConfiguration script invokes the archiveConfig local function that builds the path for the required nodes. It also checks whether  the object is a  collection. If this check holds true, the script acquires the variable node element's ID, records the changes, and passes it to th event.</p>
+<h3>Event and Event Handler</h3>
+<p>  The <a href="../../../Service_Designer_Tool_User_Guide/Metadata_Objects/Script/Event Handlers.html">event  handler</a> receives the changes and is responsible for reflecting them into the database. The following table identifies the <a href="../../../Service_Designer_Tool_User_Guide/Metadata_Objects/Script/Events.html">event</a> and event handler names, and describes the event call.</p>
+<table width="796" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <td width="130" class='confluenceTd'><strong>Event Name</strong></td>
+      <td width="654" class='confluenceTd'>monitorConfiguration</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Event Handler Name</strong></td>
+      <td class='confluenceTd'>monitorConfiguration</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Event Call</strong></td>
+      <td class='confluenceTd'><div class="preformatted">
+  <div class="preformattedContent">
+  <pre>publishEvent(&quot;monitorConfig&quot;,  FIRST_ONE, null,[configADoc,configDetails]);</pre>
+  </div>
+      </div>
+        <p>Where:</p>
+        <ul>
+          <li><em>configADoc</em>  is a  cwl_config.configArch document that represents the master record</li>
+          <li><em>configDetails</em> is an array of the cwl_config.configArchDet document  that represent the details records.</li>
+      </ul></td>
+    </tr>
+  </tbody>
+</table>
+<h3>Tables</h3>
+<p>The following database tables house the configuration audit information:</p>
+<ul>
+  <li>CW_CONFIG_AUDIT</li>
+  <li>CW_CONFIG_AUDIT_DETAILS</li>
+</ul>
+<ol>
+  <BR>
+</ol>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<html>
+<head>
+<title>JavaScript Editor - User Interface</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h3>JavaScript Editor - User Interface</h3>
+
+<p>The JavaScript Editor consists of three main areas:</p>
+<ul>
+  <li><a href="#toolbar">Toolbar</a></li>
+  <li><a href="#mainScriptArea">Main area for script development</a></li>
+  <li><a href="#statusBar">Status bar</a></li>
+  </ul>
+<p><img src="newJSEditorUserInterface.png" alt="New JavaScript Editor - user interface"></p>
+
+<h4><a name="toolbar"></a>Toolbar</h4>
+<p>The JavaScript Editor toolbar allows you to perform a number of actions to help you with writing your script. The following table describes what each button does within the script editor.</p>
+
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+  <th width="86" class='confluenceTh'>Button</th>
+  <th width="86" class='confluenceTh'>Shortcut</th>
+<th width="1547" class='confluenceTh'>Function</th>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="newJSEditorPrintButton.png" width="31" height="31" alt="Print button"></td>
+  <td class='confluenceTd'><em>Ctrl + P</em></td>
+<td class='confluenceTd'><a href="new JavaScript Editor print menu.html">Print the code</a> displayed in the JavaScript Editor.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="newJSEditorUndoButton.png" width="31" height="31" alt="Undo button"></td>
+  <td class='confluenceTd'><em>Ctrl + Z</em></td>
+  <td class='confluenceTd'><a href="new JavaScript Editor edit menu.html#undoFunction">Undo the last action</a> that you performed.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="newJSEditorRedoButton.png" width="31" height="31" alt="Redo button"></td>
+  <td class='confluenceTd'><em>Ctrl + Y</em></td>
+<td class='confluenceTd'><a href="new JavaScript Editor edit menu.html#redoFunction">Redo an action</a> that you performed.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="newJSEditorCopyButton.png" width="31" height="31" alt="Copy button"></td>
+  <td class='confluenceTd'><em>Ctrl + C</em></td>
+<td class='confluenceTd'><a href="new JavaScript Editor edit menu.html#copyText">Copy</a> highlighted text into your script.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="newJSEditorPasteButton.png" width="31" height="31" alt="Paste button"></td>
+  <td class='confluenceTd'><em>Ctrl + V</em></td>
+<td class='confluenceTd'><a href="new JavaScript Editor edit menu.html#pasteFunction">Paste</a> cut or copied text into your script.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="newJSEditorCutButton.png" width="31" height="31" alt="Cut button"></td>
+  <td class='confluenceTd'><em>Ctrl + X</em></td>
+<td class='confluenceTd'><a href="new JavaScript Editor edit menu.html#cutFunction">Cut</a> highlighted text into your script.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="newJSEditorFindTextButton.png" width="31" height="31" alt="Find and Replace Text button"></td>
+  <td class='confluenceTd'><em>Ctrl + F</em></td>
+<td class='confluenceTd'><a href="new JavaScript Editor search menu.html#searchFindReplace">Find specific words or text</a> within your script. You also have the option of finding words or text, and replacing them.</td>
+<tr>
+<td align="center" class='confluenceTd'><img src="newJSEditorFindTextNextOccurrenceButton.png" width="179" height="30" alt="Find Next Occurrence button"></td>
+<td class='confluenceTd'><em>Ctrl + K</em></td>
+<td class='confluenceTd'>The <a href="new JavaScript Editor search menu.html#previousSearchCriteria">drop-down box</a> allows you to select from previous search criteria that you have used. Click the <strong>Find Next Occurrence</strong> button to the right of the drop-down field to find the next occurrence of your search criteria in your script.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="newJSEditorListMethodsButton.png" width="31" height="31" alt="List Methods button"></td>
+  <td class='confluenceTd'><em>Ctrl + Spacebar</em></td>
+<td class='confluenceTd'><a href="new JavaScript Editor functions menu.html#listMethods">List methods</a> that you can use in your script by clicking this button. Select the method you want to insert into your script by double-clicking your selection.</td>
+
+<tr>
+  <td height="42" align="center" class='confluenceTd'><img src="newJSEditorSelectMethodsButton.png" width="31" height="31" alt="Select Method button"></td>
+  <td class='confluenceTd'><em>Ctrl + M</em></td>
+  <td class='confluenceTd'>    Open the <b>Select Method</b> dialog, which <a href="new JavaScript Editor functions menu.html#selectJSmethods">lists the available JavaScript functions</a> that can be selected and added into the script editor.<br>
+    <br></td>
+</tr>
+<tr>
+  <td height="40" align="center" class='confluenceTd'><img src="newJSEditorSelectElementButton.png" width="31" height="31" alt="Select Element button"></td>
+  <td class='confluenceTd'><em>Ctrl + E</em></td>
+  <td class='confluenceTd'>    Opens the <b>Select Element</b> dialog, which <a href="new JavaScript Editor functions menu.html#selectMetadataElement">lists the available metadata elements</a> that can be selected and added into the script editor.<br>
+    <br></td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="newJSEditorSelectTreeNodeButton.png" width="31" height="31" alt="Select Tree Node button"></td>
+  <td class='confluenceTd'><em>Ctrl + T</em></td>
+  <td class='confluenceTd'>Opens the <strong>Select Node</strong> dialog, allowing you to select all <a href="new JavaScript Editor select node.html">metadata elements, and their variables and scripts</a>, into your code.</td>
+</tr>
+<tr>
+  <td align="center" class='confluenceTd'><img src="newJSEditorCodeTemplateButton.png" alt="Code Template button"></td>
+  <td class='confluenceTd'>&nbsp;</td>
+  <td class='confluenceTd'><p>Click this button to launch the JavaScript Code Template dialog, allowing you to <a href="new JavaScript Editor functions menu.html#insertCodeTemplates">insert code templates</a> or standard code patterns into the JavaScript editor.<br>
+    <br>
+  </p></td>
+</tr>
+  
+  </tbody>
+</table>
+
+<h4><a name="mainScriptArea"></a>Main Area for Script Development</h4>
+<p>The JavaScript Editor's main area allows you to code and edit your scripts. You use this area with its toolbar, which provides you with a number of useful actions to help you develop and edit your scripts. </p>
+
+<h4><a name="statusBar"></a>Status Bar</h4>
+<p>The JavaScript Editor's status bar shows a number of useful details:</p>
+<ul>
+  <li>Whether the script has been changed.</li>
+  <li>Whether you are in <strong>Insert</strong> mode (insert text as you use the JavaScript Editor) or in <strong>Overwrite</strong> (enter text over existing text) mode.</li>
+  <li>What line and  character position your cursor is on. In the example that follows, your cursor is on line three, at character 50. <br>
+    <br>
+  </li>
+  </ul>
+<p><img src="newJSEditorStatusBar.png" alt="Status bar example"><br>
+  To the left of the status bar, you have two buttons:</p>
+<ul>
+  <li>The <strong>OK</strong> button saves your script changes and closes the JavaScript Editor window</li>
+  <li>The <strong>Cancel</strong> button does not save our changes and closes the JavaScript Editor window</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>System - General</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>General</h2>
+
+<p>Clicking <b>System</b> &gt;<b> General</b> displays a list of system settings. </p>
+<p><img src="general.png" alt="System - General tab" border="1"></p>
+<p>The following system settings are available when you have selected the cluster node:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>System Setting</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td height="34" class='confluenceTd'><b>Log Queries Longer Than (Seconds)</b></td>
+      <td class='confluenceTd'><p>This property specifies the query length in seconds. The default value is 0 seconds. This field can range in value from 0 to 250.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a name="partitioning"></a><strong>Partitioning Interval (Months)</strong></td>
+      <td class='confluenceTd'><p>This property sets the database partitioning interval in months, if applicable. A setting of 0 indicates that this feature is not in use.<BR>
+        </p></td>
+    </tr>
+    <tr>
+      <td height="45" class='confluenceTd'><strong>Script Optimization Level</strong></td>
+      <td class='confluenceTd'>This property specifies whether to have AVM optimize scripts (<b>Optimized</b>) or not (<b>None</b>). Turn optimization off when debugging.</td>
+    </tr>
+    <tr>
+      <td height="45" class='confluenceTd'><strong>Leaf Encryption Key (Hex)</strong></td>
+      <td class='confluenceTd'><p>This property defines the encryption key used by the system. This key must be at least 48 hexadecimal characters. It is recommended to generate a cryptographically strong key, as opposed to using random hexadecimal characters. If this field is left blank, the system's default key is used for encryption.</p>
+      <p><strong>Note: </strong>The leaf encryption key is defined as low as the system level.</p></td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Enable Audit</strong></td>
+      <td class='confluenceTd'>This checkbox property allows you to enable or disable auditing. There is an <b>Audit trail</b> flag in the <a href="../../../../Service_Designer_Tool_User_Guide/Metadata_Objects/Document/Document General Properties.html"><b>General</b> tab of the <b>Document</b></a> in the Velocity Studio that triggers the system to record a history log for the Document. When the <b>Audit</b> flag is unchecked in the Configuration application, no log is recorded for any Document.</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>HTTP API Login Required</strong></td>
+      <td class='confluenceTd'><p>If this property's checkbox is selected, login is required for any API access through HTTP, which is relevant to any <a href="../../../../Service_Designer_Tool_User_Guide/Metadata_Objects/Built-in Service Providers/set up an http api listener.html">HTTP listener</a> created in the application.</p></td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Multiple Application Deployment</strong></td>
+      <td class='confluenceTd'>Select this property's checkbox to indicate that the system has been configured for  multiple application deployment.</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Last Updated</strong></td>
+      <td class='confluenceTd'>This property contains the last date and time that the configuration node was updated.</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Last Updated By</strong></td>
+      <td class='confluenceTd'>This property denotes the user ID of the last person who updated the configuration node.</td>
+    </tr>
+  </tbody>
+</table>
+<p><br>
+Selecting a non-cluster node displays a different set of fields:<br>
+<br>
+<img src="generalNonClusterNode.png" alt="System - General tab - Non-cluster node" border="1"></p>
+<p>The following system settings are available when you have selected any non-cluster node:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>System Setting</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td height="34" class='confluenceTd'><b><strong>Active Configuration</strong></b></td>
+      <td class='confluenceTd'><p>Select this property's checkbox to indicate that the configuration can be used by a  runtime instance. Otherwise, leaving this property unchecked denotes that this configuration cannot be used at runtime.</p></td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Last Updated</strong></td>
+      <td class='confluenceTd'>This property contains the last date and time that the configuration node was updated.</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Last Updated By</strong></td>
+      <td class='confluenceTd'>This property denotes the user ID of the last person who updated the configuration node.</td>
+    </tr>
+  </tbody>
+</table>
+<p><br>
+</p>
+</body>
+</html>

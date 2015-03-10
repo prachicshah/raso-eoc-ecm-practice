@@ -1,0 +1,158 @@
+<html>
+<head>
+<title>Application Virtual Machines (AVMs)</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Application Virtual Machines (AVMs)</h2>
+<p>Clicking <strong>Manage &gt; AVMs</strong> from the menu bar allows you to view information about processes in the runtime environment. This page displays a list of currently running user interface servers.</p>
+<p><img src="avm_finder.png" border="1" alt="Manage/AVMs page" /></p>
+
+<p>The AVMs page contains the following fields:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th  class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>AVM</b></td>
+<td class='confluenceTd'>The ID of the node, assigned in the process engine start script.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Application</b></td>
+<td class='confluenceTd'>This field indicates the <a href="../../Service_Designer_Tool_User_Guide/Metadata_Objects/Metadata Root/Metadata Internal Version.html">internal name</a> of  application.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Node Name</b></td>
+<td class='confluenceTd'>This field Indicates the node name, specified in <a href="../../Configuration_Tool_User_Guide/Configure/System/systemConfigurationUserInterface.html">node menu</a> of the Configuration application, and selected in the <strong>Node</strong> field of  Select Application menu in Velocity Studio.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>AVM Mode</b></td>
+<td class='confluenceTd'>The node type (PE or UI, or both).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Process Engine ID</b></td>
+<td class='confluenceTd'>The ID of the process engine, assigned in the process engine start script.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Host</b></td>
+<td class='confluenceTd'>The name of the host address.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>IP Address</b></td>
+<td class='confluenceTd'>The host IP address.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>PE Mode</b></td>
+<td class='confluenceTd'>The status of the process engine.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>JMX Port</b></td>
+<td class='confluenceTd'>The JMX Port for this PE, passed to the PE in its start script.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Started</b></td>
+<td class='confluenceTd'>Date and time the AVM has been started.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Updated On</b></td>
+<td class='confluenceTd'>Last time when the AVM heartbeat thread has updated the database, indicating that the AVM is operational. The AVM&#160;heartbeat is every 5 minutes.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Ended Time</strong></td>
+  <td class='confluenceTd'>The date and time when the AVM stopped.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Memory Usage (KB)</b></td>
+<td class='confluenceTd'>Currently used memory in KB.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Total Memory (KB)</b></td>
+<td class='confluenceTd'>Maximum available memory in KB.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Engine Status</b></td>
+<td class='confluenceTd'>Process Engine status. Can be <em>Running</em>, <em>Stopped</em>, <em>Saturated</em> (that is, there is no more memory to handle new processes) or <em>Dead</em> (the last heart beat is not received in the expected time).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Number of Processes</b></td>
+<td class='confluenceTd'>The number of processes run by this Process Engine.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Bucket Number</b></td>
+<td class='confluenceTd'>The bucket number in the span this PE is a part of (clusters only).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Activated On</b></td>
+<td class='confluenceTd'>Displays the build version (buildVersion and buildInternalVersion) of the packaged WAR file (see also <a href= "../../Service_Designer_Tool_User_Guide/Service Designer menu Actions/Metadata Build War.html">Build Deployment WAR)</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>Double-clicking any AVM in the search results launches the AVM Details page, which provides details about the AVM on a separate screen.</p>
+<p><img src="avm_pe_details.png" alt="PE details" border="1"></p>
+<p>The AVM Details page shows all fields displayed on the AVM page as well as the following fields:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Field</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>System Application Name</strong></td>
+      <td class='confluenceTd'>The name of the system application.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Engine Parameters</b></td>
+      <td class='confluenceTd'>Other parameters passed to the process engine in it is a start script (for example, configuration file, cdef file, sync or async, and so on.)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Running Version</b></td>
+      <td class='confluenceTd'>The GUID generated from the build version key. If deployment is successful, Running Version is updated to the value of Activated Version to indicate the current running version.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Running Iversion</b></td>
+      <td class='confluenceTd'>The GUID generated from the build version key. If deployment is successful, Running Iversion is updated to the value of Activated Iversion to indicate the current running version.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Activated Version</strong></td>
+      <td class='confluenceTd'>Displays the current build version used to successfully deploy the WAR file. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Activated IVersion</b></td>
+      <td class='confluenceTd'>The GUID randomly generated during activation.</td>
+    </tr>
+  </tbody>
+</table>
+<h4>Commands</h4>
+<p>The following commands are available from the AVM page:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="138" class='confluenceTh'>Menu Item</th>
+<th width="1217" class='confluenceTh'>Function</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Reload Config</b></td>
+  <td class='confluenceTd'><p>Select an AVM from the search results, and then click this button to reload the system configuration information from the database. Parameters and settings from all Configuration applicaiton modules are reloaded, except for those under <em>Databases</em> and <em>Passwords.</em></p>
+    <p><strong>Note</strong>:  It is recommended to restart JBoss if you make reload configuration variables.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b><a href="PE info.html">PE Info</a></b></td>
+  <td class='confluenceTd'>Select an AVM from the search results, and then click this button to launch a drill-down summary for a selected process engine.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong><a href="memory processes.html">Memory Processes</a></strong></td>
+  <td class='confluenceTd'>Launches the Process Manager, allowing you to review process activities in the system.</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+</table>
+</body>
+</html>

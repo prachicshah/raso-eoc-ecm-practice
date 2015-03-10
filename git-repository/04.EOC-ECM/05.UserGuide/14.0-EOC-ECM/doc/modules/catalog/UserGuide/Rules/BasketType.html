@@ -1,0 +1,174 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Basket</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+<h4><a name="Basket">Basket</a></h4>
+<p>The Basket object is collection of basket  items that can be processed using the <a href="Statements.html#ForEachStatement">For each</a> statement. The Basket object  supports several Select operations. The Select operation has the following general format:</p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>Select operation</strong> basket identifier <strong>where</strong>
+    &lt;item attribute name&gt; <strong>operation</strong> expression and
+    &lt;item attribute name&gt; <strong>operation</strong> expression...
+</pre>
+</div>
+</div>
+
+<p>The basket identifier is either a parameter or a variable of Basket type.</p>
+<p>The item attribute name should specify a valid  item attribute name. If a basket item does not have such an attribute, it is  ignored during the search. Item attributes can be specified only in the   where clause. All basket items have the following predefined attributes:</p>
+<ul>
+  <li>Code – specifies the item code  (Catalog item definition code)</li>
+  <li>Type – specifies the item type  (Catalog item type)</li>
+</ul>
+<p>The operations supported are as follows:</p>
+<ul>
+  <li>Equal</li>
+  <li>Not equal</li>
+  <li>Equal no case (for string  attributes only)</li>
+  <li>Not equal not case (for string  attributes only)</li>
+  <li>Greater than</li>
+  <li>Greater than or equal</li>
+  <li>Less than</li>
+  <li>Less than or equal</li>
+  <li>In</li>
+  <li>Not in</li>
+  <li>In no case</li>
+  <li>Not in no case</li>
+  <li>Like</li>
+  <li>Not like </li>
+  <li>Like no case</li>
+  <li>Not like no case</li>
+</ul>
+<p>The supported operations are listed below.</p>
+<p><strong>Select single item</strong></p>
+<p>This operation returns the item that matches the search  criteria. If more than one item is found, it throws exception. If no items are  found, it returns null. This operation has the following format:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>
+<strong>select [single] item </strong><strong>from</strong> basket variable <strong>where</strong>
+  &lt;item attribute name&gt; <strong>operation</strong> expression and
+  &lt;item attribute name&gt; <strong>operation</strong> expression...</pre>
+</div>
+</div>
+<p>The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>Variable Item myItem = select item from theBasket where type = &quot;OFFER&quot;</strong>
+</pre>
+</div>
+</div>
+<p><strong>Select many items</strong></p>
+<p>This operation returns a collection of Item objects that can be processed by the <a href="Statements.html#ForEachStatement">For each</a> statement. If no item is found, the collection is empty and it returns an  empty collection.  If no  search criteria (where clause) is specified, it returns all basket items.  The where clause is optional. This operation has the following format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>select [many] items </strong><strong>from</strong> basket variable [<strong>where</strong>
+  &lt;item<strong> </strong>attribute name&gt; <strong>operation</strong> expression and
+  &lt;item<strong> </strong>attribute name&gt; <strong>operation</strong> expression...]
+</pre>
+</div>
+</div>
+<p>The following is an example:<br>
+</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+<pre>
+  Item product
+  For each product in
+  <strong>select many items from</strong> theBasket <strong>where</strong> type is &quot;PRODUCT&quot; do:
+</pre>
+</div>
+</div>
+<p><strong>Select items count</strong></p>
+<p>The operation returns the number of selected items. The where clause is optional. This operation has the following format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>select item count from</strong> basket variable [<strong>where</strong>
+  &lt;item attribute name&gt; <strong>operation</strong> expression and
+  &lt;item attribute name&gt; <strong>operation</strong> expression...]
+</pre>
+</div>
+</div>
+<p>The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>If (select item count from theBasket where type equals &quot;PRODUCT&quot;) &gt; 10 then</strong>
+</pre>
+</div>
+</div>
+<p><strong>Check for existence of an item</strong></p>
+<p>The operation returns true if there is at least one item that matches the search criteria. If no matching item is found returns false. This operation has the following format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>exist[s] [an] item </strong><strong>in</strong> basket variable <strong>where</strong>
+  &lt;item<strong> </strong>attribute name&gt; <strong>operation</strong> expression and
+  &lt;item<strong> </strong>attribute name&gt; <strong>operation</strong> expression...</pre>
+</div>
+</div>
+
+<p>The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>Count = Count + 1 when exist an item in theBasket where type == "PROD" and code equals no case "tv"</strong>
+</pre>
+</div>
+</div>
+
+<p><strong>Match count operation</strong></p>
+<p>The operation returns the number of  constants in the list which match the values of the specified attribute in the selection.  There is no restriction of how many times a particular literal is matched – it  counts for one match only. The attribute must be a string attribute and exist  in each selected item. The where clause is optional. This operation has the following format:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>select match count for </strong>literal, literal, ... / constant list <strong>by </strong>attribute name
+  <strong>from</strong> basket variable
+  [<strong>where</strong> &lt;item attribute name&gt; <strong>operation</strong> expression and
+  &lt;item attribute name&gt; <strong>operation</strong> expression...]
+</pre>
+</div>
+</div>
+<p>The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre><strong>If (select match count for "AA021", "AA036", "AA047" by code 
+from theBasket where type == "product") greater or equal 2 then</strong></pre>
+</div>
+</div>
+
+<p><strong>Basket item search by attribute API</strong></p>
+<p>The following is an example of using the attribute API to perform a basket item search: </p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+  <pre>// Make sure there are no space between nameList and valueList criteria
+// nameList contains comma-separated values of leaf name
+// valueList contains comma-separated values of attribute value
+// itemcode is itemcode to look for</pre>
+  <pre>var biFinder = new Finder(&quot;cwt_pcoe:basketItemsWithLeafByAttributeFinder&quot;);
+biFinder.searchDocument.nameList = 'basketCode,basketCode1';
+biFinder.searchDocument.valueList = 'baskCode1,testbc1';
+biFinder.searchDocument.itemcode = 'testitem';</pre>
+  <pre>// Result is list of cw_pcoe.basketItem
+var result = biFinder.search();</pre>
+  <pre>// Obtain attribute value of leaf name basketCode of first item
+result[0].basketCode;</pre>
+</div>
+</div>
+
+<p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

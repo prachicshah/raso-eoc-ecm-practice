@@ -1,0 +1,32 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Physical Connection</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Physical Connection</h2>
+
+<p>Clicking   <b>Databases</b> &gt; <b>Physical Connection</b> displays the physical connections to the database, which are responsible for defining database connection parameters to be used by logical connections.</p>
+<p><img src="physicalConnection.png" alt="Databases - Physical Connection tab" border="1"></p>
+<p>Your physical connections must be specified to run your metadata. Specifically, the names of the physical connections must match the database names used in your metadata. You can view the database connection list used by your metadata by clicking <a href="../../../../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Database Connect.html"><b>Database &gt; Connect</b></a> from Velocity Studio's menu bar. The drop-down list in the <b>Database Login</b> dialog shows the database connection list.</b></p>
+<p><b>Notes</b>: </p>
+<ul>
+  <li>Physical connections are only editable at the cluster level. They are read-only at the node level.</li>
+  <li>When setting up the application under normal circumstances as described in the <a href="../../../../Installer_User_Guide/database initialization.html">Installation Guide</a>, you have one physical database connection. However, in advanced application development and optimization (for example, using an Oracle Real Application Clusters (RAC)), you can have the flexibility of multiple physical connections to separate database operations based on functionality for the associated logical connections.</li>
+  <li>The physical connections table does not show all parameters of a physical connection, which are different based on the <b>Driver</b><strong> Type</strong> selection. After creating a physical connection, you must select it, and then click the <b>Edit</b> button to complete all parameters.</li>
+  <li>When making changes to a CIL connection, it is recommended that you save them and then restart Velocity Studio. Due to the CIL client library caching previously used URLs, any new URL is not available until after you restart Velocity Studio to make the configuration active.<br>
+  </li>
+</ul>
+<p>You can perform the following tasks from the Physical Connection page:</p>
+<ul>
+  <li><a href="physicalConnectionAdd.html">Add</a> a physical connection</li>
+  <li><a href="physicalConnectionEdit.html">Edit</a> a physical connection</li>
+  <li><a href="physicalConnectionDelete.html">Delete</a> a physical connection</li>
+</ul>
+<p> <strong>Note</strong>: It is recommended to restart JBoss if you make changes to configuration variables. </p>
+</body>
+</html>

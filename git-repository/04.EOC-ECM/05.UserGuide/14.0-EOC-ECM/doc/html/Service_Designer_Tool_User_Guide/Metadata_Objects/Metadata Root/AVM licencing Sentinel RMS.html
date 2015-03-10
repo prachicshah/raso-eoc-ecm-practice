@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>AVM Licencing with Sentinel RMS</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h3>AVM Licencing with Sentinel RMS</h3>
+
+<p>Ericsson products use the Sentinel server-client approach, which the Ericsson licencing system  supports. <strong>Sentinel RMS</strong> is a robust licence enforcement and enablement solution that  allows you to control and see how you deploy and use your applications. </p>
+<p>The client has a licenced application. To use the application, the client must contact the licence manager server and have it fetch the licence file. As a result, your environment must have a Sentinel licence manager server running in your environment. This server much be installed either in your network or  on the same machine where the application is running. In  the extreme case, the Sentinel licence manager server can be a public Web service  available through the Internet.</p>
+<p>  Customer orders created by SAP flow to the Ericsson licencing system where it generates  a licence file based on the order details. The Ericsson licensing system provides a user interface for you to maintain your licences. It also keeps a list of fingerprints for each licence.  All fingerprints must be collected upfront, so they can be inserted in the  licence file. </p>
+<p> A licence file that the Ericsson licensing system generates contains<a href="AVM licencing value pack and feature codes mapping.html"> value packs  and extra features codes</a> defined in PRIM (that is, the database used by SAP). No feature  hierarchy is provided. Applications must recognize and map value packs to  actual feature names used by both AVM and metadata API. </p>
+<p>The following licence types are supported by Ericsson Order Care and Ericsson Catalog Manager:</p>
+<ul>
+  <li>System – a server  licence that a machine fingerprint locks</li>
+  <li>User – a licence locked to  a user by a client machine fingerprint</li>
+  <li>Floating – locked by a licence server fingerprint with <em>n</em> number of subscribers</li>
+  <li>Capacity– a feature may have a capacity and issues a warning when the maximum item count is  achieved</li>
+  </ul>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>The following licence types are unsupported:
+    <ul>
+      <li>Named user licence, which is locked by the username.</li>
+      <li>Concurrent user, which is locked to a maximum number of open sessions within the application.</li>
+      <li>Standalone licences, when all licencing is self-contained on the individual computer on which the licenced application is installed. However, it is possible to have the licence server run as a separate service on the same machine.</li>
+    </ul>
+  </li>
+  <li>This implementation does not use the Execution Environment API for licencing when running in this environment. A special licence handler is to be implemented once the Execution Environment's cloud API is available.</li>
+  </ul>
+<p>This section covers the following topics:</p>
+<ul>
+  <li><a href="AVM licencing installation packaging.html">Installation and packaging</a></li>
+  <li><a href="AVM licencing licence handlers.html">Licence handlers</a></li>
+  <li><a href="AVM licencing value pack and feature codes mapping.html">Value pack and feature codes mapping</a></li>
+  <li><a href="AVM licencing support existing licence model.html">Support for the existing licence model</a></li>
+  <li><a href="AVM licencing APIs.html">Licencing scriptable APIs</a></li>
+</ul></td>
+</tr>
+</table>
+</body>
+</html>

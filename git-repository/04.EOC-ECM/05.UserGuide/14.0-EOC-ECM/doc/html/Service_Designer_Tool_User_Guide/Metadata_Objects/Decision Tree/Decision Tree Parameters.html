@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <title>Decision Tree Parameters</title>
+	    <link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">	    
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script>    </head>
+
+    <body onLoad="highlight();">
+	    <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+		    <tr>
+			    <td valign="top" class="pagebody">
+
+<h2>Decision Tree Parameters</h2>
+
+<p>The Decision Tree may contain a list of parameters, as a means to generalize its logic flow and execution. Define this list of parameters, in name/type pairs, in the <b>Parameters</b> tab. The type may be one of the following specific metadata object:</p>
+<ul>
+	<li>Data Type</li>
+	<li>Document</li>
+	<li>Order</li>
+	<li>Data Structure</li>
+</ul>
+
+
+<p>or one of the following generic metadata object types:</p>
+<ul>
+	<li>Document</li>
+	<li>Order</li>
+	<li>Data Structure</li>
+	<li>Object</li>
+</ul>
+
+
+<p>Note that if the type is <em>Object</em>, the parameter can be any scriptable object.</p>
+<p><img src="dtParams.png" align="absmiddle" border="1"  alt="Decision Tree Parameters"/></p>
+
+<p>At runtime, the Decision Tree has read/write access to its parameters that are properties of '<em>this</em>' object accessible by parameter name.  For example, the value of parameter <em>p1</em> can be accessed and set by notation "<em>this.p1</em>".</p>
+
+<p><strong>Note:</strong> Refer to the JavaScript Extensions HTML documentation for detailed information on JavaScript objects and their methods.</p>
+
+<p><b>The parameter names must not start with prefix <em>cw</em>.</b> For certain activities, the Decision Tree may create temporary "system" parameters which names start with prefix <em>cw</em>.</p>
+
+<p>The <b>Parameter Properties</b> dialog appears upon adding or editing a parameter. </p><p><img src="dtParamEdit.png" align="absmiddle" border="0" alt="Parameter Properties" /></p>
+
+<table class='confluenceTable' border cellpadding="1"><tbody>
+<tr>
+<th class='confluenceTh'> Field </th>
+<th class='confluenceTh'> Description </th>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Name</b> </td>
+<td class='confluenceTd'> Mandatory. Name of the parameter. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Metadata type</b> </td>
+<td class='confluenceTd'> Choose a specific metadata object that is of Data Type, Document, Order or Data Structure as the parameter's type. Choosing an entry here will nullify the <b>Generic type</b> field. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> <b>Generic type</b> </td>
+<td class='confluenceTd'> Choose from generic <em>Document</em>, <em>Order</em>, <em>Data Structure</em> or <em>Object</em> metadata type as the parameter's type. Choosing an entry here will set the <b>Metadata type</b> field as &lt;None&gt;. </td>
+</tr>
+</tbody></table>
+
+<h4><a name="pass"></a>Passing parameters from one Decision Tree to another</h4>
+
+<p>The <em>Decision Tree</em> Activity allows invoking a new Decision Tree and passing some of the parameters of the calling Decision Tree to the called Decision Tree. The parameters are passed by address (not value), which means the changes in the content of complex parameters in the called Decision Tree are propagated to the calling Decision Tree. However, the two trees have independent parameter lists, so if the called tree changes the parameter value, it is not propagated back to the calling tree. Particularly, changes in simple parameters (such as strings, numbers and dates) is never propagated back to the calling tree.</p>
+
+<p><ins>Example:</ins></p>
+
+<p>Decision Tree <em>tree1</em> has two parameters:</p>
+<ul>
+	<li>name <em>pa1</em> of type <em>document</em>, which has leaf with name <em>s</em></li>
+	<li>name <em>pa2</em> of type <em>string</em></li>
+</ul>
+
+
+<p>Decision Tree <em>tree2</em> has two parameters:</p>
+<ul>
+	<li>name <em>pb1</em> of the same type as <em>pa1</em> type</li>
+	<li>name <em>pb2</em> of the same type as <em>pa2</em> type</li>
+</ul>
+
+
+<p>Decision Tree <em>tree1</em> contains a Decision Tree Activity that calls <em>tree2</em>, and maps the parameters of "tree1" to "tree2". </p>
+
+<p>Before the call of <em>tree2</em>, <em>tree1</em> parameters have the following values:</p>
+<ul>
+	<li><em>pa1.s</em> is "abc"</li>
+	<li><em>pa2</em> is "xyz"</li>
+</ul>
+
+
+<p>In <em>tree2</em>, the values are changed accordingly:</p>
+<ul>
+	<li><em>pb1.s</em> to "ddd"</li>
+	<li><em>pb2</em> to "qqq"</li>
+</ul>
+
+
+<p>After the called tree <em>tree2</em> completes, the <em>tree1</em> parameters will be:</p>
+<ul>
+	<li><em>pa1.s</em> is "ddd"</li>
+	<li><em>pa2</em> - "xyz"</li>
+</ul>
+
+</body>
+</html>

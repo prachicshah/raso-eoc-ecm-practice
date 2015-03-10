@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Catalog Configuration</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Catalog Configuration</h2>
+<p>The Catalog Configuration page is available to  set default currency, markup, date, and privileges for the Catalog. </p>
+<p><strong>Note:</strong> Catalog configuration changes are per node. As a result, you must manually ensure that you set the same configuration changes for all nodes that are running the Catalog application.</p>
+
+<img src="Configuration.png" alt="Attribute Type" />
+
+
+<p>The Catalog Configuration page has the following fields:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th width="150" class='confluenceTh'>Field</th>
+<th width="691" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Default Currency</strong></td>
+<td class='confluenceTd'>Set a default  currency. In the case of no currency  specified at the object level, an object will default to this currency.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Default Markup</strong></td>
+  <td class='confluenceTd'>Set a default markup  value. In the case of no values given at  the object level, an object will default to this value.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Default Catalog Date</strong></td>
+  <td class='confluenceTd'><p>Select this field to set the catalog system date. All subsequent calls to catalog APIs use this date. You can reset the date in this field by clicking the <strong>Reset Date</strong> button.<BR>
+      <BR>
+  </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Show all versions</strong></td>
+  <td class='confluenceTd'>Selecting this property displays all versions of versioned objects. When this property is disabled, only the current applicable version is displayed.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Enable PLD Mode</strong></td>
+  <td class='confluenceTd'>Selecting this property allows you to enable PLD mode. When enabled, the status fields become read-only. The status of objects can only be changed through the project status.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Enable Delta Propagation</strong></td>
+  <td class='confluenceTd'><p>Delta indicates the difference between the old effective date and the project's start date.</p>
+    <p>When you select this checkbox, the following behaviour occurs:</p>
+    <ul>
+      <li>If you move the effective date forward and backward, the object's start date shifts by delta. </li>
+      <li>If the object's start date is less than the old and new effective dates, the object's start date changes to be equal to the new effective date.</li>
+      <li>If the object's start date is less than the old effective date, but is greater than the new effective date, neither matching, nor shifting occurs.</li>
+    </ul>
+    <p>When you do not use this checkbox, the following behaviour occurs:</p>
+    <ul>
+      <li>Change the effective date forward (that is, the new effective date &gt; old effective date):
+        <ul>
+          <li>If the new effective date is less than the object's start date, there is no change to the object's start date.</li>
+          <li>If the new effective date is greater than the object's start date, the object's start date changes to be equal to the new effective date.</li>
+        </ul>
+      </li>
+      <li>Change the effective date backward (that is, new effective date &lt; old effective date):
+        <ul>
+          <li>An object with its start date greater than the new effective date does not change when you change the effective date backward.</li>
+          <li>An object with its start date less than its effective date is corrected by shifting dates to the new project effective dates.</li>
+          </ul>
+      </li>
+      <li>The new effective date is not allowed if this checkbox is disabled and there are versions of the same object having start dates less than the new effective date, to avoid casing integrity constraints.</li>
+    </ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3>Catalog Privileges</h3>
+
+<p>You can assign catalog privileges to a catalog object. The <a href="Catalog_Privileges.html">Catalog Privileges</a> document outlines the steps for creating a Privilege within Catalog and assigning the privilege to a user.</p></td>
+</tr>
+</body>
+</html>

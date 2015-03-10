@@ -1,0 +1,38 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Process Migration</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+ padding-right: 0px; padding-bottom: 0px;" valign="top">
+			 
+<h2>Process Migration</h2>
+
+<p>Product<sup></sup> metadata contains definitions of business processes. At runtime, the instances of the business processes store a set of database records that contain their current state; process status, what tasks have been run, and other process relevant data. The state of the process is closely related to its workflow diagram.</p>
+
+<p>If the diagram is changed, the current state cannot be used any more to decide what tasks are to be performed next. Continuing execution of the process from an inconsistent state will result in errors and process suspension. That is why the process metadata supports <a href="../Service_Designer_Tool_User_Guide/Business_Process_Metadata/process revisions.html">Process Revisioning</a>, which archives the  needed Process metadata into a <i>Process Revision</i>. The runtime process execution environment, called Process Engine, keeps the metadata process revision number as part of the state of a process instance. Thus when a diagram is changed, the process instances in the database may continue to be executed by the Process Engine based on the same Process Revision that it was initiated.</p>
+
+<p>An an alternative, <a href="../Service_Designer_Tool_User_Guide/Business_Process_Metadata/migration.html">Process migration records</a> may be setup, per Process Revision, to request the Process Engine perform a set of actions, that converts the runtime process instance running the old revision of the process to an instance running the current revision of the same or other metadata process.</p>
+
+<p>If such migration is necessary, it is the metadata developer's responsibility to define the revision migration records. The lack of migration record means process instances of the old revision continues to be executed under the same old Process Revision.</p>
+<p>All  version 4.2 process documents mapped to the database must be unmapped prior to  migration. 
+Otherwise, in version 5.x, the old process document key will need to be replaced with a new  key of type processId, which will cause runtime exceptions.</p>
+<p> If a mapped process document is detected at  migration, the following error is logged:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">Process [process_name] uses document [process document name] mapped to Database. <br>This may cause runtime exceptions.</p>
+</pre>
+  </div>
+</div></td>
+</tr>
+</table>
+</body>
+</html>

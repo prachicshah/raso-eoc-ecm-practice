@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Running Decision Trees</title>
+	    <link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">	    
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script>    </head>
+
+    <body onload="highlight();">
+	    <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+		    <tr>
+			    <td valign="top" class="pagebody">
+
+<h2>Running Decision Trees</h2>
+
+<p>The runtime Decision Tree object is an interpreter of the Decision Tree diagram that runs the activities of the tree and implements its logic.</p>
+
+<p>To run a Decision Tree, first create a Decision Tree runtime object using the constructor <em>new DecisionTree(&lt;metadata Decision Tree name&gt;)</em> and then execute the method <em>run()</em>. After the creation of the object but before executing the run method, the tree parameters could be populated if needed.</p>
+
+<p><em><ins>Example</ins></em>: Run a Decision Tree of type <em>ns:dtree</em> with parameters  <em>data</em> (Document), <em>number</em> (integer) and <em>result</em> (Document). The Decision Tree creates and populates the parameter <em>result</em>.</p>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java"><span class="code-keyword">var</span> dt = <span class="code-keyword">new</span> DecisionTree(<span class="code-quote">"ns:dtree"</span>); <span class="code-comment">// Create the object
+</span>dt.number = 5; <span class="code-comment">// Set the numeric parameter
+</span>dt.data = doc; <span class="code-comment">// Set the document parameter
+</span>dt.run(); <span class="code-comment">// Execute the Decision Tree
+</span><span class="code-comment">// use the document dt.result
+</span><span class="code-keyword">var</span> v = dt.result.leaf1 ...
+...</pre>
+</div></div>
+
+<p>Alternative way of running the Decision Tree is to specify the parameters in the run statement. In this case the order of parameter should match their order in the parameter list. The example above can be written as:</p>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java"><span class="code-keyword">var</span> dt = <span class="code-keyword">new</span> DecisionTree(<span class="code-quote">"ns:dtree"</span>);
+dt.run(doc, 5);
+<span class="code-comment">// use the document dt.result
+</span><span class="code-keyword">var</span> v = dt.result.leaf1 ...</pre>
+</div></div>
+
+<p>If the Decision Tree uses empty result document instead of creating it, the Decision Tree can be run as single expression. This expression (similar to a constructor) returns the Decision Tree object:</p>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java">ns.dtree.DecisionTree(doc, 5, result).run();
+<span class="code-comment">// use the document result
+</span><span class="code-keyword">var</span> v = result.leaf1 ...</pre>
+</div></div>
+
+
+				    
+                    			    </td>
+		    </tr>
+	    </table>
+    </body>
+</html>

@@ -1,0 +1,210 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>GetItemInfo SID Interface</title>
+<link rel="StyleSheet" href="../../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<h2>GetItemInfo SID Interface</h2>
+<p>The GetItemInfo interface gets detailed information for a specified  catalog item and returns a catalog item in the   version determined by the given date.  The GetItemInfo    interface is available in the Library files of Velocity Studio, and contains input, output, and fault data structures defined as follows:</p>
+
+<img src="GetItemInfo.png" alt="GetItemInfo interface" />
+
+
+<h3>Input</h3>
+The input file contains the following elements and data types defined in Velocity Studio's data dictionary's cwt_pcsid.getItemRequest data structure: <br>
+<br>
+<table class='confluenceTable' border cellpadding="1"width="774">
+  <tbody>
+<tr>
+ <th width="151" class='confluenceTh'>Input</th>
+ <th width="159" class='confluenceTh'>DataType</th>
+ <th width="159" class='confluenceTh'>Element</th> 
+ <th width="630" class='confluenceTh'>Notes</th>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>itemCode</td>
+    <td class='confluenceTd'>String</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>date</td>
+    <td class='confluenceTd'>DateTime</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+    <td class='confluenceTd' VALIGN=TOP>Refer to Velocity Studio's documentation for more details on the DateTime format.</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>language</td>
+    <td class='confluenceTd'>String</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>    
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+  </tr>  
+</table>
+
+<h3>Output</h3>
+The output file contains the following elements and data types defined in the cwt_psid.item data structure.<br>
+<br>
+<table class='confluenceTable'width="774" border cellpadding="1">
+  <tbody>
+<tr>
+ <th width="151" class='confluenceTh'>Output</th>
+ <th width="159" class='confluenceTh'>DataType</th>
+ <th width="159" class='confluenceTh'>Element</th> 
+ <th width="630" class='confluenceTh'>Notes</th>
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>code</td>
+    <td class='confluenceTd'>String (32)<br>
+      <br></td>
+    <td class='confluenceTd' VALIGN=TOP>cwt_pcdd.catalogCode</td>
+    <td class='confluenceTd' VALIGN=TOP></td>    
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>type</td>
+    <td class='confluenceTd'>String (8)</td>
+     <td class='confluenceTd' VALIGN=TOP>cwt_common.cwtct_itemType</td>
+     <td class='confluenceTd' VALIGN=TOP></td>     
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>label</td>
+    <td class='confluenceTd'>String</td>
+     <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>
+     <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>     
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>startDate</td>
+    <td class='confluenceTd'>Date</td>
+    <td class='confluenceTd' VALIGN=TOP>cwt_pcdd.startDate</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>    
+  </tr>
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>endDate</td>
+    <td class='confluenceTd'>Date</td>
+    <td class='confluenceTd' VALIGN=TOP>cwt_pcdd.endDate</td>
+    <td class='confluenceTd' VALIGN=TOP>&nbsp;</td>    
+  </tr>  
+  <tr>
+    <td class='confluenceTd' VALIGN=TOP>itemAttributes</td>
+    <td class='confluenceTd' VALIGN=TOP>Array</td>
+     <td class='confluenceTd' VALIGN=TOP>cwt_pcoeapi.itemAttribute</td>
+    <td class='confluenceTd' VALIGN=TOP>XML name is itemAttribute.</td>     
+</tr>
+<tr>
+    <td class='confluenceTd' VALIGN=TOP>itemRelations</td>
+    <td class='confluenceTd' VALIGN=TOP><p>Array</p></td>
+     <td class='confluenceTd' VALIGN=TOP>cwt_pcsid.itemRelation</td>    
+    <td class='confluenceTd' VALIGN=TOP><p>XML name is itemRelation. Contains the following elements:
+      <ul>
+        <li>accessoryType (<i>array</i>)</li>
+        <ul>
+          <li>codeTableElement (<i>array</i>)</li>
+          <ul>
+          <li>code (<i>string 32</i>)</li>
+          <li>label (<i>string 128</i>)</li></ul>
+        </ul>
+        <li>relationType (<i>array</i>)</li>
+        <ul>
+          <li>codeTableElement (<i>array</i>)</li>
+          <ul>
+          <li>code (<i>string</i> 32)</li>
+          <li>label (<i>string 128</i>)</li></ul>
+      </ul>
+  </ul></td>
+</tr>
+<tr>
+    <td class='confluenceTd' VALIGN=TOP>itemRules</td>
+    <td class='confluenceTd'VALIGN=TOP>Array</td>
+     <td class='confluenceTd' VALIGN=TOP>cwt_pcsid.itemRule</td>     
+    <td class='confluenceTd' VALIGN=TOP><p>XML name is itemRule. </td>
+</tr> 
+<tr>
+    <td class='confluenceTd' VALIGN=TOP>itemGroups</td>
+    <td class='confluenceTd'VALIGN=TOP>Array</td>
+     <td class='confluenceTd' VALIGN=TOP>cwt_pcsid.itemGroup</td>     
+    <td class='confluenceTd' VALIGN=TOP><p>XML name is itemGroup. Contains the following elements:
+      <ul>
+        <li>name (<i>string</i> 32)</li>
+        <li>minCardinality(<i>integer (4)</i>)</li>
+        <li>maxCardinality(<i>integer (4)</i>)</li>
+        <li>targets (<i>array</i>) (extends from cwt_pcsid.groupTarget)</li>
+        <li>label (<i>string</i>)</li>
+  	</ul>    
+    </td>
+</tr> 
+<tr>
+    <td class='confluenceTd' VALIGN=TOP>itemImages</td>
+    <td class='confluenceTd'VALIGN=TOP>Array</td>
+     <td class='confluenceTd' VALIGN=TOP>cwt_pcsid.itemImage</td>     
+    <td class='confluenceTd' VALIGN=TOP><p>XML name is itemImage.</td>
+</tr> 
+<tr>
+    <td class='confluenceTd' VALIGN=TOP>itemDescriptions</td>
+    <td class='confluenceTd'VALIGN=TOP>Array</td>
+     <td class='confluenceTd' VALIGN=TOP>cwt_pcsid.itemDescription</td>     
+    <td class='confluenceTd' VALIGN=TOP><p>XML name is itemDescription. Contains the following elements:<ul>
+        <li>name (<i>string (32)</i>)</li>
+        <li>description (<i>string (10)</i>)</li>
+        <li>type (<i>string</i> (32))</li>
+  	</ul>    
+    </td>
+</tr> 
+<tr>
+    <td class='confluenceTd' VALIGN=TOP>itemItentifiers</td>
+    <td class='confluenceTd'VALIGN=TOP>Array</td>
+     <td class='confluenceTd' VALIGN=TOP>cwt_pcsid.itemItentifier</td>     
+    <td class='confluenceTd' VALIGN=TOP><p>Contains the following elements:
+    <ul>
+        <li>systemId (<i>array</i>)</li>
+        <ul>
+          <li>codeTableElement (<i>array</i>)</li>
+          <ul>
+          <li>code (<i>string 32</i>)</li>
+          <li>label (<i>string</i> 128)</li></ul>
+      </ul>
+  	</ul>    
+    </td>
+</tr> 
+<tr>
+    <td class='confluenceTd' VALIGN=TOP>itemAttachments</td>
+    <td class='confluenceTd'VALIGN=TOP>Array</td>
+     <td class='confluenceTd' VALIGN=TOP>cwt_pcsid.itemAttachment</td>     
+    <td class='confluenceTd' VALIGN=TOP><p>XML name is itemAttachment. Contains the following elements:</p>
+      <ul>
+        <li>mimeType</li>
+        <li>attachmentName</li>
+      </ul>    
+    </td>
+</tr>
+<tr>
+    <td class='confluenceTd' VALIGN=TOP>itemCharges</td>
+    <td class='confluenceTd'VALIGN=TOP>Array</td>
+     <td class='confluenceTd' VALIGN=TOP>cwt_pcsid.itemCharge</td>     
+    <td class='confluenceTd' VALIGN=TOP><p>XML name is itemCharge.</p>    
+    </td>
+</tr>  
+ 
+</table>
+
+<h3>Input and Output File Examples</h3>
+<p>These input and output files are examples using  a SoapUI tool.</p>
+
+<b>InputXML:</b>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;<br>   &lt;soapenv:Header/&gt;<br>   &lt;soapenv:Body&gt;<br>      &lt;getItemRequest&gt;<br>         &lt;!--Optional:--&gt;<br>         <br>         &lt;!--Optional:--&gt;<br>         &lt;itemCode&gt;basicdesktop&lt;/itemCode&gt;&lt;date&gt;2011-04-12T00:00:00.000-04:00&lt;/date&gt;<br>         &lt;!--Optional:--&gt;<br>         <br>      &lt;/getItemRequest&gt;<br>   &lt;/soapenv:Body&gt;<br>&lt;/soapenv:Envelope&gt;</pre>
+</div>
+</div>
+
+<b>Output XML:</b>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>&lt;soapenv:Envelope xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&gt;<br>   &lt;soapenv:Body&gt;<br>      &lt;item&gt;<br>         &lt;characterizedBy&gt;<br>            &lt;item&gt;<br>               &lt;name&gt;code&lt;/name&gt;<br>               &lt;type&gt;String&lt;/type&gt;<br>            &lt;/item&gt;<br>            &lt;item&gt;<br>               &lt;name&gt;type&lt;/name&gt;<br>               &lt;type&gt;String&lt;/type&gt;<br>            &lt;/item&gt;<br>            &lt;item&gt;<br>               &lt;name&gt;label&lt;/name&gt;<br>               &lt;type&gt;String&lt;/type&gt;<br>            &lt;/item&gt;<br>            &lt;item&gt;<br>               &lt;name&gt;startDate&lt;/name&gt;<br>               &lt;type&gt;Date&lt;/type&gt;<br>            &lt;/item&gt;<br>            &lt;item&gt;<br>               &lt;name&gt;endDate&lt;/name&gt;<br>               &lt;type&gt;Date&lt;/type&gt;<br>            &lt;/item&gt;<br>         &lt;/characterizedBy&gt;<br>         &lt;describedBy&gt;<br>            &lt;item&gt;<br>               &lt;value&gt;basicdesktop&lt;/value&gt;<br>               &lt;characteristic&gt;code&lt;/characteristic&gt;<br>            &lt;/item&gt;<br>            &lt;item&gt;<br>               &lt;value&gt;PROD&lt;/value&gt;<br>               &lt;characteristic&gt;type&lt;/characteristic&gt;<br>            &lt;/item&gt;<br>            &lt;item&gt;<br>               &lt;value&gt;Basic Desktop&lt;/value&gt;<br>               &lt;characteristic&gt;label&lt;/characteristic&gt;<br>            &lt;/item&gt;<br>            &lt;item&gt;<br>               &lt;value&gt;Fri Apr 08 00:00:00 EDT 2011&lt;/value&gt;<br>               &lt;characteristic&gt;startDate&lt;/characteristic&gt;<br>            &lt;/item&gt;<br>            &lt;item&gt;<br>               &lt;characteristic&gt;endDate&lt;/characteristic&gt;<br>            &lt;/item&gt;<br>         &lt;/describedBy&gt;<br>         &lt;itemAttribute&gt;<br>            &lt;characterizedBy&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;name&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;label&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;isProperty&lt;/name&gt;<br>                  &lt;type&gt;Boolean&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;defaultValue&lt;/name&gt;<br>                  &lt;type&gt;Code Table&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCode&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeType&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeLength&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypePrecision&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCodeTable&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>            &lt;/characterizedBy&gt;<br>            &lt;describedBy&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;msoffice&lt;/value&gt;<br>                  &lt;characteristic&gt;name&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;MS Office&lt;/value&gt;<br>                  &lt;characteristic&gt;label&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;false&lt;/value&gt;<br>                  &lt;characteristic&gt;isProperty&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Included&lt;/value&gt;<br>                  &lt;characteristic&gt;defaultValue&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;msoffice&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCode&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Code Table&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeType&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeLength&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypePrecision&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;inexcluded&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCodeTable&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>            &lt;/describedBy&gt;<br>         &lt;/itemAttribute&gt;<br>         &lt;itemAttribute&gt;<br>            &lt;characterizedBy&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;name&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;label&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;isProperty&lt;/name&gt;<br>                  &lt;type&gt;Boolean&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;defaultValue&lt;/name&gt;<br>                  &lt;type&gt;Code Table&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCode&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeType&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeLength&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypePrecision&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCodeTable&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>            &lt;/characterizedBy&gt;<br>            &lt;describedBy&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;adobereader&lt;/value&gt;<br>                  &lt;characteristic&gt;name&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Adobe Reader&lt;/value&gt;<br>                  &lt;characteristic&gt;label&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;false&lt;/value&gt;<br>                  &lt;characteristic&gt;isProperty&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Included&lt;/value&gt;<br>                  &lt;characteristic&gt;defaultValue&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;adobereader&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCode&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Code Table&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeType&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeLength&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypePrecision&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;inexcluded&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCodeTable&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>            &lt;/describedBy&gt;<br>         &lt;/itemAttribute&gt;<br>         &lt;itemAttribute&gt;<br>            &lt;characterizedBy&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;name&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;label&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;isProperty&lt;/name&gt;<br>                  &lt;type&gt;Boolean&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;defaultValue&lt;/name&gt;<br>                  &lt;type&gt;Code Table&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCode&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeType&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeLength&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypePrecision&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCodeTable&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>            &lt;/characterizedBy&gt;<br>            &lt;describedBy&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;spss&lt;/value&gt;<br>                  &lt;characteristic&gt;name&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;SPSS&lt;/value&gt;<br>                  &lt;characteristic&gt;label&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;false&lt;/value&gt;<br>                  &lt;characteristic&gt;isProperty&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Not available&lt;/value&gt;<br>                  &lt;characteristic&gt;defaultValue&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;spss&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCode&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Code Table&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeType&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeLength&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypePrecision&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;inexcluded&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCodeTable&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>            &lt;/describedBy&gt;<br>         &lt;/itemAttribute&gt;<br>         &lt;itemAttribute&gt;<br>            &lt;characterizedBy&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;name&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;label&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;isProperty&lt;/name&gt;<br>                  &lt;type&gt;Boolean&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;defaultValue&lt;/name&gt;<br>                  &lt;type&gt;Code Table&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCode&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeType&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeLength&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypePrecision&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCodeTable&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>            &lt;/characterizedBy&gt;<br>            &lt;describedBy&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;cpu&lt;/value&gt;<br>                  &lt;characteristic&gt;name&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;CPU&lt;/value&gt;<br>                  &lt;characteristic&gt;label&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;false&lt;/value&gt;<br>                  &lt;characteristic&gt;isProperty&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Single Core&lt;/value&gt;<br>                  &lt;characteristic&gt;defaultValue&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;cpu&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCode&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Code Table&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeType&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeLength&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypePrecision&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;CPU&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCodeTable&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>            &lt;/describedBy&gt;<br>         &lt;/itemAttribute&gt;<br>         &lt;itemAttribute&gt;<br>            &lt;characterizedBy&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;name&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;label&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;isProperty&lt;/name&gt;<br>                  &lt;type&gt;Boolean&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;defaultValue&lt;/name&gt;<br>                  &lt;type&gt;Code Table&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCode&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeType&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeLength&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypePrecision&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCodeTable&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>            &lt;/characterizedBy&gt;<br>            &lt;describedBy&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;memory&lt;/value&gt;<br>                  &lt;characteristic&gt;name&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Memory&lt;/value&gt;<br>                  &lt;characteristic&gt;label&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;false&lt;/value&gt;<br>                  &lt;characteristic&gt;isProperty&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;2 GB&lt;/value&gt;<br>                  &lt;characteristic&gt;defaultValue&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;memory&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCode&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Code Table&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeType&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeLength&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypePrecision&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Memory&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCodeTable&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>            &lt;/describedBy&gt;<br>         &lt;/itemAttribute&gt;<br>         &lt;itemAttribute&gt;<br>            &lt;characterizedBy&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;name&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;label&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;isProperty&lt;/name&gt;<br>                  &lt;type&gt;Boolean&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;defaultValue&lt;/name&gt;<br>                  &lt;type&gt;Code Table&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCode&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeType&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeLength&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypePrecision&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCodeTable&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>            &lt;/characterizedBy&gt;<br>            &lt;describedBy&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;storage&lt;/value&gt;<br>                  &lt;characteristic&gt;name&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Storage&lt;/value&gt;<br>                  &lt;characteristic&gt;label&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;false&lt;/value&gt;<br>                  &lt;characteristic&gt;isProperty&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;500 MB&lt;/value&gt;<br>                  &lt;characteristic&gt;defaultValue&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;storage&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCode&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Code Table&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeType&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeLength&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypePrecision&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Storage&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCodeTable&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>            &lt;/describedBy&gt;<br>         &lt;/itemAttribute&gt;<br>         &lt;itemAttribute&gt;<br>            &lt;characterizedBy&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;name&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;label&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;isProperty&lt;/name&gt;<br>                  &lt;type&gt;Boolean&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;defaultValue&lt;/name&gt;<br>                  &lt;type&gt;Code Table&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCode&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeType&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeLength&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypePrecision&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCodeTable&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>            &lt;/characterizedBy&gt;<br>            &lt;describedBy&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;operatingsystem&lt;/value&gt;<br>                  &lt;characteristic&gt;name&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Operating System&lt;/value&gt;<br>                  &lt;characteristic&gt;label&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;false&lt;/value&gt;<br>                  &lt;characteristic&gt;isProperty&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Windows 7&lt;/value&gt;<br>                  &lt;characteristic&gt;defaultValue&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;operatingsystem&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCode&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Code Table&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeType&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeLength&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypePrecision&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;operatingsystem&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCodeTable&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>            &lt;/describedBy&gt;<br>         &lt;/itemAttribute&gt;<br>         &lt;itemAttribute&gt;<br>            &lt;characterizedBy&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;name&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;label&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;isProperty&lt;/name&gt;<br>                  &lt;type&gt;Boolean&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;defaultValue&lt;/name&gt;<br>                  &lt;type&gt;Code Table&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCode&lt;/name&gt;<br>                  &lt;type&gt;String&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeType&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeLength&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypePrecision&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;name&gt;attributeTypeCodeTable&lt;/name&gt;<br>                  &lt;type&gt;Number&lt;/type&gt;<br>               &lt;/item&gt;<br>            &lt;/characterizedBy&gt;<br>            &lt;describedBy&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;adobeacrobat&lt;/value&gt;<br>                  &lt;characteristic&gt;name&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Adobe Acrobat&lt;/value&gt;<br>                  &lt;characteristic&gt;label&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;false&lt;/value&gt;<br>                  &lt;characteristic&gt;isProperty&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Optional (additional)&lt;/value&gt;<br>                  &lt;characteristic&gt;defaultValue&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;adobeacrobat&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCode&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;Code Table&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeType&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeLength&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;0&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypePrecision&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>               &lt;item&gt;<br>                  &lt;value&gt;inexcluded&lt;/value&gt;<br>                  &lt;characteristic&gt;attributeTypeCodeTable&lt;/characteristic&gt;<br>               &lt;/item&gt;<br>            &lt;/describedBy&gt;<br>         &lt;/itemAttribute&gt;<br>      &lt;/item&gt;<br>   &lt;/soapenv:Body&gt;<br>&lt;/soapenv:Envelope&gt;</pre>
+</div>
+</div>
+</body>
+</html>

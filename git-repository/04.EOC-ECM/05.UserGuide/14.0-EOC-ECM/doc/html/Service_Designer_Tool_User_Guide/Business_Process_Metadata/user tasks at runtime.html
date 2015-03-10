@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>Worklists and User Tasks at Runtime</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Worklists and User Tasks at Runtime</h1>
+<p>A Worklist displays a list of all user tasks that are assigned to a user. </p>
+<p>A User Task is an item of work that needs to be acted on by a User Participant. A new user task is created by either a menu item action or a process activity. Once the task is created, it is assigned to a user using the specified <a href="user participant.html#distribution">participant distribution method</a> (Note: Manual and shared methods require user interaction). Tasks that are assigned to a user are then available in the user's worklist until a task action is performed, which moves the task to the worklist archive.</p>
+
+<h3><a name="customizeWorklists"></a>Customizing Worklists</h3>
+<p>The worklist may be customized in the following ways:</p>
+<ul>
+  <li>Custom attributes may be added to user tasks. These changes are done system-wide.</li>
+</ul>
+<ul>
+  <li>The worklist table display may be customized (column headers, ordering, width, styles, etc). This customization is on a per-application menu basis.</li>
+</ul>
+<p>You can customize attributes by referring to the Worklist documents contained in the <b>Library</b> tab<b> &gt; cwf_pm (Process Management Product) &gt; Finders</b>. The worklist display is customized by creating a user-defined Finder and selecting it in the Worklist Finder property of the User Interface application menu (the built-in Finder is Worklist in the <b>Process</b> <b>Management</b> <b>Product </b>namespace).</p>
+<p><strong>Note:</strong> To create and use custom worklist finders, your customized finder user interface must extend cwf_pm.BaseWorklistFinder.UserInterface. Otherwise, you cannot use it as a worklist finder.</p>
+<h3>Search Behaviour</h3>
+<p>The current Worklist Finder search behavior is as follows:</p>
+<p>When defining the Worklist Finder in the metadata:</p>
+<ul>
+  <li>The page size value is set in the metadata to the larger of the <b>Page size</b> and <b>Max row</b> fields defined on the <b>Advanced</b> tab of the Finder properties (refer to section on Finder Advanced Properties).</li>
+</ul>
+<ul>
+  <li>At runtime, the Worklist Finder does not display more records than the value of the page size. For example, if the Worklist Finder is defined as <b>Page size</b> = 200 and <b>Max row</b> = 300 in the metadata, after a search in the User Interface at runtime the Worklist Finder displays up to 300 items on the page, regardless of whether the number of tasks in the database exceeds this number.</li>
+</ul>
+<p>When logging into the User Interface at runtime:</p>
+<ul>
+  <li>There is no <b>Next</b> or <b>Back</b> button shown as in other types of Finders; all search results are displayed on one page according to the page size definition.</li>
+</ul>
+<ul>
+  <li>Users can create a custom view (refer to section on Finder View Properties) and re-define the <b>Max row</b> value. However, the system only takes the value that is less than the page size defined in the metadata. If the new value is larger than the metadata value, the system ignores it and continue to use the old value. For example, using the  Worklist Finder in example 1,  a custom view is defined as <b>Max row</b> = 200, after a search in the User Interface the Worklist Finder displays up to 200 items on the page, regardless of whether the number of tasks in the database exceeds this number. However if a custom view is defined as <b>Max row</b> = 400, after a search in the User Interface the Worklist Finder displays up to 300 items on the page, regardless of whether the number of tasks in the database exceeds this number.</li>
+</ul>
+<p>The Finder icon in the User Interface shows the number of records that are displayed on the page.</p>
+<h3>Notation Unification and Data Storage in Worklist Table</h3>
+<p>In an effort to unify : and . notation,  use only the . notation to ensure that the worklist table properly stores your data.   In case the application hardcodes either the  participant type or   operation for the worklist in the metadata, run the following SQL:</p>
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">UPDATE CWPWORKLIST 
+SET PARTICIPANT_TYPE = REPLACE(PARTICIPANT_TYPE, ':', '.') 
+WHERE PARTICIPANT_TYPE LIKE '%:%';
+    <br>UPDATE CWPWORKLISTARCHIVE
+SET PARTICIPANT_TYPE = REPLACE(PARTICIPANT_TYPE, ':', '.') 
+WHERE PARTICIPANT_TYPE LIKE '%:%';<br>
+UPDATE CWPWORKLIST 
+SET OPERATION = REPLACE(OPERATION , ':', '.') 
+WHERE OPERATION LIKE '%:%';<br>
+UPDATE CWPWORKLISTARCHIVE
+SET OPERATION = REPLACE(OPERATION, ':', '.') 
+WHERE OPERATION LIKE '%:%';
+
+COMMIT;
+    </pre>
+  </div>
+</div>
+
+<p>For more information about worklists and user task, see the following pages:</p>
+<ul>
+  <li><a href="participants.html">Participants</a></li>
+  <li><a href="intro to business processes.html">Introduction to Business Processes</a></li>
+  <li><a href="configuring worklist user interface.html">Configuring Worklist User Interfaces</a></li>
+  <li><a href="configuring worklist manager.html">Configuring Worklist Manager</a></li>
+  <li><a href="../../Worklist Management User Guide/Manage/worklistManager.html">Using Worklist Manager</a></li>
+  <li><a href="user worklist.html">User Worklists</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

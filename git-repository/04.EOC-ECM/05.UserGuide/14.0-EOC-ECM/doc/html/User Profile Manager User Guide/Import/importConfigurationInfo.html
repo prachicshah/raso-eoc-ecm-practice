@@ -1,0 +1,70 @@
+﻿<html>
+<head>
+<title>Import User Profiles</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Import User Profiles</h2>
+<p>You can import the following configuration information from the User Profile Manager:</p>
+<ul>
+  <li>Groups</li>
+  <li>Users</li>
+  <li>Privileges</li>
+  <li>Organizational Chart</li>
+  </ul>
+<p><strong>Notes: </strong></p>
+<ul>
+  <li>Before you import a group, you must create the calendar record in the CWCALENDARS table, based on the calendar property value in the group XML.</li>
+  <li>Groups, users, organizational charts, and privileges are dependent on one another. As a result, if you want to import each of them individually, you must import each of them in the following order:
+    <ol>
+      <li>Organizational charts</li>
+      <li>Users</li>
+      <li>Groups</li>
+      <li>Privileges<br>
+      </li>
+    </ol>
+  </li>
+  <li>After importing, if you attempt to export your configuration information and open the XML file, the following hold true:
+    <ul>
+      <li>Groups depend on both users and calendars</li>
+      <li>Users depend on organizational charts</li>
+      <li>Privileges depend on groups</li>
+    </ul>
+    <br>
+  </li>
+</ul>
+<p>To import configuration information from the User Profile Manager, complete these steps:</p>
+<ol>
+  <li>From the User Profile Manager, click the <strong>Import</strong> button to launch the Import dialog. <br>
+    <br>
+    <img src="importDialog.png" alt="Import dialog" border="1"><br>
+    <br>
+    </li>
+  <li> For the <strong>Select File</strong> field, click the <strong>Browse</strong> button and select the location of your XML file that you want to import. </li>
+  <li>The <strong>Import Mode</strong> field defaults to <strong>Replace</strong>, which replaces your existing user profile configuration. Click the drop-down menu to change this mode to the following:  </li>
+  <ul>
+    <li><strong>Create</strong></li>
+    <li><strong>Update</strong><br>
+      <br>
+    </li>
+  </ul>
+  <li>The <strong>Max Error to Skip</strong> field defaults to <strong>10</strong> errors that are skipped. Specify a different value in this field, if required.</li>
+  <li>By default,  the following options are selected for import: <br>
+    <ul>
+      <li><strong>Groups</strong></li>
+      <li><strong>Users</strong></li>
+      <li><strong>Privileges</strong></li>
+      <li><strong>Organizational Chart</strong></li>
+      </ul>
+    <p>Indicate the options that you want to import and then click the <strong>Import</strong> button.</p>
+  </li>
+  <li>A confirmation message appears, indicating whether your import was successful, how many objects were imported, and whether any errors occurred. Click the <strong>Close</strong> button (X) to close the dialog.</li>
+</ol>
+<p>&nbsp;</p>
+</body>
+</html>

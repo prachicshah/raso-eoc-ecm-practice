@@ -1,0 +1,133 @@
+<html>
+<head>
+<title>TableState Object</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>TableState Object</h2>
+
+<p>The TableState   object is scriptable and is intended to be used when you need to customize the table view through   scripts. 
+The   object parses the JSON string of the table state and provides an API to change   the following column states: </p>
+<UL>
+  <LI>Hide or show   columns</LI>
+  <LI>Set width</LI>
+  <LI>Set column order</LI>
+  <LI>Set one or more sort columns</LI>
+</UL>
+<h3>Get the TableState Object</h3>
+<p>To get the TableState object, use the following finder User Interface method:<BR>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java">
+var stateObj = this.getTableState();
+</pre></div></div>
+
+The getTableState() method   returns the parsed TableState object or null if the table state is not received from   the Web browser.<BR>
+<BR>
+You   can also create it manually and pass the stored JSON string   state:<BR>
+<BR>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java">var stateObj = new TableState(storedTableStateString);
+</pre></div></div>
+
+Then, you can serialize the changed state back to the JSON string as follows:<BR>
+<BR>
+<div class="code"><div class="codeContent">
+<pre class="code-java">
+var tableStateString = stateObj.toString();
+</pre></div></div>
+
+<h3>Setting TableState</h3>
+<p>To   apply the changed table state, call the method of the finder   User Interface:<BR>
+</p>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java">this.setTableState(stateObj);<strong>
+</strong></pre>
+</div></div>
+
+<strong>Note:</strong> If you need to restore or change the table state on the finder User Interface initialization, call the super onInit() method first, and then change the state:<BR>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java">
+//   Example of changing table state in onInit in finder UI<br>
+//   call super firstL, as it will clear tableState var
+this.cw$super_onInit();
+
+var state = new TableState();
+state.addField("OrderId", true, null, null);
+state.addField("custName", true, null, null);
+state.addField("orderType", true, null, null);
+state.addField("getDate", false, null, null);
+state.addField("curEditor", false, null, null);
+state.addField("OrderStatus", true, null, null);
+state.addField("ezStatus", false, null, null);
+state.addField("solution", false, null, null);
+state.addSorting("OrderId", true);
+state.addSorting("orderType", false);
+this.setTableState(state);</pre></div></div>
+
+<h3>  TableState   API</h3>
+<p>The following table shows the main methods of the TableState object:</p>
+
+<table class='confluenceTable' border cellpadding="1"><tbody>
+    <tr>
+      <th class='confluenceTh' width='552'>Method Name</th>
+      <th width="563" class='confluenceTh'>Description</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><pre>fromString(storedStateString)</pre></td>
+      <td class='confluenceTd'>Parses the stored JSON table state into the TableState object.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><pre>toString()</pre></td>
+      <td class='confluenceTd'>Serializes the TableState object back to the JSON string.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><pre>addField(String name, Boolean visible, String width, Integer order)</pre></td>
+      <td class='confluenceTd'>Adds the column state. The width and order are optional.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><pre>getFieldsCount()</pre></td>
+      <td class='confluenceTd'>Returns the number of field states in the TableState object.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><pre>getFieldName(index)</pre></td>
+      <td class='confluenceTd'>Returns the field name at the specified index.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><pre>setVisible(String name, boolean visible)
+setWidth(String name, String width) // width can be null
+setOrder(String name, int order)</pre></td>
+      <td class='confluenceTd'>Sets the corresponding property of the column.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><pre>isVisible(String name)
+getWidth(String name) // width can be null
+getOrder(String name)
+      </pre></td>
+      <td class='confluenceTd'>Gets the corresponding property of the column.</td>
+    </tr>
+    </tbody>
+</table>
+
+<p>You can use the following methods for sorting:</p>
+<ul>
+  <li> setSorting(String   name, Boolean ascending)</li>
+  <li>addSorting(String   name, Boolean ascending)</li>
+  <li>
+    getSortCount()</li>
+  <li>getSortField(index)   // returns column name</li>
+  <li>    getSortDir(index)   // return true or false</li>
+  </ul>
+<p>See the Javadoc API section for a full list of methods.</p></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Keep Track of and Use a System Finder to View User Information</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Keep Track of and Use a System Finder to View User Information</h3>
+<p>The cwf.userLogDocument system user document keeps track of the following details during the login process:</p>
+<table width="779" class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="184" class='confluenceTh'>Search Criterion</th>
+      <th width="623" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Node ID</b></td>
+      <td class='confluenceTd'>The unique node identification number associated with the user.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>User Name</strong></td>
+      <td class='confluenceTd'>The user who is logged in.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Login Time</strong></td>
+      <td class='confluenceTd'>The time that the user logged in to the system.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Logout Time</b></td>
+      <td class='confluenceTd'>The time that the user logged out of the system.</td>
+    </tr>
+  </tbody>
+</table>
+<p>On user login, the user information document is always updated and saved. When the user logs out, the user information document is also updated and saved.</p>
+<p>The system document finder, cwf.userFinder, uses the system user document as both the input and output documents. </p>
+<p>To keep track of specific  user information during the login process and to search for users by relying on the information gathered, perform the following steps:</p>
+<ol>
+  <li>In the Configuration application, click  the <b>System</b> vertical tab, and then click the <b>Logging</b> horizontal tab to display the system logging levels.  </li>
+  <li>Check the CWPUSERID database table to to make sure that both the <strong>LOGIN</strong> and <strong>LOGOUT</strong> fields are updated whenever users log in and out. In addition, ensure that these tables are only updated when the configuration flag is enabled.</li>
+  <li>Check that the logout time is recorded in cases other than direct logout using the <strong>Administration</strong> menu, such as when the user session expires. <br>
+    <br>
+    <strong>Note:</strong> If the server shuts down, the logout time is not recorded.<br>
+  </li>
+  <li>To view the user login information, use the cwf.userFinder finder.</li>
+</ol>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

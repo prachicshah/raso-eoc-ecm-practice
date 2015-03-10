@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>HTTP SMS Provider Support</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h3>HTTP SMS Provider Support</h3>
+<p>When developing your application, you may have the need to implement Short Message Service (SMS) message-sending capabilities. Employing third-party SMS providers  allows you to send SMS messages. One obstacle during implementation is that different SMS providers have different sets of parameters and it would be help to have a generic interface that can be configured to work with all SMS providers.  </p>
+<p>Using the HTTP protocol, to configure your interface to support different SMS providers, do the following:</p>
+<ol>
+  <li>In the Configuration application, under <strong>Services</strong> &gt; <strong>Services</strong>, navigate to your HTTP interface.</li>
+  <li>Under Configuration, for the <strong>Location</strong> field, enter a URL containing placeholders between parentheses (that is, {}), which specifies a location such as the following:
+    <BR>
+    <blockquote>
+    <A href="http://host:port/SMSsend?number={num_field}&user={user_field}&pass={pass_field}&message={message_field}"> http://host:port/SMSsend?number={<em>num_field</em>}&amp;user={<em>user_field</em>}&amp;pass={<em>pass_field</em>}&amp;message={<em>message_field</em>}</A></blockquote>
+    where 
+    <em>num_field</em>, <em>user_field</em>, <em>pass_field</em>, and <em>message_field</em> are fields of the input data structure. That way, the interface can be configured at runtime to adapt to different SMS providers.<br>
+    <br>
+  </li>
+  <li>In your HTTP binding, for the <strong>encodingStyle</strong> attribute, select <strong>URLReplacement</strong> and save your changes.<BR>
+    <BR>
+  </li>
+</ol></td>
+</tr>
+</table>
+
+</body>
+</html>

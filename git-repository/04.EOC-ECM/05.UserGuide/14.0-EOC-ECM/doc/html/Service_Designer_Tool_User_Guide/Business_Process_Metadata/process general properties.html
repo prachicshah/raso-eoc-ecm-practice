@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>Process General Properties</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Process General Properties</h2>
+<p>Clicking a process from the metadata tree displays its general process properties, which are defined on the <b>General</b> tab. </p>
+<p><img src="newProcessNodeHighlighted.png" alt="Highlight process to see General properties tab" border="1"></p>
+<p>The fields visible on the tab change, depending on the <b>Type</b> field selection (that is, Global, Subflow, or User).</p>
+<h3>General Properties for a Global Process</h3>
+<p>The General properties tab for a global process is as follows:</p>
+
+<img src="processGeneralGlobal.png" align="absmiddle" border="1" alt="Global process - General tab" />
+
+<h3>General Properties for a Subflow Process</h3>
+<p>The General properties tab for a subflow process is as follows:</p>
+<p><img src="processGeneralSubflow.png" alt="General tab - Subflow properties" border="1"></p>
+<p><strong>Note:</strong> The property pane for a top-level subflow process only contains  the <strong>Name</strong>, <strong>Label</strong>, <strong>Description</strong>, and <strong>Revision</strong> fields. The remaining properties are inherited from the process using the subflow.</p>
+
+<h3>General Properties for a User Process</h3>
+<p>The following is the General properties tab for a user process:</p>
+
+<img src="processGeneralUser.png" border="1" alt="User process - General tab" />
+
+<p>The General tab has the following fields, depending on the <strong>Type</strong> field selected:</p>
+<table class='confluenceTable'>
+  <tbody>
+  <tr>
+  <th class='confluenceTh'>Field</th>
+  <th class='confluenceTh'>Description</th>
+  <th class='confluenceTh'>Type</th>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Name</b></td>
+  <td class='confluenceTd'>Mandatory. Name of the Process within the namespace.</td>
+  <td class='confluenceTd'>All</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Private</b></td>
+  <td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+  <td class='confluenceTd'>All</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Restricted</b></td>
+  <td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+  <td class='confluenceTd'>All</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Deprecated</b></td>
+  <td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+  <td class='confluenceTd'>All</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Label</b></td>
+  <td class='confluenceTd'>Mandatory. Label to identify the Process.</td>
+  <td class='confluenceTd'>All</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Description</b></td>
+  <td class='confluenceTd'>Description of the Process for documentation purposes.</td>
+  <td class='confluenceTd'>All</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Type</b></td>
+  <td class='confluenceTd'>Mandatory; not changeable upon metadata object creation. The <a href="process types.html">Process type</a>. The values include <em>Global</em> and <em>User</em>.</td>
+  <td class='confluenceTd'>All</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Document</b></td>
+  <td class='confluenceTd'>The&#160; Process Document. If specified, an instance of the Document is created and assigned to each process instance. The process instance can store instance-specific data in this Document.</td>
+  <td class='confluenceTd'>All</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>Store in a separate table</strong></td>
+    <td class='confluenceTd'><p>If checked, the Process Document is stored in a separate database table. 
+Otherwise, an unmapped process document is stored with the  process. </p></td>
+    <td class='confluenceTd'>User, Global</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Store as a separate document</b></td>
+  <td class='confluenceTd'>Available only when Process <b>Document</b> is assigned. If checked, the Process Document is stored in a separate database table, instead of as NCLOB in XML format in process table. Storing as a separate document enables readable access of the document to application metadata (for example, you may create report over this data); in addition, enabling this flag may have slight, but visible performance improvements.</td>
+  <td class='confluenceTd'>All</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>In error restart from last running activities</strong></td>
+    <td class='confluenceTd'>By default, this property's checkbox is unchecked, meaning that the process engine restarts the process that is in an error state from the first activity. When this property is checked, the process engine restarts this global process in an error state from the last running activity when the error occurred.</td>
+    <td class='confluenceTd'>Global</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Priority</b></td>
+  <td class='confluenceTd'>The user can assign the <a href="setting process priority.html">Process priority</a>. The default values include <em>High</em>, Normal, and <em>Low</em> if no customization is performed on <i>cwf.allPriorities</i>.</td>
+  <td class='confluenceTd'>All</td>
+  </tr>
+  <tr>
+  <td class='confluenceTd'><b>Interface</b></td>
+  <td class='confluenceTd'>This field associates the global process with an interface so that messages can be sent to the global process. Set the <strong>Interface</strong> field before adding operation activities to the workflow for the operation to treat the specified interface as a default global participant. Operation activities are not automatically updated after changing an interface.</td>
+  <td class='confluenceTd'>Global</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><b>Revision</b></td>
+    <td class='confluenceTd'>Read-only. This is the revision number of the Process. The latest <a href="process revisions.html">Process Revision</a> of this Process is at this revision number.
+      <ul>
+        <li>Revision number is set to 1 for a newly created process.</li>
+        <li>Revision number is incremented by 1 every time a <a href="process revisions.html#new">new Process Revision</a> is created, except when this is a newly created Process that is without Process Revisions.</li>
+      </ul></td>
+    <td class='confluenceTd'>All</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>Stale Alert</strong></td>
+    <td class='confluenceTd'>At the  process level for a user process, you can specify a metadata-defined alert to be issued in the  event of a stale dated process. Such an alert can be configured to go to  e-mail, interface, or a worklist.</td>
+    <td class='confluenceTd'>User</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>Stale Exception</strong></td>
+    <td class='confluenceTd'>At the process level, a checkbox on the  General tab for a user process that indicates whether a system-defined  exception is thrown into a stale-dated process.</td>
+    <td class='confluenceTd'>User</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'><strong>Memory Only</strong></td>
+    <td class='confluenceTd'>Select this checkbox to indicate that it is a memory-based process. Memory-based processes do not store their state. If they get an error or the process engine is restarted, these processes start from the beginning.</td>
+    <td class='confluenceTd'>User, Global</td>
+  </tr>
+
+  </tbody>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>

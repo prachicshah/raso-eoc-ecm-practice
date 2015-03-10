@@ -1,0 +1,234 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>JBoss EAP 6.x Environment Configuration</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">
+<!--
+.style2 {color: #000000}
+.style3 {color: #FF0000}
+.Hilary {
+	color: #F00;
+}
+-->
+</style>
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<h2>JBoss Enterprise Application Platform (EAP) 6.x Configuration</h2>
+The following steps are required to properly configure the JBoss Enterprise Application Platform (EAP) 6.x installation on your system  to run the product:
+<ol>
+<li><a href="#JBossEnv">Set up the JBoss environment</a></li>
+<li><a href="#setUpJDBCdriver">Set up the Oracle JDBC driver in JBoss</a></li>
+<li><a href="#changeDeploymentTimeoutSetting">Change the deployment timeout setting</a></li>
+<li><a href="#addJVMsystemParameters">Add JVM system parameters</a></li>
+</ol>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>If you need to connect to JConsole, see the <a href="#jbossJMX">Connect to JMX with JBoss</a> section for details.</li>
+  <li>You can <a href="#enableJMXauthentication">enable JMX authentication with multiple process engines</a>.</li>
+</ul>
+<h3><a name="JBossEnv"></a>Set up the JBoss Environment</h3>
+<ol>
+<li>Install JBoss (<a href="http://www.jboss.org/jbossas/downloads/" target="_blank">quick link</a>) and  ensure that it is a certified version by referring to the  <a href="../Installer_User_Guide/Installation Planning.html#CertificationMatrix">certification matrix.</a> The certification matrix contains the J2EE versions that have been certified for the product (for example, JBoss EAP 6.x).</li>
+<li>Ensure that you have installed the certified JDK version.</li>
+</ol>
+<h3><a name="setUpJDBCdriver"></a>Set Up the Oracle JDBC Driver in JBoss</h3>
+<p>To set up your Oracle JDBC driver in JBoss EAP 6.x requires performing these steps:</p>
+<ul>
+  <li><a href="#installJDBClibrariesModule">Install Oracle JDBC libraries as a module</a></li>
+  <li><a href="#configureDatasourceJNDIname">Configure both the datasource and JNDI name</a></li>
+</ul>
+<h4><a name="installJDBClibrariesModule"></a>Install Oracle JDBC Libraries as a Module</h4>
+<p>In JBoss EAP 6.x, Oracle JDBC libraries have to be installed as a module. Complete the following steps:</p>
+<ol>
+  <li>Create the following folder under &lt;<em>Jboss_Installation_folder</em>&gt;/modules/system/layers/base:<br>
+    <ol>
+      oracle/jdbc/main<br>
+      <br>
+    </ol>
+  </li>
+  <li>Copy the following Oracle JDBC drivers into this newly created folder:</li>
+  <ul>
+    <li> ojdbc6.jar</li>
+    <li>orai18n.jar</li>
+    <li>orai18n-mapping.jar</li>
+  </ul>
+  <li>Create a module.xml file with following content:
+  <div class="code">
+    <div class="codeContent">
+     <pre class="code-java">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;module xmlns="urn:jboss:module:1.0" name="oracle.jdbc"&gt;
+  &lt;resources&gt;
+    &lt;resource-root path="ojdbc6.jar"/&gt;
+    &lt;resource-root path="orai18n.jar"/&gt;
+    &lt;resource-root path="orai18n-mapping.jar"/&gt;
+  &lt;/resources&gt;
+  &lt;dependencies&gt;
+    &lt;module name="javax.api"/&gt;    
+    &lt;module name="javax.transaction.api"/&gt; 
+  &lt;/dependencies&gt;
+  &lt;/module&gt;</pre>
+    </div>
+  </div>
+  </li>
+  <li>Save your file. </li>
+</ol>
+<h4><a name="configureDatasourceJNDIname"></a>Configure the datasource and JNDI name</h4>
+<p dir="ltr"> To configure both the datasource and JNDI name, do the following:</p>
+<ol>
+  <li>Open the &lt;<em>Jboss_Installation_folder</em>&gt;\standalone\configuration\standalone.xml for editing.</li>
+  <li>Add the driver.</li>
+  <li>Set up the datasource (that is, JNDI, URL, security, and so on), as shown in this example:
+  
+  <div class="code">
+    <div class="codeContent">
+     <pre class="code-java">&lt;subsystem xmlns="urn:jboss:domain:datasources:1.0"&gt;
+  &lt;datasources&gt;
+    &lt;datasource jta="false" jndi-name="java:/ConceptWaveConfig" pool-name="ConceptWaveConfig" enabled="true" use-ccm="false"&gt;
+      &lt;connection-url&gt;jdbc:oracle:thin:@cwbuild:1521:cwbuilddb&lt;/connection-url&gt;
+      &lt;driver-class&gt;oracle.jdbc.OracleDriver&lt;/driver-class&gt;
+      &lt;driver&gt;OracleJDBCDriver&lt;/driver&gt;
+      &lt;security&gt;
+        &lt;user-name&gt;username&lt;/user-name&gt;
+        &lt;password&gt;password&lt;/password&gt;
+      &lt;/security&gt;
+      &lt;validation&gt;
+        &lt;validate-on-match&gt;false&lt;/validate-on-match&gt;
+        &lt;background-validation&gt;false&lt;/background-validation&gt;
+      &lt;/validation&gt;
+      &lt;statement&gt;
+        &lt;share-prepared-statements&gt;false&lt;/share-prepared-statements&gt;
+      &lt;/statement&gt;
+    &lt;/datasource&gt;
+    &lt;drivers&gt;
+      &lt;driver name="OracleJDBCDriver" module="<strong>oracle.jdbc</strong>"/&gt;
+    &lt;/drivers&gt;
+  &lt;/datasources&gt;   
+&lt;/subsystem&gt;</pre>
+    </div>
+  </div>
+  </li>
+  <li>Save your file. </li>
+</ol>
+<h3><a name="changeDeploymentTimeoutSetting"></a>Change the Deployment Timeout Setting</h3>
+<p>JBoss has a default deployment timeout of 60 seconds. For most applications, 60 seconds is not enough time to deploy.</p>
+<p>To change the deployment timeout setting, complete these steps:</p>
+<ol>
+  <li> Edit the &lt;<em>Jboss_Installation_folder</em>&gt;\standalone\configuration\standalone.xml file.</li>
+  <li>Locate &lt;subsystem xmlns="urn:jboss:domain:deployment-scanner:1.1"&gt; and add <strong>deployment-timeout="600"</strong> into this section, as shown in this example:<BR>
+  
+  <div class="code">
+    <div class="codeContent">
+     <pre class="code-java">&lt;subsystem xmlns="urn:jboss:domain:deployment-scanner:1.1"&gt;<BR>  &lt;deployment-scanner path="deployments" relative-to="jboss.server.base.dir" scan-interval="5000" deployment-timeout="600"/&gt;<BR>&lt;/subsystem&gt;   </pre>
+  </div>
+  </div>
+  </li>
+  <li>Save your file. </li>
+</ol>
+<h3><a name="addJVMsystemParameters"></a>Add JVM System Parameters</h3>
+<p>To add JVM system parameters, such as JMX, licence, and node information, do the following:</p>
+<ol>
+  <li>Open the &lt;<em>Jboss_Installation_folder</em>&gt;\standalone\configuration\standalone.xml in an editor.</li>
+  <li>Add following example into the file:<BR>
+  
+  <div class="code">
+    <div class="codeContent">
+     <pre class="code-java">&lt;system-properties&gt;
+  &lt;property name="com.sun.management.jmxremote.port" value="8003"/&gt;<BR>  &lt;property name="com.sun.management.jmxremote.authenticate" value="false"/&gt; 
+  &lt;property name="com.sun.management.jmxremote.ssl" value="false"/&gt;
+  &lt;property name="com.conceptwave.licenseDir" value="/home/license "/&gt;<BR>&lt;/system-properties&gt;    </pre>
+  </div>
+  </div>
+  </li>
+  <li>Save your file. </li>
+</ol>
+<p><strong>Note:</strong> The following system parameters are optional if you are running in   multi-tenancy mode:</p>
+<ul>
+  <li><tt>&lt;property name=&quot;<em>com.conceptwave.appName</em>&quot;  value=&quot;&quot;/&gt;</tt></li>
+  <li><tt>&lt;property  name=&quot;<em>com.conceptwave.appVersion</em>&quot;  value=&quot;&quot;/&gt;</tt></li>
+  <li><tt>&lt;property name=&quot;<em>com.conceptwave.nodeId</em>&quot;  value=&quot;false&quot;/&gt;</tt></li>
+</ul>
+<p> Where:</p>
+<ul>
+  <li>    <em>com.conceptwave.appName</em> is the application name when you deploy the  metadata into the database.</li>
+  <li>    <em>com.conceptwave.appVersion</em> is the application version when you  deploy the metadata into the database.</li>
+  <li><em>    com.conceptwave.nodeId</em> is the node you want to start runtime.</li>
+</ul>
+<h3><a name="jbossJMX"></a>Connect to JMX with JBoss</h3>
+<p>When you configure your standalone.xml file with JBoss and attempt to connect to JMX, the JMX port is missing. The following is an example of the standalone.xml settings:
+<div class="code">
+  <div class="codeContent">
+    <pre class="code-java">&lt;property name="com.sun.management.jmxremote.port" value="8000"/&gt;
+&lt;property name="com.sun.management.jmxremote.authenticate" value="false"/&gt;<BR>&lt;property name="com.sun.management.jmxremote.ssl" value="false"/&gt;<BR>&lt;property name="com.conceptwave.licenseDir" value="/directoryFolder/License/"/&gt;<BR>&lt;property name="com.conceptwave.nodeId" value="NodeUI_PE"/&gt;</pre>
+  </div>
+</div>
+JBoss has been upgraded to support the JSR160 - JavaTM Management Extensions (JMX) Remote API and no longer supports the JSR3 - JavaTM Management Extensions (JMXTM) Specification. The product uses this specification to connect to JMX.
+</p>
+<p>To work around this known issue, complete these steps:</p>
+<ol>
+  <li>When creating the .war file for JBoss, ensure that you include jboss-client.jar in your .war file. The jboss-client.jar file can be found in the  &lt;<em>jboss_installation_folder</em>&gt;/bin/client folder. </li>
+  <li>In the standalone.xml file, do the following:
+    <ol type="a">
+      <li>Ensure that the com.sun.management.jmxremote.port system parameter is the same as the port number specified in the JBoss socket-binding. As an example, if you have the following:<BR>
+        <div class="code">
+          <div class="codeContent">
+            <pre class="code-java">&lt;property name="com.sun.management.jmxremote.port" value="8000"/&gt;</pre>
+          </div>
+        </div>
+        Ensure that the port number is identical:<BR>
+        <div class="code">
+          <div class="codeContent">
+            <pre class="code-java">&lt;socket-binding name="management-native" interface="management" port="${jboss.management.native.port:8000}"/&gt;</pre>
+          </div>
+        </div>
+      </li>
+      <li>Change the <strong>interfaces (management, public, unsecure) IP value</strong> from <strong>127.0.0.1</strong> to <strong>0.0.0.0</strong>.</li>
+    </ol>
+  </li>
+  <li>To use JConsole, do the following
+    <ol type="a">
+      <li>Access JConsole from JBoss in the jboss/bin folder.</li>
+      <li>Create a management user using  add-user.cmd/.sh, which is also located in the jboss/bin folder.</li>
+      <li>Connect to JConsole by specifying the following fields:
+        <ul>
+          <li>The <strong>URL</strong> as <strong>service:jmx:remoting-jmx://host:port</strong></li>
+          <li>The username and password that you defined in step 4b.<BR>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+<h3><a name="enableJMXauthentication"></a>Enable JMX Authentication with Multiple Process Engines</h3>
+<p>You have have multiple process engines set up and require enabling JMX authentication to access information, such as the <a href="../System_Administration_Application_User_Guide/AVM/avm.html">PE Info</a> report in the System Administration application. To enable JMX authentication, you must have CWAVM as a user in jmxremote.access.</p>
+<p>To configure your settings, perform the following steps:</p>
+<ol>
+  <li>&#160;In jmxremote.access, ensure that you have the following:<br>
+    <div class="code">
+      <div class="codeContent">
+        <pre class="code-java">CWAVM readwrite \
+ create javax.management.monitor.*,javax.management.timer.* \
+ unregister</pre>
+      </div>
+    </div>
+  </li>
+  <li>In jmxremote.password, add your CWAVM user and password:<br>
+    <div class="code">
+      <div class="codeContent">
+        <pre class="code-java">CWAVM cw</pre>
+      </div>
+    </div>
+  </li>
+  <li>Ensure that each process engine script has the following parameters:<br>
+    <div class="code">
+      <div class="codeContent">
+        <pre class="code-java">-Dcom.sun.management.jmxremote.port=&lt;port no&gt;<BR>-Dcom.sun.management.jmxremote.ssl=false <BR>-Dcom.sun.management.jmxremote.authenticate=true <BR>-Dcom.sun.management.jmxremote.access.file=&lt;<em>location of the access file</em>&gt; <BR>-Dcom.sun.management.jmxremote.password.file=&lt;<em>location of the password file</em>&gt;      </pre>
+      </div>
+    </div>
+    <em><br>
+  </em></li>
+</ol>
+</body>
+</html>

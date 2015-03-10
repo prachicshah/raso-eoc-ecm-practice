@@ -1,0 +1,226 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Change Type</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2>Charge Type Details</h2>
+<p>Charge Types are used to define a pricing model for items and components added to the shopping basket. Using Charge Types, the user is able to define a pricing structure that includes discounts, costs and charges. Conditional charges can be created using the Formula field that uses the Catalog Rules. For example,  conditional charges can be created based the components selected. One component is offered for free while a second component is considered an upgrade and contains an additional charge. There are three main Charge Types available for selections: 
+  Charge, Discount, and Cost.</p>
+<p>The Charge Type details contains various configuration fields that enable flexible pricing model definitions. The price of or discounts on the item can be calculated based on the charges defined in this table. The  currency, frequency of the charge applied and pricing type can be configured for various charges. Further conditional charges can be defined using the Catalog Rules (Formula field) and Info Model. The charge can also be associated to a tax model such that the tax model defined is applied to the charge whenever the item added to the shopping basket.  Privileges to modify the charge are applied by the Owner field such that only the users with the owner's group have access to modify the record. Below are the three different charge type definitions available Charge, Cost, and Discount.</p>
+<h3>Create a Charge Type</h3>
+To create a new Charge Type, do the following:
+<ol>
+  <li>From the Home page, click <strong>Pricing &amp; Tax</strong> &gt; <strong>Charge Type</strong> to launch the Charge Types page. <br>
+    </li>
+  <li>Click the <strong>Add</strong> button at the bottom of the finder to launch the Charge Type Detail page.<br>
+    <br>
+    <img src="ChargeTypeAddButton.png" alt="Charge Types - Add button"><br>
+    <br>
+  </li>
+  <li>From the Charge Type Details page, click the <strong>Type</strong> field and select from one of following charge type options:
+<ul>
+    <li><a href="#charge">Charge</a></li>
+    <li><a href="#cost">Cost</a></li>
+    <li><a href="#discount">Discount</a></li>
+  </ul>
+    </li>
+</ol>
+<h3><a name="charge"></a>Charge</h3>
+<p>You can configure price information for a component or item using the Charge Type details and by setting the enumerated <strong>Type</strong> field  to <strong>Charge</strong>.<br>
+  <br>
+<img src="ChargeType_Details.png" alt="Attribute Type Detail" />
+
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>You can add an attribute association into a charge type and item charge association.  </li>
+  <li>Charge type inheritance allows  inheriting an attribute assoication from the parent charge type.  </li>
+  <li>Price amounts are also added at the item charge association level to allow value-overridding  from the charge type during pricing.</li>
+</ul>
+<h3><a name="cost"></a>Cost</h3>
+<p>Item costs can be entered using the enumeration <strong>Type</strong> field set to <strong>Cost</strong>.  The costs created can be added to the price of an item or shown on an invoice for display purposes only.</p> 
+
+<img src="ChargeType_Cost.png" alt="Cost Charge Type" />
+
+
+<h3><a name="discount"></a>Discount</h3>
+<p>A Discount charge type is used to calculate a reduced price adjustment or an item.  
+ A discount can be applied as a flat amount, percentage, coupon, another charge type and conditional formula. 
+ The coupon option provides the ability to apply a coupon string name that can be referenced by a third-party application to apply conditions and special pricing discounts to the coupon selected.<br>
+ <br>
+<img src="ChargeType_Discount.png" alt="Discount Charge Type" />
+
+<p>The following table describes the fields available for charge, pricing, and discount configurations:</p>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th width="103" class='confluenceTh'>Field</th>
+<th width="884" class='confluenceTh'>Description</th>
+<th width="131" class='confluenceTh'>Rules </th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Code</strong></td>
+<td class='confluenceTd'>An identifying code for this Price Model</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Status</strong></td>
+<td class='confluenceTd'>Select the status for the Charge Type. Choose between Definition and Active.</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Type</strong></td>
+  <td class='confluenceTd'>Select either Charge, Discount or Cost.</td>
+  <td class='confluenceTd'>Mandatory</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><strong>Display Only</strong></td>
+  <td class='confluenceTd'>Select this field when the charge, cost or discount is to be displayed on the invoice only and not used to calculate the price of the item. For example, use this feature when offering a Free Handset.</td>
+  <td class='confluenceTd'>&nbsp;</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Name</strong></td>
+<td class='confluenceTd'>This is a string value that  can be used as a label for internal use when designing your catalog model. This field is not supported by language translation. </td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Start Date</strong></td>
+  <td class='confluenceTd'>The date of the Charge Type becomes effective.</td>
+  <td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>End Date</strong></td>
+<td class='confluenceTd'>The date that the charge, cost or discount  will cease to apply.</td>
+<td class='confluenceTd'>&nbsp;</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Label</strong></td>
+<td class='confluenceTd'>This is the visual label of the field displayed at runtime, which is used in the application user interface. This field is a translational string that supports language translations (refer to Velocity Studio's Translation Element for more details).</td>
+<td class='confluenceTd'>&nbsp;</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Description</strong></td>
+<td class='confluenceTd'>This is a long description of the Charge Type. </td>
+<td class='confluenceTd'>&nbsp;</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Start Period</strong></td>
+<td class='confluenceTd'>The start of the  discount period.  For example, if a  discount plan indicates that there is a $10 off for the first 6 months for signing up  for a contract, then the Effective Period Start and Duration are 1 and 6 respectively.</td>
+<td class='confluenceTd'>&nbsp;</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Duration</strong></td>
+<td class='confluenceTd'>The length of time that the  discount is in effect.</td>
+<td class='confluenceTd'>&nbsp;</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Coupon</strong></td>
+<td class='confluenceTd'>This field is used when the Discount Type is Coupon. This is a string field that takes the name of the coupon. Used by third-party applications to define coupon conditions.</td>
+<td class='confluenceTd'>&nbsp;</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Charge Frequency</strong></td>
+<td class='confluenceTd'>This is the frequency that the charge, discount or cost will apply. Select from the options: Biweekly, Monthly or One Time.</td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Currency</strong></td>
+<td class='confluenceTd'>Select the Currency of this charge, cost or discount. </td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Info Model</strong></td>
+  <td class='confluenceTd'>Defines the info model that applies to this charge. </td>
+  <td class='confluenceTd'>&nbsp;</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tax Model</strong></td>
+  <td class='confluenceTd'>Defines the tax model that applies to this charge. </td>
+  <td class='confluenceTd'>&nbsp;</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Apply Before Tax</strong></td>
+  <td class='confluenceTd'>Selecting this checkbox, applies the charge, cost or discount before  taxes are calculated.</td>
+  <td class='confluenceTd'>Default = True</td>
+  </tr>
+<tr>
+<td height="27" class='confluenceTd'><strong>Project</strong></td>
+<td class='confluenceTd'>Indicates which project the Charge Type is defined.</td>
+<td class='confluenceTd'></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Pricing Type</strong></td>
+<td class='confluenceTd'><p>Choose from Flat Rate (a fixed price), Flat Rate Band or Band (price per unit)</p></td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Formula</strong></td>
+<td class='confluenceTd'>The charge formula. For Standard Pricing the Formula field should return an array of two values: the monthly charge and the one time charge. </td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Markup</strong></td>
+<td class='confluenceTd'> The percentage of desired price increase.</td>
+<td class='confluenceTd'>Optional</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Discount Type</strong></td>
+<td class='confluenceTd'><p>From the drop down list, select the item to which the discount will apply: Amount,  Percentage, Coupon, Charge Type or Formula.</p></td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Amount</strong></td>
+<td class='confluenceTd'><p>This is the fixed amount used for a Charge and Cost types and  when the  Discount type is  Amount. </p></td>
+<td class='confluenceTd'>Mandatory</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Percentage</strong></td>
+<td class='confluenceTd'>The percentage value  of this Discount.  For example, if  discount is to be 10%, type  <em>10</em>.</td>
+<td class='confluenceTd'><p>&nbsp;</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Start Period</strong></td>
+  <td class='confluenceTd'>The start of the  discount period.  For example, if a  discount, say $10 off, is applied to the first 6 months upon signing up  a contract. The Effective Period Start and End are 1 and 6 respectively.</td>
+  <td class='confluenceTd'><p>Mandatory</p></td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><strong>Duration</strong></td>
+  <td class='confluenceTd'>The length of time that the  discount is in effect.</td>
+  <td class='confluenceTd'>&nbsp;</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Owner</strong></td>
+  <td class='confluenceTd'>Group name of the user who created this record.  Only other users associated to this group have privileges to make changes to this record.</td>
+  <td class='confluenceTd'>&nbsp;</td>
+</tr>
+<tr>
+  <td height="24" class='confluenceTd'><strong>External</strong></td>
+  <td class='confluenceTd'><p> When the pricing of a basket item is done in an external system, creating a charge type and giving a fixed price beforehand is not possible. As a result, the basket charge needs to be created on the basket item. </p>
+<p>When selected, this property indicates that the price information comes from an external system. When you have <strong>External</strong> selected, the <strong>Amount</strong> and <strong>Formula</strong> fields can be left empty, and this charge type can be used to create a basket charge manually.</p>
+<p><strong>Notes:</strong></p>
+    <ul>
+      <li>No Item Charge is required to be created  between the item and the external charge type.</li>
+      <li>The Price() API does not price the external charge.</li>
+      <li>A tax model can be added to the charge, if required. The tax is added during basket charge creation.</li>
+    </ul></td>
+  <td class='confluenceTd'>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

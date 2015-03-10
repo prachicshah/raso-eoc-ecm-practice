@@ -1,0 +1,31 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Prepare License Files</title>
+<link rel="stylesheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<tr>
+  <td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top"><h2>Prepare License Files</h2>
+    <p>The AVM installation requires a license for the SUF server and a license for   each ECM application server being installed.</p>
+    <h3>Upload the AVM license for the SUF server</h3>
+    <p> Prerequisites: The AVM license file is available with file name {license}.lic.</p>
+    <ol>
+      <li>Create an avm” directory: #mkdir /var/lib/sufstorage/repository/avm</li>
+      <li>Upload the AVM license file to the SUF server location /var/lib/sufstorage/repository/avm.</li>
+    </ol>
+    <h3>AVM License File for Application Server</SPAN></h3>
+    <p>Upload the AVM license for the ECM application server(s).</p>
+    <p>Prerequisites: The AVM license file is available with file name {hostname}_avm_license.lic. </p>
+    <ol>
+      <li>Upload the AVM license file to a user specified folder (for example, /root/lics) on the SUF server.</li>
+    </ol>
+    <p><strong>Note: </strong>SUF will copy the AVM license file from the user specified license folder to each JBoss (ECM application) server. If this step fails (for example, the AVM license file is missing for a particular JBoss (ECM application) server), the AVM license file can be copied manually at a later time, thus allowing to ability to proceed to the next step. </p>
+</body>
+</html>

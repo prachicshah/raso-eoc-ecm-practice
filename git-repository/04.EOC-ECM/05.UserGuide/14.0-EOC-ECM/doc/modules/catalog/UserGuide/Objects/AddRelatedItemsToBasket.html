@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Add Related Items to Basket</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+<h4><a name="AddRelatedItemsToBasket">Add Related Items to Basket</a></h4>
+<p>To add all related items of a given type to the basket, do the following:</p>
+<ol>
+  <li>Create an Extended purpose matrix population  script with either &lt;<em>namespace</em>&gt;:&lt;<em>script name</em>&gt; equal to  <em>cwtCatalogInit:cwCtlgActionPurposeMatrix</em> or  <em>cwtInit:cwCtlgActionPurposeMatrix</em>.</li>
+  <li>The script content  returns an array that represents the  matrix. The following is an example of a relation  structure:<br>
+ <blockquote>
+ p1 -&gt; (related) c1, p1 -&gt; (related) c2, p1  -&gt; (dependent) c3 
+ </blockquote>
+ </li>
+  <li>To add c1, c2, and c3 into the basket when  p1 is added, the following purpose  matrix script is  created. The target item of the related or dependent type  relation is also  added.<br>
+    <br>
+    <img src="addRelatedItemsToBasket.png" alt="Add related items to basket" width="945" height="506" border="1"><br>
+  </li>
+</ol>
+</td>
+</tr>
+</body>
+</html>

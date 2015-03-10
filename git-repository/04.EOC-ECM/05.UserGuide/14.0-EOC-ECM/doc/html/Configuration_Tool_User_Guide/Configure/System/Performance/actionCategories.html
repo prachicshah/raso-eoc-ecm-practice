@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Performance - Action Categories</title>
+<link rel="stylesheet" href="../../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<h2>Action Categories</h2>
+
+<p>Action categories provide additional server-side control to prevent server overload.  User actions can be grouped into action categories such that server-intensive actions can be queued to restrict the number of actions to be performed simultaneously. The Configuration application contains both definitions and parameters for action categories. </p>
+<p>On the client side (that is, the product), the action category is assigned to a <a href="../../../../Service_Designer_Tool_User_Guide/Velocity_Studio/User Interface User Action Method.htm">User action method</a>.
+  At runtime, user actions assigned to an action category are queued based on the action categories parameters that follow. Once the action enters the queue, the client  displays an In Process dialog that allows you to cancel the action. The client then polls the server every set time (that is, the <strong>Polling interval</strong> parameter) to update the action's status. 
+<p><strong>In Process and Cancel</strong><br>
+  While the user action is in queue, the client displays an In Process dialog that also contains a <strong>Cancel</strong> button.
+  You have the ability to cancel the action as long as the action remains in queue. Once the action has begun its processing, you cannot cancel the action. The server communicates with the client for the action's status to disable the <strong>Cancel</strong> button from the In Process dialog.  However, there may be an instance when the action has starting processing and the client is not yet aware to disable the <strong>Cancel</strong> button. In this case, regardless whether you click the <strong>Cancel</strong> button, the action cannot be cancelled.
+<p>Clicking <b>Performance</b> &gt;<b> Action Categories </b>displays a list of action categories.  
+<p><img src="actionCategories.png" alt="Performance - Action Categories tab" border="1">
+<p>You can perform the following tasks from the Action Categories page:</p>
+<ul>
+  <li><a href="#addActionCategory">Add</a> an action category</li>
+  <li><a href="#deleteActionCategory">Delete</a> an action category</li>
+</ul>
+<h3><a name="addActionCategory"></a>Add an Action Category</h3>
+<p>To add an action category, complete these steps:</p>
+<ol>
+  <li>Click the <strong>Add</strong> button to add an empty row to the table.<br>
+    <br>
+    <img src="actionCategoriesAddButton.png" alt="Performance - Action Categories tab - Add button" border="1">
+    <br>
+    <br>
+  </li>
+  <li>Complete the following fields:<br>
+    <br>
+    <table class='confluenceTable'>
+      <tbody>
+        <tr>
+          <th width="133" class='referenceTh'>Field</th>
+          <th width="760" class='referenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Name</strong></td>
+          <td class='confluenceTd'>This field denotes the action category's name. This name must be unique within the user interface.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Threads</strong></td>
+          <td class='confluenceTd'>This field indicates the number of allowed actions within the action category that can be run simultaneously for the deployed instance.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Wait time (sec)</strong></td>
+          <td class='confluenceTd'>This field specifies the number of seconds consumed before the client displays the In Process dialog for the action.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Polling Interval (sec)</strong></td>
+          <td class='confluenceTd'>This field indicates the number of milliseconds that the client waits before polling the server for an update for the action.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+
+  <li>When you have finished making your changes, click the <strong>Save</strong> button to save your configuration.</li>
+</ol>
+<h3><a name="deleteActionCategory"></a>Delete an Action Category</h3>
+<p>To delete an action category, complete these steps:</p>
+<ol>
+  <li>Select the checkbox next to the  action category that you want, and then click the <strong>Delete</strong> button.<br>
+    <br>
+  <img src="actionCategoriesDeleteButton.png" alt="Performance - Action Categories tab - Delete button" border="1">  <br>
+  <br>
+  </li>
+  <li>A confirmation message appears. Click the <strong>Yes</strong> button to confirm.</li>
+  <li>Your selected action category has been successfully removed from the list.</li>
+</ol>
+<ol>
+</ol>
+</body>
+</html>

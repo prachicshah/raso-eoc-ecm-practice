@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Total Rows in Tables</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td width="1062" valign="top" class="pagebody">
+<h2>Total Rows in Tables</h2>
+<p>You have the ability to show automatic summaries (totals) of data sets when viewed using a finder. The application provides a row specifically for displaying all or certain columns that are shown in a finder table. </p>
+<p>To use the summary row functionality, you need the following Table field element properties for each input element under a Table:</p>
+<table width="736" border cellpadding=1 class='confluenceTable'>
+  <tr>
+    <th width="152" class='referenceTh'>Property</th>
+    <th width="568" class='referenceTh'>Dependency</th>
+  </tr>
+  <tr>
+    <td><strong>Show Data Summary</strong></td>
+    <td>The element must exist under a Table element. The Table element must have the <strong>Show Data Summary</strong> checkbox selected.</td>
+  </tr>
+  <tr>
+    <td><strong>Show Group Summary</strong></td>
+    <td>The element must exist under a Table element. At least one table field element must exist with the <strong>Group by ln Table</strong> checkbox selected. Additionally, the table element must have the <strong>Show Group Summary</strong> checkbox selected, as well as the column, to see the summary in the grouping.	</td>
+  </tr>
+  <tr>
+    <td><strong>Summary Label</strong></td>
+    <td>The element must exist under a table element. The <strong>Summary Type</strong> property must be set to <strong>count</strong>.</td>
+  </tr>
+  <tr>
+    <td><strong>Summary Type</strong></td>
+    <td>The element must exist under a Table element. The <strong>Show Data Summary</strong> checkbox must be checked. See the <a href="#summaryTypes">Summary Types</a> section for a list of available summary types.</td>
+  </tr>
+</table>
+<p>See the Table element's <a href="Element - Table.html#summaryRowStyle"><strong>Summary Row Style</strong></a> property that you can use to summarize total rows in tables.</p>
+<h3><a name="summaryTypes"></a>Summary Types</h3>
+<p>The following built-in <strong>Summary Type</strong> values are available:</p>
+<table width="736" border cellpadding=1 class='confluenceTable'>
+  <tr>
+    <th width="103" class='referenceTh'>Summary Type</th>
+    <th width="615" class='referenceTh'>Description</th>
+  </tr>
+  <tr>
+    <td><strong>Sum</strong></td>
+    <td>Iterates   through the set of records, selecting and summing all numeric   values   for the specified field. Returns null to indicate an invalid summary value if any   non-numeric field values are encountered.</td>
+  </tr>
+  <tr>
+    <td><strong>Average</strong></td>
+    <td>Iterates through the set of records, selecting all numeric   values   for the specified field and determining the mean value. Returns null to indicate   an invalid summary value if any non-numeric field values are   encountered.</td>
+  </tr>
+  <tr>
+    <td><strong>Max</strong></td>
+    <td>Iterates   through the set of records, selecting all values for the specified field and   finding the maximum value. Handles   numeric fields and date type fields only.   Returns null to indicate an invalid summary value if any non-numeric or date field   values are encountered.</td>
+  </tr>
+  <tr>
+    <td><strong>Min</strong></td>
+    <td>Iterates through the set of records, selecting all values for the specified   field and finding the minimum value. Handles   numeric fields and date type fields only.   Returns null to indicate an invalid summary value if any non-numeric or date field values   are encountered.</td>
+  </tr>
+  <tr>
+    <td><strong>Multiplier</strong></td>
+    <td>Iterates   through the set of records, selecting all numeric   values   for the specified field and multiplying them together. Returns null to indicate   an invalid summary value if any non-numeric field values are   encountered.</td>
+  </tr>
+  <tr>
+    <td><strong>Count</strong></td>
+    <td> Returns   a numeric count of the total number of records passed in.</td>
+  </tr>
+</table>
+<h3>Limitations</h3>
+<p>The following are limitations to keep in mind when using total rows in tables:</p>
+<UL>
+  <LI>All   summary types, except <strong>Count</strong>, are only relevant to date and numeric   fields.</LI>
+  <LI>Only   finders with all results visible in UserInterface have the ability to show the summary.   Finders, such as the Event Log, are not capable of displaying the summary   row unless the entire data is sent. Sending the full data is already done with the custom view loaded, which has sorting.</LI>
+</UL></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<html>
+<head>
+<title>HTTP Service Provider</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>HTTP Service Provider</h3>
+<p>The HTTP service provider allows interaction with services over HTTP connection. It supports both GET (URL-encoded) and POST (form or XML-encoded) verbs. The HTTP service provider supports login and session cookies for authenticated sessions.</p>
+<p><strong>Note:</strong> Parsing valid XML with leading whitespace is  supported.</p>
+
+<h4>HTTP Attributes in Velocity Studio</h4>
+
+<p>The table that follows describes the attributes that are exposed in Velocity Studio specifically for the HTTP service provider.</p>
+
+<p>These attributes are found at <b><a href="../External Services/defining a binding.html">Binding</a></b> metadata object in Velocity Studio. When an Interface, Operation, or message element is selected in the <b>Interface element</b> tree, the attributes for the element appears in the <b>Element definitions</b> table where values can be provided.</p>
+
+<p><ins>Attributes in Velocity Studio for the HTTP service provider:</ins></p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Scope</b></td>
+<td class='confluenceTd'>Specifies how the session cookie is used. Can have one of the following values:<br clear="all" />
+<ul>
+<li><strong>application</strong>: All session cookies are shared by all user sessions. This is the default behavior.<br clear="all" /></li>
+<li><strong>session</strong>: Each session cookie is dedicated to one user session.<br clear="all" /></li>
+<li><strong>request</strong>: The session cookie is used for the duration of one user request (when invoking service provider operations from within the same JavaScript, all service invocations are considered one request).</li>
+<li><strong>none</strong>: A session cookie is not used between interface invocations. </li>
+</ul>
+</td>
+<td class='confluenceTd'>Interface <img src="iconInterface.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>implementation</b></td>
+<td class='confluenceTd'>Determines what HTTP API implementation will be used for sending out HTTP request. Takes one of two options: <em>default</em> (Sun Java) or <em>ConceptWave</em>. If left blank, the latter is used.</td>
+<td class='confluenceTd'>Interface <img src="iconInterface.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>encoding</b></td>
+<td class='confluenceTd'>Determines the <em>charset</em> attribute in the HTTP request header. If left blank, <em>charset</em> will take one of two values:
+<ul>
+<li>If the <em>encodingStyle</em> setting for <em>Input</em> in this HTTP binding is left blank or set as <em>xml</em>, then <em>UTF-8</em> will be used as the <em>charset</em>.</li>
+<li>Otherwise, <em>ISO-8859-1</em> will be used for charset.</li>
+</ul>
+</td>
+<td class='confluenceTd'>Interface <img src="iconInterface.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Login</b></td>
+<td class='confluenceTd'>Specifies if this Operation is a <em>login</em> operation. Possible values are <em>yes</em> and <em>no</em>. Default value is <em>no</em>. Only one Operation can be marked as a login operation. A login operation does not have to be implicitly called; the HTTP Service Provider will invoke the login operation automatically when invoking any other Operation on that Interface if a session ID cannot be obtained. For an automatic login operation to succeed, a Document that represents the login input message should be initialized with the proper values (user ID, password, and so on) through initialization.</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Logout</b></td>
+<td class='confluenceTd'>Specifies if this Operation is a <em>logout</em> operation. Possible values are <em>yes</em> and <em>no</em>. Default value is <em>no</em>. Only one Operation can be marked as a logout operation. When a logout operation is called, the session ID is removed from the cache and any subsequent Operation will require performing a login operation.</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+
+<tr>
+<td class='confluenceTd'><b>HttpMethod</b></td>
+<td class='confluenceTd'>This attribute specifies the HTTP method for the selected operation. The POST, GET, PUT, DELETE, and HEAD methods are available.</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+
+<tr>
+<td class='confluenceTd'><b>Accept</b></td>
+<td class='confluenceTd'>This is a HTTP-protocol-standard attribute in HTTP header, which defines what can be accepted in the response from the server to which this HTTP request is sent to. For specific information refer to RFC 2616 at <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html</a>. For instance, if an XML response over HTTP is expected, it should be <i>text/xml</i>.</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Encoding Style</b></td>
+<td class='confluenceTd'>Specifies how message data is formatted when performing a HTTP request. Can have one of the following values:
+	<table class='confluenceTable' border cellpadding="1">
+	<tbody>
+	<tr>
+	<th class='confluenceTh'>Value</th>
+	<th class='confluenceTh'>Description</th>
+	<th class='confluenceTh'>Message</th>
+	</tr>
+	<tr>
+	<td class='confluenceTd'><b>XML</b></td>
+	<td class='confluenceTd'>Data formatted as a XML document based on a Document or Data Structure definition.</td>
+	<td class='confluenceTd'>Input, Output and Fault messages.</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'><b>Form</b></td>
+	<td class='confluenceTd'>Data is encoded exactly as in urlEncoded but a POST request is performed instead of GET.</td>
+	<td class='confluenceTd'>Input.</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'><b>UrlReplacement</b></td>
+	<td class='confluenceTd'>Indicates that all the message data parts are encoded into the HTTP request URI using a replacement algorithm. The relative URI value of the <b>Location</b> attribute of the Binding properties is searched for a set of search patterns. The search occurs before the value of the <b>Location</b> attribute of the Binding properties is combined with the value of the Address <b>Location</b> attribute of the Port properties. There is one search pattern for each message part. The search pattern string is the name of the message part surrounded with parenthesis "(" and ")". For each match, the value of the corresponding message part is substituted for the match at the location of the match. Matches are performed before any values are replaced (replaced values do not trigger additional matches).<br clear="all" />
+	<br clear="all" />
+	Message data parts MUST NOT have repeating values.<br clear="all" />
+	<br clear="all" />
+	For example:<br clear="all" />
+	Location = "o1/A(part1)B(part2)/(part3)"<br clear="all" />
+	port address = "_<a href="http://example.com/_">http://example.com/_</a>"<br clear="all" />
+	<br clear="all" />
+	If the values being passed are: part1=1, part2=2, part3=3<br clear="all" />
+	URL="_<a href="http://example.com/o1/A1B2/3_">http://example.com/o1/A1B2/3_</a>"</td>
+	<td class='confluenceTd'>Input.</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'><b>UrlEncoded</b></td>
+	<td class='confluenceTd'>Indicates that all the message data parts are encoded into the HTTP request URI using the standard URI-encoding rules (name1=value&amp;name2=value...). The names of the parameters correspond to the names of the message data parts (Document or Data Structure elements). Each value contributed by the part is encoded using a name=value pair. This will perform an HTTP GET request. The "?" character is automatically appended as necessary.</td>
+	<td class='confluenceTd'>Input.</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'><b>Text</b></td>
+	<td class='confluenceTd'>Data returned by the service is not processed and is returned as a text (string).</td>
+	<td class='confluenceTd'>Output.</td>
+	</tr>
+	</tbody>
+	</table>
+	<p><br>
+	  <strong>Note:</strong> When you have an  HTTP listener, and you specify the <strong>encodingStyle</strong> field for both the Input and Output, the listener returns the Content Type as  the response, which depends on the encoding set for the Output.</p>
+	<p>As an example, if the <strong>Input</strong> is text and the <strong>Output</strong> is json, the Content Type in the response headers is application/json.</p></td>
+<td class='confluenceTd'>Message <img src="iconMessage.png" align="absmiddle" border="0" alt="" /></p>
+
+<h4>HTTP Attributes in Configuration Application</h4>
+
+<p>The table that follows describes the attributes that are exposed in Configuration application specifically for the HTTP service provider.</p>
+
+<p>These attributes are found in <b><a href="../../../Configuration_Tool_User_Guide/Services Services.html">Services</a></b> tab in Configuration application. When clicking a Port, Binding, Operation or message node in the <b>Service Port tree</b>, the Configuration attributes for the node appears at the <b>Configuration</b> section at the right where values can be provided.</p>
+
+<p><ins>Attributes in Configuration application for the HTTP service provider:</ins></p>
+<table class='confluenceTable' border 
+cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Attribute</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Element</th>
+</tr>
+
+<tr>
+<td class='confluenceTd'><b>location</b></td>
+<td class='confluenceTd'>Specifies the base URI for the Port. The value of the attribute is combined with the values of the <b>Location</b> attribute of the Operation element of the Binding properties. For external services, this would specify the metadata name of the Operation being invoked at this port.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>user</b></td>
+  <td class='confluenceTd'>Basic authentication user name.</td>
+  <td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>passwordKey</b></td>
+<td class='confluenceTd'><p>Basic authentication password name.</p>
+  <p><b>Note:</b> The actual password is contained in the password list referenced by this value.</p></td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>reuseSession</b></td>
+<td class='confluenceTd'>If set to 'no', a new user context is created for each request. Absence of this attribute is defaulted to yes, in which the user context will be reused. Used by listener ports only.</td>
+<td class='confluenceTd'>Port <img src="iconPort.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Location</b></td>
+<td class='confluenceTd'>Specifies a relative URI for the Operation. This URI is combined with the URI specified for the Port Address <b>Location</b> attribute to form the full URI for the HTTP request. For HTTP listeners, this address takes the form, by default,
+  <div class="code">
+<div class="codeContent">
+<pre class="code-java">
+http:<span class="code-comment">//host:port/cwf/api/&lt;namespaceName&gt;-&lt;interfaceName&gt;</span>
+</pre></div>
+</div>
+</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Timeout</b></td>
+<td class='confluenceTd'>Number of seconds to wait before the HTTP response come back. If the response does not come in that time, the underlying HTTP software  generates an error.</td>
+<td class='confluenceTd'>Operation <img src="iconOperation.png" align="absmiddle" border="0" alt="" /></p>
+
+</td>
+</tr>
+</table>
+<p>Every time an XML message is sent or received, Velocity Studio  records the send or receive request in the cwmessagelog table. With the HTTP service provider, both the request and the time of the request are  logged.</p>
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>The cwf.messageLog metadata object replaces the cwf_pm.messageLog document and has no child user interface. </li>
+  <li>You can also create an <a href="../Script/Event Handlers.html">event handler</a> using the SYSTEM_MESSAGELOG_STORE event, which stores the application message log and <SPAN id="internal-source-marker_0.2">is called from the ProviderFactory Java class. </SPAN> This event <SPAN id="internal-source-marker_0."> takes the following parameters:</SPAN>
+    <ul>
+      <li><SPAN id="internal-source-marker_0.41403250615146036">msgLogId</SPAN> (optional)</li>
+      <li>        msgLogDataDoc (optional)</li>
+      <li>        interfaceTypeNo (mandatory)</li>
+      <li>        operationName (mandatory)</li>
+      <li>        sendData (optional)</li>
+      <li>        receiveData (optional)</li>
+      <li>        date (optional)</li>
+      <li>        separateConnection (optional)</li>
+      <li>        propertiesArray (mandatory)</li>
+      <li>        attemptCount (mandatory)</li>
+      <li>        failure (mandatory)      </li>
+    </ul>
+  </li>
+</ul>
+<p><strong>Use  a keystore for two-way SSL handshake</strong></p>
+<p>After you have set up your Java truststore and  keystore,&nbsp;set the following system properties in  your Java command line:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+-Djavax.net.ssl.keyStore=&lt;<em>keystore_path</em>&gt;<br>-Djavax.net.ssl.trustStore=&lt;<em>truststore_path</em>&gt;<br>-Djavax.net.ssl.keyStorePassword=&lt;<em>keystore_password</em>&gt;<br>-Djavax.net.ssl.trustStorePassword=&lt;<em>truststore_password</em>&gt;</pre>
+</div>
+</div>
+<p>If your keystore or truststore types are not JKS, you have to include the following system properties:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>-Djavax.net.ssl.keyStoreType=&lt;<em>type</em> (for example, <em>pkcs12</em>)&gt; <br>-Djavax.net.ssl.trustStoreType=&lt;<em>type</em> (for example, <em>pkcs12</em>)&gt;</pre>
+  </div>
+</div>
+<p>You can use the following property to debug the  SSL communication:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>-Djavax.net.debug=ssl</pre>
+  </div>
+</div>
+<h4>Serialize Message Processing by Listeners</h4>
+<p>You can serialize message  processing by listeners without requiring database access. This feature does the following:</p>
+<ul>
+  <li>Supports  synchronous requests</li>
+  <li>Serializes  incoming listener API requests based on a key</li>
+  <li>    Provides a mechanism for metadata to  know whether a request has timed out while waiting to be processed in serial</li>
+  <li>    Allows metadata to indicate a  serialization timeout</li>
+  <li>    At the system level, enforces low  maximum timeouts (5 seconds) to limit the number of waiting requests<br>
+  </li>
+</ul>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>No configuration fields are available for each interface. Instead, your metadata can  use configuration variables.
+  </li>
+  <li>A backlog or list of waiting requests  is not maintained. As a result, serialization behaviour is not dependent on  any such list. Your metadata can maintain  a count, if necessary, and exit early if the count is  high.</li>
+  <li>    Request starvation (that is, requests being  blocked abnormally long) is not addressed since timeouts are enforced. It is also expected that blocking is rare.</li>
+  <li>    No mechanism for limiting the number  of blocked threads is provided since maximum timeouts are expected to  be low. </li>
+  <li>Using this feature may limit the throughput of product listeners only if the  mechanism is used.
+With SOAP and HTTP, request threads blocked by this mechanism  reduce the total number of threads available for processing incoming HTTP  requests by the container for any type of request (that is, UI or API).</li>
+</ul>
+<p>Listeners are exposed  as scriptable objects in listener error handling scripts. You can process 
+API scripts in  the scope of the listener instance and the listener instance can be accessed in  script using <tt>this</tt>.</p>
+<p>The following API is a part of the Listener object, which blocks the listener thread until any other thread is processed with the same serialization key:</p>
+
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre>public boolean serialize(String key, int timeout)</p></pre>
+  </div>
+</div>
+  <p>The <tt>key</tt> parameter indicates what requests are serialized. The <tt>timeout</tt> parameter is in milliseconds and is likely to be the same for all related requests. Your metadata needs to get this value either from a constant or from configuration variables. See the JavaScript documentation for details about this API.</p>
+<p>Listener API scripts may use this  method at the beginning of the script. Ensure that your script checks its result   to discover whether it is being processed in serial or the timeout has  expired. </p>
+<p>If a listener thread is the first to  try to serialize on a key, it inserts the key into a static map.  When other listener threads attempt  to serialize on that key simultaneously, that key exists in the map. The threads then  perform a sleep-and-check routine until either the timeout has expired or  the key is no longer in the map.</p>
+<p>  At the end of processing the listener (API) script, if the thread has obtained serialization (that is, placed a key  in the map), the serialization key is removed from the map, which unblocks  any other thread waiting on that key. As a result, map entries are guaranteed to exist only for the duration  of listener script's processing, which limits the map's size to the  number of configured listener threads.</p>
+</body>
+</html>

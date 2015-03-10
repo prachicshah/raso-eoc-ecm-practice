@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>Generate Metadata Reference Documentation</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Generate Metadata Reference Documentation</h3>
+
+<p>The <a href="Generate Metadata Documentation.html">Documentation</a> command from the <b>File/Export</b> menu generates a large volume of documentation for all metadata objects of the specified types in the selected namespaces. In many cases, less documentation is adequate, and you would like to decide which objects to be included in documentation.</p>
+
+<p>The <b>File/Export/Reference</b> command, comparatively, allows generating less documentation, which includes only the essential properties of the selected metadata objects. The HTML documentation that is generated is referred to as <i>reference documentation</i>.</p>
+
+<p>Once the menu command is invoked, the <b>Generate Reference Documentation</b> dialog opens where you can specify the namespaces and metadata objects that will be included in the reference documentation. By default, all namespaces and objects are included. The table below describes the fields in the dialog.</p>
+
+<!-- <p>For objects that are marked as included in the reference documentation in the <b>Generate Reference Documentation</b> dialog, the <b>Exclude from reference</b> check box will appear in the <b>General</b> tab of the corresponding metadata object properties. By selecting the <b>Exclude from reference</b> check box, the metadata developer can exclude the object from the reference documentation.</p> -->
+
+<img src="exportReference.png" align="absmiddle" border="0" alt="Export reference documentation" /><br>
+<br>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Namespaces</b></td>
+<td class='confluenceTd'>Allows the user to select the namespaces in the current metadata that will be included.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Options</b></td>
+<td class='confluenceTd'>Allows the user to select the object types in the current metadata that will be included. When the <b>Documentation</b> check box is selected all the object types in the <b>Options</b> list will be selected. When the <b>Documentation</b> check box is deselected all the object types in the <b>Options</b> list will be deselected.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>All</b></td>
+<td class='confluenceTd'>When clicked, all the namespaces in the <b>Namespaces</b> list will be selected.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>None</b></td>
+<td class='confluenceTd'>When clicked, all the namespaces in the <b>Namespaces</b> list will be deselected.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Include all objects</b></td>
+<td class='confluenceTd'>When clicked, all applicable metadata objects of the types listed in the <b>Options</b> pane will be included in the documentation</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Generate</b></td>
+<td class='confluenceTd'>When clicked, opens the <b>Save Documentation</b> dialog where the directory location to export the file too and the file name is specified.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Close</b></td>
+<td class='confluenceTd'>When clicked, closes the dialog without any action.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

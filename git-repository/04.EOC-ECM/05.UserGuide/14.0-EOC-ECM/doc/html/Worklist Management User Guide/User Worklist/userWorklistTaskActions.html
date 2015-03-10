@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Task Actions</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h3>Task Actions</h3>
+<p>A set of actions available to be performed on a task are specified in the task’s <a href="../../Service_Designer_Tool_User_Guide/Business_Process_Metadata/user participant.html">participant</a> metadata. The task participant is based on an interface whose operation of <em>Notification</em> type acts as the task’s actions, and can be used to perform work and complete tasks. By default, all participant operations of type Notification are valid task actions. The set of action can be refined further.</p>
+<H4 >Actions Enabled for tasks</H4>
+<p>The following are configurations that define a set of actions available on a particular task:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="240" class='confluenceTh'>Configuration</th>
+      <th width="1289" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Allow Invalid Order</strong></td>
+      <td class='confluenceTd'><p> If this field is not checked, the action can only be performed on the task having its order in a valid state. The action is visible regardless of the order state. However, the action will not be performed if the order violates the <strong>Allow Invalid Order</strong> setting.<BR>
+        </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Bulk Complete</strong></td>
+      <td class='confluenceTd'><p> If this field is not checked, the  action can only be performed on a single task at a time. If you check this field, the action can be performed on multiple tasks belonging to the current participant. The action is not visible if it violates the <strong>Bulk Complete</strong> setting.<BR>
+        </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>States</strong></td>
+      <td class='confluenceTd'><p> This field defines the list of order states for which this action is available. By default, the list is empty, meaning that current action is available for any task belonging to this participant, regardless of task’s order state. Otherwise, the task’s order must be in one of the listed states. The action is not visible if task does not match the <strong>States</strong> setting.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Tasks</strong></td>
+      <td class='confluenceTd'>This field defines the list of task operations for which this action is available. By default, the list is empty, meaning that the current action is available for all tasks belonging to this participant, regardless of the operation that created this task. Otherwise, the action available for tasks must be created with one of the operations from the list. The action is not visible if the task does not match the <strong>Tasks</strong> setting.</td>
+    </tr>
+    <tr>
+      <td height="47" class='confluenceTd'><strong>cwOnPartOnCond() condition script </strong></td>
+      <td class='confluenceTd'>This script allows you to programmatically define whether the action is available on a particular task. By default, the script is empty, meaning that it always runs to true. Otherwise, it can be implemented to return true or false, where false means that action cannot be performed on a task. The action is not visible when condition evaluates to false.</td>
+    </tr>
+  </tbody>
+</table>
+<BR>
+
+<H4>Action Behaviour</H4>
+<p>The following are configurations that define the action behaviour:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="243" class='confluenceTh'>Configuration</th>
+      <th width="1286" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Allow Invalid Order</strong></td>
+      <td class='confluenceTd'><p>Keep task open – if not checked, action closes the task and task is no longer accessible from the user worklist. If checked, action performed on a task leaves task in the worklist and other actions can be executed on it.<BR>
+      </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>cwOnPartOpConf() Confirmation script </strong></td>
+      <td class='confluenceTd'><p>      This script defines whether to prompt confirmation before processing the action. By default, the script is empty, meaning that no confirmation is required from the user. Otherwise, the script can return an object (for example, a document), a string, or a message code that displays in a popup dialog. In this case of either a message code or a string, the message displays in a standard Yes-No confirmation dialog. If the result is an object,  this object displays as a popup and can further be customized as required to specify acceptance or rejection to proceed with the action.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>cwOnParticipantOpAction() Action script</strong></td>
+      <td class='confluenceTd'><p> This script is what constitutes the action itself. By default, this script is empty, meaning that processing the action is a simple transaction without any underlying logic. Otherwise, the script can include any required implementation (for example, to change a task’s order state or record transaction of the action in a log file).</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

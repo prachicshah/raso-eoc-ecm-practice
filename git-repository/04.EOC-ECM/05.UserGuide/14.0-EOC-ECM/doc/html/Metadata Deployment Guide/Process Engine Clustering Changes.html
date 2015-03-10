@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Process Engine Clustering Changes</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Process Engine Clustering Changes</h2>
+
+<h3>Determining sufficient Cluster Size</h3>
+<p>Decisions related to how many clusters to use vary per application. As a general rule, begin with 2 and work upwards. To monitor performance of the active engines, use JConsole to view the number of completed processes versus the number of running, at least twice on an average day. If there is a consistent increase in the backlog of running processes, this information is an indicator that additional power may be needed.</p>
+
+<p>The cluster size must be from 2 to 20. <!--Once set, the cluster size must be changed only if the user wants to increase or decrease the number of the running PE instances.</p>
+<p>-->The AVM does not allow running PE instance with a PE ID greater than the cluster size. However, it is user's responsibility to make sure that all PE instances in the cluster start and run properly.</p>
+<p><strong>Note:</strong> If you change either the cluster size of PEs or bucket definitions, you must restart all PEs in the cluster. </p>
+
+<h3>Adding Process Engine in Live Environment</h3>
+
+<p>To add new PE instances to an symmetrical cluster, complete these steps:</p>
+<ol>
+<li>Add the new PE nodes in Configuration application. Make sure that the node configuration is set to run as PE and in symmetrical mode in <a href="../Configuration_Tool_User_Guide/System Parameters.html">System Parameters page</a>, as well as assigning PE ID that is incremental to the existing set of PEs (e.g. If 3 PEs with PE ID 1,2,3 exist, then the new PE must have PE ID of 4). </li>
+<li>Note that the bucket ID and bucket span, for all process types, are ignored in <a href="../Configuration_Tool_User_Guide/Processes PE Processes.html">PE Processes page</a> in Configuration application. In symmetrical mode, the PE ID of each node serves as the bucket ID for all process types. The number of processes that is specified in the page, however, continue to be used for each process type.</li>
+<li>Restart all updated and new PE nodes.</li>
+</ol>
+
+<p>To add new PE instances to an asymmetrical cluster, perform the following steps:</p>
+<ol>
+<li>Increase the bucket span of desired processes type in <a href="../Configuration_Tool_User_Guide/Processes PE Processes.html">PE Processes page</a> in Configuration application, for all PE nodes. Do not change the bucket ID unless necessary.</li>
+<li>Add the new PE nodes in Configuration application. Make sure that the node configuration is set to run as PE and in asymmetrical mode in <a href="../Configuration_Tool_User_Guide/System Parameters.html">System Parameters page</a>. From the PE Processes page in the Configuration application, assign the bucket ID and bucket span for process types according to the planned workload distribution.</li>
+<!--<li>Must start as many new PE instances as needed with bigger PE ids and corresponding CDEF files.</li>-->
+<li>Restart all updated and new PE nodes.</li>
+</ol>
+
+<h3>Removing Process Engine in Live Environment</h3>
+
+<p>To remove PE instances from a symmetrical cluster, do the following:</p>
+<ol>
+<li>Delete node configuration in Configuration application for all PE nodes to be removed from cluster.</li>
+<li>The remaining PE nodes must have consecutive PE IDs starting from 1 (for example, if there are only 3 PEs left, their PE IDs must be 1, 2, and 3, respectively). If not, update their PE IDs in <a href="../Configuration_Tool_User_Guide/System Parameters.html">System Parameters page</a>.</li>
+<li>Shut down the remaining PE instances, and restart the remaining and updated PE instances.</li>
+</ol>
+
+<p>To remove PE instances from an asymmetrical cluster, complete the following:</p>
+<ol>
+<li>Decrease the bucket span of desired processes type on the <a href="../Configuration_Tool_User_Guide/Processes PE Processes.html">PE Processes page</a> in the Configuration application, for remaining PE nodes. Make sure that the remaining nodes cover all buckets in a specified bucket span of each process type.</li>
+<li>Delete (or inactivate, in <a href="../Configuration_Tool_User_Guide/System Parameters.html">System Parameters page</a>) node configuration in the Configuration application for all PE nodes to be removed from cluster.</li>
+<li>Shut down the remaining PE instances, and restart the remaining and updated PE instances.</li>
+</ol>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

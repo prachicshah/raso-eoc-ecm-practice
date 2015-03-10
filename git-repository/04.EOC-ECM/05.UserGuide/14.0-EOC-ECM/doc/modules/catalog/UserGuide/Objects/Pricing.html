@@ -1,0 +1,237 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Pricing</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Pricing  and Discounts</h2>
+<p>The Charge Type object is the most  significant entity for defining pricing in the Product Catalog, providing  flexibility on implementing complex pricing requirements. The Charge Type object enables you to configure  pricing or discount information and associating items to this information. The Charge Type describes the characteristics of a chargeable item that is displayed in an invoice, such as charge recurrence (for example, one-time, monthly) and method of pricing calculation. A Charge Type can have several different version, each defining a facet of the overall pricing such as the applicable date range.</p>
+<p>The Charge Type object consists of several attributes that when configured create pricing for  items in a project:</p>
+<ul>
+  <li>Pricing Type</li>
+  <li>Info Model (for customized pricing only)</li>
+  <li>Tax Model</li>
+  </ul>
+<p><strong>Note</strong>: For information regarding Discounts, see <a href="ChargeType_Details.html">Charge Types</a>.</p>
+<h3>Pricing Type</h3>
+<p>The<em> Pricing Type</em> field in the Charge Type object describes the characteristics of a chargeable item that is displayed in  an invoice, such as charge recurrence (that is, one-time, monthly) and method of  pricing calculation. In determining the price of a particular  Item in the Product Catalog, the calculation rule to employ is based on the  item’s associated Pricing  Type:</p>
+
+<table class='confluenceTable' border="1"><tbody>
+<tr>
+<th width="141" class='confluenceTh'>Type</th>
+<th width="161" class='confluenceTh'>Description</th>
+<th width="149" class='confluenceTh'>Example</th>
+</tr>
+  <tr>
+    <td class='confluenceTh'><strong>Standard Pricing</strong></td>
+   <td class='confluenceTh'>A static fixed price</td>
+    <td class='confluenceTh'>Subscription Fee Installation Fee</td>
+  </tr>
+</table>
+<h4>Standard Pricing</h4>
+<p>Standard Pricing is the most common pricing  method.</p>
+<p>For example, the Product <em>Digital Cable TV  service</em> has a subscription fee of $50/month and a $25 Installation fee.  </p>
+<ul>
+  <li><em><u>Digital Cable TV Subscription Fee</u></em></li>
+  <li>Monthly  charge</li>
+  <li>Standard  pricing</li>
+</ul>
+<ul>
+  <li><em><u>Cable TV Installation Fee</u></em></li>
+  <li>One-time  charge</li>
+  <li>Standard  pricing</li>
+</ul>
+
+<p>The Product is associated with both  of these Charge Types.</p>
+
+<table width="419" class='confluenceTable'><tbody>
+<tr>
+<th width="225" class='confluenceTh'>Charge Type</th>
+<th width="73" class='confluenceTh'>Amount</th>
+<th width="70" class='confluenceTh'>Markup (%)</th>
+</tr>
+  <tr>
+    <td class='confluenceTd'>Digital Cable TV Subscription Fee</td>
+    <td class='confluenceTd'>50</td>
+    <td class='confluenceTd'>0</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>Cable TV Installation  Fee</td>
+    <td class='confluenceTd'>25</td>
+    <td class='confluenceTd'>0</td>
+  </tr>
+</table>
+<p>The <em>Amount</em>  is the monetary value of  Charge Type, and the <em>Markup</em> is the percentage of desired  price increase to the Amount.</p>
+<p>Because both Charge Types are Standard  Pricing without formula, the resulting price of Charge Type is calculated by  the default formula of <em>Charge X (1 + markup/100)</em>, resulting in $50 and $25 respectively.  Each of the two Charge Types  appears on the Order Invoice as a separate item.</p>
+<p>For the recurrence interval of the Charge  Types, the Product Catalog does not perform business logic, other than to  categorize them in the Order Invoice; a Billing system can integrate and use this  information in the Product Catalog for charging and invoicing. The Standard Pricing can also be  accompanied with a tailored formula, which uses Catalog Rules Language to compute and  return the resulting price.  Formulas  provide flexibility to satisfy complex pricing requirements such as  variable-based pricing, or looking up for information in other systems (that is, business credit rating).  </p>
+<h3>Defining Discounts</h3>
+<p>A D<em>iscount</em> defines a promotion to be applied on top of a set of catalog items’ Charge Type associations.</p>
+<p>For example, you can create a discount by applying a Christmas promotion of  $20 off any Product <em>Smart Phones</em> .  If a <em>Family Plan</em> offer contains multiple  Smart Phones, the discount is applied once in each of the applicable phones at  the offer’s pricing.</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'> Discount Type </th>
+      <th class='confluenceTh'> Description </th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Amount</td>
+      <td class='confluenceTd'>An absolute amount to be deducted off the charge (that is,  $10 off)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Percentage</td>
+      <td class='confluenceTd'>A percentage amount to be deducted off the charge  (that is, 20% off)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Formula</td>
+      <td class='confluenceTd'>A formula script to compute the amount to be deducted  off the charge (for example, variable amount based on elapsed years of customer's  account)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Charge Type</td>
+      <td class='confluenceTd'>A variable amount to be deducted off the charge,  allowing the use of the same pricing mechanism available in a pricing</td>
+    </tr>
+  </table>
+<p>Some discounts are only applied for a limited period of time.  For example, for signing a 1-year cable TV contract you would receive the first 3 months free.  The Discount object stores the Effective Period Start and Duration (that is, 1 and 3, respectively, in this case) fields, but does not perform billing business-logic on it.
+
+  Gimmicks and perks can also be conveyed as discounts by enabling the <strong>Display Only</strong> option, which does not deduct anything off applicable charges.  For example, <em>Per-second billing</em>, or <em>24/7 Technical Support</em>. </p>
+<h3>Creating Pricing and Discounts Using Associations</h3>
+<p>There are several fields available (Info Models, Tax Models and Rules) in the Charge Type object that allow you to associate Catalog information to a Charge Type creating specific pricing.</p>
+<h3>Creating Pricing Using Info Models</h3>
+<p>Items can  be priced differently based on geographic regions, customer loyalty, and/or  class of service, etc, which can create a Charge Type with multiple input  variables.  <em>Info Model</em> enables the creation of Pricing with  additional input attribute(s). Info Models provide supplementary information tables required to   build the Catalog including pricing. Examples may include geographic or demographic categorization   data, complex pricing structures, or other generic mapping tables for business   logic.</p>
+<p>For example, the Component <em>Small  Business Internet Service</em> has an Attribute <em>CoS</em> (Class of Service), which can  be either <em>Gold</em>, <em>Silver</em> or <em>Bronze</em>.   Internet Gold costs $99/month, Internet Silver costs $79/month, Internet  Bronze costs $59/month. An Info Model can be created with  Attribute CoS associated.  </p>
+<p>With a  Charge Type setup as:</p>
+<ol>
+  <li><em><u>Small Business Internet Subscription Fee</u></em></li>
+  <li>Monthly  charge</li>
+  <li>Standard  pricing</li>
+  <li>Tailored  formula that</li>
+  <ul>
+    <li>Assigns  component CoS to pricing</li>
+    <li>Retrieves  the price from Price List</li>
+    <li>Returns  the result price</li>
+  </ul>
+</ol>
+
+<table class='confluenceTable'><tbody>
+<tr>
+<th class='confluenceTh'>Charge Type</th>
+<th class='confluenceTh'>CoS</th>
+<th class='confluenceTh'>Charge</th>
+</tr>
+  <tr>
+    <td class='confluenceTd'>Small Business Internet Subscription Fee</td>
+   <td class='confluenceTd'>Gold</td>
+    <td class='confluenceTd'>99</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>Small Business Internet Subscription Fee</td>
+    <td class='confluenceTd'>Silver</td>
+    <td class='confluenceTd'>79</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>Small Business Internet Subscription Fee</td>
+    <td class='confluenceTd'>Bronze</td>
+    <td class='confluenceTd'>59</td>
+  </tr>
+</table>
+<p>The Custom Price Model now performs  CoS-based pricing as required.</p>
+<h3>Associating Tax Models</h3>
+<p>Tax Models allows the user to set up various tax situations within a Catalog. It  allows users to define a  Target Tax (defined in the Taxes object) which allows taxes to be applied, using a percentage value, to a sold item (goods or services). In addition,  Target Tax Model option within the Tax Model Items allows taxes to be   applied to on top of taxed items. Configuring Tax Model Items and assigning a Sequence to the items allows user to apply tax not only to Item but to each tax sequence cumulatively.</p>
+<p>By configuring the Taxes object, you can configure taxes on all charges during pricing or discounts by defining a percentage. For example, Canada’s Goods and Services Tax  (HST) is 13%. Next, using the <em>Tax</em> Model you can define the Target Tax (this is the 13% previously defined in the Taxes object), define the Target Tax Model (any additional tax percentage in addition to the 13%) and the sequence.</p>
+<p>The Sequence field allows tax to  applying on top of another tax. For example, (charges * tax1) * tax2.  For  example, Quebec’s Sales Tax (QST) is 8% applied on top of 7.5% GST.</p>
+<h3>Associating Catalog Rules</h3>
+<p>Pricing of Catalog items are rarely simple;  many rules apply (or do not apply) to charges based on different business  variables.  For this reason, various objects  in the Product Catalog may be assigned with Catalog Rules to implement  these requirements.</p>
+<p><em>The </em> <em>Conditions</em> tab of the Charge Type Details page refers to any rules configured for a Price Type or Discount.</p>
+<p>The following table summarizes the pricing  objects that are capable of having eligibility rules, and their common uses and  examples are highlighted.</p>
+
+<table class='confluenceTable'><tbody>
+<tr>
+<th class='confluenceTh'>Pricing Eligibility</th>
+<th class='confluenceTh'>Purpose</th>
+<th class='confluenceTh'>Examples</th>
+</tr>
+  <tr>
+    <td class='confluenceTd'> Charge  Type</td>
+    <td class='confluenceTd'><p>Conditional Charging based on:</p>
+      <ul>
+        <li>choice of attributes / components / products</li>
+        <li> existing customer contract</li>
+      </ul></td>
+    <td class='confluenceTd'><ol>
+      <li>Waive cable-box rental fee with purchase of PVR</li>
+      <li> Cable subscription includes the first outlet, but  monthly charges apply to extra outlets</li>
+      <li> Contract renewal fee for premature transferring to another price plan</li>
+    </ol></td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>Discount Type</td>
+    <td class='confluenceTd'><p>Eligibility rules of the Discount by:</p>
+      <ul>
+        <li> demographics</li>
+        <li> customer loyalty</li>
+        <li> geography</li>
+      </ul></td>
+    <td class='confluenceTd'><ol>
+      <li>Student Discounts, Senior Discounts</li>
+      <li> Discount to new customers only</li>
+      <li>      Discounts only applicable to certain states / provinces</li>
+    </ol></td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>Tax Model</td>
+    <td class='confluenceTd'><p>Tax eligibility required by law:</p>
+      <ul>
+        <li> Regional taxes</li>
+        <li> Tax exemption on individuals</li>
+      </ul></td>
+    <td class='confluenceTd'><ol>
+      <li>State tax</li>
+      <li>      Tax exemption to First Nations</li>
+    </ol></td>
+  </tr>
+</table>
+<p>Similar to non-pricing Eligibility Rule  assignments, if multiple eligibility rules are assigned to the same pricing  object, <em><u>all</u></em> eligibility  criteria must be satisfied for the object to be considered eligible.</p>
+<h3>Associating Items to a Charge Type</h3>
+<p>Charge Types can be associated  at different levels in the Product Catalog, by associating items and groups to the Charge Type.</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Object Type</th>
+      <th class='confluenceTh'>Association to Price Model Charge Type</th>
+      <th class='confluenceTh'>Notes</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Item</td>
+      <td class='confluenceTd'>Yes</td>
+      <td class='confluenceTd'>&nbsp;</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Item Item Association</td>
+      <td class='confluenceTd'>Yes</td>
+      <td class='confluenceTd'>Has option to ignore pricing at the Item level (and  all subsequent levels beneath)<br>
+        <p>Has option to ignore pricing at the child Item level </p>
+        If associated, this overrides child Items's Charge  Type</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Group</td>
+      <td class='confluenceTd'>Yes</td>
+      <td class='confluenceTd'>Takes effect only  when none of the child Item have any associated Charge Type at the  Item or child Item level</td>
+    </tr>
+</table>
+<p>When pricing an ordered Product Catalog  item, the charges are tallied top-down in the item’s composition.  For example, if an Item is priced, not only  is the Item’s Charge Type (if any) subject to pricing, but the Item's associations are also subject to pricing.  All the prices are added to  become the total price of the Item. At the Item level, an option can be selected to ignore pricing at the Item association level respectively, thus the applicable items are bypassed in the composition’s  pricing.</p>
+<h3>Logging Charge Type Information</h3>
+<p>You can use  custom logging to troubleshoot Catalog pricing rules when there is a discrepancy processing them in the process engine and the user interface. In the Configuration application, you can add the com.conceptwave.catalognew flag in <strong>System</strong> &gt; <strong>Logging</strong>. In Catalog Designer, when you add an item and create a charge type with a pricing rule, and then turn on Test Mode and pricing, information about the charge type is logged.</p>
+<p>&nbsp;</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

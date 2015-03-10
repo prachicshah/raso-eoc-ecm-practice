@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Versioned Code Tables</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Versioned Code Tables</h2>
+
+<p>You can versioned a code table in your project, which allows you to define both the start and end dates for each code within a code table. You can then use your versioned code table when defining an attribute in your catalog.</p>
+<p>As an example, you may have a code table that represents a term, and you have plans for sales in July and September. For a July sale, your table contains only 12 and 24 months as available code values. However, for a September sale, you also require 36 and 60 months in addition to the 12 and 24-month values. In other words, the 36 and 60 values are unavailable for the July sale, but all four values are available for the September sale.</p>
+<h3>  Versioned Versus Non-Versioned Code  Tables</h3>
+<p>Every code table has a unique  name, a description, an active status flag, and   sort settings.</p>
+<p>A <strong>non-versioned </strong>code table is a  simpler code table than a versioned code table. It does not belong to any project and  its  active status is flagged (checked) as active. As a rule, non-versioned code  tables can only contain non-versioned codes, and vice versa.</p>
+<p>A <strong>versioned</strong> code table, on the  other hand, is always associated with a catalog project   and its active status depends on the start date and end date,  as  well as the status defined in a life cycle. Versioned code tables include additional  fields such as project, status and effective dates.   Each versioned  code table and code is associated with a project. This project is set at the time  of creation to the currently opened project. </p>
+<p>Code table codes do not have to  have the same project as a parent code table.</p>
+<p> If there is no open project,  then the code table and its codes are created as non-versioned. Otherwise, they have the version property and they are associated with the project that is open. It is not allowed to add a new code to a  versioned code table with no open project.</p>
+<p>For more information on versioned code tables and version codes, see the <em>Code Tables</em> section and the<em> Add, Edit, and Delete Code Tables</em> sections.</p>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>Multiple  versions of a versioned code tables cannot exist. Only codes can be versioned within a code table.</li>
+  <li>Both versioned and non-versioned  code tables use the same CWDBCODETABLES database table and cache. As a result, duplicate code table names are not allowed. It is recommended to adopt a naming convention that distinguishes between versioned and non-versioned code tables.</li>
+  <li>Both versioned and non-versioned codes appear in the code table cache with both start date and end dates. A non-versioned code's life cycle is from 0 to an integer's maximum value, meaning that it is valid forever.  On the other hand, a versioned code table's life cycle depends on the start and end dates of both the code table and its codes. </li>
+  <li>When using a code table in an application in which it gets codes from the code table cache, all non-versioned codes are valid. For versioned codes, both status and life cycle are verified. </li>
+  <li>Versioned code tables can be imported and exported with a catalog project.</li>
+  <li>Versioned code tables cannot be imported or exported individually, as they are related to the catalog project.</li>
+  <li>Versioned codes cannot be active before its versioned code table is active.</li>
+</ul>
+<h3>  Create an Attribute Type Using a Versioned Code Table</h3>
+<p>You can use both a versioned and non-versioned code table to create an attribute type in your catalog. The following example shows how to use a versioned code table when defining your catalog attribute:</p>
+<ol>
+  <li>From the menu bar, click <strong>Designer</strong> &gt; <strong>Attribute Types</strong>.</li>
+  <li>From the Attribute Types search page, click the <strong>Add</strong> button to launch a blank Attributes Type Detail page.</li>
+  <li>Enter all mandatory fields. For the <strong>Type</strong> field, click the drop-down list and select <strong>Code Table</strong>. Proceed to click the <strong>Save</strong> button.</li>
+  <li>The Attribute Type Detail page refreshes and the <strong>Code Table</strong> field appears.<br>
+    <br>
+    <img src="versionCodeTableAddCatalogAttribute.png" alt="Create an attribute type with a versioned code table">  <br>
+    <br>
+  </li>
+  <li>Click the <strong>Code Table</strong> field's drop-down menu. Both versioned and non-versioned code tables appear. Select the code table that you created previously and then click the <strong>Save</strong> button.<br>
+    <br>
+    <img src="versionCodeTableAddCatalogAttributeCodeTable.png" alt="Select versioned code table when creating attribute type" border="1"><br>
+    <br>
+  </li>
+  <li>You have successfully created an attribute type that uses a versioned code table.<br>
+  </li>
+</ol>
+<h3>&nbsp;</h3>
+</body>
+</html>

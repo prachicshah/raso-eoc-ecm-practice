@@ -1,0 +1,174 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Apply Stylesheet Changes for Tables</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h4>Apply Stylesheet Changes for Tables</h4>
+<p>Whenever a table's row style is set by <a href="../Metadata_Objects/Finder/Finder User Interface Methods.html#cwOnVelocityRowstyle">cwOnVelocityRowStyle</a> (for example, UserDefinedStyle), add the  corresponding style to the stylesheet (for example, tallUserDefinedStyle when applying the tall style). You also need to add the  corresponding   style for all appended styles from the base style (for example, tallUserDefinedStyleOver, tallUserDefinedStyleDark when applying the tall style).<BR>
+  <BR>
+  <strong>Note:</strong> The tall style group is automatically applied when the table rows do not use the   default height.</p>
+<p>For a finder table, if the <strong><a href="Element - Table.html#wrapCells">Wrap  Cells</a></strong> property is checked, the name of the style that begins with  tall is  used. Otherwise, the style name without tall is used. The <strong> Wrap Cells</strong> property indicates to give the table  cell flexible height.</p>
+<p>The following is an example of styles for worklist finders with flexible heights:</p>
+<div class="code">
+<div class="codeContent">
+<pre class="code-java">
+.tallCwWLRow,
+.tallCwWLRowDark,
+.tallCwWLRowOver,
+.tallCwWLRowOverDark,
+.tallCwWLRowSelected,
+.tallCwWLRowSelectedDark,
+.tallCwWLRowSelectedOver,
+.tallCwWLRowSelectedOverDark,
+.tallCwWLRowDisabled,
+.tallCwWLRowDisabledDark,
+
+.tallCwWLRowErr, 
+.tallCwWLRowErrDark, 
+.tallCwWLRowErrOver, 
+.tallCwWLRowErrOverDark, 
+.tallCwWLRowErrSelected, 
+.tallCwWLRowErrSelectedDark, 
+.tallCwWLRowErrSelectedOver, 
+.tallCwWLRowErrSelectedOverDark, 
+.tallCwWLRowErrDisabled, 
+.tallCwWLRowErrDisabledDark,
+
+.tallCwWLRowNewErr,
+.tallCwWLRowNewErrDark,
+.tallCwWLRowNewErrOver,
+.tallCwWLRowNewErrOverDark,
+.tallCwWLRowNewErrSelected, 
+.tallCwWLRowNewErrSelectedDark,
+.tallCwWLRowNewErrSelectedOver,
+.tallCwWLRowNewErrSelectedOverDark,
+.tallCwWLRowNewErrDisabled,
+.tallCwWLRowNewErrDisabledDark,
+
+.tallCwWLRowNew, 
+.tallCwWLRowNewDark, 
+.tallCwWLRowNewOver, 
+.tallCwWLRowNewOverDark, 
+.tallCwWLRowNewSelected, 
+.tallCwWLRowNewSelectedDark, 
+.tallCwWLRowNewSelectedOver, 
+.tallCwWLRowNewSelectedOverDark, 
+.tallCwWLRowNewDisabled, 
+.tallCwWLRowNewDisabledDark { 
+    font-family:Verdana,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:#333333; 
+    border-right:1px solid #E1E1E1;
+ } 
+
+.tallCwWLRowDark, 
+.tallCwWLRowErrDark { 
+    background-color:#F1F1F1;
+} 
+
+.tallCwRowNewErrSelectedDark, 
+.tallCwRowNewErrSelected, 
+.tallCwRowNewErrSelectedOver, 
+.tallCwRowNewErrSelectedOverDark, 
+.tallCwWLRowNew, 
+.tallCwWLRowNewDark, 
+.tallCwWLRowNewOver, 
+.tallCwWLRowNewOverDark, 
+.tallCwWLRowNewSelected, 
+.tallCwWLRowNewSelectedDark, 
+.tallCwWLRowNewSelectedOver, 
+.tallCwWLRowNewSelectedOverDark, 
+.tallCwWLRowNewDisabled, 
+.tallCwWLRowNewDisabledDark,
+
+.tallCwWLRowNewErr, 
+.tallCwWLRowNewErrDark, 
+.tallCwWLRowNewErrOver, 
+.tallCwWLRowNewErrOverDark, 
+.tallCwWLRowNewErrSelected, 
+.tallCwWLRowNewErrSelectedDark, 
+.tallCwWLRowNewErrSelectedOver, 
+.tallCwWLRowNewErrSelectedOverDark, 
+.tallCwWLRowNewErrDisabled, 
+.tallCwWLRowNewErrDisabledDark {
+    font-weight:bold;
+} 
+
+.tallCwWLRowErr, 
+.tallCwWLRowErrDark, 
+.tallCwWLRowErrOver, 
+.tallCwWLRowErrOverDark, 
+.tallCwWLRowErrSelected, 
+.tallCwWLRowErrSelectedOver, 
+.tallCwWLRowErrSelectedOverDark, 
+.tallCwWLRowErrDisabled, 
+.tallCwWLRowErrDisabledDark,
+
+.tallCwWLRowNewErr, 
+.tallCwWLRowNewErrDark, 
+.tallCwWLRowNewErrOver, 
+.tallCwWLRowNewErrOverDark, 
+.tallCwWLRowNewErrSelected, 
+.tallCwWLRowNewErrSelectedDark, 
+.tallCwWLRowNewErrSelectedOver, 
+.tallCwWLRowNewErrSelectedOverDark, 
+.tallCwWLRowNewErrDisabled, 
+.tallCwWLRowNewErrDisabledDark {
+    color:#b70000;
+} 
+  
+.tallCwWLRowOver, 
+.tallCwWLRowOverDark, 
+.tallCwWLRowErrOver, 
+.tallCwWLRowErrOverDark, 
+.tallCwWLRowNewErrOver, 
+.tallCwWLRowNewErrOverDark, 
+.tallCwWLRowNewOver, 
+.tallCwWLRowNewOverDark {
+    background-color:#daecff;
+} 
+
+.tallCwWLRowSelected, 
+.tallCwWLRowSelectedDark, 
+.tallCwWLRowErrSelected, 
+.tallCwWLRowErrSelectedDark,  
+.tallCwWLRowNewErrSelected, 
+.tallCwWLRowNewErrSelectedDark, 
+.tallCwWLRowNewSelected, 
+.tallCwWLRowNewSelectedDark {
+    background:#d9e4f6;
+} 
+
+.tallCwWLRowSelectedOver, 
+.tallCwWLRowSelectedOverDark, 
+.tallCwWLRowErrSelectedOver, 
+.tallCwWLRowErrSelectedOverDark,
+.tallCwWLRowNewErrSelectedOver,
+.tallCwWLRowNewErrSelectedOverDark,
+.tallCwWLRowNewSelectedOver, 
+.tallCwWLRowNewSelectedOverDark {
+    background-color:#bfdcf9; 
+} 
+
+.tallCwWLRowDisabled, 
+.tallCwWLRowErrDisabled, 
+.tallCwWLRowNewErrDisabled, 
+.tallCwWLRowNewDisabled {
+    color:#AAAAAA;
+    background-color:#FFFFFF; 
+}</pre>
+</div>
+</div>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

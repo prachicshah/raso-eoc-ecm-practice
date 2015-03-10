@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Migrate Rule Instances from the Command Line</title>
+<link rel="StyleSheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Migrate Rule Instances from the Command Line</h3>
+<p>You can migrate rules instances from version 5.1 to version 5.1.11 and later metadata, including templates other than CW system templates, and export legacy rule instances from the CWVMINFO table to an XML file. You can migrate rule instances from the command line by using the ruleInstancesMigrate51 command, which can be found in the <strong>&lt;<em>installation_folder</em>&gt;\designer\env\</strong> folder:</p>
+<div class="code"><div class="codeContent">
+<pre class="code-java">
+ruleInstancesMigrate51 <em>JDBC_URL metadata output_file</em></pre>
+  </div>
+</div>
+<p>Where:</p>
+<ul>
+  <li><em> JDBC_URL</em> is any JDBC URL or takes the form <em>user@host:port:sid,user@host:port/service_name</em></li>
+  <li><em>output_file</em> is the name of your XML file<br>
+  </li>
+</ul>
+<p>Examples: </p>
+<div class="code"><div class="codeContent">
+  <pre>ruleInstancesMigrate51 cw@localhost:1521:orcl c:\metadata c:\ruleInstances.xml<br>
+ruleInstancesMigrate51 &quot;cw@oracle.jdbc.driver.OracleDriver;jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=on)(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl)))&quot; c:\metadata c:\ruleInstances.xml      
+
+
+</pre>
+</div>
+</div>
+<strong>Note:</strong> As of version 5.1.11.x, rule instance data has been moved to a separate CWDYNAMICMETADATA table from the CWVMINFO.RULE_INSTANCES column. </td>
+</tr>
+</table>
+</body>
+</html>

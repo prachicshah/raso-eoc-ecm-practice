@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Subflows Tab</title>
+	    <link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">	    
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script>    </head>
+
+    <body onLoad="highlight();">
+    <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+    <tr>
+    <td valign="top" class="pagebody"><h2>Subflows Tab</h2>
+
+<p>The<strong> Subflows </strong>tab shows a list of global subflows that are used within the workflow of  the current process and the revision number to be used for the subflow. Initially, when you create a process,  no subflows are shown in the <strong>Subflows</strong> tab, as the process does not have a workflow yet. As you add subflow activities to the  workflow, if these subflow activites are associated with global subflows, the system automatically adds the global subflows to the <strong>Subflows</strong> tab. </p>
+<p>To access the <strong>Subflows</strong> tab, select the process from the left pane and then click on the <strong>Subflows</strong> tab. As an illustration, the following figure shows two global subflows listed under the <strong>Subflows</strong> tab of a process. </p>
+<p><img src="processSubflowsTab.png" border="1" alt="Subflows tab"></p>
+<p>Columns in the <strong>Subflows</strong> tab:</p>
+<ul>
+  <li><strong>Subflow</strong>: Lists the global subflows  used in the workflow for the current process</li>
+  <li><strong>Revision Number</strong>: Allows you to choose the  revision number for the subflow</li>
+</ul>
+
+<h3>Select Revision Number for a Subflow</h3>
+
+<p>To select the revision number for a subflow listed in the <strong>Subflows</strong> tab, do the following:</p>
+<ol>
+  <li>Under the Revision Number column, click in the area for that subflow to display a  drop-down list of revision numbers, as shown in the following figure.<br>
+    <br>
+    <img src="processSubflowTabRevisionNumber.png" border="1" alt="Revision Number drop-down list"><br>
+<br>
+  </li>
+  <li>Select the desired revision number. </li>
+  <li>Save changes to the metadata.</li>
+</ol>
+<p>Once you select a subflow revision number for a subflow and save the metadata, all  process subflow activities using this subflow  start using that particular subflow revision. </p>
+<p><strong>Note:</strong> You can only change the subflow revision number  for the latest process revision.  Earlier process revisions are in read-only state and cannot be  changed in any way.</p>
+<h3>How Subflows Are Added to the Subflows Tab</h3>
+<p>The system automatically adds subflows to the <strong>Subflows</strong> tab when you associate  global subflows with  subflow activities in the workflow of the process. </p>
+<ol>
+  <li>Add a global subflow. For more information, see <a href="subflow top-level process.html">Subflow as a Top-level Process</a>. The following figure shows a global subflow that has been added.<br>
+    <br>
+    <img src="processGlobalSubflow.png" border="1" alt="New global subflow added">    <br>
+    <br>
+  </li>
+  <li>Click the <strong>Diagram</strong> tab for the subflow and add the workflow for the subflow.</li>
+  <li>Select the process from the left pane and click the <strong>Diagram</strong> tab for the process. </li>
+  <li>Add a subflow activity to the workflow of the process. A sample workflow is shown in the following figure.</li>
+<p><img src="processSubflowActivity.png" border="1" alt="Subflow activity"></p>
+
+<li>Right-click the subflow activity and click <strong>Properties</strong> from the menu that appears to open the properties window for the activity. Under the <strong>General</strong> tab, select the global subflow created earlier in the <strong>Sub-Flow</strong> field, as shown in the following figure.</p>
+  <p><img src="processSubFlowActivityProperties.png" alt="Subflow activity properties" border="1"></p>
+</li>
+<li>Click the <strong>Save</strong> button to close the dialog. The system automatically adds the global subflow  to the <strong>Subflows</strong> tab for the process, as shown in the following figure.
+  <br>
+  <br>
+  <img src="processSubflowsTab2.png" border="1" alt="Subflow added to Subflows tab"><br>
+<br>
+</li>
+<li>Save changes to the metadata.</li>
+</ol>
+<p><strong>Note:</strong> When a subflow generates a new revision, a dialog appears, which displays a list of processes that use this subflow in the previous revision (that is, the revision before the newly generated revision). You can select the processes from this list that need to have their subflows re-adjusted to use the latest subflow. After clicking the <strong>OK</strong> button, the selected process references are automatically re-adjusted. By default, this feature is available with the <strong><a href="../Service Designer Menu Actions/Preferences.html#propagateSubflowRevision">Prompt to propagate subflow revision</a></strong> setting. To change this setting, you can delect this option by clicking <strong>File</strong> &gt; <strong>Preferences</strong> from the Velocity Studio menu bar, and then selecting <strong>Setting</strong>.</p></td>
+</tr>
+</table>
+
+
+</body>
+</html>

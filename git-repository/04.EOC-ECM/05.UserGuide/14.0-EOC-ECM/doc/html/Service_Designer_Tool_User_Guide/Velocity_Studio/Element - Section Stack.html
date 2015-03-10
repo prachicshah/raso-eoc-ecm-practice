@@ -1,0 +1,124 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Section Stack</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Section Stack</h2>
+
+<p>Section Stack is a container that allows for the grouping of data or elements on a page in a logical fashion. When a page contains &quot;too much stuff&quot;, the user is distracted. The Section Stack element will allow data or elements to appear in more digestible chunks.  A Section Stack may comprise of individual Sections that share the same &quot;real estate&quot; on a page and which can be collapsed/expanded at runtime as shown in the example below.</p>
+
+<p>You can have multiple Sections under a Section Stack, and have it display only one of those sections at a particular time, by setting Visibility Mode property of the Section Stack to <em>mutex</em>. Setting the Visibility Mode to <em>multiple</em> will allow multiple sections to be visible simultaneously during runtime.</p>
+<p>The example below shows the relationship between the Section Stack, Section and Section Header elements.</p>
+
+<img src="exampleSectionStack.png" alt="Section Stack" border="1">
+
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='referenceTh'>references Variable?</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method?</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form?</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>Allowable Child Elements</th>
+<td class='referenceTd'>Section<br />
+  Iterator<br /></td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th width="84" class='referenceTh'>Property</th>
+<th width="144" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+<th width="1385" class='referenceTh'>Comment</th>
+</tr>
+<tr>
+<th class='referenceTh'>Name</th>
+<td class='referenceTd'>Mandatory</td>
+<td class='referenceTd'>Name of the Section Stack.</td>
+</tr>
+<tr>
+<th class='referenceTh'>*Cell Alignment</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Controls the horizontal and vertical positioning of the Section Stack in the page or parent Element. Default is undefined, which behaves as if it is top-left.</td>
+</tr>
+<tr>
+  <th class='referenceTh'>Header Style</th>
+  <td class='referenceTd'>Optional</td>
+  <td class='referenceTd'>This property allows you to select styles from your stylesheet for the section stack element. The style set for this property applies to the style of the entire section stack. To apply the header style to only the headers, set the style at the section header element level.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Height</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Height used or consumed by the Section Stack.  The value is defined as the number of pixels (integer), or as a percentage of page height or of the parent element.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Width</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Width used or consumed by the Section Stack. The value is defined as the number of pixels (integer) or as a percentage of page width or of the parent element. For example, 30% of the page width or 150 pixels.</td>
+</tr>
+<tr>
+<th class='referenceTh'>On Enter</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>The system calls any script defined in this property. The onEnter property is only met if there is an input field (for example, a textfield, selectfield, and so on) that has focus when the <strong>Enter</strong> key is pressed. This onEnter property is invoked only if the input field does not have an OnEnter property set.  This feature can be used with multiple input fields, but only  one onEnter method to fire for all fields. For Finders, the search input fields by default use the onEnter method of the sectionstack, which calls on the finder's search action.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Choose from styles within the selected stylesheet (located in the Velocity Studio toolbar), which defines the styling of the Section Stack such as positioning and color. Default is NONE.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Visible</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Defines the user permissions assigned to this layout. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and visiblePerm can be assigned as well as Object Permissions. Defaults to NONE, which means no permissions assigned.</td>
+</tr>
+<tr>
+<th class='referenceTh' valign=top>Visibility Mode</th>
+<td class='referenceTd' valign=top>Optional</td>
+<td class='referenceTd'>Determines how Sections in the Section Stack share the Session Stack area.
+  <ul>
+<li><b><i>mutex</i></b>: Only one Section within a Section Stack is expanded; expanding a Section collapses all other Sections in the Section Stack.</li>
+<li><b><i>multiple</i></b>: Multiple Sections in the Section Stack can be expanded without restrictions.</li>
+  </ul>
+  <p><strong>Note</strong>: This property is dependent on the <strong>Expand</strong> property of the Section element. The Section element must have the expand property set to True for the Sections to be collapsed or expanded at runtime.</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3>Notes</h3>
+
+<p>The Section Stack works in conjunction with Sections and Section Headers to create sections of content that can be organized to share the same &quot;real estate&quot; on the same page. Use Section Stack to define a fixed area ("a pane") and add/organize content in Sections that may otherwise overwhelm the page.</p>
+<p>Section Stack is also useful in hiding detailed content, by placing it in a Section that is collapsed by default.</p>
+
+<p>Section Stack operates in one of two modes: in <i>mutex</i> mode, only one Section is visible at a time (similar to Microsoft Outlook's left-hand Navigation Pane), or in <i>multiple</i> mode, where Sections can be expanded/collapsed without restriction. The figure below displays the two options for the Viability Mode property.</p>
+
+<img src="exampleVisiblityModeSectionStack.png" alt="Visibilty Mode Example" border="1">
+
+<p>If a border is desired for the Section Stack, <a href="Modifying URL Mappings and Style Sheets.html">create a style in the CSS</a> that declares a border-width, and assigns it to the Section Stack.</p>
+<p>*If this element is the first element that appears in the Element Tree pane, you can set the cell alignment. If this element has a parent layout, for example vlayout or hlayout with the width/height set, this element uses these values as a base to set its alignment. If the parent layout does not contain a width/height, then this element does not have a base to which it can set its alignment.
+If the element has a parent that contains width/height settings, but this form is displayed under another layout with different widths, your form alignment is restricted to the parent's width/height settings.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

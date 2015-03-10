@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>Build Deployment WAR</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Build Deployment WAR</h2>
+
+<p>The project's metadata can be built to a Web Application Archive (WAR) file for J2EE deployment within Velocity Studio by clicking <b>Runtime &gt; Build Deployment WAR</b> from the menu bar. This action is also commonly referred as the <b>packaging</b> step in the <a href="../../Metadata Deployment Guide/Deploying Application.html">deployment procedure</a>, where the WAR file (file with <i>.war</i> extension) is created for the export. A <a href="../../Metadata Deployment Guide/Packaging in Command Line Interface.html">command-line equivalent of packaging metadata</a> is also available outside of Velocity Studio.</p>
+<p><strong>Note:</strong> Running the runPackage command from a directory other than designer\env will fail.</p>
+
+<h3>Menu Command</h3>
+<p>The <b>Runtime &gt; Build Deployment WAR</b> menu option is only enabled when a project has been opened and no <a href="../Service_Designer_User_Interface/Error Pane.html">validation errors</a> exist in the metadata. Otherwise, the menu command is disabled (that is,  greyed out). All errors must be fixed in the metadata before being able to build the WAR file.  This menu command may create and update metadata.  During packaging, the WAR file is created in the metadata folder.  The size of the metadata is generally not smaller than 70 megabytes.  Thus, it is generally <em>not</em> recommended to check this file into a version control system due to its large size. </p>
+<p> This menu command is only necessary as part of the deployment procedure. It is not recommended to use this command for day-to-day application development and testing, due to its potential to create (potentially unnecessary) Process Revisions. Instead, use <b><a href="Metadata Run.html">Runtime &gt; Run</a></b> to run application metadata within Velocity Studio without deploying any WAR file. If any Process Metadata was changed from its latest <a href="../Business_Process_Metadata/process revisions.html">Process Revision</a>, a new Process Revision is created in addition to updating the revision number of the Process Metadata. If this happens, it is important to immediately check in these metadata changes into source control system.  Otherwise, further development within the process metadata becomes out of sync with the Process Revisions. </p>
+
+<h3>Creating the WAR file</h3>
+<p>Once the you are have selected the Build Deployment WAR option from the Runtime menu, the system will prompt for various parameters: </p>
+
+<img src="mdWARbuildVersion.png" align="absmiddle" border="0" alt="Build Deployment WAR dialog" />
+<p>The following table describes the fields:
+  
+</p>
+<table class="confluenceTable" border cellpadding="1">
+<tr>
+<th class="confluenceTh">Field</th>
+<th class="confluenceTh">Description</th>
+</tr>
+<tr>
+  <td class="confluenceTd"><strong>web.xml</strong></td>
+  <td class="confluenceTd">Click the <strong>Browse</strong> button and select your web.xml that you want to be built into your WAR file. Both the web.xml and weblogic.xml files can be found in the &lt;installation_directory&gt;\conf folder of your Velocity Studio installation. Edit the web.xml file to suit your needs. </td>
+</tr>
+<tr>
+  <td class="confluenceTd"><b>Multi-tenancy support</b></td>
+  <td class="confluenceTd">Check this box to create a WAR file that supports multi-tenancy.  Multi-tenancy provides the ability to deploy multiple WAR files instances within the same container.  For more details on this feature, refer to the Multi-Tenancy Packaging section in the <a href="../../Metadata Deployment Guide/Packaging in Command Line Interface.html">Packaging in Command Line Interface</a> document.</td>
+</tr>
+<tr>
+  <td class="confluenceTd"><b style="font-weight: bold;">Webapp name</b></td>
+  <td class="confluenceTd">This configures the application URL. For example, http://localhost:8080/cwf used when the user enters <em>cwf</em> in this parameter. The value specified here is also used to define the WAR file name (for example, <em>cwf.war</em>)</td>
+</tr>
+<tr>
+<td class="confluenceTd"><b>JNDI database name</b></td>
+<td class="confluenceTd">This is the JNDI database name as defined in the <a href="../../Metadata Deployment Guide/JBoss Configuration.html#JBossOracle">oracle-ds.xml code</a> file.</td>
+</tr>
+<tr>
+<td class="confluenceTd"><b>War file path</b></td>
+<td class="confluenceTd">This is the file location where the WAR file will be created and stored.</td>
+</tr>
+</table>
+
+<p>While the WAR file is being built, the  Creating deployment WAR file popup appears, and then disappears when the process has completed.</p>
+<p>The created WAR file created has <b>&lt;webappname&gt;.war</b> as its filename and is located in root folder of the project directory.</p>
+
+<h4><a name="license">License</a></h4>
+<p>The packaging command, which can be found in <b>&lt;<em>installation_directory</em>&gt;\designer\env</b>, must be accompanied by a valid license file.</p></td>
+</tr>
+</table>
+</body>
+</html>

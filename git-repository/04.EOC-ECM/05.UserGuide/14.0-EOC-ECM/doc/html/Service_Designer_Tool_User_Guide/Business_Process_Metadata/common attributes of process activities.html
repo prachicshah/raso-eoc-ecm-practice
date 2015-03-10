@@ -1,0 +1,219 @@
+<html>
+<head>
+<title>Common Attributes of Process Activities</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+</head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Common Attributes of Process Activities</h2>
+<p>Process activities can have the following optional attributes defined (unless specified in <a href="process activities types.html">Process Activities Types</a>):</p>
+<h4><a name="before">Before Script</a></h4>
+<p>A set of JavaScript statements that are executed before an activity-specific function is performed. For example, the <b>Before</b> script of an <em>operation</em> activity would usually initialize input message data (Document or Data Structure).</p>
+<h4><a name="after">After Script</a></h4>
+<p>A set of JavaScript statements that are executed after an activity-specific function is performed. For <em>complex</em> activities, the script is executed after all sub-activities are completed. For example, the <b>After</b> script of the <em>request-response</em> Operation activity would usually process output message data (Document or Data Structure).</p>
+<h4><a name="condition">Condition Script</a></h4>
+<p>A Condition script can be used to skip an activity altogether.</p>
+<h4><a name="Duration">Duration</a></h4>
+<p>Specifies the maximum amount of time (in seconds) in which the activity should complete (see <a href="Process status.html">Process Status</a>). An activity is always constrained by any time constraint placed on the parent activity, with the most restrictive time constraint taking precedence.</p>
+
+<p>The Process Management product will automatically generate a <em>timeout</em> exception for activities that fail to complete in time. The product also limits the activity duration to a maximum period of 6 months (from activity start time).</p>
+<p>When a duration attribute specifies a script for duration value calculation, this script can return either the number of seconds (maximum amount of time in which the activity should complete) or a specific date (date by which activity should complete). A value of 0 (zero) returned from the script will disable the duration timeout.</p>
+<p>The following table shows the return values for non-dynamic scripts and their expected actions:</p>
+<table width="600" border="1">
+  <tr>
+    <th width="182">Return Value</th>
+    <th width="402">Action</th>
+  </tr>
+  <tr>
+    <td height="23">Null <BR></td>
+    <td>No  timeout exception occurs.</td>
+  </tr>
+  <tr>
+    <td>0 (zero) <BR></td>
+    <td>No  timeout exception occurs.</td>
+  </tr>
+  <tr>
+    <td>Negative number<BR></td>
+    <td>No timeout exception is thrown if the duration script returns a negative value. Additionally, the script is no longer called.</td>
+  </tr>
+  <tr>
+    <td>Positive number </td>
+    <td> A timeout exception is thrown after the time   returned by script.</td>
+  </tr>
+</table>
+<p>In addition, when a duration attribute specifies a script for duration value calculation, it can be marked as dynamic. When a dynamic duration is set, the Process Management product will re-evaluate the script when the duration time has expired.</p>
+<p>The following table shows the return values for dynamic scripts and their expected actions:</p>
+<table width="600" border="1">
+  <tr>
+    <th width="184">Return Value</th>
+    <th width="400">Action</th>
+  </tr>
+  <tr>
+    <td height="23">Null (first occurrence)<BR></td>
+    <td>No  timeout exception occurs. The script stops running.</td>
+  </tr>
+  <tr>
+    <td>0 (zero) (first occurrence)<BR></td>
+    <td>No  timeout exception occurs. The script stops running.</td>
+  </tr>
+  <tr>
+    <td>Negative number<BR></td>
+    <td>No timeout exception is thrown if the duration script returns a negative value. Additionally, the script is no longer called.</td>
+  </tr>
+  <tr>
+    <td height="105">Positive number </td>
+    <td> <p>The Process Engine  waits for this amount of time and then calls the   script again to receive a new time to wait. However, if the script returns null, 0, or   a negative number (does not apply to a first call to the script -- applies to the second and subsequent script calls), a timeout exception   is thrown. </p></td>
+  </tr>
+</table>
+<h4><a name="schedule">Schedule</a></h4>
+<p>Specifies the time instance at which an activity should begin processing. It is conceivable that an activity will be forced to complete before its scheduled time due to a duration constraint placed on the activity.</p>
+<p>The actual time instance at which an activity will be executed depends on the process priority and the number of activities pending execution (the Process Engine has a fixed number of activity execution threads). The Process Management product only guarantees that the activity will not be executed before the scheduled time.</p>
+<p>The product checks the type of value returned from the duration script. Expected types are as follows:</p>
+<ul>
+  <li> Date - the date object that is created and initialized in the script</li>
+  <li> Number - an integer number that is parsed and is a value in seconds </li>
+</ul>
+<h4><a name="Milestone">Milestone</a></h4>
+<p>Specifies that the activity has a special business meaning associated with reaching a certain step in the business process.</p>
+
+<p>The Process Management product will record additional information for activities:</p>
+<ul>
+<li><em>Milestone</em> <em>Code</em>: User-defined code assigned in the activity milestone properties. Milestone codes are defined in a milestone enumeration (enumeration that is based on the Milestone data type). The milestone code is used to identify the milestone for display (milestone description) and calculation (retrieving all milestones with the same code) purposes.</li>
+</ul>
+<ul>
+<li><em>Order instance</em>: If the process has an Order instance associated with it.</li>
+</ul>
+<ul>
+<li><em>Activity start time</em>: The time that the activity started.</li>
+</ul>
+<ul>
+<li><em>Activity</em> <em>end time</em>: For <em>operation</em> activities, the time the message was added to the process queue.</li>
+</ul>
+<ul>
+<li><em>User</em> <em>participant type</em>: Defined if the activity is a User Participant Operation.</li>
+</ul>
+<ul>
+<li><em>User ID</em>: Defined if the activity is a User Participant Operation.</li>
+</ul>
+<ul>
+<li><em>Due date</em>: Defined if the activity is a User Participant Operation. This is a due date as calculated based on the User Participant definition.</li>
+</ul>
+<ul>
+<li><em>Expected due date</em>: Specified in the activity milestone properties.</li>
+</ul>
+<ul>
+<li><em>Activity duration</em>: Number of business seconds (based on calendars) taken to complete this activity.</li>
+</ul>
+<ul>
+<li><em>Process duration</em>: Number of business seconds (based on calendars) taken to complete this activity relative to the process start time.</li>
+</ul>
+<p>This information can be used for the following purposes:</p>
+<ul>
+<li>To view the business status of a particular Order instance. This permits an understanding of where the Order is within a business process, which milestones are completed (and if completed on time), which milestones are still pending and which milestones are late.</li>
+</ul>
+<ul>
+<li>To create reports that show the average time taken to achieve milestones. This will help identify the problem areas in the business process and provide metrics on business process efficiency.</li>
+</ul>
+<p>Milestone definition can be created by creating a <a href="../Metadata_Objects/Data Type/data types.html">Data Type</a> that extends from <i>cwf.milestone</i> and overrides <i>cwf.allMilestones</i>, and with <a href="../Metadata_Objects/Data Type/data type enumeration.html">enumeration</a> code defined for each milestone definition.</p>
+<p>The product checks the type of value returned from the duration script. Expected types are as follows:</p>
+<ul>
+  <li> Date - the date object that is created and initialized in the script</li>
+  <li> Number - an integer number that is parsed and is a value in seconds </li>
+</ul>
+<p>Milestone information is stored in the CWMILESTONE table of the process product database. The table can be extended to include additional columns (custom attributes). Those additional attributes can be populated using the Process JavaScript function updateProcessMilestone (refer to the <a href="../../JavaScripting in Order Care/index.html">JavaScript Extensions HTML documentation</a>).</p>
+<h5 dir="ltr">Metadata Objects</h5>
+<p>The following table describes the metadata object pertaining to milestones:</p>
+<table width="1295" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="149" class='confluenceTh'>Metadata Object</th>
+      <th width="1324" class='confluenceTh'> Description </th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>cwf.milestoneDoc 
+        </td>
+      <td class='confluenceTd'><p>This object allows you to initialize, add, and update process milestones. It replaces the cwf_pm.milestone document. It has the same structure (variable names, variable order, and mapping to database) as the old document to support backward compatibility. The document is located in system metadata and has no child UI. <BR>
+        </p></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h5 id="internal-source-marker_0." dir="ltr">Events</h5>
+<p>The following table describes events pertaining to milestones. Parameters that are bolded signify that they are mandatory:</p>
+<table width="1443" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="214" class='confluenceTh'>Event</th>
+      <th width="352" class='confluenceTh'>Parameters</th>
+      <th width="959" class='confluenceTh'>Description </th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PROCESS_MILESTONE_COMPLETE</td>
+      <td class='confluenceTd'><ul>
+        <li><strong>process</strong></li>
+        <li><strong>activity</strong></li>
+        <li><strong>endTime</strong></li>
+        <li><strong>activityDuration</strong></li>
+        <li><strong>processDuration</strong></li>
+        <li><strong>participantId</strong></li>
+        <li><strong>participantType</strong></li>
+        <li>participantIsUser</li>
+        <li>expDueDate</li>
+        </ul>        <BR></td>
+      <td class='confluenceTd'>This event updates the activity milestone endTime, if needed (that is, when activity ends).</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PROCESS_MILESTONE_CREATE</td>
+      <td class='confluenceTd'><ul>
+        <li><strong>process</strong></li>
+        <li><strong>procMetadataActivities</strong></li>
+      </ul>        </td>
+      <td class='confluenceTd'>This event initializes an unconditional milestone for each activity in a process.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PROCESS_MILESTONE_INSERT</td>
+      <td class='confluenceTd'><ul>
+        <li><strong>process</strong></li>
+        <li><strong>activity</strong></li>
+        <li><strong>expDueDate</strong></li>
+        <li><strong>code</strong></li>
+      </ul>        </td>
+      <td class='confluenceTd'>This event inserts a new record in the cwMilestone table. The event does not do anything when there is no milestone request.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PROCESS_MILESTONE_UPDATE</td>
+      <td class='confluenceTd'><ul>
+        <li><strong>process</strong></li>
+        <li><strong>activity</strong></li>
+        <li><strong>expDueDate</strong></li>
+        <li><strong>code</strong></li>
+      </ul>        </td>
+      <td class='confluenceTd'>This event updates a record in the cwMilestone table.The event does not do anything when there is no milestone request.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>PROCESS_MILESTONE_UPDATE_CUSTOM</td>
+      <td class='confluenceTd'><ul>
+        <li><strong dir="ltr">processId</strong></li>
+        <li><strong dir="ltr">code</strong></li>
+        <li>doc</li>
+        <li>endTime</li>
+      </ul>
+        <BR></td>
+      <td class='confluenceTd'><p>This event updates the process milestone table for a given milestone code. If there is more than one milestone row for a given code for this process, the latest inserted row is updated. If both the doc and endDate parameters are omitted or are null, the END_TIME column of the specified milestone row is updated with the current time.</p>
+        <p>The doc parameter is an optional Document object that contains custom data for the milestone table. The document should be either the system milestone document or extend the cwf:milestoneDoc system milestone document. If the specified document is not the system milestone document or an extension of it, an exception occurs. The milestone table is updated with every non-null attribute in the document.</p></td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

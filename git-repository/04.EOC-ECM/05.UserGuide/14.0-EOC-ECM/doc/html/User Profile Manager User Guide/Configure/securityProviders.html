@@ -1,0 +1,122 @@
+﻿<html>
+<head>
+<title>Security Providers</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Security Providers</h2>
+<p>You can set a security provider or  service provider, or both, which differs from the default providers in the product by clicking <strong>Configure &gt; Security Providers</strong> from the menu bar. </p>
+<p>You can perform the following actions from the Security Providers page:</p>
+<ul>
+  <li><a href="#createSecurityProvider">Create a new security provider</a></li>
+  <li><a href="#editSecurityProvider">Edit an existing security provider</a></li>
+  <li><a href="#deleteSecurityProvider">Delete a security provider</a></li>
+  <li><a href="#setDefault">Set a security provider as the default</a></li>
+</ul>
+<h3><a name="createSecurityProvider"></a>Create a New Security Provider</h3>
+<p>To create a preference, complete these steps:</p>
+<ol>
+  <li>From the menu bar, click<strong> Configure &gt; Security Providers</strong> to launch the Security Providers page, and then click the <strong>New</strong> button.<br>
+    <br>
+    <img src="securityProviderNew.png" alt="Security Providers page - New button" border="1">  <br>
+    <br>
+  </li>
+  <li>The New Security Configuration page appears. <br>
+    <br>
+    <img src="securityProviderNewSecurityConfiguration.png" alt="New Security Configuration page" border="1"><br>
+    <br>
+    The following fields are available for entry:<br>
+    <br>
+    <table width="798" class='confluenceTable' border cellpadding="1">
+      <tbody>
+        <tr>
+          <th width="138" class='confluenceTh'>Field</th>
+          <th width="685" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Configuration Name</strong></td>
+          <td class='confluenceTd'>Enter a name for your security provider configuration. This field is mandatory. </td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Default Configuration</strong></td>
+          <td class='confluenceTd'>Tthe product's security provider is the default. If you want to use this configuration as the default configuration, select this property.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Profile Module</strong></td>
+          <td class='confluenceTd'>Click this field's drop-down menu and select a product module from the list. This field is mandatory.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Profile Data</strong></td>
+          <td class='confluenceTd'>Enter your profile data in this field.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Security Module</strong></td>
+          <td class='confluenceTd'>Click the drop-down menu and select a security module from the list. Select a value from this field enables the <strong>Security Type</strong> field.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Security Data</strong></td>
+          <td class='confluenceTd'><p>Enter security data for your security module. For details, see the following sections:</p>
+          <ul>
+          	<li><a href="securityProviderCharacteristics.html">Security provider characteristics</a></li>
+          	<li> <a href="securityProviderSetLDAP.html">Set up an  LDAP provider</a></li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Security Type</strong></td>
+          <td class='confluenceTd'>Click the drop-down menu and select a security type from the list.</td>
+        </tr>
+      </tbody>
+    </table>
+<br>
+  </li>
+  <li>Click the<strong> Save</strong> button to create your new security provider. A confirmation message appears under the menu bar, indicating that your security provider configuration has been successfully saved.</li>
+  <li>Click the <strong>Back</strong> button to return to the Security Providers page. Your newly created security provider configuration appears on the page.</li>
+  </ol>
+<h3><a name="editSecurityProvider"></a>Edit an Existing Security Provider</h3>
+<p>To edit a security provider, complete these steps:</p>
+<ol>
+  <li>From the Security Providers page, double-click the <strong>Configuration Name</strong> that  you want to edit to launch the Security Configuration Details page.</li>
+  <li>Click the <strong>Edit</strong> button.<br>
+    <br>
+    <img src="securityProviderEdit.png" alt="Security Configuration Details - Edit button" border="1"><br>
+    <br>
+  </li>
+  <li>Make any pertinent changes to the fields, and then click the <strong>Save</strong> button to save your changes.<br>
+    <br>
+    <img src="securityProviderSave.png" alt="Security Configuration Details - Save button" border="1"><br>
+<br>
+  </li>
+  <li>A confirmation message appears under the menu bar, indicating that your changes have been successfully saved.
+    <br>
+</li>
+</ol>
+<h3><a name="deleteSecurityProvider"></a>Delete a  Security Provider</h3>
+<p>To delete a security provider, complete these steps:</p>
+<ol>
+  <li>From the Security Providers page, select the checkbox next to the <strong>Configuration Name</strong> that you want to delete, and then click the <strong>Delete</strong> button.<br>
+    <br>
+    <img src="securityProviderDelete.png" alt="Delete a security provider from the Security Providers page" border="1"><br>
+    <br>
+  </li>
+  <li>A confirmation dialog appears, prompting you to confirm deleting the selected security configuration. Click the <strong>Yes</strong> button.</li>
+  <li>The Security Providers page refreshes and your selected security configuration has been successfully deleted.</li>
+</ol>
+<h3><a name="setDefault"></a>Set a   Security Provider as the Default</h3>
+<p>To set a security provider as the default, follow these steps:</p>
+<ol>
+  <li>From the Security Providers page, select the checkbox next to the <strong>Configuration Name</strong> that you want as the default, and then click the <strong>Set as Default</strong> button.<br>
+    <br>
+    <img src="securityProviderSetDefault.png" alt="Set a security provider as the default" border="1"><br>
+<br>
+  </li>
+  <li>The Security Providers page refreshes. A confirmation mesage appears, indicating that the default setting has been saved for your selected configuration.<br>
+    <br>
+    <img src="securityProviderSetDefaultSaved.png" alt="Selected ecurity provider is the default" border="1">  </li>
+</ol>
+</body>
+</html>

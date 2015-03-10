@@ -1,0 +1,166 @@
+﻿<html>
+<head>
+<title>Sample: Reference Finder with Data Structure Output</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Sample: Reference Finder with Data Structure Output</h2>
+<p>  This sample shows how to create a reference finder (finder.ReferenceDsFinder) with a data structure finder. This example implements a reference data type with a data structure finder.</p>
+<p>  This reference type can be used both for document variables and data structure data type elements. The value of such a reference type is a special ReferenceValue object with its <strong>key</strong> equal to data structure ID and the display property <strong>visualKey</strong> is the visual key of the data structure. Thus, the output data structure in the reference finder must implement the cwGetStructId and cwOnStructVisualKey methods.</p>
+<p>  Another requirement for the reference finder is that it must support the GET operation to retrieve the data structure by ID. For the GET operation, both <strong>Get Input</strong> and <strong>Get Output</strong> must be specified. Additionally, the <strong>Get Input</strong> data structure it is required to implement the cwSetStructId method, to be able to pass the ID value to the GET script.</p>
+<p>  In scripts, the reference data structure can be retrieved (read-only) by the of the ReferenceValue object's <strong>reference</strong> property.</p>
+<h3>Create a Reference Type</h3>
+<p>To create a reference type, perform these steps:</p>
+<ol>
+  <li> Using the ds.SearchDS and ds.TableDS data structures from the <a href="sample script finder data structure output.html">sample script finder</a> example, create a new script finder called <strong>finder.ReferenceDsFinder</strong> with the following parameters:  </li>
+  <ul>
+    <li><strong>Select Input (optional)</strong>: &lt;NONE&gt; or ds.SearchDS</li>
+    <li> <strong>Select Output</strong>: ds.TableDS</li>
+    <li><strong>Get Input</strong>: ds.SearchDS</li>
+    <li><strong>Get Output</strong>: ds.TableDS</li>
+  </ul>
+  <li> Locate the <strong>ds.SearchDS</strong> data structure and implement the cwSetStructId method by adding the following:
+<div class="code"><div class="codeContent">
+  <pre class="code-java">
+// structId function parameter contains the ID to set this.sid to structId
+this.sid = structId;  </pre></div>
+	</div></li>
+  <li> Implement the cwOnStructVisualKey method of the ds.TableDS data structure by doing the following  </li>
+  <ul>
+    <li>Return &quot;Ds: &quot; + this.sid + &quot; &quot; + this.string.</li>
+    <li>For <strong> finder.ReferenceDsFinder</strong>, implement the cwOnFinderSel method, and then copy the script from the finder.SimpleDsFinder script method.<br>
+    </li>
+  </ul>
+  <li>For <strong>finder.ReferenceDsFinder</strong>,  implement the cwOnFinderGet method as follows:
+
+<div class="code">
+  <div class="codeContent">
+  <pre class="code-java">var ds = new DataStructure(&quot;ds:TableDS&quot;); 
+ds.sid = document.sid; 
+switch (ds.sid) { 
+    case &quot;101&quot;: 
+        ds.string = &quot;Str value 1&quot;; 
+        ds.number = 1; 
+        ds.date = new Date(); 
+        ds.checkbox = true; 
+        ds.select = &quot;1&quot;; 
+        break; 
+
+    case &quot;102&quot;: 
+        ds.string = &quot;Str value 2&quot;; 
+        ds.number = 2; 
+        ds.date = new Date(); 
+        ds.checkbox = false; 
+        ds.select = &quot;2&quot;; 
+        break; 
+
+    case &quot;103&quot;:<br>        ds.string = &quot;Str value 3&quot;; 
+        ds.number = 3; 
+        ds.select = &quot;3&quot;; 
+        break; 
+
+    default: 
+        ds.string = &quot;Unknown&quot;; 
+        break; 
+} 
+
+return ds;</pre>
+  </div>
+	</div>
+<br>
+  </li>
+  <li>Create a new Data Type called <strong>finder. DSReferenceType</strong> that extends the <strong>cwf.sReference</strong> base type. Set its properties as follows:
+    <ul>
+      <li><strong> Finder</strong>: finder.ReferenceDsFinder</li>
+      <li><strong>Length</strong>: 64</li>
+      <li><strong> Element Properties</strong>: Reference field<br>
+      </li>
+    </ul>
+  </li>
+  </ol>
+<h3>Use the Reference Data Type</h3>
+<p>  The Reference type can be used on any level of a data structure. In this example, a first-level data type element is created, followed by another data type element inside an inner data structure container.</p>
+<ol>
+  <li> Create a new data structure called <strong>ds.RefSample</strong>.</li>
+  <li> Create a child data type element called <strong>RefType</strong> under the data structure with the following properties:  </li>
+  <ul>
+    <li><strong>Data Type</strong>: yes</li>
+    <li><strong> Element</strong>: finder.DSReferenceType<br>
+    </li>
+  </ul>
+  <li>Create a container child called <strong>innerDs</strong> with the following properties  </li>
+  <ul>
+    <li><strong>Container</strong>: yes</li>
+    <li><strong> Extends</strong>: &lt;NONE&gt;.<br>
+    </li>
+  </ul>
+  <li> Create a new data type element in the innerDs container called <strong>innerRefType</strong> with the following properties:  </li>
+  <ul>
+    <li><strong>Data Type</strong>: yes</li>
+    <li><strong>Element</strong>: finder.DSReferenceType    </li>
+  </ul>
+  <li>Generate a form for the <strong>RefSample</strong> data structure called <strong>GenForm</strong>. By default, it creates fields only for first-level elements.<br>
+    <br>
+    <img src="sample reference finder genform.png" width="779" height="402" alt="Generate form in RefSample data structure called GenForm"><br>
+    <br>
+  </li>
+  <li>Change the GenForm form by  adding a reference field to the <strong>RefSampleGrid</strong> element, and then bind it to the <strong>model.innerDs.innerRefType</strong> Variable.<br>
+  </li>
+  <li> Add a new <strong>Show Reference Info</strong> button to the form, create a new method called <strong>showReferenceInfo</strong> under <strong>UserInterface</strong>, and then set  it as your button’s <strong>Click Method</strong>: 
+  
+    <div class="code">
+  <div class="codeContent">
+  <pre class="code-java">var message = &quot;&quot;; 
+
+if (this.model.RefType == null) { 
+    message = &quot;RefType value is null&quot;; 
+} 
+else if (this.model.RefType.reference == null) { 
+    message = &quot;RefType.reference is null&quot;; 
+} 
+else { 
+    message = &quot;RefType: id=&quot; + this.model.RefType.reference.sid + &quot;, string=&quot; + this.model.RefType.reference.string; 
+} 
+
+Global.showUserMessage(message);</pre>
+  </div>
+	</div><br>
+  </li>
+  <li>Create a new User Action method in the finder.app application UI called <strong>RefSample</strong> with the following:  </li>
+  <ul>
+    <li><strong>Object</strong>: ds.RefSample</li>
+    <li> <strong>Form</strong>: GenForm<br>
+      <br>
+    </li>
+  </ul>
+  <li>Add a new Menu Item called <strong>RefSample</strong> on the application’s <strong>Menu</strong> form, and then set its <strong>Click Method</strong> property to <strong>RefSample</strong>.<br>
+    <br>
+    The reference finder appears in the popup dialog when the <strong>Show Reference Info</strong> button is clicked.<br>
+    <br>
+    <img src="sample reference finder menu item.png" alt="Show Reference Info button" border="1" /><br>
+    <br>
+    Clicking the <strong>Show Reference Info</strong> button retrieves the data structure object through the <strong>Reference</strong> property. <br>
+    <br>
+    <img src="sample reference finder button action.png" border="1" alt="Click button to retrieve data structure object" /><br>
+    <br>
+  </li>
+</ol>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>If a reference variable is bound to a <a href="../../Velocity_Studio/Element - Select Field.htm"> Select field</a>, for the drop-down choices, it runs the reference finder and automatically maps the source data object (document or data structure) to the search object (document or data structure), so that the finder can return the result depending on the source object values.
+    
+    The data structure selected in the <a href="../Finder/Finder General Properties.html#InputDoc">Select Input</a> field of the reference finder must be of same metadata type as the source object, 
+    or have a default <a href="../Conversion Maps/conversion maps.html">conversion map</a> that maps the source data structure to the search data structure. </li>
+  <li>The mapping is done only for the Select fields. A  reference field with the popup finder can be reached as this.parent in the  cwOnFinderSel script, if the source object is not mapped to the search object,  but it is set as the finder parent.<BR>
+  </li>
+</ul>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

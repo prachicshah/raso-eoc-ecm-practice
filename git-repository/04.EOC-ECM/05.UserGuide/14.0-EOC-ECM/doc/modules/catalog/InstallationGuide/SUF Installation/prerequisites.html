@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SUF Installation - Prerequisites</title>
+<link rel="stylesheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<tr>
+  <td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top"><h2>SUF Installation - Prerequisites</h2>
+   <p> The following are installation prerequisites:</p><ol><li>The following software package files are available:</p>
+    <ul>
+      <li>        AVM_Platform.rpm </li>
+      <li> AVM_SUF.tar.gz </li>
+      <li> AVM_BSSF_PSCM.rpm</li>
+      <li> network.xml</li>
+      <li> host_node_mapping.properties</li>
+      <li> pscm_config.xml </li></ul>
+    <p><strong>Note:</strong> The pscm_config.xml file is optional and is used to override the application default file config.xml that is found in AVM_BSSF_PSCM.rpm file.</p>
+      
+      <li>AVM licences are available: One for the SUF Server and one for each ECM application server being installed.</li>
+     <li>All steps listed in the Installation Procedure section of the Execution Environment Installation have been performed.</li>
+     <li>The xsltproc command is required on the SUF server for a SUF installation. Execute “yum install libxslt”.</li>
+     <li> The Oracle DB node required by the ECM application must be installed and available.</li>
+      <li>The SUF server, AVM SUF package and Java versions must be compatible with each other.</li>
+      <li>The following SUF configuration variables are available:
+      <p><table class="confluenceTable" border cellpadding="1">
+      <tr>
+        <th width="142" class="confluenceTh"> SUF Configuration Variables</th>
+        <th width="348" class="confluenceTh">Description </th>
+        </tr>
+      <tr>
+        <td class="confluenceTd"><strong>Oracle System User</strong></td>
+        <td class="confluenceTd"><p>User name of the Oracle system user. Default value is ‘sys’.</p>
+          </td>
+        </tr>
+      <tr>
+        <td class="confluenceTd"><strong>Oracle System Password</strong></td>
+        <td class="confluenceTd">Password of the Oracle system user. Default value is 'sysadm'.</td>
+        </tr>
+      <tr>
+        <td class="confluenceTd"><strong>Schema Name</strong></td>
+        <td class="confluenceTd">Database user name. During a new installation a user name can be specified, but during an upgrade the same name must be used as was initially specified.<br>
+Example: PSCM</td>
+        </tr>
+      <tr>
+        <td class="confluenceTd"><strong>Schema Password</strong></td>
+        <td class="confluenceTd">Database password. During a new installation a password can be specified, but during an upgrade the same password must be used as was initially specified.<br>
+Example: PSCM</td>
+        </tr>
+      <tr>
+        <td class="confluenceTd"><strong>Oracle SID</strong></td>
+        <td class="confluenceTd">Oracle Service ID. Example: PSCMDB</td>
+        </tr>
+      <tr>
+        <td class="confluenceTd"><strong>Oracle Port </strong></td>
+        <td class="confluenceTd">Oracle Port has a default value of 1521.</td>
+        </tr>
+      </table></p>
+      </li>
+    </ol></td>
+</body>
+</html>

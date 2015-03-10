@@ -1,0 +1,53 @@
+﻿
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Software Development Life Cycle</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Welcome to Velocity Studio</h1>
+<p>The Velocity Studio is a J2EE-compliant software development platform and services for telecommunication providers to build, deploy and manage OSS/BSS enterprise solutions.</p>
+
+<p>The following figure shows an overview of software development and deployment.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="cwoc architecture.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+<p>Applications are <a href="../Service_Designer_Tool_User_Guide/Introduction_to_Metadata/The Concept of Metadata.html">metadata-based</a>, which is developed in Velocity Studio, a graphical software development environment. Velocity Studio can run the metadata, which is capable of serving the Web interface of the application without an external application server.</p>
+
+<p>An Oracle database is required to enable Velocity Studio to run the application. The metadata, which is stored in a local directory in file system, is expected to be version controlled using an external version control system.</p>
+
+<p>For production environment, the metadata is packaged and <a href="../Metadata Deployment Guide/Deploying Application.html">deployed</a> to J2EE container. There are two types of runtime that may be deployed:</p>
+<ul>
+  <li><b>Application Server</b> -- runtime that serves users at web interface and execute related business logic, such as order entry, managing worklist and creating user processes.</li>
+  <li><b>Process Engine</b> -- specialized runtime that handles activities of <a href="../Service_Designer_Tool_User_Guide/Business_Process_Metadata/intro to business processes.html">business processes</a> as defined by metadata. These processes may be user processes such as managing orders, global processes such as scheduled tasks, and interface processes such as handling requests/responses of an external interface.</li>
+</ul>
+
+<p>The Application Virtual Machine (AVM) -- the framework technology beneath any runtime built with Velocity Studio -- includes a <a href="../Configuration_Tool_User_Guide/Getting Started/introductionSystemConfiguration.html">Web-based configuration application</a> and a <a href="../System_Administration_Application_User_Guide/Getting Started/gettingStarted.html">system administration application</a> that helps manage the application such as external interface parameters, caching and logging settings, process management, and user profile management.</p>
+
+<p>Leveraging J2EE technology, the application (both Application Server and Process Engine) can be clustered across multiple nodes for load distribution. Runtimes require an Oracle database for information storage. See <a href="../Installer_User_Guide/Installation Planning.html#CertificationMatrix">certification matrix</a> for the list of certified application servers, browsers, and database for Velocity Studio.</p>
+
+<h3>Getting Started</h3>
+
+<p>If you are new to Velocity Studio, start by referring to the <a href="../Service_Designer_Tool_User_Guide/Introduction_to_Metadata/The Concept of Metadata.html">Velocity Studio User Guide</a>. You may want to consider signing up for Velocity Studio training courses by contacting us for details.</p>
+
+<p>If you are working with metadata that is built by a product release prior to version  14.x (for example, version 5.x), you must <a href="Introduction to Metadata Migration.html">migrate your metadata</a> before starting any development with the current product release.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

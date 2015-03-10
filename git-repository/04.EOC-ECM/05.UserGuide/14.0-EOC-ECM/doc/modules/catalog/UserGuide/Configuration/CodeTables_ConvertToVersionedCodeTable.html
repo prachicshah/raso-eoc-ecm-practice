@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Convert a Code Table to a Versioned Code Table</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Convert a Code Table to a Versioned Code Table</h2>
+<p>You can  convert a code table to a <a href="../Objects/VersionCodeTables.html">versioned code table</a>. The procedure contains two steps:</p>
+<ol>
+  <li><a href="#step1">Define the status and interval to convert a regular code table to a versioned code table</a></li>
+  <li><a href="#step2">Create a project assignment for the versioned code table</a>  </li>
+</ol>
+<h3><a name="step1"></a>Step 1: Define the status and intervale to convert a regular code table to a versioned code table</h3>
+<p>This step involves updating the existing code table and codes, and setting the values for the <strong>status</strong>, <strong>valid_from</strong>, and <strong>valid_to</strong> columns in the cwdbcodetables table.</p>
+<p>There are three columns in the cwdbcodetables table:</p>
+<ul>
+  <li><strong>status</strong> (3 byte vchar2)</li>
+  <li><strong>valid_from</strong> (date)</li>
+  <li><strong>valid_to</strong> (date)</li>
+  </ul>
+
+<p>For a code table, the values for all three columns are null. For a versioned code table, the <strong>status</strong> and <strong>valid_from</strong> columns cannot be null. Only the <strong>valid_to</strong> column can be null, meaning that there is no end date.</p>
+<p>The value of the <strong>status</strong> column is defined in the Catalog (for example, <strong>DEF</strong> means definition, <strong>ACT</strong> denotes active, and so on). The code table record and all code records that belong to the code table must be updated to make all records have the same type (either versioned or non-versioned).</p>
+<h3><a name="step2"></a>Step 2: Create a project assignment for the versioned code table </h3>
+<p>A versioned code table is related to a catalog project. In Catalog Designer, you need to open your catalog project to change your code table or codes. Additionally, new project assignment records must be created for all versioned code tables and all versioned codes. </p>
+<p><strong>Note:</strong> Each code table or code must have a unique project assignment.</p>
+<p>The following table describes what values need to be set before performing the conversion:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="111" class='confluenceTh'>Column Name</th>
+      <th width="1356" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>PROJECTASSIGNMENTID</strong></td>
+      <td class='confluenceTd'> This column denotes the primary key as a 32-byte  varchar2. It is recommended that you use SYS_GUID() to generate a unique key.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>CATALOGOBJECTID</strong></td>
+      <td class='confluenceTd'><p>This column's value is the codetableid  for the code table or codes from the cwdbcodetables table.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>CATALOGOBJECTCODE</strong></td>
+      <td class='confluenceTd'><p>This column is the code table name for  codes, or -cwfCodeTableIndex for the code table.<br>
+      </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>OBJECTTYPE</strong></td>
+      <td class='confluenceTd'>This column represents the version code table's  metadata name, with its value as cwt_pc:cwt_versionCodeTable.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>ENDDATE</strong></td>
+      <td class='confluenceTd'><p>Use this column for the end date object by setting this column to null for conversion.<br>
+      </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>PROJECTID</strong></td>
+      <td class='confluenceTd'><p> The catalog project’s ID  iis in the CWPC_PROJECT table<br>
+      </p></td>
+    </tr>
+  </tbody>
+</table>
+<p>The remaning column values are similar with other catalog project assignments.</p>
+<p><strong>Note:</strong> You must write your own update SQL script to convert your code table to a versioned code table at a database level.  You may not need to convert your entire code table to a versioned code table (for example, you may just need to convert the fields used in your catalog attributes).</p>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>IBM WebSphere Configuration</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">
+<!--
+.style2 {color: #000000}
+.style3 {color: #FF0000}
+.Hilary {
+	color: #F00;
+}
+-->
+</style>
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td valign="top" class="pagebody"><h2><a name="WebSphereSSL" id="WebSphereSSL"></a>WebSphere SSL-Encrypted Message Queue Connection</h2>
+      <p>This section describes how to create a WebSphere SSL-encrypted Message Queue (MQ) connection for WebSphere MQ version 7. </p>
+      <p>This procedure consists of four steps:</p>
+      <ol>
+        <li><a href="#publicPrivateKeys">Create private and public keys for WebSphere MQ and Client </a></li>
+        <li><a href="#MQSSL">Configure the WebSphere MQ  queue manager for SSL</a></li>
+        <li><a href="#MQSSLchannel">Configure MQ SSL channel</a></li>
+        <li><a href="#javaSSL">Add mandatory Java SSL properties in application server  launch file</a></li>
+      </ol>
+      <h3><a name="publicPrivateKeys" id="publicPrivateKeys"></a>Step 1: Create Private and Public Keys for WebSphere MQ and Client </h3>
+      <p>Creating private and public keys consists of these steps:</p>
+      <ol type="a">
+        <li><a href="#MQmanagerQueues">Create a regular MQ manager and the necessary queues</a></li>
+        <li><a href="#MQkey">Create the WebSphere MQ key </a></li>
+        <li><a href="#clientKey">Create the Client database private key</a></li>
+        <li><a href="#importClientCertificate">Import client certificate into the  WebSphere MQ truststore</a></li>
+        <li><a href="#createClientTruststore">Create the Client truststore</a></li>
+        <li><a href="#importMQserverCertificate">Import WebSphere MQ server certificate into  the Client truststore</a></li>
+      </ol>
+      <p><a name="MQmanagerQueues" id="MQmanagerQueues"></a><strong>Step a. Create an MQ Manager and  Queues</strong></p>
+      <p>Create a regular MQ manager and the queues that you require.</p>
+      <p><a name="MQkey" id="MQkey"></a><strong>Step b. Create the WebSphere MQ Key </strong></p>
+      <p>To create the WebSphere MQ key called key.kdb, complete these steps: </p>
+      <ol>
+        <li>Start the IBM Key Manager utility.</li>
+        <li>From the main menu, select <strong>Key Database File &gt; New.</strong></li>
+        <li>In the <strong>New</strong> dialog, ensure that the file type <strong>CMS Key Database</strong> is selected. Enter your file location (that is, a location under your SSL queue manager) and accept the default <strong>key.kdb</strong> filename. Click the <strong>OK</strong> button.</li>
+        <li>In the <strong>Password Prompt</strong> dialog, enter the <strong>Password</strong> for this database and confirm it. Click the <strong>OK</strong> button.</li>
+        <li>Select the checkbox to stash the password file. When prompted, enter and confirm your password for verification, and then click the <strong>OK</strong> button. </li>
+        <li>Generate the certificate for WebSphere MQ Manager as follows:
+          <ol type="a">
+            <li>Switch to <strong>Personal Certificates</strong> and clicking <strong>New Self-Signed Certificate</strong>. Specify the following fields:
+              <ul>
+                <li><strong>Key Label:</strong> A name (label) used to identify the key and certificate in the database (for example, <tt>ibmwebspheremq</tt>).<br />
+                  <br />
+                  <strong>Note: </strong>The label needs to be in lowercase letters.</li>
+                <li><strong>Key Size:</strong> The size of the key (for example, <tt>1024</tt>).</li>
+                <li><strong>Common Name:</strong> The full domain  name (for example, <tt>cw00xx.conceptwave.com</tt>, which is the server that hosts the MQ queues).</li>
+                <li><strong>Organization Name:</strong> The name of the organization to associate with the key (for example, <tt>TestCompany</tt>)</li>
+              </ul>
+            </li>
+            <li>Click the <strong>OK</strong> button. </li>
+          </ol>
+        </li>
+        <li>Generate the WebSphere MQ certificate by doing the following:
+          <ol type="a">
+            <li>Click <strong>Extract Certificate</strong>.</li>
+            <li>Save the certificate and provide an appropriate name for it, such cert.arm.</li>
+          </ol>
+        </li>
+      </ol>
+      <p><a name="clientKey" id="clientKey"></a><strong>Step c. Create the Client Database Private Key</strong></p>
+      <p>To create the client database private key, follow these steps:</p>
+      <ol>
+        <li>Start the IBM Key Manager utility.</li>
+        <li>From the main menu, select <strong>Key Database File &gt; New.</strong></li>
+        <li>In the <strong>New</strong> dialog, ensure that the file type <strong>JKS</strong> is selected. Enter your file location (that is, your client stores folder, such as C:\folder) and the <strong>File Name</strong> as <strong>clientStore.jks</strong>. Click the <strong>OK</strong> button.</li>
+        <li>In the <strong>Password Prompt</strong> dialog, enter the <strong>Password</strong> for this database and confirm it. Click the <strong>OK</strong> button.</li>
+        <li> Generate the certificate for WebSphere MQ Manager as follows:
+          <ol type="a">
+            <li>Switch to <strong>Personal Certificates</strong> and clicking <strong>New Self-Signed Certificate</strong>. Specify the following fields:
+              <ul>
+                <li><strong>Key Label:</strong> A name (label) used to identify the key and certificate in the database (for example, <tt>ibmwebspheremq&lt;yourqmgrname_inlowercase&gt;</tt>).<br />
+                  <br />
+                  <strong>Note: </strong>The label needs to be in lowercase letters and in this format.</li>
+                <li><strong>Key Size:</strong> The size of the key (for example, <tt>1024</tt>).</li>
+                <li><strong>Common Name:</strong> The full domain  name (for example, <tt>cw00xx.conceptwave.com</tt>).</li>
+                <li><strong>Organization Name:</strong> The name of the organization to associate with the key (for example, <tt>TestCompany</tt>)</li>
+              </ul>
+            </li>
+          </ol>
+        </li>
+        <li>Click the <strong>OK</strong> button.</li>
+        <li>Generate the WebSphere MQ  certificate by doing the following:
+          <ol type="a">
+            <li>Click <strong>Extract  Certificate</strong>.</li>
+            <li>Save the certificate and provide an appropriate name for it, such cert.arm.                                                                                                                                </li>
+          </ol>
+        </li>
+      </ol>
+      <p><a name="importClientCertificate" id="importClientCertificate"></a><strong>Step d. Import Client Certificate into the  WebSphere MQ Truststore</strong></p>
+      <p>To import the client certificate into the  WebSphere MQ truststore, follow these steps:</p>
+      <ol>
+        <li>Open IBM Key Manager against  key.kdb.</li>
+        <li>Click the <strong>Signer Certificates</strong> tab and then click the <strong>Add</strong> button. Locate your client certificate and import it.</li>
+      </ol>
+      <p><a name="createClientTruststore" id="createClientTruststore"></a><strong>Step e. Create the Client Truststore</strong></p>
+      <p>To create the Client truststore, follow these steps:</p>
+      <ol>
+        <li>Start the IBM Key Manager utility.</li>
+        <li>From the main menu, select <strong>Key Database File &gt; New.</strong></li>
+        <li>In the <strong>New</strong> dialog, ensure that the file type <strong>JKS</strong> is selected. Enter your file location (that is, your client trust folder, such as C:\queue) and the <strong>File Name</strong> as <strong>clientTrust.jks</strong>. Click the <strong>OK</strong> button.</li>
+        <li>In the <strong>Password Prompt</strong> dialog, enter the <strong>Password</strong> for this database and confirm it. Click the <strong>OK</strong> button.</li>
+      </ol>
+      <p><a name="importMQserverCertificate" id="importMQserverCertificate"></a><strong>Step f. Import WebSphere MQ Server Certificate into  the Client Truststore</strong></p>
+      <p>To import the WebSphere MQ server certificate into  the Client truststore, complete these steps: </p>
+      <ol>
+        <li>Open IBM Key Manager against  clientTrust.jks.</li>
+        <li>Click the <strong>Signer Certificates</strong> tab and then click the <strong>Add</strong> button. Locate your WebSphere MQ server  certificate and import it.</li>
+        <li>You have the following two files:
+          <ul>
+            <li><strong>clientStore.jks</strong></li>
+            <li><strong>clientTrust.jks</strong></li>
+          </ul>
+          <p>Save these files  using the save password.</p>
+        </li>
+      </ol>
+      <h3><a name="MQSSL" id="MQSSL"></a>Step 2. Configure the WebSphere MQ queue manager for SSL</h3>
+      <p>To configure the WebSphere MQ queue manager for SSL, complete these steps:</p>
+      <ol>
+        <li>In WebSphere MQ Explorer, start your queue manager.</li>
+        <li>Right-click the <strong>&lt;queue manager&gt; &gt; Properties       &gt; SSL</strong>.</li>
+        <li>In the SSL properties, verify that the location of the key       repository matches your key database name and location. (for example,        C:\Program Files\IBM\Wmq\qmgrs\QM_EXAMPLE\ssl\&lt;<em>key</em>&gt;, where &lt;<em>key</em>&gt; is the database name. The ssl directory contains the following four files:
+          <ul>
+            <li>key.kdb </li>
+            <li>key.sth </li>
+            <li>key rdb</li>
+            <li>key</li>
+          </ul>
+        </li>
+      </ol>
+      <h3><a name="MQSSLchannel" id="MQSSLchannel"></a>Step 3. Configure MQ SSL Channel</h3>
+      <p>To configure the MQ SSL channel, do the following:</p>
+      <ol>
+        <li>In MQ Explorer, select your queue manager. Proceed to select the <strong>Advanced </strong>folder, then the <strong>Channels </strong>folder. Right-click and select <strong>New       &gt; Server Connection Channel</strong>.</li>
+        <li>On the next dialog, enter a name for the channel (for example, <tt>SSL.SVRCONN</tt>), then click the <strong>Next</strong> button.</li>
+        <li>Click <strong>SSL </strong>in the left pane. In the right pane, specify a cipher specification (for example, <tt>RC4_MD5_US</tt>). <br />
+          <br />
+          <strong>Note:</strong> It is recommended that you evaluate your organization's security needs and consider       alternative, stronger ciphers than this example, if necessary. The default setting for the <strong>Authentication of parties initiating connection</strong> field is <strong>Required</strong>. </li>
+      </ol>
+      <h3><a name="javaSSL" id="javaSSL"></a><strong>Step 4. Add Mandatory Java SSL Properties in Application Server  Launch File</strong></h3>
+      <p>The following is a sample application server launch file that contains mandatory Java SSL properties:</p>
+      <div class="code">
+        <div class="codeContent">
+          <p>set  SSL_PARAMS_KEYSTORE=-Djavax.net.ssl.keyStore=&quot;C:\\ssl\\clientStore.jks&quot;<br />
+            set SSL_PARAMS_KEYSTORE_PASSWORD=-Djavax.net.ssl.keyStorePassword=&quot;***&quot;<br />
+            set  SSL_PARAMS_TRUSTSTORE=-Djavax.net.ssl.trustStore=&quot;C:\\ssl\\clientTrust.jks&quot;<br />
+            set  SSL_PARAMS_TRUSTSTORE_PASSWORD=-Djavax.net.ssl.trustStorePassword=&quot;***&quot; </p>
+        </div>
+      </div>
+      <p><br />
+      </p></td>
+  </tr>
+</table>
+</body>
+</html>

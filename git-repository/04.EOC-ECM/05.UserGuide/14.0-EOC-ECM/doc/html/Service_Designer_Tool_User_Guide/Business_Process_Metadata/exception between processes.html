@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>Exception Between Processes</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Exception Between Processes</h2>
+<p>The Process Management framework allows sending exceptions between parent and child processes. Sending exceptions to another processes can be used not only to propagate error conditions, but also as a notification or synchronization mechanism (a child can send an exception to a parent to indicate it completed a certain step).</p>
+<p>To send an exception to another process, the <b>Before</b> script of an <em>Exception</em> activity should return a process ID or process object, indicating to whom an exception should be to sent (refer to the <a href="../../JavaScript Extensions/index.html">JavaScript Extensions HTML documentation</a>). For example, to send an exception to a parent process, use the following script: </p>
+
+<div class="code"><div class="codeContent">
+<pre class="code-java">
+return process.parent
+</pre>
+</div>
+</div>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

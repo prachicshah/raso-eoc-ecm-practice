@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>Configuring Worklist User Interface</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Configuring Worklist User Interface</h2>
+<p>To display the Worklist at runtime, you must create a User Interface that extends from the <em>com.conceptwave.system.Application</em> User Interface (this is used to specify <em>Worklist</em>' Finder for the application).</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="worklist_design.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p>The Worklist drop-down list display the system-defined worklist (cwf_pm.BaseWorklistFinder (Worklist)) and any user-defined worklist that were previously created when defining Finders.</p>
+<p>The Time duration (minutes) field enables you to specify an interval where the <SPAN name="resultofMatch">time</SPAN>r calls the <EM>on<SPAN name="resultofMatch">Time</SPAN>r</EM> method each <SPAN name="resultofMatch">time</SPAN> an interval elapses. The default interval is specified on the Configuration page &gt;System &gt; Framework parameters &gt; Worklist poll time (minutes). Using the Time duration (minutes) setting overrides the interval set on the Configuration page.</p>
+<h3>Worklist Variables</h3>
+<p>There are system variables that are available to configure the Worklist. </p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Variable</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>workListFinder </td>
+<td class='confluenceTd'>Type User Interface. Displays the Work List finder if the  user has correct permissions.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>workListImage </td>
+<td class='confluenceTd'>Type String. The image that displays (available/unavailable) for the user who has permissions for the work list.</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="../Velocity_Studio/User Interface Variables.htm">User Interface Variables</a> for a complete list of variables and definitions.</p>
+<h3>Worklist Method</h3>
+<p>There are system methods that are available to configure the Worklist. </p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Method</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>onTimer </td>
+<td class='confluenceTd'>The method that is invoked periodically for every <strong>Time duration</strong> defined   in User Interface <strong>General</strong> tab since the creation of this User Interface,   if it is defined. By default, this Method is empty.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>hasWorklist </td>
+<td class='confluenceTd'>This method checks if the worklist is created for a user based on permissions.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>openWorklist</td>
+  <td class='confluenceTd'>This method opens the worklist when user permissions match permissions for the Worklist.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>permWorklist</td>
+<td class='confluenceTd'>This method is returns the worklist when the permissions set are satisfied.</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="../Velocity_Studio/User Interface Methods.htm">User Interface Methods</a> for a complete list of methods and definitions.</p>
+<h3>Menu Form</h3>
+<p>When you create a User Interface under the Presentation node, by default, several forms are created. The Menu form contains several Form elements that assist you with the layout of your display at runtime.</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="worklist_form.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p>The WrkList menu contains properties for the configuration of the Worklist menu. The menu creates an icon <img src="worklist_icon.png" align="absmiddle" border="0" alt="" />when clicked opens the WorkList pane which displays the results of the Finder.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="worklist_runtime.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p>For information about configuring the Menu Form element properties, see <a href="../Velocity_Studio/Element - Menu.htm">Menu</a>.</p>
+<p><strong>Important: </strong>Worklists do not display if the user does not have Participant <a href="../../User Profile Manager User Guide/Create/privilege.html">privileges</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+
+</body>
+</html>

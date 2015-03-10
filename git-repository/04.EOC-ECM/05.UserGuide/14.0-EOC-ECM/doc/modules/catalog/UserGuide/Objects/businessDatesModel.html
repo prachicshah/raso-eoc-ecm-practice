@@ -1,0 +1,187 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Business Date Model</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h3>Business Date Model</h3>
+<p>The business date model is a concept that represents a set of dates. A new data type of that is of type enumeration, dateSubType[endDate, startDate], can be used in the future.</p>
+<p>You can access business date models by clicking <strong>Technical Configuration</strong> &gt; <strong>Business Date Model</strong> from the Quick Start menu.</p>
+<p><img src="businessDatesModel.png" alt="Business Dates Model page"></p>
+<p>The Business Date Models page contains the following fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="133" class='confluenceTh'>Field</th>
+      <th width="736" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Model Code</strong></td>
+      <td class='confluenceTd'>This field denotes the code for the business date model.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'>This field denotes  a list of available <a href="States.html">statuses</a> for the business date model (for example, <strong>Definition</strong> and<strong> Active</strong>).</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Start Date</strong></td>
+      <td class='confluenceTd'>This field represents the start (effective) date that the business date model is available. Refer to <a href="../Objects/StartEnd_Dates.html">Start and End dates</a> for details.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>End Date</strong></td>
+      <td class='confluenceTd'>This field indicates the date when the business date model is no longer effective. Refer to <a href="../Objects/StartEnd_Dates.html">Start and End dates</a> for details.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Owner</strong></td>
+      <td class='confluenceTd'>This field represents the position of the user who created the project. Only users with the same position or higher can access the project data.  This value cannot be changed. Refer to <A href="../Configuration/Catalog_Domains.html">Domains</A> for more information. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Project</strong></td>
+      <td class='confluenceTd'>This field indicates with which project  the business date model is associated. Each object is assigned to a <a href="Project.html">project</a>. This field defaults to the active or opened project when the business date model is first created. </td>
+    </tr>
+    </tbody>
+</table>
+<p>Double-clicking any business date model from the list allows you to view its details:</p>
+<p><img src="businessDatesModelDetails.png" alt="Business Dates Model page - details"></p>
+<p>The Business Date Models  details page contains the following fields:</p>
+<table class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="133" class='confluenceTh'>Field</th>
+      <th width="736" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Model Code</strong></td>
+      <td class='confluenceTd'>This field denotes the code for the business date model.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Date Code</strong></td>
+      <td class='confluenceTd'>This field denotes the date code associated with the business date model.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Business Date Definition Code</strong></td>
+      <td class='confluenceTd'>This field represents the code linked to the <a href="businessDatesDefinition.html">business date definition</a> code.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Sequence</strong></td>
+      <td class='confluenceTd'>This field contains the business date definition code's sequence position in the model.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Owner</strong></td>
+      <td class='confluenceTd'>This field represents the position of the user who created the project. Only users with the same position or higher can access the project data.  This value cannot be changed. Refer to <A href="../Configuration/Catalog_Domains.html">Domains</A> for more information. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Project</strong></td>
+      <td class='confluenceTd'>This field indicates with which project  the business date definition is associated. Each object is assigned to a <a href="Project.html">project</a>. This field defaults to the active or opened project when the business date model is first created. </td>
+    </tr>
+  </tbody>
+</table>
+<p>The Catalog business date model is defined as follows:</p>
+<ul>
+  <li>Business Date Model    
+    <ul>
+      <li><strong>Model Code</strong></li>
+      <li><strong>Start Date</strong></li>
+      <li><strong>End Date        </strong></li>
+      </ul>
+  </li>
+  <li>Business Date Model Dates
+    <ul>
+      <li><strong>Model Code</strong></li>
+      <li><strong>Date Model Definition Code</strong></li>
+      <li><strong>Start Date</strong></li>
+      <li><strong>End Date </strong></li>
+      </ul>
+  </li>
+  <li><a href="businessDatesDefinition.html">Business Date Definition</a>
+<ul>
+  <li><strong>Dates Model Definition Code</strong></li>
+      <li><strong>Name</strong></li>
+      <li><strong>Label</strong></li>
+      <li><strong>Date Type</strong> (code table with <strong>Start Date</strong> and <strong>End Date</strong> as date subtypes)     </li>
+      <li><strong>Sequence</strong></li>
+      <li><strong>Date Value Leaf Name</strong></li>
+      <li><strong>Related Date Code</strong></li>
+      <li><strong>Status</strong></li>
+      <li><strong>Start Date</strong></li>
+      <li><strong>End Date</strong></li></ul></li>
+  </ul>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li>The item table contains an additional column to store the model code. </li>
+  <li>Whenever an item extends a base item, the  model code from the base defaults to the child item. If you want to change  the model, you can change it on the item.</li>
+  <li>It is  recommended that this code be defined on base items only and not  be changed on extended items.</li>
+  <li>Both runtime and the maintenance user interface uses the datesModelCode to determine what dates are applicable to the item.</li>
+  </ul>
+<h4>Handle  Dates on Different Models </h4>
+<p>The Browse Catalog API returns  offers only available for advertising or offers available for selling, or both. See <a href="businessDatesAPIs.html">Browse Catalog API</a> for details. </p>
+ The following table shows what dates are  used to  return results of browse and addItem.
+ <table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="157" class='confluenceTh'>STARTDATE_ADVERTISING</th>
+      <th width="208" class='confluenceTh'>STARTDATE_SELLING</th>
+      <th width="158" class='confluenceTh'>ENDDATE_SELLING</th>
+      <th width="192" class='confluenceTh'>STARTDATE_SERVICING</th>
+      <th width="179" class='confluenceTh'>ENDDATE_SERVICING</th>
+      <th width="280" class='confluenceTh'>RUNQuery_Advertising</th>
+      <th width="280" class='confluenceTh'>RunQuery_Selling</th>
+      <th width="243" class='confluenceTh'>ADD Item</th>
+    </tr>
+    <tr>
+      <td height="26" class='confluenceTd'><p>Used</p>
+        <p>&nbsp;</p></td>
+      <td class='confluenceTd'>Used</td>
+      <td class='confluenceTd'><p>Used</p></td>
+      <td class='confluenceTd'>Used</td>
+      <td class='confluenceTd'>Used</td>
+      <td class='confluenceTd'>startDateAdvertising &lt; catalogAPITime &lt; endDateSelling</td>
+      <td class='confluenceTd'>startDateSelling &lt; catalogAPITime &lt; endDateSelling</td>
+      <td class='confluenceTd'>startDateSelling &lt; catalogAPITime &lt; enddateServicing</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p>Not used</p></td>
+      <td class='confluenceTd'>Used</td>
+      <td class='confluenceTd'><p>Used</p></td>
+      <td class='confluenceTd'>Used</td>
+      <td class='confluenceTd'>Used</td>
+      <td class='confluenceTd'>startDate &lt; catalogAPITime &lt; endDateSelling</td>
+      <td class='confluenceTd'>startDateSelling &lt; catalogAPITime &lt; endDateSelling</td>
+      <td class='confluenceTd'>startDateSelling &lt; catalogAPITime &lt; enddateServicing</td>
+    </tr
+>
+    <tr>
+      <td class='confluenceTd'><p>Not used</p></td>
+      <td class='confluenceTd'>Not used</td>
+      <td class='confluenceTd'>Not used</td>
+      <td class='confluenceTd'>Used</td>
+      <td class='confluenceTd'>Used</td>
+      <td class='confluenceTd'>startDate &lt; catalogAPITime &lt; endDateServicing</td>
+      <td class='confluenceTd'>startDate &lt; catalogAPITime &lt; endDateServicing</td>
+      <td class='confluenceTd'>startDate &lt; catalogAPITime &lt; endDateServicing</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><p>Not used</p></td>
+      <td class='confluenceTd'>Not used</td>
+      <td class='confluenceTd'><p>Not used</p></td>
+      <td class='confluenceTd'>Not used</td>
+      <td class='confluenceTd'>Used</td>
+      <td class='confluenceTd'>startDate &lt; catalogAPITime&lt; endDateServicing</td>
+      <td class='confluenceTd'>startDate &lt; catalogAPITime&lt; endDateServicing</td>
+      <td class='confluenceTd'>startDate&lt; catalogAPITime&lt; endDateServicing</td>
+    </tr>
+  </table>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

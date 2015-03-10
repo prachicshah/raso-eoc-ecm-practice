@@ -1,0 +1,30 @@
+﻿<html>
+<head>
+<title>Data Structure Operations</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Data Structure Operations</h2>
+<p>The Data Structure right-click pop-up menu has the commands <b>Add Data Structure</b>, <b>Data Import/Export</b> and <b>Export to Document</b> in addition to the common right-click menu items. As mentioned above, clicking the <b>Add Data Structure</b> command allows the user to add a new child node.</p>
+<h3>Data Import and Export</h3>
+<p>Clicking the <b>Data Import/Export</b> command opens an import/export dialog (see figure below) which allows the user to import data from an XML file, modify it and export the data back into a file. The user can also create new data dynamically.</p>
+<p><img src="dataImportExport.png" align="absmiddle" border="0" alt="Data Structure Import or Export Operation" /></p>
+<p>The tree on the left side shows a list of Data Structures, when they are imported from an XML file, or a single Data Structure. The hierarchy of the Data Structures can be expanded. When a tree node is selected, the right side panel allows the user to enter the data type values for containers or the leaf values for Documents. Arrays will appear as folders in the tree. Right-clicking the folder allows the user to add a new instance to the array. If one of the data types in the container is an array, it will appear as a special panel on the right side, which can be used to modify the array (see figure below).</p>
+<p>The <b>Import</b> <b>XML</b> button imports data from an XML file. The <b>Validate</b> button checks the correspondence of the data to the metadata data type defined in the Data Structure and if there is data entered for the leaf nodes that have the <b>Mandatory</b> attribute. The <b>Export</b> <b>XML</b> button previews the data when the <b>View</b> radio button is selected, or saves the data into an XML file when the <b>File</b> radio button is selected. The <b>Save</b> button saves all changes made in the right side panel before changing selection in the tree.</p>
+<h3>Export to Document</h3>
+<p>Clicking the <b>Export to Document</b> command opens the <b>Export Data Structure to Document</b> dialog  which allows the user to create a new Document or extend existing Documents using the Data Structure leaf nodes. The operation is available on the top level nodes and containers.</p>
+<p><img src="dataStructureExporttoDocument.png" align="absmiddle" border="0" alt="" /></p>
+<p>You may choose to create a new Document or add to an existing one.</p>
+<ul>
+  <li>If <b>Include all leaves from hierarchy</b> is checked, Data Types inside containers will also be exported.</li>
+  <li>If unchecked, only the immediate leaves with Data Type will be export to document.</li>
+  <li>If there are no immediate leaves which are Data Types, a validation error will be displayed. </li></ul></td>
+</tr>
+</table>
+</body>
+</html>

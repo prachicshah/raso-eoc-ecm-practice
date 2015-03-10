@@ -1,0 +1,133 @@
+<html>
+<head>
+<title>Script General Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>Script General Tab</h3>
+
+<p>The general Script properties are defined on this<b></b> tab.</p>
+
+<p><img src="ScriptGeneral.png" alt="Script - General Tab" border="1" align="absmiddle" /></p>
+<p>The following table describes the fields for the <strong>General</strong> tab of the Script:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="131" class='confluenceTh'>Field</th>
+<th width="1033" class='confluenceTh'>Description</th>
+</tr>
+
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Name of the metadata object (used in scripts; must conform to JavaScript naming conventions). Read-only after creation. To change it, use the <b>Rename</b> command in pop-up menu by right-clicking the metadata object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'><p>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</p>
+  <p><strong>Note:</strong> Copying a restricted script from a library is not allowed. Additionally, copying a script from a library namespace that is restricted is also not permitted.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Deprecated</b></td>
+<td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+</tr>
+<tr>
+  <td height="45" class='confluenceTd'><b>Virtual</b></td>
+  <td class='confluenceTd'>If checked, it provides the ability to create methods in template metadata that does not have implementation, but can be used in template script and be bound to UI elements. The implementation is done in user metadata (see <a href="../Virtual Field/Virtual Field.html">Virtual Field</a> for more information).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Metadata object display label.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the metadata object for documentation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Overrides</b></td>
+<td class='confluenceTd'>Metadata object to override. Typically used to customize system or library metadata objects; for example, scripts defined in the library metadata <i>Process Management Product</i> can be overridden to extend functionalities required in your application.<br/>
+At runtime, the Script specified in <b>Overrides</b> field is completely replaced by this Script. A search for the overridden Script will return this Script as the result.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Use in rule instances</b></td>
+<td class='confluenceTd'>If checked, the script is available for use in instance expressions of Rules (that is, inserting Functions).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Parameters</b></td>
+<td class='confluenceTd'>Table to define script parameters. Click the <strong>Add</strong> or <strong>Remove</strong> button to add or remove parameters, respectively. The order of the parameters shown in this table is the order of parameters upon script invocation. Click the <strong>Edit</strong> button with a selected parameter to edit a parameter.<br>
+  <br/>
+<img src="ScriptParameterProperties.png" align="absmiddle" border="0" alt="" /><br>
+<br>
+	<table class='confluenceTable' border cellpadding="1">
+	  <tbody>
+	<tr>
+	<th width="85" class='confluenceTh'>Field</th>
+	<th width="651" class='confluenceTh'>Description</th>
+	</tr>
+	<tr>
+	<td class='confluenceTd'><b>Name</b></td>
+	<td class='confluenceTd'>Mandatory. Name of script parameter.</td>
+	</tr>
+	<tr>
+	  <td class='confluenceTd'><strong>Description</strong></td>
+	  <td class='confluenceTd'>Click the <strong>Pencil</strong> icon and describe your parameter in the field. Click the <strong>OK</strong> button to save your changes.</td>
+	  </tr>
+	<tr>
+	<td class='confluenceTd'><b>Type</b></td>
+	<td class='confluenceTd'>Data Type of the parameter.</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'><b>Mandatory</b></td>
+	<td class='confluenceTd'>If checked, the parameter is mandatory and the expression editor will not allow the parameter value to be null.</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'><b>Array</b></td>
+	<td class='confluenceTd'>If checked, the parameter is an array of the specified Data Type.</td>
+	</tr>
+	</tbody>
+	</table>
+	<br></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Script</b></td>
+  <td class='confluenceTd'>Field containing the JavaScript script to be executed.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Return Type</b></td>
+  <td class='confluenceTd'>The Object type to be returned by the script. Choose <i>com.conceptwave.system.Void</i> if no value shall be returned.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Return Description</strong></td>
+  <td class='confluenceTd'>This field allows you to describe the Script Object's return type.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Feature Restriction</strong></td>
+  <td class='confluenceTd'>This field allows you to specify <a href="../Metadata Root/Metadata Root Feature Management.html">features that you want to restrict</a>. Click the field's <strong>Checkbox</strong> button (<img src="../Metadata Root/MDrootFeatureManagementCheckboxButton.png" alt="Restricted By field - Checkbox button">) to launch the Select Feature dialog. You can select all features that you want to restrict and then click the <strong>Save</strong> button.</td>
+</tr>
+</tbody>
+</table>
+<p>Notice that, in the <b>Script</b> field, Velocity Studio automatically generates the function statement, as well as the opening and the closing brackets of the function block. The name of the function is the <b>Name</b> of the script, and the function parameters, if any, are added corresponding to <b>Parameters</b> of the script. You only need to insert segments of JavaScript code within the function.</p>
+
+<p>In the <b>Script</b> text input area, you may right-click to pop-up a context menu:</p>
+
+<p><img src="ScriptContextMenu.png" alt="Script Context Menu"  border="1" align="absmiddle" /></p>
+
+<p>Select the <b>Editor Mode</b> option from the pop-up menu to open the <a href="../../../JavaScripting in Order Care/new JavaScript Editor.html">JavaScript Editor</a> for the script. You can also double-click the <strong>Script</strong> field to launch the JavaScript Editor.</p>
+<p><strong>Note:</strong> The other items in the pop-up menu are used for editing script contents directly in the field, rather than using the JavaScript Editor.</p>
+<h4>Save Script Changes in Runtime or Debug Mode</h4>
+<p>When you are in either runtime or debug mode, you can make changes to your script and then click the <strong>Update</strong> button, which updates the runtime version of the script and saves your changes.</p>
+<p><img src="ScriptGeneralUpdateButton.png" alt="Script General - Update button at runtime" border="1"></p>
+<p><strong>Note:</strong> The <strong>Update</strong> button is only visible when runtime is active.</p></td>
+</tr>
+</table>
+</body>
+</html>

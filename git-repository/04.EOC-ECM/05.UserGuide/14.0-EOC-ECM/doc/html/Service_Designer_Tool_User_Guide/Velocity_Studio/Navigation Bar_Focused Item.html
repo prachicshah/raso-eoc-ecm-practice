@@ -1,0 +1,38 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Navigation Bar Focused Item</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Navigation Bar Focused Item Logic</h2>
+
+<p>For every navigation item click, the following actions will occur:</p>
+
+<ol><li>Calling the NavigationBar.onNavigationClick. This function contains the necessary information to call the right click method associated with the navigation that was just clicked.</li>
+<ol><li>If the navigation bar's currentObject variable contains a value, validation on this object will be called based on the following logic:</li>
+<ul><li>NavigationBar.cwDoValidate is set to true</li>
+<li>NavigationBar.cwDoValidate is set to null and the clicked item comes after the currently focused item</li></ul>
+<li>If the current object is not valid, the transaction is cancelled and the focus is left on the current item.</li>
+<li>If the current object is valid or not provided, the focus is set on the clicked item.</li>
+<li>The click method is then invoked. If this method returns an object, it will be set as the value for the currentObject variable.</li></ol>
+
+
+   <p>This added functionality will ensure there is no jumping forward/back of the focus on each navigation item. </p>
+   <p>The focus will only change if:     </p>
+   <ul>
+     <li>There is a manual call on setFocus().       </li>
+     <li>The current object on the screen is valid <br>
+       <br>
+     </li>
+   </ul>
+</tr>
+</table>
+</body>
+</html>

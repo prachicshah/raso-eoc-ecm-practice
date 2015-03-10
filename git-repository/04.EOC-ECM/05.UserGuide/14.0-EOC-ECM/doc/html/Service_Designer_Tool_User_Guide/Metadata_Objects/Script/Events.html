@@ -1,0 +1,107 @@
+﻿
+
+
+<html>
+<head>
+<title>Events</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h3>Events</h3>
+<p>The event is a user-defined string, which is unique for the  application. A lightweight, <a href="Publish Subscribe to Events.html">publish-subscribe</a> mechanism is available that allows you to publish an event to which many different  global scripts may subscribe. The event metadata object serves as the signature definition  for any event handler metadata object that will handle such an event. To create an event, do  the following:</p>
+In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:
+  <ol>
+    <li>Right-click a Namespace. Select <b>New ...</b></li>
+    <li><b>New Metadata Object</b> wizard appears. Expand the <b>Global Scripts</b> node, select <b>Event</b>, and then click the <b>Next</b> button.</li>
+    <li>Enter the name of event in the <strong>Name</strong> field (must conform to JavaScript naming conventions), which is the default name for event handler. You can also specify other parameters.       </li><li>Click the <b>Finish </b>button.</li>
+  </ol>
+<i>OR</i>
+<ol>
+    <li>Right-click the <b>Event</b><strong>s</strong> folder or the <b>Global Scripts </b>folder in a Namespace, if it is present. Select <strong>New </strong><b>Event</b>.</li>
+    <li>Follow step 2 mentioned previously.</li>
+    </ol>
+
+<p>Your newly created event appears under the <b>Events</b> folder.</p>
+<p><strong>Note:</strong> Creating two events that have the same <strong>Event Type</strong> is not permitted.</p>
+<p><img src="Event.png" alt="Events" border="1"></p>
+<p>An event contains the following property fields:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Field</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Name</b></td>
+      <td class='confluenceTd'>The name of the event metadata object (must conform to JavaScript naming conventions). The field is read-only after creation. To change it, use the <b>Rename</b> command in pop-up menu by right-clicking the metadata object.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Label</b></td>
+      <td class='confluenceTd'>This field represents the display label of your metadata object display label.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Description</b></td>
+      <td class='confluenceTd'>A description of the event metadata object for documentation.</td>
+    </tr>
+    <tr>
+      <td height="40" class='confluenceTd'><strong>Event Type</strong></td>
+      <td class='confluenceTd'>Specify a unique name that the application will publish.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Can disable</b></td>
+      <td class='confluenceTd'><p>Select this property's checkbox to specify that the event can be disabled. The default value is false for this property.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Has System Parameters</strong></td>
+      <td class='confluenceTd'>Select this property's checkbox to indicate that the event has system parameters. The default value is false for this property.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Parameters</b></td>
+      <td class='confluenceTd'>Table to define a list of parameters that event handlers are expected to receive. Click the <strong>Add</strong> or <strong>Remove</strong> button to add or remove parameters, respectively. The order of the parameters shown in this table is the order of parameters upon script invocation. Click the <strong>Edit</strong> button with a selected parameter to edit a parameter.<br>
+        <br/>        <img src="EventParameterProperty.png" width="474" height="271" alt="Event Parameter Property dialog"><br>
+        <br>
+        <table class='confluenceTable' border cellpadding="1">
+          <tbody>
+            <tr>
+              <th width="85" class='confluenceTh'>Field</th>
+              <th width="651" class='confluenceTh'>Description</th>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><b>Name</b></td>
+              <td class='confluenceTd'>Mandatory. Name of script parameter.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><strong>Description</strong></td>
+              <td class='confluenceTd'>Click the <strong>Pencil</strong> icon and describe your parameter in the field. Click the <strong>OK</strong> button to save your changes.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><b>Type</b></td>
+              <td class='confluenceTd'>Data Type of the parameter.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><b>Mandatory</b></td>
+              <td class='confluenceTd'>If checked, the parameter is mandatory and the expression editor will not allow the parameter value to be null.</td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><b>Array</b></td>
+              <td class='confluenceTd'>If checked, the parameter is an array of the specified Data Type.</td>
+            </tr>
+          </tbody>
+        </table>
+        <br></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Return Type</b></td>
+      <td class='confluenceTd'>Click the drop-down menu and select the metadata object type for which  event handlers are expected to return. Select <i>com.conceptwave.system.Void</i> if no value shall be returned.</td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Select Field</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Select Field</h2>
+
+<p>This element can create a listbox or a drop-down list for a list of values defined as an enumeration variable. Select field can be used in top level user interface with its variable property set to the user interface's variable of type enumeration.
+  The <strong>Height</strong> property determines the appearance of the box as either a listbox or a drop-down list. This element also allows for multiple selections to be made at runtime. </p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Drop-down List</th>
+<th class='confluenceTh'>Listbox</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="exampleSelectField.png" alt="Select Field Example"></td>
+<td class='confluenceTd'><img src="exampleSelectFieldListBox.png" alt="List Box"></td>
+</tr>
+</tbody>
+</table>
+<p>The following table describes the properties for select field:</p>
+<table class='confluenceTable' border cellpadding=1>
+  <tbody>
+<tr>
+  <th width="104" class='confluenceTh'><strong>Property</strong></th>
+  <th width="144" class='confluenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+  <th width="1365" class='confluenceTh'>Comment</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Name</strong></td><td class='confluenceTd'>Mandatory</td><td class='confluenceTd'>Name of the Select Field.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Label</strong></td><td class='confluenceTd'>Mandatory</td><td class='confluenceTd'>Visible label of the Select Field. If empty, there is no Select Field label. Default is empty.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong><span class="referenceTd">Variable</span></strong></td><td class='confluenceTd'>Optional</td>
+  <td class='confluenceTd'><p> Choose from a list of variables of type string, integer, or boolean. A variable with enumeration values  can be used in top level user interface with this variable property set to the user interface's variable of type enumeration (static only). </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Can Sort</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>This property is used when parented by a Table Element and refers to a Finder table column during runtime.  This will allow the user to sort the search results data by ascending or descending order at runtime. Setting this property to <em>False </em>will disable the sorting functionality. By default this functionality is set to <em>True.</em></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>*Cell Alignment</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Controls the horizontal and vertical positioning of the Select Field in the page or parent element. Default is undefined, which behaves as if it is top-left.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Cell Column Span</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Only applicable when in a Grid Layout. Specifies the number of columns that the Select Field occupies in the Grid Layout, to the right of the current cell. Default is empty, which means it occupies one column.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Cell Row Span</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'><p>This property provides more flexibility when building a grid-based user interface, instead of using a combination of horizontal and vertical layouts. This property appears when form elements appear under a Grid Layout element and the form element has a parent element. This property specifies the number of rows that the element occupies in the grid layout.</p>
+    <p>By default, this field is set to 1. All nine positions are made available for the <strong>Cell Alignment</strong> property if the form element is under a Grid Layout element and has a row span greater than 1, so that the form element can be aligned in nine different positions. With rowspan as 1, only the three centre positions are available.</p>
+    <p>To use this property, see the <a href="Element - Button.html#cellRowSpanExample">example</a> for details.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Double Click Method</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>The method assigned to this property is invoked at runtime whenever the user double clicks a  value in the Select Field. The method can be a User Action Method or a Script. This method is only functional in Internet Explorer.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Dynamic Label</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Defines a label value that is set dynamically at runtime.  Set property to a <em>String</em> variable or a script that returns a <em>String</em>. The static Label property is considered as default until the action returns a value.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Dynamic Label Style</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>The value of this property is a method with a Return type <em>String</em>. In conjunction with the Variable property, this method will dynamically change the style of the label at runtime based on the instructions returned by the method.  The label style returned by the method must exist within the current css file that is being used by the application.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Dynamic Tooltip</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'><p>Defines a dynamic tooltip text that is displayed in a hover box when the cursor hovers the element.  Set property to a <em>String</em> variable or a script with a Return type <em>String</em>. The static Tooltip property is considered as default until the action returns a value.</p>
+  <p>When this element is  used under the Table element, the <strong> Dynamic Tooltip</strong> property accepts a script, which is called for each result document value bound to a field with a dynamic tooltip set. This script returns the string desired to be shown on the hover. Additionally, the property accepts a variable value belonging to the result document. The value for this variable is then used to display the tooltip.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Dynamic Tooltip Style</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>This property dynamically changes the style of the Dynamic Tooltip.  Set property to a script with a Return type <em>String</em> that is a cascading style sheet (css) name found in the stylesheet used by the application.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Editable</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'><p>This property determines whether the Select Field is enable or disabled at runtime. The values for this property are either <em>True</em> (enabled), <em>False</em> (disabled) or a <em>Permissions</em> method (for example, depending on the user's permissions, this field will be enabled or disabled). A <em>False</em> still enables the user to view the list box and its values at runtime, but the user is unable to select one of the options from the list box.</p>
+    <p><strong>Note:</strong> If a field contains  an editable permission that is either coming from the form field itself, or inherited  from the variable or data type, it takes precedence. Otherwise, the user  interface's editablePerm permission takes over. If this method is not  overwritten, the model's editablePerm permission is used. User interfaces  displayed under another user interface with editablePerm are also be inherited  if the embedded user interfaces do not have their own editablePerm permission. </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong><span class="referenceTd">Empty Value Text</span></strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>This property defines what text is displayed inside the select list. By default, this property takes an empty value, which displays as a blank field. You can configure the text in this property to suit your needs.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Enumeration Reference</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>This property provides a list of all data types within the metadata that   have either an enumeration or a reference finder defined.
+    <p>At runtime, when the form is displayed, the value is   still  retrieved from the <strong>Variable</strong> property. The variable set on the fields can be primitive strictly for storing values. When you click the reference icon, the product uses the enumeration reference data type to find the finder user interface to display in a dialog. </p>
+    <p>See the <a href="Element - Reference.html#enumerationReferenceExample">example</a> on how to use this property for details.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Error Icon Gap</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'><p>Select this property's checkbox to make a gap for the validation icon. By default, this property is false. </p>
+    <p><strong>Note:</strong> This property is available only for left (or default) error orientation. The gap is calculated according to the /cwfv/error.png icon size. When the image is substituted with a smaller one, the gap is also smaller. </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Error Icon Orientation</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>This property allows you to configure how an icon are displayed. This property takes the values left (default) and right.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Group By In Table</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>This property allows the user to group the Finder results by the elements value.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Height</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Height to be taken up by the Select Field area as defined as an integer value in pixels. This property value will determine if a listbox or a drop down list appears. This property defaults to a drop down list. Any value entered for this property will result in a listbox.  If this element is nested under a Table element, the width and height properties can be set using either the percentage (%) or pixel (px) measurement. If this element is not nested under a Table element, the width and height properties are only available using the pixel setting.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Height in Lines</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Specify the height to be taken up by the Select Field area by lines. The default value for this field is 0.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Icon</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Choose an image file that appears as an icon to the right of the Select Field. Default is NONE.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Include in Tab Order</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'><p>This property allows you to optionally suppress tabbing to any or all form elements. The <strong>Include in Tab Order</strong> property overrides the<a href="../../Configuration_Tool_User_Guide/Configure/System/UI/UItabbing.html"> suppress tabbing</a> configuration setting and can take the following values:</p>
+    <ul>
+      <li>When set to <strong>&lt;Default&gt;</strong>, the element is included in tab order according to global rules and its focusable state.</li>
+      <li>If the property is set to <strong>Exclude</strong>, the element is excluded from tabbing even if the element is focusable.</li>
+      <li>If the property is set to <strong>Include</strong>, the element is included <em>only if it is focusable</em>, even if all items of that type are excluded through the Suppress Tabbing variable.</li>
+    </ul>
+    <p><strong>Note:</strong> For menu items and images, the <strong>Can Focus</strong> property affects including the element in the tab order. To ensure that an element is in the tabbing order, select this property.</p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Label Align</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'><p>Click the <strong>Value</strong> field and select from one of the following alignment options for your label:</p>
+    <ul>
+      <li><strong>Left</strong></li>
+      <li><strong>Centre</strong></li>
+      <li><strong>Right</strong></li>
+      </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Label Orientation</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Specifies where the label of the Select Field appears in relation to the Select Field area; can be <i>left</i>, <i>right</i> or <i>top</i> of the Select Field area. The default orientation is <i>right</i>.  However, in a Grid Layout, the default label orientation is defined by the Grid Layout element.  But if a value of this Label Orientation property is specified, than it overrides the Label Orientation property provided by the Grid Layout..</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Label Style</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Choose from styles in the selected stylesheet at the toolbar, which defines the styling of the Label such as font color. Default is NONE.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Multiple Selection</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Only applicable when Select Field is a listbox. When true, allows the user to select multiple items in the listbox by holding the Ctrl key. Default to <i>False</i>, which does not allow multiple selections.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>On Enter</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>The system calls any script defined in this property. This method is invoked when the Select Field is focused on the Web page and the user presses the ENTER key.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Picklist Style</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'><p>This property provides a means of setting the style of a dropdown list for a Select Field element, which includes the font style, colour, size, and style of the box.</p>
+    <p><strong>Note:</strong> For the assigned style, the following are appended on changes of state:</p>
+    <ul>
+      <li><strong>Dark</strong></li>
+      <li><strong>Over</strong></li>
+      <li><strong> OverDark</strong></li>
+      <li><strong> Selected</strong></li>
+      <li><strong>SelectedDark</strong></li>
+      <li><strong>SelectedOver</strong></li>
+      <li><strong> SelectedOverDark</strong></li>
+    </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Remove Label Line</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Select this property's checkbox when the element is in a grid layout and its column span is equal to the grid layout's   number of columns. In other words, if the   field is the only field in that row, this empty line is removed above the element. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Run Trigger</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'><p>The method assigned to this property is invoked whenever the value of the Select Field changes. The method can be a User Action Method or a Script.</p>
+    <p>The trigger of a field fires only if the field has first gained focus,  and then lost focus under these conditions:</p>
+    <ul>
+      <li>You focus on another field through either clicking your mouse or pressing the Tab key.</li>
+      <li>You click a menu.</li>
+      <li>You change your selection in a navigation tree.</li>
+      <li>You click another tab of a tabset.<br>
+        </li>
+      </ul>
+    <p><strong>Notes:</strong></p>
+    <ul>
+      <li>Field triggers do not fire on save. However, document triggers do.&nbsp;</li>
+      <li>As long as the cursor is still inside the field, the trigger  does not fire. Clicking outside  the field into the layout will not trigger  the field as layouts are not focusable by default.</li>
+      </ul></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Search Select</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Select the <strong>Search Select</strong> checkbox for the Select Field element. At runtime, typing in the select item (for example, <em>call</em>) shows a list of values that currently match the characters that are entered. The list displayed for the drop-down is incrementally altered each time a new character is entered.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Show Empty Values</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>This property determines whether to display the first value in the drop-down as empty or only show the values which come from the enumeration or the reference data type values. Default is <i>True</i> which means that the first value displayed is empty.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Show as Advanced</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>When you select this property, the constructor used for the UI object becomes a custom widget. See <a href="#multiselectUI">Multiselect UI Element</a> for details.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Show Label</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>This property determines whether the label is displayed on the Select Field. Choose from <i>True</i> or <i>False</i>. Default is True which means that the label is displayed.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Sorted</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Defaults to false. Boolean to determine whether to alphabetically sort the enumeration in the Select field, or remain in the same order as defined in <b>Enumerations</b> tab of the Variable's Data Type.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Start Row</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Applicable only when parent Element is a Grid Layout. If true, the Select Field starts in a new row of the grid. If false, it is simply placed in the current cell as-is. Default is <i>false</i>, which does not start a new row.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Style</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Choose from styles in the selected stylesheet on the toolbar, which defines the styling of the Select Field such as color and font. Default is NONE.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Textbox Style</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'><p>Choose from styles in the selected stylesheet on the toolbar, which defines the styling of the listbox of the Select Field such as color. Default is NONE.</p>
+  <p>To change the default disabled style for text fields, set this property with your own style, and make sure your stylesheet contains a style with the <em>Disabled</em> suffix appended to the assigned style. As example, when assigning the MyStyle style to the <strong>Textbox Style</strong> property, the stylesheet must have MyStyleDisabled to represent the disabled style.</p>
+  <p>To change the disabled style for text fields globally, add the <em>fieldDisabled</em> style to your stylesheet.<BR>
+    <strong>Note:</strong> The <em>fieldDisabled</em> style is  also  applied to any element that has a text field when disabled (for example, the date element or the password element). </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tooltip</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Defines the tooltip text, which is displayed in a hover box when the cursor hovers over the <strong>Select</strong> field. Default is empty, which means no tooltip for the <strong>Select</strong> field.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tooltip Style</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Defines the tooltip style of the text displayed in the hover box when the cursor hovers over the <strong>Select</strong> field. The default is empty. Click the <strong>Value</strong> field to select a tooltip style from the list.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Tooltip Width (px)</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Allows you to change the width of the tooltip popup window statically. Enter the width in pixels. The default value for this property is 0.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Visible</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Determines whether the Select Field is visible or not. Choose true (visible) or false (not visible) or from the list of Permission Methods available in the User Interface to bind to the Field.  This property defines the user permissions assigned to this field. Pre-defined system <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> such as addPerm, deletePerm, editablePerm, attachPerm, executePerm, and visiblePerm can be assigned as well as Object Permissions. Defaults to NONE or True, which means no permissions assigned and field is visible.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Width</strong></td><td class='confluenceTd'>Optional</td><td class='confluenceTd'>Width to be taken up by the Select Field area; can be in integer which is in pixels, or as a percentage (for example, "30%") of the page width or parent Element.  If this element is nested under a Table element, the width and height properties can be set using either the percentage (%) or pixel (px) measurement. If this element is not nested under a Table element, the width and height properties are only available using the pixel setting.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Notes:</h3>
+<ul>
+<li>If this element is nested under a Table element, the width and height properties can be set using either the percentage (%)  or pixel (px) measurement. If this element is not nested under a Table element, the width and height properties are only available using the pixel setting. </li> 
+<li>The Select Field can be presented as a regular listbox or a drop down listbox, using the <i>Height </i> property. In regular listbox, multiple selection may be possible (controlled by <i>Multiple Selection</i> property). It is not possible to have multiple selection in drop down listbox.</li>
+
+<li>The Height  property determines the height of the Select Field and determines the functionality - either a drop-down list or a listbox.  Below are two examples of values for this property.
+  <table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="277" class='confluenceTh'>Drop-down List</th>
+<th width="270" class='confluenceTh'>List box</th>
+
+<tr>
+<td class='confluenceTd' align='center'><img src="exampleSelectFieldHeight0.png" alt="Height in Lines Zero"></td>
+<td class='confluenceTd' align='center'><img src="exampleSelectFieldHeight.png" alt="Height Specified - List Box"></td>
+</tr>
+<tr>
+<td class='confluenceTd' align='center'><em>Height</em> Property = has no value (default)</td>
+<td class='confluenceTd' align='center'><em>Height</em> Property = 50 pix</td>
+</tr>
+</tbody>
+</table></li>
+
+
+<li>You should always assign a Variable with enumeration defined to a Select Field. Here are the setup steps:
+<ol type="A"> <li>Set up an enumeration data type for a Document: </li>
+<ol>
+  <li>Create a new Data Type that Extends from String, Boolean or Integer: &lt;namespace&gt; 
+    &gt; Data Dictionaries &gt; Data Type &gt; New Data Type (For example, Name = EnumString)</li>
+<li>Enter enumeration values in the Enumeration Tab for selection at runtime.
+</ol>
+<li>Create a Select Field element in a Document User Interface</li>
+<ol> <li>Create a User Interface Document: &lt;namespace&gt; &gt; Data Dictionaries &gt; Documents</li>
+  <li>Add the Variable (EnumString) created above to the Document: Navigate to the Variables tab and click  the <img src="plus_icon.png" alt="Add Icon"> to add the variable.</li>
+<li>In the UserIntefrace, override the Default Form</li>
+<li>Add the Form Element <em> Select Field</em></li>
+<li>Assign the enumerated variable added in step 2 to the <strong>Variable</strong> property.</li>
+</ol>
+</ol></li>
+  
+<li>If Select Field is parented by a Grid Layout, the label orientation of the Select Field follows Grid Layout's <b>Label Orientation</b> property.</li>
+  
+<li>For enumeration sorting, the <b>Sorted</b> property is set to false by default. This means the enumeration is displayed in the order as defined in the <b>Enumerations</b> tab of the Variable's Data Type. To automatically sort in runtime, set the <b>Sorted</b> property to true.
+  <p>*If this element is the first element that appears in the Element Tree pane, you can set the cell alignment. If this element has a parent layout, for example vlayout or hlayout with the width/height set, this element uses these values as a base to set its alignment. If the parent layout does not contain a width/height, then this element does not have a base to which it can set its alignment.
+  If the element has a parent that contains width/height settings, but this form is displayed under another layout with different widths, your form alignment is restricted to the parent's width/height settings.</p>
+<li>Select Field display values are interpreted as HTML. If you use an ampersand (&amp;) that requires translation, use <em>&amp;amp;</em> instead to avoid the &amp; character being treated as an escape sequence, which may cause the remaining characters after the ampersand to disappear.
+</ul>
+<h3><a name="multiselectUI"></a>Multiselect UI Element</h3>
+  <p>The multiselect UI element uses the Select Field element's <strong>Show as Advanced</strong> property, which allows you to select a subset of a given list. </p>
+  <p>The multiselect UI element is a custom  canvas item consisting of the following:</p>
+  <ul>
+    <li>One select item that shows the  selected list</li>
+    <li>An icon that, when clicked, shows another select item  containing the full list</li>
+    </ul>
+  <p><img src="multiselectElement.png" alt="Multiselect UI element"></p>
+  <p>This custom element takes care in selecting values  that are already selected. You can select on deselect values using the checkbox on each row. To deselect all values, click the master checkbox in the header. </p>
+  <p>Both the <strong>Save</strong> and <strong>Cancel</strong> buttons appear under the  select item. When you click the <strong>Save</strong> button, the selected values are formed into a  new value map and stored in the selected list. When you click the <strong>Cancel</strong> button, no  changes occur.</p>
+  <p>The following are restrictions for the multiselect element:</p>
+<ul>
+  <li>The element  only accepts a data type with the <strong>System DB Enum</strong> property set.</li>
+  <li>The element only accepts String, and it a validation error occurs if the comma-separated value returned to the server has a  length smaller than the length specified on the data type.</li>
+  <li>The element shifts any UI to its right when you click the  expand button.</li>
+</ul>
+<p>To use the multiselect UI element, do the following:</p>
+<ol>
+  <li> Create a dynamic  code table data type and ensure the following:
+    <ul>
+      <li>There is a <strong>System DB Enum</strong> specified on the  data type</li>
+      <li>The code table contains data</li>
+    </ul>
+  </li>
+  <li>Use this data type as a document’s variable type.</li>
+  <li>In the form, add a new Select element and bind it to the  variable that you have created.</li>
+  <li>Set the Select element's <strong>Show as Advanced</strong> property to true by selecting its checkbox.</li>
+</ol>
+<p>&nbsp;</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

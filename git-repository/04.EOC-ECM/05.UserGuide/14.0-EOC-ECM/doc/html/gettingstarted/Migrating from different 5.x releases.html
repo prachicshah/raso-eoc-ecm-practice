@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Migration through Velocity Studio</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Migration through Velocity Studio</h2>
+
+<p>When you are upgrading from an older version 5.x release to the latest version 14.x release, your metadata requires migration. Such a migration is required due to product changes.</p>
+<h3>Metadata Migration</h3>
+<p>To migrate your metadata, do the following:</p>
+<ol>
+  <li>  Open Velocity Studio.</li>
+  <li>Open your metadata by clicking <strong>File</strong> &gt; <strong>Open Project</strong> from the menu bar.</li>
+  <li>A popup appears, indicating that your metadata requires migration.<br>
+    <br>
+    <img src="metadataMigrationDialog.png" alt="Metadata migration dialog - migration required"><br>
+    <br>
+   <li> Click the <strong>OK</strong> button to begin the migration of your metadata.</li>
+  <li>A progress bar appears, indicating the status of your metadata migration.</li>
+  <li>A message displays, indicating that your metadata has been successfully migrated. Click the <strong>OK</strong> button.</li>
+  <li>Save your metadata project.</li></ol>
+    <h3>Database Migration </h3>
+  </li>
+  To migrate your database, do the following:
+  <ol>
+    <li>After migrating the application metadata successfully, click  the<strong> Database</strong> &gt; <a href="../../html/Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Upgrading System.html"><strong>Upgrade System</strong></a> from the menu bar.</li>
+    <li>A database connection appears if you database is not  connected; <a href="../../html/Installer_User_Guide/order care tools configuration.html">set up your bootstrap database connection</a>. </li>
+    <p><strong>Note:</strong> This first time you are not prompted for an application  to read  information from database schema.</p>
+       <li>The Upgrade SQL</strong> dialog appears,  specify the directory and the name of   the generated file.</li>
+       <li> Click the <strong>Save</strong> button to create the file.</li>
+       <li>Run the  generated SQL file to  your database schema. </li>
+  </ol>
+    <h3><a name="h.uh3h9lbey9os"></a>Migrate Configuration</h3>
+    <p>This next part in migration is to migrate the configuration settings as described in the following steps: </p>
+    <ol>
+      <li> After successful migration metadata and database,  click runtime &gt; Run from the menu bar</li>
+      <li>Create a <a href="../../html/Service_Designer_Tool_User_Guide/Service Designer Menu Actions/runtimeSelectApplication.html"> new application</a> and select the newly created application.</li>
+      <li>At  runtime, login to the System Configuration  application and click Configure &gt; System option from the menu bar.</li>
+      <li>Your 5.X configuration settings are  fully migrated to 14.x upon successful processing of the System Configuration application's user interface.</li>
+         <p> <strong>Note:</strong> If you have not defined the database schemas,  you must define them at this point.
+        </p>
+    </ol>
+       
+        <p> Sometime, the  user interface of System Configuration  application  may not appear at all when you select Configure  &gt; System menu. You must refresh  the browser page to resolve the issue.</p>
+        
+<p><strong>Notes:</strong> </p>
+<ul>
+  <li>Your metadata requires migration before it can be <a href="../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Metadata Build WAR.html">packaged</a> and deployed.</li>
+  <li>It is recommended that you make a copy of your metadata before proceeding with migrating it. It is also a best practice to make regular backups of your metadata.</li>
+  <li>If your metadata has<strong> FormFrame</strong>, <strong>Section</strong>, or <strong>Tab</strong> elements with  the<strong> Form</strong> property set to the<em> Form.Default</em>, the migration process will reset the value to <em>Default.</em></li>
+</ul></td>
+</tr>
+</table>
+</body>
+</html>

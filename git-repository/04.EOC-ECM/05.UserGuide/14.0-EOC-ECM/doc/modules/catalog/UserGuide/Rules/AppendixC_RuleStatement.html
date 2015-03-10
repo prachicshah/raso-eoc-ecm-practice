@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Appendix C: Rule Statement</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css">
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+<h2><a name="RuleStatement"></a>Appendix C: Rule Statement</h2>
+<p>The Catalog automatically generated the Rule group. However, for internal development testing of the rule compiler, there may be a need to manually write a rule statement.</p>
+<p>The rule statement defines the rule name, parameters, and return value, and contains the rule logic. All other statements  must be within the rule group. The rule statements cannot be nested one in  another. </p>
+<p>The catalog rules can be one of two types:</p>
+<ul>
+  <li>Standard rules (condition, validation, or price) that do not have parameters and return a predefined type</li>
+  <li>Helper rules that may have parameters and return a user-defined type</li>
+</ul>
+<p>  The standard rule format is as follows:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>rule[:]</strong> Identifier <strong>of type condition/validation/price </strong><strong>[do[:] / { ]</strong>
+  <strong>Statements...</strong>
+  <strong>end[ rule] / }</strong>
+</pre></div></div>
+<p>The helper  rule is as follows:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+<strong>rule[:]</strong><strong> </strong>Identifier
+<strong>     [parameter[s][:]</strong> <strong>object-type</strong> Identifier [,<strong>object-type</strong> Identifier] ...<strong>]</strong>
+<strong>     returning/returns</strong> <strong>object-type]  </strong><strong>[do[:] / { ]</strong>
+<strong> Statements...</strong>
+<strong>End[ rule] / }</strong>
+</pre></div></div>
+<p>The  Rule statement specifies the rule type or the return value of the rule.  If the <em>of type</em> clause is used, the rule returns the following values:</p>
+<ul>
+  <li>Type condition should return a Boolean  value</li>
+  <li>Type validation should return either the   constant Invalid or null</li>
+  <li>Type price should return a number value</li>
+</ul>
+<p>If the returning clause is specified, the  object type is one of the following data types:</p>
+<ul>
+  <li>Boolean</li>
+  <li>Date</li>
+  <li>Number</li>
+  <li>Constant list of numbers</li>
+  <li>String</li>
+  <li>Constant list of strings</li>
+  <li>Item</li>
+  <li>Row</li>
+</ul>
+<p>The following is an example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+  <strong>Rule: myRule1                     </strong>
+  <strong>     Parameters:  String City, Number Length  </strong>
+  <strong>     Returning  Number</strong>
+  <strong>...</strong>
+  <strong>End rule.      </strong>
+
+  <strong>Rule myRule2 of type Condition Do </strong>
+  <strong>...</strong>
+  <strong>End rule.</strong>
+</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿<html>
+<head>
+<title>Exception Situations</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="ExceptionSituations"></a>Exception Situations</h2>
+<h3><a name="ReadonlyStates"></a>Read-only States</h3>
+<p>If the Order is in a read-only state it rejects all operations that are done on its Documents. The read-only state can be changed using the script order._state = notation.</p>
+<h3><a name="RevokedTasks"></a>Revoked Tasks</h3>
+<p>Revoked tasks are processed in UI mode only and only if the Order parent is a work list item. The current user ID is compared to the assigned user field in the worklist to decide if the operation is valid. If the operation is revoked the Order Operation is not performed.</p>
+<h3><a name="CrossdocumentValidation"></a>Cross-document Validation</h3>
+<p>The cross-document validation should be performed only in the Order validation rules. They may be started by user action or script call.</p>
+<p>The following actions are performed:</p>
+<ol>
+<li>All changed Documents are stored in database. That may give conflict errors.</li>
+<li>All Order Documents are checked and if they are not up-to date are correspondingly updated.</li>
+<li>The runtime Order synchronization flag is set to <em>Order</em>.</li>
+<li>All Document validation rules are run.</li>
+<li>All Order validation rules are run.</li>
+<li>If the validation is successful the Order is stored and the runtime synchronization type is set to the metadata value.</li>
+</ol>
+</td>
+</tr>
+</table>
+</body>
+</html>

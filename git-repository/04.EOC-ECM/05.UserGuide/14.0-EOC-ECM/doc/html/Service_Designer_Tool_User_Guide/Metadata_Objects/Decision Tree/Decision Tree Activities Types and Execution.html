@@ -1,0 +1,457 @@
+<html>
+    <head>
+        <title>Decision Tree Activities Types and Execution</title>
+	    <link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">	    
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script>    </head>
+
+    <body onLoad="highlight();">
+	    <table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+		    <tr>
+			    <td valign="top" class="pagebody">
+
+
+
+<h2>Decision Tree Activities Types and Execution</h2>
+
+<h3>Common Attributes of Decision Tree Activities</h3>
+
+<p>In general, Decision Tree activities may have the following optional attributes defined. Overall, all activities (except <em>While</em>, <em>Break</em> and <em>Decision Tree</em> &#8211; which are not available in processes) behave similarly as in the business process, except that they cannot have schedule and delay. See section <a href="#dtActivityType">Decision Tree Activity Types</a> below on properties of each specific activity type.</p>
+
+<h4>General Tab</h4>
+
+<table class='confluenceTable' border cellpadding="1"><tbody>
+<tr>
+<th class='confluenceTh'> Field </th>
+<th class='confluenceTh'> Description </th>
+</tr>
+<tr>
+<td class='confluenceTd'> Name </td>
+<td class='confluenceTd'> Mandatory. Name of the Decision Tree Activity. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> Label </td>
+<td class='confluenceTd'> Mandatory. Display label of the Decision Tree Activity. </td>
+</tr>
+<tr>
+<td class='confluenceTd'> Description </td>
+<td class='confluenceTd'> Description of the Decision Tree Activity for documentation. </td>
+</tr>
+</tbody></table>
+
+<h4>Actions Tab</h4>
+
+<table class='confluenceTable' border cellpadding="1"><tbody>
+<tr>
+<th width="101" class='confluenceTh'> Field </th>
+<th width="860" class='confluenceTh'> Description </th>
+</tr>
+<tr>
+<td class='confluenceTd'> Before Script </td>
+<td class='confluenceTd'> A set of JavaScript statements that are executed before an activity-specific function is performed. For example, the <b>Before</b> script of an <em>operation</em> activity would usually initialize input message data (Document or Data Structure). </td>
+</tr>
+<tr>
+<td class='confluenceTd'> After Script </td>
+<td class='confluenceTd'> A set of JavaScript statements that are executed after an activity-specific function is performed. For <em>complex</em> activities, the script is executed after all sub-activities are completed. For example, the <b>After</b> script of the <em>request-response</em> Operation activity would usually process output message data (Document or Data Structure). </td>
+</tr>
+<tr>
+<td class='confluenceTd'> Condition Script </td>
+<td class='confluenceTd'> A Condition script can be used to skip an activity altogether. </td>
+</tr>
+</tbody></table>
+
+<h3>Activities Tab</h3>
+
+<p>If it is a <em>complex</em> activity with multiple sub-activities, the <b>Activities</b> tab appears and contains a <b>Children List</b> which lists all the sub-activities.</p>
+
+<p>The sub-activities will be executed accordingly to their order in the <b>Children list</b>, from top to bottom. The arrow buttons located at the side of the list are used to move the selected element in the list to the desired location, thus changing the execution order of the selected activity.</p><p><img src="dtActivityOrder.png" align="absmiddle" border="0" /></p>
+
+<h3><a name="dtActivityType"></a> Decision Tree Activity Types </h3>
+
+<p>Decision Tree has a single start activity. However it may have many <em>Complete</em> activities as well as terminal activities - activities at the end of the group activities which have no more siblings.  After performing the terminal activity the Decision Tree completes the same way as with <em>Complete</em> activity. This way the <em>Complete</em> activity is not mandatory but it makes the Decision Tree diagram more readable and is an easy way to implement "location" specific completion scripts (which depends on where in the Decision Tree diagram the terminal activity is located).</p>
+
+<h4>Alert</h4>
+
+<p><img src="Alert.jpg" align="absmiddle" border="0" /> An <em>atomic</em> activity that executes a specified Alert.</p>
+
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Simple</li>
+</ul>
+
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Mandatory metadata in <b>General</b> tab: <b>Alert</b> object</li>
+	<li>Mandatory <b>Before</b> script that returns an array in pairs: (processID, and the corresponding alert message). The alert is sent on behalf of the corresponding processes. For the alert message,
+	  <ul>
+		<li>is the message content when it is for <em>email</em> and <em>pager</em> Alerts</li>
+		<li>is the alert description when it is for <em>worklist</em> Alerts</li>
+		<li>is output message initialization when it is for <em>external service</em> Alerts</li>
+	</ul>
+	</li>
+	<li>Optional <b>Condition</b> script. If false, the activity is skipped</li>
+	<li>No <b>After</b> script</li>
+	<li>Not defined in BPML specification</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ol>
+	<li>Runs the <b>Condition</b> script if any, and if the result is false skips the activity.</li>
+	<li>Runs the <b>Before</b> script and takes the result. If the result is null, empty array or empty string does nothing. If the result is an id (number) or array of ids sends the specified alert for behalf of the specified processes. If one or more processes are not found in the DB, throws exception.</li>
+</ol>
+
+
+<h4>Break</h4>
+
+<p><img src="dtIconBreak.png" align="absmiddle" border="0" /> Interrupts the loop of the <b>While</b> activity.</p>
+
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Simple</li>
+</ul>
+
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Mandatory metadata in <b>General</b> tab: <b>While Loop</b> to interrupt. By default, this is the innermost <b>While</b> activity in which the <b>Break</b> activity resides. However, you can optionally specify another While activity in outer-loops, if any, which completes the specified While group.</li>
+	<li>Optional <b>Condition</b> script. If false, the activity is skipped.</li>
+	<li>No <b>Before</b> or <b>After</b> script</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ol>
+	<li>Runs the <b>Condition</b> script if any, and if the result is false skips the activity.</li>
+	<li>Runs the <b>After</b> script of the specified While group. Continues with the activity following the group.</li>
+</ol>
+
+
+<h4>Case</h4>
+
+<p><img src="case.jpg" align="absmiddle" border="0" /> Associates a condition with a <em>Switch</em> activity.</p>
+
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Simple</li>
+</ul>
+
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Can contain zero or one sub-activity.</li>
+	<li>Optional <b>Condition</b> script. If false the activity is skipped. Each Switch operator must have one case activity without conditional script (default Case operator).</li>
+	<li>No <b>Before</b> script or <b>After</b> script allowed.</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ul>
+	<li>Runs the <b>Condition</b> script and if the result is false, skips the activity. If true, runs the sub-activity if any.</li>
+</ul>
+
+
+<h4>Complete</h4>
+
+<p><img src="complete.jpg" align="absmiddle" border="0" /> An activity that completes the Decision Tree.</p>
+
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Simple</li>
+</ul>
+
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Optional <b>Condition</b> script. If false, the activity is skipped.</li>
+	<li>Optional <b>Before</b> script which runs before the Decision Tree is completed</li>
+	<li>Can appear as the last activity in a sequence, or once in a <em>Switch</em> activity.</li>
+	<li>The <em>complete</em> activity causes the Decision Tree to complete immediately. It does not cause children or parent Decision Trees to complete.</li>
+	<li>No <b>After</b> script</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ul>
+	<li>Runs the <b>Condition</b> script and if the result is false, skips the activity.</li>
+	<li>Runs the <b>Before</b> script if any. Completes the tree. All activities that are queued for execution are ignored.</li>
+</ul>
+
+
+<h4><a name="DT"></a>Decision Tree (Activity)</h4>
+
+<p><img src="dtIconDecisionTree.png" align="absmiddle" border="0" /> An activity that calls another Decision Tree. The <em>Decision Tree</em> activity may be used for breaking a complex logic-flow into separate components. A <em>Decision Tree</em> activity executes within the context of the current Decision Tree.</p>
+
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Special</li>
+</ul>
+
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Mandatory metadata in <b>General</b> tab: <b>Decision Tree</b> to call</li>
+	<li>Optional <b>Parameters Mapping</b> property, which is a list of pairs that define the parameter passing between the caller tree parameters and the called Decision Tree parameters.<p><img src="dtActivityParamMap.png" align="absmiddle" border="0" /></p>
+<p>The dialog lists all the parameters of the called Decision Tree. Click the corresponding <b>Caller Tree Parameters</b> to select the parameter upon which the <b>Called Tree Parameter</b> is to be mapped. Click the <b>Caller Tree Parameters</b> to view the caller Decision Tree parameters (or to edit, by double-clicking a parameter in the subsequent pop-up dialog box).<br/>
+You are strongly encouraged to see <a href="Decision Tree Parameters.html#pass">parameter passing in Decision Tree Parameters</a> for details on this topic.</p></li>
+	<li>Optional <b>Before</b> script, which runs before the Decision Tree is called. When the script is invoked the new Decision Tree object is already created and its parameter list is populated, provided that the <b>Parameter Mapping</b> is specified. The Decision Tree system parameter <em>cwCalledTree</em> contains the called Decision Tree object.</li>
+	<li>Optional <b>After</b> script, which runs after the called Decision Tree completes. The decision tree system parameter <em>cwCalledTree</em> contains the called Decision Tree object.</li>
+	<li>Optional <b>Condition</b> script. If false, the activity is skipped.</li>
+	<li>Not defined in BPML specification.</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ul>
+	<li>Runs the <b>Condition</b> script if any, and if the result is false, skips the activity.</li>
+	<li>Creates the called Decision Tree object and populates its parameter based on the specified <b>Parameters Mapping</b> (if any).</li>
+	<li>Runs the <b>Before</b> script (if any).</li>
+	<li>Runs the called Decision Tree.</li>
+	<li>Runs the <b>After</b> script if any.</li>
+</ul>
+
+
+<h4>Exception (Fault)</h4>
+
+<p><img src="exception.jpg" align="absmiddle" border="0" /> An activity causes an exception to be sent to a process.</p>
+
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Simple</li>
+</ul>
+
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Mandatory metadata in <b>General</b> tab: <b>Exception</b> object</li>
+	<li>Mandatory <b>Before</b> script that returns the ID of one or several processes, as array. The exception is sent to the corresponding processes.</li>
+	<li>Optional <b>Condition</b> script. If false, the activity is skipped.</li>
+	<li>No <b>After</b> script</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ul>
+	<li>Runs the <b>Condition</b> script, if any, and if the result is false skips the activity.</li>
+	<li>Runs the <b>Before</b> script and takes the result. If the result is null, empty array or empty string, nothing is sent.</li>
+	<li>If the result is an id (number) or array of ids, the specified exception is sent to the processes. If one or more processes are not found in the DB, an exception is thrown.</li>
+</ul>
+
+
+<h4>Operation</h4>
+
+<p><img src="operation.jpg" align="absmiddle" border="0" /> An activity that performs a message exchange with a Participant.</p>
+
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Simple</li>
+</ul>
+
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Mandatory metadata in <b>General</b> tab: <b>Participant</b> and <b>Operation</b> objects. The operation must be of type <em>One-Way</em> or <em>Request-Response</em>.</li>
+	<li>Optional <b>Before</b> script which runs before the operation is called. The Decision Tree system parameter <em>cwOutputMessage</em> contains the outgoing message for the operation.</li>
+	<li>Optional <b>After</b> script which runs after the operation returns, and can be specified only for <em>Request-Response</em> operations. The Decision Tree system parameters <em>cwInputMessage</em> and <em>cwErrorMessage</em> contain the operation result and error message respectively.</li>
+	<li>Optional <b>Condition</b> script. If false, the activity is skipped.</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ul>
+	<li>Runs the <b>Condition</b> script, if any, and if the result is false skips the activity.</li>
+	<li>Creates the operation input data object and calls the <b>Before</b> script (if any) passing it as parameter.</li>
+	<li>Performs the operation.</li>
+	<li>Calls the <b>After</b> script, if any, and sets the output message and error message (if any) as parameters.</li>
+</ul>
+
+
+<h4>Script</h4>
+
+<p><img src="script.jpg" align="absmiddle" border="0" /> An activity that executes a <b>Before</b> script.</p>
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Simple</li>
+</ul>
+
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Mandatory <b>Before</b> script.</li>
+	<li>Optional <b>Condition</b> script. If false, the activity is skipped.</li>
+	<li>No <b>After</b> script</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ul>
+	<li>Runs the <b>Condition</b> script, if any, and if the result is false skips the activity.</li>
+	<li>Runs the <b>Before</b> script.</li>
+</ul>
+
+
+<h4>Sequence</h4>
+
+<p><img src="Sequence.jpg" align="absmiddle" border="0" /> An activity that completes after all its sub-activities have completed. All sub-activities are executed in sequence.</p>
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Complex</li>
+</ul>
+
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Optional <b>Before</b> script which runs before the content of the group is executed.</li>
+	<li>Optional <b>After</b> script which runs after the content is executed.</li>
+	<li>Optional <b>Condition</b> script. If false, the activity is skipped.</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ul>
+	<li>Runs the <b>Condition</b> script, if any, and if the result is false skips the activity.</li>
+	<li>Runs the <b>Before</b> script (if any).</li>
+	<li>When (and if) all activities in the Sequence group are executed, runs the <b>After</b> script (if any).</li>
+</ul>
+
+
+<h4>Signal</h4>
+
+<p><img src="Signal.jpg" align="absmiddle" border="0" /> An activity causes a Signal to be sent to another process.</p>
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Simple</li>
+</ul>
+
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Mandatory metadata in <b>General</b> tab: <b>Signal</b> object</li>
+	<li>Mandatory <b>Before</b> script that returns the ID of one or several processes (as array). The signal is sent to the corresponding processes.</li>
+	<li>Optional <b>Condition</b> script. If false, the activity is skipped.</li>
+	<li>No <b>After</b> script.</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ul>
+	<li>Runs the <b>Condition</b> script, if any, and if the result is false skips the activity.</li>
+	<li>Runs the <b>Before</b> script and takes the result. If the result is null, empty array or empty string, nothing is sent.</li>
+	<li>If the result is an id (number) or array of ids sends the specified signal to the processes. If one or more processes are not found in the DB, an exception is thrown.</li>
+</ul>
+
+
+<h4><a name="Subflow"></a>Sub-flow</h4>
+<p><img src="dtIconSubFlow.png" align="absmiddle" border="0" alt="" /> An activity that calls a Decision Tree subflow (akin to a procedure call). The <em>Sub-flow</em> activity is used for breaking a complex Decision Tree into separate components, but in contrast to a <a href="#DT"><em>Decision Tree</em> activity</a>, the activities in <em>Sub-flow</em> become part of the parent Decision Tree metadata with access to the same parameters, instead of a separate Decision Tree metadata. In both cases, the execution is synchronous (in the same thread).</p>
+
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Special</li>
+</ul>
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Mandatory metadata in <b>General</b> tab: <b>Sub-Flow</b> to call</li>
+	<li>Optional <b>Before</b> script, which runs before the Sub-Flow is called.</li>
+	<li>Optional <b>After</b> script, which runs after the called Sub-Flow completes.</li>
+	<li>Optional <b>Condition</b> script. If false, the activity is skipped.</li>
+	<li>Not defined in BPML specification.</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ul>
+	<li>Runs the <b>Condition</b> script if any, and if the result is false, skips the activity.</li>
+	<li>Runs the <b>Before</b> script (if any).</li>
+	<li>Runs the called Sub-Flow.</li>
+	<li>Runs the <b>After</b> script if any.</li>
+</ul>
+
+<h4><a name="Subproc"></a>Sub-process (Spawn)</h4>
+
+<p><img src="dtIconSubProc.png" align="absmiddle" border="0" /> An activity that spawns a child process. It instantiates a new instance of the sub-process.</p>
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Simple</li>
+</ul>
+
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Mandatory metadata in <b>General</b> tab: <b>Sub-Process</b> object.</li>
+	<li>Optional <b>Before</b> script. The Decision Tree system parameter <em>cwProcessDoc</em> contains the process document of the specified process.</li>
+	<li>Optional <b>Condition</b> script. If false, the activity is skipped.</li>
+	<li>No <b>After</b> script.</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ul>
+	<li>Runs the <b>Condition</b> script, if any, and if the result is false skips the activity.</li>
+	<li>Creates and initializes a process document for the specified process.</li>
+	<li>Calls the <b>Before</b> script (if any) and passes the product document as parameter. If the script returns a value it is considered ID of the parent process. If the parent process is not found in the database, an exception is thrown.</li>
+	<li>Creates the asynchronous process in the database to be picked up by Process Engine.</li>
+</ul>
+
+
+<h4>Switch</h4>
+
+<p><img src="switch.jpg" align="absmiddle" border="0" /> An activity which completes after zero or more of its sub-activities have completed, subject to one or more conditions. This models branching in programming languages.</p>
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Complex</li>
+</ul>
+
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Optional <b>Condition</b> script. If false, the activity is skipped.</li>
+	<li>Can only have <em>Case</em> sub-activities.</li>
+	<li>Can only have one default <em>Case</em> activity (a case with no condition).</li>
+	<li>Can execute more than one <em>Case</em> activity (not exclusive). When <em>Switch</em> activities are marked as none-exclusive, all <em>Case</em> activities that have a condition evaluated to true execute the same way.</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ul>
+	<li>Runs the <b>Condition</b> script, if any, and if the result is false skips the activity.</li>
+	<li>Checks the conditions of all case statements and run the first that returns true. If no one returns true, runs the default case activity.</li>
+</ul>
+
+
+<h4>While</h4>
+
+<p><img src="dtIconWhile.png" align="absmiddle" border="0" /> A complex activity that establishes a loop in its sub-activities. The While group performs its sub-activities only if the While condition script returns true. The While activity completes if the script returns false.</p>
+<p><b><ins>Type</ins></b></p>
+<ul>
+	<li>Complex</li>
+</ul>
+
+
+<p><b><ins>Definition</ins></b></p>
+<ul>
+	<li>Mandatory <b>Condition</b> script. If false, the activity completes.</li>
+	<li>Optional <b>Before</b> script which runs before the first iteration (if any).</li>
+	<li>Optional <b>After</b> script which runs after the activity completes, but only if the loop has been executed at least one time (that is, the loop has not been skipped altogether)</li>
+</ul>
+
+
+<p><b><ins>Execution</ins></b></p>
+<ul>
+	<li>Runs the <b>Condition</b> script. If the result is false, the activity and its sub-activities is skipped.</li>
+	<li>If it returns true, runs the <b>Before</b> script (if any).</li>
+	<li>Runs all sub-activities in sequence.</li>
+	<li>After the last activity is completed, runs again the <b>Condition</b> script.</li>
+	<li>If the result is true, runs all sub-activities in sequence.</li>
+	<li>The iteration continues until <b>Condition</b> script returns false.</li>
+	<li>Runs the <b>After</b> script (if any), if at least one iteration has been performed.
+	<ul>
+		<li>Keep in mind that if the While group is interrupted by a <b>Complete</b> or <b>Break</b> operation, the <b>After</b> script is not performed.</li>
+	</ul>
+	</li>
+</ul>
+
+    </body>
+</html>

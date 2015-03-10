@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>User Worklist</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>User Worklist</h2>
+<p>Based on configured processes, the user worklist displays a list of all user tasks that are assigned to the current user.  Depending on privileges, a user can perform these actions:</p>
+<ul>
+  <li>View owned tasks details</li>
+  <li>Acquire new tasks from shared queue</li>
+  <li>Take or delegate tasks to other users</li>
+  <li>Open tasks and complete them by performing task actions<br>
+  </li>
+  </ul>
+<p>The worklist user interface is instantiated using the <em>BaseWorklistFinder (Worklist)</em> found in the <strong>Templates</strong> tab &gt; <b>cwf_pm (Process Management Product)</b> &gt; <strong>Finders</strong> &gt; <strong>Document Finders</strong> folder. </p>
+
+<p><img src="userWorklistMyTasks.png" border="1" alt="User Worklist - My Tasks" /></p>
+<p>The User Worklist page contains the following fields:</p>
+<table width="1398" class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th class='confluenceTh'> Field </th>
+      <th class='confluenceTh'> Description </th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Icon Column</strong></td>
+      <td class='confluenceTd'><p>This field indicates the task type:</p>
+        <table width="1075" class='confluenceTable'>
+          <tbody>
+            <tr>
+              <th width="95" class='confluenceTh'> Icon</th>
+              <th width="95" class='confluenceTh'> Task Type</th>
+              <th width="807" class='confluenceTh'> Description </th>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><img src="../Manage/worklistIconTask.png" alt="Worklist task type - regular task"></td>
+              <td class='confluenceTd'>Regular task</td>
+              <td class='confluenceTd'><p>A (regular) task represents a unit of work, which is a typical task that is created, assigned, and then worked on by users. Users must perform  task actions to complete the task. Participant operations specify the task actions and may include such actions as reject, validate, and accept.<BR>
+              </p></td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><img src="../Manage/worklistIconAlert.png" alt="Worklist task type - alert"></td>
+              <td class='confluenceTd'>Alert</td>
+              <td class='confluenceTd'><p>An alert notifies you of an event that requires your attention (for example, when a user process that created the task goes into error state, the active task gets closed, and an alert is created). The user must <em>acknowledge</em> the alert to indicate that it  was read and can be closed. </p></td>
+            </tr>
+            <tr>
+              <td class='confluenceTd'><img src="../Manage/worklistIconTakenTask.png" alt="Worklist task type - taken task"></td>
+              <td class='confluenceTd'>Taken task</td>
+              <td class='confluenceTd'><p>A taken task notifies the user that his task was reassigned to another user. The user must <em>acknowledge</em> the taken task to indicate that it was read and can be closed.<BR>
+              </p></td>
+            </tr>
+          </tbody>
+        </table>
+        <p> The style of the task record indicates whether the task has been started yet (bold) or is overdue (red), or a combination of the two. The task record styles as well as the task icons indicate whether a task is an alert or a regular task. Alerns appear in blue font and taken tasks are greyed out.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><b>Due Date</b></td>
+      <td class='confluenceTd'> This field contains the date and time when the worklist task is due to be completed.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Task </strong></td>
+      <td class='confluenceTd'> Description of the task. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Label</strong></td>
+      <td class='confluenceTd'> The metadata label name of the task.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Assigned Date</strong></td>
+      <td class='confluenceTd'> Date and time when the task was assigned. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Start Date</strong></td>
+      <td class='confluenceTd'> Date and time when the task was started. </td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<h3>&nbsp;</h3></td>
+</tr>
+</table>
+</body>
+</html>

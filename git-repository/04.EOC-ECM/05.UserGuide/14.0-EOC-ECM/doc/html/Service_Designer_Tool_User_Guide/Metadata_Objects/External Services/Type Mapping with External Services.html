@@ -1,0 +1,412 @@
+<html>
+<head>
+<title>Type Mapping with External Services</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Type Mapping with External Services</h2>
+<br/>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+</tr>
+<tr>
+<th class='confluenceTh' rowspan='2'>XSD Type</th>
+<th class='confluenceTh' rowspan='2'>XML</th>
+<th class='confluenceTh' rowspan='2'>Base Type</th>
+<th class='confluenceTh' colspan='4'>Base Type Restriction</th>
+<th class='confluenceTh' rowspan='2'>Java</th>
+<th class='confluenceTh' rowspan='2'>COM</th>
+<th class='confluenceTh' rowspan='2'>CORBA</th>
+<th class='confluenceTh' rowspan='2'>Oracle</th>
+</tr>
+<tr>
+<th class='confluenceTh'>Length</th>
+<th class='confluenceTh'>Min</th>
+<th class='confluenceTh'>Max</th>
+<th class='confluenceTh'>Pattern</th>
+</tr>
+
+<tr>
+<td class='confluenceTd'>string</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>String</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>String</td>
+<td class='confluenceTd'>VT_BSTR</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>VARCHAR2 (n) - see 1</td>
+</tr>
+<tr>
+<td class='confluenceTd'>byte</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Decimal</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>-128</td>
+<td class='confluenceTd'>127</td>
+<td class='confluenceTd'>[\-+]?[0-9]+</td>
+<td class='confluenceTd'>Byte</td>
+<td class='confluenceTd'>VT_I1</td>
+<td class='confluenceTd'>tk_char</td>
+<td class='confluenceTd'>NUMERIC (3)</td>
+</tr>
+<tr>
+<td class='confluenceTd'>unsignedByte</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>0</td>
+<td class='confluenceTd'>255</td>
+<td class='confluenceTd'>[\-+]?[0-9]+</td>
+<td class='confluenceTd'>Short</td>
+<td class='confluenceTd'>VT_UI1</td>
+<td class='confluenceTd'>tk_short</td>
+<td class='confluenceTd'>NUMERIC (3)</td>
+</tr>
+<tr>
+<td class='confluenceTd'>integer</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>[\-+]?[0-9]+</td>
+<td class='confluenceTd'>BigInteger</td>
+<td class='confluenceTd'>VT_BSTR</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>NUMERIC (n) - see 2</td>
+</tr>
+<tr>
+<td class='confluenceTd'>positiveInteger</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>1</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>[\-+]?[0-9]+</td>
+<td class='confluenceTd'>BigInteger</td>
+<td class='confluenceTd'>VT_BSTR</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>NUMERIC (n) - see 2</td>
+</tr>
+<tr>
+<td class='confluenceTd'>negativeInteger</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>-1</td>
+<td class='confluenceTd'>[\-+]?[0-9]+</td>
+<td class='confluenceTd'>BigInteger</td>
+<td class='confluenceTd'>VT_BSTR</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>NUMERIC (n) - see 2</td>
+</tr>
+<tr>
+<td class='confluenceTd'>nonNegativeInteger</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>0</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>[\-+]?[0-9]+</td>
+<td class='confluenceTd'>BigInteger</td>
+<td class='confluenceTd'>VT_BSTR</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>NUMERIC (n) - see 2</td>
+</tr>
+<tr>
+<td class='confluenceTd'>nonPositiveInteger</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>0</td>
+<td class='confluenceTd'>[\-+]?[0-9]+</td>
+<td class='confluenceTd'>BigInteger</td>
+<td class='confluenceTd'>VT_BSTR</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>NUMERIC (n) - see 2</td>
+</tr>
+<tr>
+<td class='confluenceTd'>int</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>-2147483648</td>
+<td class='confluenceTd'>2147483647</td>
+<td class='confluenceTd'>[\-+]?[0-9]+</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>VT_I4</td>
+<td class='confluenceTd'>tk_long</td>
+<td class='confluenceTd'>NUMERIC (10)</td>
+</tr>
+<tr>
+<td class='confluenceTd'>unsignedInt</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>0</td>
+<td class='confluenceTd'>4294967295</td>
+<td class='confluenceTd'>[\-+]?[0-9]+</td>
+<td class='confluenceTd'>Long</td>
+<td class='confluenceTd'>VT_UI4</td>
+<td class='confluenceTd'>tk_ulong</td>
+<td class='confluenceTd'>NUMERIC (10)</td>
+</tr>
+<tr>
+<td class='confluenceTd'>long</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>-9223372036854775808</td>
+<td class='confluenceTd'>9223372036854775807</td>
+<td class='confluenceTd'>[\-+]?[0-9]+</td>
+<td class='confluenceTd'>Long</td>
+<td class='confluenceTd'>VT_I8</td>
+<td class='confluenceTd'>tk_longlong</td>
+<td class='confluenceTd'>NUMERIC (20)</td>
+</tr>
+<tr>
+<td class='confluenceTd'>unsignedLong</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>0</td>
+<td class='confluenceTd'>18446744073709551615</td>
+<td class='confluenceTd'>[\-+]?[0-9]+</td>
+<td class='confluenceTd'>BigInteger</td>
+<td class='confluenceTd'>VT_UI8</td>
+<td class='confluenceTd'>tk_ulonglong</td>
+<td class='confluenceTd'>NUMERIC (20)</td>
+</tr>
+<tr>
+<td class='confluenceTd'>short</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>-32768</td>
+<td class='confluenceTd'>32767</td>
+<td class='confluenceTd'>[\-+]?[0-9]+</td>
+<td class='confluenceTd'>Short</td>
+<td class='confluenceTd'>VT_I2</td>
+<td class='confluenceTd'>tk_short</td>
+<td class='confluenceTd'>NUMERIC (5)</td>
+</tr>
+<tr>
+<td class='confluenceTd'>unsignedShort</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>0</td>
+<td class='confluenceTd'>65535</td>
+<td class='confluenceTd'>[\-+]?[0-9]+</td>
+<td class='confluenceTd'>Integer</td>
+<td class='confluenceTd'>VT_UI2</td>
+<td class='confluenceTd'>tk_ushort</td>
+<td class='confluenceTd'>NUMERIC (5)</td>
+</tr>
+<tr>
+<td class='confluenceTd'>decimal</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Decimal</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>BigDecimal</td>
+<td class='confluenceTd'>VT_BSTR</td>
+<td class='confluenceTd'>tk_fixed</td>
+<td class='confluenceTd'>NUMERIC (n,s) - see 2</td>
+</tr>
+<tr>
+<td class='confluenceTd'>float</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Decimal</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>Float</td>
+<td class='confluenceTd'>VT_R4</td>
+<td class='confluenceTd'>tk_float</td>
+<td class='confluenceTd'>FLOAT</td>
+</tr>
+<tr>
+<td class='confluenceTd'>double</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>Decimal</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>Double</td>
+<td class='confluenceTd'>VT_R8</td>
+<td class='confluenceTd'>tk_double</td>
+<td class='confluenceTd'>NUMERIC</td>
+</tr>
+<tr>
+<td class='confluenceTd'>boolean</td>
+<td class='confluenceTd'>0,false,1,true</td>
+<td class='confluenceTd'>Boolean</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>Boolean</td>
+<td class='confluenceTd'>VT_BOOL</td>
+<td class='confluenceTd'>tk_boolean</td>
+<td class='confluenceTd'>NUMERIC (1)</td>
+</tr>
+<tr>
+<td class='confluenceTd'>time</td>
+<td class='confluenceTd'>hh:mm:ss</td>
+<td class='confluenceTd'>Boolean</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>Date</td>
+<td class='confluenceTd'>VT_DATE</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>DATE</td>
+</tr>
+<tr>
+<td class='confluenceTd'>dateTime</td>
+<td class='confluenceTd'>CCYY-MM-DDThh:mm:ss</td>
+<td class='confluenceTd'>DateTime</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>Date</td>
+<td class='confluenceTd'>VT_DATE</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>DATE</td>
+</tr>
+<tr>
+<td class='confluenceTd'>duration</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>String</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>String</td>
+<td class='confluenceTd'>VT_BSTR</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>DATE</td>
+</tr>
+<tr>
+<td class='confluenceTd'>date</td>
+<td class='confluenceTd'>CCYY-MM-DD</td>
+<td class='confluenceTd'>Date</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>Date</td>
+<td class='confluenceTd'>VT_DATE</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>DATE</td>
+</tr>
+<tr>
+<td class='confluenceTd'>gMonth</td>
+<td class='confluenceTd'>--MM--</td>
+<td class='confluenceTd'>DateTime</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>Date</td>
+<td class='confluenceTd'>VT_DATE</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>DATE</td>
+</tr>
+<tr>
+<td class='confluenceTd'>gYear</td>
+<td class='confluenceTd'>CCYY</td>
+<td class='confluenceTd'>DateTime</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>Date</td>
+<td class='confluenceTd'>VT_DATE</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>DATE</td>
+</tr>
+<tr>
+<td class='confluenceTd'>gYearMonth</td>
+<td class='confluenceTd'>CCYY-MM</td>
+<td class='confluenceTd'>DateTime</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>Date</td>
+<td class='confluenceTd'>VT_DATE</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>DATE</td>
+</tr>
+<tr>
+<td class='confluenceTd'>gDay</td>
+<td class='confluenceTd'>&#160;---DD</td>
+<td class='confluenceTd'>DateTime</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>Date</td>
+<td class='confluenceTd'>VT_DATE</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>DATE</td>
+</tr>
+<tr>
+<td class='confluenceTd'>gMonthDay</td>
+<td class='confluenceTd'>&#160;--MM-DD</td>
+<td class='confluenceTd'>DateTime</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>Date</td>
+<td class='confluenceTd'>VT_DATE</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>DATE</td>
+</tr>
+<tr>
+<td class='confluenceTd'>anyUri</td>
+<td class='confluenceTd'>&#160;</td>
+<td class='confluenceTd'>String</td>
+<td class='confluenceTd'>inherited</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'>NA</td>
+<td class='confluenceTd'></td>
+<td class='confluenceTd'>String</td>
+<td class='confluenceTd'>VT_BSTR</td>
+<td class='confluenceTd'>tk_string</td>
+<td class='confluenceTd'>VARCHAR2 (n) - see 1</td>
+</tr>
+</tbody>
+</table>
+<p><b>Note</b>:
+<ol>
+<li>n &lt;= 4000</li>
+<li>n &lt;= 38</li>
+</ol>
+</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

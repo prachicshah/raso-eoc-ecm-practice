@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Page Overview</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>Page Overview</h2>
+<p>A Page is a top-level Form that can be requested and served to a Web browser. A Page is always contained within a User Interface object, and  has a hard-coded name called <strong>Page</strong>. A User Interface can only have at most one Page.</p>
+
+<p>A Page cannot be referenced by other Pages or Forms using a Form Frame or similar Form elements. Typically, a Page exists in a top-level User Interface that  references Forms in the same User Interface and also outside of its User Interface. </p>
+<p><strong>Note: </strong>  While Velocity Studio does not restrict you from creating a Page in the User Interface, this is not a common practice.</p>
+<h3>URL Mapping to Pages</h3>
+<p>You can map a Page to a URL using the URL Mapping feature. The URL Mapping tab is found at the root node <img src="cw_metadata_node.png" align="abtop" border="0" alt="Metadata root node" /> of your project. The URL Mapping enables you to expose (top-level) User Interface objects to Web  clients, by assigning them to a relative URL path that is relative to<strong> http://&lt;hostname&gt;:&lt;port&gt;/cwf</strong>, where <strong>cwf</strong> refers to the name of the Page that you want displayed in the web client.</p>
+<p>By  configuring the URL Mapping of a Page, you allow for the configuration of the style sheet and Skin at the Page object level (providing the System.Application Object was selected when creating the User Interfaces Object). For more information </p>
+<h3>Page Editor</h3>
+<p>In Velocity Studio, the Page editor has three main components:</p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th width="139" class='confluenceTh'>Component</th>
+<th width="1100" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Element Tree Pane</b></td>
+<td class='confluenceTd'>Elements assembled in tree structure that determines how the Page is rendered. The root of the tree is the User Interface object name.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>General Properties Pane</b></td>
+<td class='confluenceTd'>Properties of the element selected in the Element Tree can be edited in this Pane.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Preview Pane</b></td>
+<td class='confluenceTd'>Previews the Page as assembled in the Element Tree. </td>
+</tr>
+</tbody>
+</table>
+<br>
+<img src="page.png" align="absmiddle" border="1" alt="Page editor - main layout components" />
+
+<p>The Page contains several Form elements. The  Form Frame element named <strong>dialog</strong> displays a dialog box in the User Interface. This Form Frame enables objects to be created as dialog content and displayed it in the User Interface. Without the dialog Form Frame, objects continue to be created as dialog content, but they are not displayed in the User Interface. </p>
+<p><strong>Note: </strong>You can configure the Page's Form elements and properties by copying and replacing the Page. </p>
+<ul>
+  <li>  When the dialog element's <em>Unmanaged</em> property  is set to<em> false, </em>content does not display in a dialog. If the Unmanaged property is set to <em>false,</em> and the Variable property is bound to a Form Frame, the dialog content displays in the main dialog window,  top and left, positioned as 0. </li>
+  <li>The <strong>download</strong> element is available under the Page form when the user interface parent is based on &quot;com.conceptwave.system.Application&quot;.  If an application default Page is overridden and the download element on the Page is deleted,  the download element is automatically inserted as part of the Page.</li>
+</ul>
+<h3>Change Skins</h3>
+<p>Skins controls the overall appearance of the Page. A  Skin contains a  fixed set of selections that cannot be changed or modified and is one of the elements contained in the style sheet. The style sheet is available from Velocity Studio's toolbar and  from and the Page's general properties. </p>
+<p><strong>Note: </strong> At runtime, the  system uses the style sheet and Skin configured on the Page (if any) to render  the contents of any Form contained within the same User Interface.</p>
+<h3>Assign Style Sheets and Skins</h3>
+<p>From a metadata perspective, Forms and a Page are  equivalent, but a Page also has  options for configuring  CSS style sheet and Skin elements (see <a href="Form.htm">Forms</a> for more information about their usage). The style sheet located on this property page is used to  configure the   Page  at runtime. This is different from the  style sheet located on the toolbar, which is only for rendering the preview pane and is not a choice that persists in metadata. Forms are not assigned CSS style sheet, but any Forms that are referenced in a Page use the style sheet of the Page. Therefore, it is important to ensure that you use the same style sheet when building your Forms and Pages.</p>
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Name of the metadata object; hard coded to <em>Page</em>.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Extends</b></td>
+<td class='confluenceTd'>Page of the Base User Interface to derive from. Not changeable.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Title</b></td>
+<td class='confluenceTd'>Page title to be shown in browser at runtime.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Visible</b></td>
+<td class='confluenceTd'>Determines whether the Page is available at runtime or not.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Icon</b></td>
+<td class='confluenceTd'>Page icon to be shown in browser at runtime.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Skin</b></td>
+<td class='confluenceTd'>Determines the overall appearance of the page.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Style Sheet</b></td>
+<td class='confluenceTd'>Selects the CSS style sheet of the page. You can customize your own CSS and place the .css file in <b>Resources</b> folder of the project. Upon project reload, the Velocity Studio displays your .css file.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Body Style</b></td>
+<td class='confluenceTd'>Displays the background color for the Page.</td>
+</tr>
+</tbody>
+</table>
+
+</table>
+</tr>
+</td>
+</body>
+</html>

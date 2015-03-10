@@ -1,0 +1,179 @@
+<html>
+<head>
+<title>Finder Form Default</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>Finder Default Form </h3>
+
+<p>The <strong>Finder Default Form</strong> is a base form that is pre-configured to display the Finder menus and information at runtime. </p>
+<p><img src="Finder_Default_Form.png" align="absmiddle" border="0" alt="Finder Default Form" /></p>
+<p>The Default Form has a number of sections, created by Form elements, which display specific information at runtime.
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Menu Section</th>
+      <th class='confluenceTh'>Description</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>(topStack) Section Stack</b></td>
+      <td class='confluenceTd'><p>Section Stack is a container that allows for the grouping of Finder data or elements on   a page in a logical order.</p></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>(topSection) Section</b></td>
+      <td class='confluenceTd'>Creates a section within the  Section Stack.</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>(finderHeader) Header</b></td>
+      <td class='confluenceTd'><p>This Form element contains a series of menus for the Finder Preference drop-down list menu. 
+        <ul>
+          <li>The back menu element display the back button for the <a href="#preference">Preference Menu</a>.</li>
+          <li>The pref menu contains sub-menus that display the menu items for the Preference menu.</li>
+        </ul>
+</td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>(sStack) Section Stack</b></td>
+      <td class='confluenceTd'><p>This Section Stack element contains three subsections:</p>
+        <ul>
+          <li>chart section</li>
+          <li>details section</li>
+          <li>search search</li>
+          </ul>
+        <p>These sections are displayed in <a href="../../Velocity_Studio/Element - Section Stack.html">mutex</a>, which means that only one of these three sections is displayed at one time while the other two sections are hidden. </p>
+        <p> When the <strong>Visible</strong> property is set to <em>topSectionVisible</em>, the data for the section selected (chart, detail or search) is displayed. If there is no data to display, the detail section of the resStack (see the row in this table) takes 100% of the page.</p>
+        <p>See <a href="#additional">Additional Menus</a> for more information.</p></td>
+      </tr>
+    <tr>
+      <td class='confluenceTd'><b>resStack</b></td>
+      <td class='confluenceTd'><p>This Section Stack element contains a Section element that contains a Form Frame. The Form Frame displays the results of the search using the output document of the Finder. The Form Frame references the string variable resultForm, which defaults to the Result Form selected in the Views tab of the Finder.  </p>
+        <p>When the <strong>Visible</strong> property is set to resultVisible, content of the Form Frame is displayed. </p>
+        <p>See <a href="#additional">Additional Menus</a> for more information. </p></td>
+      </tr>
+    </tbody>
+</table>
+<p>You can customize the menu settings by overriding the Default Form and configuring the  properties for each of the  Form elements.</p>
+<h4><a name="#preference">Preference Menu</a></h4>
+<p>The Preference (pref) menu consists of several  Form element menus, each representing  an item in the Preferences drop-down menu displayed at runtime.  For each menu element, the <strong>Label</strong> and <strong>Tooltip</strong> properties are  editable. To customize all properties for each menu, the Default Form must be overridden.</p>
+<p><img src="Finder_Default_Form_merge.png" align="absmiddle" border="0" alt="Finder Default Form Merge" /></p>
+<p>The Form element menus map to the corresponding Preference menu item displayed at runtime. User Interface variables and methods are available to configure each menu element. </p>
+
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Design time Menu Name</th>
+      <th class='confluenceTh'> Runtime Preference Menu Item</th>
+      <th class='confluenceTh'>Description</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>toggleMenu</td>
+      <td class='confluenceTd'>Show/hide Search</td>
+      <td class='confluenceTd'><p>The toggleMenu menu displays (or hides) the  Search Form. In the toggleMenu element, the <strong>Click method</strong> property is set to the <em>toggleSearchAction</em> method.  In the toggleMenu element, the Visible property  is set to the <em>toggleVisible </em>method which  determines that the Search is visible at first display at runtime.</p>
+        <p>&nbsp;</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>openView</td>
+      <td class='confluenceTd'>Open Custom View</td>
+      <td class='confluenceTd'><p>The openView menu finds a custom view for the Finder and  creates the system Finder Favorite. It creates search criteria based on the current Finder information and performs a search based on search criteria (such as the Finder name) displaying the results in the<strong> Favorite</strong> dialog. It also sets the header of the Favorite Finder. In the openView menu element, the <strong>Click Method</strong> property is set to <em>findCustomView</em>. The following is an example of the script used in the <em>findCustomView</em>.</p>
+        <p>var ui = new cwf_oe.favoriteFinder.UserInterface(null, this);<br>
+          var finder = ui.model;<br>
+          var search = finder.searchDocument;<br>
+          search.putValueByName(&quot;finderName&quot;, this.model.getName(), false);<br>
+          search.putValueByName(&quot;menuPath&quot;, null, false);<br>
+          ui.searchAction();<br>
+          ui.header = 'Custom Views for ' + this.model.getLabel();<br>
+          ui.parentFinder = this;<br>
+          return finder;</p>
+        <p>}</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>addView</td>
+      <td class='confluenceTd'>Add Custom View</td>
+      <td class='confluenceTd'><p>The addView menu displays the Favorite document in a popup allowing you to add a favorite for this Finder. </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>chart</td>
+      <td class='confluenceTd'>Chart</td>
+      <td class='confluenceTd'>The chart menu displays the chart that was set in the Chart Form and renders it in the browser.  In the chart menu element, the <strong>Click Method</strong> property is set to <em>showChart</em>. In the chart menu, the <strong>Visible</strong> property  is set to the<em> hasChart</em> method. This method controls the visibility of the chart using permissions. If the default chart form is overridden then the <em>hasChart</em> returns<em> true</em>. The chart is displayed when the Chart menu item is clicked in the Preference menu.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Separator</td>
+      <td class='confluenceTd'>menu separator (line)</td>
+      <td class='confluenceTd'>Separates menu items.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>cwfXSL</td>
+      <td class='confluenceTd'>Download as XLS</td>
+      <td class='confluenceTd'>The cwfXLS menu is used to download XSL data from the database to the file. The  <strong>Click Method</strong> property is set to download to the specific download type.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>cwfCSV</td>
+      <td class='confluenceTd'>Download as CSV</td>
+      <td class='confluenceTd'>The  cwfCSV  menu is used to download CSV data from the database to the file. The <strong>Click Method</strong> property set to download to the specific download type.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>cwfXML</td>
+      <td class='confluenceTd'>Download as XML</td>
+      <td class='confluenceTd'>The  cwfXML menu is used to download XML data from the database to the file. The <strong>Click Method</strong> property set to download to the specific download type.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Separator1</td>
+      <td class='confluenceTd'>menu separator (line)</td>
+      <td class='confluenceTd'>Separates menu items.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Iterator</td>
+      <td class='confluenceTd'>Iterate</td>
+      <td class='confluenceTd'>Iterates through the menu items defined in the <em>viewItem</em> menu.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>viewItem</td>
+      <td class='confluenceTd'>Represents the Finder's current view</td>
+      <td class='confluenceTd'>The viewItem menu displays the list of views listed in the Preference menu. In the viewItem menu element, the <strong>Click Method</strong> property is set to <em>changeView</em>. For each menu item, the  changeView method is called.</td>
+    </tr>
+    </tbody>
+</table>
+<p>For more information about the Preference menu, see <a href="Finders at Runtime.html">Finders at runtime</a>.</p>
+<h4><a name="#additional">Additional Menus</a></h4>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Form Element</th>
+      <th class='confluenceTh'>Finder Section Item</th>
+      <th class='confluenceTh'>Description</th>
+      </tr>
+    <tr>
+      <td class='confluenceTd'>chartSection</td>
+      <td class='confluenceTd'>Chart Section</td>
+      <td class='confluenceTd'><p>This section displays the chart. By default, the  chart menu is hidden in the user interface. In the chartSection section element, the <strong>Visible</strong> property  is set to the <em>chartVisible </em>method setting the chart as visible.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>detailSection</td>
+      <td class='confluenceTd'>Detail Section</td>
+      <td class='confluenceTd'><p>This section displays the Finder's Detail menu. In the detailSection section element, the  <strong>Variable</strong> property  is set to <em>detail</em>. The <em>detail</em> variable is of the User Interface type and displays the Detail menu. The <strong>Visible</strong> property  is set to the <em>detailVisible </em>setting the section to visible. When the detail section is visible, it displays the back arrow at the top of the page, which is bound to the Finder User Interface <em>backvisible</em> method.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>searchFormSection</td>
+      <td class='confluenceTd'>Search Form</td>
+      <td class='confluenceTd'><p>This section displays the Finder's Search menu. The <strong>Variable</strong> property of this menu is set to <em>search</em>. The <em>search</em> variable is of the User Interface type and displays the Search menu. The <strong>Visible</strong> property  is set to the <em>ShowSearchForm</em> method setting the Search Form as  visible.  The Finder criteria are entered using the form that is specified in the Search Form field of the <a href="Finder View.html">Finder View</a> tab. 
+        </p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>resSection</td>
+      <td class='confluenceTd'>Result Section</td>
+      <td class='confluenceTd'>This section displays the Finder's Result menu. This menu contains a Form Frame Form element in which the result data is displayed. </td>
+    </tr>
+    </tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

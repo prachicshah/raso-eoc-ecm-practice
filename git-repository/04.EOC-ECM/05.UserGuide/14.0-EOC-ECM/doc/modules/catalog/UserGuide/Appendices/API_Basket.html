@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>External Services: Catalog Basket API</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<h2>External Services: Catalog Basket API</h2>
+<p>The Catalog Basket API is to be invoked through Services for an external system to create and maintain Catalog Basket instance. This includes browsing, adding and removing items, pricing, validating, and getting item information. </p>
+<p><strong>Note:</strong> For more details on the Catalog API's, refer to <a href="../../../../html/JavaScripting in Order Care/index.html">JavaScript documentation</a>.</p>
+<table width="975" border cellpadding=1 class='confluenceTable'>
+  <tbody>
+    <tr>
+      <th width="151" class='confluenceTh'>API Name</th>
+      <th width="126" class='confluenceTh'>Input</th>
+      <th width="684" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd' VALIGN=TOP><strong>addItemToBasket</strong></td>
+      <td class='confluenceTd'>itemCode<br>
+        date<br>
+        language<br>
+        context<br>
+        basket<br>
+        inventory</td>
+      <td class='confluenceTd' VALIGN=TOP>Add an item to the catalog basket by item code. Returns the resulting catalog basket after adding the item.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd' VALIGN=TOP><strong>basketItem</strong></td>
+      <td class='confluenceTd'><p>theBasket<br>
+          itemCode<br>
+          parentId<br>
+          relationName </p></td>
+      <td class='confluenceTd' VALIGN=TOP><p>Create a new basket item instance.</p>
+        <p>The basketItem has a save() method, which calls the same method as storeInDB().  If you add an item into the basket, and you perform a save() on the return basket item, it is then inserted into the database.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd' VALIGN=TOP><strong>browseCatalog</strong></td>
+      <td class='confluenceTd'>hierarchyCode<br>
+        depth<br>
+        date<br>
+        language<br>
+        searchCriteria[]<br>
+        context[]<br>
+        inventory</td>
+      <td class='confluenceTd' VALIGN=TOP>Browse Catalog for all the available items by given search  criteria, return a list of items.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd' VALIGN=TOP><strong>cloneBasketItem</strong></td>
+      <td valign="top" class='confluenceTd'>keepID</td>
+      <td class='confluenceTd' VALIGN=TOP>Clone the current basket item by using the copy constructor. If the API is called without any parameters, a clone of  the basket item is created with a new basket item ID. If the API is called with keepID = true, a basket item  with new basket item ID is created.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd' VALIGN=TOP><strong>deleteFromDB</strong></td>
+      <td class='confluenceTd'>basketId</td>
+      <td class='confluenceTd' VALIGN=TOP>Delete the basket and all its contents from the database. </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd' VALIGN=TOP><strong>getItemInfo</strong></td>
+      <td class='confluenceTd'>itemCode<br>
+        date<br>
+        language<br>
+        context<br>
+        basket<br>
+        inventory</td>
+      <td class='confluenceTd' VALIGN=TOP>Get detailed information of a catalog item. Returns a catalog item in the version determined by the given date.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd' VALIGN=TOP><strong><a href="migrate_BasketAPI.html">migrateBasket</a></strong></td>
+      <td class='confluenceTd'>basketItems <br>
+        targetTime <br>
+        ignoreEligibility</td>
+      <td class='confluenceTd' VALIGN=TOP><p>Migrate basket items to the target time. If the basket items list is empty, this API will migrate the whole basket; otherwise it will migrate the given basket item(s).</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd' VALIGN=TOP><strong>priceBasket</strong></td>
+      <td class='confluenceTd'>basket<br>
+        date<br>
+        context</td>
+      <td class='confluenceTd' VALIGN=TOP>Price the entire catalog basket at the given date and returns a list of charges.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd' VALIGN=TOP><strong>removeItemFromBasket</strong></td>
+      <td class='confluenceTd'>basketItemId<br>
+        date<br>
+        language<br>
+        context<br>
+        basket<br>
+        inventory</td>
+      <td class='confluenceTd' VALIGN=TOP>Remove an item from the catalog basket by item id. Returns the resulting catalog  basket after removing the item.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd' VALIGN=TOP><strong>validateBasket</strong></td>
+      <td class='confluenceTd'>basket<br>
+        date<br>
+        context</td>
+      <td class='confluenceTd' VALIGN=TOP>Validate  the catalog basket.<br>
+        Returns a list of validation error codes and messages if any.</td>
+    </tr>
+</table>
+</body>
+</html>

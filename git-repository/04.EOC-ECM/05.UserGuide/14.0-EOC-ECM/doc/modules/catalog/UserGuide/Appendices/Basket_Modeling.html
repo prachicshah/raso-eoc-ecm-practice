@@ -1,0 +1,172 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Basket Modeling</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+
+<h2>Basket Modeling</h2>
+<p>The Catalog basket is a  shopping cart that allows you to add items and charges to the basket, and to price the basket. The page describes the persistent model of the Catalog basket. A search functionality is provided in this basket model. Extensibility is available to provide extension columns in the new BasketItem table or an extension table for basket items. Events have been provided to support extension table mapping.</p>
+<h3>Persistent Model in Basket Template</h3>
+<p>The persistent models of basket,  basketCharge, basketRelation are the same as the object model that is defined<strong> </strong>in the Catalog Client. These models are  reused for persistence.</p>
+<p>A new persistent model for  basketItem is created.</p>
+<p>The BASKETITEM model is as follows:</p>
+
+<div class="code">
+<div class="codeContent">
+<pre>
+BASKETITEM(
+  BASKETITEMID VARCHAR2(16 ) NOT NULL,
+  BASKETID VARCHAR2(16 ),
+  ITEMCODE VARCHAR2(32 ),
+  CWCREATED DATE,
+  CWCREATEDBY VARCHAR2(64 ),
+  LASTUPDATEDDATE DATE,
+  UPDATEDBY VARCHAR2(64 ),
+  PARENTBASKETITEMID VARCHAR2(16 ),
+  RELATIONNAME VARCHAR2(32 ),
+  REQUESTTIME DATE,
+  SEARCHTEXT VARCHAR2(4000 ),
+  ITEMDATA NClob,
+  instanceId VARCHAR2(128 ),
+  customerId VARCHAR2(32 ),
+  accountId VARCHAR2(32 ),
+  locationId VARCHAR2(32 ),
+  serviceDate DATE
+  )
+</pre>
+</div>
+</div>
+<h3>Search Functionality in Basket Model</h3>
+<p>It is possible to have searching based on item attributes. Date values are not searchable. The SearchText column  contains leaf names (attribute names) and values to provide searching ablilty based on item attributes.  Content of this column is completely customizable.  The saving API will publish events to retrieve the searchable list. </p>
+<p>The searchable list is a user defined list that contains all attribute names or leaf names that need to be set in the search text. The user needs to implement an event handler that returns that list. The 
+  search format is customizable; the user can define the format in the application. The default format is:<br>
+  <em>&lt;ATTRNAME&gt;</em> <em>&lt;ATTRVALUE&gt;</em> <em>&lt;ATTRNAME&gt;</em> <em>&lt;ATTRVALUE&gt;</em><br>
+  For example: 
+  Speed 25 Technology ADSL</p>
+<p>The following additional privileges are needed for Oracle text search:<br>
+  GRANT CREATE JOB TO USER<br>
+GRANT CTXAPP TO USER</p>
+<p>Two events related to the search text are used:</p>
+<ol>
+  <li>When saving basket item, <strong>GetbasketItemSearchableList</strong> event will be published to get search text key(attribute name).</li>
+  <li> <strong>GeneratebasketItemSearchText</strong> event is used to customize search format. If this event is not implemented,  the default format will be used.</li>
+</ol>
+<h3>Item Specifications in Basket Item</h3>
+<p>ItemData column contains item specification (all static leaves and dynamic leaves from basket object) in JSON format.</p>
+<h3>Extensions Fields in Basket Item Table</h3>
+<p>The basket item base implementation contains only required properties and associations.  Any other properties that make sense to keep in the table can be added as extension fields. When mapping a basket item object to a basket item persistent model, all fields (including, static leaves and dynamic variables (or dynamic leaves)  in the basket object) that have the same name in persistent mode will be mapped.</p>
+<p>The default implementation has the mapping of dynamic leaves to extension leaves by leaf name. You can also implement the <strong>MapBasketItemExtLeaf</strong> event to implement extra mapping logic.</p>
+<h3>Extension Tables</h3>
+<p>It is possible to extend BASKETITEM table with additional tables for specific item types. Extension tables should be used to provide additional search attributes only, since all item   data will be saved as item BLOB. The saving API will publish events that  allow you to determine model type to use for a given basket item type.  The user needs to implement the event handler (input is basket object and basket item object) to decide which model to use for which item.</p>
+<p>The <strong>GetBasketItemExtDocument</strong> event is used to populate extension table name for each basket item. 
+Basket has default mapping logic to map basket item to extension document by leaf name. You can  implement  the <strong>MapBasketItemExtDocument</strong> event to override the default mapping logic. </p>
+<p>Basket implementation will not handle delete operation for extension table.  You will need to  create a foreign key with a cascade delete or trigger to handle the extension document delete operation when item has been deleted from the basket item table. </p>
+<h3>APIs in Catalog Client</h3>
+<p>The following are the APIs that are available from the Catalog Client namespace:</p>
+<p><strong>basketItemQuery<br>
+  </strong>Description: This  API is used to perform a search on basket items.<br>
+  Input: itemSearchDS</p>
+<p><strong>buildBasketItemSql<br>
+  </strong>Description: This API is used to build basket item SQL.<br>
+Input: basketItemSearch</p>
+<p><strong>chargesExistInBasket<br>
+  </strong>Description: This API is  used to find out if charges exist in the basket. <br> 
+Input: itemID</p>
+<p><strong>createPriceDS<br>
+</strong>Description: This  is a helper class that creates a price datastructure for the specified item ID.<br>
+Input: itemID</p>
+<p><strong>getBasket<br>
+  </strong>Description: Returns the basket, if it exists.<br>
+  Input: null
+</p>
+<h3>Events in Catalog Client</h3>
+<p>The following events are available in the Catalog Client namespace:</p>
+<p><strong>MapBasketItemExtLeaf<br>
+  </strong>Event type: BASKET_MAP_EXTENSION_LEAF <br>
+Input: basket object, basketitem object</p>
+<p><strong>GetbasketItemSearchableList<br>
+  </strong>Event type: BASKETITEM_GET_SEARCHABLE_LIST<br>
+Input: basket object, basketitem object</p>
+<p><strong>GeneratebasketItemSearchText<br>
+  </strong>Event type: BASKETITEM_GENERATE_SEARCHTEXT<br>
+Input: basket object, basketitem object, search key</p>
+<p><strong>GetBasketItemExtDocument<br>
+  </strong>Event type: BASKETITEM_GET_EXTENSION_DOCUMENT<br>
+Input: basket object, basketitem object</p>
+<p><strong>MapBasketItemExtDocument<br>
+  </strong>Event type: BASKETITEM_MAP_EXTENSION_DOCUMENT<br>
+Input: basket object, basketitem object, extension document</p>
+<h3>Migration</h3>
+<p>  Two options are available for  migrating existing basket to new model: using SQL and  using an API. Each of these options are discussed in the following sections.</p>
+<h4>Migration using SQL</h4><br>
+A sample stored procedure is provided. This  stored procedure only migrates NVP data to blob field. If extension leaves, search text, or extension table is required, extra logic should be implemented in the stored procedure.<br>
+  <br>
+  Create or replace:<br>
+  <br>
+<div class="code">
+<div class="codeContent">
+<pre>
+PROCEDURE migrationitemLeaves<br>
+AS<br>
+CURSOR itemidlist<br>
+IS<br>
+SELECT DISTINCT basketitemid from cwpc_basketitem where data is null;<br>
+<br>
+cv SYS_REFCURSOR;<br>
+  LEAFVALUES varchar(10000) ;<br>
+  LEAFCONTENT varchar(20) := '{&quot;DynamicLeaves&quot;:';<br>
+  leafrow CWPC_BASKETITEMLEAVES%rowtype;<br>
+  leafCount NUMBER(1);<br>
+updateCount NUMBER(2);<br>
+<br>
+BEGIN<br>
+updateCount := 0;<br>
+  FOR i in itemidlist<br>
+  LOOP<br>
+  LEAFVALUES := LEAFCONTENT;<br>
+  OPEN cv FOR SELECT * from CWPC_BASKETITEMLEAVES where DOC_ID = i.basketitemid; <br>
+  leafCount :=0;<br>
+  LEAFVALUES := LEAFVALUES || '{';<br>
+  LOOP<br>
+  fetch cv into leafrow;<br>
+  exit when cv%notfound;<br>
+  IF leafCount &gt;0 THEN<br>
+  LEAFVALUES := LEAFVALUES || ',';<br>
+  END IF; <br>
+  LEAFVALUES := LEAFVALUES || '&quot;' || leafrow.Leaf_NAME ||'&quot;:&quot;'|| leafrow.value ||'&quot;';<br>
+  leafCount := leafCount+1;<br>
+  END LOOP;<br>
+  LEAFVALUES := LEAFVALUES  || '}}';<br>
+  dbms_output.put_line(LEAFVALUES);<br>
+  -- update cwpc_basketitem set DATA = LEAFVALUE where basketitemid = item_id; <br>
+  IF updateCount &gt;1000000 THEN<br>
+  commit;<br>
+  updateCount :=0;<br>
+  END IF;<br>
+  END LOOP;<br>
+END;</p>
+</pre>
+</div>
+</div>
+
+<h4>Migration Using an API</h4>
+<p>The  basketMigration API is available at the basket level and can be used to migrate each basket to the new model. The syntax for the  basketMigration API is as follows:</p>
+
+<div class="code">
+  <div class="codeContent">
+    <pre>
+basketMigration(String basketId, boolean throwException)
+    </pre>
+  </div>
+</div>
+
+<p>The basketMigration API   reads all dynamic leaves from the basketItemLeaves table and saves them to the blob field in the basket item table. The API also  populates extension leaves, search text, and the extension table using a customized implementation (event). <br>
+</p>
+</p>
+</body>
+</html>

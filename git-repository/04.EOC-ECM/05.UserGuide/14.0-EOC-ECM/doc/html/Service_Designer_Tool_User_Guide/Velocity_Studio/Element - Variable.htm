@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Variable</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Variable</h2>
+
+<p>The Variable Element is a shortcut for creating an element. When selecting the Variable element, the system will determine the  appropriate field element to create based on the<em> variable </em>type selected. The variable will  bind to the Variable property of the element created. It is not a real Element, but a user interface development shortcut.  The example below displays the selection of a Variable element of type <em>date</em> and the associated creation of the Date Field element with the Variable property bound to the Date variable.</p>
+
+<img src="exampleVariable.png" alt="Variable" border="1">
+
+<p>The type of field Element that is created depends on the Variable's data type, as listed in this table:</p>
+
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='confluenceTh'>Variable's Data Type</th>
+<th class='confluenceTh'>Resulting Field Element</th>
+</tr>
+<tr>
+<td class='confluenceTd'>Boolean</td>
+<td class='confluenceTd'>Checkbox</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Date</td>
+<td class='confluenceTd'>Date Field</td>
+</tr>
+<tr>
+<td class='confluenceTd'>DateTime</td>
+<td class='confluenceTd'>Date Field</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Decimal</td>
+<td class='confluenceTd'>Textfield</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>Integer</td>
+  <td class='confluenceTd'>Textfield</td>
+</tr>
+<tr>
+<td class='confluenceTd'>String</td>
+<td class='confluenceTd'>Textfield</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+</table>
+</body>
+</html>

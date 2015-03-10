@@ -1,0 +1,316 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Code Queries</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Catalog Queries</h2>
+<p>Catalog queries produce a set of  Catalog item codes that match the query. Its general concepts and syntax are the same as the <a href="CatalogRuleLanguage.html">Catalog Rule Language</a>. </p>
+<p> The general format of the query is as follows:<br></p>
+
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+select
+[from hierarchy_node_name [depth search-depth]]
+where
+property_name/property function operation ?/constant list and ...
+property_name/property function operation ?/constant list and ...
+</pre>
+</div>
+</div>
+<p>  The hierarchy node name takes the  code of the node. </p>
+<p><strong>Note: </strong>If the sub-tree is too big, the  results will be incomplete as the Catalog does not work with more than 1000  items in a single query.</p>
+<p>  The search-depth is a number starting from  1, specifying how deep the query goes in the hierarchy sub-tree starting with  the specified node. A value of 1 specifies that only the items of the are used. A value of 2 indicates that the item of the node and the items of all  children of the node are used. A value of 3  includes the node's  children and the children of the node's children, and so on. If  depth is omitted or is 0, the entire sub-tree starting with the given node is used (in reality, the first 1000 items are used).
+  The where clause represents a Boolean “and�?  expression of search operations of two types:   </p>
+<ul>
+  <li>Attribute property comparison operations (name operations)</li>
+  <li>Property  (built-in) function operations</li>
+</ul>
+<p>The  operation specifies the type of comparison between the specified operand (attribute  or property function) and the argument, which is a constant, a list of constants,  or a runtime search argument placeholder specified by a question mark. The  argument values are specified in the API call by the order of the question  marks.</p>
+<p>The property names are names of item  attributes associations of property type. Because the query works with  different items that may not have properties with the given name or may have  different property types for the given name, the select operation works the  following way:</p>
+<ol>
+  <li>If the inspected item does not have the specified  property, it is discarded (that is, it does not go in the result).</li>
+  <li>If the inspected property does not match the type of  the search argument, the item is discarded.</li>
+</ol>
+<p>The property functions have a single  parameter. The parameter depends on the function name, which can be </p>
+<ul>
+  <li>An association  name</li>
+  <li>An  association type name</li>
+  <li>An association category name</li>
+  <li>Charge frequency</li>
+  </ul>
+<p> The  following property functions are defined:</p>
+<ul>
+  <li>count(association type code or association category name)<br>
+    Returns the number of association instances of the given type or category for the  item specified.  Specifying  a non-existing type or wrong association category  cancels the query execution  and return error.<br>
+    <br>
+    <strong>Note: </strong>The association categories are AttributeCategory  and ItemCategory. These names should not be used as association type codes.<br>
+    <br>
+  </li>
+  <li>itemCodes(item-items association type code or the ItemCategory category name)<br>
+    Returns an array of codes (strings) of the associated items of the  given type or the codes for all item-item associations (if the item-item  association category is specified). Only the types belonging to the item-item  association category can be specified. Specifying a non-existing type or a wrong  association category cancels the query execution and return error.</li>
+  <li>nameCode(item-items association instance name)<br>
+    Returns the  associated item code for the association instance with the given name.  Specifying a non-existing name discards the inspected item. </li>
+  <li>price(charge frequency code)<br>
+    Returns the price for the  given frequency code. The frequencies are stored in the <em>Charge  frequencies</em> code table.<br>
+  </li>
+</ul>
+<table width="93%" border="1">
+  <tr>
+    <th width="19%" scope="col"><strong>Operation  code</strong></th>
+    <th width="35%" scope="col">Description</th>
+    <th width="17%" scope="col">Property Type</th>
+    <th width="29%" scope="col">Argument Type</th>
+    </tr>
+  <tr>
+    <td><p>== <br>
+      equal <br>
+      equal  to <br>
+      is  equal <br>
+      is  equal to <br>
+      equals <br>
+      equals  to <br>
+      eq <br>
+      is </p></td>
+    <td>Equals.</td>
+    <td>String, number, date, Boolean</td>
+    <td>Must match the property type</td>
+    </tr>
+  <tr>
+    <td><p>equal  no case <br>
+      is  equal no case <br>
+      equal  no case to <br>
+      is  equal no case to <br>
+      equals  no case <br>
+      equals no case to </p></td>
+    <td>Equals ignore case.</td>
+    <td>String</td>
+    <td>String</td>
+    </tr>
+  <tr>
+    <td><p>!=<br>
+      &lt;&gt; <br>
+      not  equal <br>
+      not  equal to <br>
+      is  not equal <br>
+      is  not equal to <br>
+      not  equals <br>
+      not  equals to <br>
+      ne <br>
+      is not </p></td>
+    <td>Not equal.</td>
+    <td>String, number</td>
+    <td>Must match the property type</td>
+    </tr>
+  <tr>
+    <td><p>not  equal no case <br>
+      is  not equal no case <br>
+      not  equals no case <br>
+      not  equal no case to <br>
+      is  not equal no case to <br>
+      not equals no case to </p></td>
+    <td>Not equal no case.</td>
+    <td>String</td>
+    <td>String</td>
+    </tr>
+  <tr>
+    <td><p>&gt;&nbsp;<br>
+      is  greater than <br>
+      greater  than <br>
+      is  greater <br>
+      greater <br>
+      gt </p></td>
+    <td>Greater than.</td>
+    <td>Number, date</td>
+    <td>Must match the property type</td>
+    </tr>
+  <tr>
+    <td><p>&gt;= <br>
+      greater equal to <br>
+      is greater equal to <br>
+      greater equal <br>
+      is greater equal <br>
+      greater or equal <br>
+      is greater or equal <br>
+      greater or equal to <br>
+      is greater or equal  to <br>
+      ge </p></td>
+    <td>Greater than or equal.</td>
+    <td>Number, date</td>
+    <td>Must match the property type</td>
+    </tr>
+  <tr>
+    <td><p>&lt; <br>
+      less than <br>
+      less <br>
+      is less than <br>
+      is less <br>
+      It </p></td>
+    <td>Less than.</td>
+    <td>Number, date</td>
+    <td>Must match the property type</td>
+    </tr>
+  <tr>
+    <td><p>&lt;= <br>
+      less  or equal <br>
+      less  equal <br>
+      less  or equal to <br>
+      less  equal to <br>
+      is  less or equal to <br>
+      is  less equal to <br>
+      is  less or equal <br>
+      id  less equal <br>
+      le </p>
+      </td>
+    <td>Less than or equal.</td>
+    <td>Number, date</td>
+    <td>Must match the property type</td>
+    </tr>
+  <tr>
+    <td><p>in <br>
+      is  in <br>
+      one  of <br>
+      is one of </p></td>
+    <td>Matches one of the list.</td>
+    <td>String, number</td>
+    <td>Array of values of matching type</td>
+    </tr>
+  <tr>
+    <td><p>not  in <br>
+      is  not in <br>
+      not  one of <br>
+      is not one of </p></td>
+    <td>Does not match any one of the list.</td>
+    <td>String, number</td>
+    <td>Array of values of matching type</td>
+    </tr>
+  <tr>
+    <td><p>in ?/list <strong>no case</strong> <br>
+      is  in ?/list <strong>no case</strong> <br>
+      one  of ?/list <strong>no case</strong><br>
+      is one of ?/list <strong>no  case</strong></p></td>
+    <td>Matches one value of the list. Case-insensitive.</td>
+    <td>String</td>
+    <td>Array of strings</td>
+    </tr>
+  <tr>
+    <td><p>not  in ?/list <strong>no case</strong> <br>
+      is  not in ?/list <strong>no case</strong> <br>
+      not  one of ?/list <strong>no case<br>
+        </strong>is not one of ?/list <strong>no  case</strong></p></td>
+    <td>Does not match any one of the list. Case-insensitive.</td>
+    <td>String</td>
+    <td>Array of strings</td>
+    </tr>
+  <tr>
+    <td><p>like <br>
+      is  like <br>
+      like  one of <br>
+      is like one of </p></td>
+    <td>Matches the beginning of an element of a list.</td>
+    <td>String</td>
+    <td>Array of strings</td>
+    </tr>
+  <tr>
+    <td><p>not  like <br>
+      not  like one of <br>
+      is  not like <br>
+      is not like one of </p></td>
+    <td>Does not match the beginning of any element of the  list.</td>
+    <td>String</td>
+    <td>Array of strings</td>
+    </tr>
+  <tr>
+    <td><p>like ?/list <strong>no case</strong> <br>
+      is  like ?/list <strong>no case</strong> <br>
+      like  one of ?/list <strong>no case</strong> <br>
+      is  like one of ?/list <strong>no case</strong></p></td>
+    <td>Matches the beginning of an element of a list.  Case-insensitive.</td>
+    <td>String</td>
+    <td>Array of strings</td>
+    </tr>
+  <tr>
+    <td><p>not  like ?/list <strong>no case</strong> <br>
+      not  like one of ?/list <strong>no case</strong> <br>
+      is  not like ?/list <strong>no case</strong></p>
+      is not like one of ?/list <strong>no  case</strong></td>
+    <td>Does not match the beginning of any element of  the list. Case-insensitive.</td>
+    <td>String</td>
+    <td>Array of strings</td>
+    </tr>
+  <tr>
+    <td>contains</td>
+    <td>Contains at least one of the strings in the argument array.</td>
+    <td>Array of strings</td>
+    <td>Array of strings</td>
+    </tr>
+  <tr>
+    <td><strong>contains all</strong></td>
+    <td>Contains all strings in the argument array.</td>
+    <td>Array of strings</td>
+    <td>Array of strings</td>
+    </tr>
+  <tr>
+    <td><p><strong>does not contain</strong></p>
+      <strong>contains none of</strong></td>
+    <td>Does not contain any string  from the argument array.</td>
+    <td>Array of strings</td>
+    <td>Array of strings</td>
+    </tr>
+</table>
+<p>For example:</p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+Select
+  from Handsets
+  where color eq ? and
+  brand in &quot;Nokia&quot;, &quot;Apple&quot;, &quot;Samsung&quot; and
+  codes(includes) contains ?
+</pre>
+</div>
+</div>
+<p><strong>Note:</strong> The select specification is case-insensitive. Everything, except the string literals (constants), can be written in lowercase, uppercase, or mixed case. </p>
+<p>The Catalog API, which implements the query operation, has the following format:  </p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>Array of strings = theCatalog.runQuery(Select string[, search argument, ...])  </pre>
+</div>
+</div>
+<p>The search arguments are either atomic values of string, number, date, or Boolean type, or arrays of string or number type. You can also add a parameter in theCatalog.runQuery method to support hierarchy node   searching.</p>
+<p>The return value is an array of strings. If the first element of the array is a predefined string with the JavaScript name BROWSE_ERRORS, the given query string and parameters are incorrect, and the remaining array elements contain error message texts (as many as found) in the default caller's language. Otherwise, the array contains item codes. </p>
+<p><strong>Note:</strong> In this case, the array may be empty, which means that the browse operation has not found corresponding items. </p>
+<div class="preformatted">
+<div class="preformattedContent">
+<pre>
+var select = &quot;Select from Handsets &quot;+<br>
+  &quot;where color == ? and &quot; +<br>
+  &quot;brand is one of ? and &quot; +<br>
+  &quot;codes(includes) contains \&quot;LRB-05\&quot;&quot;;
+<p>var items = theCatalog.runQuery(select, &quot;Black&quot;,<br>
+  [&quot;Apple&quot;, &quot;Nokia&quot;, &quot;Samsung&quot;]);</p>
+<p>if (items.length &gt; 0 &amp;&amp; items[0] == BROWSE_ERRORS) {<br>
+  // Process the errors ...<br>
+  } else {<br>
+  for (var i = 0; i &lt; items.length; i++) {<br>
+  // Process the item ...<br>
+  }<br>
+  }</p></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

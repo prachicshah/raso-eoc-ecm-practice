@@ -1,0 +1,168 @@
+<html>
+<head>
+<title>Alerts or Jeopardies</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td>
+
+<h2>Alerts/Jeopardies</h2>
+<p>An Alert defines a destination for a notification mechanism; four mechanisms are supported:
+<ul>
+<li><em>Email</em></li>
+<li><em>Pager</em></li>
+<li><em>External System</em></li>
+<li><em>Worklist</em></li>
+</ul>
+</p>
+This destination is defined by an Alert metadata element. Jeopardies are implemented through Alerts.
+<h4><a name="new">Create New Alert</a></h4>
+
+<p>To create a new Alert, do the following steps:</p>
+<ul>
+<li>In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:</li>
+<ol>
+<li>Right-click a Namespace and select <b>New ...</b></li>
+<li><b>New Metadata Object</b> wizard appears as a popup. Expand <b>Business Processes</b>, select <b>Alert</b>, and then click the <b>Next</b> button.</li>
+<li>Step two of wizard appears. Enter the name of Alert (must conform to JavaScript naming conventions), and populate other fields, as necessary. Then, click the <b>Finish</b> button.</li>
+</ol>
+<li><i>OR</i></li>
+<ol>
+<li>Right-click the <b>Alerts</b> folder or the <b>Business Processes</b> folder in a Namespace, if it is present. Select <b>New Alert</b><strong>.</strong></li>
+<li>Follow step 3 from the previous procedure.</li>
+</ol>
+</ul>
+
+<p>The newly created Alert appears under the <b>Alerts</b> folder.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="newAlertNode.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+<h4>Alert Properties</h4>
+<p>The fields of the Alert properties may change depending on the <b>Type</b> field selection, whether it is <em>email</em> or <em>pager</em>, <em>external system</em> or <em>worklist</em>. The table below describes the fields.</p>
+<p><em>Alert properties for the Email or Pager type.</em></p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="alertEmailPager.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p><em>Alert properties for the External System type.</em></p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="alertExtSystem.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<p><em>Alert properties for the Worklist type.</em></p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="alertWorklist.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+<th class='confluenceTh'>Type</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory. Name of the Alert within the namespace.</td>
+<td class='confluenceTd'>All</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+<td class='confluenceTd'>All</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Restricted</b></td>
+<td class='confluenceTd'>If checked, all JavaScripts contained within the object are blocked from being displayed when the metadata is packaged as Product Metadata (that is, library).</td>
+<td class='confluenceTd'>All</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Deprecated</b></td>
+<td class='confluenceTd'>If checked, the metadata object is designated for archival purposes only. The object becomes hidden from all metadata object selection lists.</td>
+<td class='confluenceTd'>All</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Label</b></td>
+<td class='confluenceTd'>Mandatory. Label to identify the Alert.</td>
+<td class='confluenceTd'>All</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the Alert for documentation purposes.</td>
+<td class='confluenceTd'>All</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Type</b></td>
+<td class='confluenceTd'>Mandatory. The destination type; choose one of the following:
+<ul>
+<li><em>Email</em>: This alert type will dispatch an email message to a defined email address. The <a href="../../Configuration_Tool_User_Guide/Processes Alerts.html">Configuration application: Processes - Alerts</a> tab contains an SMTP server configuration parameter that is used to define the SMTP server address. The Email address specified in the alert definition can be overridden in that configuration page as well. For an <a href="process activities types.html">alert activity</a>, the message content is derived from the <b>Before</b> script return value.</li>
+</ul>
+<ul>
+<li><em>Pager</em>: As per email, where the email address specified is the pager address.</li>
+</ul>
+<ul>
+<li><em>External System</em>: This alert type will invoke an external service Operation. The script defined in the Alert will be invoked with Document and process parameters, where the Document parameter type is defined in the input of the Interface Operation and a process parameter is a process that issues the Alert.</li>
+</ul>
+<ul>
+<li><em>Worklist</em>: This alert type will send a request (task) to the worklist queue. The Alert specifies the User Participant type that should receive this request (alert). The label of the Alert is used for the worklist task description. For an <a href="process activities types.html">alert activity</a>, the worklist task description can be set by an activity <b>Before</b> script return value.</li>
+</ul>
+</td>
+<td class='confluenceTd'>All</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Address</b></td>
+<td class='confluenceTd'>Mandatory. The e-mail address.</td>
+<td class='confluenceTd'>Email</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Address</b></td>
+<td class='confluenceTd'>Mandatory. The pager number.</td>
+<td class='confluenceTd'>Pager</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Element</b></td>
+<td class='confluenceTd'>Mandatory. The external service Interface.</td>
+<td class='confluenceTd'>External System</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Operation</b></td>
+<td class='confluenceTd'>Mandatory. The external service Interface Operation that initializes the output Document.</td>
+<td class='confluenceTd'>External System</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Script</b></td>
+<td class='confluenceTd'>A JavaScript script that initializes the output Document.</td>
+<td class='confluenceTd'>External System</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Element</b></td>
+<td class='confluenceTd'>Mandatory. The User Participant.</td>
+<td class='confluenceTd'>Worklist</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

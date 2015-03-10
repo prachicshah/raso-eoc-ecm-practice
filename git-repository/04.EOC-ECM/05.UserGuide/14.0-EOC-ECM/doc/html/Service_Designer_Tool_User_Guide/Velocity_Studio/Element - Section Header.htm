@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Section Header</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+
+<h2>Section Header</h2>
+
+<p>A Section Header creates the header included in the user interface of a Section. It is used for design and contains limited or no functionality.  The example below shows a Section Stack that contains an expanded &quot;Wireless&quot; Section and its associated Section Header (that is,  Wireless) as well as collapsed Sections (Home Phone, Cable TV and Internet) and their associated Section Headers.</p>
+
+<img src="exampleSectionHeader.png" alt="Section Header element" border="1">
+
+<p>The Section Header is simply a banner that can contain child field elements such as an image and/or label as shown below. All form elements that are children of the Section Header will overlap the banner. </p>
+
+<img src="exampleStackHeader.png" alt="Example Section Header" border="1">
+
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th class='referenceTh'>references Variable</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Method</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>references Form</th>
+<td class='referenceTd'>No</td>
+</tr>
+<tr>
+<th class='referenceTh'>Allowable Child Elements</th>
+<td class='referenceTd'>
+Grid Layout<br />
+Horizontal Layout<br />
+Vertical Layout<br />
+Layout Spacer<br />
+Form Frame<br />
+Button<br />
+Checkbox<br />
+Date Field<br />
+Header<br />
+Hyperlink<br />
+Image<br />
+Label<br />
+Password Field<br />
+Radio Button Group<br />
+Reference Field<br />
+Select Field<br />
+Separator<br />
+ Text Field<br />
+Translation<br />
+Upload File<br />
+Variable<br />
+ HTML Content<br />
+Iterator<br />
+Menu Item<br />
+  Dynamic Document</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Properties</h3>
+<table class='confluenceTable' border cellpadding=1>
+<tbody>
+<tr>
+<th width="59" class='referenceTh'>Property</th>
+<th width="143" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+<th width="1411" class='referenceTh'>Comment</th>
+</tr>
+<tr>
+<th class='referenceTh'>Name</th>
+<td class='referenceTd'>Mandatory</td>
+<td class='referenceTd'>Name of the Section Header.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Label</th>
+<td class='referenceTd'>Mandatory</td>
+<td class='referenceTd'>Visible label of the Section Header. Displayed over the grey banner in a left-justified alignment. Default is empty.</td>
+</tr>
+<th class='referenceTh'>Icon</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Select an icon graphic from the graphic resources that is displayed over the banner in a left-justified alignment. The system requires three image files &lt;image name&gt;.jpg, &lt;image name&gt;_opened.jpg and &lt;image name&gt;_closed.jpg that are called based on the expanded state of the section. Select the &lt;image name&gt;.jpg image for this property. The default image used is opener.png.</td>
+</tr>
+<tr>
+<th class='referenceTh'>On Enter</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>The system calls any script defined in this property. This method is invoked when the Stack Header is focused on the Web page and the user presses the ENTER key.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Style</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>Choose from styles within the selected style sheet (located in the Velocity Studio toolbar), which defines the styling of the Section Header such as background color. Default is NONE.</td>
+</tr>
+<tr>
+<th class='referenceTh'>Expand</th>
+<td class='referenceTd'>Optional</td>
+<td class='referenceTd'>The system determines whether the child field elements of the Section appear by default in a collapsed or expanded state at runtime. </td>
+</tr>
+
+</tbody>
+</table>
+
+<h3>Notes</h3>
+<p> Child Elements of a Section Header are placed horizontally, and appear in a right-justified alignment moving left within the Header. Child Elements with a Section Header is a useful feature and allows the user the ability to add action fields for a Section - such as buttons - that can implement methods for the action.</p>
+
+
+<p>Header Width: The width of the header is based on the Width property of the parent Section Stack element or the layout directive (for example, Horizontal or Vertical elements).  The Height and Width properties must be defined for the parent Section Stack element or layout directive elements for the header to be displayed.</p>
+
+<p>The Section Header can be used to  expand or collapse Section Stacks containing child field elements by clicking the Section Header. This is accomplished by setting the Expand property of the Section Header to TRUE. There is the ability to have multiple Sections defined within a Section Header and display these Sections simultaneously or one Section at a particular time. The ability to display multiple expanded Sections simultaneously or restrict the expansion of just one Section at a time is determined by the Visibility Mode parameter of the parent Section Stack element. By setting the Section Stack Visibility Mode parameter equal to <i>mutex</i>, then only one section will be displayed at a particular time and the other Sections collapse. Setting the Visibility Mode value equal to <i>multiple</i>, will allow for all selected Sections to be open simultaneously.</p>
+
+<p>Icon:  The graphical icon that is displayed in the header needs to contain three image files: &lt;image name&gt;_opened.jpg, &lt;image name&gt;_closed.jpg and &lt;image name&gt;.jpg. The expand/collapse state of the Section will dictates which image is displayed. For the Icon property, the &lt;image name&gt;.jpg must be selected. All three images must be placed in the &lt;project metadata&gt;/resources directory for selection and use. If an icon image is not selected in the Icon property then the system will use the opener.png image which is located in the skin directory (by default Enterprise).</p>
+<p>&nbsp;</p>
+
+</body>
+</html>

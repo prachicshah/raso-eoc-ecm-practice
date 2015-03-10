@@ -1,0 +1,174 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Export Catalog</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Export Catalog</h2>
+<p>The export functionality allows you to  export data, such as images, attachments,  entire projects, or objects from Catalog.   To export the entire catalog  data, follow these steps:</p>
+<ol>
+  <li>From the Overview page, click<strong> Import/ Export </strong>&gt;<strong> Export  Catalog</strong> form the<strong> Quick Start</strong> section.</li>
+  <li>The Export page appears with the following fields:</li>
+<p>  <table  border cellpadding="1" class='confluenceTable'>
+    <tbody>
+      <tr>
+        <th  class='confluenceTh'>Field</th>
+        <th  class='confluenceTh'>Description</th>
+      </tr>
+        <tr>
+        <td  class='confluenceTd'><strong>Object Type to import</strong></td>
+        <td class='confluenceTd'><p>This field indicates what type of object is being imported. The drop-down list has the following options:</p>
+          <table  border cellpadding="1" class='confluenceTable'>
+            <tbody>
+              <tr>
+                <th class='confluenceTh'>Option</th>
+                <th  class='confluenceTh'>Description</th>
+              </tr>
+              <tr>
+                <td  class='confluenceTd'><strong>Data</strong></td>
+                <td class='confluenceTd'><p>Select this option to import the catalog data. Catalog data can be in .zip or . xml file format.</p></td>
+              </tr>
+              <tr>
+                <td  class='confluenceTd'><strong>Image/Attachment</strong></td>
+                <td class='confluenceTd'><p>Select this option to import the image or attachment. Use Select input file path field to import the Image or attachment.</p></td>
+              </tr>
+            </table></td>
+      </tr>
+      <tr>
+        <td  class='confluenceTd'><strong>Specify export file path</strong></td>
+        <td class='confluenceTd'><p>This  field allows you to specify the folder to save the exported catalog data file.  By default, the data is exported in the XML format. The default name of the file  is exportedCatalog.xml which is editable.</p></td>
+      </tr>
+      <tr>
+        <td  class='confluenceTd'><strong>Updated since</strong></td>
+        <td class='confluenceTd'>This field allows you to specify a date that is used to filter the catalog data. </td>
+      </tr>
+      <tr>
+        <td  class='confluenceTd'><strong>Log general information</strong></td>
+        <td class='confluenceTd'>When selected, this check box  logs the information of imported data. </td>
+      </tr>
+        <tr>
+        <td  class='confluenceTd'><strong>Exclude expired items</strong></td>
+        <td class='confluenceTd'>When selected, the expired items are not exported.</td>
+      </tr>
+        <tr>
+        <td  class='confluenceTd'><strong>Export Domains</strong></td>
+        <td class='confluenceTd'><span class="confluencetd">When selected,  the domains are also exported along with catalog data.</span></td>
+      </tr>
+        <tr>
+        <td  class='confluenceTd'><strong>Export Code Tables</strong></td>
+        <td class='confluenceTd'>Select this checkbox to export the code tables.</td>
+      </tr>
+    </table></p>
+  <li>Click the <strong>Start Export </strong> button.</li>
+  <li>The Export Results section appears with a summary  of your catalog Export.</li>
+  <li> Click the <strong>Close</strong> button to return to the Overview page of Catalog Designer.</li>
+  <p><img src="exportCatalogSummary.png" alt="Import Summary"/ ></p>
+</ol>
+<p><strong>Note:</strong> The Import and Export programs use the <a href="ImportExportCatalogXML.html"><i>Template.xml</i></a> files to load the Import File or export the Export File.  If this file is not present in the &lt;metadata home&gt;/resources/Excel Template folder, the Import and Export programs will not work.</p>
+<h3>Levels of Exports</h3>
+<p>There are four levels of exports that are available in Catalog Management:</p>
+<ol>
+<li>Item level exports which exports all related objects of the selected item and creates <i>exportedCatalog.xml</i> file.</li>
+<li>Project level exports all the objects within this project to the <i>exportedCatalog.xml file</i>.</li>
+<li>Catalog Hierarchy level exports all the objects within the catalog hierarchy and creates <i>exportedCatalog.xml</i> file.</li>
+<li>Catalog level export will export all data within the catalog. </li>
+</ol>
+<h3><a name="exportCatalogCommandLine"></a>Export Catalog from the Command Line</h3>
+<p>You can export your catalog from the command line in Windows and Unix. The catalog export syntax is as follows:</p>
+<div class="preformatted">
+  <div class="preformattedContent">
+    <pre> @echo off
+if ""%1""=="""" goto echoSyntax
+
+set CWOC_CLASSPATH=C:\EOC Product\14.x\14449
+set CLASSPATH=%CWOC_CLASSPATH%\designer\Designer.jar;^
+%CWOC_CLASSPATH%\lib\oracle\ojdbc6.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n.jar;^
+%CWOC_CLASSPATH%\lib\oracle\orai18n-mapping.jar;^
+%CWOC_CLASSPATH%\lib\ilog\sdworkflowmodeler.deployed.jar;^
+%CWOC_CLASSPATH%\lib\jdic\JDICplus.jar;^
+%CWOC_CLASSPATH%\lib\axis2\addressing-1.41.mar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-1.5.mar;^
+%CWOC_CLASSPATH%\lib\axis2\mex-1.4.1.mar;^
+%CWOC_CLASSPATH%\lib\axis2\wstx-asl-3.2.4.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-core-1.5.jar;^
+%CWOC_CLASSPATH%\lib\axis2\rampart-policy-1.5.jar;
+
+set JAVA_OPTS=-Xms1024m -Xmx1024m -XX:MaxPermSize=128m -Dcom.conceptwave.licenseDir="%CWOC_CLASSPATH%"\designer\env -Dcom.conceptwave.modules.path="%CWOC_CLASSPATH%"\modules
+
+"C:\Program Files\Java\jdk1.7.0_51\bin\java" %JAVA_OPTS% -cp "%CLASSPATH%" com.conceptwave.servicedesigner.ServiceDesigner -catalogexport %*
+
+goto end
+:echoSyntax
+echo ----------------------------------------------------------------------------
+echo Syntax:  catalogExport [-logFile logFile] username=? [password=?] server_url=? export_folder=? [export_type=?] 
+echo          [exported_objectid_list=?] [updated_since=?] [exclude_expired=?] 
+echo          [log_general_info=?] [export_domains=?] [export_codetables=?] 
+echo          [exclude_related_projects=?] [include_child_projects=?] [export_zip=?]
+echo ----------------------------------------------------------------------------
+echo Note:    password could be input from console.
+echo 					export_type: project, item, hierarchy, entire, codetable, default is entire.
+echo          exported_objectid_list: ':' seperated object id string.
+echo          export_codetables: only when the export type is entire.
+echo          updated_since date format: yyyy-MM-dd.
+echo          exclude_related_projects: only when the export type is project.
+echo          exclude_expired: default is false.
+echo          log_general_info: default is true.
+echo          export_domains: default is true.
+echo          export_codetables: default is false.
+echo          exclude_related_projects: default is false.
+echo	      include_child_projects: default is false. 
+echo		  export_zip: default is false. used only when the export type is project.
+echo ----------------------------------------------------------------------------
+echo Example: catalogExport username=a password=b server_url=http://server:8080/cwf export_folder=c:/temp/
+echo          catalogExport username=a server_url=http://server:8080/cwf export_folder=c:/temp/ export_type=entire updated_since=2011-01-01
+echo          catalogExport username=a password=b server_url=http://server:8080/cwf export_folder=c:/temp/ export_type=item exported_objectid_list=ABC:DEF:HIJ updated_since=2011-01-01
+echo          catalogExport username=a server_url=http://server:8080/cwf export_folder=c:/temp/ export_type=project exported_objectid_list=ABC:DEF:HIJ export_domains=true log_general_info=false
+echo          catalogExport username=a password=b server_url=http://server:8080/cwf export_folder=c:\temp export_type=codetable exported_objectid_list=ACC_CAN_TYPE:manufacturer
+echo          catalogExport username=a server_url=http://server:8080/cwf export_folder=c:/temp/ export_type=project export_zip=true
+echo ----------------------------------------------------------------------------
+:end
+</pre>
+  </div>
+</div>
+<p>Where:</p>
+<ul>
+  <li><em>logfile</em> allows you to specify the log file for a command line. It is an optional parameters. However, when used, it must be the first parameter.</li>
+  <li><em>password</em> can be input from the console.</li>
+  <li><em>server_url</em> indicates the running catalog server, which performs the importing task.</li>
+  <li><em> export_type</em> can be one of the following (default value is entire):
+    <ul>
+      <li>entire</li>
+      <li> project</li>
+      <li> item</li>
+      <li> hierarchy</li>
+      <li>codetable</li>
+      </ul>
+  </li>
+  <li><em>    exported_objectid_list </em>indicates that if the export is a project, item, or hierarchy,   you must specify which objects to export using a colon (:) to separate them.</li>
+  <li> <em>export_codetables</em> is used only when <em>export_type</em> is entire.</li>
+  <li><em> updated_since</em> takes  <em>yyyy-MM-dd</em> as its date format.</li>
+  <li><em> exclude_related_projects</em> is used only when the <em>export_type</em> is project.</li>
+  <li> <em>exclude_expired</em> has a  default of false.</li>
+  <li><em> log_general_info</em> has a default of true.</li>
+  <li><em> export_domains</em> has a default of true.</li>
+  <li><em> export_codetables</em> has a default of false.</li>
+  <li><em> exclude_related_projects</em> has a default of false.</li>
+  <li><em>include_child_projects</em> has a default of false and is used only when  the <em>export_type</em> is project.</li>
+  <li>export_zip allows you to export the catalog data as to a ZIP format. This option defaults to false and is used only when the export type is project.<BR>
+  </li>
+</ul>
+<p> <strong>Note:</strong> The <em>username</em>,<em> server_url</em>, and <em>export_folder</em> are mandatory for exporting. </p>
+<p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

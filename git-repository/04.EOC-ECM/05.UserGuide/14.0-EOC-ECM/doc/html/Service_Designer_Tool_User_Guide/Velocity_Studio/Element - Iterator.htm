@@ -1,0 +1,143 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Iterator Form Element</title>
+<link rel="StyleSheet" href="..\..\styles\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Iterator</h2>
+<p>An Iterator element enables you to create customized  User Interface objects at runtime by iterating through Form elements contained in a User Interface array. The Iterator element can create several instances of a User Interface based on the User Interface array. The array consists of one or more element that is initialized using  method scripts. By using the Iterator element you can avoid creating separate User Interfaces for similar items that you want displayed at runtime, and instead, create  one User Interface that is instantiated multiple times.</p>
+<h3>Example</h3>
+<p>The following example shows the benefit of including the Iterator element in  a Form. You can configure a section by adding a section elements to a Form. The section can separate information into grouping making it easier to present information to the end user.</p>
+<p><img src="iterator_base.png" align="absmiddle" border="1" alt="Iterator element - group information" /></p>
+
+<p>Using the Iterator element, you can configure the User Interface as an array and use variables and methods to <em>repeat</em> this element  for  different  package choices including Voice, TV, Internet,  Install Options.</p>
+
+<img src="iterator_runtime.png" align="absmiddle" border="0" alt="Iterator element - package choices" />
+
+<h3>Summary</h3>
+<table class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th class='referenceTh'>references Variable</th>
+      <td class='referenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <th class='referenceTh'>references Method</th>
+      <td class='referenceTd'>No</td>
+    </tr>
+    <tr>
+      <th class='referenceTh'>references Form</th>
+      <td class='referenceTd'>No</td>
+    </tr>
+    <tr>
+      <th class='referenceTh'>Allowable Child Elements</th>
+      <td class='referenceTd'>Reference Form depends upon the parent Form used for the Iterator</td>
+    </tr>
+  </tbody>
+</table>
+<h3>Properties</h3>
+<table class='confluenceTable' border cellpadding=1>
+  <tbody>
+<tr>
+<th width="58" class='referenceTh'>Property</th>
+<th width="140" class='referenceTh'><a href="Form Elements Overview.htm#mandatoryProperty">Mandatory</a>/Optional</th>
+<th width="696" class='referenceTh'>Comment</th>
+</tr>
+    <tr>
+      <th class='referenceTh'>Name</th>
+      <td class='referenceTd'>Mandatory</td>
+      <td class='referenceTd'>Name of the Iterator.</td>
+    </tr>
+    <tr>
+      <th class='referenceTh'>Variable</th>
+      <td class='referenceTd'>Optional</td>
+      <td class='referenceTd'>Choose from the list of variables in the User Interface (of array type) to bind to the Iterator. Default is not assigned. Use the property's <a href="Click Method and Variable Lookup.html">lookup button</a> to view property details.</td>
+    </tr>
+    <tr>
+      <th class='referenceTh'>Visible</th>
+      <td class='referenceTd'>Optional</td>      
+      <td class='referenceTd'>Determines whether the Section Stack is visible or not. Defaults to NONE, which means visible.</td>
+    </tr>
+  </tbody>
+</table>
+<h3>Configuring the Iterator Element </h3>
+<p> The Iterator  element   moves  through (iterates)  elements that are located  beneath it in the Form Element Tree. For example, you can configure the Form Element Tree to display a HortizontalLayout element, followed by the Iterator and a Menu Form element. The Menu item defines a click method. That method contains a script (array) that specifies the sequencing iteration of the  menu.</p>
+
+<img src="iterator_example.png" align="absmiddle" border="1" alt="Configure Iterator element" />
+
+<p>Using an Iterator you can cycle through  Form elements in sequence, one at a time. The  Iterator is a <em>child</em> to the following Form elements:</p>
+<table class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th class='referenceTh'>Form Element</th>
+      <th class='referenceTh'>Description</th>
+      <th class='referenceTh'>Allowable Child Form Elements</th>
+    </tr>
+    <tr>
+      <td class='referenceTd'> Section Stack </td>
+      <td class='referenceTd'>When an Iterator is added beneath a <a href="Element - Section Stack.html">Section Stack</a>, you must add a Section Form element beneath the Iterator. The Iterator advances through Form elements that are added beneath the  Section Form. Using a next call, the Iterator returns elements that belong to the section.</td>
+      <td class='referenceTd'>Section</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>Tabset</td>
+      <td class='referenceTd'>When an Iterator is added beneath a <a href="Element - Tabset.htm">Tabset</a>, you must add a Tab Frame Form element beneath the Iterator. The Iterator advances through Tab Frame elements that are added beneath the Iterator.</td>
+      <td class='referenceTd'>Tab Frame</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>HorizontalLayout </td>
+      <td class='referenceTd'>You can also add an Iterator after the<a href="Element - Horizontal Layout.htm"> HorizontalLayout</a> Form elements. You can then add Form elements beneath the Iterator.</td>
+      <td class='referenceTd'>HorizonalLayout, Image, Menu Item, VerticleLayout</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>VerticalLayout</td>
+      <td class='referenceTd'>You can also add an Iterator after the <a href="Element - Vertical Layout.htm">VerticalLayout</a> Form elements. You can then add Form elements beneath the Iterator.</td>
+      <td class='referenceTd'>HorizonalLayout, Image, Menu Item, VerticleLayout</td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Note</strong>: When configuring element properties,  if you have a Form Frame element under the Iterator, the <em>Form</em> property of the Form Frame is defined as one of the Iterator variable in the User Interface.</p>
+<h3>User Interface Variables</h3>
+
+<img src="iterator_variable1.png" align="absmiddle" border="1" alt="Iterator element - User Interface variables" />
+
+<p>To configure the User Interface variables, first add a variable as type User Interface, then do the following:</p>
+<ul>
+  <li> Define the variable's Data type (this refers to the parent + User Interface)</li>
+  <li>Assign the User Interface as an  array (an array of type User Interface)</li>
+  </ul>
+<h3>User Interface Methods</h3>
+<p>To initialize an Iterator, you can configure a method. For example, the following script defines how a section form element will be iterated.</p>
+<div class="code"><div class="codeContent">
+<pre class="code-java">
+function onInit() {//Metadata type method. Can be called by scripts.<br>
+var uis = new Array();
+
+for (var i = 0; i < 10; i++) {
+  uis[i] = new Iterator.Iterated;
+  uis[i].Form = "Default";
+  uis[i].iteratorForm = "Default";
+  uis[i].label = "Iterated " + i;
+}
+this.iterated = uis;
+  
+}
+
+</pre></div>
+</div>
+<h3>Notes:</h3>
+<ul>
+  <li>In addition to using one Iterator element in a User Interface Form, you can also nest Iterator elements.</li>
+  <li>The Iterator Form element is also contained in the HLayoutForm and VLayoutForm of the Navigation Bar (these are preformatted Form elements used only with the Navigation Bar).</li>
+  <li>You can add Horizontal, Vertical, and Grid Layouts under an Iterator element.</li>
+</ul></td>
+</tr>
+</table>
+</body>
+</html>

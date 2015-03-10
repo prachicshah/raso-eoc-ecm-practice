@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Dialogs</title>
+<link rel="StyleSheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Dialogs</h2>
+<p>Dialogs  are  used to display information related to the current user interface, without  leaving the page. To use the same look and feel of <strong>ui_common</strong> dialogs such as  reference finders, follow these steps:
+<ol>
+  <li><a href="../User Interface User Action Method.htm">Create the user action</a>  that is used to display the object.</li>
+  <li>Add a new parameter  called <strong>dialog</strong> of type <strong>com.conceptwave.system.Dialog</strong>.  It ensures that the dialog object in the script is accessible.</li>
+  <li>Set <strong>Show in popup</strong> to <strong>true</strong>.</li>
+  <li>Set <strong>Dialog Object</strong> property to<strong> ui_common.dialogExtend</strong>.</li>
+  <br>
+  <img src="./setDialog.png" alt="Set Dialog Object property" /><br>
+  <br>
+<li>In the script, create or initialize  the user interface and return it.</li>
+  <li>If the user interface  that is displayed requires a different width or height than being used. It can be done by  providing values like the following script:<br>  
+  <div class="code"> <div class="codeContent">
+<pre>dialog.dialogWidth = 500;
+dialog.dialogHeight = 700;</pre></div></div>
+</li>
+</ol>
+
+  <h3><a name="_Toc341958276">Change the Grid Layout Style</a></h3>
+
+  The default grid layout for the detail form or classic search is six columns, set  to fill the width of the page. If a different style is required then that can be  done either by using a predefined narrow grid layout style or custom grid layout  style.<br>
+  The default grid layout style is defined as follows:<br>
+  <div class="code"> <div class="codeContent">
+<pre>.cwFormDetailGrid{
+  vertical-align:  middle;
+  colWidths:  156px,156px,156px,156px,156px,156px,25px; /*25px to be removed*/
+}  </pre></div></div>
+  <h4> Predefined Narrow Grid Layout  Style</h4>
+Once a finder UI or baseComponent UI is  created, use the  <em>setGridStyleWide  method  </em> to use the narrow grid layout style. The narrow grid layout style is  defined as follows:
+<div class="code"> <div class="codeContent">
+<pre>.cwFormDetailGridNarrow{
+  vertical-align:  middle;
+  colWidths:  122px,122px,122px,122px,122px,122px,25px;   /*25px to be removed*/
+}</pre></div></div>  <h4>Define a Custom Grid Layout Style</a>
+</h4>
+
+  To define a custom grid layout style,  override the <strong>returnGridLayoutStyle</strong> method in implementation of baseComponent and  baseFinder.<br>
+  If external forms are used either for baseComponent detail form  or baseFinder classic search form, then also override <strong>returnGridLayoutStyle</strong> method  in the implementation of the baseForm.
+</td>
+ </tr>
+  </table>
+   </body>
+    </html>

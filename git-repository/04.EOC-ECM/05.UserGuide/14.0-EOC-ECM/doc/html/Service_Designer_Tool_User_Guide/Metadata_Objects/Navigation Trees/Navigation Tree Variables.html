@@ -1,0 +1,259 @@
+<html>
+<head>
+<title>Navigation Tree Variables</title>
+<link rel="stylesheet" href="..\..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Navigation Tree Variables</h2>
+<p>The <b>Variables</b> tab is used to manage Variables of a node in the Navigation Tree. The <b>Variables list</b> contains one entry for each variable.</p>
+<p>All node types of the Navigation Tree extend from system base metadata objects which have many variables. These base Variables are shown in blue color. Variables added to this Navigation Tree node are in black color.</p>
+
+<img src="navTreeVariables.png" border="1" alt="Navigation tree - Variables tab" />
+
+<p>These buttons beside the list follow the <a href="../../Service_Designer_User_Interface/metadata object detail pane.html#ArrayElements">Manage Array Elements</a> presentation convention in Velocity Studio. See this section for details about the aforementioned and additional buttons.</p>
+<p>The Navigation Tree Variable details appear in the detail pane when a Variable entry is highlighted in <b>Variables list</b>. This Variables tab operates in the same manner as the <a href="../Document/Document Variables.html">Document's Variables tab</a>, so please consult that page for any details.</p>
+
+<p>The following table describes the base Variables for all of Tree Nodes, Finder Nodes, Finder Child Nodes and Root Nodes in Navigation Tree. Note that Recursive Node has no <b>Variables</b> tab.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Variable</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>confirmObject</b></td>
+<td class='confluenceTd'><i>Object</i></td>
+<td class='confluenceTd'>The generic object for confirmation.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>model</b></td>
+<td class='confluenceTd'><i>Model</i></td>
+<td class='confluenceTd'>The model of which this (User Interface) node is representing; it has the metadata object type assigned by <b>Object</b> in general tab.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>childNodes</b></td>
+<td class='confluenceTd'><i>Tree Node</i></td>
+<td class='confluenceTd'>Children nodes of this node, represented as an array. Access its element by numeric index (for example, childNodes[0] is the first child node). This Variable can be null when the node has not been loaded; node may be forced to be loaded by <b>Auto-expand</b> or <b>Hide node if empty</b> flags in <b>General</b> tab.Also, method <b>loadChildren</b> may be used to load/reload child nodes explicitly.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>dirty</b></td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Flag that marks the node to be refreshed in browser. It is set to true when the node's label, icon or any other property is changed. It is set back to false after the data was sent to browser. Thus, when refreshing the page after user action, only dirty nodes and their children get reloaded and refreshed.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>enableEvents</b></td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Flag whether the system method <i>onModelEvent</i> should be triggered to handle action events at the node's model, such as user updating it in detail pane of the Navigation Tree.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>errorList</b></td>
+<td class='confluenceTd'><i>Object</i></td>
+<td class='confluenceTd'>An array object that stores the validation errors.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>expanded</b></td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Determines whether the node is at expanded state or collapsed state in the Tree Form Element.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>image</b></td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>Stores the resource path of the image icon of the tree node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>label</b></td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>The label Variable that determines the label of the tree node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>loaded</b></td>
+<td class='confluenceTd'><i>boolean</i></td>
+<td class='confluenceTd'>Determines whether this node has been loaded in the Tree Form Element or not.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>modelUI</b></td>
+<td class='confluenceTd'><i>User Interface</i></td>
+<td class='confluenceTd'>User Interface object that connects the model to the Detail Form.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>parentNode</b></td>
+<td class='confluenceTd'><i>Tree Node</i></td>
+<td class='confluenceTd'>The parent node of this node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>tabUI</b></td>
+<td class='confluenceTd'><i>User Interface</i></td>
+<td class='confluenceTd'>Tab User Interface object that contains label, icon, detail UI, owner (which is reference to parent node), etc. This object is reused when the node needs to be displayed in the tab again.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>tableDoc</b></td>
+<td class='confluenceTd'><i>Tree Document</i></td>
+<td class='confluenceTd'>The Table Document Variable, which is a Document with various tree-related variables in the Document that controls the node's behaviour in the Navigation Tree. The Table Document is casted to the metadata object type of <b>Table Document</b> in <b>General</b> tab at runtime; this mechanism enables the node to store additional model Variables for the Tree Form Element of the Navigation Tree.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The following table describes <i>additional</i> base Variables for Root Nodes only.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Variable</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>actionNode</b></td>
+<td class='confluenceTd'><i>Tree Node</i></td>
+<td class='confluenceTd'>The node of the current hover/double click action.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>cwShowHover</b></td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Instructs the Web browser to show hover data by evaluating it at the <b>Hover Method</b> property of Root Node's Tree Form Element. If set to true, the hover form will be displayed. For an example, see the implementation in <i>com.conceptwave.system.OrderUserInterface</i>.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>detail</b></td>
+<td class='confluenceTd'><i>User Interface</i></td>
+<td class='confluenceTd'>The User Interface for the Detail Form.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>detailForm</b></td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>The string Variable that specifies the Detail Form.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>detailMenu</b></td>
+<td class='confluenceTd'><i>User Interface</i></td>
+<td class='confluenceTd'>The User Interface for the Menu Form of the Detail Form.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>detailNode</b></td>
+<td class='confluenceTd'><i>Tree Node</i></td>
+<td class='confluenceTd'>The Tree Node that is shown through the Detail Form. This Tree Node's <b>Detail UI</b> in General tab, by default, is assigned to the <i>detail</b> Variable.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>navTree</b></td>
+<td class='confluenceTd'><i>Document</i></td>
+<td class='confluenceTd'>Array of tree nodes that is binded to the Tree Form Element to serve as its model. The data type of this array Variable is overridden to the <b>Table Document</b> in General Tab if this property is different from <i>com.conceptwave.system.TreeDocument</i>. You can access elements in the array by node ID, such as <i>this.navTree["myTestTree/node1/customer"]</i>; however, numeric index (for example, <i>navTree[0]</i>) does not work.<br/>
+<b>The true data type of this Variable is not of tree node's Table Document as specified in Velocity Studio, but of tree node itself.</b> You can simply access the tree node's Table Document by <i>navTree[&lt;pathname&gt;].tableDoc</i>. The type parameter of this Variable is exploited as “interface�? to define a list of variables to bind tree columns under the Tree Form Element.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>treeSel</b></td>
+<td class='confluenceTd'><i>Tree Node</i></td>
+<td class='confluenceTd'>The array of Tree Nodes that are selected in the Tree Form Element by the user.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The following table are further <i>additional</i> base Variables for Root Nodes that are extended from <i>com.conceptwave.system.NavigationTreeWithTabs</i>.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Variable</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>currentForm</b></td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>The string variable that specifies the Form to display in the detail Form Frame. By default, the Form options are <i>Single</i> or <i>Tabs</i> Forms.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>tabs</b></td>
+<td class='confluenceTd'><i>User Interface</i></td>
+<td class='confluenceTd'>Array of Tab User Interface that represents the Tabs in the Tabset, binded via the Iterator Form Element, to control the Tab Frames of the detail pane. This is for children nodes with <b>Display in parent tabs</b> in <b>General</b> tab to be displayed in tabs.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>selectedTab</b></td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>The string variable that has the numeric index (zero-indexed) of the selected Tab within the TabSet.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Some of the more significant Variables are:<ul>
+<li><i>model</i>, <i>modelUI</i> - the model and its User Interface that represent the node's <b>Object</b> in <b>General</b> Tab, and displayed via the detail pane when the node is clicked.</li>
+<li><i>tableDoc</i> - the Table Document, to model the node's representation in the Tree Form Element.</li>
+<li><i>navTree</i> - the array of tree nodes, at the tree-level, that is binded to model the node's representation in the Tree Form Element. It has some read-only properties similar to <i>result</i> <a href="../Finder/Finder User Interface Variables.html">variable in Finders</a> that could be useful, such as <i>.length</i> as count of all loaded nodes, <i>.selected</i> as array of selected nodes, and <i>selectedCol</i> as the action column.</li>
+<li><i>detailNode</i>, <i>detail</i> - the Tree Node, and its <b>Detail UI</b> in <b>General</b> Tab, that is currently shown in the detail pane.</li>
+</ul>
+<h4><a name="TreeDocument"></a>Tree Document</h4>
+
+<p>The Variable <i>tableDoc</i> is a Tree Document which has some Document Variables that overlap some of the base Variables at the node level. You may use either of them to get/set the node's runtime properties in the Navigation Tree. For example, the expanded/collapsed state of the node in the tree can be determined by either <i>this.tableDoc.expanded</i> or <i>this.expanded</i>. Setting one of the variables automatically sets the other.</p>
+
+<p>The base Document Variables in the Table Document <i>com.conceptwave.system.TreeDocument</i> are listed below.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Variable</th>
+<th class='confluenceTh'>Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>id</b></td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>Identifier of the tree node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>label</b></td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>The tree node label.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>parentId</b></td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>Identifier of the tree node's parent node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>image</b></td>
+<td class='confluenceTd'><i>String</i></td>
+<td class='confluenceTd'>Image pathname for the tree node's icon.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>isFolder</b></td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Flag whether the node is a leaf or not in the Navigation Tree.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>expanded</b></td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Determines whether the node is at expanded state or collapsed state in the Tree Form Element.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>excluded</b></td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>If true, the node would not be displayed. However, children nodes of this node, if any, will be displayed under this node's parent.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>visible</b></td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>Determines whether the node is visible.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>sortOrder</b></td>
+<td class='confluenceTd'><i>Integer</i></td>
+<td class='confluenceTd'>Keeps the current sort order of the visible node under visible parent in the browser. The sort order is reset every time when data source request is performed for the tree from browser. Thus, this Variable maintains nodes are sorted after refresh.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>singleCell</b></td>
+<td class='confluenceTd'><i>Boolean</i></td>
+<td class='confluenceTd'>May be used in table trees, to indicate that the Tree Node label (first column cell) should spread across all columns.</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

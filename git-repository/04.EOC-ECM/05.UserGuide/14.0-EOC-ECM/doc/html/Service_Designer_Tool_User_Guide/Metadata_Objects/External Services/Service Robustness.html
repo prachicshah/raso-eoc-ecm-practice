@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Service Robustness</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h3>Service Robustness</h3>
+
+<h4>Handling Service Invocation Errors</h4>
+<p>Every port has a <em>retry count</em> attribute that determines how many times the framework will try to use this port if service invocation has failed. The framework maintains an error count for consecutive failed invocations. Every successful service invocation resets this error counter. When the counter value passes the retry count attribute value (equal to retry count + 1), the port is marked as in error status (the service on this port is unavailable).</p>
+<p>The framework will stop using ports in error status if a backup port that implements the same interface exists. A backup port is a port that has a <em>backup</em> attribute set to <em>true</em>.</p>
+<p>If the framework switches to a backup port, an attempt will be made to recover the original (production) port according to the <em>recover after</em> minutes setting. <em>Recover after</em> is an attribute of the port. This allows the framework to automatically switch back to the proper port when the service on that port becomes available.</p>
+
+<h4>Determining Service and Port Availability</h4>
+<p>The framework automatically selects the appropriate port for service invocation and uses the following algorithm:</p>
+<ul>
+<li>Finds a port that is not in error status (see above), and is currently available based on the port calendar definition. If such a port is available, it will use this port.</li>
+<li>Finds a port that is in error status (see above) and is currently available based on the port calendar definition.</li>
+<li>If this port's <em>recover after</em> time has passed (number of minutes since last use), it will use this port.</li>
+<li>If this port's <em>recover after</em> time has not passed (number of minutes since last use) and there is a backup port available, use the backup port.</li>
+<li>Otherwise use this port.</li>
+<li>If none of the above is found, return no port.</li>
+</ul>
+<p>If the service invocation request was initiated from the OMS UI, and no available port was found, the framework will present an error to the user.</p>
+<p>The process management framework can automatically delay a service request (when no available port is found) for processes that communicate with external services.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

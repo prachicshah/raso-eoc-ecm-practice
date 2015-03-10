@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SUF Server Configuration</title>
+<link rel="stylesheet" href="../../site.css" type="text/css" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<tr>
+  <td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top"><h2>SUF Server Configuration</h2>
+    <p>Login to the SUF server as an administrator using the ‘nmtroot’ user account and do the following steps:<br>
+    </p>
+    <ul>
+      <li> Create a Node Type</li>
+      <li>Create a User Class</li>
+      <li>Create a User</li>
+      <li>Import Network Configuration</li>
+      <li>Import Playlists</li>
+      <li>Verify Prerequisites Job</li>
+    </ul>
+    <h3>Create a Node Type</h3>
+    <ol>
+      <li>Access the menu Administration &gt; Node Type.</li>
+      <li>Create a new Node Type ‘AVM’ (case sensitive) with a Description. </li>
+      <li>Click the Apply button</li>
+    </ol>
+    </p>
+    <h3>Create a User Class </h3>
+    <ol>
+      <li>Access the menu Administration &gt; General &gt; User Classes</li>
+      <li>Enter the value in the User Class Name field.</li>
+      <li>Enter a Description.</li>
+      <li>In the Network Permissions section, select all permissions (‘Admin’, ‘Editor’ and ‘Viewer’).</li>
+      <li>In the Other Permissions section, for node type ‘AVM’, select all permissions (‘Admin’, ‘Editor’ and ‘Viewer’) under the columns Repository and Job Permissions.</li>
+      <li>Click the Apply button</li>
+    </ol>
+    <h3>Create a User</h3>
+    <ol>
+      <li>Access the menu Administration &gt; General &gt; Users</li>
+      <li>Enter a value in the User Name, User ID and Password fields.</li>
+      <li>Enter the e-mail information and from the list of available classes, select the user class created in the SUF Server Configuration &gt; Create User Class section.
+      <li>Click the Apply button.
+      <li>Logout from the SUF server and then log back in with the user name created in step 2.</li>
+    </ol>
+    <h3>Import Network Configuration</h3>
+    <ol>
+      <li>Login to the SUF Server with the user name created in the SUF Server Configuration > Create a User section. </li>
+      <li>From the Network menu, click the Import button.</li>
+      <li>From the Network Configuration File field, click the Browse button and select the file network.xml.</li>
+      <li>Edit the network connections
+    <br> <strong> Note:</strong>
+      It is possible to modify an existing JBoss host or add a new JBoss host. It is only possible to modify an existing Oracle host. The Oracle node can have only one Oracle instance on a SUF client.</li>
+      <li>Click the Apply button.</li>
+      <li>After importing the network file, the network nodes can be edited and verified by clicking a node and pressing the Check button.</li>
+    </ol>
+    <h3><strong>Import Playlists</strong></h3>
+    <ul>
+      <li><strong>Import the AVM playlist library</strong></li>
+      <ol>
+        <li>From the Repository > Library menu, click Import.</li>
+        <li>The Library - Import page appears. </li>
+        <li>From the Package File field, browse and select the AVM_SUF.tar.gz file.</li>
+        <li>Click Apply.</li>
+      </ol>
+      <li><strong>Import the PSCM playlist package</strong></li>
+      <ol>
+        <li>From the Repository > Node Package menu, click Import. The Node Package - Import page appears. </li>
+        <li>In the Package Name field, enter a user defined package name, for example, PSCM.</li>
+        <li>In the Node Type field, select AVM.</li>
+        <li>From the Package File field, browse and select the PSCM_SUF.tar.gz file.</li>
+        <li>Click Apply.</li>
+      </ol>
+    </ul>
+    <h3>Verify Prerequisites Job</h3>
+    <p>For the first time deployment, a job can be created to verify the prerequisites   for executing any other playlists. This job checks the Java Development Kit (JDK) version on the SUF server and clients, and the JBoss installations on the SUF clients.</p>
+    <p>To verify the prerequisites, do the following:</p>
+    <ol>
+      <li>Access the menu Job > Current</li>
+      <li>Click the Create New button.</li>
+      <li>Do the following for the Playlist Selection step:</li>
+      <ul>
+        <li>Enter the Job Name and select Node Type AVM.</li>
+        <li>In the Package Name field, enter AVM_SUF.</li>
+        <li>In the Playlist Name field, select the verify_prereq.xml file.</li>
+      </ul>
+      <p><strong>Note:</strong> If you want to run the playlist on multiple nodes, select the Run this playlist on multiple nodes check box. Selection of this step enables an option to add multiple node sets in step 3.
+        </li>
+      </p>
+      <li>Click the Next button for the subsequent steps: File Selection, Node Selection, Variable Selection, Configuration Setup, Step and Task Selection and Checkpoint Definition. </li>
+      <p> <strong>Note:</strong> A checkpoint can be added on the Step and Task Selection step.</p>
+      </li>
+      <li>The Creation Summary step displays the summary details of the job.</li>
+      <li>Click the Apply button to create the new job.</li>
+      <li>Click the Done button to return to the Job List page.</li>
+    </ol>
+    <p>If the job does not run successfully, check if there are any fundamental environment problems, such as the wrong JDK version.</p>
+    <p>For more information on the SUF Server GUI, see the SUF User Guide.</p>
+</body>
+</html>

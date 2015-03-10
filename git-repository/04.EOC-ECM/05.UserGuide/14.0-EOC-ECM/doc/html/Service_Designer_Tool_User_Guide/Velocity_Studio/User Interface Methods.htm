@@ -1,0 +1,164 @@
+<html>
+<head>
+<title>User Interface Methods</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+
+<h2>User Interface Methods</h2>
+<p>The User Interface <b>Methods</b> tab is used to define methods that facilitate business logic, such as JavaScript functions, to forms.</p>
+
+<p><img src="UImethods.png" border="1" alt="UserInterface Methods tab" /></p>
+
+<p>When you select the <strong>Type</strong> radio button, it means that the method can be invoked directly through the script and does not require an instance object.</p>
+<p>To show all base methods, click the <strong>Show base methods</strong> (<img src="methodsTabShowBaseMethods.png" alt="Show base methods button">) button. Click the button again to hide all base methods. Base methods appear in blue. Any method highlighted in blue font indicates that you can override it. Methods in black font cannot be overridden.</p>
+<p>If you have a long list of methods in the left pane, you can press the first letter of the method you are looking for to jump to the list of methods beginning with that letter. In this example, pressing the <strong>I</strong> key highlights the first instance of a method that begins with the letter I. The method displays in the right pane.</p>
+
+<p><img src="UImethodsKeyJumpList.png" alt="User Interface methods - press a letter from keyboard to jump to list of methods beginning with that letter" border="1"></p>
+<p>There are three types of methods that can be created and existing system-level methods that can be overridden:</p>
+<table class='confluenceTable' border cellpadding="1">
+  <tbody>
+<tr>
+<th class='confluenceTh' width='100'>Method Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="UIMethodIconScript.png" align="absmiddle" border="0" alt="" /> Script</td>
+<td class='confluenceTd'>Generic user-defined JavaScript function that can defined in User Interface and explicitly invoked by other Methods or Form Elements.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="UIMethodIconPermission.png" align="absmiddle" border="0" alt="" /> Permission</td>
+<td class='confluenceTd'>Permission Method that can be associated to properties of Form Elements to determine participant's access of the Form Element such as <i>Visible</i>, <i>Optional</i>, and <i>Editable</i>. See the  <a href="../Metadata_Objects/Permission/Permissions Velocity.html">Permissions</a> section for details.</td>
+</tr>
+<tr>
+<td height="42" class='confluenceTd'><img src="UIMethodIconUserAction.png" align="absmiddle" border="0" alt="" /> User Action</td>
+<td class='confluenceTd'>User Action Method that implements the response of user actions, such as clicking a Button or Image, by returning an Object presented in a specified Form to the user. See the <a href="User Interface User Action Method.htm">User Action Method</a> section for details.</td>
+</tr>
+</tbody>
+</table>
+
+<p>You can create multiple methods of the same method type by using unique method names (for example, Permission1, Permission2). However, for msethods that are to be overridden, you can only define one Method per base Method. This is applicable to both system-predefined scripts  from <i>com.conceptwave.system.UserInterface</i>) and any additional Methods that are defined in non-system-based, base User Interface. </p>
+<p>For scripts that are already overridden, they appear in the <strong>Methods List</strong> pane and no longer available using the right-click  menu.</p>
+
+<p>If this User Interface extends from another (non-system based) User Interface, and the base User Interface has additional methods defined in it, these additional methods are not displayed in the Methods tab of this User Interface. However, the additional methods are available to be overridden by right-clicking the root node in the Method List pane.</p>
+
+<p>The method created in <strong>Method List</strong> pane can be right-clicked, with various commands available. For more information see, <a href="../../JavaScripting in Order Care/Scripting Interface.html">Scripting Interface</a>.</p>
+<p>Depending upon which User Interface metadata you are configuring, there are many different methods that can be overridden. A list specific to the User Interface displays when you right-click the method name that appears in the <strong>Navigation List </strong>pane. The following are examples of system-defined method that can be overridden.</p>
+<table class='confluenceTable'  border cellpadding="1">
+  <tbody>
+    <tr>
+      <th class='confluenceTh'>Script Name</th>
+      <th class='confluenceTh'>Action Type</th>
+      <th class='confluenceTh'>Parameters</th>
+      <th class='confluenceTh'>Return Type</th>
+      <th class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>afterUserAction</td>
+      <td class='confluenceTd'>After a user action occurs</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+      <td class='confluenceTd'>On click script to set the function that is returned when a user action occurs. It is triggered when you perform an action specified in the script.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>cwchildDialogClose</td>
+      <td class='confluenceTd'>Close current dialog</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+      <td class='confluenceTd'>Sets the dialog variable to null causing the current dialog to close.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>cwDialogClose</td>
+      <td class='confluenceTd'>Call to close current dialog</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+      <td class='confluenceTd'>This method calls the cwChildDialogClose.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>dynamicTimerDuration</td>
+      <td class='confluenceTd'>Timer refresh duration</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+      <td class='confluenceTd'><p>You can configure the <a href="User Interface Dynamic Timer Duration.htm">user interface timer refresh script duration</a> by overriding this script in your metadata, and returning either an integer or a script that returns an integer to configure the time duration.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>generateHelp</td>
+      <td class='confluenceTd'>Generate help</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+      <td class='confluenceTd'>
+        This method displays the available help of the current object in the dialog.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>hasWorklist</td>
+      <td class='confluenceTd'>Worklist</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+      <td class='confluenceTd'>This method checks if the worklist is created for a user based on permissions.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>onAutoSave</td>
+      <td class='confluenceTd'>Automatically save</td>
+      <td class='confluenceTd'>True or False.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+      <td class='confluenceTd'>The method <em>onAutoSave</em> is called on auto save notification of the user action.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>onInit</td>
+      <td class='confluenceTd'>Initialization</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+      <td class='confluenceTd'>User Interface Initialization script to set initial values for Variables in the User Interface. It is triggered when the User Interface is created.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>onTimer</td>
+      <td class='confluenceTd'>Worklist timers</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+      <td class='confluenceTd'><p>The default Worklist (cwf_pm.BaseWorklistFinder) has no time interval specified, but has an implemented <em>onTimer</em> method. A worklist's on Timer method simply refreshes Worklist Finder (in case New Worklist Tasks arrived to the Worklist) and updates application icon, where number of worklist tasks is displayed. <br>
+        Worklist Timer polls Worklist Timer interval from Config, which contains a setting for Worklist Timer Interval. <br>
+        If your metadata overrides the default <em>BaseWorklistFinder</em>, we can also specify worklist interval on the overriding finder's user interface. In this case, system uses the timer interval from the metadata rather the one polled out from Config.</p>
+        <p>Any User Interface element can have a timer bound to it. If the timer interval is specified, the timer calls the <em>onTimer</em> method each time interval elapses.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><a name="screenReader"></a>onScreenReaderMode</td>
+      <td class='confluenceTd'>Screen reader mode</td>
+      <td class='confluenceTd'>True or False.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+      <td class='confluenceTd'><p>In the past, screen reader mode could only be set at the configuration level. You can  allow your application to set this mode on-demand. At runtime, you can use the onScreenReaderMode() API under the application user interface. If this method returns null, the value is taken from the system configuration using the <em><a href="../../Configuration_Tool_User_Guide/Config Variables.html#screenreader">screenreader</a></em> configuration variable.</p></td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>onValidate</td>
+      <td class='confluenceTd'>Validate</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+      <td class='confluenceTd'>The method is called on validate notifications and  validates all fields and the UserInterface model, if it  exists. It returns ValidationErrorList object.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>openWorklist</td>
+      <td class='confluenceTd'>Open worklist</td>
+      <td class='confluenceTd'>None.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Void</i></td>
+      <td class='confluenceTd'>This method opens the worklist when user permissions match permissions for the Worklist.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>permWorklist</td>
+      <td class='confluenceTd'>Worklist permissions</td>
+      <td class='confluenceTd'>Yes.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+      <td class='confluenceTd'>This method is returns the worklist when the permissions set are satisfied.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>statusMessagePerm</td>
+      <td class='confluenceTd'>Permissions message</td>
+      <td class='confluenceTd'>Yes.</td>
+      <td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+      <td class='confluenceTd'>This method is a permission method used to indicate visibility of the status message (generally displayed at the bottom of the page).</td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Note:</strong> To access to the current application controller, call the <em>getCurrentApplication()</em> method.</p>
+</body>
+</html>

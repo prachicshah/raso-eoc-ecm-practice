@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>Setting Process Priority</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Setting Process Priority</h2>
+<p>The Process Management product allows priorities to be assigned to each process type (global or user). Priority values range from 1 to 15, with priority value 1 being the highest priority. &#160;</p>
+<p>To be able to assign priority to the process, a priority enumeration data type must be defined in the metadata. This data type is based on the <em>Priority</em> data type, in the System namespace (that is, <i>cwf.priority</i>). The priority enumeration can be customized by overriding <i>cwf.allPriorities</i> Data Type (and extending from <i>cwf.priority</i>), and contain any number of the priority values (all of them between 1 and 15) and not necessarily all 15. For example, a priority enumeration can contain only three values: 1 - High, 2 - Medium and 3 - Low.</p>
+<p>If no process priority enumeration data type is defined, all processes are considered to have an equal priority. If a process priority data type is defined, every process definition must have a priority assigned.</p>
+<p>The following sections outline process priority implications:</p>
+<h3>Process Activities</h3>
+<p>When the Process Engine executes process activities, activities with the highest priority are executed first. The Process Engine employs several activity execution threads (10 or more). Each of these threads will pick the highest priority activity awaiting execution. Activities with the same priority are executed based on a FIFO (first in first out) algorithm.</p>
+<p>All activities for a specific process instance are executed by the same Process Engine. Prioritization of the process activities is done within each Process Engine separately, and not across all of the running Process Engines.</p>
+<p>It is conceivable that processes with a lower priority will receive very little or no execution time. This can be solved by starting additional Process Engines and/or by introducing more powerful computers.</p>
+<h3>External Service Participant</h3>
+<p>When a process needs to invoke an external service Operation, the request is delegated to the interface process that services this Interface. The interface process will perform the request with the highest priority first and use a FIFO (first in first out) algorithm for requests that carry an equal priority.</p>
+<p>The interface process is a system process and is not exposed in the metadata. This process is in charge of converting data message objects from their string format to XML objects, so the actual message being sent is a Java XML object and not a simple string.</p>
+<p>At the interface/operation level you are given the option to Invoke an interface Directly, thus bypassing this interface process and sending the XML message but as a string of characters.</p>
+<h3>Global Process Participant</h3>
+<p>The priority of a global process does not affect the order in which messages are consumed by the participant thread.</p>
+<h3>User Participant</h3>
+<p>When a process sends a request for a manual task to a User Participant, tasks with higher priority will appear at the top of the user worklist.</p>
+<h3>Start User Process</h3>
+<p>When the user interface submits a request to start a specific user process type, requests for the processes with the highest priority (defined for this process type) will be processed first.</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

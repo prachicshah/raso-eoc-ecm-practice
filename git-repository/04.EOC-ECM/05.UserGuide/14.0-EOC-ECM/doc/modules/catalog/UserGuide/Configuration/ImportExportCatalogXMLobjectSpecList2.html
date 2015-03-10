@@ -1,0 +1,936 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>XML Object Specifications for Importing and Exporting Catalog Objects: Item Attachment to Item Rule</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top"><h2>XML Object Specifications: Item Attachment to Item Rule</h2>
+<p>When you use the XML file to import and export your catalog data, all objects have a specific format. In addition, each object`s fields have defined meaning and a required format. </p>
+<p>The following is  a list of objects, which includes a short description of the object itself and the fields  that define it. The <strong>Mandatory</strong> column indicates whether the field is mandatory  when importing. </p>
+<ul>
+  <li><a href="#itemAttachment">Item attachment</a></li>
+  <li><a href="#itemAttribute">Item attribute</a></li>
+  <li><a href="#itemCharge">Item charge</a></li>
+  <li><a href="#itemDescription">Item description</a></li>
+  <li><a href="#itemGroup">Item group</a></li>
+  <li><a href="#itemGroupTarget">Item group target</a></li>
+  <li><a href="#itemHierarchy">Item hierarchy</a></li>
+  <li><a href="#itemImage">Item image</a></li>
+  <li><a href="#itemRelation">Item relation</a></li>
+  <li><a href="#itemRule">Item rule</a></li>
+</ul>
+<h3><a name="itemAttachment"></a>Item Attachment</h3>
+<p>This entity stores large binary objects, such as Word documents, PDFs, and more, and associates them    with a catalog item.</p>
+<p>The following table describes the object's field names, their descriptions, and whether these fields are mandatory:</p>
+<table width="1083" class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th width="155" class='confluenceTh'>Field Name</th>
+      <th width="780" class='confluenceTh'>Description</th>
+      <th width="132" class='confluenceTh'>Mandatory?</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemCode</strong></td>
+      <td class='confluenceTd'>This field references    the item code in the item object.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemAttachmentCode</strong></td>
+      <td class='confluenceTd'>This field denotes the unique    code to identify the item attachment within the item.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Type</strong></td>
+      <td class='confluenceTd'>This field references    the relation type code in the relation type object. This field defines the relation type between the item and the item attachment.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'>This field represents the item attachment name.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'><p>This field indicates the state of the object, which can be one of the following:</p>
+        <ul>
+          <li> definition  (editable)</li>
+          <li> active (not editable)</li>
+        </ul></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>startDate</strong></td>
+      <td class='confluenceTd'><p>This field denotes the start date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>endDate</strong></td>
+      <td class='confluenceTd'><p>This field represents the optional end date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Cancel</strong></td>
+      <td class='confluenceTd'><p>This field takes a Boolean value.    If the item extends another item and this field is set to true, this attachment is    considered  invalid for the extended item.</p></td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Label</strong></td>
+      <td class='confluenceTd'>This field contains the multilingual label for the item attachment.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createdBy</strong></td>
+      <td class='confluenceTd'>This field assigns an owner to the object. By default, the  owner is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was created. By default, the  create date is set as the current date and takes  <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updatedBy</strong></td>
+      <td class='confluenceTd'>This field specifies the user that last changed the object.  By default, the user is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updateDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was last updated. By default,  the update date is set to the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="itemAttribute"></a>Item Attribute</h3>
+<p>This object defines an     attribute (property) for either an item or an item relation.</p>
+<p>The following table describes the object's field names, their descriptions, and whether these fields are mandatory:</p>
+<table width="1083" class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th width="155" class='confluenceTh'>Field Name</th>
+      <th width="780" class='confluenceTh'>Description</th>
+      <th width="132" class='confluenceTh'>Mandatory?</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>catalogObjectType</strong></td>
+      <td class='confluenceTd'>This field indicates    the type of object involved in the association. It can be either an item or an item association.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemCode</strong></td>
+      <td class='confluenceTd'>This field references    the item code in the item object.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemRelationCode</strong></td>
+      <td class='confluenceTd'>This field references    the item relation code from the item relation object. If the type is association, the item    relation code specifies the item relation that this attribute belongs to.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>attributeCode</strong></td>
+      <td class='confluenceTd'>This field references    the attribute code from the attribute object. This attribute provides the data type    definition for the item attribute.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemAttributeCode</strong></td>
+      <td class='confluenceTd'>This field represents the unique    code to identify the item attribute within the item.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>startDate</strong></td>
+      <td class='confluenceTd'><p>This field denotes the start date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>endDate</strong></td>
+      <td class='confluenceTd'><p>This field represents the optional end date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'> This field represents the item attribute name.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'><p>This field indicates the state of the object, which can be one of the following:</p>
+        <ul>
+          <li> definition  (editable)</li>
+          <li> active (not editable)</li>
+        </ul></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Sequence</strong></td>
+      <td class='confluenceTd'>This field specifies an integer value, which indicates the order of the item attributes within the item.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Label</strong></td>
+      <td class='confluenceTd'>This field contains the multilingual label for the item attribute.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>isProperty</strong></td>
+      <td class='confluenceTd'>This field accepts a Boolean value. If it is true, the attribute is a property, meaning that the default value has to be initialized within the item attribute description. This value is not editable in runtime.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>defaultValue</strong></td>
+      <td class='confluenceTd'>This field provides an initial value for the item attribute.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Cancel</strong></td>
+      <td class='confluenceTd'>This field accepts a Boolean value. If the item extends another item and this field is set to true, this attribute is considered invalid for the extended item.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createdBy</strong></td>
+      <td class='confluenceTd'>This field assigns an owner to the object. By default, the  owner is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was created. By default, the  create date is set as the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updatedBy</strong></td>
+      <td class='confluenceTd'>This field specifies the user that last changed the object.  By default, the user is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updateDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was last updated. By default,  the update date is set to the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="itemCharge"></a>Item Charge</h3>
+<p>This object records the association between    a charge type and a catalog item, item group, or item relation. This entity drives the pricing for an item.</p>
+<p>The following table describes the object's field names, their descriptions, and whether these fields are mandatory:</p>
+<table width="1083" class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th width="155" class='confluenceTh'>Field Name</th>
+      <th width="780" class='confluenceTh'>Description</th>
+      <th width="132" class='confluenceTh'>Mandatory?</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>catalogObjectType</strong></td>
+      <td class='confluenceTd'><p>This field indicates    one of the following object types involved in the association:</p>
+        <ul>
+          <li>Item</li>
+          <li>Group</li>
+          <li>Item    relation</li>
+        </ul></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemCode</strong></td>
+      <td class='confluenceTd'>This field references    the item code in the item object.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemRelationCode</strong></td>
+      <td class='confluenceTd'>If    the type is item relation, this field refers to the item relation code in the item    relation. </td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemGroupCode</strong></td>
+      <td class='confluenceTd'>If    the type is group, this field refers to the item group code in the item group.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>chargeTypeCode</strong></td>
+      <td class='confluenceTd'>This field refers    to the charge type code in the charge type object. It indicates the charge type that    needs to be used in this relationship.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemChargeCode</strong></td>
+      <td class='confluenceTd'>This field contains the unique    code to identify the item charge within the item.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>startDate</strong></td>
+      <td class='confluenceTd'><p>This field denotes the start date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>endDate</strong></td>
+      <td class='confluenceTd'><p>This field represents the optional end date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'><p>This field indicates the state of the object, which can be one of the following:</p>
+        <ul>
+          <li> definition  (editable)</li>
+          <li> active (not editable)</li>
+          </ul></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'> This field represents the item charge name.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>sequence</strong></td>
+      <td class='confluenceTd'>This field specifies the order in which the item charge is applied to the object.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Label</strong></td>
+      <td class='confluenceTd'>This field contains the multilingual label for the item charge.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Cancel</strong></td>
+      <td class='confluenceTd'>This field accepts a Boolean value. If the item extends another item and this field is set to true, this charge is considered invalid for the extended item.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createdBy</strong></td>
+      <td class='confluenceTd'>This field assigns an owner to the object. By default, the  owner is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was created. By default, the  create date is set as the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updatedBy</strong></td>
+      <td class='confluenceTd'>This field specifies the user that last changed the object.  By default, the user is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updateDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was last updated. By default,  the update date is set to the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="itemDescription"></a>Item Description</h3>
+<p>This    entity allows you to associate descriptions with an item object. Based on the context,    you  can decide which description to display.</p>
+<p>The following table describes the object's field names, their descriptions, and whether these fields are mandatory:</p>
+<table width="1083" class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th width="155" class='confluenceTh'>Field Name</th>
+      <th width="780" class='confluenceTh'>Description</th>
+      <th width="132" class='confluenceTh'>Mandatory?</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Item    Code</strong></td>
+      <td class='confluenceTd'>This field references    the item code in the item object.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemDescriptionCode</strong></td>
+      <td class='confluenceTd'><p>This field contains the unique    code to identify the item description within the item.</p></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Description</strong></td>
+      <td class='confluenceTd'>This field denotes the multilingual description text.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>Type</strong></td>
+      <td class='confluenceTd'><p>This field references    the relation type code in the relation type object. It defines the type of relation    between the item and the item description.</p></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>startDate</strong></td>
+      <td class='confluenceTd'><p>This field denotes the start date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>endDate</strong></td>
+      <td class='confluenceTd'><p>This field represents the optional end date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'><p>This field indicates the state of the object, which can be one of the following:</p>
+        <ul>
+          <li> definition  (editable)</li>
+          <li> active (not editable)</li>
+        </ul></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Cancel</strong></td>
+      <td class='confluenceTd'>This field accepts a Boolean value. If the item extends another item and this field is set to true, this description is considered invalid for the extended item.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createdBy</strong></td>
+      <td class='confluenceTd'>This field assigns an owner to the object. By default, the  owner is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was created. By default, the  create date is set as the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updatedBy</strong></td>
+      <td class='confluenceTd'>This field specifies the user that last changed the object.  By default, the user is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updateDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was last updated. By default,  the update date is set to the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="itemGroup"></a>Item Group</h3>
+<p>The item group is     a special kind of relation. While standard relations are between two items, a    group relation is between one item and a group of items.</p>
+<p>The following table describes the object's field names, their descriptions, and whether these fields are mandatory:</p>
+<table width="1089" class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th width="155" class='confluenceTh'>Field Name</th>
+      <th width="780" class='confluenceTh'>Description</th>
+      <th width="132" class='confluenceTh'>Mandatory?</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemCode</strong></td>
+      <td class='confluenceTd'>This field references the   item code in the item object.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>itemGroupCode</strong></td>
+      <td class='confluenceTd'>This field denotes the unique    code to identify the item group within the item.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Type</strong></td>
+      <td class='confluenceTd'>This field references    the relation type code in the relation type object. It defines the type of relation    between the item and the item group.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>startDate</strong></td>
+      <td class='confluenceTd'><p>This field denotes the start date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>endDate</strong></td>
+      <td class='confluenceTd'><p>This field represents the optional end date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'><p>This field indicates the state of the object, which can be one of the following:</p>
+        <ul>
+          <li> definition  (editable)</li>
+          <li> active (not editable)</li>
+          </ul></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'> This field represents the item group name.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>minCardinality</strong></td>
+      <td class='confluenceTd'>This field denotes the minimum    number of items that are in the group.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>maxCardinality</strong></td>
+      <td class='confluenceTd'>This field specifies the maximum    number of items that are in the group.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Label</strong></td>
+      <td class='confluenceTd'>This field contains the multilingual label for the item group.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Cancel</strong></td>
+      <td class='confluenceTd'>This field accepts a Boolean value. If the item extends another item and this field is set to true, this group is considered invalid for the extended item.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createdBy</strong></td>
+      <td class='confluenceTd'>This field assigns an owner to the object. By default, the  owner is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was created. By default, the  create date is set as the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updatedBy</strong></td>
+      <td class='confluenceTd'>This field specifies the user that last changed the object.  By default, the user is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updateDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was last updated. By default,  the update date is set to the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="itemGroupTarget"></a>Item Group Target</h3>
+<p>This entity specifies the target of the item group. It can refer to other item    relations within the item or a relation type. For a relation type, all    item relations within the item that satisfy the relation type criteria are    eligible members of the group.</p>
+<p>The following table describes the object's field names, their descriptions, and whether these fields are mandatory:</p>
+<table width="1089" class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th width="155" class='confluenceTh'>Field Name</th>
+      <th width="780" class='confluenceTh'>Description</th>
+      <th width="132" class='confluenceTh'>Mandatory?</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemCode</strong></td>
+      <td class='confluenceTd'>This field references    the item code in the item object.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemGroupCode</strong></td>
+      <td class='confluenceTd'> This field references the   item group code from the item group. </td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>startDate</strong></td>
+      <td class='confluenceTd'><p>This field denotes the start date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>itemRelationCode</strong></td>
+      <td class='confluenceTd'>This field refers    to the item relation code in the item relation. When specified, the item relation    becomes a part of the item group.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>relationTypeCode</strong></td>
+      <td class='confluenceTd'>This field refers    to the relation type code in the relation type object. When specified, the targets of    the item group are item relations that have the same relation type as the one    specified.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createdBy</strong></td>
+      <td class='confluenceTd'>This field assigns an owner to the object. By default, the  owner is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was created. By default, the  create date is set as the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updatedBy</strong></td>
+      <td class='confluenceTd'>This field specifies the user that last changed the object.  By default, the user is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updateDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was last updated. By default,  the update date is set to the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="itemHierarchy"></a>Item Hierarchy</h3>
+<p>This object implements an M:N relationship    between catalog items and catalog hierarchy. </p>
+<p>The following table describes the object's field names, their descriptions, and whether these fields are mandatory:</p>
+<table width="1089" class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th width="155" class='confluenceTh'>Field Name</th>
+      <th width="780" class='confluenceTh'>Description</th>
+      <th width="132" class='confluenceTh'>Mandatory?</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemCode</strong></td>
+      <td class='confluenceTd'>This field references    the item code in the item object.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>hierarchyCode</strong></td>
+      <td class='confluenceTd'>This field references the   hierarchy code in the catalog hierarchy.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'><p>This field indicates the state of the object, which can be one of the following:</p>
+        <ul>
+          <li> definition  (editable)</li>
+          <li> active (not editable)</li>
+        </ul></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>startDate</strong></td>
+      <td class='confluenceTd'><p>This field denotes the start date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>endDate</strong></td>
+      <td class='confluenceTd'><p>This field represents the optional end date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createdBy</strong></td>
+      <td class='confluenceTd'>This field assigns an owner to the object. By default, the  owner is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was created. By default, the  create date is set as the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>name</strong></td>
+      <td class='confluenceTd'>        This field contains the object's name</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updatedBy</strong></td>
+      <td class='confluenceTd'>This field specifies the user that last changed the object.  By default, the user is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updateDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was last updated. By default,  the update date is set to the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="itemImage"></a>Item Image</h3>
+<p>This entity stores image files and associates them with a catalog item. </p>
+<p>The following table describes the object's field names, their descriptions, and whether these fields are mandatory:</p>
+<table width="1089" class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th width="155" class='confluenceTh'>Field Name</th>
+      <th width="780" class='confluenceTh'>Description</th>
+      <th width="132" class='confluenceTh'>Mandatory?</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemCode</strong></td>
+      <td class='confluenceTd'>This field references the   item code in the item object.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemImageCode</strong></td>
+      <td class='confluenceTd'>This field denotes the unique    code to identify the item image within the item.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Type</strong></td>
+      <td class='confluenceTd'>This field references    the relation type code in the relation type object. It defines the type of relation    between the item and the item image.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'><p>This field indicates the state of the object, which can be one of the following:</p>
+        <ul>
+          <li> definition  (editable)</li>
+          <li> active (not editable)</li>
+          </ul></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>startDate</strong></td>
+      <td class='confluenceTd'><p>This field denotes the start date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>endDate</strong></td>
+      <td class='confluenceTd'><p>This field represents the optional end date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'> This field represents the name of the item image.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>imageType</strong></td>
+      <td class='confluenceTd'>This field specifies the MIME    type of the image (for example, jpeg, gif, and so on).</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>imageSize</strong></td>
+      <td class='confluenceTd'><p>This field indicates the enumeration    that has one of the following values:</p>
+        <ul>
+          <li>Normal</li>
+          <li>Large</li>
+        </ul></td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Label</strong></td>
+      <td class='confluenceTd'>This field contains the multilingual label for the item image.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Cancel</strong></td>
+      <td class='confluenceTd'>This field accepts a Boolean value. If the item extends another item and this field is set to true, this image is considered invalid for the extended item.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createdBy</strong></td>
+      <td class='confluenceTd'>This field assigns an owner to the object. By default, the  owner is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was created. By default, the  create date is set as the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updatedBy</strong></td>
+      <td class='confluenceTd'>This field specifies the user that last changed the object.  By default, the user is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updateDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was last updated. By default,  the update date is set to the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="itemRelation"></a>Item Relation</h3>
+<p>This entity defines the relationship between catalog items. </p>
+<p>The following table describes the object's field names, their descriptions, and whether these fields are mandatory:</p>
+<table width="1089" class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th width="155" class='confluenceTh'>Field Name</th>
+      <th width="780" class='confluenceTh'>Description</th>
+      <th width="132" class='confluenceTh'>Mandatory?</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemCode</strong></td>
+      <td class='confluenceTd'>This field references    the item code in the item object. This field specifies the source item of the relationship.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemRelationTarget</strong></td>
+      <td class='confluenceTd'>This field references    the item code in the item object. This field specifies the target item of the relationship.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemRelationCode</strong></td>
+      <td class='confluenceTd'>This field represents the unique    code to identify the item relation within the item.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Type</strong></td>
+      <td class='confluenceTd'>This field references    the relation type code in the relation type object. This field defines the type of relation    between the two items.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'> This field represents the name of the item relation.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'><p>This field indicates the state of the object, which can be one of the following:</p>
+        <ul>
+          <li> definition  (editable)</li>
+          <li> active (not editable)</li>
+        </ul></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>startDate</strong></td>
+      <td class='confluenceTd'><p>This field denotes the start date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>endDate</strong></td>
+      <td class='confluenceTd'><p>This field represents the optional end date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Sequence</strong></td>
+      <td class='confluenceTd'>This field controls    the order of the item relation within the item.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>minQuantity</strong></td>
+      <td class='confluenceTd'>This field denotes the minimum    number of items in the relation.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>maxQuantity</strong></td>
+      <td class='confluenceTd'>This field represents the maximum    number of items in the relation.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Label</strong></td>
+      <td class='confluenceTd'>This field contains the multilingual label for the item relation.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Cancel</strong></td>
+      <td class='confluenceTd'>This field accepts a Boolean value. If the item extends another item and this field is set to true, this relation is considered invalid for the extended item.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createdBy</strong></td>
+      <td class='confluenceTd'>This field assigns an owner to the object. By default, the  owner is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was created. By default, the  create date is set as the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updatedBy</strong></td>
+      <td class='confluenceTd'>This field specifies the user that last changed the object.  By default, the user is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updateDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was last updated. By default,  the update date is set to the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="itemRule"></a>Item Rule</h3>
+<p>This entity records the M:N relationship between catalog objects and rules. The rule can be either an existing catalog rule (that is, a global rule) or a private script defined within this item rule object. </p>
+<p>The following table describes the object's field names, their descriptions, and whether these fields are mandatory:</p>
+<table width="1089" class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th width="155" class='confluenceTh'>Field Name</th>
+      <th width="780" class='confluenceTh'>Description</th>
+      <th width="132" class='confluenceTh'>Mandatory?</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemRuleCode</strong></td>
+      <td class='confluenceTd'>This field represents the unique    code to identify the item rule within the item.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>catalogObjectType</strong></td>
+      <td class='confluenceTd'><p>The catalog object type can be    one of the following:</p>
+        <ul>
+          <li>Item</li>
+          <li>Tax model</li>
+          <li>Charge type</li>
+          <li>Catalog hierarchy</li>
+          <li>Restriction</li>
+          <li>Item    relation</li>
+        </ul></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>catalogObjectCode</strong></td>
+      <td class='confluenceTd'><p>If the type    is not item, the catalog object code contains one of the following:</p>
+        <ul>
+          <li>Tax model code</li>
+          <li>Charge type code</li>
+          <li>Catalog hierarchy code</li>
+          <li>Restriction name</li>
+          <li>Item relation code</li>
+        </ul></td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>itemCode</strong></td>
+      <td class='confluenceTd'>This field references    the item code in the item object.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>ruleName</strong></td>
+      <td class='confluenceTd'>Is    this field is specified, it references the rule name of an existing catalog rule.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>startDate</strong></td>
+      <td class='confluenceTd'><p>This field denotes the start date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="27" class='confluenceTd'><strong>endDate</strong></td>
+      <td class='confluenceTd'><p>This field represents the optional end date for the object in <em>YYYY-MM-DD</em> format.</p></td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Status</strong></td>
+      <td class='confluenceTd'><p>This field indicates the state of the object, which can be one of the following:</p>
+        <ul>
+          <li> definition  (editable)</li>
+          <li> active (not editable)</li>
+        </ul></td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Name</strong></td>
+      <td class='confluenceTd'>This field contains the multilingual label for the item rule.</td>
+      <td class='confluenceTd'>Yes</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'><strong>Type</strong></td>
+      <td class='confluenceTd'>This field references    the relation type code in the relation type object. This field defines the type of relation    between the item and item rule.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>messageCode</strong></td>
+      <td class='confluenceTd'>This field denotes the error    code that displays when the rule fails.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>itemRuleScript</strong></td>
+      <td class='confluenceTd'>If    the item rule does not access a global rule, this field provides the catalog    script that must be evaluated.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Label</strong></td>
+      <td class='confluenceTd'>This field contains the multilingual label for the item rule.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Sequence</strong></td>
+      <td class='confluenceTd'>This field specifies the order in which the rule is evaluated.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>Cancel</strong></td>
+      <td class='confluenceTd'>This field accepts a Boolean value. If the item extends another item and this field is set to true, this rule is considered invalid for the extended item.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createdBy</strong></td>
+      <td class='confluenceTd'>This field assigns an owner to the object. By default, the  owner is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>createDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was created. By default, the  create date is set as the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updatedBy</strong></td>
+      <td class='confluenceTd'>This field specifies the user that last changed the object.  By default, the user is set to <em>upadmin</em>.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+    <tr>
+      <td height="25" class='confluenceTd'><strong>updateDate</strong></td>
+      <td class='confluenceTd'>This field denotes the date that the object was last updated. By default,  the update date is set to the current date and takes <em>YYYY-MM-DDThh:mm:ss</em> as its format.</td>
+      <td class='confluenceTd'>No</td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p></td>
+</tr>
+</body>
+</html>

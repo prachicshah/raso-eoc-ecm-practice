@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Change Controls</title>
+<link rel="StyleSheet" href="..\..\site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style>
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+
+<!-- <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF"> -->
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h2>Change Controls</h2>
+<p>The Catalog implements powerful change mechanism which guarantees the integrity of the Catalog definitions. Its task is to allow dynamic changes in the Catalog definitions without any interruption of the work of the Catalog server and client applications.
+  From a change viewpoint the Catalog elements fall in four major groups:</p>
+<ul>
+  <li> Items – Catalog items and their associations</li>
+   <li> Non-versioned objects – Catalog objects that do not have versions: attribute types, association types and Catalog context type.</li>
+    <li>Catalog hierarchy tree elements – tree nodes, tree node children and tree node items.</li>
+    <li>Versioned objects – All Catalog versioned objects except items and item associations.</li>
+ </ul>
+<p>The change control mechanism is implemented through projects. Projects are groups of elements. The elements of the projects as well the projects themselves have a status. All catalog elements have a life span that is defined with a start and end date.
+  The explanation of the change control mechanism below uses the term “change�? for any possible modification of the Catalog definition data. Any change can potentially have impact on the behavior of the Catalog client and server applications. However from change control view point the changes fall in two categories:</p>
+<ul>
+  <li> Adding new elements</li>
+  <li> Changing existing elements</li>
+    </ul>
+    <p>The controlled changes are done by the Catalog Designer application  through the Project mechanism. All changes in well designed and run Catalog environment should be controlled changes.</p>
+<p>The controlled changes apply to any group of Catalog elements – versioned and non-versioned objects and Catalog items. The Project mechanism makes sure that the changes will become visible for all Catalog client and server applications at the same moment which is specified within the project.</p>
+<h3>How does change control work?</h3>
+<p>To make changes to a controlled environment, the following steps are taken:</p>
+<ol>
+  <li>First a project is created.  The status of the project is "definition" by default.</li>
+<li> The newly created project is Opened. </li>
+<li>Project changes are made.  For example, create a new Item for this project and new attributes for this item.  Associate the attributes to this item.</li>
+<li>Once the project is ready and has been approved, select the project and change the status of the project to Active.  This will make the newly created item and its attributes available for production.</li>
+</ol>
+<p><strong>Notes:</strong></p>
+<ul>
+  <li> The project needs to be activated at least 1 hour before the project effective   date.</li>
+  <li>The start date of all changes under the project must be <em>after</em> the   project effective date.</li>
+</ul>
+</table>
+</td>
+</tr>
+</body>
+</html>

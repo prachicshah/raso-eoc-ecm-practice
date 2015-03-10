@@ -1,0 +1,37 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>MQ listener that receives a raw string with no XML</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+	<tr>
+		<td class="pagebody" style="padding-left: 0px; padding-top: 0px; 
+ padding-right: 0px; padding-bottom: 0px;" valign="top">
+			 
+			<h3>Implement an MQ Listener that Receives a Raw String</h3>
+		<p>The MQ service provider allows you to implement an MQ listener that receives a raw string (that is, with no XML) by following these steps:</p>
+		<ol>
+		  <li>In your MQ binding, ensure that the <strong>Provider</strong> field is set to <strong>MQ</strong>.</li>
+		  <li>Double-click the <strong>encodingStyle</strong> attribute to launch the Attributes dialog. Click the encodingStyle field's drop-down menu and select <strong>text</strong>. Click the <strong>OK</strong> button to continue.<br>
+		    <br>
+		    <img src="mqListenerEncodingStyle.png" alt="MQ listener - encodingStyle set to text" border="1" /><br>
+		    <br>
+          </li>
+		  <li>Define the listener <strong>Script</strong> parameter as a string.<br>
+		    <br>
+	      <img src="mqListenerScriptString.png" alt="Define listener Script field as a String"/><br>
+	      <br>
+          </li>
+		  <li>Save your metadata changes.<br>
+		    <br>
+	      </li>
+		</ol></td>
+	</tr>
+</table>
+</body>
+</html>

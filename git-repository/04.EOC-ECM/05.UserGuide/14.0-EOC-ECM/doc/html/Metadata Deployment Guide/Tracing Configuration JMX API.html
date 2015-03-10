@@ -1,0 +1,163 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Tracing Configuration JMX API</title>
+<link rel="StyleSheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h3>Tracing configuration JMX API</h3>
+The  JMX API supports the following commands:<br>
+<br>
+<table class='confluenceTable' border cellpadding=1>
+  <tbody>
+    <tr>
+      <th width="111" class='referenceTh'>JMX Method</th>
+      <th width="354" class='referenceTh'>Description</th>
+      <th width="391" class='referenceTh'>Parameters</th>
+      <th width="675" class='referenceTh'>Returns</th>
+    </tr>
+    <tr>
+      <td class='referenceTd'>addTraceInterface</td>
+      <td class='referenceTd'>Adds or activates an interface for public  activation.</td>
+      <td class='referenceTd'><ul>
+        <li>interface<br>
+          The interface name defined by the application.</li>
+      </ul></td>
+      <td class='referenceTd'><p>Returns void. </p></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>addTraceObject</td>
+      <td class='referenceTd'>Adds a trace object to an existing trace job. When  matching a trace request, trace objects are added using the AND operation.</td>
+      <td class='referenceTd'><ul>
+        <li>traceId<br>
+          The trace identifier of the job.<br>
+          <br>
+          </li>
+        <li>traceType<br>
+          The trace field type that requires matching.<br>
+          <br>
+          </li>
+        <li>traceValue<br>
+          The trace value to match.<br>
+          <br>
+          </li>
+        <li>matchType<br>
+          The field matching type.</li>
+        </ul></td>
+      <td class='referenceTd'><p>Returns true if the trace object is successfully  added. Otherwise, false is returned.</p></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>createTraceJob</td>
+      <td class='referenceTd'>Creates a new trace job.</td>
+      <td class='referenceTd'><ul>
+        <li>interface<br>
+          The trace activation interface.<br>
+          <br>
+          </li>
+        <li>start<br>
+          The trace period start representing when the trace job is valid.<br>
+          <br>
+          </li>
+        <li>end<br>
+          Trace period end representing when the trace job is valid.<br>
+          <br>
+          </li>
+        <li>coverage<br>
+          Trace coverage, which takes either the <strong>LOCAL</strong> or <strong>GLOBAL</strong> value.</li>
+        </ul></td>
+      <td class='referenceTd'>Trace job ID that the AVM generates and returns.</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>deleteTraceJob</td>
+      <td class='referenceTd'>Deletes an existing trace job.</td>
+      <td class='referenceTd'><ul>
+        <li>traceId<br>
+          The trace identifier of the job.</li>
+        </ul></td>
+      <td class='referenceTd'>Returns true if the trace job is successfully deleted.  Otherwise, false is returned if the trace job does not exist.</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>listInterfaces</td>
+      <td class='referenceTd'>Returns a list of public activation interfaces.</td>
+      <td class='referenceTd'>No parameters.</td>
+      <td class='referenceTd'><p>Returns a string array of interface names that have  been activated locally. </p></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>listTraceJob</td>
+      <td class='referenceTd'>Displays or returns a list of existing trace jobs  with their respective parameters.</td>
+      <td class='referenceTd'>No parameters.</td>
+      <td class='referenceTd'><p>Returns a string array containing  trace job details. For a given trace job with index <em>n</em>, its details are found in the <em>n</em> to (<em>n</em> + 4) elements of the array.</p>
+        <p>          For each job, the following values  are returned:</p>
+        <ul>
+          <li>Trace job ID</li>
+          <li>Interface</li>
+          <li>Period start</li>
+          <li>Period end</li>
+          <li>Coverage</li>
+          </ul></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>listTraceObjects</td>
+      <td class='referenceTd'>Displays a list of trace objects for an existing  trace job.</td>
+      <td class='referenceTd'><ul>
+        <li>traceId<br>
+          The trace identifier of the job.</li>
+      </ul></td>
+      <td class='referenceTd'><p>Returns a string array containing  trace job details. For a given trace job with index <em>n</em>, its details are found in the <em>n</em> to (<em>n</em> + 2) elements of the array.<br>
+        For each object, the following  values are returned:</p>
+        <ul>
+          <li>Trace type</li>
+          <li>Trace value</li>
+          <li>Match  type</li>
+        </ul></td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>removeTraceObject</td>
+      <td class='referenceTd'>Removes a trace object from a job.</td>
+      <td class='referenceTd'><ul>
+        <li>traceId<br>
+          The trace identifier of the job.<br>
+          <br>
+          </li>
+        <li>traceType<br>
+          The trace field type.</li>
+        </ul></td>
+      <td class='referenceTd'>Returns true if the trace object is successfully  removed. Otherwise, false is returned.</td>
+    </tr>
+    <tr>
+      <td class='referenceTd'>UpdateTraceJob</td>
+      <td class='referenceTd'>Updates a list of trace job objects for an existing trace job.</td>
+      <td class='referenceTd'><ul>
+        <li>traceId<br>
+          The trace identifier of the job.<br>
+          <br>
+          </li>
+        <li>interface<br>
+          The trace activation interface.<br>
+          <br>
+          </li>
+        <li>start<br>
+          The trace period start representing when the trace job is valid.<br>
+          <br>
+          </li>
+        <li>end<br>
+          Trace period end representing when the trace job is valid.<br>
+          <br>
+          </li>
+        <li>coverage<br>
+          Trace coverage, which takes either the <strong>LOCAL</strong> or <strong>GLOBAL</strong> value. </li>
+        </ul></td>
+      <td class='referenceTd'>If the trace job cannot be found by its trace ID, this operation does not perform any action. If the trace job is found, the corresponding trace objects that belong to this trace jobs are removed.</td>
+    </tr>
+  </tbody>
+</table>
+<p>For more information, see the <a href="../JavaScripting in Order Care/index.html">JavaScript documentation</a>.</p></td>
+</tr>
+</table>
+</body>
+</html>

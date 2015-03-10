@@ -1,0 +1,83 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Display Forms at Runtime</title>
+<link rel="StyleSheet" href="../../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Display Forms at Runtime</h2>
+<p>Forms represent fragments of a Web page. These fragments can represent items such as, menu items, layouts, and fields to name a few. There are a number of  Form Elements that you can use to configure a Form (see <a href="Form Elements Overview.htm">Form Elements Overview</a>). Each elements contains properties that  control the look and feel, as well as the functionality, of the Form element. When you create a top-level or included User Interface object, by default,  <strong>Default</strong> and <strong>Menu</strong> Forms are instantiated under that metadata object. See <a href="../Metadata_Objects/Top-levelUI/Top-Level UI.html">Top-level User Interface Objects</a> for more information about configuring User Interface objects. In addition, you can view Forms at runtime in two different ways:</p>
+<ul>
+  <li>By configuring a Form as part of an application </li>
+  <li>By mapping the Form to a URL </li>
+  </ul>
+<h3>View Forms that are part of an Application</h3>
+<p>To view a Form that is part of an application, complete these steps:</p>
+<ol>
+  <li>In the Navigation Pane, right-click the namespace and add  <strong>New</strong>. </li>
+  <li>In the New Metadata Object menu, select <strong>Presentations &gt; User Interface</strong>.</li>
+  <li>In the New User Interface dialog, type the information for the User Interface.</li>
+  <li>In the Extends list menu, select <em>com.conceptwave.system.Application</em>.</li>
+  <li>Click the <strong>Finish</strong> button.</li>
+  <li>From the Navigation pane, select the User Interface.</li>
+  <li>Select the Menu Form and then right-click it and click <strong>Extend</strong>.</li>
+  <li>The Menu Form appears in the Element Tree pane.</li>
+  <li>Right-click the Menu Form and select <strong>Add</strong>.</li>
+  <li>The Add Element dialog box appears.</li>
+  <li>Select the elements  and then click the <strong>Finish</strong> button.</li>
+  <li>The Form element appears in the Element Tree pane beneath the Form object.</li>
+  </ol>
+  <h3>Test the Form</h3>
+  <p>To test the Form, complete the following steps:</p>
+  <ol>
+  <li>From the main menu, click <strong>Runtime &gt; Run</strong>. The Framework starts.</li>
+  <li>Open a Web browser and in the address bar, type the URL of the application. For example, http://&lt;host&gt;:&lt;port&gt;/&lt;application name&gt;</li>
+  <li>The Select Application page appears.</li>
+  <li>Select the application that you want to view and click <strong>Select</strong>.
+    <br>
+    <br>
+
+<img src="form_application.png" align="absmiddle" border="1" alt="Select an application to open in runtime" />
+  </li>
+  </ol>
+  
+  
+<p><strong>Note:</strong> By default, the Administration application appears in the Select Application dialog box.</p>
+<h3><a name="mapped"></a>View a Form that is mapped to a URL</h3>
+<p>Before you begin, create a Page in the same User Interface of the Form. Add a Form Frame to the Page. In the Form Frame properties, add a reference to the Form.</p>
+<ol>
+  <li>Right-click the metadata<strong> </strong>root node.</li>
+  <li>Click the  <strong>URL Mapping</strong> tab.</li>
+  <li>From the toolbar, click the Add button.</li>
+  <li>In the Add Url Map Item, type the name of the Form that you create preceded by a slash &quot;/&quot;.</li>
+  <li>From the <strong>Controller</strong> field, select the User Interface of the Page that you want mapped. </li>
+  <li>Click <strong>Save</strong>. </li>
+  </ol>
+<h3>Test the URL Mapping</h3>
+<p>To test the URL mapping, complete the following steps:</p>
+<ol>
+  <li>From the main menu, click <strong>Runtime &gt; Run</strong>. The Framework starts.</li>
+  <li>Open a Web browser and in the address bar, type the URL of the application. In the application name, type the Form URL. For example, http://&lt;host&gt;:&lt;port&gt;/cwf/&lt;Form_Name&gt;.</li>
+  <li>The login page appears.</li>
+  <li>Login to the application and click <strong>Login</strong>. </li>
+  <li>The content of the Form appears in the browser.
+    <br>
+    <br>
+<img src="form_urlmap.png" align="absmiddle" border="1" alt="Form contents in browser" />
+  </li>
+</ol>
+  
+  
+<p>For more information, see <a href="../Metadata_Objects/Metadata Root/Metadata Root URL Mapping.html">Metadata Root URL Mapping</a>.</p></td>
+</tr>
+</table>
+
+
+</body>
+</html>

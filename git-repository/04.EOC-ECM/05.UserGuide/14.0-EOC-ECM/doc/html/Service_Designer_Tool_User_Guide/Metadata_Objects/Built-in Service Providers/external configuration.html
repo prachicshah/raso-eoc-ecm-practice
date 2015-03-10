@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>External Configuration</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>External Configuration</h3>
+<h4>System Parameters</h4>
+<p>Default values for portions of the cluster and node configuration can be read using JNDI allowing for configuration to taken from an external
+  source and configuration of an entire system to be centralized. That source must conform to the product naming convention. The following configuration elements can be configured externally:</p>
+
+  <ul>
+    <li>Physical database connections </li>
+    <li> Interface port locations </li>
+  </ul>
+  <h4>LDAP</h4>
+  <p>LDAP sources must conform to the following schema: </p><p><img src="external_configuration.png" align="absmiddle" border="0" alt="" /></p>
+
+<table width="969" class='confluenceTable' border cellpadding="1">
+  <tbody>
+<tr>
+<th width="161" class='confluenceTh'>Field</th>
+<th width="156" class='confluenceTh'>Cluster Level</th>
+<th width="145" class='confluenceTh'>Node Level</th>
+<th width="487" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Type</strong><br></td>
+  <td class='confluenceTd'>Editable<br></td>
+  <td class='confluenceTd'>N\A</td>
+  <td class='confluenceTd'>JNDI Type name. Currently LDAP is supported.<br></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>URL<br>
+  </strong></td>
+  <td class='confluenceTd'>Editable<br></td>
+  <td class='confluenceTd'>N\A</td>
+  <td class='confluenceTd'>JNDI type specific URL.<br></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Username Token<br>
+    Password<br>
+  </strong></td>
+  <td class='confluenceTd'>Editable<br></td>
+  <td class='confluenceTd'>N\A</td>
+  <td class='confluenceTd'>JNDI type specific identifier<br></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Signing Certificate Alias<br>
+  </strong></td>
+  <td class='confluenceTd'>Editable<br></td>
+  <td class='confluenceTd'>N\A</td>
+  <td class='confluenceTd'>JNDI type specific password for specified principal<br></td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

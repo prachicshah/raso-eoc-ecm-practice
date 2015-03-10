@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>Listener Support</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Listener Support</h2>
+<p>Some of the built-in service providers support listener functionality. This functionality allows your application to provide services to external systems, such as receiving and processing incoming requests. The following service providers support listener functionality:</p>
+<ul>
+<li><a href="jms service provider.html">JMS</a></li>
+<li><a href="MQ Service Provider.html">MQ</a></li>
+<li><a href="soap service provider.html">SOAP</a></li>
+<li><a href="tibco service provider.html">TIBCO</a></li>
+</ul>
+<p>In general, the following steps create a listener. See the articles in this section for specific listener setups for specific service providers.</p>
+<ol>
+<li>Create an <b><a href="../External Services/defining an interface.html">Interface</a></b> with one Operation of type <em>one-way</em> or <em>request-response</em> (Select <em>One-Way</em> or <em>Request-Response</em> in the <b>Operation type</b> combo box).</li>
+<li>Create a <b><a href="../External Services/defining a binding.html">Binding</a></b> that binds this Interface to one of the service providers listed above (Select the Interface in the <b>Interface</b> combo box and the service provider in the <b>Provider</b> combo box).</li>
+<li>Create a Listener <b><a href="../External Services/defining a port.html">Service Port</a></b> for this Binding (Check the <b>Listener</b> check box of the Port properties).</li>
+<li>In the Configuration application, this listener Port can be found and configured on the<b> </b><a href="../../../Configuration_Tool_User_Guide/Configure/System/Services/listeners.html" title="Listeners"><strong>Listeners </strong></a>horizontal tab of the <b>Services</b> vertical tab, as well as in<b> </b><a href="../../../Configuration_Tool_User_Guide/Configure/System/Services/services.html" title="Services"><strong>Services</strong></a> horizontal tab.</li>
+<li>To pass the message to JavaScript for processing, create a Binding that binds the same Interface to the JS (JavaScript) service provider (Select the Interface in the <b>Interface</b> combo box and the <em>JS Service Provider</em> in the <b>Provider</b> combo box). Then, implement the Interface Operation script functions in the <a href="../Built-in Service Providers/js (javascript) service provider.html">JavaScript Binding</a> (Select the <i>Operation</i> <img src="iconOperation.png" alt="" border="0" /> element in the <b>Interface element</b> tree of the Binding properties, and define the <b>Script</b> attribute value in the <b>Element definitions</b> table). Lastly, create a Service Port for this JS Binding (Select the JS Binding in the <b>Binding</b> combo box</li>
+</ol>
+<p><strong>Note: </strong>  For JMS and MQ listeners, the port settings support multiple operations (per queue) under one  port. 
+  However, more than one message queue port cannot be active for the same  operation.</p>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

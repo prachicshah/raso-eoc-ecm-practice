@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Data Type Enumeration</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="DataTypeEnumeration"></a>Data Type Enumeration</h2>
+<p>The <b>Enumeration</b> tab in Data Type is only available to Data Types with Decimal, Integer and String primitive Data Types as base. If an enumeration restriction is needed, define in this tab, the list of valid choices in the enumeration. Otherwise, leave empty in this tab.</p>
+
+<p><b>Note:</b> Enumeration defined in derived types have the base Data Type enumeration upon creation, but the list of choices can be added and removed.</p>
+
+
+<p><img src="dataTypeEnumeration.png" align="absmiddle" border="1" alt="" /></p>
+
+<p>Below is a description of properties in the Enumeration tab:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Finder</b></td>
+<td class='confluenceTd'>Only applicable to Reference Types. This field specifies the Finder to use the valid choices of the enumeration that can be assumed by the Reference Key. The Finder's input shall be of the same metadata object as the one that contains the Reference Key. The Finder's output determines the object type that the Reference Key is referencing. See <a href="data types.html#DataReferenceTypes">documentation on Reference Types</a> for details.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>System DB enum</b></td>
+<td class='confluenceTd'><p>Specifies the system database code table to use to find the valid choices of the enumeration (for example, provState_CA and iso6392 are valid system database code table names that can be used in this field). To create the table, use the <a href="../../../System_Administration_Application_User_Guide/Tools/code tables.html">Code Tables</a> option in the System Administration application.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Enumeration</b></td>
+<td class='confluenceTd'>List of valid values and corresponding descriptions An entry contains:
+<ul>
+<li><b>Code</b>: The data value.</li>
+<li><b>Description</b>: Descriptive text to present to the user.</li>
+<li><b>Active</b>: If not checked, the value is not allowed to be selected from the UI, but may be displayed when viewing existing data.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<html>
+<head>
+<title>Navigation Pane - Resource</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Navigation Pane - Resource</h2>
+<p>The <b>Resources</b> tab of <b>Navigation</b> pane contains all resources available for your project, which consists of:
+<ul>
+<li>all core product resources that are exposed to all projects in Velocity Studio</li>
+<li>all project-specific resources loaded from <b>resources</b> folder of your project directory.</li>
+</ul>
+<h3>Adding Resources</h3>
+<p>Additional Resource files can be added to the metadata by navigating to the metadata Resources folder and simply adding the file to the folder. Once the resource file is added to the Resource folder of the metadata, you will need to re-open the project to see the changes. </p>
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<td class='confluenceTd'><img src="AddResource.png" align="absmiddle" border="0" alt="" /></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>You can also add a resource by doing the following:</p>
+<ol>
+  <li>Click the <strong>Add</strong> button to launch the New Value dialog and fill in the following fields:
+    <ul>
+      <li>A message <strong>ID</strong></li>
+      <li>A <strong> Message</strong></li>
+      <li>A <strong>Description</strong> about the message</li>
+    </ul>
+  </li>
+  <p><img src="navigationResourceAddButton.png" alt="Resource tab - Add button"></p>
+
+  <li>Click the <strong>OK</strong> button to save your information.</li>
+  </ol>
+<h3>Edit Resources</h3>
+<p>You can edit existing resources by double-clicking either an <strong>ID</strong>'s <strong>Message</strong> or Description field an <strong>ID</strong>, and then editing the information. The ID field cannot be changed. Proceed to save your metadata project.</p>
+<p><img src="navigationResourceEdit.png" alt="Reources tab - Editing a resource"></p>
+<h3>Resources Property</h3>
+When a resource is selected in the Resources tab of Velocity Studio, some properties of the resource are displayed:
+
+<br>
+<br>
+<img src="navigationResourceDetail.png" align="absmiddle" border="0" alt="Resource properties" /><br>
+<br>
+
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>URL</b></td>
+<td class='confluenceTd'>Use for metadata referencing.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Path</b></td>
+<td class='confluenceTd'>The file path of the resource.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Last updated</b></td>
+<td class='confluenceTd'>When the file is last updated.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Table below summarizes the resource types that are recognized by Velocity Studio. More description of individual resource types can be found in the sections that follow.</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Resource Type</th>
+<th class='confluenceTh'>File Extensions</th>
+<th class='confluenceTh'>Import Technique</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b><a href="#imageFiles">Image files</a></b></td>
+<td class='confluenceTd'>.gif, .jpeg, .jpg, .png.</td>
+<td class='confluenceTd'><p>Place image files directly into project directory's <b>resource</b> folder and refresh resources tab. </p>
+  <p>The icons in the <em>cwf\resources\cwt\images</em> folder is  replaced with a newer version of icon images. If you want to continue using the former set of icons, you need to extract these images from the build (under old_resources, cwt.jar) into your resources folder under <em>resources\cwt\images</em>.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b><a href="#XSD">XSD files</a></b></td>
+<td class='confluenceTd'>.xsd</td>
+<td class='confluenceTd'>Import <i>XML Schema Definition</i> (XSD) files with <a href="../Service Designer Menu Actions/Import XSD.html"><strong>File > Import > XSD</strong></a> menu command. The files are then stored in <b>schema</b> subfolder of <b>resources</b> folder in project directory.</td>
+<tr>
+<td class='confluenceTd'><b><a href="#WSDL">WSDL files</a></b></td>
+<td class='confluenceTd'>.wsdl</td>
+<td class='confluenceTd'>Import <i>Web Service Description Language</i> (WSDL) files with <a href="../Service Designer Menu Actions/Import WSDL.html"><strong>File > Import > WSDL</strong></a> menu command. The files are then stored in <b>schema</b> subfolder of <b>resources</b> folder in project directory.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b><a href="#CSS">Stylesheets</a></b></td>
+<td class='confluenceTd'>.css</td>
+<td class='confluenceTd'>Place .css files directly into project directory's <b>resource</b> folder and refresh resources tab.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b><a href="#JAR">Archive files</a></b></td>
+<td class='confluenceTd'>.jar</td>
+<td class='confluenceTd'>Place JAR files directly into project directory's <b>resource</b> folder and refresh resources tab.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b><a href="#SystemImagesSub">System Image Substitution List file</a></b></td>
+<td class='confluenceTd'>SystemImagesSub.txt</td>
+<td class='confluenceTd'>Always at the root <b>resource</b> folder of project's directory.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b><a href="Message Resource File.html">Message Resources</a></b></td>
+<td class='confluenceTd'>xml</td>
+<td class='confluenceTd'>These are system generated notes that contain the message resource files for User, Application and System. </td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>All Other File Types</b></td>
+<td class='confluenceTd'>&lt;Any&gt;</td>
+<td class='confluenceTd'>Simply create subfolders and place files in project directory's <b>resource</b> folder and refresh resources tab.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Different resources may collide on the same URL, because:
+<ul>
+<li>project resources may be located at the same relative path as product resources</li>
+<li>project resources may be archive files, where these files may contain arbitrary folders and files in them.</li>
+</ul>
+The following is the order of precedence in resource resolution of the same URL:
+<ol>
+<li>project resource</li>
+<li>project resource in archive files; if resources of the same URL among multiple archives files exist, alphabetical order of the archive filename is used to resolve order (for example, <i>a.jar</i> and <i>b.jar</i> both has <i>logo.gif</i>, then <i>a.jar</i>'s image file is used)</li>
+<li>product resource</li>
+</ol>
+<p>Changes are effective immediately when managing resources in the <b>Resources</b> tab.  The Save command in Velocity Studio does not affect resources. If you have modified/added/deleted files in the project directory's <b>resource</b> folder, you can right-click the top-level <b>Resource</b> node in the tab and click <b>Refresh</b> to reload the updated resources.</p>
+
+<img src="navigationResourceRefresh.png" align="absmiddle" border="0" alt="Refresh resources" />
+<p><strong>Note:</strong> Unlike 4.x and previous predecessors, "Template Resources" no longer exist. Libraries are to be included per project, in <b>Navigation Pane</b>'s <b>Metadata</b> tab, top-level metadata's <b>Library</b> tab.</p>
+
+
+<h4><a name="imageFiles">Image Files</a></h4>
+
+<p>When an image file is selected, the image is shown in image preview.</p>
+
+<img src="navigationResourceImage.png" align="absmiddle" border="0" alt="Images files - preview" />
+
+<p>In addition, you can substitute the original image with another resource image (it is typically done for product images to alter images rendered in framework UI) by selecting the <b>Select Substitution</b> button, and select the replacement image in the <b>Image Resource</b> dialog. The original image is thus substituted as specified, and the image node in the resources tab becomes blue to indicate substituted.</p>
+
+<img src="navigationResourceImageSub.png" align="absmiddle" border="0" alt="Image substitution" />
+
+<p>You can clear the substitution by clicking the <b>Remove Substitution</b> button.</p>
+<p><b>Note:</b> Be aware that all images are cached in client Web browsers. Changes to images made here will only be reflected after subsequent metadata activation OR if the client browser cache is explicitly cleared. For example, in Internet Explorer 8, click <strong>Tools &gt; Internet Options</strong> from the menu bar,  click <b>Delete...</b> in Browsing history, and then select the <b>Temporary Internet files</b> to delete.</p>
+
+<h4><a name="XSD">XSD Files</a></h4>
+
+<p>You can create Data Types and Data Structures based on an XSD resource file into application metadata, by right-clicking  the resource node and select <b>Convert to datastructures</b> to the menu pop-up.</p>
+
+<img src="navigationResourceXSDMenu.png" align="absmiddle" border="0" alt="Convert data types to data structures" />
+
+<p><b>Note</b>: This command is a helper function to accelerate development. Instead of manually creating the corresponding objects, the metadata developer can automatically generate them. When this command is used, certain assumptions are made that may not be valid in all cases. It is recommended that the developer carefully examines the generated objects and does appropriate changes where needed.</p>
+
+<p>Velocity Studio always attempts to use the existing metadata objects before generating new ones. In some cases, Velocity Studio may decide to modify an existing metadata object to fit the required properties, but this will only be done if the modified object is backward compatible with the original object. If a metadata object with the same name already exists in the specified namespace and it cannot be reused or modified, Velocity Studio will generate a new object that has the name of the existing object with a numeric suffix added for uniqueness.</p>
+
+<p>Once the command is selected, The <b>Import XSD Schema</b> dialog appears.</p>
+
+<img src="navigationResourceXSD.png" align="absmiddle" border="0" alt="Import XSD schema" /><br>
+<br>
+
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Category</b></td>
+<td class='confluenceTd'>One of <em>&lt;All&gt;</em>, <em>Data Structures</em> or <em>Data Types</em>. Allows the user to select what type of objects will be imported.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Object(s) to import</b></td>
+<td class='confluenceTd'>Allows the user to select objects that will be imported within the selected <b>Category</b>. If the selected object depends on other objects they will also be imported, regardless of whether they are selected or not.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>All</b></td>
+<td class='confluenceTd'>When clicked, all the objects in the <b>Object(s) to import</b> list will be selected for import.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>None</b></td>
+<td class='confluenceTd'>When clicked, all the objects in the <b>Object(s) to import</b> list will be deselected.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Target namespace</b></td>
+<td class='confluenceTd'><p>The namespace into which the objects will be imported. If <em>&lt;new&gt;</em> is selected then the <b>Create Namespace</b> dialog will open when the <b>Import</b> button is clicked.
+</p>
+  <p> <img src="navigationResourceNSdialog.png" align="absmiddle" border="0" alt="Create a namespace" />    </p>
+  <p>You can define the <b>Name</b>, <b>Label</b> and <b>Namespace</b> properties of the new namespace. When the <b>OK</b> button is clicked, the new namespace will be created in the metadata along with the corresponding objects. <b>Note:</b> If the importing XSD contains a <em>Target namespace</em> element, then the corresponding Namespace must be selected here. If the <em>Target namespace</em> element exists and a corresponding metadata Namespace does not, then the <em>&lt;New Namespace&gt;</em> will appear regardless of what is selected here.</p></td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>URI</b></td>
+<td class='confluenceTd'>Shows the target namespace URI if it is defined in the XSD schema. In this case, if a namespace object with this URI already exists in the metadata, it will be pre-selected in the <b>Target namespace</b> field.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Replace existing objects</b></td>
+<td class='confluenceTd'>If checked, existing objects with the same name and type in the namespace will be replaced with the new one. This is useful when the same file is imported more than one time with different objects selected.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Full Import</b></td>
+<td class='confluenceTd'>If checked, imports all included XSD schemas (for example, external XSD schemas which are referenced will also be imported).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Import</b></td>
+<td class='confluenceTd'>When clicked, creates the selected objects in the metadata.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Close</b></td>
+<td class='confluenceTd'>When clicked, closes the dialog without any action.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Help</b></td>
+<td class='confluenceTd'>When clicked, opens a window with application help.</td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="WSDL">WSDL Files</a></h4>
+
+<p>You can create SOAP interface metadata -- Data Structures (messages), interfaces with operations, bindings and external services with ports -- based on WSDL resource file, by right-clicking the resource node and select <b>Convert to interface</b>.</p>
+
+<img src="navigationResourceWSDLmenu.png" align="absmiddle" border="0" alt="Convert WSDL file to an interface" />
+
+<p>The XSD schema definitions inside the WSDL file will also be processed. The schemas must contain correct namespace definitions and should not refer to any outer schemas except the standard XSD Schema. If the objects defined by the XSD schema belong to namespace(s) that are different from the WSDL target namespace, the user will be prompted for the XSD namespace(s) name and label.</p>
+
+<p><b>Note</b>: This command is a helper function to accelerate development. Instead of manually creating the corresponding objects, the metadata developer can automatically generate them. When this command is used, certain assumptions are made that may not be valid in all cases. It is recommended that the developer carefully examines the generated objects and does appropriate changes where needed.</p>
+
+<p>Velocity Studio always attempts to use the existing metadata objects before generating new ones. In some cases, Velocity Studio may decide to modify an existing metadata object to fit the new requirements, but this will only be done if the modified object is backward compatible with the original object. If a metadata object with the same name already exists in the specified namespace and it cannot be reused or modified, Velocity Studio will generate a new object that has the name of the existing object with a numeric suffix added for uniqueness.</p>
+
+<p>This command does not store location (address) information for <a href="../Metadata_Objects/External Services/defining a port.html">Port</a> metadata, which is stored in Configuration application. To do so, go to <a href="../../Configuration_Tool_User_Guide/Services Services.html">Services</a> page in Configuration application to save the location information in the <i>Port</i> node's <b>Configuration</b> section.</p>
+
+<p>Once the command is selected, The <b>Convert WSDL</b> dialog appears.</p>
+
+<img src="navigationResourceWSDL.png" align="absmiddle" border="0" alt="Convert WSDL" /><br>
+<br>
+
+<table class='confluenceTable'>
+  <tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Namespace</b></td>
+<td class='confluenceTd'>The target namespace where the objects will be imported.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>URI</b></td>
+<td class='confluenceTd'>Shows the target namespace URI if it is defined in the WSDL document. In this case, if a namespace object with this URI already exists in the metadata, it will be pre-selected in the <b>Namespace</b> field.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Replace existing data objects</b></td>
+<td class='confluenceTd'>When checked, existing objects with the same name and type in the namespace will be replaced with the new one. Useful when the same file is imported more than one time with different objects selected.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Process XSD schema</b></td>
+<td class='confluenceTd'>If checked, the XSD schema definitions from the WSDL file will be processed (the data types, object types and Data Structures will be created). If unchecked, they will be ignored.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Import</b></td>
+<td class='confluenceTd'>When clicked, creates selected objects in the metadata.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Cancel</b></td>
+<td class='confluenceTd'>When clicked, closes the dialog without any action.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Help</b></td>
+<td class='confluenceTd'>When clicked, opens a window with application help.</td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="CSS">Stylesheets</a></h4>
+
+<p>Velocity Studio recognizes the stylesheet file in the resource repository, and make the CSS available in <b>Stylesheet</b> drop-down list in managing Forms and Pages, as well as in <b>Style</b> property in Form Elements.</p>
+<p><b>Note</b>: If you are running Velocity Studio while placing a CSS file into the <b>resources</b> folder of your project directory, the project must be re-opened to load the CSS file.</p>
+
+<h4><a name="JAR">Archive Files</a></h4>
+
+<p>Runtime can read into content files in the JAR file. For example, if <i>/dirA/sample.jar</i> contains resource with relative path <i>/dirJAR/a.gif</i>, then this <i>a.gif</i> resource has the path <i>/dirA/dirJAR/a.gif</i> relative to <b>Resource</b> folder of the project directory.<br/><br/>
+The <b>Resources</b> tab does not support browsing through JAR files, however.<br/><br/>
+This JAR file may also include a text file which predefines substitute association. This method is provided as a short-cut to manual substitution. This file is optional, and must meet all conditions below. The file <b>SystemImagesSub.txt</b> at project directory's resource folder is one such example.
+<ul>
+<li>Must be placed in the root of the archive, and be a .txt file.</li>
+<li>Each line must indicate a URL, and URLs will be substituted in pairs: the first in a pair will indicate the original, and second will indicate its substitute.</li>
+<li>Commented lines starting with // will be ignored.</li>
+</ul>
+
+<h4><a name="SystemImagesSub">System Image Substitution List</a></h4>
+
+<p>The file <b>SystemImagesSub.txt</b> stores the list of all image substitutions that is defined in the <b>Resource</b> tab, which is a text file with a pair of URLs in each line: the URL of the original, and then the URL of the substitute.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

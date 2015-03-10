@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Participant Task</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h3>Participant Task</h3>
+<p id="internal-source-marker_0.4337647517160274" >A task can be created in one of the following ways:</p>
+<ul>
+  <li>By a business process</li>
+  <li>Calling the Process.createWorklistAction() method</li>
+  <li>Publishing the WORKLIST_TASK_CREATE  event</li>
+  </ul>
+<p>Regardless of how the task is created, each task is based on the specified a One-Way participant operation responsible for task generation. As a result, each task is associated with a participant and a participant operation, and these metadata objects define the task’s core parameters.</p>
+<p>The task participant defines privileges for the task. A task can be acquired and worked on only by users having privileges specified by participant.</p>
+<p>Participant configuration also defines the distribution of new tasks. If the cwOnPartDistrib() participant method is implemented, the newly created task is automatically assigned to the user returned by this script. Moreover, task assignment can be defined by the Participant <strong>Distribution type</strong> and tasks can be set to be automatically distributed by the system, manually assigned by administrator, or allowed to be selected from a shared queue by the user. See the  Participant documentation for further details.</p>
+<p>The Participant’s <strong>Duration</strong> setting is used to calculate the <strong>Due Date</strong> for tasks.</p>
+<p>Participant interface operations of type <strong>Notification</strong> represent a list of actions that can be performed on the task. See the <em>Task Actions</em> section for further details.</p>
+<p>The participant’s User Interface represents the task’s User Interface. </p>
+<p><strong>Note:</strong> Each participant that is used to create a worklist task <em>must</em> create a User Interface in your metadata. Otherwise, opening and displaying a task  results in an exception. </p></td>
+</tr>
+</table>
+</body>
+</html>

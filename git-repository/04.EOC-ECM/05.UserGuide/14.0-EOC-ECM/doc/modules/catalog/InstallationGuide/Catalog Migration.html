@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Metadata Migration</title>
+<link rel="StyleSheet" href="../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Catalog Migration</h2>
+<p>This guide provides Catalog migration details from releases 4.2 to 5.1.</p>
+
+<p>The metadata storage changed as of product version 5.0 from database to file-system. Thus, migration is mandatory if you have metadata from version 4.2 or earlier versions. Further, the data model and Javascripts have changed, as well as a Rules Engine has been created to apply catalog rules.  There are three steps in the migration process:</p>
+<ul><li>Data Migration</li>
+<li>Metadata Migration</li>
+<li>Business Rule Migration</li>
+</ul>
+<h3>Data Migration</h3>
+
+<p>A catalog data migration scrip is available to migrate data from product version 4.2 to version 5.1. This migration script works for the out-of-the-box data model conversion.  Data Model customizations will require a separate customized conversion script.</p>
+<h3>Metadata Migration</h3>
+<p>The following steps are required to be performed for metadata migrations:</p>
+<ol>
+  <li>Migrate metadata from 4.2 to 5.1</li>
+  <li>Delete Documents associated to Catalog orders in releases 4.x.</li>
+  <li>Modify javascripts with new naming convention and parameters.</li>
+  <li>Review data model changes for updates to extended or customized objects.</li>
+</ol>
+<h4>Migrate metadata from 4.2 to 5.1</h4>
+
+<p>The metadata must be migrated to the latest version of 4.2 (for example,  4.2 SP8 EBF1) before it can be migrated to 5.1.  The product version 4.2 license (<i>cw.lic</i>) must be present as specified in Config file (<i>CwfConfig.xml</i>), in addition to the current product licenses to perform migration. As of  version 5.0, the name of the metadata elements and files are case-insensitive.  Thus during migration, if two objects are found with the same name during the initial metadata conversion to the 5.0 format, Velocity Studio will store the element with a filename with type suffix "err-&quot;.</p>
+<p>Here are the steps:</p>
+<ol>
+<li>Run SQL script <b>prepare50db.sql</b> in <b>\CWOrderCare\DDL\</b> to prepare the database for migration.</li>
+<li>Migrate the database. Prior to version 5.0, there were two Oracle user schemas: <i>ORDER</i> and <i>USER</i> schema. In product version 5.0 and higher, these two schemas are combined into one schema.
+  <p>There are two options for merging the schemas:
+<ul>
+  <li><u>Create synonyms such that the <i>ORDER</i> schema appears to contain everything in <i>USER</i> schema</u>:<br/>
+    There are two SQL scripts -- <b>CW_CWUP_Synonyms.sql</b> and <b>CWUP_CW_Grants.sql</b>, in <b>\CWOrderCare\DDL\</b>. The first script creates synonyms of USER schema for ORDER schema, and the second script grants ORDER schema full access of USER schema.<br/>
+    Change the name of USER and ORDER schema in the <i>define</i> statement of the respective files to your schema names. Then, run <b>CW_CWUP_Synonyms.sql</b> in the ORDER schema, and run <b>CWUP_CW_Grants.sql</b> in the USER schema.  </li>
+  <li><u>Merge the two schemas into one schema</u>:<br/>
+    Use Oracle <i>imp</i> and <i>exp</i> commands to merge <i>USER</i> schema into <i>ORDER</i> schema. (This is because <i>USER</i> schema has less data than <i>ORDER</i> schema.)
+  </li>
+</ul>
+
+<li>Configure Settings in the Configuration application. If you have not already done so in the product<sup></sup> installation, follow the procedure in Installation Guide to <a href="../Installer_User_Guide/order care tools configuration.html">setup initial settings in Configuration application</a>.</li>
+<li>Upgrade database schema. To upgrade database schema to the version, complete these steps:
+  <ol>
+    <li>Start Velocity Studio.</li>
+    <li>Click <b>File > Open Project</b> from the menu bar in Velocity Studio to load metadata project that was migrated from version 4.2.</li>
+    <li>Click <b>Database > Upgrade System</b> in Velocity Studio to create an upgrade SQL script for the metadata.</li>
+    <li>Run the script against the database schema.</li>
+  </ol>
+</li>
+</ol>
+
+<h4>Delete Order Documents</h4>
+<p>In version 5.x, Catalog Orders no longer create Documents representing product or components.  Instead,  Catalog Order instances are now represented  by a Dynamic Document. As a result, it is recommended that metadata documents created in 4.x that represent product or component instances for a catalog order  be deleted as they will not be used in 5.x.</p>
+<h4>Javascript Changes</h4>
+<p>There has been many changes to the Catalog Javascript functions in 5.x versions of Catalog. The naming conventions and parameters associated with the javascripts have changed.  For example, Catalog.addProduct() script has now changed to theCatalog.addItem(). It is recommended that an analysis be performed on the 4.x extended scripts to change the appropriate scripts and their parameters. Failure to update the extended or customized scripts with the appropriate scripts may cause the application to fail.</p>
+<h4>Data Model</h4>
+<p>There have also been data model changes in the 5.x Catalog versions that may require the 4.2 Catalog metadata to be reworked.</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

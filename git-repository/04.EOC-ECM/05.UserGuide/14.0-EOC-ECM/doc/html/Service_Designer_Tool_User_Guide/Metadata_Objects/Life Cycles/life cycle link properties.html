@@ -1,0 +1,91 @@
+﻿<html>
+<head>
+<title>Life Cycle Link Properties</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+  <td valign="top" class="pagebody"><h3>Life Cycle Link Properties</h3>
+    <p>To indicate directions from one state to another, a link or transition needs to be generated between states. To create such a link, follow these steps:</p>
+    <ol>
+      <li>Click the <b>first</b> <b>state</b> icon to highlight it (the original state).</li>
+      <li>Place the mouse cursor over the <b>second</b> <b>state</b> icon (the next state) and right-click.</li>
+      <li>Select the <b>Create</b> <b>Link</b> command;  the New Life Cycle Link<b> </b>dialog appears.</li>
+      <p><img src="lifeCycleLinkPropertyGeneral.png" alt="Link Property General Tab" /></p>
+      <p>The following  table describes the fields:</p>
+      <table class='confluenceTable' border cellpadding="1">
+        <tbody>
+          <tr>
+            <th class='confluenceTh'>Field</th>
+            <th class='confluenceTh'>Description</th>
+          </tr>
+          <tr>
+            <td class='confluenceTd'><b>Name</b></td>
+            <td class='confluenceTd'>The  field indicates the name of the link and it is read-only.</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'><b>Label</b></td>
+            <td class='confluenceTd'>The value of this field is read-only.</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'><b>Description</b></td>
+            <td class='confluenceTd'>This field contains the descriptive text for documentation purposes.</td>
+          </tr>
+          <tr>
+            <td class='confluenceTd'><b>Priority</b></td>
+            <td class='confluenceTd'>This field indicates the priority of the link.</td>
+          </tr>
+        </tbody>
+      </table>
+      <li>Click the Save button.</li>
+    </ol>
+    <p>A link from a state to itself can also be created. To do so, click the <b>state</b> icon to highlight it and then place the mouse cursor over the same <b>state</b> icon. Right-click and select the <b>Create</b> <b>Link to Itself</b> command. A link will be created from the state to itself.</p>
+    <p>Bi-directional links are allowed between a pair of user created states, for example, between the states In Review and Rejected in the figure above. The <b>start state</b> can have incoming and outgoing links, including links to itself. The <b>end state</b> can only have incoming links, which excludes linking to itself.</p>
+    <p>Multiple links are allowed to go out from one state to other states. The <b>Priority</b> field in the New Life Cycle link<b> </b>dialog allows you to assign a sequential number to the link. When more than one transition from the same state is possible, the one with the lowest priority number will be performed.</p>
+    <h4>Add Method for the Link</h4>
+    <p>To add a method for the activity, click the Actions tab and right-click the state. You can select  a predefined method or <a href="../../../JavaScripting in Order Care/Scripting Interface.html">create a new</a> one.</p>
+    <p><img src="lifeCycleLinkPropertyActions.png" alt="Link Actions Tab"></p>
+    The Action property allows you to create or change the script.
+    <p><img src="lifeCycleLinkPropertyActionsMethod.png" alt="Link Actions Methods" /></p>
+    <p>The following table  provides a description of the fields: </p>
+    <table class='confluenceTable' border cellpadding="1">
+      <tbody>
+        <tr>
+          <th class='confluenceTh'>Field</th>
+          <th class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Name</b></td>
+          <td class='confluenceTd'>Mandatory. Visible on the <b>General</b> tab. Unique name for the link.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Label</b></td>
+          <td class='confluenceTd'>Mandatory. Visible on the <b>General</b> tab. Visible name for the link.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Description</b></td>
+          <td class='confluenceTd'>Visible on the <b>General</b> tab. Descriptive text for documentation purposes.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Priority</b></td>
+          <td class='confluenceTd'>Visible on the <b>General</b> tab. Sequential number that defines the transition order when multiple links go out from one state to other states. The default value is 0 and it is not shown. When more than one transition from the same state exists, the one with the lowest number will be performed. If several transitions have the same number the transition is unpredictable.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Action</b></td>
+          <td class='confluenceTd'>Visible on the<b>Action </b>tab. Action script. The script will be executed if the transition specified by the link is executed.</td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><b>Script</b></td>
+          <td class='confluenceTd'>Visible on the<b> Action </b>tab. Condition script that will be used to decide which condition can be used for transition from the current to the next state. This happens when the state machine knows the next state (for example, the state is returned from a script) or when an Order with a Life Cycle diagram requests a change of state and needs to understand if it is allowed to transition to it.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>The links with a script defined are shown in green color on the diagram. The links with no scripts defined are in blue color. If a link priority number is greater than 0, it will be shown as the link label on the diagram.</p></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

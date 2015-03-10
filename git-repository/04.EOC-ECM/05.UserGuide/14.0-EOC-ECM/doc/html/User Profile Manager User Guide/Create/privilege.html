@@ -1,0 +1,265 @@
+﻿<html>
+<head>
+<title>Create a Privilege</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Create a Privilege</h2>
+<p>User profile privileges define the business task that particular users, through their group associations, are allowed to perform.  Privileges can be assigned to groups only. A user privilege is a combination of all privileges for which the user is active. A user may be active or inactive in more than one group. As a result, if a user belongs to more than one group, that user has combined privileges of all the groups.</p>
+<p>The User Profile Manager contains predefined system privileges. You can also create additional privileges. </p>
+<p><strong>Note:</strong> You can set up multiple profile sources (for example, one profile for each individual partner). A user in the profile provider instance with the Local Profile Administrator (LPAdmin) privilege can only create, change, delete, and update users within the profile provider. A user with this privilege can also only grant privileges to groups within the profile provider and may grant equal privileges to other groups within the profile provider</p>
+<p>To create a new privilege, perform these steps:</p>
+<ol>
+  <li>From the menu bar, click <strong>Create</strong> &gt; <strong>Privilege</strong> to launch the New Privilege page.<br>
+    <br>
+    <img src="newPrivilege.png" alt="New Privilege dialog" border="1">  <br>
+    <br>
+  </li>
+  <li>Complete the following fields:<br>
+    <br>
+    <table width="965" class='confluenceTable' border cellpadding="1">
+      <tbody>
+        <tr>
+          <th width="139" class='confluenceTh'>Field</th>
+          <th width="814" class='confluenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Privilege</strong></td>
+          <td class='confluenceTd'><p>Enter the privilege name. This field is mandatory. Once you have created this privilege, it cannot be renamed. Field restrictions are dependent on the security profile provider being used.</p></td>
+        </tr>
+        <tr>
+          <td class='confluenceTd'><strong>Description</strong></td>
+          <td class='confluenceTd'>Enter a description for this privilege. This field is mandatory.</td>
+        </tr>
+      </tbody>
+    </table>
+<br>
+  </li>
+  <li>Click the<strong> Save</strong> button to create your new privilege. A confirmation message appears under the menu bar, indicating that your privilege has been successfully saved.
+    <br>
+  </li>
+  <li>To create another privilege, click the <strong>New</strong> button. Otherwise, you can configure your new privilege using the <a href="#groups">Groups</a> tab, or at a later time by clicking <strong>Manage</strong> &gt; <strong>Privileges</strong> from the menu bar.</li>
+</ol>
+<h3><a name="groups"></a>Groups Tab</h3>
+<p>The <b>Groups</b> tab shows a list of groups to which the user belongs.</p>
+<p>You can perform the following actions from the Users tab:</p>
+<ul>
+  <li><a href="#addGroupToPrivilege">Add a group to a privilege</a></li>
+  <li><a href="#removeGroupFromPrivilege">Remove a group from a privilege<br>
+  </a></li>
+</ul>
+<h4><a name="addGroupToPrivilege"></a>Add a Group to a Privilege</h4>
+<p>To add a group  to a privilege, complete these steps:</p>
+<ol>
+  <li>Click the <strong>Groups</strong> tab, and then click the <strong>Add</strong> button to launch the Search Group dialog.<br>
+    <br>
+    <img src="newPrivilegeGroupsAdd.png" alt="Groups tab - click the Add button" border="1">  <br>
+    <br>
+  </li>
+  <li>Select the checkbox next to the <strong>Group Name</strong> that you want to add to the user, and then click the <strong>Select</strong> button.<br>
+    <br>
+    <strong>Note:</strong> Groups must be previously created  to be shown in the Search Group dialog.&#160;<br>
+    <br>
+    <img src="newPrivilegeGroupsSelect.png" alt="Groups tab - select a group to add" border="1">  <br>
+    <br>
+  </li>
+  <li>The Groups page appears. Your selected group has been added to your user.<br>
+    <br>
+    <img src="newPrivilegeGroupsAdded.png" alt="Groups tab - add group to privilege" border="1"></li>
+</ol>
+<h4><a name="removeGroupFromPrivilege"></a>Remove a Group from a Privilege</h4>
+<p>To remove a group from a privilege, complete these steps:</p>
+<ol>
+  <li>From the Groups tab, select the checkbox next to the <strong>Profile Provider</strong> that you want to remove from the user, and then click the <strong>Remove</strong> button.<br>
+    <br>
+    <img src="newPrivilegeGroupsRemove.png" alt="Groups tab - remove group from the user" border="1">  <br>
+    <br>
+  </li>
+  <li>The Groups tab refreshes and a confirmation message appears, indicating that the group has been successfully removed from the privilege.</li>
+  </ol>
+<h3>User Profile Privileges</h3>
+<p>The following table contains predefined system privileges that are available in the User Profile Management application: </p>
+<table width="866" class='confluenceTable' border cellpadding="1">
+  <tbody>
+    <tr>
+      <th width="167" class='confluenceTh'>Privilege</th>
+      <th width="687" class='confluenceTh'>Description</th>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Add Shared Favorites</td>
+      <td class='confluenceTd'>Add shared favourites.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Administration App</td>
+      <td class='confluenceTd'>Administration application access (required for all administration users).</td>
+    </tr>
+    <!--
+<tr>
+<td class='confluenceTd'>Approve Change</td>
+<td class='confluenceTd'>- Catalog Privilege -</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Approve Task</td>
+<td class='confluenceTd'>- Catalog Privilege -</td>
+</tr>
+<tr>
+  <td class='confluenceTd'>Catalog Association Type Manager</td>
+  <td class='confluenceTd'>View/edit/activate permission on association type object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Attribute Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on attribute object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Charge Type Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on charge type object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Context Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on context object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Hierarchy Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on context object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Info Model Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on info model object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Item Attachment Manager</td>
+<td class='confluenceTd'> View/edit/activate permission on item attachment object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Item Attribute Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on item attribute object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Item Charge Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on item charge object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Item Description Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on item description object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Item Group Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on item group object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Item Heirarchy Manager</td>
+<td class='confluenceTd'> View/edit/activate permission on item hierarchy object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Item Image Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on item image object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Item Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on item object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Item Relation Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on item association object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Item Rule Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on item rule object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Project Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on project object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog System Identifier Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on system identifier object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Catalog Tax Manager</td>
+<td class='confluenceTd'>View/edit/activate permission on tax object.</td>
+</tr> -->
+    <tr>
+      <td class='confluenceTd'>ConceptWave API Access</td>
+      <td class='confluenceTd'>Access to product APIs (used by external systems)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Delegate Task</td>
+      <td class='confluenceTd'>Delegate assigned tasks to other users.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Delete Shared Favorites</td>
+      <td class='confluenceTd'>Delete shared favourites.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Everyone</td>
+      <td class='confluenceTd'>Standard privilege that is automatically assigned to each user.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Get Available</td>
+      <td class='confluenceTd'>Get next shared task.  Without this privilege the user will not be able to get shared tasks from the unassigned task queue.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Group Manager</td>
+      <td class='confluenceTd'>Delegate unassigned tasks.</td>
+    </tr>
+    <!--
+<tr>
+<td class='confluenceTd'>Initiate Workflow Task</td>
+<td class='confluenceTd'>- Catalog Privilege -</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Perform Workflow Task</td>
+<td class='confluenceTd'>- Catalog Privilege -</td>
+</tr>
+-->
+    <tr>
+      <td class='confluenceTd'>Process Manager Administrator</td>
+      <td class='confluenceTd'>Process management functions (start, stop, resume, suspend, and so on.)</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Return Task</td>
+      <td class='confluenceTd'>Return task to shared queue (set task to unassigned).</td>
+    </tr>
+    <!--
+<tr>
+<td class='confluenceTd'>Request Change</td>
+<td class='confluenceTd'>- Catalog Privilege -</td>
+</tr>
+-->
+    <tr>
+      <td class='confluenceTd'>Runtime Administration</td>
+      <td class='confluenceTd'>Runtime framework administration (view event log, status, etc.).  Not applicable to System Administration Application.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Set Process Priority</td>
+      <td class='confluenceTd'>Modify process priority</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Show Error Details</td>
+      <td class='confluenceTd'>Shows the actual detailed error message instead of the generic error message, "An error occurred and has been logged with reference number <i>nnn</i>.  Please report this to your system administrator."  </td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Take on Tasks</td>
+      <td class='confluenceTd'>Take tasks from other users.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>User Profile Administrator</td>
+      <td class='confluenceTd'>User profile administrator access.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Workgroup Select</td>
+      <td class='confluenceTd'>Take shared task from the list of unassigned tasks.  Without this privilege only the next assigned task may be taken.</td>
+    </tr>
+    <tr>
+      <td class='confluenceTd'>Worklist Administrator</td>
+      <td class='confluenceTd'>Perform worklist management functions (assign, reassign and modify tasks).</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

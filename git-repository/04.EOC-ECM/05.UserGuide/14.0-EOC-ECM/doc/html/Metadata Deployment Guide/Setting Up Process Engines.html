@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Setting Up Process Engines</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+.highlight {
+	background: #FFFF40;
+}
+</style>
+<script type="text/javascript" src="../highlight.js"></script>
+</head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+  <tr>
+    <td valign="top" class="pagebody"><h2>Setting Up Process Engines</h2>
+      <p>The Process Engine (commonly known as PE) is a runtime that executes processes as defined by <a href="../Service_Designer_Tool_User_Guide/Business_Process_Metadata/intro to business processes.html">business process</a> metadata, including user, global, and interface processes.</p>
+      <p>The Process Engine technology supports symmetrical and asymmetrical clusters, enabling a runtime system to handle up to 200,000 orders per day (in an average Order lifecycle of up to 10 days). This statistic translates to volumes of up to 500,000 new business processes per day and up to 5 million live processes in the system (running an adequate ORACLE RAC server).</p>
+      <p>This section describes the important concepts of Process Engines, so that you understand the <a href="../Configuration_Tool_User_Guide/Configure/System/Processes/PEprocesses.html">parameters available in the Configuration application</a> to properly setup your PE instances.</p>
+      <p>PE clustering guarantees that a PE running a top-level process will also run all sub-processes. This allows optimizing inter-process communications and reducing the number of the database round trips.</p>
+      <h3>Cluster Configuration</h3>
+      <p>Your PE runtime environment can run a single PE (single mode), or a cluster of PEs. In total, there are three modes:</p>
+      <ul>
+        <li><b>Single Mode PE</b>: Only one PE instance can run when in single PE mode. This engine runs all processes in the application.</li>
+        <li><b>Symmetrical Clusters</b>: In a symmetrical cluster, the workload is distributed evenly over engines in the cluster. So, if there are 3 PE instances, each will perform approximately 33% of the workload. Each PE instance owns one bucket of each type as defined in the application metadata. <!--Symmetrical clusters can easily add or drop PE instances without stopping the other PE instances in the cluster. -->The <b>Bucket ID</b> and <b>Bucket Span</b> are no longer relevant in <a href="../Configuration_Tool_User_Guide/Configure/System/Processes/PEprocesses.html">Configuration application - PE Processes</a>, as the span for each bucket type in the symmetrical cluster is equal to the cluster size, and the position of the bucket is equal to the PE ID. However, the <b>Number of processes</b> property still determines the number of instances for each process type.</li>
+        <li><b>Asymmetrical Clusters</b>: Asymmetrical clusters allow different PE instances to run different mixes of user and global/interface process types. Further, a PE instance may be excluded from running a particular user processes or global or interface processes. For example, if there are 5 PEs, all User processes can be dedicated to 3 of the PEs, one can handle all Global and Interface processes, and the last could be reserved for a specific Interface process. Note that the different PE instances in the cluster may run different number of global and interface process instances.</li>
+      </ul>
+      <p>This is configured by parameters <b>Single mode</b> and <b>Asymmetrical mode</b> in <a href="../Configuration_Tool_User_Guide/Configure/System/System/system.html">System Parameters</a> in Configuration application. In clustered setup, you must distribute the workload among PEs.</p>
+      <h3>Process Engine ID</h3>
+      <p>Every PE instance has a unique ID between 0 and 20. Making use of "identity" significantly reduces the PE restart time as well as time to create and start new processes. This PE ID is assigned to a node in <a href="../Configuration_Tool_User_Guide/Configure/System/System/system.html">System Parameters</a> in Configuration application.</p>
+      <h3>Process Engine running in J2EE Container</h3>
+      <p>The PE no longer needs a thick-client or Monitoring utility. The required number of PE instances are configured as application nodes of J2EE cluster in Configuration application. They can be started and stopped using your deployed J2EE AppServer administration tools.<br>
+        <br />
+        In extremely rare cases, a PE may terminate itself gracefully. In such cases, configure your J2EE AppServer to revive the PE automatically. The revival automatically recovers all processes run by the "dead" PE.</p>
+      <h3>Speed Modes</h3>
+      <p>A Process Engine can run in three different speed modes:</p>
+      <ul>
+        <li><b>Regular speed protected mode</b> (default) which is ideal for production systems in which the PE writes the states of the processes when needed. Specifically on Process Activities, a flag allow rerun delays state auditing in the database until an activity with the flag disabled is executed. Skillful manipulation of this feature can increase performance.</li>
+        <li><b>Low speed debug mode</b>, designed specially for PE and application debugging. In this mode the PE writes the state of the process to the database at the start/end of all process activities.</li>
+        <li><b>Hi speed non-protected mode</b> for demos &amp; testing. In this environment the PE store processes' states in the database very rarely, which may be quite useful for production environments when appropriate Process design guarantees no negative effects from re-execution of process activities (for example, Global processes).</li>
+      </ul>
+      <h3>Process Serialization</h3>
+      <p>A new feature closely related to sub-process management allows serialization of Order access. What this means is, all work tasks for an Order instance can be routed to specific PE bucket, which guarantees that only one activity will be executed at a time on an order independently of how many processes work with it. This guarantees that processes will not simultaneously compete over a single Order.</p>
+      <h3>JConsole Administration</h3>
+      <p>Each PE instance has a unique JMX port, which allows the use of JConsole to change its operational parameters and obtain information about its current state.<br />
+        JConsole also introduces a set of debugging and measuring features that can be turned on and off at runtime, thus allowing local or remote collection of performance information of normally running PE instances, and out of norm PE instances as well.</p></td>
+  </tr>
+</table>
+</body>
+</html>

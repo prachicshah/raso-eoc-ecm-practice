@@ -1,0 +1,165 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Market Segment Matching Rules</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+ <table class="pagecontent" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td class="pagebody" style="padding-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px;" valign="top">
+
+
+<h3>Market Segment Matching Rules</h3>
+<p>Catalog searches all market segment rules that are defined under an item, and check whether the request matches at least one market segment rule to decide whether to include or exclude the item.</p>
+<p>As an example, assume that the following market segments are defined:</p>
+<ul>
+  <li><strong>Location</strong>
+    <ul>
+      <li>Central
+        <ul>
+          <li>Ontario
+            <ul>
+              <li>Toronto</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      <li>West
+        <ul>
+          <li>British Columbia
+            <ul>
+              <li>Vancouver</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+    </ul>
+    </li>
+  <li><strong>Sales Channel</strong>
+    <ul>
+      <li>Channel1
+        <ul>
+          <li>Channel1A
+            <ul>
+              <li>Channel1B</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Channel2
+        <ul>
+          <li>Channel2A
+            <ul>
+              <li>Channel2B </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  </ul>
+<p>The following matching types are as follows:</p>
+<ul>
+  <li>A <a href="#perfectMatch">perfect match</a></li>
+  <li>A <a href="#parentMatch">parent match</a></li>
+  <li>A <a href="#conditionMatch">condition match</a></li>
+</ul>
+<h4><a name="perfectMatch"></a>Perfect Match</h4>
+<p>A perfect match means that all dimension values in the rule are equal to the dimension value in the request.</p>
+<p>This example has the following request and rule, with the match highlighted in blue:</p>
+<p><strong>Request:</strong> Location in Ontario and Sales Channel in Channel2A</p>
+<p><strong>Rule:</strong></p>
+<table width="27%" border cellpadding="1" class='confluenceTable'>
+  <tr>
+    <th width="120" class='confluenceTh'>Location</th>
+    <th width="137" class='confluenceTh'>Sales Channel</th>
+    <th width="166" class='confluenceTh'>Operator</th>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>Central</td>
+    <td class='confluenceTd'>Channel2B</td>
+    <td class='confluenceTd'>Include</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' bgcolor="#99CCFF">Ontario</td>
+    <td class='confluenceTd' bgcolor="#99CCFF">Channel2A</td>
+    <td class='confluenceTd' bgcolor="#99CCFF">Include</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>Toronto</td>
+    <td class='confluenceTd'>Channel2B</td>
+    <td class='confluenceTd'>Include</td>
+  </tr>
+</table>
+<h4><a name="parentMatch"></a>Parent Match</h4>
+<p>A parent match means that more than one dimension value in the rule is the parent of the dimension value in the request. As an example, if the request is Toronto, the rule value is Ontario. <tt>All</tt> is a special string that indicates the top parent.</p>
+<p>This example has the following request and rule, with the match highlighted in blue:</p>
+<p><strong>Request:</strong> Location in Toronto and Sales Channel in Channel1A</p>
+<p><strong>Rule:</strong></p>
+<table width="27%" border cellpadding="1" class='confluenceTable'>
+  <tr>
+    <th width="120" class='confluenceTh'>Location</th>
+    <th width="137" class='confluenceTh'>Sales Channel</th>
+    <th width="166" class='confluenceTh'>Operator</th>
+  </tr>
+  <tr>
+    <td class='confluenceTd' bgcolor="#99CCFF">Central</td>
+    <td class='confluenceTd' bgcolor="#99CCFF">All</td>
+    <td class='confluenceTd' bgcolor="#99CCFF">Include</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>Ontario</td>
+    <td class='confluenceTd'>Channel1B</td>
+    <td class='confluenceTd'>Include</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>Toronto</td>
+    <td class='confluenceTd'>Channel1B</td>
+    <td class='confluenceTd'>Include</td>
+  </tr>
+</table>
+<h4><a name="conditionMatch"></a>Condition Match</h4>
+<p>A condition match means that if the rule contains a null value, it is a conditional rule.</p>
+<p>If the dimensions in all valid conditional rules can cover all dimensions in the request, the rule returns true. Otherwise, it returns false.</p>
+<p>This example has the following request and rule, with the matches highlighted in blue:</p>
+<p><strong>Request:</strong> Location in Central and Sales Channel in Channel1A</p>
+<p><strong>Rule:</strong></p>
+<table width="27%" border cellpadding="1" class='confluenceTable'>
+  <tr>
+    <th width="120" class='confluenceTh'>Location</th>
+    <th width="137" class='confluenceTh'>Sales Channel</th>
+    <th width="166" class='confluenceTh'>Operator</th>
+  </tr>
+  <tr>
+    <td class='confluenceTd'>Central</td>
+    <td class='confluenceTd'>Channel1B</td>
+    <td class='confluenceTd'>Include</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' bgcolor="#99CCFF">Central</td>
+    <td class='confluenceTd' bgcolor="#99CCFF">--</td>
+    <td class='confluenceTd' bgcolor="#99CCFF">Include</td>
+  </tr>
+  <tr>
+    <td class='confluenceTd' bgcolor="#99CCFF">--</td>
+    <td class='confluenceTd' bgcolor="#99CCFF">Channel1</td>
+    <td class='confluenceTd' bgcolor="#99CCFF">Include</td>
+  </tr>
+</table>
+<p>The matching logic is as follows:</p>
+<ul>
+  <li>If there is at least one valid, perfect match rule, it returns true. If all perfect match rules are not valid, it returns false. If there is no perfect match rule defined, it continues to find the parent match rule.</li>
+  <li>If there is no perfect rule defined, a search for the parent match rule occurs. When a search takes place, the parent match rules starts from the bottom to top. Searching between different dimensions follows the sequence defined in the market segment dimension.</li>
+  <li>If there is no parent match rule defined, it searches for a condition rule.</li>
+  <li>If the matched rule is valid (when the <strong>Operator</strong> is <strong>Include</strong>, if there is a date defined under the rule, the date needs to match the request date), it returns true. Otherwise, it returns false.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

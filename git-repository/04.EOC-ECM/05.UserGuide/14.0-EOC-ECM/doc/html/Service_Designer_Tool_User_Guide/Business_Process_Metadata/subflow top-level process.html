@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Subflow as a Top-level Process</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script><script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody"><h2>Subflow as a Top-level Process</h2>
+
+<p>This release supports global subflow processes in addition to local subflows. This feature affects the following areas:</p>
+<ul>
+  <li><a href="#metadataElements">Metadata elements and Velocity Studio</a></li>
+  <li><a href="#runtimePE">Runtime process engine</a></li>
+  <li><a href="#revision">Revision mechanism</a></li>
+  <li><a href="#migration">Migration</a></li>
+  </ul>
+<p><strong>Note:</strong> Global subflows are  used for backward compatibility only. Creating new global subflows is not  recommended. Instead, it is recommended that you either use synchronized subprocesses or local subflows.</p>
+<h3><a name="metadataElements"></a>Metadata Elements and Velocity Studio</h3>
+<p>When <a href="building processes.html">creating a process</a>, you have the option of selecting <strong>Subflow</strong> for the process <strong>Type</strong> field, in addition to selecting the <strong>User</strong> or <strong>Global</strong> types. </p>
+<p><img src="processSubflow.png" alt="Create a new process - Type"></p>
+<p>In this release, there are restrictions imposed on how different process types are used. Only subflow processes can be used as subflows, and only user processes can be  used as runnable processes or subprocesses.</p>
+<p>The following important points require noting while working with subflow processes in Velocity Studio:</p>
+<ul>
+  <li>Process and decision tree subflow activities must be able to  use local and global subflows. These activities cannot use user processes as  subflows. </li>
+  <li>Default Exception Handler, in the Exception metadata element, cannot  use subflow processes. </li>
+</ul>
+
+<h3><a name="runtimePE"></a>Runtime Process Engine</h3>
+<p>Both global and local subflows are compiled  into the main process (that is, subflow activity is replaced with the copy of the  subflow workflow). As a result, the subflow becomes a part of the main process. </p>
+<p><strong>Note:</strong> A subflow process cannot be started as an independent process  neither through process activities, nor through API methods. </p>
+<h3><a name="revision"></a>Revision Mechanism</h3>
+<p>Revisions for global subflows affect these areas:</p>
+<ul>
+  <li><a href="#deployment">At deployment</a></li>
+  <li><a href="#manualRevision">Manual creation of new revision from Velocity Studio</a></li>
+</ul>
+<h4><a name="deployment"></a>At Deployment</h4>
+  As subflow is considered to be part of the main process, any  changes to subflow are counted as changes to the main process.  
+<p><strong>Note:</strong> The latest process object always uses latest subflow  process. Process revisions always use subflow revisions.</p>
+<p><strong>Example:</strong>  Suppose a main process P (in revision 2) uses  a global subflow process S (in revision 1).	  The following table shows four different cases and their results.</p>
+<table width="934" class="confluenceTable">
+	    <tr>
+				<th width="349" class="confluenceTh">Case</th>
+				<th width="573" class="confluenceTh">Result</th>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><strong>Case 1:</strong> Both P (revision 2) and S (revision 1) remain unchanged since  their last revisions</td>
+
+				<td class="confluenceTd"><p>After deployment, no new revisions are generated, and P (revision 2)  continues to use S (revision 1).</p>
+			    </td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><strong>Case 2:</strong> P (revision 2) is changed while S (revision 1) remains unchanged</td>
+
+				<td class="confluenceTd">After deployment, P is in revision 3 and uses S (revision 1). The new revision object  Rev_P (revision 3) is generated and uses revision object Rev_S (revision 1).</td>
+			</tr>
+			<tr>
+				<td class="confluenceTd"><strong>Case 3:</strong> P (revision 2) remains unchanged while S (revision 1) is changed</td>
+				<td class="confluenceTd">After deployment, S is in revision 2 and the new revision object Rev_S (revision 2) is  created. Since S is a part of main process P, P is also changed and goes into revision 3. The new revision object Rev_P (revision 3) is generated.  As a result, P (revision 3) uses S (revision 2), and Rev_P (revision 3) uses Rev_S (revision 2).</td>
+			</tr>
+			<tr>
+
+				<td class="confluenceTd"><strong>Case 4:</strong> P (revision 2) and S (revision  1) changed</td>
+				<td class="confluenceTd">The results are the same as in case 3.</td>
+			</tr>
+		</table>
+<h4><a name="manualRevision"></a>Manual creation of new revision from Velocity Studio</h4>
+<p>The following points must be kept in mind when manually creating new revisions in Velocity Studio:</p>
+<ul>
+  <li>You cannot manually generate subflow revisions. Creating new subflow revision assumes changes to all processes that use this  subflow, which cannot be enforced without user consent. </li>
+  <li> A new process revision is generated regardless of its  subflow changes.</li>
+</ul>
+<h3><a name="migration"></a>Migration</h3>
+<p>All version 4.2 subflows migrate into global subflows and references to these subflows are  preserved accordingly. See the <a href="Extend local subflow from global subflow process.html#migrationSubflow">Subflow process migration</a> section for details.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

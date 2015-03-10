@@ -1,0 +1,178 @@
+﻿
+
+
+<html>
+<head>
+<title>Data Types</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="DataTypes"></a>Data Types</h2>
+<p>Data Type is a fundamental type on top of which more complex structures, such as Documents and Data Structures, are built. In the <b>Navigation</b> pane they are located in <b>Data Dictionaries</b> folder in each namespace.</p>
+<p>Velocity Studio offers the following system-defined primitive Data Types:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Primitive Data Type</th>
+<th class='confluenceTh'>Hierarchy Path</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Boolean</strong></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Boolean</i></td>
+<td class='confluenceTd'>Boolean; true or false.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Date</strong></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Date</i></td>
+<td class='confluenceTd'>Date.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>DateTime</strong></td>
+<td class='confluenceTd'><i>com.conceptwave.system.DateTime</i></td>
+<td class='confluenceTd'>Date and time of day, together. The time is represented in seconds.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><strong>Decimal</strong></td>
+<td class='confluenceTd'><i>com.conceptwave.system.Decimal</i></td>
+<td class='confluenceTd'><p>Decimal, in format <i>[whole number].[scale]</i> (for example, 178.8734). The scale part has maximum size of 9 (decimal) digits. The decimal length consists of the maximum size of 38 (decimal) digits plus the scale length. For example, if the scale is 9, the maximum length for the decimal is 38 + 9 = 47 digits. <BR>
+  </p></td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Integer</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.Integer</i></td>
+  <td class='confluenceTd'>Integer; can be negative or positive up to 9 (decimal) digits.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>String</strong></td>
+  <td class='confluenceTd'><i>com.conceptwave.system.String</i></td>
+  <td class='confluenceTd'>String of unlimited length.<br>
+    <br>
+    <strong>Note:</strong> When you define a string data type without any length, the Velocity Studio generate an NCLOB. An NCLOB generally leads to slower performance and a larger database size.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Timestamp</strong></td>
+  <td class='confluenceTd'><em>com.conceptwave.system.Timestamp</em></td>
+  <td class='confluenceTd'>System time. It has precision to nanoseconds, but can only be presented up to milliseconds.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Timezone</strong></td>
+  <td class='confluenceTd'><em>api_common.data.timezone</em></td>
+  <td class='confluenceTd'>Timezone, which inherits a String data type. This data type works with a  DateTime Element that binds to a DateTime data type of <strong>Absolute Time</strong>.  The Timezone data type work with a combination box that binds to this data type. </td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Translation</strong></td>
+  <td class='confluenceTd'><em>com.conceptwave.system.Translation</em></td>
+  <td class='confluenceTd'>String of unlimited length. Works with the Translation element.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Note:</strong> There is also a <i>Void</i> primitive Data Type, but it is a special Data Type and cannot be extended to other Data Types. All six primitive Data Types and the Void Data Type extends from base Data Type object <i>Data Type</i>.<p>New Data Types are defined by extending from these Data Types, or other Data Types that extend from these Data Types. For example, there are system Data Types such as <b>Translation</b> that are extended from primitive Data Types.</p>
+
+<p>To create a new Data Type, complete these steps:</p>
+In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:</li>
+<ol>
+<li>Right-click a Namespace. Select <b>New ...</b></li>
+<li><b>New Metadata Object</b> wizard appears as pop-up. Expand <b>Data Dictionaries</b>, select <b>Data Type</b>, and then click the <b>Next</b> button.</li>
+<li>Step two of wizard appears. Enter the name of Data Type (must conform to JavaScript naming conventions). For the <b>Extends</b> field, either choose a primitive Data Type or another defined Data Type. Then, click the <b>Finish</b> button.</li>
+</ol>
+<i>OR</i>
+<ol>
+<li>Right-click the <b>Data Types</b> folder or the <b>Data Dictionaries</b> folder in a Namespace, if it is present. Select <b>New Data Type</b>.</li>
+<li>Follow step 3 in the previous section.</li>
+</ol>
+</ul>
+
+<p>After the Data Type is created by the wizard, you can no longer change the base Data Type that extends it. The newly created Data Type is added under <b>Data Types</b> folder.</p>
+
+<p><img src="newDataTypeNode.png" align="absmiddle" border="1" alt="Data Type Node"  /></p>
+<p>Other than the primitive Data Types defined in system, there are many  predefined data types that are used as base types to build user-defined Data Types and System Types. Their definition can be found in <i>cwf</i>, <i>cwf_oe</i>, <i>cwf_pm</i>, <i>cwf_up</i> Namespaces in the <b>Library</b> tab of the Navigation Pane.</p>
+<h3>Validation of Data Types</h3>
+<p>Validation ensures that provided value is valid for their intended  data types. The Length, Scale, Min, Max, and Default value fields on the <a href="data type general properties.html">data  type general tab</a> are used for the validation. The validation is done at the  runtime. An error occurs if the data type value or the format is wrong. For  example, the format for the date is set to DD/MM/YYYY, you can enter the value  only in this format 12/12/2013. A wrong value, such as 63/63/6333 produces  an error.</p>
+<p><img src="dataValidationError.png" align="absmiddle" border="1" alt="Data Validation Error" /></p>
+<p>With   Documents or Data structures, use the CwObject.validate()  in a script for full validation on data types Date, Datetime, Timestamp,  Integer, and Decimal . This method returns a list of validation errors.</p>
+<p><strong>Note:</strong> Validation for number data types (Integer and Decimal) and dates (Date, Datetime and Timestamp) is not complete. Data type validation is available for min and max on numbers and for length on dates. </p>
+<p>With the implementation of full validation for the data types  (Integer and Decimal) and dates (Date, Datetime and Timestamp), validation occurs for content as well. Invalid content will generate errors which will be part of the error list returned when invoking validation on documents and data structures containing leaves with the aforementioned data types.<br>
+  <br>
+  <strong>Examples:</strong><br>
+  1) A data structure with a variable named start_date and a Date data type represents the order start date. If start_date is assigned with content such as &quot;Hello&quot;, invoking validate  results in no errors. After the changes in the validation logic are implemented, validating the data structure  results in an error indicating that the content for start_date is invalid.<br>
+  2) A document containing a variable named <em>days</em> with an Integer data type  is used to store the number days for order fulfillment. If the content &quot;ABCD&quot; is assigned to the variable days, the validate logic will return no errors as the content will not be validated. After the changes in the validation logic, an error message indicates that &quot;ABCD&quot; is not a valid content for the variable days. </p>
+<h3><a name="DataReferenceTypes"></a>Data Reference Types</h3>
+
+<p>A particular set of  predefined Data Types is worth special attention -- the <b>Data Reference Types</b> (or <i>Reference Type</i> in short). A Reference Type is a Data Type of <em>Reference Key</em> -- an object that references a Document or an Order object.</p>
+
+<p>There are three types of base Reference Types:</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Data Reference Type</th>
+<th class='confluenceTh'>Hierarchy Path</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'>String Reference Type</td>
+<td class='confluenceTd'><i>cwf.sReference</i></td>
+<td class='confluenceTd'>Reference Key is a String.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>Integer Reference Type</td>
+<td class='confluenceTd'><i>cwf.iReference</i></td>
+<td class='confluenceTd'>Reference Key is an Integer.</td>
+</tr>
+<tr>
+<td class='confluenceTd'>System Reference Type</td>
+<td class='confluenceTd'><i>cwf.nReference</i></td>
+<td class='confluenceTd'>Reference Key is of system-defined type. Typically used for referencing an object with composite keys.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The Reference Type is associated with a Finder. The  Reference Keys of this Reference Type  refers objects that is of the Finder's output.</p>
+<p>Using the reference type you can display data in several ways:</p>
+<ul>
+  <li> a drop-down menu containing a list of results documents (see <a href="../../Velocity_Studio/Element - Reference.html">Reference Element</a>)</li>
+  <li>a text field with a reference icon. Clicking the icon displays a finder that contains a list of results (see <a href="../../Velocity_Studio/Element - Reference.html">Reference Element</a>)</li>
+  <li>an editable reference field. Clicking the icon displays document details (see <a href="../../Velocity_Studio/Element - Reference.html">Reference Element</a>)</li>
+  <li>a <a href="../../Velocity_Studio/Element - Large Text.html"> Large Text</a> Element type that displays a text box containing a user-specified amount of data. Clicking the icon displays the full text</li>
+</ul>
+<h4>Create a Reference Type Data Type</h4>
+<p>Creating a reference data type allows a maximum length of 256 characters.The following is an example of creating a reference data type with this maximum length:</p>
+<ol>
+  <li>Create a new document with a key of String type and a length of 256 characters.</li>
+  <li>Create a finder that returns the new document from the previous step.</li>
+  <li>Create a new reference data type with type sRef, a length of 256 characters, and uses the finder created in the previous step.</li>
+  <li>Create a user interface form. </li>
+  <li>Add a new layout. Under the layout, add a new Select Field element. </li>
+  <li>Use the new reference data type in Step 3 for the enumeration reference.  </li>
+  </ol>
+<p>After saving your changes and running your project, no errors appear in the Velocity Studio console. The Select Field element lists available options returned from the finder. </p>
+<h4>Reference Type Example</h4>
+<p>The following example show you how to incorporate a Reference Key element into model. A customer  includes a document that includes <em>dwelling</em> information in their model. The customer has also included the document <i>Customer and it </i> has a <em>Dwelling</em> Reference Key that points to the document <i>Dwelling</i>, and specifically, to the unique key <i>dwellingID</i> which is a String. The <em>Dwelling</em> Reference Key is of a user-defined Data Type that is extended from the String Reference Type. The Reference Type has an associated Finder which includes input as <i>Customer</i> and output as <i>Dwelling</i>.</p>
+<p><img src="ReferenceTypeSample.png" align="absmiddle" border="1" alt="Reference Type Sample" /></p>
+
+
+<p>In the interface presentation, the Reference Key is displayed as the referenced object's Visual Key by default, which is defined in a script at the referenced object. </p>
+<p>For example,  you can create <em>cwOnDocVisualKey</em> Visual Key that returns a value, in this case, the streetNumber in the Reference Key field.</p>
+<p><img src="referencekey_designer.jpg" align="absmiddle" border="1" alt="" />
+<p>Any  DwellingIDs that are entered on the Customer form can be retrieved using the dwelling ReferenceKey field.</p>
+
+<p>Internally, the Framework has a system table in the database that keeps the correspondence between the reference key and the visual key. This correspondence is in addition to existing functionality of the Finder that is referenced by the Referenced Key. For performance reasons, a cache of the most recently accessed references is maintained in the runtime server.</p>
+
+<p><strong>Note</strong>: References that are defined to have Visual Keys are stored in an internal table. Visual Keys in this table are updated automatically by the framework as the referenced Documents are changed, but be aware that data in this table may be stale under the following conditions:</p>
+<ul>
+<li>Referenced Documents are changed external to the framework.</li>
+<li>Data residing in a foreign system is changed.</li>
+<li>Visual key script is changed.</li>
+</ul>
+
+</td>
+</tr>
+</table>
+</body>
+</html>

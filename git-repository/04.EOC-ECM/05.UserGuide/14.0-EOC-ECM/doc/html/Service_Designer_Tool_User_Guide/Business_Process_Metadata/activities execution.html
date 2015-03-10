@@ -1,0 +1,153 @@
+<html>
+<head>
+<title>Activities Execution</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Activities Execution</h2>
+<p>An instance of the Process Engine is able to run multiple process instances at the same time. The number of process instances to run is configurable as <b>Number of processes</b> in <a href="../../Configuration_Tool_User_Guide/Processes PE Processes.html">Config application's PE Processes</a> page. The highest priority activity awaiting execution is picked up first by these threads, but no more than one activity of a specific process instance is executed at any given time. The maximum activity size is 4000 for one process.  The system will provide a warning message when the system has approached 90% of the limit.</p>
+
+<p>The Process Engine performs the following tasks during execution of each process activity:</p>
+<h4><a name="Alert"></a>Alert</h4>
+<ul>
+<li>Executes <b>Before</b> script for <em>email</em> and <em>pager</em> Alerts only. The script result is used as the message content.</li>
+<li>Sends the <a href="alerts or jeopardies.html">Alert</a>.</li>
+<li>Queues the next sub-activity for execution.</li>
+</ul>
+<h4><a name="All"></a>All</h4>
+<ul>
+<li>Executes <b>Before</b> script.</li>
+<li>Queues all sub-activities for execution.</li>
+<li>Waits for all sub-activities to end.</li>
+<li>Executes <b>After</b> script.</li>
+</ul>
+<h4><a name="Case"></a>Case</h4>
+<ul>
+<li>Queues sub-activity for execution.</li>
+</ul>
+<h4><a name="Choice"></a>Choice</h4>
+<ul>
+<li>Executes <b>Before</b> script.</li>
+<li>Waits until it receives one of the children operations (consume).</li>
+<li>Queues <em>Operation</em> activity received for execution.</li>
+<li>Terminates all other pending operations.</li>
+<li>Upon time expiration, process can resume using the <em>Timeout</em> activity (if present).</li>
+<li><em>Request-response</em> Operation types are unsupported.</li>
+<li>Validation warning occurs when the Choice activity has two child activities of type Operation that reference exactly the same operation.</li>
+</ul>
+<h4><a name="Compensate"></a>Compensate</h4>
+<ul>
+<li>Executes <b>Before</b> script.</li>
+<li>Queues a sub-activity for execution.</li>
+</ul>
+<h4><a name="Complete"></a>Complete</h4>
+<ul>
+<li>Executes <b>Before</b> script</li>
+<li>Completes the process. All activities that are queued for execution are ignored.</li>
+<li>The process stops with a completed status.</li>
+</ul>
+<h4><a name="Exception"></a>Exception (Fault)</h4>
+<ul>
+<li>Executes <b>Before</b> script.</li>
+<li>If <b>Before</b> script returns null, finds and queues proper <em>On Exception</em> activity for execution (see <a href="exception handling processing.html">exception handling processing</a>).</li>
+<li>If <b>Before</b> script returns a number or process object, sends this exception to the specified process (see <a href="exception handling processing.html">exception handling processing</a>).</li>
+</ul>
+<h4><a name="Wait"></a>Wait (Join)</h4>
+<ul>
+<li>Waits for all sub-process(s) of specified type to complete.</li>
+<li>Executes <b>After</b> script.</li>
+<li>Queues next sub-activity for execution.</li>
+</ul>
+<h4><a name="OnException"></a>On Exception</h4>
+<ul>
+<li>Executes <b>Before</b> script (see <a href="on exception activity execution.html">on exception activity execution</a>).</li>
+<li>Queues a sub-activity for execution.</li>
+</ul>
+<h4><a name="Operation"></a>Operation</h4>
+<ul>
+<li>Creates input message (only for <em>one-way</em> or <em>request-response</em> Operation types).</li>
+<li>Executes <b>Before</b> script with input message as a Document parameter (only for <em>one-way</em> or <em>request-response</em> Operation types).</li>
+<li>Performs Operation (produce, consume or both).</li>
+<li>Executes <b>After</b> script with the output message as a Document parameter (only for <em>request-response</em> or <em>notification</em> Operation types).</li>
+<li>Queues next sub-activity for execution.</li>
+</ul>
+<h4><a name="Repeat"></a>Repeat</h4>
+<ul>
+<li>Executes <b>Before</b> script.</li>
+<li>Queues <em>Repeat</em> activity for execution.</li>
+</ul>
+<h4><a name="Resume"></a>Resume</h4>
+<ul>
+<li>Executes <b>Before</b> script.</li>
+<li>Resumes previously suspended activities by the <em>On Exception activity.</em></li>
+<li>Queues next sub-activity for execution.</li>
+</ul>
+<h4><a name="Rollback"></a>Rollback</h4>
+<ul>
+<li>Executes <b>Before</b> script.</li>
+<li>Queues all appropriate <em>Compensate</em> activities for execution.</li>
+<li>Waits for all <em>Compensate</em> activities to complete (see <a href="rollback activity execution.html">rollback activity execution</a> for details).</li>
+<li>Executes <b>After</b> script.</li>
+<li>Queues next sub-activity for execution.</li>
+</ul>
+<h4><a name="Script"></a>Script</h4>
+<ul>
+<li>Executes <b>Before</b> script.</li>
+<li>Queues next sub-activity for execution.</li>
+</ul>
+<h4><a name="Sequence"></a>Sequence</h4>
+<ul>
+<li>Executes <b>Before</b> script.</li>
+<li>Queues first sub-activity for execution.</li>
+<li>Waits for all sub-activities to end.</li>
+<li>Executes <b>After</b> script.</li>
+</ul>
+<h4><a name="Signal"></a>Signal</h4>
+<ul>
+<li>Executes <b>Before</b> script.</li>
+<li>If <b>Before</b> script returns null, raises Signal within current process.</li>
+<li>If <b>Before</b> script returns a number or process object, sends this Signal to the specified process.</li>
+</ul>
+<h4><a name="Subprocess"></a>Sub-process (Spawn)</h4>
+<ul>
+<li>Creates the new sub-process data Document.</li>
+<li>Executes <b>Before</b> script. The Document parameter is the new sub-process Document (script may initialize this Document with proper values).</li>
+<li>Spawns new sub-process with data Document.</li>
+<li>Queues next sub-activity for execution.</li>
+</ul>
+<h4><a name="SubFlow"></a>Sub-Flow</h4>
+<ul>
+<li>Executes <b>Before</b> script.</li>
+<li>Queues first sub-activity for execution.</li>
+<li>Waits for all sub-activities to end.</li>
+<li>Executes <b>After</b> script.</li>
+</ul>
+<h4><a name="Switch"></a>Switch</h4>
+<ul>
+<li>Executes <b>Before</b> script.</li>
+<li>If exclusive, queues the first <em>Case</em> activity with a true condition (or default case if none found) for execution.</li>
+<li>If inclusive, queues all <em>Case</em> activities with true condition (or default case if none found) for execution.</li>
+</ul>
+<h4><a name="Synchronize."></a>Synchronize</h4>
+<ul>
+<li>Waits for a specified Signal to arrive.</li>
+<li>Executes <b>After</b> script.</li>
+<li>Queues next sub-activity for execution.</li>
+</ul>
+<h4><a name="Timeout"></a>Timeout</h4>
+<ul>
+<li>Applicable only as child of a <em>Choice</em> activity</li>
+<li>Waits for duration of <em>Choice</em> to expire</li>
+<li>If duration expires, executes <b>After</b> script and child activities</li>
+</ul>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

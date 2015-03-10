@@ -1,0 +1,146 @@
+<html>
+<head>
+<title>External Scripts</title>
+<link rel="stylesheet" href="../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>External Scripts</h2>
+<p>In the system metadata, you can search, view, create,  and delete an external script. To open the External Script Search screen, click <strong>View</strong> &gt; <strong>External Scripts</strong> from the menu bar.</p>
+<p><img src="externalScriptSearch.png" alt="External Script Search" border="1"></p>
+<p>You can perform the following tasks with an external script:</p>
+<ul>
+  <li><a href="#search">Search</a> for an external script</li>
+  <li><a href="#add">Add</a> an external script</li>
+  <li><a href="#delete">Delete</a> an external script</li>
+  <li><a href="#details">View</a> an external script's details and make changes to it</li>
+  <li><a href="#export">Export a script</a> into an existing external script</li>
+  <li><a href="#import">Import</a> an external script</li>
+</ul>
+<h3><a name="search"></a>Search for an External Script</h3>
+<p>To search for an existing external script, follow these steps:</p>
+<ol>
+  <li>In the <strong>Script Name</strong> field, enter the script name. You can enter the first few characters of the script name. </li>
+  <li>If you know the <strong>Script Type</strong>, fill in that search field. </li>
+  <li>If you want to specify the <strong>Application</strong>, click the field's drop-down menu and select the application that you want.</li>
+  <li>Click the <strong>Search</strong> button. Your search results appear in the results area, under the search criteria section.</li>
+  </ol>
+<h3><a name="add"></a>Add an External Script</h3>
+<p>To add  an external script, do the following:</p>
+<ol>
+  <li>From the External Scrips screen, click the  <strong>New</strong> button. The New External Script screen appears.<br>
+    <br>
+    <img src="externalScriptSearchDetailsAdd.png" alt="External Script Details screen" border="1"><br>
+    <br>
+  </li>
+  <li>The following fields are mandatory on the External Script Details screen:  <br>
+    <br>
+    <table class='confluenceTable' border cellpadding=1>
+      <tbody>
+        <tr>
+          <th width="205" class='referenceTh'>Field</th>
+          <th width="775" class='referenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='referenceTd'><strong>Script Name</strong></td>
+          <td class='referenceTd'>Enter a name for your script in this field. The external script name must be unique for each script type.</td>
+        </tr>
+        <tr>
+          <td class='referenceTd'><strong>Script Type</strong></td>
+          <td class='referenceTd'><p>Enter the type of script in this field. The maximum number of characters allowed for the script type is two.</p>
+            <p><strong>Note:</strong> Types starting with <em>a</em>, <em>b</em>, and <em>c</em> are reserved for internal AVM purposes. Do  not define external script types starting with these letters. Otherwise, using them may  result in application crashes.</p></td>
+        </tr>
+        <tr>
+          <td class='referenceTd'><strong>Valid Dates - From</strong></td>
+          <td class='referenceTd'>Enter the date and time from which the script is available in this field.</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    </li>
+  <li>The following fields are optional:<br>
+    <br>
+    <table class='confluenceTable' border cellpadding=1>
+      <tbody>
+        <tr>
+          <th width="206" class='referenceTh'>Field</th>
+          <th width="552" class='referenceTh'>Description</th>
+        </tr>
+        <tr>
+          <td class='referenceTd'><strong>Application</strong></td>
+          <td class='referenceTd'>Click the drop-down menu and select the application associated with the external script for the list.</td>
+        </tr>
+        <tr>
+          <td class='referenceTd'><strong>Valid Dates - To</strong></td>
+          <td class='referenceTd'>This field denotes last date that the script is available.</td>
+        </tr>
+        <tr>
+          <td class='referenceTd'><strong>Is Constant</strong></td>
+          <td class='referenceTd'>By default, this property is not selected, indicating that the script is not a constant.</td>
+        </tr>
+        <tr>
+          <td class='referenceTd'><strong>Script Status</strong></td>
+          <td class='referenceTd'>This field represents the script's status.</td>
+        </tr>
+        <tr>
+          <td class='referenceTd'><strong>Import Script File</strong></td>
+          <td class='referenceTd'><p>If you have an existing script file that you want to use, you can import it by completing these steps:</p>
+            <ol>
+            <li>Click the <strong>Browse</strong> button and select the script file that you want to import.</li>
+            <li>Click the <strong>Upload</strong> button. The <strong>Script </strong>field contains content from your script file.</li>
+            </ol></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </li>
+  <li>To create your script, enter your scripting code in the <strong>Script</strong> field.</li>
+  <li>When you are finished completing the fields, click the <strong>Save</strong> button to save your script. You can locate your script by using the External Script page to conduct a search.</li>
+</ol>
+<h3><a name="delete"></a>Delete an External Script</h3>
+<p>To delete an external script, complete the following steps:</p>
+<ol>
+  <li>From the External Script Search screen, select the checkbox next to the script name that you want to delete from the search results, and then click the <strong>Delete</strong> button.<br>
+    <br>
+    <img src="externalScriptSearchDeleteButton.png" alt="Delete an external script" border="1">  <br>
+    <br>
+  </li>
+  <li>A confirmation message appears, prompting whether you want to delete your script. Click the <strong>Yes</strong> button to continue.</li>
+  <li>The results refresh and your script has been deleted.</li>
+  </ol>
+<h3><a name="details"></a>View Details of and Edit an External Script</h3>
+<p>You can view the contents of an existing external script by doing the following:</p>
+<ol>
+  <li>From the External Script Search screen, double-click the script name from the search results to launch the  External Script Details screen.<br>
+    <br>
+    <img src="externalScriptSearchDetails.png" alt="External Script - Details button" border="1"><br>
+    <br>
+  </li>
+  <li>You can make changes to the fields on the External Script Details page. To make changes to your code, click the <strong>Edit</strong> button, and then make your changes.</li>
+  <li>When you have completed your changes, click the <strong>Save</strong> button. A confirmation message appears at the top of the page, indicating that your changes have been saved..</li>
+  </ol>
+<h3><a name="export"></a>Export  an External Script</h3>
+<p>To export your external script to a JavaScript file, complete these steps:</p>
+<ol>
+  <li>Open the external script that you want to export.</li>
+  <li>From the External Script Details screen, click the <strong>Export Script</strong> button.</li>
+  <li>Depending on the Web browser that you are using, you are prompted to either open or save your file. Choose either <strong>Save</strong> or <strong>Save as</strong>. For the latter option,  specify the name of your .js file and where you want to save the file. The default filename is cwf.js.<br>
+  </li>
+</ol>
+<h3><a name="import"></a>Import an External Script</h3>
+<p>To import a script to your external script, do the following:</p>
+<ol>
+  <li>Open the external script into which you want the script exported.</li>
+  <li>From the External Script Details screen, locate the <strong>Import Script File</strong> field, click the <strong>Browse</strong> button, and then select your JavaScript file that you want to import.</li>
+  <li>Click the <strong>Upload</strong> button. The <strong>Script </strong>field contains content from your script file.</li>
+  <li>A dialog appears, prompting you to specify the .js file that you want to import. Click the <strong>Browse</strong> button to locate your JavaScript file, and then click the <strong>Upload</strong> button.  </li>
+  <li>The contents of your script appear in the script area of the External Script Details screen. Click the <strong>Save</strong> button to save your changes.</li>
+</ol></td>
+</tr>
+</table>
+</body>
+</html>

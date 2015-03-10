@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>API Refactor</title>
+<link rel="stylesheet" href="..\..\styles\site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onload="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+
+<h2>API Refactor</h2>
+<p>The API Refactor function allows you to do the following:</p>
+<ul>
+  <li>Search for an API</li>
+  <li>Refactor an API by specifying the original API with its replacement API</li>
+</ul>
+<h3>Search function</h3>
+<p>The search function allows you to find occurrences of your API in your metadata:</p>
+<ol>
+  <li>Click <strong>Search</strong> &gt; <strong>API Refactor</strong> to launch the API Refactor dialog</li>
+  <li>Enter the API that you are searching for in the <strong> Orignal</strong> field. The <strong>Replacement</strong> field is optional.<br>
+    <br>
+    <img src="APIrefactorSearch.png" width="350" height="151" alt="API Refactor - Search button"><br>
+    <br>
+  </li>
+  <li>Click the <strong>Search</strong> button.</li>
+  <li>Your search results appear in the Search pane. In this example, occurrences of the Global.println() API appear in the TestScript script<br>
+    <br>
+    <img src="APIrefactorSearchButtonResults.png" width="874" height="95" alt="API Replace - Search feature - results">  </li>
+  </ol>
+<h3>Refactor function</h3>
+<p>The refactor function allows you to find occurrences of your API in your metadata and replace them with another API:</p>
+<ol>
+  <li>Click <strong>Search</strong> &gt; <strong>API Refactor</strong> to launch the API Refactor dialog</li>
+  <li>Enter the API that you are searching for in the <strong> Orignal</strong> field and its replacement API in the <strong>Replacement</strong> field.<br>
+    <br>
+    <img src="APIrefactorRefactor.png" alt="API Refactor - Refactor button"><br>
+    <br>
+  </li>
+  <li>Click the <strong>Refactor</strong> button.</li>
+  <li>Your search results appear in the Search pane. In this example, refactoring changes have been made to the TestScript script.<br>
+    <br>
+    <img src="APIrefactorSearchButtonResults.png" width="874" height="95" alt="API Replace - Search feature - results"><BR>
+</li>
+</ol>
+<p><strong>Note:</strong> The Refactor action class extends SDAPIReplaceAction.</p>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+
+</body>
+</html>

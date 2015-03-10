@@ -1,0 +1,33 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Catalog Implementation</title>
+<link rel="StyleSheet" href="../../site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../highlight.js"></script></head>
+<body onLoad="highlight();">
+
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Catalog Implementation</h2>
+<p>The Catalog application has three domains:</p>
+<ul>
+  <li>Catalog Definitions</li>
+  <li>Shopping Basket</li>
+  <li>Change Control</li>
+  </ul>
+<h3>Catalog Definitions</h3>
+<p>Catalog definitions define the products and services that the company offers to its customers as well as the rules by which these products and services must be ordered, validated, provisioned and priced. These components comprise runtime <em>metadata</em> which is stored in the catalog database and it is the bulk of the catalog database content. The catalog definitions are created and changed through the catalog server maintenance user interface and can be exported in different formats. The catalog definitions are stored in the <em>catalog</em> database. The catalog server reads the definitions from the database while the  catalog clients receive them from the catalog servers.</p>
+<h3>Shopping Basket</h3>
+<p>The <a href="../Appendices/Shopping_Basket.html">shopping basket</a> is represented by runtime data that defines what products and services a given customer has or wants to have. It contains objects that are instantiated based on the catalog definitions. Shopping baskets are created and populated by the Order Entry applications running on catalog client machines but their structure and content are defined and validated by the rules in the catalog definitions. Shopping baskets are the objects that link the Order Entry application with the catalog. They are self-describing objects that are equally well understood by the Order Entry application and the catalog. The components of the shopping baskets, called basket items, are dynamic entities that are linked to the corresponding catalog definitions.  </p>
+<p><strong>Note</strong>: The shopping baskets objects do not exist in the third party order entry applications that use the catalog.</p>
+<h3>Change Control</h3>
+<p>Change controls manages information and processes that control what items of the catalog definitions can be changed or are changed, how they will be changed or are changed and who are the people that are allowed to change them or have changed them. When the catalog definitions reach a certain stage in the life cycle they cannot be changed  (become immutable) but instead  new <a href="../Objects/Versions.html">versions</a> of them are created. The catalog client systems work only with immutable definitions. The catalog change control includes the<em> Catalog user profiles, Catalog projects, and the Catalog processes</em>. The user profiles define what tasks users can perform while the projects define what particular definition items the user  can change. The catalog processes define the business processes of creating and changing the catalog definitions.  The change control information maintenance is usually reserved for small group of administrators or managers within the catalog maintenance team.</p>
+<p>&nbsp;</p>
+</td>
+</tr>
+</table>
+</body>
+</html>

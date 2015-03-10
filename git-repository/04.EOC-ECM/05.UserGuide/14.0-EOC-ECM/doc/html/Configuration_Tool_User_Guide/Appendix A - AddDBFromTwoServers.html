@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Appendix - OpenID Authentication</title>
+<link rel="stylesheet" href="../styles/site.css" type="text/css" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+<tr>
+<td valign="top" class="pagebody">
+<h1>Appendix A: Add Databases from Two Different Servers</h1>
+
+<p>You can configure a database to have multiple physical connections by mapping a Document to more than one table if the Document has one key and   all the database tables that it is being mapped to have the same key column   (with exactly the same name and attribute in each database table). </p>
+<p>To  configure your application to use two physical connections, perform the following tasks:</p>
+<ul>
+  <li><a href="#addDatabase">Add the database connection</a></li>
+  <li><a href="#addPhysical">Add the physical connection</a></li>
+  <li><a href="#addLogical">Add the logical connection</a></li>
+  <li><a href="#mapDocument">Map the document with the logical connections</a><br>
+  </li>
+</ul>
+<h2><a name="addDatabase">Add the database connection</a></h2>
+<p>To create a new database connection in Velocity Studio, follow these steps:</p>
+
+
+<ol>
+  <li>Click <strong>Database</strong> &gt; <strong>Connect</strong> from the Velocity Studio menu bar to open the Database Login dialog. For more information on connecting your project to the database, see <a href="../Service_Designer_Tool_User_Guide/Service Designer Menu Actions/Database Connect.html">Connect to the Database</a>.<br>
+    <br>
+  </li>
+  <li>Provide the connection information Connection Properties dialog and click <strong>OK</strong>.
+    
+      <p><img src="AddDBFromTwoServers_DBConnect.png" alt="Connection Properties"></p>
+    
+    </li>
+</ol>
+<p>&nbsp;</p>
+<h2><a name="addPhysical">Add the physical connection</a></h2>
+<p>Configure your application to add the physical connection. For example, shibly_5246. For more information, see <a href="Configure/System/Databases/physicalConnection.html">Physical Connections</a>.</p>
+<p><img src="AddDBFromTwoServers_PhysicalConnection.png" alt="Add Physical Connection"></p>
+<h2><a name="addLogical">Add the logical connection</a></h2>
+<p>Configure your application to add the logical connections, Order and Reference. For more information, see <a href="Configure/System/Databases/logicalConnection.html">Logical Connections</a>.</p>
+<p><img src="AddDBFromTwoServers_LogicalConnection.png" alt="Map logical connection"></p>
+<h2><a name="mapDocument">Map the document with the logical connections</a></h2>
+<p> As in the  example,   map the database Document   with the <strong>Order</strong> and <strong>Reference</strong> logical connections to associate the connections with a database schema. This step generates the table name and column names   for all Document variables that are not explicitly marked as do not map so that the connections are mapped to the database. For more information on mapping the document with logical connections, see <a href="../Service_Designer_Tool_User_Guide/Metadata_Objects/Document/Database Mapping.html">Mapping Tab: Database Mapping</a>.</p>
+<ol>
+  <li>Click <strong>Database</strong> &gt; <strong>Map Documents to DB</strong> from the  menu bar.<br>
+    <br>
+  </li>
+  <li>Click the <strong>DB  Map</strong> tab and map the document with the logical connection, <strong>Order</strong>.</li>
+
+<p><img src="AddDBFromTwoServers_DocMapLogicalConnectOrder.png" alt="Map logical connection Order"></p>
+
+  <li>Map the document with the logical connection, <strong>Reference</strong>. </li>
+  <p><img src="AddDBFromTwoServers_DocMapLogicalConnectRef.png" alt="Map logical connection Reference"></p>
+</ol>
+</body>
+</html>

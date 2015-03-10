@@ -1,0 +1,258 @@
+<html>
+<head>
+<title>Navigation Trees</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script><script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2>Navigation Trees</h2>
+
+<p>The Navigation Tree is the metadata object type for presentation purposes that can model nodes of a tree-structure, which can be presented and navigated by the user in a <a href="../../Velocity_Studio/Element - Tree.html">Tree Form Element</a> by default. Different nodes in the Navigation Trees can represent various metadata objects in your project, which provide the navigational means to navigate through nested models and access details by clicking the corresponding node.</p>
+
+<img src="navTreeRuntimeFinderExclude.png" align="absmiddle" border="1" alt="Navigation tree - Customers" />
+
+<p>Common uses of the Navigation Tree include:</p><ul>
+<li><b>Presenting Hierarchical Structures</b> - When there is a data model that is hierarchical, even dynamically and/or recursively hierarchical, Navigation Tree is the ideal metadata object to present this information to user. For example, Product and Service Catalogs are often hierarchical with service components packaged into a sellable product, and with products bundled into an offer. Indeed, the <b> Product Catalog uses the Navigation Tree</b> to enable users to browse and select desired items from the catalog.</li>
+<li><b>Presenting Order</b> - <a href="../Orders/Orders.html">Orders</a> are typically non-flat in structure due to the need to model different aspects such as product items, customer-oriented attributes as well as service-level and network-related provisioning attributes. It is not uncommon that Orders are deeply and broadly nested, particularly when including related entities such as subscriber and dwelling information. Navigation Tree is the best means to present an Order to a user -- to organize and display only the requested portions of the Order in detail as user navigates the Order tree.</li>
+<li><b>Loosely-related entities composed into a single page</b> - Stitch together a management page by artificially structuring these information into tree nodes of the Navigation Tree for easy navigational purposes. For example, the <a href="../../../System_Administration_Application_User_Guide/User Profile Manager/user profile_into.html">User Profile Manager</a> in System Administration Application, which manages entities such as users, groups and privileges, is implemented with a Navigation Tree.</li>
+</ul>
+<p>In the latest case concerning User Profile Manager, you can study its composition in the <b>Library</b> tab of <b>Navigation</b> pane in Velocity Studio, located in <strong>cwf_up</strong> &gt; <strong>Presentation</strong> &gt; <strong>Navigation Trees</strong> &gt; <strong>upadminTree</strong>.</p>
+
+<h4>Modelling Overview</h4>
+
+<p>The modelling of the Navigation Tree is accomplished by creating hierarchical tree nodes from root Navigation Tree metadata object, which is considered the root node of the Navigation Tree. There are several types of child nodes that can be created:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Node Type</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Tree Node</b></td>
+<td class='confluenceTd'>A regular child node that models a static node in the Navigation Tree. The defined node is exactly the same in runtime as in design time.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Finder Node</b></td>
+<td class='confluenceTd'>A node that generates child nodes at runtime based on Finder results. This enables Navigation Tree to represent dynamic children. This is often needed when a parent node is to contain multiple and dynamic number of "items" beneath it. As an example, Navigation Tree that shows all subscribers under an account.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Order Item Node</b></td>
+<td class='confluenceTd'>A child node that is similar to a Tree Node, to present an item of an Order. This item may be an Order Document or an Order Collection; in the latter case, multiple children nodes may be generated at runtime. An Order Item Node can only be created when there is an ancestor node that represents an Order metadata object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Data Structure Item Node</b></td>
+<td class='confluenceTd'>A child node that is similar to a Tree Node, to present an item of a Data Structure. Depending on the type of Data Structure Item, multiple children nodes may be generated at runtime. A Data Structure Item Node can only be created when there is an ancestor node that represents a Data Structure metadata object.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Recursive Node</b></td>
+<td class='confluenceTd'>A node that refers to any ancestor node, to represent a recursive tree structure. For example, in a catalog tree, a product may contain other products, and recursively so; in this case, a recursive node can be created underneath the product "parent" node, while referring the parent node as the object to recur. A Recursive Node may also refer to any Root Node of other Navigation Tree, where the metadata of the Recursive Node assumes the metadata of the referenced tree.</td>
+</tr>
+</tbody>
+</table>
+
+<p>The nodes hierarchy defined in a Navigation Tree simply represents the tree structure that is to be displayed. It should not be used as the modelling of a hierarchical object -- that should be accomplished with <a href="../Data Structures/Data Structures.html">Data Structure</a> and <a href="../Orders/Orders.html">Order</a> metadata objects.</p>
+
+<p>When showing Data Structure or Order as Navigation Tree, the structure of the Navigation Tree do not necessarily have to mirror the true structure of the model. The Navigation Tree may be customized to deepen, flatten or unionize branches of the true model to the user's browsing convenience. Shown below is an illustrative example:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Model tree</th>
+<th class='confluenceTh'>Navigation Tree</th>
+</tr>
+<tr><td class='confluenceTd'>
+	<table class='confluenceTable'>
+	<tbody>
+	<tr>
+	<td class='confluenceTd' colspan='4'>Order</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd' colspan='3'>Peripherals</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd' colspan='2'>Customer Premises Equipment</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd'>1.</td>
+	<td class='confluenceTd'>Wireless Router</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd'>2.</td>
+	<td class='confluenceTd'>Cable Box</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd' colspan='2'>Accessories</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd'>1.</td>
+	<td class='confluenceTd'>Tivo</td>
+	</tr>
+	</tbody>
+	</table>
+</td><td class='confluenceTd'>
+	<table class='confluenceTable'>
+	<tbody>
+	<tr>
+	<td class='confluenceTd' colspan='3'>Order</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd' colspan='2'>Equipment</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd'>1.</td>
+	<td class='confluenceTd'>Wireless Router</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd'>2.</td>
+	<td class='confluenceTd'>Cable Box</td>
+	</tr>
+	<tr>
+	<td class='confluenceTd'></td>
+	<td class='confluenceTd'>3.</td>
+	<td class='confluenceTd'>Tivo</td>
+	</tr>
+	</tbody>
+	</table>
+</td></tr>
+</tbody>
+</table>
+
+<p>In essence, the Navigation Tree provides the presentation liberty to show a custom hierarchy of the models that are otherwise strictly-defined at the modelling layer.</p>
+
+<p>There is no limit on the number of nodes or depth in a Navigation Tree.</p>
+
+<h4>Presentation Overview</h4>
+
+<p>The Navigation Tree is an extended metadata object type of top-level User Interface. The Navigation Tree is, indeed, a full User Interface object that is typically configured to encapsulate the complete navigational user experience. By default, at the <b>Default</b> Form of the root node of the Navigation Tree, a <a href="../../Velocity_Studio/Element - Tree.html">Tree Form Element</a> is rendered at the left side of the Form to display the tree structure, while the right side of the Form is the <i>detail pane</i> which displays node details when corresponding node is clicked in the Tree.</p>
+
+<p>An extended variety of the Navigation Tree is capable of collapsing any child node into its parent node at runtime, as a separate Tab in the parent node's detail pane. This extended variety is referred to as <i>Navigation Tree with Tabs</i>.</p>
+
+See <a href="Navigation Trees at Runtime.html">Runtime Navigation Trees at Runtime</a> for details. 
+
+<h4>Metadata Object Overview</h4>
+
+<p>The following metadata object components constitute the Navigation Tree:</p>
+
+<table class='confluenceTable'>
+<tbody>
+<tr>
+<th class='confluenceTh'>Icon</th>
+<th class='confluenceTh'>Component</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconNavTree.png" align="absmiddle" border="0" alt="Root node" /></td>
+<td class='confluenceTd'><b>Root Node</b></td>
+<td class='confluenceTd'>The root node of the Navigation Tree, extends from base Navigation Tree object <i>com.conceptwave.system.NavigationTree</i> or <i>com.conceptwave.system.NavigationTreeWithTabs</i>. The latter base object enables the Navigation Tree to display children nodes as tabs.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconTreeNode.png" align="absmiddle" border="0" alt="Tree node" /></td>
+<td class='confluenceTd'><b>Tree Node</b></td>
+<td class='confluenceTd'>A regular child tree node of the Navigation Tree, extends from base Tree Node object <i>com.conceptwave.system.TreeNode</i>.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconOrderItemNode.png" align="absmiddle" border="0" alt="Order item node" /></td>
+<td class='confluenceTd'><b>Order Item Node</b></td>
+<td class='confluenceTd'>A child tree node of the Navigation Tree, extends from base Tree Node object <i>com.conceptwave.system.TreeNode</i>.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconDSItemNode.png" align="absmiddle" border="0" alt="Data structure item node" /></td>
+<td class='confluenceTd'><b>Data Structure Item Node</b></td>
+<td class='confluenceTd'>A child tree node of the Navigation Tree, extends from base Tree Node object <i>com.conceptwave.system.TreeNode</i>.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconFinderNode.png" align="absmiddle" border="0" alt="Finder node" /></td>
+<td class='confluenceTd'><b>Finder Node</b></td>
+<td class='confluenceTd'>A Finder child tree node of the Navigation Tree, extends from base Tree Node object <i>com.conceptwave.system.TreeNode</i>. A Finder tree node always has a child node beneath it, the <i>Finder Child Node</i> node.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconTreeNode.png" align="absmiddle" border="0" alt="Finder child node" /></td>
+<td class='confluenceTd'><b>Finder Child Node</b></td>
+<td class='confluenceTd'>The corresponding child tree node of the Finder Node, extends from base Tree Node object <i>com.conceptwave.system.TreeNode</i>. It always has the name <i>FinderChild</i>, which represents the output Document of the Finder as Finder result is returned.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><img src="iconRecurNode.png" align="absmiddle" border="0" alt="Recursive node" /></td>
+<td class='confluenceTd'><b>Recursive Node</b></td>
+<td class='confluenceTd'>A Recursive child tree node of the Navigation Tree. It is not extended from any tree-specific base metadata objects.</td>
+</tr>
+</tbody>
+</table>
+
+<p>In inheritance terms, the base Navigation Tree object <i>com.conceptwave.system.NavigationTree</i> extends from <i>com.conceptwave.system.TreeNode</i>, which is the base object for Tree Node and Finder Node. Therefore, the root node of the Navigation Tree is a derivation of Tree Node metadata object, with extra metadata defining functionality for the overall tree. In general, the metadata of these components have many common properties of one another, but also have distinctive properties of their own; these commonalities and distinctions are detailed throughout the sections of this documentation topic.</p>
+
+<p>The Navigation Tree with Tabs object <i>com.conceptwave.system.NavigationTreeWithTabs</i> extends from <i>com.conceptwave.system.NavigationTree</i>. The derived object implements the configurability function to display child node as tab. Note that there is no change to the base metadata object for children nodes in Navigation Tree with Tabs; they are still directly extended from <i>com.conceptwave.system.TreeNode</i>.</p>
+
+<p>Furthermore, <i>com.conceptwave.system.TreeNode</i> extends from <i>com.conceptwave.system.UserInterface</i>, meaning that nodes of the Navigation Tree are derviations of top-level User Interface objects (specifically built for the purpose of presenting navigational tree structure). The collection of these User Interface objects, as nodes, in the Navigation Tree can be traversed in script by using variables <i>parentNode</i> and <i>childNodes</i>.</p>
+
+<!--<p>Any node in the Navigation Tree has the pathname that follows the relative hierarchy of the Navigation Tree. For example,  if root node of Navigation Tree has pathname <i>ns.root</i>, and has a tree node <i>nodeA</i> underneath, then this tree node has pathname <i>ns.root.nodeA</i>.</p>-->
+<p>Currently, pathing is not supported (for example, <i>ns.navTreeRoot.childNodeA</i>). Access nodes in a Navigation Tree by traversing through parent and child nodes using variables in TreeNode.</p>
+
+<p>Lastly, there exists Order User Interface <i>com.conceptwave.system.OrderUserInterface</i> which is extended from <i>com.conceptwave.system.NavigationTreeWithTabs</i>. A Navigation Tree can be based on this metadata object, such that you may create common forms, menus and functionality for Orders.</p>
+
+<h4><a name="new">Create New Navigation Tree</a></h4>
+
+<p>To create a new Navigation Tree, do one of the following:</p>
+<ul>
+<li>In the <b>Metadata</b> tab of <b>Navigation</b> pane, either:</li>
+<ol>
+<li>Right-click a Namespace and select <b>New ...</b></li>
+<li><b>New Metadata Object</b> wizard appears as a popup. Expand <b>Presentation</b>, select <b>Navigation Tree</b>, and then click the <b>Next</b> button.</li>
+<li>Step two of the wizard appears. Enter the name of Navigation Tree (must conform to JavaScript naming conventions), and populate other fields, as necessary. Then, click the <b>Finish</b> button.</li>
+</ol>
+<li><i>OR</i></li>
+<ol>
+<li>Right-click the <b>Navigation Trees</b> folder or the <b>Presentation</b> folder in a Namespace, if it is present. Select <b>New Navigation Tree</b>.</li>
+<li>Follow step 3 from the previous procedure.</li>
+</ol>
+</ul>
+
+<p>After the Navigation Tree is created by the wizard, you can no longer change the base Navigation Tree that extends it. The newly created Navigation Tree is added under <b>Navigation Trees</b> folder. This is the root node of the Navigation Tree. Beneath the Navigation Tree node is the <b>Forms</b> container node, which contains the Forms of the Navigation Tree.</p>
+
+<img src="newNavTreeNode.png" align="absmiddle" border="1" alt="Create a new navigation tree" />
+
+<h4><a name="new">Create New Node in Navigation Tree</a></h4>
+
+<p>You can create a new child <b>Tree Node</b>, <b>Finder Node</b> or <b>Recursive Node</b> in any (non-Form) node in the Navigation Tree, except for in <b>Recursive Node</b> which cannot have child nodes. Conversely, you can only create child <b>Order Item Node</b> or <b>Data Structure Item Node</b> when the selected node or any of its ancestor nodes has <b>Object</b> in <b>General</b> tab assigned to an Order or Data Structure respectively. To create a new child node:</p>
+<ul>
+<li>Right-click the node of the Navigation Tree where the child node should be located beneath. Select <b>New Tree Node</b>, <b>New Finder Node</b>, <b>New Order Item Node</b>, <b>New Data Structure Item Node</b> or <b>new Recursive Node</b> as desired.</li>
+<li><b>New Metadata Object</b> wizard appears as a popup. Type in the name of the node (must conform to JavaScript naming conventions), and populate other fields as necessary. Then click <b>Finish</b>.</li>
+</ul>
+<p>The newly created node is added under the node in the Navigation Tree that is right-clicked. Beneath the new node is the <b>Forms</b> container node, which contains the Forms that would represent the new node. The example below illustrates all three types of nodes are added to the root Navigation Tree node. Notice that in the case of Finder Node, a <b>FinderChild</b> node is automatically added as its child node to represent the Finder results as nodes.</p>
+
+
+<img src="newNavTreeNodeChild.png" align="absmiddle" border="1" alt="Navigation tree - newly created node" />
+
+<h4>Synchronize Action for Data Structures with a Complex Hierarchy</h4>
+<p>The following example shows the synchronize action for a navigation tree:</p>
+<ol>
+  <li>Create three data structures that extended one another. Proceed to add array variables (for example, elements or containers) to each data type.</li>
+  <li>Create a new navigation tree.</li>
+  <li>Set the root <strong>Object</strong> field to the extended data structure.</li>
+  <li>Perform the synchronize action for the tree, which creates tree nodes for both the arrays and instances.</li>
+  <li> Populate the tree with data in onInit() of the navigation tree and add instances for each array variable.</li>
+  <li>At runtime, display the tree on the page, which shows all arrays.</li>
+</ol>
+<p>&nbsp;</p></td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,318 @@
+﻿<html>
+<head>
+<title>Permissions</title>
+<link rel="stylesheet" href="../../../styles/site.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">.highlight { background: #FFFF40; }</style> 
+<script type="text/javascript" src="../../../highlight.js"></script></head>
+<body onLoad="highlight();">
+<table class="pagecontent" border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#FFFFFF">
+<tr>
+<td valign="top" class="pagebody">
+<h2><a name="4.14Permissions-4.14%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3BPermissions"></a>Permissions</h2>
+<p>Permissions grant object operations to participants/privileges. Two types of permissions can be created in the system:</p>
+<ul>
+<li><em>Global Permissions methods</em> that, once created, can be reused by any object in any namespace object.</li>
+<li><em>Object Permissions methods (local)</em> are created on local Objects to extend of override permissions. These permissions are used by the Rules and Forms of this particular Object.</li>
+</ul>
+<p>If there are no permissions assigned to an Object, the default permissions (all permissions enabled for all privileges and participants) will be used by the runtime system.</p>
+<p>Permissions are methods of the local object.  Once created, these methods can be called from any script that instantiates the Object.</p>
+
+<h3><a name="4.14Permissions-4.14.1%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3BDefiningGlobalPermissions"></a>Define Global Permissions</h3>
+<p>To create a Global Permission, complete these steps:</p>
+<ol>
+<li>Right-click the <b>Namespace</b> folder in the <b>Navigation</b> pane of Velocity Studio.</li>
+<li>Select the <b>New ...</b> from the list. This will open a pop-up used to select the Metadata Object type.</li>
+<li>Double-click the <b>Security</b> folder in the <b>Navigation</b> pane, or click the <b>+</b> before the <b>Security</b> folder to expand tree and show the <b>Permission</b> folder.<br>
+  <br>
+  <img src="Add Global Permission Steps Velocity.png" border="0" alt="Select Security > Permission" /></span><br>
+  <br>
+</li>  
+<li>Select the <b>Permission</b> folder, which  enables the <b>Next</b> button at the bottom of the pop-up. Click the <b>Next</b> button to continue.<br>
+</li>
+<li>Enter the <b>Name</b> of the Global Permission in the <b>Name:</b> field. The <b>Finish</b> button is only enabled after a valid name is entered. <br>
+  <br>
+  <strong>Note:</strong> No spaces are allowed.</li>
+<li>Click the <b>Finish</b> button to add Global Permission to the Metadata.</li>
+</ol>
+<p>After a Global Permission is created, the icon is added under the <b>Security</b> > <b>Permissions</b> folder.</p>
+
+<p>Additional Global permissions can be created within the same namespace more quickly then the above approach once one Permission exists for a namespace by doing the following:  </p>
+<ol>
+  <li>Right-click the <b>Permissions</b> folder.</li>
+  <li>Select <b>New Permission</b> option from the popup menu.</li>
+</ol>
+<h4><a name="4.14Permissions-GlobalPermission%3AGeneraltab"></a>Permission General Properties</h4>
+<p> The following image shows the general  Permission properties:</p>
+<p><img src="Permission General tab Velocity.png" alt="Permission General Tab"  border="1" align="absmiddle" /></p>
+<p>The  following table  describes the fields.  The same properties are used for Global and Object Permissions.</p>
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th width="121" class='confluenceTh'>Field</th>
+<th width="1278" class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Name</b></td>
+<td class='confluenceTd'>Mandatory. Unique name of the Permission.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Private</b></td>
+<td class='confluenceTd'>If checked, the metadata object is hidden from display when the metadata is packaged as Product Metadata (that is, library).</td>
+</tr>
+<tr>
+  <td height="46" class='confluenceTd'><b>Virtual</b></td>
+  <td class='confluenceTd'>If checked, it provides the ability to create methods in template metadata that does not have implementation, but can be used in template script and be bound to UI elements. The implementation is done in user metadata (see <a href="../Virtual Field/Virtual Field.html">Virtual Field</a> for more information).</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Final</strong></td>
+  <td class='confluenceTd'>Metadata elements can be marked as final, which includes any Boolean final property that is available on any metadata element. Additionally, any metadata element that has the <strong>Final</strong> property set to true can neither be extended, nor overridden.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><strong>Instance</strong></td>
+  <td class='confluenceTd'>If checked, the method is accessible by instance objects.</td>
+  </tr>
+<tr>
+  <td class='confluenceTd'><strong>Type</strong></td>
+  <td class='confluenceTd'>If checked, the method is accessible  without an instance object.</td>
+  </tr>
+<tr>
+<td class='confluenceTd'><b>Description</b></td>
+<td class='confluenceTd'>Description of the Global Permission for documentation purposes.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Reference</b></td>
+<td class='confluenceTd'>Used to re-apply an existing Object or Global Permission.  Select the existing Permission from the <b>reference</b> drop down box after the reference checkbox is selected.  The permission properties from the selected item will be used.  When the reference checkbox is selected the lower half of the screen that contains the script and privilege sections are hidden and replaced by the <b>reference</b> drop down box.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Parameters</b></td>
+<td class='confluenceTd'>The input arguments that are passed into the function.  Parameters can be added or removed to the extended permissions using the "+" and "-" buttons on the right side of the pane.  The "^" button can be used to  change the order of the passed in parameters.  All the pre-defined functions have one parameter $psCondition defined and no additional parameters can be added.  The "+" and "-" buttons will be disabled for default operations.</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Script</b></td>
+<td class='confluenceTd'>A JavaScript condition script that is associated with the permission selected. The JavaScript can be use to evaluate any rules or conditions that the object will check.
+</tr>
+<tr>
+<td class='confluenceTd'><b>Return</b></td>
+<td class='confluenceTd'>The data type that the script returns.  By default the return value is com.conceptwave.system.Boolean.</td>
+</tr>
+<tr>
+  <td class='confluenceTd'><b>Return Description</b></td>
+  <td class='confluenceTd'>Description of the return  value for documentation purposes.</td>
+</tr>
+
+
+
+<tr>
+  <td class='confluenceTd'><b>Privileges</b></td>
+  <td class='confluenceTd'><p>A tree list of available privileges (the <em>cwf:systemPrivileges</em> system data type <em>cwf:systemPrivileges</em>) and, for each privilege, a list of the associated user participants and their operations as defined in the current metadata. The selections made in this tree are associated with the permission selected.</p>
+    <p><b>States</b> A list of states (the <em>cwf:allState</em> system data type)
+      appears. If there are no states in the system or they should not be used with the object, the <b>States</b> list does not appear in the tab.</p>
+    <p>The <b>Privileges</b> <b>and</b><b> Participant</b> <b>operations</b> tree shows a list of available privileges.&#160;There are 2 modes:</p>
+    <ul>
+      <li>The <em>&lt;On Task&gt;</em> branch lists for each privilege, a list of related user participants with their operations They are used to specify that a certain permission operation is allowed/disallowed if the user works on a particular task type (participant operation) from the runtime worklist. Additionally, there is an <em>&lt;All Others&gt;</em> option which allows the permission for all remaining participants (that is, those not exclusively allowed or denied the operation).</li>
+      <li>The <em>&lt;No Task&gt;</em> item shown for each privilege allows the privilege without relation to tasks (for example, if the object accessed through a <em>Finder)</em>.&#160;</li>
+      </ul>
+    <p>A selection in the <b>Privileges</b> <b>and</b> <b>participant</b> <b>operations</b> tree can be made by using a mouse click or the space bar on the keyboard. Only the <em>one-way</em> operations from the participant interface are shown.</p>
+    <p>There is also one The <b>three</b>-<b>state</b> check box on the left side of the tree item shows the selection state of item's sub-tree.</p>
+    <p>The <b>States</b> list does not depend on selections made in the <b>Privileges and participant operations tree.</b> If selected, they apply only if the permission is evaluated at runtime on an Order or Order Document. In such cases, the permission will disallow the permission operation if the Order state is not in the <b>States</b> list. A state can be selected or unselected using a mouse click or the space bar on the keyboard. All states in the list can be selected or unselected using the <b>All </b>or <b>None</b> buttons respectively.</p>
+    <p>The privileges, participant operations and state assignments can be made for all permissions in the <b>Permissions</b> table, however, only applicable settings will be used by the runtime system for each particular object. This allows the user to define one permission that can be used to create reusable permissions for several different types of objects.</p>
+  </tr>
+<tr>
+  <td class='confluenceTd'><strong>Feature Restriction</strong></td>
+  <td class='confluenceTd'>This field allows you to specify <a href="../Metadata Root/Metadata Root Feature Management.html">features that you want to restrict</a>. Click the field's <strong>Checkbox</strong> button (<img src="../Metadata Root/MDrootFeatureManagementCheckboxButton.png" alt="Restricted By field - Checkbox button">) to launch the Select Feature dialog. You can select all features that you want to restrict and then click the <strong>Save</strong> button.</td>
+</tr>
+</tbody>
+</table><br>
+<h3><a name="4.14Permissions-4.14.2%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3BDefiningDocumentPermissions"></a>Define Object Permissions</h3>
+<p>Object Permissions can be created or modified in the <b>Methods</b> tab  of the Object.  Once created, the Object Permissions can be used in the Rules and Forms of the Object.  If no permissions methods are created or overridden then the Object has no restrictions and full access is granted. If neither the script or privilege sections of the permission are changed then the permission does have to be defined.</p>
+<p>Permission can be created on any object that allows Permission methods.  To see if an Object supports permissions, do the following: </p>
+<ol>
+  <li> Select the Object in the <b>Navigation</b> pane.</li>
+  <li>Select the <b>Methods</b> tab.</li>
+  <li> Right-click the root node of object <b>Navigation</b> pane. </li>
+  <li>If the <b>New Permission</b> option exists in the list, the object supports permissions. Enter the name </li>
+</ol>  
+<p>For the Document Objects there are system pre-defined operations pre-defined system permissions.  These system defaults can be extended by the user using <b>New Permission</b>. The default Document Permissions are inherited from the underlying Object's composition: the data types, variable, forms, etc. The only way to change this default permission is to override the pre-defined system permission.  There are 5 default pre-defined system permissions: Add, Delete, Editable, Attach, Execute. The system permissions use the naming convention <em>operation</em> with <b>Perm</b> post-fixed to it.  System permissions are not shown unless explicitly created using override permission, as the system default grants full access.  The overridden system permissions are marked with the icon <img src=".\Permission icon Velocity.png" border="0" alt="" /> in the navigation pane, where as the extended permissions use the same icon without the green arrow.</p>   
+
+<p><ins>Descriptions of pre-defined system Permissions operations.</ins></p>
+
+<table class='confluenceTable' border cellpadding="1">
+<tbody>
+<tr>
+<th class='confluenceTh'>Field</th>
+<th class='confluenceTh'>Function</th>
+<th class='confluenceTh'>Description</th>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Add </b></td>
+<td class='confluenceTd'><b>addPerm </b></td>
+<td class='confluenceTd'>Specifies whether the participant can add the object (for example, document instances in an Order Collection).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Delete</b></td>
+<td class='confluenceTd'><b>deletePerm</b></td>
+<td class='confluenceTd'>Specifies whether the participant can delete the object (for example, document instances in an Order Collection).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Update</b></td>
+<td class='confluenceTd'><b>editablePerm</b></td>
+<td class='confluenceTd'>Specifies whether the participant may update the object (for example, variables on a document).<br>
+  <br>
+  <strong>Note:</strong> If a field contains  an editable permission that is either coming from the form field itself, or inherited  from the variable or data type, it takes precedence. Otherwise, the user  interface's editablePerm permission takes over. If this method is not  overwritten, the model's editablePerm permission is used. User interfaces  displayed under another user interface with editablePerm are also be inherited  if the embedded user interfaces do not have their own editablePerm permission. </td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Attach</b></td>
+<td class='confluenceTd'><b>attachPerm</b></td>
+<td class='confluenceTd'>Specifies whether attachments are allowed.&#160; Applies only to a Document or Order (see Section on General Document Properties or Section on Order General Properties for more information on attachments).</td>
+</tr>
+<tr>
+<td class='confluenceTd'><b>Execute</b></td>
+<td class='confluenceTd'><b>executePerm</b></td>
+<td class='confluenceTd'>Execute is related to validation.&#160; The Execute permission specifies whether the validation script will run on a save or submit operation (for example, a manager may require override of validation rules).</td>
+</tr>
+</tbody>
+</table>
+
+<p>To create a Document Permission, do the following (see figure that follows):</p>
+<ol>
+<li>Select the <b>Document</b> instance folder in the <b>Navigation</b> pane of Velocity Studio.</li>
+<li>Open the <b>Method</b> tab on the Document or Object.</li>
+<li>Right-click the <em>root instance Object</em> folder at the top of the method <b>Navigation</b> pane.</li>
+<li>Select <b>Override </b>&lt;function&gt;<b>Perm</b> or <b>New Permission</b> from list. If extending permission continue, otherwise if overriding create permission is complete.</li>  
+<li>Enter a valid name into the <b>Name:</b> field on pop-up, which enables the <b>finish</b> button. <br>
+  <br>
+  <strong>Note:</strong> No spaces are allowed.</li>
+<li>Select the <strong>Reference</strong> checkbox to select a global permission from a popup dialog.</li>
+<li>Enter the name again and then select the global permission you have just defined.</li>
+<li>Click the <b>Finish</b> button to add Permission to the Metadata Object.</li>
+</ol>
+<p><em>Steps used to create a Document Permission.</em></p>
+<p><img src=".\Add Document Permission Steps Velocity.png" align="absmiddle" border="0" alt="Document Permission" /></p>
+<p>In a Document that is derived, the Document Permissions from the base Document will be shown in blue and will be read-only.</p>
+<p>After Document Permission is created, the icon will be added under the <b>Methods</b> tab .</p>
+<p><em>Velocity Studio navigation pane and Document Permission Properties.</em></p>
+<p><img src=".\Document Permission Properties Velocity.png" align="absmiddle" border="1" alt="Document Permission Properties " /></p>
+<h4><a name="4.14Permissions-PositiveandNegativePermissions"></a>Positive and Negative Permissions</h4>
+<p>Permissions can be of 2 types: Positive or Negative</p>
+<ul>
+<li>A positive permission is that which the privilege is selected/checked. When multiple privileges are checked, the permission uses the <b>OR</b> operator to validate.</li>
+<li>A negative permission is that which the privilege is deselected/unchecked. When multiple privileges are unchecked, the permission uses the <b>AND</b> operator to validate.</li>
+</ul>
+<p>This is particularly important when dealing with the system default <em>Everyone</em> permission.</p>
+
+
+
+
+
+<h3><a name="4.14Permissions-4.14.3%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3BAssigningObjectPermissions"></a>Assign Object Permissions</h3>
+<p>Document <b>Permissions</b> are assigned immediate when the permission is created in the <b>method</b> tab of the Document or Object. 
+<p>Global <b>Permissions</b> are assigned by creating a Document permission with the <b>reference</b> property set to Global permission.  A single Global permission can be assigned to many Document permission.</p>
+
+<p>Once a Permission is created and assigned the permission can be call anytime like other scripts.</p> 
+
+<p><em>Assignment of Global Permission (reference checked).</em></p>
+<p><img src="./Assigning Global Permission Velocity.PNG" align="absmiddle" border="1" alt="Assigning Global Permission" /></p>
+<p><em>Assignment of Document Permission (reference unchecked).</em></p>
+<p><img src="./Assigning Document Permission Velocity.PNG" align="absmiddle" border="1" alt="Assigning Document Permission" /></p>
+
+<p>Leaf Permissions can be assigned to any field of a Document.  To assign a permission to a variable: </p>
+<ol>
+<li>Select the Document instance using the <b>Navigation</b> pane of Velocity Studio.</li>
+<li>Open the <b>Variables</b> tab on the document. </li>
+<li>Select the field <b>Name</b> in the table in the top pane of form. This will refresh the lower half of page.</li>
+<li>Click the <b>General</b> tab in the field properties section on the bottom half of page.</li>
+<li>Click the <b>Value</b> column for the appropriate element property row of the table.  The available permissions that can be assigned will be displayed along side fixed values of TRUE and FALSE.</li>
+<li>Select the Document <b>Permission</b> from the list.</li>
+</ol>
+<p><em>Assignment of a Leaf (variable) Permission.</em></p>
+<p><img src=".\Assigning Leaf Permission Velocity.PNG" align="absmiddle" border="0" alt="Assigning Variable(Leaf) Permission" /></p>
+<p>The icon <img src=".\Permission assigned to field icon Velocity.PNG" border="0" alt="" /> in columns vis, opt, and edit are used to quickly indicate if a variable has a permission assigned to it.  A checkmark means that TRUE has been assigned and "X" means that FALSE has been assigned to the element property.</p>
+
+
+<p>UI Permissions can be assigned to any field of a Document form.  To assign a permission to a UI field on particular form: </p>
+<ol>
+<li>Select the UI Document Form instance using the <b>Navigation</b> pane of Velocity Studio.</li>
+<li>Select the <b>Variable</b> on the document <b>Navigation</b> pane of the Object. </li>
+<li>Click the <b>Value</b> column for the element property row <b>visible</b>, or <b>editable</b>, or <b>optional</b> of the table.  The available permissions that can be assigned will be displayed along side fixed values of TRUE and FALSE.</li>
+<li>Select the Document <b>Permission</b> from the list.</li>
+</ol>
+<p><em>Assignment of a UI (variable) Permission.</em></p>
+<p><img src="./Assigning UI Permission Velocity.PNG" align="absmiddle" border="1" alt="Assigning UI Permission" /></p>
+<p>The permissions available are the system default permission and any extended <b>UserInterface</b> Permissions.</p>
+<p><strong>Note:</strong> You can also use a Boolean variable as a permission method.</p> 
+
+<h3><a name="4.14Permissions-4.14.3%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3B%26nbsp%3BAssigningObjectPermissions"></a>Extend Privileges</h3>
+<p>More privileges <em>(Privileges)</em> can be added to the existing (if necessary) system Privileges by extending the Privilege class.  This can be accomplished by adding a new <b>Data Type</b> Object to the metadata, which must be an enumeration.  After the Data type object that extends the <em>Privilege</em> exists in the Metadata the new privilege will be shown in the <b>Privileges and Participants</b> section of the <b>Permissions</b> general tab.  The following steps can be used to extend the existing privileges:  
+<ol>
+<li>Right-click the <b>Namespace</b> folder in the <b>Navigation</b> pane of Velocity Studio.</li>
+<li>Select <b>New ...</b> from the list to open the New Metadata Object dialog.</li>
+<li>Double-click the <b>Data Dictionaries</b> folder in the <b>Navigation</b> pane, or click the <strong>+</strong> icon next to the folder to expand tree and show the <b>Date Type</b> folder.</li>  
+<li>Select the <b>Data Type</b> folder, which enables the <b>Next</b> button at the bottom of the popup.</li>
+<li>Click the <b>Next</b> button to continue.</li>
+<li>Enter the <b>Name</b> of the Data Type in the <b>Name:</b> field. The <b>Finish</b> button is only enabled after a valid name is entered.</li>
+<li>To extend your data type, click the <strong>Extends</strong> field's drop-down menu and select a class from which to extend.</li>
+<li>Click the <b>Finish</b> button to add Privilege to the metadata.</li>
+</ol>
+
+
+<p>The default system Privileges can be changed if the <em>cwf.systemPrivileges</em> class is extended using the same technique.</p> 
+<p>After a Privilege is created, the icon appears under the <b>Data Dictionaries</b> > <b>Data Type</b> folder (see the figure that follows).</p>
+<p><img src="Privilege Velocity.png" border="1" alt="Privilege permissiond data type" /></p>
+
+<!--   <br/>
+                        <div class="tabletitle">
+                            <a name="attachments">Attachments:</a>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="4.14     Permissions_attachments/image383.jpg">image383.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="4.14     Permissions_attachments/image379.png">image379.png</a> (image/png)
+                                <br/>
+                                                            <img src="icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="4.14     Permissions_attachments/image371.jpg">image371.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="4.14     Permissions_attachments/image370.jpg">image370.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="4.14     Permissions_attachments/image373.jpg">image373.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="4.14     Permissions_attachments/image385.png">image385.png</a> (image/png)
+                                <br/>
+                                                            <img src="icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="4.14     Permissions_attachments/image377.png">image377.png</a> (image/png)
+                                <br/>
+                                                            <img src="icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="4.14     Permissions_attachments/image381.png">image381.png</a> (image/png)
+                                <br/>
+                                                            <img src="icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="4.14     Permissions_attachments/4-173.jpg">4-173.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="4.14     Permissions_attachments/4-169.jpg">4-169.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="4.14     Permissions_attachments/4-168.jpg">4-168.jpg</a> (image/jpeg)
+                                <br/>
+                                                    </div>
+                                    
+                                            </td>
+                    </tr>
+            </table>
+            <!== table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                                <td height="12" background="border/border_bottom.gif"><img src="border/spacer.gif" width="1" height="1" border="0"/></td>
+                        </tr>
+                    <tr>
+                            <td align="center"><font color="grey">Document generated by Confluence on May 01, 2009 16:25</font></td>
+                    </tr>
+            </table --></td>
+</tr>
+</table>
+</body>
+</html>
